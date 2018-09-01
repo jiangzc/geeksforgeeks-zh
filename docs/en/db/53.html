@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Concurrency Control Protocol | Two Phase Locking (2-PL)-II</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Now that we are familiar with what is <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocols-two-phase-locking-2-pl/" rel="noopener" target="_blank">Two Phase Locking (2-PL)</a> and the basic rules which should be followed which ensures serializablity. Moreover we came across the problems with 2-PL, Cascading Aborts and Deadlocks. Now, we turn towards the enhancements made on 2-PL which tries to make the protocol nearly error free. Briefly we allow some modifications to 2-PL to improve it. There are three categories: </p>
+<ol>
+<li>Strict 2-PL</li>
+<li>Rigorous 2-PL</li>
+<li>Conservative 2-PL</li>
+</ol>
+<p>Now recall the rules followed in Basic 2-PL, over that we make some extra modifications. Let’s now see what are the modifications and what drawbacks they solve. </p>
+<h3 class="sigil_not_in_toc">Strict 2-PL –</h3>
+<p>This requires that in addition to the lock being 2-Phase <strong>all Exclusive(X) Locks</strong> held by the transaction be released until <em>after</em> the Transaction Commits.<br/>
+Following Strict 2-PL ensures that our schedule is:
+</p>
+<ul>
+<li>Recoverable</li>
+<li>Cascadeless</li>
+</ul>
+<p></p>
+<p>Hence it gives us freedom from Cascading Abort which was still there in Basic 2-PL and moreover guarantee Strict Schedules but still <em>Deadlocks are possible</em>! </p>
+<h3 class="sigil_not_in_toc">Rigorous 2-PL –</h3>
+<p>This requires that in addition to the lock being 2-Phase <strong>all Exclusive(X) and Shared(S) Locks</strong> held by the transaction be released until <em>after</em> the Transaction Commits.<br/>
+Following Rigorous 2-PL ensures that our schedule is:
+</p>
+<ul>
+<li>Recoverable</li>
+<li>Cascadeless</li>
+</ul>
+<p></p>
+<p>Hence it gives us freedom from Cascading Abort which was still there in Basic 2-PL and moreover guarantee Strict Schedules but still <em>Deadlocks are possible</em>!</p>
+<p>Note the difference between Strict 2-PL and Rigorous 2-PL is that Rigorous is more restrictive, it requires both Exclusive and Shared locks to be held until after the Transaction commits and this is what makes the implementation of Rigorous 2-PL more easy.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<h3 class="sigil_not_in_toc">Conservative 2-PL –</h3>
+<p>A.K.A <strong>Static 2-PL</strong>, this protocol requires the transaction to lock all the items it access before the Transaction begins execution by predeclaring its read-set and write-set. If any of the predeclared items needed cannot be locked, the transaction does not lock any of the items, instead it waits until all the items are available for locking.<br/>
+<br/>
+Conservative 2-PL is <em>Deadlock free</em> and yes it ensures Cascadeless schedules and moreover it guarantee Strict Schedules. However, it is difficult to use in practice because of need to predeclare the read-set and the write-set which is not possible in many situations. In practice, the most popular variation of 2-PL is Strict 2-PL.<br/>
+<br/>
+The Venn Diagram below shows the classification of schedules which are rigorous and strict. The universe represents the schedules which can be serialized as 2-PL. Now as the diagram suggests, and it can also be logically concluded, if a schedule is Rigorous then it is Strict. We can also think in another way, say we put a restriction on a schedule which makes it strict, adding another to the list of restrictions make it Rigorous. Take a moment to again analyze the diagram and you’ll definitely get it.</p>
+<p><img src="../../../imgs/db/58c1564724e55f6b7fdcd7e332ab76c9.jpg" alt="33" width="475" height="209" class="aligncenter size-full wp-image-187784" srcset="https://www.geeksforgeeks.org/wp-content/uploads/33-6.png 475w, https://www.geeksforgeeks.org/wp-content/uploads/33-6-300x132.png 300w" sizes="(max-width: 475px) 100vw, 475px"/><br/>
+</p>
+<center><b>Image –</b> Venn Diagram showing categories of languages under 2-PL</center>
+<p></p>
+<p>Now, let’s see the schedule below, tell me if this schedule can be locked using 2-PL and if yes, show how and what class of 2-PL does your answer belongs?</p>
+<table style="width:50%">
+<tbody><tr><th></th>
+<th><strong>T<sub>1</sub></strong></th>
+<th><strong>T<sub>2</sub></strong></th>
+</tr>
+<tr>
+<td>1</td>
+<td>Read(A)</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td>Read(A)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Read(B)</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Write(B)</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Commit</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td></td>
+<td>Read(B)</td>
+</tr>
+<tr>
+<td>7</td>
+<td></td>
+<td>Write(B)</td>
+</tr>
+<tr>
+<td>6</td>
+<td></td>
+<td><strong>Commit</strong></td>
+</tr>
+</tbody>
+</table>
+<p>I recommend you to try before looking at the solution.<br/>
+Yes, the schedule is conflict serializable so we can try implementing 2-PL. So, let’s try….<br/>
+<strong>Solution:</strong></p>
+<table style="width:50%">
+<tbody><tr><th></th>
+<th><strong>T<sub>1</sub></strong></th>
+<th><strong>T<sub>2</sub></strong></th>
+</tr>
+<tr>
+<td>1</td>
+<td>Lock-S(A)</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Read(A)</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td>Lock-S(A)</td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td>Read(A)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Lock-X(B)</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Read(B)</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Write(B)</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Commit</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Unlock(A)</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Unlock(B)</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td></td>
+<td>Lock-X(B)</td>
+</tr>
+<tr>
+<td>12</td>
+<td></td>
+<td>Read(B)</td>
+</tr>
+<tr>
+<td>13</td>
+<td></td>
+<td>Write(B)</td>
+</tr>
+<tr>
+<td>14</td>
+<td></td>
+<td><strong>Commit</strong></td>
+</tr>
+<tr>
+<td>15</td>
+<td></td>
+<td>Unlock(A)</td>
+</tr>
+<tr>
+<td>16</td>
+<td></td>
+<td>Unlock(B)</td>
+</tr>
+</tbody>
+</table>
+<p>Now, this is one way I choose to implement the locks on A and B. You may try a different sequence but remember to follow the 2-PL protocol. With that said, observe that our locks are released after Commit operation so this satisfies Rigorous 2-PL protocol. </p>
+<p>By now, I guess you must’ve got the idea how to differentiate between types of 2-PL. Remember the theory as problems come in the examination sometimes just based on theoretical knowledge. Next we’ll look at some examples on Conservative 2-PL and how does it differs from the above two types of 2-PL. What makes it Deadlock free and also so difficult to implement. Then we’ll conclude the topic of 2-PL. Shortly we’ll move on to another type of Lock based Protocols- Graph Based Protocols. They are also very interesting and provides unique method to deal with the problem of Deadlocks! So we’ll learn a new type of locking protocol, that will conclude the topic of Lock based Protocol for GATE, till then Happy Learning.</p>
+<p>GATE related question:<br/>
+<a href="https://www.geeksforgeeks.org/gate-gate-it-2004-question-77/">GATE CS | IT 2004 | Question 77</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

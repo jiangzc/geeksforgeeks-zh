@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Concurrency Control Protocol | Thomas Write Rule</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><a href="https://www.geeksforgeeks.org/dbms-introduction-timestamp-deadlock-prevention-schemes/" rel="noopener" target="_blank">Timestamp Ordering Protocol</a> states that if R<sub>i</sub>(X) and W<sub>j</sub>(X) are conflicting operations then R<sub>i</sub> (X) is processed before W<sub>j</sub>(X) if and only if TS(T<sub>i</sub>) &lt; TS(T<sub>j</sub>). Whenever a schedule does not follow serializablity order according to the Timestamp, user generally reject it and rollback the Transaction. Some operations on the other hand are harmless and can be allowed. </p>
+<p>Thomas Write Rule allows such operations and is a modification on the Basic Timestamp Ordering protocol. In Thomas Write Rule user <em>ignore outdated writes</em>. Moreover, of all the Concurrency Protocols have been discussed, <em>Concurrency is imposed on Schedules which are Conflict Serializable</em>, in Thomas Write Rule, the most important improvement is user can <em>achieve Concurrency with View Serializable schedules</em>.</p>
+<p>First let’s state what is Thomas Write Rule and then what are the modifications and improvements it succeeds over the <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocols-timestamp-ordering-protocols/">Basic TO protocol</a>. </p>
+<p><b>Thomas Write Rule –</b><br/>
+Thomas Write Rule does not enforce <em>Conflict Serializablity</em> but rejects fewer Write Operations by modifying the check Operations for W_item(X)</p>
+<ol>
+<li> If <strong>R_TS(X) &gt; TS(T)</strong>, then abort and rollback T and reject the operation.</li>
+<li>If <strong>W_TS(X) &gt; TS(T)</strong>, then don’t execute the Write Operation and continue processing. This is a case of <em>Outdated or Obsolete Writes</em>. Remember, outdated writes are ignored in Thomas Write Rule but a Transaction following Basic TO protocol will abort such a Transaction.</li>
+<li> If neither the condition in 1 or 2 occurs, then and only then execute the W_item(X) operation of T and set W_TS(X) to TS(T)</li>
+</ol>
+<p><b>Outdated Write Example –</b><br/>
+The main update in Thomas Write Rule is ignoring the Obsolete Write Operations. This is done because some transaction with timestamp greater than TS(T) (i.e., a  transaction after T in TS ordering) has already written the value of X. Hence, logically user can ignore the Write(X) operation of T which becomes obsolete. Let us see this through an example: </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>Suppose user has a schedule in which two transactions T<sub>1</sub> and T<sub>2</sub>. Now, <strong>TS(T<sub>1</sub>) &lt; TS(T<sub>2</sub>)</strong>. This means T<sub>1</sub> arrived after T<sub>2</sub> and hence has a larger TS value than T<sub>1</sub>. This implies that serializablity of schedule allowed is <strong>T<sub>2</sub> –&gt; T<sub>1</sub> </strong>. Consider the partial schedule given below:</p>
+<p><img src="../../../imgs/db/62fc6db95f9df207bb4c004e91beafb1.jpg" alt="3333" width="912" height="404" class="aligncenter size-full wp-image-191273" srcset="https://www.geeksforgeeks.org/wp-content/uploads/3333-1.png 912w, https://www.geeksforgeeks.org/wp-content/uploads/3333-1-300x133.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/3333-1-768x340.png 768w, https://www.geeksforgeeks.org/wp-content/uploads/3333-1-660x292.png 660w" sizes="(max-width: 912px) 100vw, 912px"/><br/>
+</p>
+<center><b>Image –</b> Example of Outdated Write</center>
+<p></p>
+<p>Obsolete Writes are hence ignored in this rule which is in accordance to the 2<sup>nd</sup> protocol. It seems to be more logical as user skip an unnecessary procedure of restarting the entire transaction. This protocol is just a modification to Basic TO protocol. </p>
+<p><strong>Basic TO Protocol v/s Thomas Write Rule –</strong><br/>
+Suppose user has a schedule in which two transactions T<sub>1</sub> and T<sub>2</sub>. Now, <strong>TS(T<sub>1</sub>) &lt; TS(T<sub>2</sub>)</strong>. This implies that serializablity of schedule allowed is <strong>T<sub>2</sub> –&gt; T<sub>1</sub> </strong>. Consider the two protocols, let us see what types of Operation will be allowed and not allowed under them. <strong>R<sub>i</sub>(A)</strong> implies Read and <strong>W<sub>i</sub>(A)</strong> implies Write operation. Now, let us look at the types of partial schedules allowed in both Basic TO and Thomas Write Rule, you’ll understand the difference in operations of both the protocol. User distinguish in operations Allowed and Not Allowed in both of the Protocols.<br/>
+</p>
+<table>
+<tbody><tr><th></th>
+<th></th>
+</tr>
+<tr>
+<td>
+<strong>Basic TO Protocol</strong> <p></p>
+<ul>
+<li><strong> Not Allowed </strong> <p></p>
+<ul>
+<li> R<sub>1</sub>(X)   W<sub>2</sub>(X) </li>
+<li> W<sub>1</sub>(X)   R<sub>2</sub>(X) </li>
+<li> W<sub>1</sub>(X)  W<sub>2</sub>(X) </li>
+</ul>
+</li>
+<li><strong>Allowed </strong>
+<ul>
+<li> All operations where T<sub>2</sub> occurs before T<sub>1</sub>.</li>
+<li>R<sub>1</sub>(X)  R<sub>2</sub>(X)</li>
+</ul>
+</li>
+</ul>
+</td>
+<td>
+<strong>Thomas Write Rule</strong> <p></p>
+<ul>
+<li><strong> Not Allowed </strong> <p></p>
+<ul>
+<li> R<sub>1</sub>(X)   W<sub>2</sub>(X) </li>
+<li> W<sub>1</sub>(X)   R<sub>2</sub>(X) </li>
+</ul>
+</li>
+<li><strong>Allowed </strong>
+<ul>
+<li> All operations where T<sub>2</sub> occurs before T<sub>1</sub>.</li>
+<li><strong>Outdated Writes</strong>: W<sub>1</sub>(X)  W<sub>2</sub>(X) </li>
+<li>R<sub>1</sub>(X)  R<sub>2</sub>(X)</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Thus, from the above gist, this modification used in Thomas Write Rule in comparison to Basic TO protocol. </p>
+<p><u>Reference</u>: Database System Concepts, Fifth Edition [Silberschatz, Korth, Sudarshan], Chapter-16</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Database Management System – Introduction | Set 1</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p style="text-align: center"><strong>Important Terminology</strong></p>
+<p><strong>Database:&#160;</strong>Database is a collection of inter-related data which helps in efficient retrieval, insertion and deletion of data from database and organizes the data in the form of tables, views, schemas, reports etc. For Example, university database organizes the data about students, faculty, and admin staff etc. which helps in efficient retrieval, insertion and deletion of data from it.</p>
+<p><strong>Database Management System:&#160;</strong>The software which is used to manage database is called Database Management System (DBMS). For Example, MySQL, Oracle etc. are popular commercial DBMS used in different applications. DBMS allows users the following tasks:</p>
+<p><strong>Data Definition:</strong> It helps in creation, modification and removal of definitions that define the organization of data in database.</p>
+<p><strong>Data Updation:</strong> It helps in insertion, modification and deletion of the actual data in the database.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><strong>Data Retrieval:</strong> It helps in retrieval of data from the database which can be used by applications for various purposes.</p>
+<p><strong>User Administration:</strong> It helps in registering and monitoring users, enforcing data security, monitoring performance, maintaining data integrity, dealing with concurrency control and recovering information corrupted by unexpected failure.</p>
+<p style="text-align: center"><strong>Paradigm Shift from File System to DBMS</strong></p>
+<p><strong>&#160;</strong>File System manages data using files in hard disk. Users are allowed to create, delete, and update the files according to their requirement. Let us consider the example of file based University Management System. Data of students is available to their respective Departments, Academics Section, Result Section, Accounts Section, Hostel Office etc. Some of the data is common for all sections like Roll No, Name, Father Name, Address and Phone number of students but some data is available to a particular section only like Hostel allotment number which is a part of hostel office. Let us discuss the issues with this system:</p>
+<ul>
+<li><strong>Redundancy of data:</strong> Data is said to be redundant if same data is copied at many places. If a student wants to change Phone number, he has to get it updated at various sections. Similarly, old records must be deleted from all sections representing that student.</li>
+</ul>
+<ul>
+<li><strong>Inconsistency of Data: </strong>Data is said to be inconsistent if multiple copies of same data does not match with each other. If Phone number is different in Accounts Section and Academics Section, it will be inconsistent. Inconsistency may be because of typing errors or not updating all copies of same data.</li>
+</ul>
+<ul>
+<li><strong>Difficult Data Access:</strong> A user should know the exact location of file to access data, so the process is very cumbersome and tedious. If user wants to search student hostel allotment number of a student from 10000 unsorted students’ records, how difficult it can be.</li>
+</ul>
+<ul>
+<li><strong>Unauthorized Access:</strong> File System may lead to unauthorized access to data. If a student gets access to file having his marks, he can change it in unauthorized way.</li>
+</ul>
+<ul>
+<li><strong>No Concurrent Access: </strong>The access of same data by multiple users at same time is known as concurrency. File system does not allow concurrency as data can be accessed by only one user at a time.</li>
+</ul>
+<ul>
+<li><strong>No Backup and Recovery:</strong> File system does not incorporate any backup and recovery of data if a file is lost or corrupted.</li>
+</ul>
+<p>These are the main reasons which made a shift from file system to DBMS.</p>
+<p>Also see</p>
+<ul>
+<li class="entry-title"><a href="http://quiz.geeksforgeeks.org/database-management-system-introduction-set-2/">Database Management System – Introduction | Set 2</a></li>
+<li class="entry-title"><a href="http://quiz.geeksforgeeks.org/category/articles/dbms-articles/">All DBMS Articles</a></li>
+<li class="entry-title"><a href="http://quiz.geeksforgeeks.org/quiz-corner/#DBMS%20Mock%20Tests">DBMS Quizzes</a></li>
+</ul>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

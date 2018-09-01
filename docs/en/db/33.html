@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Finding Attribute Closure and Candidate Keys using Functional Dependencies</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<h3 class="sigil_not_in_toc"><strong>What is Functional Dependency?</strong></h3>
+<p style="text-align: justify">A functional dependency X-&gt;Y in a relation holds if two tuples having same value for X also have same value for Y i.e&#160;&#160;X uniquely determines Y.</p>
+<p style="text-align: justify">In EMPLOYEE relation given in Table 1,</p>
+<ul>
+<li style="text-align: justify">FD&#160;<strong>E-ID-&gt;E-NAME</strong> holds because for each E-ID, there is a unique value of E-NAME.</li>
+<li style="text-align: justify">FD <strong>E-ID-&gt;E-CITY</strong> and <strong>E-CITY-&gt;E-STATE</strong> also holds.</li>
+<li style="text-align: justify">FD E-NAME-&gt;E-ID <strong>does not hold</strong> because E-NAME ‘John’ is not uniquely determining E-ID. There are 2 E-IDs corresponding to John (E001 and E003).</li>
+</ul>
+<p><strong>EMPLOYEE</strong></p>
+<table width="626">
+<tbody>
+<tr>
+<td width="165"><strong><u>E-ID</u></strong></td>
+<td width="171"><strong>E-NAME</strong></td>
+<td width="145"><strong>E-CITY</strong></td>
+<td width="145"><strong>E-STATE</strong></td>
+</tr>
+<tr>
+<td width="165">E001</td>
+<td width="171">John</td>
+<td width="145">Delhi</td>
+<td width="145">Delhi</td>
+</tr>
+<tr>
+<td width="165">E002</td>
+<td width="171">Mary</td>
+<td width="145">Delhi</td>
+<td width="145">Delhi</td>
+</tr>
+<tr>
+<td width="165">E003</td>
+<td width="171">John</td>
+<td width="145">Noida</td>
+<td width="145">U.P.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 1</strong></p>
+<p>The FD set for EMPLOYEE relation given in Table 1 are:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<pre style="text-align: center"><strong>{E-ID-&gt;E-NAME, E-ID-&gt;E-CITY, E-ID-&gt;E-STATE, E-CITY-&gt;E-STATE}</strong></pre>
+<p><strong>Trivial versus Non-Trivial Functional Dependency:</strong>&#160;A trivial functional dependency is the one which will always hold in a relation.</p>
+<pre style="text-align: center"><strong>X-&gt;Y will always hold if X ⊇ Y</strong></pre>
+<p style="text-align: justify">In the example given above, <strong>E-ID, E-NAME-&gt;E-ID</strong> is a trivial functional dependency and will always hold because {E-ID,E-NAME} ⊃ {E-ID}. You can also see from the table that for each value of {E-ID, E-NAME}, value of E-ID is unique, so {E-ID, E-NAME} functionally determines E-ID.</p>
+<p style="text-align: justify">If a functional dependency is not trivial, it is called <strong>Non-Trivial Functional Dependency</strong>. Non-Trivial functional dependency may or may not hold in a relation. e.g; <strong>E-ID-&gt;E-NAME</strong> is a non-trivial functional dependency which holds in the above relation.</p>
+<p style="text-align: center"><strong>Properties of Functional Dependencies</strong></p>
+<p style="text-align: justify">Let <em>X</em>,&#160;<em>Y</em>, and&#160;<em>Z</em>&#160;are sets of attributes in a relation&#160;<em>R</em>. There are several properties of functional dependencies which always hold in R also known as Armstrong Axioms.</p>
+<ol>
+<li style="text-align: justify"><strong>Reflexivity</strong>: If&#160;<em>Y</em>&#160;is a subset of&#160;<em>X</em>, then&#160;<em>X</em>&#160;→&#160;<em>Y. </em>e.g.; Let X represents {E-ID, E-NAME} and Y represents {E-ID}.&#160; {E-ID, E-NAME}-&gt;E-ID is true for the relation.</li>
+<li style="text-align: justify"><strong>Augmentation</strong>: If&#160;<em>X</em>&#160;→&#160;<em>Y</em>, then&#160;<em>XZ</em>&#160;→&#160;<em>YZ.</em> e.g.; Let X represents {E-ID}, Y represents {E-NAME} and Z represents {E-CITY}. As {E-ID}-&gt;E-NAME is true for the relation, so { E-ID,E-CITY}-&gt;{E-NAME,E-CITY} will also be true.</li>
+<li style="text-align: justify"><strong>Transitivity</strong>: If&#160;<em>X</em>&#160;→&#160;<em>Y</em>&#160;and&#160;<em>Y</em>&#160;→&#160;<em>Z</em>, then&#160;<em>X</em>&#160;→&#160;<em>Z. </em>e.g.; Let X represents {E-ID}, Y represents {E-CITY} and Z represents {E-STATE}. As {E-ID} -&gt;{E-CITY} and {E-CITY}-&gt;{E-STATE}&#160; is true for the relation, so { E-ID }-&gt;{E-STATE} will also be true.</li>
+<li style="text-align: justify"><strong>Attribute Closure:</strong> The set of attributes that are functionally dependent on the attribute A is called Attribute Closure of A and it can be represented as A<sup>+</sup>.</li>
+</ol>
+<p style="text-align: center"><strong>Steps to Find the Attribute Closure of A</strong></p>
+<p>Q. Given FD set of a Relation R, The attribute closure set S be the set of A</p>
+<ol>
+<li>Add A to S.</li>
+<li>Recursively add attributes which can be functionally determined from attributes of the set S until done.</li>
+</ol>
+<p>From Table 1, FDs are</p>
+<p style="text-align: left"><strong>Given R(<u>E-ID</u>, E-NAME, E-CITY, E-STATE) </strong></p>
+<pre style="text-align: left"><strong>FDs = { E-ID-&gt;E-NAME, E-ID-&gt;E-CITY, E-ID-&gt;E-STATE, E-CITY-&gt;E-STATE }</strong></pre>
+<p>The attribute closure of E-ID can be calculated as:</p>
+<ol>
+<li>Add E-ID to the set {E-ID}</li>
+<li>Add Attributes which can be derived from any attribute of set. In this case, E-NAME and E-CITY, E-STATE can be derived from E-ID. So these are also a part of closure.</li>
+<li>As there is one other attribute remaining in relation to be derived from E-ID. So result is:</li>
+</ol>
+<pre><strong>(E-ID)<sup>+</sup> = {E-ID, E-NAME, E-CITY, E-STATE }</strong></pre>
+<p>Similarly,</p>
+<pre><strong>(E-NAME)<sup>+</sup> = {E-NAME}</strong>
+<strong>(E-CITY)<sup>+</sup> = {E-CITY, E_STATE}</strong></pre>
+<hr/>
+<p><strong>Q. Find the attribute closures of given FDs&#160;R(ABCDE) = {AB-&gt;C, B-&gt;D, C-&gt;E, D-&gt;A}</strong> To find (B)<sup>+ </sup>,we will add attribute in set using various FD which has been shown in table below. <sup>&#160;</sup></p>
+<table>
+<tbody>
+<tr>
+<td style="text-align: left" width="213">Attributes Added in Closure</td>
+<td style="text-align: left" width="213">FD used</td>
+</tr>
+<tr>
+<td width="213">{B}</td>
+<td width="213">Triviality</td>
+</tr>
+<tr>
+<td width="213">{B,D}</td>
+<td width="213">B-&gt;D</td>
+</tr>
+<tr>
+<td width="213">{B,D,A}</td>
+<td width="213">D-&gt;A</td>
+</tr>
+<tr>
+<td width="213">{B,D,A,C}</td>
+<td width="213">AB-&gt;C</td>
+</tr>
+<tr>
+<td style="text-align: left" width="213">{B,D,A,C,E}</td>
+<td style="text-align: left" width="213">C-&gt;E</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<ul>
+<ul>
+<li>We can find (C, D)<sup>+</sup> by adding&#160; C and D into the set (triviality) and then E using(C-&gt;E) and then A using (D-&gt;A) and set becomes.
+<pre><strong> &#160;(C,D)<sup>+</sup> = {C,D,E,A}</strong></pre>
+</li>
+<li>Similarly we can find (B,C)<sup>+</sup> by adding B and C into the set (triviality) and then D using (B-&gt;D) and then E using (C-&gt;E) and then A using (D-&gt;A) and set becomes
+<pre><strong>&#160;(B,C)<sup>+</sup> ={B,C,D,E,A}</strong></pre>
+</li>
+</ul>
+</ul>
+</ul>
+<hr/>
+<p><strong>Candidate Key</strong></p>
+<p style="text-align: justify">Candidate Key is <strong>minimal set of attributes</strong> of a relation which can be used to identify a tuple uniquely. For Example,&#160;each tuple of EMPLOYEE relation given in Table 1 can be uniquely identified by <strong>E-ID </strong>and it is minimal as well. So it will be Candidate key of the relation.</p>
+<p>A candidate key may or may not be a primary key.</p>
+<p><strong>Super Key</strong></p>
+<p>Super Key is <strong>set of attributes</strong> of a relation which can be used to identify a tuple uniquely.For Example, each tuple of EMPLOYEE relation given in Table 1 can be uniquely identified by <strong>E-ID or (E-ID, E-NAME) or (E-ID, E-CITY) or (E-ID, E-STATE) or (E_ID, E-NAME, E-STATE) </strong>etc. So all of these are super keys of EMPLOYEE relation.</p>
+<pre><strong>Note:</strong> A candidate key is always a super key but vice versa is not true.</pre>
+<hr/>
+<pre></pre>
+<p><strong>Q. Finding Candidate Keys and Super Keys of a Relation using FD set</strong> The <strong>set of attributes</strong> whose attribute closure is set of all attributes of relation is called super key of relation. For Example, the EMPLOYEE relation shown in Table 1 has following FD set. <strong>{E-ID-&gt;E-NAME, E-ID-&gt;E-CITY, E-ID-&gt;E-STATE, E-CITY-&gt;E-STATE}</strong> Let&#160;us&#160;calculate attribute closure of different set of attributes:</p>
+<pre><strong>(E-ID)<sup>+</sup> = {E-ID, E-NAME,E-CITY,E-STATE}
+(E-ID,E-NAME)<sup>+</sup> = {E-ID, E-NAME,E-CITY,E-STATE}
+(E-ID,E-CITY)<sup>+</sup> = {E-ID, E-NAME,E-CITY,E-STATE}
+(E-ID,E-STATE)<sup>+</sup> = {E-ID, E-NAME,E-CITY,E-STATE}
+(E-ID,E-CITY,E-STATE)<sup>+</sup> = {E-ID, E-NAME,E-CITY,E-STATE}
+(E-NAME)<sup>+</sup> = {E-NAME}
+(E-CITY)<sup>+</sup> = {E-CITY,E-STATE}</strong></pre>
+<p>As (E-ID)<sup>+</sup>, (E-ID, E-NAME)<sup>+</sup>, (E-ID, E-CITY)<sup>+</sup>, (E-ID, E-STATE)<sup>+</sup>, (E-ID, E-CITY, E-STATE)<sup>+</sup> give set of all attributes of relation EMPLOYEE. So all of these are super keys of relation.</p>
+<p style="text-align: justify">The <strong>minimal set of attributes</strong> whose attribute closure is set of all attributes of relation is called candidate key of relation. As shown above, (E-ID)<sup>+</sup> is set of all attributes of relation and it is minimal. So E-ID will be candidate key. On the other hand (E-ID, E-NAME)<sup>+</sup> also is set of all attributes but it is not minimal because its subset (E-ID)<sup>+</sup> is equal to set of all attributes. So (E-ID, E-NAME) is not a candidate key.</p>
+<hr/>
+<p><iframe width="665" height="374" src="https://www.youtube.com/embed/hgM-J93DaiM?feature=oembed" frameborder="0" allowfullscreen=""></iframe></p>
+<p>Article contributed by Sonal Tuteja. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Precedence Graph For Testing Conflict Serializability</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite : <a href="https://www.geeksforgeeks.org/conflict-serializability/">Conflict Serializability</a></p>
+<p><strong>Precedence Graph</strong> or <strong>Serialization Graph</strong> is used commonly to test Conflict Serializability of a schedule.<br/>
+It is a directed Graph (V, E) consisting of a set of nodes V = {T<sub>1</sub>, T<sub>2</sub>, T<sub>3</sub>……….T<sub>n</sub>} and a set of directed edges E = {e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>………………e<sub>m</sub>}.<br/>
+The graph contains one node for each Transaction T<sub>i</sub>. An edge e<sub>i</sub> is of the form T<sub>j</sub> –&gt; T<sub>k</sub> where T<sub>j</sub> is the starting node of e<sub>i</sub> and T<sub>k</sub> is the ending node of e<sub>i</sub>. An edge e<sub>i</sub> is constructed between nodes T<sub>j</sub> to T<sub>k</sub> if one of the operations in T<sub>j</sub> appears in the schedule before some conflicting operation in T<sub>k</sub> .</p>
+<p>The Algorithm can be written as:</p>
+<ol>
+<li> Create a node T in the graph for each participating transaction in the schedule. </li>
+<li> For the conflicting operation read_item(X) and write_item(X) – If a Transaction T<sub>j</sub>   executes a read_item (X) after T<sub>i </sub> executes a write_item (X), draw an edge from T<sub>i</sub> to T<sub>j</sub> in the graph. </li>
+<li> For the conflicting operation write_item(X) and read_item(X) – If a Transaction T<sub>j</sub>   executes a write_item (X) after T<sub>i</sub> executes a read_item (X), draw an edge from T<sub>i</sub> to T<sub>j</sub> in the graph. </li>
+<li> For the conflicting operation write_item(X) and write_item(X) – If a Transaction T<sub>j</sub> executes a write_item (X) after T<sub>i</sub> executes a write_item (X), draw an edge from T<sub>i</sub> to T<sub>j</sub> in the graph.</li>
+<li> <strong>The Schedule S is serializable if there is no cycle in the precedence graph</strong>. </li>
+</ol>
+<p>If there is no cycle in the precedence graph, it means we can construct a serial schedule S’ which is conflict equivalent to the schedule S.<br/>
+The serial schedule S’ can be found by <a href="https://www.geeksforgeeks.org/topological-sorting-indegree-based-solution/">Topological Sorting</a> of the acyclic precedence graph. Such schedules can be more than 1.</p>
+<p>For example,<br/>
+Consider the schedule S :</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<pre> S : r1(x) r1(y) w2(x) w1(x) r2(y) </pre>
+<p><strong>Creating Precedence graph:</strong></p>
+<ol>
+<li> Make two nodes corresponding to Transaction T<sub>1</sub> and T<sub>2</sub>.<br/>
+<img src="../../../imgs/db/82f27e84f466d72639cf3a0b184830fe.jpg" alt="2" width="171" height="31" class="alignnone size-full wp-image-183767"/>
+ </li>
+<li> For the conflicting pair r1(x) w2(x), where r1(x) happens before w2(x), draw an edge from T<sub>1</sub> to T<sub>2</sub>.<br/>
+<img src="../../../imgs/db/a2fb0e5d7ee288799edb7a523d9a38ec.jpg" alt="3" width="171" height="31" class="alignnone size-full wp-image-183769"/>
+</li>
+<li> For the conflicting pair w2(x) w1(x), where w2(x) happens before w1(x), draw an edge from T<sub>2</sub> to T<sub>1</sub>.
+<p><img src="../../../imgs/db/5b17b8220cc72a5b81f1702611d1b7be.jpg" alt="4" width="171" height="86" class="alignnone size-full wp-image-183770"/>
+</p></li>
+</ol>
+<p>Since the graph is cyclic, we can conclude that it is <strong>not conflict serializable</strong> to any schedule serial schedule.<br/>
+Let us try to infer a serial schedule from this graph using topological ordering.<br/>
+The edge T<sub>1</sub>–&gt;T<sub>2</sub> tells that T<sub>1</sub> should come before T<sub>2</sub> in the linear ordering.<br/>
+The edge T<sub>2</sub> –&gt; T<sub>1</sub> tells that T<sub>2</sub> should come before T<sub>1</sub> in the linear ordering.<br/>
+So, we can not predict any particular order (when the graph is cyclic). Therefore, no serial schedule can be obtained from this graph.<br/>
+<br/><br/>
+Consider the another schedule S1 :</p>
+<pre> S1: r1(x) r3(y) w1(x) w2(y) r3(x) w2(x)</pre>
+<p>The graph for this schedule is :</p>
+<p><img src="../../../imgs/db/42d8298ccd060766b79642976cc36187.jpg" alt="22" width="196" height="136" class="alignnone size-full wp-image-195758"/></p>
+<p>Since the graph is acyclic, the schedule is conflict serializable. Performing Topological Sort on this graph would give us a possible serial schedule which is conflict equivalent to schedule S1.<br/>
+In Topological Sort, we first select the node with indegree 0, which is T1. This would be followed by T3 and T2.<br/>
+So, <strong>S1 is conflict serializable</strong> since it is <strong>conflict equivalent</strong> to the <strong>serial schedule T1 T3 T2. </strong></p>
+<p>Source:  Operating Systems book, Silberschatz, Galvin and Gagne</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Mapping from ER Model to Relational Model</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>To understand this, you should have an idea about:</p>
+<p><a href="http://quiz.geeksforgeeks.org/database-management-system-er-model/" target="_blank">ER model</a></p>
+<p><a href="http://quiz.geeksforgeeks.org/relational-model/" target="_blank">Relation model</a></p>
+<p>After designing the ER diagram of system, we need to convert it to Relational models which can directly be implemented by any RDBMS like Oracle, MySQL etc. &#160;In this article we will discuss how to convert ER diagram to Relational Model for different scenarios.</p>
+<p><strong>Case 1: &#160;Binary Relationship with 1:1 cardinality with total participation of an entity</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Binary-Relationship-with-1_1-cardinality-with-total-participation-of-an-entity.png"><img class="aligncenter size-full wp-image-19995" src="../../../imgs/db/14a27ab88c3bf41fc2d0dfefd7295947.jpg" alt="erm1" width="594" height="167"/></a>A person has 0 or 1 passport number and Passport is always owned by 1 person. So it is 1:1 cardinality with full participation constraint from Passport.</p>
+<p><strong>First Convert each entity and relationship to tables.</strong>&#160; Person table corresponds to Person Entity with key as Per-Id. Similarly Passport table corresponds to Passport Entity with key as Pass-No. Has Table represents relationship between Person and Passport (Which person has which passport). So it will take attribute Per-Id from Person and Pass-No from Passport.</p>
+<p>&#160;</p>
+<table>
+<tbody>
+<tr>
+<td colspan="2" width="142"><strong>Person</strong></td>
+<td rowspan="4" width="48"></td>
+<td colspan="2" width="174"><strong>Has</strong></td>
+<td rowspan="4" width="48"></td>
+<td colspan="2" width="156"><strong>Passport</strong></td>
+</tr>
+<tr>
+<td width="73"><strong><u>Per-Id</u></strong></td>
+<td width="69"><strong>Other Person Attribute</strong></td>
+<td width="78"><strong><u>Per-Id</u></strong></td>
+<td width="96"><strong>Pass-No</strong></td>
+<td width="78"><strong><u>Pass-No</u></strong></td>
+<td width="78"><strong>Other Passport</strong><strong>Attribute</strong></td>
+</tr>
+<tr>
+<td width="73">PR1</td>
+<td width="69">–</td>
+<td width="78">PR1</td>
+<td width="96">PS1</td>
+<td width="78">PS1</td>
+<td width="78">–</td>
+</tr>
+<tr>
+<td width="73">PR2</td>
+<td width="69">–</td>
+<td width="78">PR2</td>
+<td width="96">PS2</td>
+<td width="78">PS2</td>
+<td width="78">–</td>
+</tr>
+<tr>
+<td width="73">PR3</td>
+<td width="69">–</td>
+<td width="48"></td>
+<td width="78"></td>
+<td width="96"></td>
+<td width="48"></td>
+<td width="78"></td>
+<td width="78"></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;Table 1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </strong></p>
+<p>As we can see from Table 1, each Per-Id and Pass-No has only one entry in <strong>Has</strong> table. So we can merge all three tables into 1 with attributes shown in Table 2. Each Per-Id will be unique and not null. So it will be the key. Pass-No can’t be key because for some person, it can be NULL.</p>
+<table>
+<tbody>
+<tr>
+<td width="73"><u>Per-Id</u></td>
+<td style="text-align: center" width="69">Other Person Attribute</td>
+<td width="78">Pass-No</td>
+<td width="78">Other PassportAttribute</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>Table 2</strong></p>
+<hr/>
+<p><strong>Case 2: Binary Relationship with 1:1 cardinality and partial participation of both entities</strong></p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Binary-Relationship-with-1_1-cardinality-and-partial-participation-of-both-entities.png"><img class="aligncenter size-full wp-image-19996" src="../../../imgs/db/bb7986e5dcc697d59e1073834e70c68d.jpg" alt="erm2" width="577" height="164"/></a></p>
+<p>A male marries 0 or 1 female and vice versa as well. So it is 1:1 cardinality with partial participation constraint from both. First Convert each entity and relationship to tables.&#160; Male table corresponds to Male Entity with key as M-Id. Similarly Female table corresponds to Female Entity with key as F-Id. Marry Table represents relationship between Male and Female (Which Male marries which female). So it will take attribute M-Id from Male and F-Id from Female.</p>
+<table class=" aligncenter">
+<tbody>
+<tr>
+<td colspan="2" width="133"><strong>Male</strong></td>
+<td rowspan="4" width="48"></td>
+<td colspan="2" width="174"><strong>Marry</strong></td>
+<td rowspan="4" width="48"></td>
+<td colspan="2" width="156"><strong>Female</strong></td>
+</tr>
+<tr>
+<td width="73"><u>M-Id</u></td>
+<td width="60">Other Male Attribute</td>
+<td width="78"><u>M-Id</u></td>
+<td width="96">F-Id</td>
+<td width="78"><u>F-Id</u></td>
+<td width="78">Other FemaleAttribute</td>
+</tr>
+<tr>
+<td width="73">M1</td>
+<td width="60">–</td>
+<td width="78">M1</td>
+<td width="96">F2</td>
+<td width="78">F1</td>
+<td width="78">–</td>
+</tr>
+<tr>
+<td width="73">M2</td>
+<td width="60">–</td>
+<td width="78">M2</td>
+<td width="96">F1</td>
+<td width="78">F2</td>
+<td width="78">–</td>
+</tr>
+<tr>
+<td width="73">M3</td>
+<td width="60">–</td>
+<td width="48"></td>
+<td width="78"></td>
+<td width="96"></td>
+<td width="48"></td>
+<td width="78">F3</td>
+<td width="78">–</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>Table 3</strong></p>
+<p>As we can see from Table 3, some males and some females do not marry. If we merge 3 tables into 1, for some M-Id, F-Id will be NULL and for some F-Id, M-Id will be NULL. So there is no attribute which is always not NULL. So we can’t merge all three tables into 1. We can convert into 2 tables. In table 4, M-Id who are married will have F-Id associated. For others, it will be NULL. Table 5 will have information of all females. Primary Keys have been underlined.</p>
+<table>
+<tbody>
+<tr>
+<td width="73"><u>M-Id</u></td>
+<td width="69">Other Male Attribute</td>
+<td width="96">F-Id</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>&#160;Table 4&#160;&#160;&#160;</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="78"><u>F-Id</u></td>
+<td width="78">Other FemaleAttribute</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Table 5</strong><strong>&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;</strong></p>
+<p><strong>Note:</strong> Binary relationship with 1:1 cardinality will have 2 table if partial participation of both entities in the relationship. If atleast 1 entity has total participation, number of tables required will be 1.</p>
+<hr/>
+<p><strong>Case 3: Binary Relationship with n: 1 cardinality</strong></p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Binary-Relationship-with-n_-1-cardinality.png"><img class="aligncenter size-full wp-image-19997" src="../../../imgs/db/dfe50ec04188204754d1351a36a5eff2.jpg" alt="erm3" width="571" height="165"/></a>In this scenario, every student can enroll only in one elective course but for an elective course there can be more than one student. First Convert each entity and relationship to tables.&#160; Student table corresponds to Student Entity with key as S-Id. Similarly Elective_Course table corresponds to Elective_Course Entity with key as E-Id. Enrolls Table represents relationship between Student and Elective_Course (Which student enrolls in which course). So it will take attribute S-Id from and Student E-Id from Elective_Course.</p>
+<table>
+<tbody>
+<tr>
+<td colspan="2" width="145"><strong>Student</strong></td>
+<td rowspan="4" width="48"></td>
+<td colspan="2" width="174"><strong>Enrolls</strong></td>
+<td rowspan="4" width="48"></td>
+<td colspan="2" width="156"><strong>Elective_Course</strong></td>
+</tr>
+<tr>
+<td width="73"><u>S-Id</u></td>
+<td width="72">Other Student Attribute</td>
+<td width="78"><u>S-Id</u></td>
+<td width="96">E-Id</td>
+<td width="78"><u>E-Id</u></td>
+<td width="78">Other Elective CourseAttribute</td>
+</tr>
+<tr>
+<td width="73">S1</td>
+<td width="72">–</td>
+<td width="78">S1</td>
+<td width="96">E1</td>
+<td width="78">E1</td>
+<td width="78">–</td>
+</tr>
+<tr>
+<td width="73">S2</td>
+<td width="72">–</td>
+<td width="78">S2</td>
+<td width="96">E2</td>
+<td width="78">E2</td>
+<td width="78">–</td>
+</tr>
+<tr>
+<td width="73">S3</td>
+<td width="72">–</td>
+<td width="48"></td>
+<td width="78">S3</td>
+<td width="96">E1</td>
+<td width="48"></td>
+<td width="78">E3</td>
+<td width="78">–</td>
+</tr>
+<tr>
+<td width="73">S4</td>
+<td width="72">–</td>
+<td width="48"></td>
+<td width="78">S4</td>
+<td width="96">E1</td>
+<td width="48"></td>
+<td width="78"></td>
+<td width="78"></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>Table 6</strong></p>
+<p>As we can see from Table 6, S-Id is not repeating in Enrolls Table. So it can be considered as a key of Enrolls table. Both Student and Enrolls Table’s key is same; we can merge it as a single table. The resultant tables are shown in Table 7 and Table 8. Primary Keys have been underlined.</p>
+<table>
+<tbody>
+<tr>
+<td width="73"><u>S-Id</u></td>
+<td width="114">Other Student Attribute</td>
+<td width="54">E-Id</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>Table 7&#160;</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="78"><u>E-Id</u></td>
+<td width="163">Other Elective CourseAttribute</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>Table 8</strong></p>
+<hr/>
+<p><strong>Case 4: Binary Relationship with m: n cardinality<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Binary-Relationship-with-m_-n-cardinality.png"><img class="aligncenter size-full wp-image-19998" src="../../../imgs/db/a11cc34b564f754cf5d2f784c9d6d316.jpg" alt="erm4" width="612" height="181"/></a></strong></p>
+<p>In this scenario, every student can enroll in more than 1 compulsory course and for a compulsory course there can be more than 1 student. First Convert each entity and relationship to tables.&#160; Student table corresponds to Student Entity with key as S-Id. Similarly Compulsory_Courses table corresponds to Compulsory Courses Entity with key as C-Id. Enrolls Table represents relationship between Student and Compulsory_Courses (Which student enrolls in which course). So it will take attribute S-Id from Person and C-Id from Compulsory_Courses.</p>
+<table>
+<tbody>
+<tr>
+<td colspan="2" width="133"><strong>Student</strong></td>
+<td rowspan="4" width="48"></td>
+<td colspan="2" width="174"><strong>Enrolls</strong></td>
+<td rowspan="4" width="48"></td>
+<td colspan="2" width="156"><strong>Compulsory_Courses</strong></td>
+</tr>
+<tr>
+<td width="73"><u>S-Id</u></td>
+<td width="60">Other Student Attribute</td>
+<td width="78"><u>S-Id</u></td>
+<td width="96"><u>C-Id</u></td>
+<td width="78"><u>C-Id</u></td>
+<td width="78">Other Compulsory CourseAttribute</td>
+</tr>
+<tr>
+<td width="73">S1</td>
+<td width="60">–</td>
+<td width="78">S1</td>
+<td width="96">C1</td>
+<td width="78">C1</td>
+<td width="78">–</td>
+</tr>
+<tr>
+<td width="73">S2</td>
+<td width="60">–</td>
+<td width="78">S1</td>
+<td width="96">C2</td>
+<td width="78">C2</td>
+<td width="78">–</td>
+</tr>
+<tr>
+<td width="73">S3</td>
+<td width="60">–</td>
+<td width="48"></td>
+<td width="78">S3</td>
+<td width="96">C1</td>
+<td width="48"></td>
+<td width="78">C3</td>
+<td width="78">–</td>
+</tr>
+<tr>
+<td width="73">S4</td>
+<td width="60">–</td>
+<td width="48"></td>
+<td width="78">S4</td>
+<td width="96">C3</td>
+<td width="48"></td>
+<td width="78">C4</td>
+<td width="78">–</td>
+</tr>
+<tr>
+<td width="73"></td>
+<td width="60"></td>
+<td width="48"></td>
+<td width="78">S4</td>
+<td width="96">C2</td>
+<td width="48"></td>
+<td width="78"></td>
+<td width="78"></td>
+</tr>
+<tr>
+<td width="73"></td>
+<td width="60"></td>
+<td width="48"></td>
+<td width="78">S3</td>
+<td width="96">C3</td>
+<td width="48"></td>
+<td width="78"></td>
+<td width="78"></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>Table 9</strong></p>
+<p>As we can see from Table 9, S-Id and C-Id both are repeating in Enrolls Table. But its combination is unique; so it can be considered as a key of Enrolls table. All tables’ keys are different, these can’t be merged.&#160; Primary Keys of all tables have been underlined.</p>
+<p><strong>Case 5: Binary Relationship with weak entity<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Binary-Relationship-with-weak-entity.png"><img class="aligncenter size-full wp-image-19999" src="../../../imgs/db/7126ba87dcc08bf37c8252083da023b0.jpg" alt="erm5" width="614" height="171"/></a></strong></p>
+<p>In this scenario, an employee can have many dependants and one dependant can depend on one employee. A dependant does not have any existence without an employee (e.g; you as a child can be dependant of your father in his company). So it will be a weak entity and its participation will always be total. Weak Entity does not have key of its own. So its key will be combination of key of its identifying entity (E-Id of Employee in this case) and its partial key (D-Name).</p>
+<p>First Convert each entity and relationship to tables.&#160; Employee table corresponds to Employee Entity with key as E-Id. Similarly Dependants table corresponds to Dependant Entity with key as &#160;D-Name and E-Id. Has Table represents relationship between Employee and Dependants (Which employee has which dependants). So it will take attribute E-Id from Employee and D-Name from Dependants.</p>
+<table>
+<tbody>
+<tr>
+<td colspan="2" width="144"><strong>Employee</strong></td>
+<td rowspan="6" width="41"></td>
+<td colspan="2" width="159"><strong>Has</strong></td>
+<td rowspan="6" width="41"></td>
+<td colspan="3" width="253"><strong>Dependants</strong></td>
+</tr>
+<tr>
+<td width="65"><u>E-Id</u></td>
+<td width="79">Other Employee Attribute</td>
+<td width="68"><u>E-Id</u></td>
+<td width="91"><u>D-Name</u></td>
+<td width="77"><u>D-Name</u></td>
+<td width="86"><u>E-Id</u></td>
+<td width="90">Other DependantsAttribute</td>
+</tr>
+<tr>
+<td width="65">E1</td>
+<td width="79">–</td>
+<td width="68">E1</td>
+<td width="91">RAM</td>
+<td width="77">RAM</td>
+<td width="86">E1</td>
+<td width="90">–</td>
+</tr>
+<tr>
+<td width="65">E2</td>
+<td width="79">–</td>
+<td width="68">E1</td>
+<td width="91">SRINI</td>
+<td width="77">SRINI</td>
+<td width="86">E1</td>
+<td width="90">–</td>
+</tr>
+<tr>
+<td width="65">E3</td>
+<td width="79">–</td>
+<td width="68">E2</td>
+<td width="91">RAM</td>
+<td width="77">RAM</td>
+<td width="86">E2</td>
+<td width="90">–</td>
+</tr>
+<tr>
+<td width="65"></td>
+<td width="79"></td>
+<td width="68">E3</td>
+<td width="91">ASHISH</td>
+<td width="77">ASHISH</td>
+<td width="86">E3</td>
+<td width="90">–</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>&#160;</strong><strong>Table 10</strong></p>
+<p><strong>&#160;</strong>As we can see from Table 10, E-Id, D-Name is key for <strong>Has</strong> as well as Dependants Table. So we can merge these two into 1. So the resultant tables are shown in Tables 11 and 12. Primary Keys of all tables have been underlined.</p>
+<table>
+<tbody>
+<tr>
+<td width="43"><u>E-Id</u></td>
+<td width="150">Other Employee Attribute</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>Table 11</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="77"><u>D-Name</u></td>
+<td width="62"><u>E-Id</u></td>
+<td width="132">Other DependantsAttribute</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>Table 12</strong></p>
+<hr/>
+<p style="text-align: center">
+</p>
+<p>Article contributed by <span style="color: #008000">Sonal Tuteja</span>. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

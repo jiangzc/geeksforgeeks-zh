@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Query Optimization</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><!-- Problem Statement --></p>
+<p><strong>Query:</strong> A query is a request for information from a database.</p>
+<p><strong>Query Plans: </strong>A query plan (or query execution plan) is an ordered set of steps used to access data in a SQL relational database management system.</p>
+<p><strong>Query Optimization: </strong>A single query can be executed through different algorithms or re-written in different forms and structures. Hence, the question of query optimization comes into the picture – Which of these forms or pathways is the most optimal? The query optimizer attempts to determine the most efficient way to execute a given query by considering the possible query plans.</p>
+<p><strong>Importance: </strong>The goal of query optimization is to reduce the system resources required to fulfill a query, and ultimately provide the user with the correct result set faster.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<ul>
+<li>First, it provides the user with faster results, which makes the application seem faster to the user.
+</li>
+<li>Secondly, it allows the system to service more queries in the same amount of time, because each request takes less time than unoptimized queries.
+</li>
+<li>Thirdly, query optimization ultimately reduces the amount of wear on the hardware (e.g. disk drives), and allows the server to run more efficiently (e.g. lower power consumption, less memory usage).
+</li>
+</ul>
+<p><strong>There are broadly two ways a query can be optimized:<br/>
+</strong></p>
+<ol>
+<li>Analyze and transform equivalent relational expressions: Try to minimize the tuple and column counts of the intermediate and final query processes (discussed here).</li>
+<li>Using different algorithms for each operation: These underlying algorithms determine how tuples are accessed from the data structures they are stored in, indexing, hashing, data retrieval and hence influence the number of disk and block accesses (discussed in query processing).</li>
+</ol>
+<p align="center"><strong>Analyze and transform equivalent relational expressions</strong></p>
+<p></p>
+<p>Here, we shall talk about generating minimal equivalent expressions. To analyze equivalent expression, listed are a set of equivalence rules. These generate equivalent expressions for a query written in relational algebra. To optimize a query, we must convert the query into its equivalent form as long as an equivalence rule is satisfied.</p>
+<ol>
+<li><strong>Conjunctive selection operations can be written as a sequence of individual selections. This is called a sigma-cascade.</strong>
+<p><img src="../../../imgs/db/f93a7db41295fe7077bef73498c1958e.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\sigma_{\theta_{1}\Lambda\theta_{2} }(E)=\sigma_{\theta_{1}}(\sigma_{\theta_{2}}(E))" title="Rendered by QuickLaTeX.com" height="28" width="276" style="vertical-align: -8px;"/></p>
+<p><strong>Explanation: </strong>Applying condition <img src="../../../imgs/db/475c26efa02e7b84241a0eb790453028.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\theta_{1}" title="Rendered by QuickLaTeX.com" height="24" width="20" style="vertical-align: -5px;"/> intersection <img src="../../../imgs/db/a1e0aa2a85a5d484453c68a224686937.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\theta_{2}" title="Rendered by QuickLaTeX.com" height="23" width="21" style="vertical-align: -4px;"/> is expensive. Instead, filter out tuples satisfying condition <img src="../../../imgs/db/a1e0aa2a85a5d484453c68a224686937.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\theta_{2}" title="Rendered by QuickLaTeX.com" height="23" width="21" style="vertical-align: -4px;"/> (inner selection) and then apply condition <img src="../../../imgs/db/475c26efa02e7b84241a0eb790453028.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\theta_{1}" title="Rendered by QuickLaTeX.com" height="24" width="20" style="vertical-align: -5px;"/> (outer selection) to the then resulting fewer tuples. This leaves us with less tuples to process the second time. This can be extended for two or more intersecting selections. Since we are breaking a single condition into a series of selections or cascades, it is called a “cascade”.</p>
+</li>
+<li><strong>Selection is commutative.</strong><br/>
+<img src="../../../imgs/db/dd33975c28835c3b3299d0a13c378d53.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\sigma_{\theta_{1}}(\sigma_{\theta_{2}}(E))=\sigma_{\theta_{2}}(\sigma_{\theta_{1}}(E))" title="Rendered by QuickLaTeX.com" height="28" width="299" style="vertical-align: -8px;"/><p></p>
+<p><strong>Explanation: </strong><img src="../../../imgs/db/27c8e782b604250720b0fdd48f6135e5.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\sigma" title="Rendered by QuickLaTeX.com" height="12" width="14" style="vertical-align: 0px;"/> condition is commutative in nature. This means, it does not matter whether we apply <img src="../../../imgs/db/bf02d6dcae76645855161e9e2c908518.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\sigma_{1}" title="Rendered by QuickLaTeX.com" height="17" width="23" style="vertical-align: -5px;"/> first or <img src="../../../imgs/db/f2ae935806526af7f85ff9486e992173.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\sigma_{2}" title="Rendered by QuickLaTeX.com" height="16" width="24" style="vertical-align: -4px;"/> first. In practice, it is better and more optimal to apply that selection first which yields a fewer number of tuples. This saves time on our outer selection.</p>
+</li>
+<li><strong>All following projections can be omitted, only the first projection is required. This is called a pi-cascade.</strong><br/>
+<img src="../../../imgs/db/b8e6b2c8b5a0c2d2cb9b066821a0d486.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\pi_{L_{1}}(\pi_{L_{2}}(...(\pi_{L_{n}}(E))...)) = \pi_{L_{1}}(E)" title="Rendered by QuickLaTeX.com" height="28" width="384" style="vertical-align: -8px;"/><p></p>
+<p><strong>Explanation: </strong>A cascade or a series of projections is meaningless. This is because in the end, we are only selecting those columns which are specified in the last, or the outermost projection. Hence, it is better to collapse all the projections into just one i.e. the outermost projection.</p>
+</li>
+<li><strong>Selections on Cartesian Products can be re-written as Theta Joins.</strong>
+<ul>
+<li><strong>Equivalence 1</strong><br/>
+<img src="../../../imgs/db/0a1ea06aee26105483820d1e211840f4.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\sigma_{\theta}(E_{1} \times E_{2}) = E_{1} \bowtie_{\theta} E_{2}" title="Rendered by QuickLaTeX.com" height="27" width="283" style="vertical-align: -7px;"/><p></p>
+<p><strong>Explanation: </strong>The cross product operation is known to be very expensive. This is because it matches each tuple of E1 (total m tuples) with each tuple of E2 (total n tuples). This yields m*n entries. If we apply a selection operation after that, we would have to scan through m*n entries to find the suitable tuples which satisfy the condition <img src="../../../imgs/db/5a47c79344ecb82823a74b87e4a14bb8.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\theta" title="Rendered by QuickLaTeX.com" height="19" width="11" style="vertical-align: 0px;"/>. Instead of doing all of this, it is more optimal to use the Theta Join, a join specifically designed to select only those entries in the cross product which satisfy the Theta condition, without evaluating the entire cross product first. </p>
+</li>
+<li><strong>Equivalence 2</strong><br/>
+<img src="../../../imgs/db/25e9d3c0abe23ffbf57ac432a99d94a7.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\sigma_{\theta_{1}}(E_{1} \bowtie_{\theta_{2}} E_{2}) = E_{1} \bowtie_{\theta_{1} \Lambda \theta_{2}} E_{2}" title="Rendered by QuickLaTeX.com" height="28" width="361" style="vertical-align: -8px;"/><p></p>
+<p><strong>Explanation: </strong>Theta Join radically decreases the number of resulting tuples, so if we apply an intersection of both the join conditions i.e. <img src="../../../imgs/db/475c26efa02e7b84241a0eb790453028.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\theta_{1}" title="Rendered by QuickLaTeX.com" height="24" width="20" style="vertical-align: -5px;"/> and <img src="../../../imgs/db/a1e0aa2a85a5d484453c68a224686937.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\theta_{2}" title="Rendered by QuickLaTeX.com" height="23" width="21" style="vertical-align: -4px;"/> into the Theta Join itself, we get fewer scans to do. On the other hand, a <img src="../../../imgs/db/bf02d6dcae76645855161e9e2c908518.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\sigma_{1}" title="Rendered by QuickLaTeX.com" height="17" width="23" style="vertical-align: -5px;"/> condition outside unnecessarily increases the tuples to scan.</p>
+</li>
+</ul>
+</li>
+<li><strong>Theta Joins are commutative.</strong><br/>
+<img src="../../../imgs/db/2bd4e59bfdabc280611590d849ff2c14.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="E_{1} \bowtie_{\theta} E_{2} = E_{2} \bowtie_{\theta} E_{1}" title="Rendered by QuickLaTeX.com" height="24" width="251" style="vertical-align: -5px;"/><p></p>
+<p><strong>Explanation: </strong>Theta Joins are commutative, and the query processing time depends to some extent which table is used as the outer loop and which one is used as the inner loop during the join process (based on the indexing structures and blocks).</p>
+</li>
+<li><strong>Join operations are associative.</strong>
+<ul>
+<li><strong>Natural Join</strong><br/>
+<img src="../../../imgs/db/976c15e5c2d8a91a1bdcf0f2ffa2c068.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(E_{1} \bowtie E_{2}) \bowtie E_{3} = E_{1} \bowtie (E_{2} \bowtie E_{3})" title="Rendered by QuickLaTeX.com" height="27" width="404" style="vertical-align: -7px;"/><p></p>
+<p><strong>Explanation: </strong>Joins are all commutative as well as associative, so one must join those two tables first which yield less number of entries, and then apply the other join.</p>
+</li>
+<li><strong>Theta Join</strong><br/>
+<img src="../../../imgs/db/b71b15bbb1dc78a9872608f4914a3ab5.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(E_{1} \bowtie_{\theta_{1}} E_{2}) \bowtie_{\theta_{2} \Lambda \theta_{3}} E_{3} = E_{1} \bowtie_{\theta_{1} \Lambda \theta_{3}} (E_{2} \bowtie_{\theta_{2}} E_{3})" title="Rendered by QuickLaTeX.com" height="28" width="554" style="vertical-align: -8px;"/><p></p>
+<p><strong>Explanation: </strong>Theta Joins are associative in the above manner, where <img src="../../../imgs/db/a1e0aa2a85a5d484453c68a224686937.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\theta_{2}" title="Rendered by QuickLaTeX.com" height="23" width="21" style="vertical-align: -4px;"/> involves attributes from only E2 and E3.</p>
+</li>
+</ul>
+</li>
+<li><strong>Selection operation can be distributed.</strong>
+<ul>
+<li><strong>Equivalence 1</strong><br/>
+<img src="../../../imgs/db/19efdf8ffc4377fb5167826a80ccfd03.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\sigma_{\theta_{1}\Lambda\theta_{2}}(E_{1}\bowtie_{\theta}E_{2})=(\sigma_{\theta_{1}}(E_{1}))\bowtie_{\theta}(\sigma_{\theta_{2}}(E_{2}))" title="Rendered by QuickLaTeX.com" height="28" width="495" style="vertical-align: -8px;"/><p></p>
+<p><strong>Explanation: </strong>Applying a selection after doing the Theta Join causes all the tuples returned by the Theta Join to be monitored after the join. If this selection contains attributes from only E1, it is better to apply this selection to E1 (hence resulting in a fewer number of tuples) and then join it with E2. </p>
+</li>
+<li><strong>Equivalence 2</strong><br/>
+<img src="../../../imgs/db/994c2800cc727a784c291fbea69f2ef8.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\sigma_{\theta_{0}}(E_{1}\bowtie_{\theta}E_{2})=(\sigma_{\theta_{0}}(E_{1}))\bowtie_{\theta}E_{2}" title="Rendered by QuickLaTeX.com" height="27" width="385" style="vertical-align: -7px;"/><p></p>
+<p><strong>Explanation: </strong>This can be extended to two selection conditions, <img src="../../../imgs/db/475c26efa02e7b84241a0eb790453028.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\theta_{1}" title="Rendered by QuickLaTeX.com" height="24" width="20" style="vertical-align: -5px;"/> and <img src="../../../imgs/db/a1e0aa2a85a5d484453c68a224686937.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\theta_{2}" title="Rendered by QuickLaTeX.com" height="23" width="21" style="vertical-align: -4px;"/>, where Theta1 contains the attributes of only E1 and <img src="../../../imgs/db/a1e0aa2a85a5d484453c68a224686937.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\theta_{2}" title="Rendered by QuickLaTeX.com" height="23" width="21" style="vertical-align: -4px;"/> contains attributes of only E2. Hence, we can individually apply the selection criteria before joining, to drastically reduce the number of tuples joined.</p>
+</li>
+</ul>
+</li>
+<li><strong>Projection distributes over the Theta Join.</strong>
+<ul>
+<li><strong>Equivalence 1</strong><br/>
+<img src="../../../imgs/db/c9d91f91163f96c92b58fe19684ca772.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\pi_{L_{1}\cup L_{2}}(E_{1}\bowtie_{\theta}E_{2})=(\pi_{L_{1}}(E_{1}))\bowtie_{\theta}(\pi_{L_{2}}(E_{2}))" title="Rendered by QuickLaTeX.com" height="28" width="513" style="vertical-align: -8px;"/><p></p>
+<p><strong>Explanation: </strong>The idea discussed for selection can be used for projection as well. Here, if L1 is a projection that involves columns of only E1, and L2 another projection that involves the columns of only E2, then it is better to individually apply the projections on both the tables before joining. This leaves us with a fewer number of columns on either side, hence contributing to an easier join.</p>
+</li>
+<li><strong>Equivalence 2</strong><br/>
+<img src="../../../imgs/db/ae940028fa09fceb994862c932750262.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\pi_{L_{1}\cup L_{2}}(E_{1}\bowtie_{\theta}E_{2})=\pi_{L_{1}\cup L_{2}}((\pi_{L_{1}\cup L_{3}}))\bowtie_{\theta}(\pi_{L_{2}\cup L_{4}}(E_{2})))" title="Rendered by QuickLaTeX.com" height="28" width="645" style="vertical-align: -8px;"/><p></p>
+<p><strong>Explanation: </strong>Here, when applying projections L1 and L2 on the join, where L1 contains columns of only E1 and L2 contains columns of only E2, we can introduce another column E3 (which is common between both the tables). Then, we can apply projections L1 and L2 on E1 and E2 respectively, along with the added column L3. L3 enables us to do the join.</p>
+</li>
+</ul>
+</li>
+<li><strong>Union and Intersection are commutative.</strong><br/>
+<img src="../../../imgs/db/d623d53a833bc336d8bdd8cbf1657ae3.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="E_{1}\ \cup E_{2}\ =\ E_{2}\ \cup\ E_{1}" title="Rendered by QuickLaTeX.com" height="24" width="257" style="vertical-align: -5px;"/><br/>
+<img src="../../../imgs/db/d469d364200a875232761113ae9d1b48.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="E_{1}\ \cap E_{2}\ =\ E_{2}\ \cap\ E_{1}" title="Rendered by QuickLaTeX.com" height="24" width="257" style="vertical-align: -5px;"/><p></p>
+<p><strong>Explanation: </strong>Union and intersection are both distributive; we can enclose any tables in parantheses according to requirement and ease of access.</p>
+</li>
+<li><strong>Union and Intersection are associative.</strong><br/>
+<img src="../../../imgs/db/7bfa7da4ea57c5c240de460073839cd6.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(E_{1}\ \cup E_{2})\ \cup\ E_{3}=E_{1}\ \cup\ (E_{2}\ \cup\ E_{3})" title="Rendered by QuickLaTeX.com" height="27" width="436" style="vertical-align: -7px;"/><br/>
+<img src="../../../imgs/db/44287ece4bf76e28513a15b3c67f030b.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(E_{1}\ \cap E_{2})\ \cap\ E_{3}=E_{1}\ \cap\ (E_{2}\ \cap\ E_{3})" title="Rendered by QuickLaTeX.com" height="27" width="436" style="vertical-align: -7px;"/><p></p>
+<p><strong>Explanation: </strong>Union and intersection are both distributive; we can enclose any tables in parantheses according to requirement and ease of access.</p>
+</li>
+<li><strong>Selection operation distributes over the union, intersection, and difference operations.</strong><br/>
+<img src="../../../imgs/db/52bddd27ea8b9ef526131c62293146bd.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\sigma_{P}(E_{1}\ -\ E_{2})=\sigma_{P}(E_{1})\ -\ \sigma_{P}(E_{2}) " title="Rendered by QuickLaTeX.com" height="27" width="413" style="vertical-align: -7px;"/><p></p>
+<p><strong>Explanation: </strong>In set difference, we know that only those tuples are shown which belong to table E1 and do not belong to table E2. So, applying a selection condition on the entire set difference is equivalent to applying the selection condition on the individual tables and then applying set difference. This will reduce the number of comparisons in the set difference step.</p>
+</li>
+<li><strong>Projection operation distributes over the union operation.</strong><br/>
+<img src="../../../imgs/db/a64233650a379fbf5cd0f69d88676ffc.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\pi_{L}(E_{1}\ \cup\ E_{2})=(\pi_{L}(E_{1}))\ \cup\ (\pi_{L}(E_{2})) " title="Rendered by QuickLaTeX.com" height="27" width="443" style="vertical-align: -7px;"/><p></p>
+<p><strong>Explanation: </strong>Applying individual projections before computing the union of E1 and E2 is more optimal than the left expression, i.e. applying projection after the union step.</p>
+
+</li>
+</ol>
+<p align="center"><strong>Minimality</strong></p>
+<p>A set of equivalence rules is said to be minimal if no rule can be derived from any combination of the others. A query is said to be optimal when it is minimal.</p>
+<p align="center"><strong>Examples</strong></p>
+<p>Assume the following tables:</p>
+<pre>instructor(ID, name, dept_name, salary)
+teaches(ID, course_id, sec_id, semester, year)
+course(course_id, title, dept_name, credits)</pre>
+<p><strong>Query 1: Find the names of all instructors in the Music department, along with the titles of the courses that they teach</strong></p>
+<p><img src="../../../imgs/db/3db5684c812e22af3dc1a7024e2438bc.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="$\pi_{name, title}(\sigma_{dept\_name=``Music&quot;}(instructor \bowtie (teaches \bowtie \pi_{course\_id, title}(course))))$" title="Rendered by QuickLaTeX.com" height="61" width="867" style="vertical-align: -8px;"/></p>
+<p>Here, dept_name is a field of only the instructor table. Hence, we can select out the Music instructors before joining the tables, hence reducing query time.</p>
+<p><strong>Optimized Query:</strong><br/>
+Using rule 7a,  and Performing the selection as early as possible reduces the size of the relation to be joined.<br/>
+<img src="../../../imgs/db/bad15116ffe1653eda21f8f317f9c516.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="$\pi_{name, title}((\sigma_{dept\_name=``Music&quot;(instructor)}\bowtie(teaches\bowtie\pi_{course\_id, title}(course)))$" title="Rendered by QuickLaTeX.com" height="61" width="867" style="vertical-align: -8px;"/></p>
+<hr/>
+<strong>Query 2: Find the names of all instructors in the Music department who have taught a course in 2009, along with the titles of the courses that they taught</strong><p></p>
+<p><img src="../../../imgs/db/a7b49403083a4bf330d34c272bd169fd.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="$\sigma_{dept\_name=``CSE&quot;}(\sigma_{year=2009}(instructor\bowtie teaches))$" title="Rendered by QuickLaTeX.com" height="28" width="589" style="vertical-align: -8px;"/></p>
+<p><strong>Optimized Query:</strong><br/>
+We can perform an “early selection”, hence the optimized query becomes:<br/>
+<img src="../../../imgs/db/046721e900a6e43d849f38aaf1deb77c.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="$\sigma_{dept\_name=``CSE&quot;}(instructor)\bowtie \sigma_{year=2009}(teaches)$" title="Rendered by QuickLaTeX.com" height="28" width="589" style="vertical-align: -8px;"/></p>
+<p>&#160;</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

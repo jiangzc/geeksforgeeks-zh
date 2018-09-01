@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">How to solve Relational Algebra problems for GATE</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p style="text-align: justify">In this article, I will discuss common types of questions in relational algebra which are asked in GATE. Before reading this article, you should have idea about <a href="http://quiz.geeksforgeeks.org/basic-operators-in-relational-algebra-2/">basic</a> and <a href="http://quiz.geeksforgeeks.org/extended-operators-in-relational-algebra/">extended operators in relational algebra</a>.</p>
+<p><strong>Type 1:</strong> <strong>Given a relational algebra expression, find the result. Suppose you have a relation </strong></p>
+<p><strong>Order (Prod_Id, Agent_Id, Order_Month) and you have to find out what will the following algebra expression return.</strong></p>
+<pre><strong>&#160;∏<sub>Order1.Prod_Id</sub> (ρ(Order1,Order) <sub>Order1.Prod_Id=Order2.Prod_Id and Order1.Agent_Id≠Order2.Agent_Id 
+</sub></strong><sub>and Order1.Order_Month=Order2.Order_Month </sub>ρ(Order2,Order))</pre>
+<ul>
+<li style="text-align: justify">Process the expression starting from innermost brackets.</li>
+<li style="text-align: justify">In this example, we have renamed order to Order1 and Order2 (Both represent the same relation order). Then we have applied the conditional join between Order1 and Order2.</li>
+<li style="text-align: justify">It will return those rows where Product_Id and Order_Month of Order1 and Order2 are same but Agent_Id of Order1 and Order2 is different.</li>
+<li style="text-align: justify">It implies the rows where same product is ordered by two different agents in the same month.</li>
+<li style="text-align: justify">Then we are projecting the Prod_Id.</li>
+<li style="text-align: justify">So the final output will return the Prod_Id of products which are ordered by different agents in the same month. We can do this by taking a sample data. Let Order relation consists of following data.</li>
+</ul>
+<p>ORDER</p>
+<table>
+<tbody>
+<tr>
+<td width="160">Prod_Id</td>
+<td width="160">Agent_Id</td>
+<td width="160">Order_Month</td>
+</tr>
+<tr>
+<td width="160">P001</td>
+<td width="160">A001</td>
+<td width="160">JAN</td>
+</tr>
+<tr>
+<td width="160">P002</td>
+<td width="160">A002</td>
+<td width="160">FEB</td>
+</tr>
+<tr>
+<td width="160">P002</td>
+<td width="160">A001</td>
+<td width="160">FEB</td>
+</tr>
+<tr>
+<td width="160">P001</td>
+<td width="160">A002</td>
+<td width="160">FEB</td>
+</tr>
+</tbody>
+</table>
+<p>&#160;</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>When we apply the following expression, the rows which are highlighted in blue will be selected.</p>
+<pre><strong>(ρ(Order1,Order) <sub>Order1.Prod_Id=Order2.Prod_Id and Order1.Agent_Id≠Order2.Agent_Id and Order1.Order_Month=Order2.Order_Month </sub>ρ(Order2,Order))</strong></pre>
+<pre></pre>
+<table>
+<tbody>
+<tr>
+<td width="114">Order1.Prod_Id</td>
+<td width="117">Order1.Agent_Id</td>
+<td width="131">Order1.Order_Month</td>
+<td width="92">Order2.Prod_Id</td>
+<td width="92">Order2.Agent_Id</td>
+<td width="92">Order2.Order_Month</td>
+</tr>
+<tr>
+<td width="114">P001</td>
+<td width="117">A001</td>
+<td width="131">JAN</td>
+<td width="92">P001</td>
+<td width="92">A001</td>
+<td width="92">JAN</td>
+</tr>
+<tr>
+<td width="114">P002</td>
+<td width="117">A002</td>
+<td width="131">FEB</td>
+<td width="92">P001</td>
+<td width="92">A001</td>
+<td width="92">JAN</td>
+</tr>
+<tr>
+<td width="114">P002</td>
+<td width="117">A001</td>
+<td width="131">FEB</td>
+<td width="92">P001</td>
+<td width="92">A001</td>
+<td width="92">JAN</td>
+</tr>
+<tr>
+<td width="114">P001</td>
+<td width="117">A002</td>
+<td width="131">FEB</td>
+<td width="92">P001</td>
+<td width="92">A001</td>
+<td width="92">JAN</td>
+</tr>
+<tr>
+<td width="114">P001</td>
+<td width="117">A001</td>
+<td width="131">JAN</td>
+<td width="92">P002</td>
+<td width="92">A002</td>
+<td width="92">FEB</td>
+</tr>
+<tr>
+<td width="114">P002</td>
+<td width="117">A002</td>
+<td width="131">FEB</td>
+<td width="92">P002</td>
+<td width="92">A002</td>
+<td width="92">FEB</td>
+</tr>
+<tr>
+<td width="114">P002</td>
+<td width="117">A001</td>
+<td width="131">FEB</td>
+<td width="92">P002</td>
+<td width="92">A002</td>
+<td width="92">FEB</td>
+</tr>
+<tr>
+<td width="114">P001</td>
+<td width="117">A002</td>
+<td width="131">FEB</td>
+<td width="92">P002</td>
+<td width="92">A002</td>
+<td width="92">FEB</td>
+</tr>
+<tr>
+<td width="114">P001</td>
+<td width="117">A001</td>
+<td width="131">JAN</td>
+<td width="92">P002</td>
+<td width="92">A001</td>
+<td width="92">FEB</td>
+</tr>
+<tr>
+<td width="114">P002</td>
+<td width="117">A002</td>
+<td width="131">FEB</td>
+<td width="92">P002</td>
+<td width="92">A001</td>
+<td width="92">FEB</td>
+</tr>
+<tr>
+<td width="114">P002</td>
+<td width="117">A001</td>
+<td width="131">FEB</td>
+<td width="92">P002</td>
+<td width="92">A001</td>
+<td width="92">FEB</td>
+</tr>
+<tr>
+<td width="114">P001</td>
+<td width="117">A002</td>
+<td width="131">FEB</td>
+<td width="92">P002</td>
+<td width="92">A001</td>
+<td width="92">FEB</td>
+</tr>
+<tr>
+<td width="114">P001</td>
+<td width="117">A001</td>
+<td width="131">JAN</td>
+<td width="92">P001</td>
+<td width="92">A002</td>
+<td width="92">FEB</td>
+</tr>
+<tr>
+<td width="114">P002</td>
+<td width="117">A002</td>
+<td width="131">FEB</td>
+<td width="92">P001</td>
+<td width="92">A002</td>
+<td width="92">FEB</td>
+</tr>
+<tr>
+<td width="114">P002</td>
+<td width="117">A001</td>
+<td width="131">FEB</td>
+<td width="92">P001</td>
+<td width="92">A002</td>
+<td width="92">FEB</td>
+</tr>
+<tr>
+<td width="114">P001</td>
+<td width="117">A002</td>
+<td width="131">FEB</td>
+<td width="92">P001</td>
+<td width="92">A002</td>
+<td width="92">FEB</td>
+</tr>
+</tbody>
+</table>
+<p>&#160;</p>
+<p>&#160;</p>
+<p>After projecting Order1.Prod_Id, the output will be <strong>P002 </strong>which is Prod_Id of products which are ordered by at least two different agents in same month.</p>
+<p>&#160;</p>
+<p><strong>Note:</strong> If we want to find Prod_Id which are ordered by at least three different agents in same month, it can be done as:</p>
+<pre><strong>∏<sub>Order1.Prod_Id</sub> (σ<sub>Order1.Prod_Id=Order2.Prod_Id and Order1.Prod_Id=Order3.Prod_Id and &#160;Order1.Agent_Id≠Order2.Agent_Id and Order1.Agent_Id≠Order3.Agent_Id and Order2.Agent_Id≠Order3.Agent_Id and Order1.Order_Month=Order2.Order_Month and Order1.Order_Month=Order3.Order_Month </sub>(ρ(Order1,Order)X ρ(Order2,Order)X ρ(Order3,Order)))</strong></pre>
+<pre></pre>
+<p><strong>Type 2:</strong> <strong>Given two relations, what will be the maximum and minimum number of tuples after natural join? Consider the following relation R(A,<u>B</u>,C) and S(<u>B,D</u>,E) with underlined primary key. The relation R contains 200 tuples and the relation S contains 100 tuples. What is the maximum number of tuples possible in the&#160;natural&#160;Join R and S?</strong></p>
+<p>&#160;</p>
+<ul>
+<li>To solve this type of question, first we will see that on which attribute natural join will take place.</li>
+<li>Natural join selects those rows which have equal values for common attribute. In this case, expression would be like:</li>
+</ul>
+<pre style="text-align: center"><strong>σ<sub>R.B=S.B </sub>(RX S)</strong></pre>
+<ul>
+<li>In relation R, attribute B is primary key. So Relation R will have 200 distinct values of B.</li>
+<li>On the other hand, Relation S has BD as primary key. So attribute B can have 100 distinct values or 1 value for all rows.</li>
+</ul>
+<p>&#160;</p>
+<p><strong>Case 1:</strong> S.B has 100 distinct values and each of these values match to R.B</p>
+<table>
+<tbody>
+<tr>
+<td colspan="2" width="319"><strong>R</strong></td>
+<td colspan="2" width="319"><strong>S</strong></td>
+</tr>
+<tr>
+<td width="160"><strong>B</strong></td>
+<td width="160"><strong>Other Attributes</strong></td>
+<td width="160"><strong>B</strong></td>
+<td width="160"><strong>Other Attributes</strong></td>
+</tr>
+<tr>
+<td width="160">1</td>
+<td width="160"></td>
+<td width="160">1</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">2</td>
+<td width="160"></td>
+<td width="160">2</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">.</td>
+<td width="160"></td>
+<td width="160">.</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">.</td>
+<td width="160"></td>
+<td width="160">.</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">.</td>
+<td width="160"></td>
+<td width="160">.</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">200</td>
+<td width="160"></td>
+<td width="160">100</td>
+<td width="160"></td>
+</tr>
+</tbody>
+</table>
+<p>In this case, every value of B in S will match to a value of B in R. So natural join will have 100 tuples.</p>
+<p><strong>Case 2:</strong> S.B has 1 values and this values match to R.B</p>
+<table>
+<tbody>
+<tr>
+<td colspan="2" width="319"><strong>R</strong></td>
+<td colspan="2" width="319"><strong>S</strong></td>
+</tr>
+<tr>
+<td width="160"><strong>B</strong></td>
+<td width="160"><strong>Other Attributes</strong></td>
+<td width="160"><strong>B</strong></td>
+<td width="160"><strong>Other Attributes</strong></td>
+</tr>
+<tr>
+<td width="160">1</td>
+<td width="160"></td>
+<td width="160">1</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">2</td>
+<td width="160"></td>
+<td width="160">1</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">.</td>
+<td width="160"></td>
+<td width="160">.</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">.</td>
+<td width="160"></td>
+<td width="160">.</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">.</td>
+<td width="160"></td>
+<td width="160">.</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">200</td>
+<td width="160"></td>
+<td width="160">1</td>
+<td width="160"></td>
+</tr>
+</tbody>
+</table>
+<p>In this case, every value of B in S will match to a value of B in R. So natural join will have 100 tuples.</p>
+<p><strong>Case 3:</strong> S.B has 100 distinct values and none of these values matches to R.B</p>
+<table>
+<tbody>
+<tr>
+<td colspan="2" width="319"><strong>R</strong></td>
+<td colspan="2" width="319"><strong>S</strong></td>
+</tr>
+<tr>
+<td width="160"><strong>B</strong></td>
+<td width="160"><strong>Other Attributes</strong></td>
+<td width="160"><strong>B</strong></td>
+<td width="160"><strong>Other Attributes</strong></td>
+</tr>
+<tr>
+<td width="160">1</td>
+<td width="160"></td>
+<td width="160">201</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">2</td>
+<td width="160"></td>
+<td width="160">202</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">.</td>
+<td width="160"></td>
+<td width="160">.</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">.</td>
+<td width="160"></td>
+<td width="160">.</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">.</td>
+<td width="160"></td>
+<td width="160">.</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">200</td>
+<td width="160"></td>
+<td width="160">300</td>
+<td width="160"></td>
+</tr>
+</tbody>
+</table>
+<p>In this case, no value of B in S will match to a value of B in R. So natural join will have 0 tuple.</p>
+<p><strong>Case 4:</strong> S.B has 1 value and it does not match with R.B</p>
+<table>
+<tbody>
+<tr>
+<td colspan="2" width="319"><strong>R</strong></td>
+<td colspan="2" width="319"><strong>S</strong></td>
+</tr>
+<tr>
+<td width="160">A</td>
+<td width="160">Other Attributes</td>
+<td width="160">B</td>
+<td width="160">Other Attributes</td>
+</tr>
+<tr>
+<td width="160">1</td>
+<td width="160"></td>
+<td width="160">300</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">2</td>
+<td width="160"></td>
+<td width="160">300</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">.</td>
+<td width="160"></td>
+<td width="160">.</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">.</td>
+<td width="160"></td>
+<td width="160">.</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">.</td>
+<td width="160"></td>
+<td width="160">.</td>
+<td width="160"></td>
+</tr>
+<tr>
+<td width="160">200</td>
+<td width="160"></td>
+<td width="160">300</td>
+<td width="160"></td>
+</tr>
+</tbody>
+</table>
+<p>In this case, no value of B in S will match to a value of B in R. So natural join will have 0 tuple.</p>
+<p>So the maximum number of tuples will be 100 and min will be 0.</p>
+<p style="text-align: justify"><strong>Note:</strong> If it is explicitly mentioned that S.B is foreign key to R.B, then Case 3 and Case 4 discussed above are not possible because value of S.B will be from the values of R.B. So, minimum and maximum number of tuples in natural join will be 100.</p>
+<p style="text-align: justify">Article contributed by Sonal Tuteja. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

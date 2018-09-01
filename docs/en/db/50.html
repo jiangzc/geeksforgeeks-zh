@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Concurrency Control Protocols – Lock Based Protocol</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>First things first, I hope you are familiar to some of the concepts <a href="https://www.geeksforgeeks.org/concurrency-control-introduction/" rel="noopener" target="_blank">relating to Transactions</a>. </p>
+<ul>
+<li>What is a <a href="https://www.geeksforgeeks.org/dbms-recoverability-of-schedules/" rel="noopener" target="_blank">Recoverable Schedule</a>?</li>
+<li>What are Cascading Rollbacks and Cascadeless schedules?</li>
+<li>Determining <a href="https://www.geeksforgeeks.org/precedence-graph-testing-conflict-serializability/" rel="noopener" target="_blank">if a schedule is Conflict Serializable</a>.</li>
+</ul>
+<p>Now, we all know the four properties a transaction must follow. Yes, you got that right, I mean the <a href="https://www.geeksforgeeks.org/acid-properties-in-dbms/" rel="noopener" target="_blank"><strong>ACID</strong> properties</a>. Concurrency control techniques are used to ensure that the <em>Isolation</em> (or non-interference) property of concurrently executing transactions is maintained.</p>
+<p><em>A trivial question I would like to pose in front of you, (I know you must know this but still) why do you think that we should have interleaving execution of transactions if it may lead to problems such as Irrecoverable Schedule, Inconsistency and many more threats.<br/>
+Why not just let it be Serial schedules and we may live peacefully, no complications at all.</em></p>
+<p>Yes, the performance effects the efficiency too much which is not acceptable.<br/>
+Hence a Database may provide a mechanism that ensures that the schedules are either conflict or view serializable and recoverable (also preferably cascadeless). Testing for a schedule for Serializability after it has executed is obviously <em>too late!</em><br/>
+So we need Concurrency Control Protocols that ensures Serializability .</p>
+<p><strong>Concurrency-control protocols :</strong> allow concurrent schedules, but ensure that the schedules are conflict/view serializable, and are recoverable and maybe even cascadeless.<br/>
+These protocols do not examine the precedence graph as it is being created, instead a protocol imposes a discipline that avoids non-seralizable schedules.<br/>
+Different concurrency control protocols provide different advantages between the amount of concurrency they allow and the amount of overhead that they impose.<br/>
+We’ll be learning some protocols which are important for GATE CS. Questions from this topic is frequently asked and it’s recommended to learn this concept. (At the end of this series of articles I’ll try to list all theoretical aspects of this concept for students to revise quickly and they may find the material in one place.) Now, let’s get going:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>Different categories of protocols:</p>
+<ul style="list-style-type:square">
+<li><strong>Lock Based Protocol</strong><p></p>
+<ul style="list-style-type:disc">
+<li>Basic 2-PL</li>
+<li>Conservative 2-PL</li>
+<li>Strict 2-PL</li>
+<li>Rigorous 2-PL</li>
+</ul>
+</li>
+<p></p>
+<li><strong>Graph Based Protocol</strong></li>
+<p></p>
+<li><strong>Time-Stamp Ordering Protocol</strong></li>
+<p></p>
+<li><strong>Multiple Granularity Protocol</strong></li>
+<p></p>
+<li><strong>Multi-version Protocol</strong></li>
+</ul>
+<p></p>
+<p>For GATE we’ll be focusing on the First three protocols.</p>
+<p></p>
+<p><b>Lock Based Protocols –</b><br/>
+A lock is a variable associated with a data item that describes a status of data item with respect to possible operation that can be applied to it. They synchronize the access by concurrent transactions to the database items. It is required in this protocol that all the data items must be accessed in a mutually exclusive manner. Let me introduce you to two common locks which are used and some terminology followed in this protocol.</p>
+<ol>
+<li><strong>Shared Lock (S):</strong> also known as Read-only lock. As the name suggests it can be shared between transactions because while holding this lock the transaction does not have the permission to update data on the data item. S-lock is requested using lock-S instruction.</li>
+<li><strong>Exclusive Lock (X):</strong>  Data item can be both read as well as written.This is Exclusive and cannot be held simultaneously on the same data item. X-lock is requested using lock-X instruction.</li>
+</ol>
+<p><strong>Lock Compatibility Matrix –</strong><br/>
+<img src="../../../imgs/db/67dd79872b0c87c0347e047a9d4b79f4.jpg" alt="1" width="354" height="131" class="aligncenter size-full wp-image-184160" srcset="https://www.geeksforgeeks.org/wp-content/uploads/1-28.png 354w, https://www.geeksforgeeks.org/wp-content/uploads/1-28-300x111.png 300w" sizes="(max-width: 354px) 100vw, 354px"/></p>
+<ul>
+<li>A transaction may be granted a lock on an item if the requested lock is compatible with locks already held on the item by other<br/>
+transactions.</li>
+<li> Any number of transactions can hold shared locks on an item, but if any transaction holds an exclusive(X) on the item no other transaction may hold any lock on the item.</li>
+<li>If a lock cannot be granted, the requesting transaction is made to wait till all incompatible locks held by other transactions have been released. Then the lock is granted.</li>
+<p></p>
+<p><strong>Upgrade / Downgrade locks :</strong> A transaction that holds a lock on an item <strong>A</strong> is allowed under certain condition to change the lock state from one state to another.<br/>
+Upgrade: A S(A) can be upgraded to X(A) if T<sub>i</sub> is the only transaction holding the S-lock on element A.<br/>
+Downgrade: We may downgrade X(A) to S(A) when we feel that we no longer want to write on data-item A. As we were holding X-lock on A, we need not check any conditions.<br/>
+<br/>
+So, by now we are introduced with the types of locks and how to apply them. But wait, just by applying locks if our problems could’ve been avoided then life would’ve been so simple! If you have done Process Synchronization under OS you must be familiar with one consistent problem, starvation and Deadlock! We’ll be discussing them shortly, but just so you know we have to apply Locks but they must follow a set of protocols to avoid such undesirable problems. Shortly we’ll use 2-Phase Locking (2-PL) which will use the concept of Locks to avoid deadlock. So, applying simple locking, we may not always produce Serializable results, it may lead to Deadlock Inconsistency.<br/>
+</p>
+<h4 class="sigil_not_in_toc">Problem With Simple Locking…</h4>
+<p>Consider the Partial Schedule:<br/>
+</p>
+<table style="width:100%">
+<tbody><tr><th></th>
+<th align="center"><strong>T<sub>1</sub></strong></th>
+<th><strong>T<sub>2</sub></strong></th>
+</tr>
+<tr>
+<td>1</td>
+<td>lock-X(B)</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>read(B)</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>B:=B-50</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>write(B)</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td>lock-S(A)</td>
+</tr>
+<tr>
+<td>6</td>
+<td></td>
+<td>read(A)</td>
+</tr>
+<tr>
+<td>7</td>
+<td></td>
+<td>lock-S(B)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>lock-X(A)</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>……</td>
+<td>……</td>
+</tr>
+</tbody>
+</table>
+<p>
+<strong>Deadlock –</strong> consider the above execution phase. Now, <strong>T<sub>1</sub></strong> holds an Exclusive lock over B, and <strong>T<sub>2</sub></strong> holds a Shared lock over A. Consider Statement 7, <strong>T<sub>1</sub></strong> requests for lock on B, while in Statement 8 <strong>T<sub>2</sub></strong> requests lock on A. This as you may notice imposes a <strong>Deadlock</strong> as none can proceed with their execution.</p>
+<p><strong>Starvation –</strong> is also possible if concurrency control manager is badly designed. For example: A transaction may be waiting for an X-lock on an item, while a sequence of other transactions request and are granted an S-lock on the same item. This may be avoided if the concurrency control manager is properly designed.</p>
+<p>Phew… I hope you are now familiar with why we should study Concurrency Control Protocols. Moreover, you should be familiar with basics of Lock Based Protocols and problems with Simple Locking.<br/>
+Next we’ll discuss 2-PL and its categories, implementation along with the advantages and pitfalls of using them. Questions on Lock based protocols are common in GATE, also we’ll further discuss about Graph based, Timestamp and some fun questions on Thomas Write Rule. Till then, happy learning.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</ul>
+</div>
+</body>
+</html>

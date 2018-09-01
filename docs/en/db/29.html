@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">How to solve Relational Algebra problems for GATE</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In this article, I will discuss common types of questions in relational algebra which are asked in GATE. Before reading this article, you should have idea about basic and extended operators in relational algebra.<br/>
+<a href="http://quiz.geeksforgeeks.org/basic-operators-in-relational-algebra-2/">Basic operators in Relational Algebra</a><br/>
+<a href="http://quiz.geeksforgeeks.org/extended-operators-in-relational-algebra/">Extended operators in relational algebra</a></p>
+<p><strong>Type 1:</strong> Given a relational algebra expression, find the result. Suppose you have a relation<br/>
+Order (Prod_Id, Agent_Id, Order_Month) and you have to find out what will the following algebra expression return.<br/>
+<img src="../../../imgs/db/04dc8b19700b4a831ddd638c3502ff89.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" \prod Order1.Prod\_\hspace{0.cm}Id(\rho (Order1,Order)\times Order1.Prod\_Id = Order2.Prod\_Id \hspace{0.2cm}and \hspace{0.2cm} Order1.Agent\_Id \neq Order2.Agent\_Id \hspace{0.2cm} and \hspace{0.2cm} Order1.Order\_Month = Order2.Order\_Month \hspace{0.2cm} \rho (Order2, Order))) " title="Rendered by QuickLaTeX.com" height="93" width="1048" style="vertical-align: -7px;"/></p>
+<p>To solve these types of questions, process the expression starting from innermost brackets. In this example, we have renamed order to Order1 and Order2 (Both represent the same relation order). Then we have applied the conditional join between Order1 and Order2. It will return those rows where Product_Id and Order_Month of Order1 and Order2 are same but Agent_Id of Order1 and Order2 is different. It implies the rows where same product is ordered by two different agents in the same month. Then we are projecting the Prod_Id. So the final output will return the Prod_Id of products which are ordered by different agents in the same month. We can do this by taking a sample data. Let Order relation consists of following data.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/OrderTable1.png"><img class="alignnone  wp-image-22935" src="../../../imgs/db/5ca0d2298ea2cb00dfbc2a2846031dac.jpg" alt="dbms2" width="250" height="157"/></a></p>
+<p>When we apply the following expression, the rows which are highlighted in blue will be selected.<br/>
+<img src="../../../imgs/db/10c37730ca03b85bc6a302e5ebd5e0c4.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="  (\rho (Order1, Order)\Join Order1.Prod\_Id = Order2.Prod\_\hspace{0.02cm}Id \hspace{0.2cm}and\hspace{0.2cm}Order1.Agent\Id \neq Order2.Agent\_\hspace{0.02cm}Id \hspace{0.3cm} and \hspace{0.3cm}Order1.Order\_\hspace{0.02cm}Month=Order2.Order\_\hspace{0.02cm}Month \hspace{0.2cm}\rho (Order2, Order)) " title="Rendered by QuickLaTeX.com" height="92" width="1029" style="vertical-align: -7px;"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/orderMainTable-1.png"><img class="alignnone  wp-image-22935" src="../../../imgs/db/e818c15d96512dc0c45fda2fcb5a6060.jpg" alt="dbms2" width="450" height="257"/></a></p>
+<p>After projecting Order1.Prod_Id, the output will be P002 which is Prod_Id of products which are ordered by at least two different agents in same month.</p>
+<p><strong>Note:</strong> If we want to find Prod_Id which are ordered by at least three different agents in same month, it can be done as:<br/>
+<img src="../../../imgs/db/85d93f1c552c954b4214d369a198e578.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" \prod Order1.Prod\_\hspace{0.cm}Id(\sigma Order1.Prod\_Id=Order2.Prod\_Id \hspace{0.2cm} and \hspace{0.2cm}  Order1.Prod\_Id = Order3.Prod\_Id \hspace{0.2cm}and \hspace{0.2cm} Order1.Agent\_Id \neq Order2.Agent\_Id \hspace{0.2cm} and \hspace{0.2cm} Order1.Agent\_Id \neq Order3.Agent\_Id \hspace{0.2cm} and \hspace{0.2cm} Order2.Agent\_Id \neq Order3.Agent\_Id \hspace{0.2cm} and \hspace{0.2cm} Order1.Order\_Month = Order2.Order\_Month \hspace{0.2cm} and \hspace{0.2cm} Order1.Order\_Month = Order3.Order\_Month(\rho (Order1, Order)\times \rho(Order2, Order)\times \rho(Order3, Order))) " title="Rendered by QuickLaTeX.com" height="224" width="994" style="vertical-align: -7px;"/></p>
+<p align="left"><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Type 2:</b></span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> Given two relations, what will be the maximum and minimum number of tuples after natural join? Consider the following relation R(A,</span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><u>B</u></span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">,C) and S(</span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><u>B,D</u></span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">,E) with underlined primary key. The relation R contains 200 tuples and the relation S contains 100 tuples. What is the maximum number of tuples possible in the&#160;natural&#160;Join R and S?</span></span></span></p>
+<p align="left"><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">To solve this type of question, first we will see that on which attribute natural join will take place. Natural join selects those rows which have equal values for common attribute. In this case, expression would be like:</span></span></span></p>
+<p align="left">
+<img src="../../../imgs/db/d2c65d525469aa5e7c68c07c29b3506a.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" \sigma _{R.B = S.B}(R\times S)  " title="Rendered by QuickLaTeX.com" height="27" width="192" style="vertical-align: -7px;"/></p>
+<p><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">In relation R, attribute B is primary key. So Relation R will have 200 distinct values of B. On the other hand, Relation S has BD as primary key. So attribute B can have 100 distinct values or 1 value for all rows. </span></span></span></p>
+<p align="left"><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><br/>
+<a href="https://cdncdncontribute.geeksforgeeks.org/wp-content/uploads/table121.jpeg"><img class="aligncenter size-full wp-image-22940" src="../../../imgs/db/f446ec1bf88dadfa9a00eba9275eb745.jpg" alt="dbms7" width="486" height="603"/></a></span></span></span></p>
+<p>In this case, no value of B in S will match to a value of B in R. So natural join will have 0 tuple. So the maximum number of tuples will be 100 and min will be 0. </p>
+<p align="left"><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Note:</b></span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> If it is explicitly mentioned that S.B is foreign key to R.B, then Case 3 and Case 4 discussed above are not possible because value of S.B will be from the values of R.B. So, minimum and maximum number of tuples in natural join will be 100. </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><span style="color: #000000"><br/>
+</span></span></span></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

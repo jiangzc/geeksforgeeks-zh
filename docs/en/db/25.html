@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Relational Algebra</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Relational Algebra is procedural query language, which takes Relation as input and generate relation as output. Relational algebra mainly provides theoretical foundation for relational databases and SQL.<span id="more-142268"></span></p>
+<p><strong>Operators in Relational Algebra</strong></p>
+<p><strong>Projection (π)</strong><br/>
+Projection is used to project required column data from a relation.</p>
+<p>Example :</p>
+<pre>     R 
+  (A  B  C)    
+  ----------
+   1  2  4
+   2  2  3
+   3  2  3
+   4  3  4</pre>
+<pre>π (BC) 
+B  C
+-----
+2  4
+2  3
+3  4</pre>
+<p><strong>Note: </strong>By Default projection removes duplicate data.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>&#160;</p>
+<p><strong>Selection (σ)</strong><br/>
+Selection is used to select required tuples of the relations.</p>
+<p>for the above relation<br/>
+σ (c&gt;3)R<br/>
+will select the tuples which have c more than 3.</p>
+<p><strong>Note: </strong>selection operator only selects the required tuples but does not display them. For displaying, data projection operator is used.</p>
+<p>For the above selected tuples, to display we need to use projection also.</p>
+<pre> π (σ (c&gt;3)R ) will show following tuples.
+
+A  B  C
+-------
+1  2  4
+4  3  4</pre>
+<p>&#160;</p>
+<p><strong>Union (U)</strong><br/>
+Union operation in relational algebra is same as union operation in set theory, only constraint is for union of two relation both relation must have same set of Attributes.</p>
+<p>&#160;</p>
+<p><strong>Set Difference (-)</strong><br/>
+Set Difference in relational algebra is same set difference operation as in set theory with the constraint that both relation should have same set of attributes.</p>
+<p>&#160;</p>
+<p><strong>Rename (ρ)</strong><br/>
+Rename is a unary operation used for renaming attributes of a relation.<br/>
+ρ (a/b)R will rename the attribute ‘b’ of relation by ‘a’.</p>
+<p>&#160;</p>
+<p><strong>Cross Product (X)</strong></p>
+<p>Cross product between two relations let say A and B, so cross product between A X B will results all the attributes of A followed by each attribute of B. Each record of A will pairs with every record of B.</p>
+<p>below is the example</p>
+<pre>   A                                  B
+    (Name   Age  Sex )                (Id   Course)  
+    ------------------                -------------
+    Ram    14   M                      1     DS
+    Sona   15   F                      2     DBMS
+    kim    20   M
+
+     A X B
+  Name   Age   Sex   Id   Course
+---------------------------------
+  Ram    14    M      1    DS
+  Ram    14    M      2    DBMS
+  Sona   15    F      1    DS
+  Sona   15    F      2    DBMS
+  Kim    20    M      1    DS
+  Kim    20    M      2    DBMS</pre>
+<p><strong>Note:</strong> if A has ‘n’ tuples and B has ‘m’ tuples then A X B will have ‘n*m’ tuples.</p>
+<p>&#160;</p>
+<p><strong>Natural Join (⋈)</strong></p>
+<p>Natural join is a binary operator. Natural join between two or more relations will result set of all combination of tuples where they have equal common attribute.</p>
+<p>Let us see below example</p>
+<pre> 
+           Emp                              Dep
+   (Name   Id   Dept_name )          (Dept_name   Manager)
+   ------------------------          ---------------------    
+     A     120    IT                    Sale     Y
+     B     125    HR                    Prod     Z
+     C     110    Sale                  IT       A
+     D     111    IT                      
+
+
+Emp ⋈ Dep
+
+Name   Id   Dept_name   Manager
+-------------------------------
+A     120   IT          A 
+C     110   Sale        Y
+D     111   IT          A</pre>
+<p>&#160;</p>
+<p><strong>Conditional Join</strong></p>
+<p>Conditional join works similar to natural join. In natural join, by default condition is equal between common attribute while in conditional join we can specify the any condition such as greater than, less than, not equal</p>
+<p>Let us see below example</p>
+<pre>         R                           S
+  (ID   Sex   Marks)          (ID   Sex   Marks)
+  ------------------          -------------------- 
+   1   F   45                   10   M   20
+   2   F   55                   11   M   22
+   3   F   60                   12   M   59
+ 
+Join between R And S with condition <strong> R.marks &gt;= S.marks</strong>
+
+R.ID   R.Sex   R.Marks   S.ID   S.Sex   S.Marks
+-----------------------------------------------
+1       F       45        10     M        20
+1       F       45        11     M        22
+2       F       55        10     M        20
+2       F       55        11     M        22
+3       F       60        10     M        20
+3       F       60        11     M        22
+3       F       60        12     M        59</pre>
+<hr/>
+<p>In depth articles:<br/>
+<a href="http://quiz.geeksforgeeks.org/basic-operators-in-relational-algebra-2/" target="_blank">Basic-operators-in-relational-algebra</a>&#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;<a href="http://quiz.geeksforgeeks.org/extended-operators-in-relational-algebra/" target="_blank">Extended Relational Algebra Operators</a><br/>
+Following are Previous Year Gate Question<br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-50/" target="_blank">http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-50/</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-43/" target="_blank">http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-43/</a></p>
+<p><strong>References:</strong><br/>
+<a href="https://en.wikipedia.org/wiki/Relational_algebra">https://en.wikipedia.org/wiki/Relational_algebra</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

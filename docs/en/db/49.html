@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Concurrency Control -Introduction</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p style="text-align: justify">Concurrency Control deals with<strong> interleaved execution</strong> of more than one transaction.&#160;In the next article, we will see what is serializability and how to find whether a schedule is serializable or not.</p>
+<p><strong>What is Transaction?</strong></p>
+<p style="text-align: justify">A set of logically related operations is known as transaction. The main operations of a transaction are:</p>
+<p style="text-align: justify"><strong>Read(A):</strong> Read operations Read(A) or R(A) reads the value of A from the database and stores it in a buffer in main memory.</p>
+<p style="text-align: justify"><strong>Write (A):</strong> Write operation Write(A) or W(A) writes the value back to the database from buffer.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p style="text-align: justify">Let us take a debit transaction from an account which consists of following operations:</p>
+<ol>
+<li>R(A);</li>
+<li>A=A-1000;</li>
+<li>W(A);</li>
+</ol>
+<p style="text-align: justify">Assume A’s value before starting of transaction is 5000.</p>
+<ul>
+<li style="text-align: justify">The first operation reads the value of A from database and stores it in a buffer.</li>
+<li style="text-align: justify">Second operation will decrease its value by 1000. So buffer will contain 4000.</li>
+<li style="text-align: justify">Third operation will write the value from buffer to database. So A’s final value will be 4000.</li>
+</ul>
+<p style="text-align: justify">But it may also be possible that transaction may fail after executing some of its operations. The failure can be because of <strong>hardware, software or power</strong> etc. For example,&#160;if debit transaction discussed above fails after executing operation 2, the value of A will remain 5000 in the database which is not acceptable by the bank. To avoid this, Database has two important operations:</p>
+<p style="text-align: justify"><strong>Commit:</strong> After all instructions of a transaction are successfully executed, the changes made by transaction are made permanent in the database.</p>
+<p style="text-align: justify"><strong>Rollback:</strong> If a transaction is not able to execute all operations successfully, all the changes made by transaction are undone.</p>
+<h3 class="sigil_not_in_toc"><strong>Properties of a transaction</strong></h3>
+<p style="text-align: justify"><strong>Atomicity:</strong> As a transaction is set of logically related operations, <strong>either all of them should be executed or none</strong>. A debit transaction discussed above should either execute all three operations or none.<span style="line-height: 1.5">If debit transaction fails after executing operation 1 and 2 then its new value 4000 will not be updated in the database which leads to inconsistency.</span></p>
+<p style="text-align: justify"><strong>Consistency: </strong>If operations of debit and credit transactions on same account are executed concurrently, it may leave database in an inconsistent state.</p>
+<ul>
+<li style="text-align: justify">For Example, T1 (debit of Rs. 1000 from A) and T2 (credit of 500 to A) executing concurrently, the database reaches inconsistent state.</li>
+<li style="text-align: justify">Let us assume Account balance of A is Rs. 5000. T1 reads A(5000) and stores the value in its local buffer space. Then T2 reads A(5000) and also stores the value in its local buffer space.</li>
+<li style="text-align: justify">T1 performs A=A-1000 (5000-1000=4000) and 4000 is stored in T1 buffer space. Then T2 performs A=A+500 (5000+500=5500) and 5500 is stored in T2 buffer space. T1 writes the value from its buffer back to database.</li>
+<li style="text-align: justify">A’s value is updated to 4000 in database and then T2 writes the value from its buffer back to database. A’s value is updated to 5500 which shows that the effect of debit transaction is lost and database has become inconsistent.</li>
+<li style="text-align: justify">To maintain consistency of database, we need <strong>concurrency control protocols</strong> which will be discussed in next article.&#160; The operations of T1 and T2 with their buffers and database have been shown in Table 1.</li>
+</ul>
+<table>
+<tbody>
+<tr>
+<td width="127"><strong>T1</strong></td>
+<td width="122"><strong>T1’s buffer space</strong></td>
+<td width="149"><strong>T2</strong></td>
+<td width="125"><strong>T2’s Buffer Space</strong></td>
+<td width="115"><strong>Database</strong></td>
+</tr>
+<tr>
+<td width="127"></td>
+<td width="122"></td>
+<td width="149"></td>
+<td width="125"></td>
+<td width="115">A=5000</td>
+</tr>
+<tr>
+<td width="127">R(A);</td>
+<td width="122">A=5000</td>
+<td width="149"></td>
+<td width="125"></td>
+<td width="115">A=5000</td>
+</tr>
+<tr>
+<td width="127"></td>
+<td width="122">A=5000</td>
+<td width="149">R(A);</td>
+<td width="125">A=5000</td>
+<td width="115">A=5000</td>
+</tr>
+<tr>
+<td width="127">A=A-1000;</td>
+<td width="122">A=4000</td>
+<td width="149"></td>
+<td width="125">A=5000</td>
+<td width="115">A=5000</td>
+</tr>
+<tr>
+<td width="127"></td>
+<td width="122">A=4000</td>
+<td width="149">A=A+500;</td>
+<td width="125">A=5500</td>
+<td width="115"></td>
+</tr>
+<tr>
+<td width="127">W(A);</td>
+<td width="122"></td>
+<td width="149"></td>
+<td width="125">A=5500</td>
+<td width="115">A=4000</td>
+</tr>
+<tr>
+<td width="127"></td>
+<td width="122"></td>
+<td width="149">W(A);</td>
+<td width="125"></td>
+<td width="115">A=5500</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>Table 1</strong></p>
+<p style="text-align: justify"><strong>Isolation:</strong> Result of a transaction should not be visible to others before transaction is committed. For example,&#160;Let us assume that A’s balance is Rs. 5000 and T1 debits Rs. 1000 from A. A’s new balance will be 4000. If T2 credits Rs. 500 to A’s new balance, A will become 4500 and after this T1 fails. Then we have to rollback T2 as well because it is using value produced by T1. So a transaction results are not made visible to other transactions before it commits.</p>
+<p style="text-align: justify"><strong>Durable:</strong> Once database has committed a transaction, the changes made by the transaction should be permanent. e.g.; If a person has credited $500000 to his account, bank can’t say that the update has been lost. To avoid this problem, multiple copies of database are stored at different locations.</p>
+<p><strong>What is a Schedule?</strong></p>
+<p>A schedule is series of operations from one or more transactions. A schedule can be of two types:</p>
+<ul>
+<li style="text-align: justify"><strong>Serial Schedule:</strong> When one transaction completely executes before starting another transaction, the schedule is called serial schedule. A serial schedule is always consistent. e.g.; If a schedule S has debit transaction T1 and credit transaction T2, possible serial schedules are T1 followed by T2 (T1-&gt;T2) or T2 followed by T1 ((T1-&gt;T2). A serial schedule has low throughput and less resource utilization.</li>
+<li style="text-align: justify"><strong>Concurrent Schedule:</strong> When operations of a transaction are interleaved with operations of other transactions of a schedule, the schedule is called Concurrent schedule. e.g.; Schedule of debit and credit transaction shown in Table 1 is concurrent in nature. But concurrency can lead to inconsistency in database.&#160; The above example of concurrent schedule is also inconsistent.</li>
+</ul>
+<p><strong>Question: Consider the following transaction involving two bank accounts x and y:</strong></p>
+<ol>
+<li>read(x);</li>
+<li>x := x – 50;</li>
+<li>write(x);</li>
+<li>read(y);</li>
+<li>y := y + 50;</li>
+<li>write(y);</li>
+</ol>
+<p>The constraint that the sum of the accounts x and y should remain constant is that of?</p>
+<ol>
+<li>Atomicity</li>
+<li>Consistency</li>
+<li>Isolation</li>
+<li>Durability</li>
+</ol>
+<p style="text-align: right"><strong>[GATE 2015]</strong></p>
+<p><strong>Solution:</strong> As discussed in properties of transactions, consistency properties says that sum of accounts x and y should remain constant before starting and after completion of transaction. So, the correct answer is B.</p>
+<p>Next article-&#160;<a href="http://quiz.geeksforgeeks.org/conflict-serializability/">Serializabilty of Schedules</a></p>
+<p>&#160;</p>
+<p>Article contributed by Sonal Tuteja. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above.</p>
+<p>&#160;</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

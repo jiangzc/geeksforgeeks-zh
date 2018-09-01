@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">File Organization – Set 1</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>A database consist of a huge amount of data. The data is grouped within a table in RDBMS, and each table have related records. A user can see that the data is stored in form of tables, but in acutal this huge amount of data is stored in physical memory in form of files.</p>
+<p><strong>File –</strong> A file is named collection of related information that is recorded on secondary storage such as magnetic disks, magnetic tables and optical disks.</p>
+<p><strong>What is File Organization?</strong><br/>
+File Organization refers to the logical relationships among various records that constitute the file, particularly with respect to the means of identification and access to any specific record. In simple terms, Storing  the files in certain order is called file Organization. <strong>File Structure</strong> refers to the format of the label and data blocks and of any logical control record.</p>
+<h3 class="sigil_not_in_toc">Types of File Organizations –</h3>
+<p>Various methods have been introduced to Organize files. These particular methods have advantages and disadvantages on the basis of access or selection . Thus it is all upon the programmer to decide the best suited file Organization method according to his requirements.<br/>
+Some types of File Organizations are :    </p>
+<ul>
+<li>
+Sequential File Organization</li>
+<li>
+Heap File Organization
+</li>
+<li>
+Hash File Organization
+</li>
+<li>
+B+ Tree File Organization
+</li>
+<li>
+Clustered File Organization
+</li>
+</ul>
+<p>We will be discussing each of the file Organizations in further sets of this article along with differences and advantages/ disadvantages of each file Organization methods.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<h3 class="sigil_not_in_toc">Sequential File Organization –</h3>
+<p>The easiest method for file Organization is Sequential method. In this method the the file are stored one after another in a sequential manner. There are two ways to implement this method:</p>
+<ol>
+<li><strong>Pile File Method –</strong> This method is quite simple, in which we store the records in a sequence i.e one after other in the order in which they are inserted into the tables.<br/>
+<img src="../../../imgs/db/282a55bfbe9bc785020d42b146ff9b3d.jpg" alt=""/><br/>
+<strong>Insertion of new record –</strong><br/>
+Let the R1, R3 and so on upto R5 and R4 be four records in the sequence. Here, records are nothing but a row in any table. Suppose a new record R2 has to be inserted in the sequence, then it is simply placed at the end of the file.<br/>
+<img src="../../../imgs/db/7672e5ec4f49c2f4824b1d42c854445f.jpg" alt=""/>
+</li>
+<li><strong>Sorted File Method –</strong>In this method, As the name itself suggest whenever a new record has to be inserted, it is always inserted in a sorted (ascending or descending) manner. Sorting of records may be based on any primary key or any other key.<br/>
+<img src="../../../imgs/db/ef2cc7afa779859d1bf2b7d8ca471083.jpg" alt=""/><p></p>
+<p><strong>Insertion of new record –</strong><br/>
+Let us assume that there is a preexisting sorted sequence of four records R1, R3, and so on upto R7 and R8. Suppose a new record R2 has to be inserted in the sequence, then it will be inserted at the end of the file and then it will sort the sequence .<br/>
+<img src="../../../imgs/db/dfc33a25bf6ab27c203c799079886715.jpg" alt=""/></p></li>
+</ol>
+<p><strong>Pros and Cons of Sequential File Organization –</strong><br/>
+<strong>Pros –</strong></p>
+<ul>
+<li>Fast and efficient method for huge amount of data.</li>
+<li>Simple design.</li>
+<li>Files can be easily stored in magnetic tapes i.e cheaper storage mechanism.</li>
+</ul>
+<p><strong>Cons –</strong></p>
+<ul>
+<li>Time wastage as we cannot jump on a particular record that is required, but we have to move in a sequential manner which takes our time.</li>
+<li>Sorted file method is inefficient as it takes time and space for sorting records.</li>
+</ul>
+<h3 class="sigil_not_in_toc">Heap File Organization –</h3>
+<p>Heap File Organization works with data blocks. In this method records are inserted at the end of the file, into the data blocks. No Sorting or Ordering is required in this method. If a data block is full, the new record is stored in some other block, Here the other data block need not be the very next data block, but it can be any block in the memory. It is the responsibility of DBMS to store and manage the new records.<br/>
+<img src="../../../imgs/db/92d020664d58d4dc8b88fcf2d5045d6e.jpg" alt=""/><br/>
+<strong>Insertion of new record –</strong><br/>
+Suppose we have four records in the heap R1, R5, R6, R4 and R3 and suppose a new record R2 has to be inserted in the heap then, since the last data block i.e data block 3 is full it will be inserted in any of the database selected by the DBMS, lets say data block 1.</p>
+<p><img src="../../../imgs/db/6a162bf676318b593e9cea613456249a.jpg" alt=""/></p>
+<p>If we want to search, delete or update data in heap file Organization the we will traverse the data from the beginning of the file till we get the requested record. Thus if the database is very huge, searching, deleting or updating the record will take a lot of time.</p>
+<p><strong>Pros and Cons of Heap File Organization –</strong><br/>
+<strong>Pros –</strong></p>
+<ul>
+<li>Fetching and retrieving records is faster than sequential record but only in case of small databases.</li>
+<li>When there is a huge number of data needs to be loaded into the database at a time, then this method of file Organization is best suited.</li>
+</ul>
+<p><strong>Cons –</strong></p>
+<ul>
+<li>Problem of unused memory blocks.</li>
+<li>Inefficient for larger databases.</li>
+</ul>
+<p>Read next set : <a href="https://www.geeksforgeeks.org/hashing-in-dbms/" rel="noopener" target="_blank">(DBMS File Organization-Set 2) | Hashing in DBMS</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Database Management Systems | Set 1</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Following questions have been asked in GATE CS exam.<span id="more-1937"></span></p>
+<p><strong>1. Given the relations</strong></p>
+<p><em>employee (name, salary, deptno)</em> and<br/>
+<em>department (deptno, deptname, address)</em></p>
+<p>Which of the following queries cannot be expressed using the basic relational algebra<br/>
+operations (U, -, x, π, σ, p)? (GATE CS 2000)<br/>
+(a) Department address of every employee<br/>
+(b) Employees whose name is the same as their department name<br/>
+(c) The sum of all employees’ salaries<br/>
+(d) All employees of a given department</p>
+<p><strong>Answer:</strong> (c)</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><strong>Explanation:</strong><br/>
+The six basic operators of relational algebra are the selection(σ ), the projection(π), the Cartesian product (x) (also called the cross product or cross join), the set union (U), the set difference (-), and the rename (p). These six operators are fundamental in the sense that none of them can be omitted without losing expressive power. Many other operators have been defined in terms of these six. Among the most important are set intersection, division, and the natural join, but aggregation is not possible with these basic relational algebra operations. So, we cannot run sum of all employees’ salaries with the six operations.</p>
+<p><strong>References:</strong><br/>
+<a href="http://en.wikipedia.org/wiki/Relational_algebra">http://en.wikipedia.org/wiki/Relational_algebra</a><br/>
+<a href="http://faculty.ksu.edu.sa/zitouni/203%20Haseb%20%20Lecture%20Notes/Relional%20Algebra.pdf">http://faculty.ksu.edu.sa/zitouni/203%20Haseb%20%20Lecture%20Notes/Relional%20Algebra.pdf<br/>
+</a></p>
+<p> <br/><br/>
+<strong><br/>
+2. Given the following relation instance.</strong></p>
+<pre><strong>x  y  z
+1  4  2
+1  5  3
+1  6  3
+3  2  2 </strong></pre>
+<p><strong>Which of the following functional dependencies are satisfied by the instance? (GATE CS 2000)</strong><br/>
+(a) XY -&gt; Z and Z -&gt; Y<br/>
+(b) YZ -&gt; X and Y -&gt; Z<br/>
+(c) YZ -&gt; X and X -&gt; Z<br/>
+(d) XZ -&gt; Y and Y -&gt; X</p>
+<p><strong>Answer:</strong> (b)</p>
+<p><strong>Explanation:</strong><br/>
+A functional dependency (FD) is a constraint between two sets of attributes in a relation from a database. A FD X-&gt;Y require that the value of X uniquely determines the value of Y where X and Y are set of attributes.  FD is a generalization of the notion of a key.</p>
+<p>Given that X, Y, and Z are sets of attributes in a relation R, one can derive several properties of functional dependencies. Among the most important are Armstrong’s axioms, which are used in database normalization:</p>
+<pre>    
+* Subset Property (Axiom of Reflexivity): If Y is a subset of X, then X ? Y
+* Augmentation (Axiom of Augmentation): If X -&gt; Y, then XZ -&gt; YZ
+* Transitivity (Axiom of Transitivity): If X -&gt; Y and Y -&gt; Z, then X -&gt; Z</pre>
+<p>From these rules, we can derive these secondary rules:</p>
+<pre>    
+* Union: If X -&gt; Y and X -&gt; Z, then X -&gt; YZ
+* Decomposition: If X -&gt; YZ, then X -&gt; Y and X -&gt; Z
+* Pseudotransitivity: If X -&gt; Y and YZ -&gt; W, then XZ -&gt; W</pre>
+<p>In the above question, Y uniquely determines X and Z, for a given value of Y you can easily find out values of X and Z.<br/>
+So, Y -&gt; X and Y -&gt; Z hold for above schema.<br/>
+From rule of augmentation we can say YZ-&gt;X.  If we understand the notion of FD, we don’t need to apply axioms to find out which option is true, just by looking at the schema and options we can say that (b) is true.</p>
+<p><strong>References:</strong><br/>
+<a href="http://www.cse.iitb.ac.in/~sudarsha/db-book/slide-dir/ch7.pdf">http://www.cse.iitb.ac.in/~sudarsha/db-book/slide-dir/ch7.pdf</a><br/>
+<a href="http://en.wikipedia.org/wiki/Functional_dependency">http://en.wikipedia.org/wiki/Functional_dependency</a></p>
+<p> <br/><br/>
+<strong><br/>
+3. Given relations r(w, x) and s(y, z), the result of<br/>
+<em>select distinct w, x<br/>
+from r, s</em><br/>
+is guaranteed to be same as r, provided (GATE CS 2000)</strong><br/>
+(a) r has no duplicates and s is non-empty<br/>
+(b) r and s have no duplicates<br/>
+(c) s has no duplicates and r is non-empty<br/>
+(d) r and s have the same number of tuples</p>
+<p><strong>Answer:</strong> (a)</p>
+<p><strong>Explanation:</strong><br/>
+The query selects all attributes of r. Since we have distinct in query, result can be equal to r only if r doesn’t have duplicates.</p>
+<p>If we do not give any attribute on which we want to join two tables, then the queries like above become equivalent to <a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian product</a>.  Cartisian product of two sets will be empty if any of the two sets is empty. So, s should have atleast one record to get all rows of r.</p>
+<p> <br/><br/>
+<strong><br/>
+4. In SQL, relations can contain null values, and comparisons with null values are treated as unknown. Suppose all comparisons with a null value are treated as false. Which of the<br/>
+following pairs is not equivalent? (GATE CS 2000)</strong><br/>
+(a) x = 5,  not (not (x = 5)<br/>
+(b) x = 5,  x &gt; 4 and x &lt; 6, where x is an integer<br/>
+(c) x &lt; 5,  not(x = 5)<br/>
+(d) None of the above</p>
+<p><strong>Answer</strong> (c)</p>
+<p><strong>Explanation:</strong><br/>
+It doesn’t need much explanation.  For all values smaller than 5, x &lt; 5 will always be true but x = 5 will be false.
+
+<br/> <br/><br/>
+<strong><br/>
+5. Consider a schema R(A, B, C, D) and functional dependencies A -&gt; B and C -&gt; D. Then the decomposition of R into R1 (A, B) and R2(C, D) is (GATE CS 2001)</strong><br/>
+a)	dependency preserving and loss less join<br/>
+b)	loss less join but not dependency preserving<br/>
+c)	dependency preserving but not loss less join<br/>
+d)	not dependency preserving and not loss less join</p>
+<p><strong>Answer:</strong> (c)</p>
+<p><strong>Explanation:</strong><br/>
+<strong>Dependency Preserving Decomposition:</strong><br/>
+Decomposition of R into R1 and R2 is a dependency preserving decomposition if closure of functional dependencies after decomposition is same as closure of of FDs before decomposition.<br/>
+A simple way is to just check whether we can derive all the original FDs from the FDs present after decomposition.</p>
+<p>In the above question  R(A, B, C, D) is decomposed into  R1 (A, B) and R2(C, D) and there are only two FDs A -&gt; B and C -&gt; D.  So, the decomposition is dependency preserving</p>
+<p><strong>Lossless-Join Decomposition:</strong><br/>
+Decomposition of R into R1 and R2 is a lossless-join decomposition if at least one of the following functional dependencies are in F+ (Closure of functional dependencies)</p>
+<pre>    R1 ∩ R2 → R1
+   OR
+    R1 ∩ R2 → R2
+</pre>
+<p>In the above question  R(A, B, C, D) is decomposed into  R1 (A, B) and R2(C, D), and R1 ∩ R2 is empty. So, the decomposition is not lossless.  </p>
+<p><strong>References:</strong><br/>
+<a href="http://www.cs.sfu.ca/CC/354/han/material/notes/354notes-chapter6/node1.html">http://www.cs.sfu.ca/CC/354/han/materia/notes/354notes-chapter6/node1.html</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

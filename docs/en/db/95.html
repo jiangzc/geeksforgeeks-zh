@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Database Management Systems | Set 8</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Following questions have been asked in GATE 2005 CS exam.<span id="more-20838"></span></p>
+<p><strong>1) Which one of the following statements about normal forms is FALSE?</strong><br/>
+(a) BCNF is stricter than 3NF<br/>
+(b) Lossless, dependency-preserving decomposition into 3NF is always possible<br/>
+(c) Lossless, dependency-preserving decomposition into BCNF is always possible<br/>
+(d) Any relation with two attributes is in BCNF</p>
+<p>Answer (c)<br/>
+It is not always possible to decompose a table in BCNF and preserve dependencies. For example, a set of functional dependencies {AB –&gt; C, C –&gt; B} cannot be decomposed in BCNF. See <a href="http://en.wikipedia.org/wiki/Boyce%E2%80%93Codd_normal_form#Achievability_of_BCNF">this </a>for more details.</p>
+<p><br/><br/>
+<strong>2) The following table has two attributes A and C where A is the primary key and C is the foreign key referencing A with on-delete cascade.</strong>
+</p>
+<pre>A   C
+-----
+2   4
+3   4
+4   3
+5   2
+7   2
+9   5
+6   4
+</pre>
+<p></p>
+<p><strong>The set of all tuples that must be additionally deleted to preserve referential integrity when the tuple (2,4) is deleted is:</strong><br/>
+(a) (3,4) and (6,4)<br/>
+(b) (5,2) and (7,2)<br/>
+(c) (5,2), (7,2) and (9,5)<br/>
+(d) (3,4), (4,3) and (6,4)</p>
+<p>Answer (C)<br/>
+When (2,4) is deleted.  Since C is a foreign key referring A with delete on cascade, all entries with value 2 in C must be deleted. So (5, 2) and (7, 2) are deleted. As a result of this 5 and 7 are deleted from A which causes (9, 5) to be deleted.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><br/><br/>
+<strong>3) The relation book (<u>title</u>, price) contains the titles and prices of different books. Assuming that no two books have the same price, what does the following SQL query list?</strong></p>
+<pre>  select title
+  from book as B
+  where (select count(*)
+     from book as T
+     where T.price &gt; B.price) &lt; 5
+</pre>
+<p>(a) Titles of the four most expensive books<br/>
+(b) Title of the fifth most inexpensive book<br/>
+(c) Title of the fifth most expensive book<br/>
+(d) Titles of the five most expensive books</p>
+<p>Answer (d)<br/>
+When a subquery uses values from outer query, the subquery is called <a href="http://en.wikipedia.org/wiki/Correlated_subquery">correlated subquery</a>. The correlated subquery is evaluated once for each row processed by the outer query.<br/>
+The outer query selects all titles from book table. For every selected book, the subquery returns count of those books which are more expensive than the selected book. The where clause of outer query will be true for 5 most expensive book. For example count (*) will be 0 for the most expensive book and count(*) will be 1 for second most expensive book.</p>
+<p><strong>Please see <a href="http://geeksquiz.com/gate-corner-2/">GATE Corner</a> for all previous year paper/solutions/explanations, syllabus, important dates, notes, etc.</strong></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

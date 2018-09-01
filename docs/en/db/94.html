@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Database Management Systems | Set 7</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Following questions have been asked in GATE 2008 CS exam.<span id="more-20708"></span></p>
+<p><strong>1) Let R and S be two relations with the following schema<br/>
+R (<u>P,Q</u>,R1,R2,R3)<br/>
+S (<u>P,Q</u>,S1,S2)<br/>
+Where {P, Q} is the key for both schemas. Which of the following queries are equivalent?</strong><br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/GATE2008DBMS1.gif"><img src="../../../imgs/db/2a723188b3d6c70d707def818c0a83dc.jpg" alt="" title="GATE2008DBMS1" width="250" height="100"/></a><br/>
+(A) Only I and II<br/>
+(B) Only I and III<br/>
+(C) Only I, II and III<br/>
+(D) Only I, III and IV</p>
+<p>Answer (D)<br/>
+In I, Ps from natural join of R and S are selected.<br/>
+In III, all Ps from intersection of (P, Q) pairs present in R and S.<br/>
+IV is also equivalent to III because  (R – (R – S)) = R ∩ S.<br/>
+II is not equivalent as it may also include Ps where Qs are not same in R and S.</p>
+<p><br/><br/>
+<strong>2) Consider the following ER diagram.<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/GATE2008DBMS_ERDIA.gif"><img src="../../../imgs/db/2d7869caa5ba7825d0341439b8a9d41d.jpg" alt="" title="GATE2008DBMS_ERDIA" width="500" height="120"/></a></strong></p>
+<p>The minimum number of tables needed to represent M, N, P, R1, R2 is<br/>
+(A) 2<br/>
+(B) 3<br/>
+(C) 4<br/>
+(D) 5</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>Answer (B)<br/>
+See <a href="http://geeksquiz.com/gate-gate-cs-2008-question-82/">http://geeksquiz.com/gate-gate-cs-2008-question-82/</a> for explanation.</p>
+<p><br/><br/>
+<strong>3) Which of the following is a correct attribute set for one of the tables for the correct answer to the above question?</strong><br/>
+(A) {M1, M2, M3, P1}<br/>
+(B) {M1, P1, N1, N2}<br/>
+(C) {M1, P1, N1}<br/>
+(D) {M1, P1}</p>
+<p>Answer (A)<br/>
+<br/><br/><br/>
+<strong>4) Consider the following relational schemes for a library database:<br/>
+Book (Title, Author, Catalog_no, Publisher, Year, Price)<br/>
+Collection (Title, Author, Catalog_no)</strong></p>
+<p>with in the following functional dependencies:
+</p>
+<pre>I. Title Author --&gt; Catalog_no
+II. Catalog_no --&gt; Title Author Publisher Year
+III. Publisher Title Year --&gt; Price </pre>
+<p></p>
+<p>Assume {Author, Title} is the key for both schemes. Which of the following statements is true?<br/>
+(A) Both Book and Collection are in BCNF<br/>
+(B) Both Book and Collection are in 3NF only<br/>
+(C) Book is in 2NF and Collection is in 3NF<br/>
+(D) Both Book and Collection are in 2NF  only</p>
+<p>Answer (C)<br/>
+Table Collection is in <a href="http://en.wikipedia.org/wiki/Boyce%E2%80%93Codd_normal_form">BCNF </a>as there is only one functional dependency “Title Author –&gt; Catalog_no” and {Author, Title} is key for collection. Book is not in BCNF because Catalog_no is not a key and there is a functional dependency “Catalog_no –&gt; Title Author Publisher Year”. Book is not in <a href="http://en.wikipedia.org/wiki/Third_normal_form">3NF</a> because non-prime attributes (Publisher Year) are transitively dependent on key [Title, Author]. Book is in <a href="http://en.wikipedia.org/wiki/Second_normal_form">2NF </a> because every non-prime attribute of the table is either dependent on the key [Title, Author], or on another non prime attribute.</p>
+<p><strong>Please see <a href="http://geeksquiz.com/gate-corner-2/">GATE Corner</a> for all previous year paper/solutions/explanations, syllabus, important dates, notes, etc.</strong></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

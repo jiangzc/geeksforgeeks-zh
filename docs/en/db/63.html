@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Recoverability of Schedules</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>We have discussed the basics of Transactions and Schedules in <a href="http://quiz.geeksforgeeks.org/concurrency-control-introduction/">Concurrency Control (Introduction)</a> article. As discussed, a transaction may not execute completely due to hardware failure, system crash or software issues. In that case, we have to rollback the failed transaction.  But some other transaction may also have used values produced by failed transaction. So we have to rollback those transactions as well. </p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/scheduleDBMS.png"><img src="../../../imgs/db/cbc52a48a62c68a6e4bdcb7c26be4428.jpg" alt="Recoverabilityofschedules" width="352" height="249" class="alignnone size-full wp-image-22924"/></a><br/>
+Above table shows a schedule with two transactions, T1 reads and writes A and that value is read and written by T2. T2 commits. But later on, T1 fails. So we have to rollback T1. Since T2 has read the value written by T1, it should also be rollbacked. But we have already committed that. So this schedule is irrecoverable schedule.</p>
+<p><strong>Irrecoverable Schedule: </strong>When Tj is reading the value updated by Ti and Tj is committed before commit of Ti, the schedule will be irrecoverable.<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/schedule5.png"><img src="../../../imgs/db/1a872bd76353a1d83ad55780f974cf4b.jpg" alt="Recoverabilityofschedules2" width="352" height="249" class="alignnone size-full wp-image-22925"/></a></p>
+<p>Table 2 shows a schedule with two transactions, T1 reads and writes A and that value is read and written by T2. But later on, T1 fails. So we have to rollback T1. Since T2 has read the value written by T1, it should also be rollbacked. As it has not committed, we can rollback T2 as well. So it is recoverable with cascading rollback.<br/>
+Recoverable with cascading rollback: If Tj  is reading value updated by Ti and commit of Tj is delayed till commit of Ti , the schedule is called recoverable with cascading rollback.<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/schedult3.png"><img src="../../../imgs/db/6dd61599430bfcb50aec8c68c8635765.jpg" alt="Recoverability3" width="352" height="250" class="alignnone size-full wp-image-22926"/></a></p>
+<p>Table 3 shows a schedule with two transactions, T1 reads and writes A and commits and that value is read by T2. But if T1 fails before commit, no other transaction has read its value, so there is no need to rollback other transaction. So this is a cascadeless recoverable schedule.  </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><strong>Cascadeless Recoverable:</strong> If Tj reads value updated by Ti  only after Ti is commited, the schedule will be cascadeless recoverable.</p>
+<p><strong>Question:</strong> Which of the following scenarios may lead to an irrecoverable error in a database system?<br/>
+<strong>(A)&#160;</strong>A transaction writes a data item after it is read by an uncommitted transaction.<br/>
+<strong>(B)</strong>&#160;A transaction reads a data item after it is read by an uncommitted transaction.<br/>
+<strong>(C)</strong>&#160;A transaction reads a data item after it is written by a committed transaction.<br/>
+<strong>(D)&#160;</strong>A transaction reads a data item after it is written by an uncommitted transaction.<br/>
+<strong><br/>
+Answer:</strong> See the example discussed in Table 1, a transaction is reading a data item after it is written by an uncommitted transaction, the schedule will be irrecoverable.</p>
+<p>Related Post:<br/>
+<a href="http://quiz.geeksforgeeks.org/conflict-serializability/">Conflict Serializability</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

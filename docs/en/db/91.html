@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Database Management Systems | Set 4</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Following Questions have been asked in GATE 2011 exam.<span id="more-20534"></span></p>
+<p><strong>1. Consider a relational table with a single record for each registered student with the following attributes.</strong></p>
+<p> 1. Registration_Number:&lt; Unique registration number for each registered student 
+ 2. UID: Unique Identity number, unique at the national level for each citizen 
+ 3. BankAccount_Number: Unique account number at the bank. A student can have multiple accounts or joint accounts. This attributes stores the primary account number 
+ 4. Name: Name of the Student 
+ 5. Hostel_Room: Room number of the hostel 
+
+Which of the following options is INCORRECT? <br/>
+ (A) BankAccount_Number is a candidate key<br/>
+ (B) Registration_Number can be a primary key<br/>
+ (C) UID is a candidate key if all students are from the same country<br/>
+ (D) If S is a superkey such that S ∩ UID is NULL then S ∪ UID is also a superkey </p>
+<p>Answer (A)<br/>
+A <a href="http://en.wikipedia.org/wiki/Candidate_key">Candidate Key</a> value must uniquely identify the corresponding row in table.  BankAccount_Number is not a candidate key. As per the question “A student can have multiple accounts or joint accounts. This attributes stores the primary account number”.  If two students have a joint account and if the joint account is their primary account, then BankAccount_Number value cannot uniquely identify a row.</p>
+<p><br/><br/>
+<strong>2) Consider a relational table r with sufficient number of records, having attributes A1, A2,…, An and let 1 &lt;= p="" &lt;="n." two="" queries="" q1="" and="" q2="" are="" given="" below.&lt;="" strong=""&gt;<!--=--></strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/GATE2011DBMS1.png"><img src="../../../imgs/db/1985c72f76d9fbee6e77307d8c007c29.jpg" alt="" title="GATE2011DBMS" width="350" height="45"/></a><br/>
+<strong>The database can be configured to do ordered indexing on Ap or hashing on Ap. Which of the following statements is TRUE?</strong><br/>
+(A) Ordered indexing will always outperform hashing for both queries<br/>
+(B) Hashing will always outperform ordered indexing for both queries<br/>
+(C) Hashing will outperform ordered indexing on Q1, but not on Q2<br/>
+(D) Hashing will outperform ordered indexing on Q2, but not on Q1.</p>
+<p>Answer (C)<br/>
+If record are accessed for a particular value from table, hashing will do better.  If records are accessed in a range of values, ordered indexing will perform better.  See <a href="http://www.cse.iitb.ac.in/~sudarsha/db-book/slide-dir/ch12.pdf">this </a>for more details.</p>
+<p><br/><br/>
+<strong>3) Database table by name Loan_Records is given below.</strong></p>
+<pre>Borrower    Bank_Manager   Loan_Amount
+ Ramesh      Sunderajan     10000.00
+ Suresh      Ramgopal       5000.00
+ Mahesh      Sunderajan     7000.00
+</pre>
+<p><strong>What is the output of the following SQL query?</strong></p>
+<pre>SELECT Count(*) 
+FROM  ( (SELECT Borrower, Bank_Manager 
+       FROM   Loan_Records) AS S 
+        NATURAL JOIN (SELECT Bank_Manager, 
+                             Loan_Amount 
+                      FROM   Loan_Records) AS T ); 
+</pre>
+<p>(A) 3<br/>
+(B) 9<br/>
+(C) 5<br/>
+(D) 6</p>
+<p>Answer (C)</p>
+<p>Following will be contents of temporary table S</p>
+<pre>Borrower    Bank_Manager
+--------------------------
+ Ramesh      Sunderajan
+ Suresh      Ramgqpal
+ Mahesh      Sunderjan
+</pre>
+<p>Following will be contents of temporary table T</p>
+<pre>Bank_Manager   Loan_Amount
+---------------------------
+Sunderajan      10000.00
+Ramgopal        5000.00
+Sunderjan       7000.00
+</pre>
+<p>Following will be the result of natural join of above two tables. The key thing to note is that the natural join happens on column name with same name which is Bank_Manager in the above example. “Sunderjan” appears two times in Bank_Manager column, so their will be four entries with Bank_Manager as “Sunderjan”.</p>
+<pre><strong>Borrower  Bank_Manager   Load_Amount</strong>
+------------------------------------
+Ramesh    Sunderajan     10000.00
+Ramesh    Sunderajan     7000.00
+Suresh    Ramgopal       5000.00
+Mahesh    Sunderajan     10000.00
+Mahesh    Sunderajan     7000.00
+</pre>
+<p><br/><br/>
+<strong>4) Consider a database table T containing two columns X and Y each of type integer. After the creation of the table, one record (X=1, Y=1) is inserted in the table.</strong></p>
+<p>        Let MX and My denote the respective maximum values of X and Y among all records in the table at any point in time. Using MX and MY, new records are inserted in the table 128 times with X and Y values being MX+1, 2*MY+1 respectively. It may be noted that each time after the insertion, values of MX and MY change. What will be the output of the following SQL query after the steps mentioned above are carried out?</p>
+<pre>SELECT Y FROM T WHERE X=7;
+</pre>
+<p>(A) 127<br/>
+(B) 255<br/>
+(C) 129<br/>
+(D) 257</p>
+<p>Answer (A)</p>
+<pre> X    Y
+-------
+ 1    1
+ 2    3
+ 3    7
+ 4    15
+ 5    31
+ 6    63
+ 7   127
+ ......
+ ......
+</pre>
+<p><br/></p>
+<p><strong>Please see <a href="http://geeksquiz.com/gate-corner-2/">GATE Corner</a> for all previous year paper/solutions/explanations, syllabus, important dates, notes, etc.</strong></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

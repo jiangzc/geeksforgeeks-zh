@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Recursive Relationships</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/database-management-system-er-model/" rel="noopener" target="_blank">ER Model</a></p>
+<p>A relationship between two entities of similar entity type is called a <b>recursive</b> relationship. Here the same entity type participates more than once in a relationship type with a different role for each instance. In other words, a relationship has always been between occurrences in two different entities. However, it is possible for the same entity to participate in the relationship. This is termed a <b>recursive</b> relationship.</p>
+<p><img src="../../../imgs/db/85a2970c019b4699b9fa3a9719222f85.jpg" width="234" height="125" class="aligncenter size-full"/></p>
+<p><b>Example –</b><br/>
+Let us suppose that we have an employee table. A manager supervises a subordinate. Every employee can have a supervisor except the CEO and there can be at most one boss for each employee. One employee may be the boss of more than one employee. Let’s suppose that REPORTS_TO is a recursive relationship on the Employee entity type where each Employee plays two roles </p>
+<ol>
+<li> Supervisor</li>
+<li> Subordinate </li>
+</ol>
+<p><img src="../../../imgs/db/4752bd361f042ee238ffeb12e04c65c7.jpg" width="548" height="454" class="aligncenter size-full"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>Supervisor and Subordinate are called <strong>“Role Names”</strong>. Here the degree of the REPORTS_TO relationship is 2 i.e. a binary relationship.</p>
+<ul>
+<li>The minimum cardinality of Supervisor entity is ZERO since the lowest level employee may not be a manager for anyone. </li>
+<li>The maximum cardinality of Supervisor entity is N since an employee can manage many employees.</li>
+<li>Similarly the Subordinate entity has a minimum cardinality of ZERO to account for the case where CEO can never be a subordinate.</li>
+<li>It maximum cardinality is ONE since a subordinate employee can have at most one supervisor.</li>
+</ul>
+<p><strong>Note –</strong> Here none of the participants have a total participation since both minimum cardinalities are Zero. Hence, the relationships are connected by a single line instead of a double line in the ER diagram.</p>
+<p>To implement recursive relationship, a foreign key of the employee’s manager number would be held in each employee record. A Sample table would look something like this:-</p>
+<pre>Emp_entity( Emp_no,Emp_Fname, Emp_Lname, Emp_DOB, Emp_NI_Number, Manager_no);
+
+Manager no - (this is the employee no of the employee's manager)
+</pre>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

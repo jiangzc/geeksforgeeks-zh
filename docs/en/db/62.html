@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">How to test if two schedules are View Equal or not ?</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Two schedules S1 and S2 are said to be view equal iff following below conditions are satisfied :<span id="more-142374"></span></p>
+<p><strong>1)<strong> Initial Read </strong></strong><br/>
+  If a transaction T1 reading data item A from initial database in S1 then in S2 also T1 should read A from initial database.</p>
+<pre>  T1     T2     T3
+-------------------
+        R(A)
+ W(A)          
+               R(A)
+        R(B)</pre>
+<p>Transaction T2 is reading A form initial database.</p>
+<p><strong>2)<strong>Updated Read</strong></strong><br/>
+  If Ti is reading A which is updated by Tj in S1 then in S2 also Ti should read A which is updated by Tj.</p>
+<pre>  T1     T2     T3         T1    T2    T3                   
+-------------------       ----------------
+  W(A)                    W(A)       
+        W(A)                           R(A)
+                R(A)             W(A)</pre>
+<p>Above two schedule are not view equal as in S1 :T3 is reading A updated by T2, in S2 T3 is reading A updated by T1.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><strong>3)<strong>Final Write operation </strong></strong><br/>
+  If a transaction T1 updated A at last in S1, then in S2 also T1 should perform final write operations.</p>
+<pre> T1       T2        T1     T2            
+------------    ---------------
+ R(A)              R(A)
+         W(A)      W(A)
+ W(A)                    W(A)
+</pre>
+<p>Above two schedule are not view as Final write operation in S1 is done by T1 while in S2 done by T2.</p>
+<p><strong>View Serializability: </strong>A Schedule is called view serializable if it is view equal to a serial schedule (no overlapping transactions).</p>
+<p>Below are the previous Year Gate Question asked on this topic<br/>
+<a href="http://quiz.geeksforgeeks.org/dbms/transactions-and-concurrency-control/" target="_blank">http://quiz.geeksforgeeks.org/dbms/transactions-and-concurrency-control/</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

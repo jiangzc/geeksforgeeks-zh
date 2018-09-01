@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Extended Operators in Relational Algebra</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Basic idea about &#160;relational model and basic operators in Relational Algebra:</p>
+<p><a href="http://quiz.geeksforgeeks.org/relational-model/" target="_blank">Relational Model</a></p>
+<p><a href="http://quiz.geeksforgeeks.org/basic-operators-in-relational-algebra-2/" target="_blank">Basic Operators in Relational Algebra</a></p>
+<p>Extended operators are those operators which can be derived from basic operators.<span style="line-height: 1.5">There are mainly three types of extended operators in Relational Algebra: </span></p>
+<ul>
+<li><strong style="line-height: 1.5">Join</strong></li>
+<li><strong style="line-height: 1.5">Intersection </strong></li>
+<li><strong style="line-height: 1.5">Divide</strong><span style="line-height: 1.5">&#160;</span></li>
+</ul>
+<p>The relations used to understand extended operators are STUDENT, STUDENT_SPORTS, ALL_SPORTS and EMPLOYEE which are shown in Table 1, Table 2, Table 3 and Table 4 respectively.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><strong>STUDENT</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="97"><strong>ROLL_NO</strong></td>
+<td width="130"><strong>NAME</strong></td>
+<td width="135"><strong>ADDRESS</strong></td>
+<td width="135"><strong>PHONE</strong></td>
+<td width="68"><strong>AGE</strong></td>
+</tr>
+<tr>
+<td width="97">1</td>
+<td width="130">RAM</td>
+<td width="135">DELHI</td>
+<td width="135">9455123451</td>
+<td width="68">18</td>
+</tr>
+<tr>
+<td width="97">2</td>
+<td width="130">RAMESH</td>
+<td width="135">GURGAON</td>
+<td width="135">9652431543</td>
+<td width="68">18</td>
+</tr>
+<tr>
+<td width="97">3</td>
+<td width="130">SUJIT</td>
+<td width="135">ROHTAK</td>
+<td width="135">9156253131</td>
+<td width="68">20</td>
+</tr>
+<tr>
+<td width="97">4</td>
+<td width="130">SURESH</td>
+<td width="135">DELHI</td>
+<td width="135">9156768971</td>
+<td width="68">18</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>Table 1</strong></p>
+<p><strong>&#160; STUDENT_SPORTS&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </strong></p>
+<table>
+<tbody>
+<tr>
+<td width="97"><strong>ROLL_NO</strong></td>
+<td width="97"><strong>SPORTS</strong></td>
+</tr>
+<tr>
+<td width="97">1</td>
+<td width="97">Badminton</td>
+</tr>
+<tr>
+<td width="97">2</td>
+<td width="97">Cricket</td>
+</tr>
+<tr>
+<td width="97">2</td>
+<td width="97">Badminton</td>
+</tr>
+<tr>
+<td width="97">4</td>
+<td width="97">Badminton</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>Table&#160;2</strong></p>
+<p style="text-align: left"><strong>&#160;ALL_SPORTS</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="97"><strong>SPORTS</strong></td>
+</tr>
+<tr>
+<td width="97">Badminton</td>
+</tr>
+<tr>
+<td width="97">Cricket<strong>&#160;</strong></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>Table 3</strong></p>
+<p><strong>EMPLOYEE&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="97"><strong>EMP_NO</strong></td>
+<td width="130"><strong>NAME</strong></td>
+<td width="135"><strong>ADDRESS</strong></td>
+<td width="135"><strong>PHONE</strong></td>
+<td width="68"><strong>AGE</strong></td>
+</tr>
+<tr>
+<td width="97">1</td>
+<td width="130">RAM</td>
+<td width="135">DELHI</td>
+<td width="135">9455123451</td>
+<td width="68">18</td>
+</tr>
+<tr>
+<td width="97">5</td>
+<td width="130">NARESH</td>
+<td width="135">HISAR</td>
+<td width="135">9782918192</td>
+<td width="68">22</td>
+</tr>
+<tr>
+<td width="97">6</td>
+<td width="130">SWETA</td>
+<td width="135">RANCHI</td>
+<td width="135">9852617621</td>
+<td width="68">21</td>
+</tr>
+<tr>
+<td width="97">4</td>
+<td width="130">SURESH</td>
+<td width="135">DELHI</td>
+<td width="135">9156768971</td>
+<td width="68">18</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>&#160;Table 4</strong></p>
+<p><span style="color: #0000ff"><em><strong>Intersection (∩):</strong></em> </span>Intersection on two relations R1 and R2 can only be computed if R1 and R2 are <strong>union compatible&#160;</strong>(These two relation should have same number of attributes and corresponding attributes in two relations have same domain). Intersection operator when applied on two relations as R1<strong>∩</strong>R2 will give a relation with tuples which are in R1 as well as R2.&#160;Syntax:</p>
+<pre style="text-align: center"><strong>&#160;Relation1 ∩ Relation2</strong></pre>
+<pre>Example: Find a person who is student as well as employee- &#160;<strong>STUDENT ∩ EMPLOYEE&#160; </strong></pre>
+<p>In terms of basic operators (union and minus) :</p>
+<pre style="text-align: center"><strong>STUDENT ∩ EMPLOYEE = STUDENT + EMPLOYEE - (STUDENT U EMPLOYEE) </strong></pre>
+<p><strong>RESULT:</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="97"><strong>ROLL_NO</strong></td>
+<td width="130"><strong>NAME</strong></td>
+<td width="135"><strong>ADDRESS</strong></td>
+<td width="135"><strong>PHONE</strong></td>
+<td width="68"><strong>AGE</strong></td>
+</tr>
+<tr>
+<td width="97">1</td>
+<td width="130">RAM</td>
+<td width="135">DELHI</td>
+<td width="135">9455123451</td>
+<td width="68">18</td>
+</tr>
+<tr>
+<td width="97">4</td>
+<td width="130">SURESH</td>
+<td width="135">DELHI</td>
+<td width="135">9156768971</td>
+<td width="68">18</td>
+</tr>
+</tbody>
+</table>
+<p>&#160;</p>
+<p><em><strong><span style="color: #0000ff">Conditional Join(⋈<sub>c</sub>)</span>:</strong></em> Conditional Join is used when you want to join two or more relation based on some conditions. Example: Select students whose ROLL_NO is greater than EMP_NO of employees</p>
+<pre style="text-align: center"><strong>STUDENT<em>⋈<sub>c</sub><span style="color: #0000ff"><sub>&#160;</sub></span></em><sub>STUDENT.ROLL_NO&gt;EMPLOYEE.EMP_NO</sub>EMPLOYEE</strong></pre>
+<p>In terms of basic operators (cross product and selection) :</p>
+<pre style="text-align: center"><strong>σ<sub> (STUDENT.ROLL_NO&gt;EMPLOYEE.EMP_NO)</sub>(STUDENT×EMPLOYEE)</strong></pre>
+<p><strong>RESULT:</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="61"><strong>ROLL_NO</strong></td>
+<td width="78"><strong>NAME</strong></td>
+<td width="76"><strong>ADDRESS</strong></td>
+<td width="76"><strong>PHONE</strong></td>
+<td width="41"><strong>AGE</strong></td>
+<td width="65"><strong>EMP_NO</strong></td>
+<td width="72"><strong>NAME</strong></td>
+<td width="52"><strong>ADDRESS</strong></td>
+<td width="68"><strong>PHONE</strong></td>
+<td width="49"><strong>AGE</strong></td>
+</tr>
+<tr>
+<td width="61">2</td>
+<td width="78">RAMESH</td>
+<td width="76">GURGAON</td>
+<td width="76">9652431543</td>
+<td width="41">18</td>
+<td width="65">1</td>
+<td width="72">RAM</td>
+<td width="52">DELHI</td>
+<td width="68">9455123451</td>
+<td width="49">18</td>
+</tr>
+<tr>
+<td width="61">3</td>
+<td width="78">SUJIT</td>
+<td width="76">ROHTAK</td>
+<td width="76">9156253131</td>
+<td width="41">20</td>
+<td width="65">1</td>
+<td width="72">RAM</td>
+<td width="52">DELHI</td>
+<td width="68">9455123451</td>
+<td width="49">18</td>
+</tr>
+<tr>
+<td width="61">4</td>
+<td width="78">SURESH</td>
+<td width="76">DELHI</td>
+<td width="76">9156768971</td>
+<td width="41">18</td>
+<td width="65">1</td>
+<td width="72">RAM</td>
+<td width="52">DELHI</td>
+<td width="68">9455123451</td>
+<td width="49">18</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color: #0000ff"><em><strong>Equijoin(⋈):</strong></em></span> Equijoin is a <strong>special case of conditional join</strong> where only equality condition holds between a pair of attributes. As values of two attributes will be equal in result of equijoin, only one attribute will be appeared in result.</p>
+<p>Example:Select students whose ROLL_NO is equal to EMP_NO of employees</p>
+<pre style="text-align: center"><strong>STUDENT⋈<sub>STUDENT.ROLL_NO=EMPLOYEE.EMP_NO</sub>EMPLOYEE</strong></pre>
+<p>In terms of basic operators (cross product, selection and projection) :</p>
+<pre><strong>∏<sub>(STUDENT.ROLL_NO, STUDENT.NAME, STUDENT.ADDRESS, STUDENT.PHONE, STUDENT.AGE EMPLOYEE.NAME, EMPLOYEE.ADDRESS, EMPLOYEE.PHONE, EMPLOYEE&gt;AGE)</sub>(σ<sub> (STUDENT.ROLL_NO=EMPLOYEE.EMP_NO) </sub>(STUDENT×EMPLOYEE))</strong></pre>
+<p>RESULT:</p>
+<table>
+<tbody>
+<tr>
+<td width="61"><strong>ROLL_NO</strong></td>
+<td width="78"><strong>NAME</strong></td>
+<td width="76"><strong>ADDRESS</strong></td>
+<td width="76"><strong>PHONE</strong></td>
+<td width="41"><strong>AGE</strong></td>
+<td width="72"><strong>NAME</strong></td>
+<td width="52"><strong>ADDRESS</strong></td>
+<td width="68"><strong>PHONE</strong></td>
+<td width="49"><strong>AGE</strong></td>
+</tr>
+<tr>
+<td width="61">1</td>
+<td width="78">RAM</td>
+<td width="76">DELHI</td>
+<td width="76">9455123451</td>
+<td width="41">18</td>
+<td width="72">RAM</td>
+<td width="52">DELHI</td>
+<td width="68">9455123451</td>
+<td width="49">18</td>
+</tr>
+<tr>
+<td width="61">4</td>
+<td width="78">SURESH</td>
+<td width="76">DELHI</td>
+<td width="76">9156768971</td>
+<td width="41">18</td>
+<td width="72">SURESH</td>
+<td width="52">DELHI</td>
+<td width="68">9156768971</td>
+<td width="49">18</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color: #0000ff"><em><strong>Natural Join(⋈):</strong> </em></span>It is a special case of equijoin in which equality condition hold on all attributes which have same name in relations R and S (relations on which join operation is applied). While applying natural join on two relations, there is no need to write equality condition explicitly. Natural Join will also return the similar attributes only once as their value will be same in resulting relation.</p>
+<p>Example: Select students whose ROLL_NO is equal to ROLL_NO of STUDENT_SPORTS as:</p>
+<pre style="text-align: center"><strong>STUDENT⋈STUDENT_SPORTS</strong></pre>
+<p>In terms of basic operators (cross product, selection and projection) :</p>
+<pre><strong>∏<sub>(STUDENT.ROLL_NO, STUDENT.NAME, STUDENT.ADDRESS, STUDENT.PHONE, STUDENT.AGE STUDENT_SPORTS.SPORTS)</sub>(σ<sub> (STUDENT.ROLL_NO=STUDENT_SPORTS.ROLL_NO) </sub>(STUDENT×STUDENT_SPORTS))</strong></pre>
+<p><strong>RESULT:</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="96"><strong>ROLL_NO</strong></td>
+<td width="126"><strong>NAME</strong></td>
+<td width="132"><strong>ADDRESS</strong></td>
+<td width="132"><strong>PHONE</strong></td>
+<td width="66"><strong>AGE</strong></td>
+<td width="86"><strong>SPORTS</strong></td>
+</tr>
+<tr>
+<td width="96">1</td>
+<td width="126">RAM</td>
+<td width="132">DELHI</td>
+<td width="132">9455123451</td>
+<td width="66">18</td>
+<td width="86">Badminton</td>
+</tr>
+<tr>
+<td width="96">2</td>
+<td width="126">RAMESH</td>
+<td width="132">GURGAON</td>
+<td width="132">9652431543</td>
+<td width="66">18</td>
+<td width="86">Cricket</td>
+</tr>
+<tr>
+<td width="96">2</td>
+<td width="126">RAMESH</td>
+<td width="132">GURGAON</td>
+<td width="132">9652431543</td>
+<td width="66">18</td>
+<td width="86">Badminton</td>
+</tr>
+<tr>
+<td width="96">4</td>
+<td width="126">SURESH</td>
+<td width="132">DELHI</td>
+<td width="132">9156768971</td>
+<td width="66">18</td>
+<td width="86">Badminton</td>
+</tr>
+</tbody>
+</table>
+<p>Natural Join is by default inner join because the tuples which does not satisfy the conditions of join does not appear in result set. e.g.; The tuple having ROLL_NO 3 in STUDENT does not match with any tuple in STUDENT_SPORTS, so it has not been a part of result set.</p>
+<p><span style="color: #0000ff"><em><strong>Left Outer Join(⟕):</strong></em></span> When applying join on two relations R and S, some tuples of R or S does not appear in result set which does not satisfy the join conditions. But Left Outer Joins gives all tuples of R in the result set. The tuples of R which do not satisfy join condition will have values as NULL for attributes of S.</p>
+<p>Example:Select students whose ROLL_NO is greater than EMP_NO of employees and details of other students as well</p>
+<pre style="text-align: center"><strong>STUDENT⟕</strong><strong><sub>STUDENT.ROLL_NO&gt;EMPLOYEE.EMP_NO</sub></strong><strong>EMPLOYEE</strong></pre>
+<p><strong>RESULT</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="61"><strong>ROLL_NO</strong></td>
+<td width="78"><strong>NAME</strong></td>
+<td width="76"><strong>ADDRESS</strong></td>
+<td width="76"><strong>PHONE</strong></td>
+<td width="41"><strong>AGE</strong></td>
+<td width="65"><strong>EMP_NO</strong></td>
+<td width="72"><strong>NAME</strong></td>
+<td width="52"><strong>ADDRESS</strong></td>
+<td width="68"><strong>PHONE</strong></td>
+<td width="49"><strong>AGE</strong></td>
+</tr>
+<tr>
+<td width="61">2</td>
+<td width="78">RAMESH</td>
+<td width="76">GURGAON</td>
+<td width="76">9652431543</td>
+<td width="41">18</td>
+<td width="65">1</td>
+<td width="72">RAM</td>
+<td width="52">DELHI</td>
+<td width="68">9455123451</td>
+<td width="49">18</td>
+</tr>
+<tr>
+<td width="61">3</td>
+<td width="78">SUJIT</td>
+<td width="76">ROHTAK</td>
+<td width="76">9156253131</td>
+<td width="41">20</td>
+<td width="65">1</td>
+<td width="72">RAM</td>
+<td width="52">DELHI</td>
+<td width="68">9455123451</td>
+<td width="49">18</td>
+</tr>
+<tr>
+<td width="61">4</td>
+<td width="78">SURESH</td>
+<td width="76">DELHI</td>
+<td width="76">9156768971</td>
+<td width="41">18</td>
+<td width="65">1</td>
+<td width="72">RAM</td>
+<td width="52">DELHI</td>
+<td width="68">9455123451</td>
+<td width="49">18</td>
+</tr>
+<tr>
+<td width="61">1</td>
+<td width="78">RAM</td>
+<td width="76">DELHI</td>
+<td width="76">9455123451</td>
+<td width="41">18</td>
+<td width="65">NULL</td>
+<td width="72">NULL</td>
+<td width="52">NULL</td>
+<td width="68">NULL</td>
+<td width="49">NULL</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color: #0000ff"><em><strong>Right Outer Join(⟖):</strong></em></span> When applying join on two relations R and S, some tuples of R or S does not appear in result set which does not satisfy the join conditions. But Right Outer Joins gives all tuples of S in the result set. The tuples of S which do not satisfy join condition will have values as NULL for attributes of R.</p>
+<p>Example: Select students whose ROLL_NO is greater than EMP_NO of employees and details of other Employees as well</p>
+<pre style="text-align: center"><strong>STUDENT⟖<sub>STUDENT.ROLL_NO&gt;EMPLOYEE.EMP_NO</sub>EMPLOYEE</strong></pre>
+<p><strong>RESULT:</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="61"><strong>ROLL_NO</strong></td>
+<td width="78"><strong>NAME</strong></td>
+<td width="76"><strong>ADDRESS</strong></td>
+<td width="76"><strong>PHONE</strong></td>
+<td width="41"><strong>AGE</strong></td>
+<td width="65"><strong>EMP_NO</strong></td>
+<td width="72"><strong>NAME</strong></td>
+<td width="52"><strong>ADDRESS</strong></td>
+<td width="68"><strong>PHONE</strong></td>
+<td width="49"><strong>AGE</strong></td>
+</tr>
+<tr>
+<td width="61">2</td>
+<td width="78">RAMESH</td>
+<td width="76">GURGAON</td>
+<td width="76">9652431543</td>
+<td width="41">18</td>
+<td width="65">1</td>
+<td width="72">RAM</td>
+<td width="52">DELHI</td>
+<td width="68">9455123451</td>
+<td width="49">18</td>
+</tr>
+<tr>
+<td width="61">3</td>
+<td width="78">SUJIT</td>
+<td width="76">ROHTAK</td>
+<td width="76">9156253131</td>
+<td width="41">20</td>
+<td width="65">1</td>
+<td width="72">RAM</td>
+<td width="52">DELHI</td>
+<td width="68">9455123451</td>
+<td width="49">18</td>
+</tr>
+<tr>
+<td width="61">4</td>
+<td width="78">SURESH</td>
+<td width="76">DELHI</td>
+<td width="76">9156768971</td>
+<td width="41">18</td>
+<td width="65">1</td>
+<td width="72">RAM</td>
+<td width="52">DELHI</td>
+<td width="68">9455123451</td>
+<td width="49">18</td>
+</tr>
+<tr>
+<td width="61">NULL</td>
+<td width="78">NULL</td>
+<td width="76">NULL</td>
+<td width="76">NULL</td>
+<td width="41">NULL</td>
+<td width="65">5</td>
+<td width="72">NARESH</td>
+<td width="52">HISAR</td>
+<td width="68">9782918192</td>
+<td width="49">22</td>
+</tr>
+<tr>
+<td width="61">NULL</td>
+<td width="78">NULL</td>
+<td width="76">NULL</td>
+<td width="76">NULL</td>
+<td width="41">NULL</td>
+<td width="65">6</td>
+<td width="72">SWETA</td>
+<td width="52">RANCHI</td>
+<td width="68">9852617621</td>
+<td width="49">21</td>
+</tr>
+<tr>
+<td width="61">NULL</td>
+<td width="78">NULL</td>
+<td width="76">NULL</td>
+<td width="76">NULL</td>
+<td width="41">NULL</td>
+<td width="65">4</td>
+<td width="72">SURESH</td>
+<td width="52">DELHI</td>
+<td width="68">9156768971</td>
+<td width="49">18</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em><span style="color: #0000ff">Full Outer Join(⟗):</span></em></strong> When applying join on two relations R and S, some tuples of R or S does not appear in result set which does not satisfy the join conditions. But Full Outer Joins gives all tuples of S and all tuples of R in the result set. The tuples of S which do not satisfy join condition will have values as NULL for attributes of R and vice versa.</p>
+<p>Example:Select students whose ROLL_NO is greater than EMP_NO of employees and details of other Employees as well and other Students as well</p>
+<pre style="text-align: center"><strong>STUDENT⟗<sub>STUDENT.ROLL_NO&gt;EMPLOYEE.EMP_NO</sub>EMPLOYEE</strong></pre>
+<p><strong>RESULT:</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="61"><strong>ROLL_NO</strong></td>
+<td width="78"><strong>NAME</strong></td>
+<td width="76"><strong>ADDRESS</strong></td>
+<td width="76"><strong>PHONE</strong></td>
+<td width="41"><strong>AGE</strong></td>
+<td width="65"><strong>EMP_NO</strong></td>
+<td width="72"><strong>NAME</strong></td>
+<td width="52"><strong>ADDRESS</strong></td>
+<td width="68"><strong>PHONE</strong></td>
+<td width="49"><strong>AGE</strong></td>
+</tr>
+<tr>
+<td width="61">2</td>
+<td width="78">RAMESH</td>
+<td width="76">GURGAON</td>
+<td width="76">9652431543</td>
+<td width="41">18</td>
+<td width="65">1</td>
+<td width="72">RAM</td>
+<td width="52">DELHI</td>
+<td width="68">9455123451</td>
+<td width="49">18</td>
+</tr>
+<tr>
+<td width="61">3</td>
+<td width="78">SUJIT</td>
+<td width="76">ROHTAK</td>
+<td width="76">9156253131</td>
+<td width="41">20</td>
+<td width="65">1</td>
+<td width="72">RAM</td>
+<td width="52">DELHI</td>
+<td width="68">9455123451</td>
+<td width="49">18</td>
+</tr>
+<tr>
+<td width="61">4</td>
+<td width="78">SURESH</td>
+<td width="76">DELHI</td>
+<td width="76">9156768971</td>
+<td width="41">18</td>
+<td width="65">1</td>
+<td width="72">RAM</td>
+<td width="52">DELHI</td>
+<td width="68">9455123451</td>
+<td width="49">18</td>
+</tr>
+<tr>
+<td width="61">NULL</td>
+<td width="78">NULL</td>
+<td width="76">NULL</td>
+<td width="76">NULL</td>
+<td width="41">NULL</td>
+<td width="65">5</td>
+<td width="72">NARESH</td>
+<td width="52">HISAR</td>
+<td width="68">9782918192</td>
+<td width="49">22</td>
+</tr>
+<tr>
+<td width="61">NULL</td>
+<td width="78">NULL</td>
+<td width="76">NULL</td>
+<td width="76">NULL</td>
+<td width="41">NULL</td>
+<td width="65">6</td>
+<td width="72">SWETA</td>
+<td width="52">RANCHI</td>
+<td width="68">9852617621</td>
+<td width="49">21</td>
+</tr>
+<tr>
+<td width="61">NULL</td>
+<td width="78">NULL</td>
+<td width="76">NULL</td>
+<td width="76">NULL</td>
+<td width="41">NULL</td>
+<td width="65">4</td>
+<td width="72">SURESH</td>
+<td width="52">DELHI</td>
+<td width="68">9156768971</td>
+<td width="49">18</td>
+</tr>
+<tr>
+<td width="61">1</td>
+<td width="78">RAM</td>
+<td width="76">DELHI</td>
+<td width="76">9455123451</td>
+<td width="41">18</td>
+<td width="65">NULL</td>
+<td width="72">NULL</td>
+<td width="52">NULL</td>
+<td width="68">NULL</td>
+<td width="49">NULL</td>
+</tr>
+</tbody>
+</table>
+<p><em><span style="color: #0000ff"><strong>Division Operator (÷): </strong></span></em>Division operator A<strong>÷</strong>B can be applied if and only if:</p>
+<ul>
+<li>Attributes of B is proper subset of Attributes of A.</li>
+<li>The relation returned by division operator will have attributes = (All attributes of A – All Attributes of B)</li>
+<li>The relation returned by division operator will return those tuples from relation A which are associated to every B’s tuple.</li>
+</ul>
+<p>Consider the relation STUDENT_SPORTS and ALL_SPORTS given in Table 2 and Table 3 above.</p>
+<p>To apply division operator as</p>
+<pre style="text-align: center"> &#160;<strong>STUDENT_SPORTS÷ ALL_SPORTS</strong></pre>
+<ul>
+<li>The operation is valid as attributes in ALL_SPORTS is a proper subset of attributes in STUDENT_SPORTS.</li>
+<li>The attributes in resulting relation will have attributes {ROLL_NO,SPORTS}-{SPORTS}=ROLL_NO</li>
+<li>The tuples in resulting relation will have those ROLL_NO which are associated with all B’s tuple {Badminton, Cricket}. ROLL_NO 1 and 4 are associated to Badminton only. ROLL_NO 2 is associated to all tuples of B. So the resulting relation will be:</li>
+</ul>
+<table>
+<tbody>
+<tr>
+<td width="87"><strong>ROLL_NO</strong></td>
+</tr>
+<tr>
+<td width="87">2</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<p><a href="http://quiz.geeksforgeeks.org/database-management-system-relational-algebra/" target="_blank">Overview of Relational Algebra Operators</a></p>
+<p>Previous Year Gate Questions</p>
+<p><a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-50/" target="_blank">http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-50/</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-43/" target="_blank">http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-43/</a></p>
+<p>Article contributed by Sonal Tuteja.Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

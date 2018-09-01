@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Conflict Serializability</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p style="text-align: justify">As discussed in <a href="http://quiz.geeksforgeeks.org/concurrency-control-introduction/" target="_blank">Concurrency control</a> , serial schedules have less resource utilization and low throughput. To improve it, two are more transactions are run concurrently. But concurrency of transactions may lead to inconsistency in database. To avoid this, we need to check whether these concurrent schedules are serializable or not.</p>
+<p style="text-align: justify"><strong>Conflict Serializable:</strong> A schedule is called conflict serializable if it can be transformed into a serial schedule by swapping non-conflicting operations.</p>
+<p><strong>Conflicting operations:</strong> Two operations are said to be conflicting if all conditions satisfy:</p>
+<ul>
+<li>They belong to different transaction</li>
+<li>They operation on same data item</li>
+<li>At Least one of them is a write operation</li>
+</ul>
+<p style="text-align: justify">Example: –</p>
+<ul>
+<li style="text-align: justify"><strong>Conflicting</strong> operations pair (R<sub>1</sub>(A), W<sub>2</sub>(A)) because they belong to two different transactions on same data item A and one of them is write operation.</li>
+<li style="text-align: justify">Similarly, (W<sub>1</sub>(A), W<sub>2</sub>(A)) and (W<sub>1</sub>(A), R<sub>2</sub>(A)) pairs are also <strong>conflicting</strong>.</li>
+<li style="text-align: justify">On the other hand, (R<sub>1</sub>(A), W<sub>2</sub>(B)) pair is <strong>non-conflicting</strong> because they operate on different data item.</li>
+<li style="text-align: justify">Similarly, ((W<sub>1</sub>(A), W<sub>2</sub>(B)) pair is <strong>non-conflicting.</strong></li>
+</ul>
+<p>Consider the following schedule:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<pre>S1: R<sub>1</sub>(A), W<sub>1</sub>(A), R<sub>2</sub>(A), W<sub>2</sub>(A), R<sub>1</sub>(B), W<sub>1</sub>(B), R<sub>2</sub>(B), W<sub>2</sub>(B)</pre>
+<p>If O<sub>i</sub> and O<sub>j</sub> are two operations in a transaction and O<sub>i</sub>&lt; O<sub>j </sub>(O<sub>i </sub>is executed before O<sub>j</sub>), same order will follow in schedule as well. Using this property, we can get two transactions of schedule S1 as:</p>
+<pre>T1: R<sub>1</sub>(A), W<sub>1</sub>(A), R<sub>1</sub>(B), W<sub>1</sub>(B)
+T2: R<sub>2</sub>(A), W<sub>2</sub>(A), R<sub>2</sub>(B), W<sub>2</sub>(B)</pre>
+<p><span style="color: #000080"><strong>Possible Serial Schedules are: T1-&gt;T2 or T2-&gt;T1</strong></span></p>
+<p>-&gt;&#160;<strong>Swapping non-conflicting operation</strong>s R<sub>2</sub>(A) and R<sub>1</sub>(B) in S1, the schedule becomes,</p>
+<pre><strong>S11:</strong> R<sub>1</sub>(A), W<sub>1</sub>(A), R<sub>1</sub>(B), <strong>W<sub>2</sub>(A),</strong> R<sub>2</sub>(A), <strong>W<sub>1</sub>(B),</strong> R<sub>2</sub>(B), W<sub>2</sub>(B)</pre>
+<p>-&gt;&#160;Similarly, s<strong>wapping non-conflicting operations</strong> W<sub>2</sub>(A) and W<sub>1</sub>(B) in S11, the schedule becomes,</p>
+<pre><strong>S12:</strong> R<sub>1</sub>(A), W<sub>1</sub>(A), R<sub>1</sub>(B), W<sub>1</sub>(B), R<sub>2</sub>(A), W<sub>2</sub>(A), R<sub>2</sub>(B), W<sub>2</sub>(B)</pre>
+<p style="text-align: justify">S12 is a serial schedule in which all operations of T1 are performed before starting any operation of T2. Since S has been transformed into a serial schedule S12 by swapping non-conflicting operations of S1, S1 is conflict serializable.</p>
+<hr/>
+<p>Let us take another Schedule:</p>
+<pre>S2: R<sub>2</sub>(A), W<sub>2</sub>(A), R<sub>1</sub>(A), W<sub>1</sub>(A), R<sub>1</sub>(B), W<sub>1</sub>(B), R<sub>2</sub>(B), W<sub>2</sub>(B)</pre>
+<p>Two transactions will be:</p>
+<pre>T1: R<sub>1</sub>(A), W<sub>1</sub>(A), R<sub>1</sub>(B), W<sub>1</sub>(B)
+T2: R<sub>2</sub>(A), W<sub>2</sub>(A), R<sub>2</sub>(B), W<sub>2</sub>(B)</pre>
+<p><strong><span style="color: #000080">Possible Serial Schedules are: T1-&gt;T2 or T2-&gt;T1</span></strong></p>
+<p>Original Schedule is:</p>
+<pre><strong>S2:</strong> R<sub>2</sub>(A), W<sub>2</sub>(A), <strong>R<sub>1</sub>(A),</strong> W<sub>1</sub>(A), R<sub>1</sub>(B), W<sub>1</sub>(B), <strong>R<sub>2</sub>(B),</strong> W<sub>2</sub>(B)</pre>
+<p>Swapping non-conflicting operations R<sub>1</sub>(A) and R<sub>2</sub>(B) in S2, the schedule becomes,</p>
+<pre><strong>S21:</strong> R<sub>2</sub>(A), W<sub>2</sub>(A), R<sub>2</sub>(B), <strong>W<sub>1</sub>(A),</strong> R<sub>1</sub>(B), W<sub>1</sub>(B), R<sub>1</sub>(A), <strong>W<sub>2</sub>(B)</strong></pre>
+<p>Similarly, swapping non-conflicting operations W<sub>1</sub>(A) and W<sub>2</sub>(B) in S21, the schedule becomes,</p>
+<pre><strong>S22:</strong> R<sub>2</sub>(A), W<sub>2</sub>(A), R<sub>2</sub>(B), W<sub>2</sub>(B), R<sub>1</sub>(B), W<sub>1</sub>(B), R<sub>1</sub>(A), W<sub>1</sub>(A)</pre>
+<p style="text-align: justify">In schedule S22, all operations of T2 are performed first, but operations of T1 are not in order (order should be R<sub>1</sub>(A), W<sub>1</sub>(A), R<sub>1</sub>(B), W<sub>1</sub>(B)). So S2 is not conflict serializable.</p>
+<p style="text-align: justify"><strong>Conflict Equivalent:</strong> Two schedules are said to be conflict equivalent when one can be transformed to another by swapping non-conflicting operations. In the example discussed above, S11 is conflict equivalent to S1 (S1 can be converted to S11 by swapping non-conflicting operations). Similarly, S11 is conflict equivalent to S12 and so on.</p>
+<p style="text-align: justify"><em><strong>Note 1:</strong> Although S2 is not conflict serializable, but still it is conflict equivalent to S21 and S21 because S2 can be converted to S21 and S22 by swapping non-conflicting operations.</em></p>
+<p style="text-align: justify"><em><strong>Note 2:</strong> The schedule which is conflict serializable is always conflict equivalent to one of the serial schedule. S1 schedule discussed above (which is conflict serializable) is equivalent to serial schedule (T1-&gt;T2).</em></p>
+<hr/>
+<p><strong>Question:</strong> <strong>Consider the following schedules involving two transactions. Which one of the following statement is true?</strong></p>
+<p>S1: R<sub>1</sub>(X) R<sub>1</sub>(Y) R<sub>2</sub>(X) R<sub>2</sub>(Y) W<sub>2</sub>(Y) W<sub>1</sub>(X)</p>
+<p>S2: R<sub>1</sub>(X) R<sub>2</sub>(X) R<sub>2</sub>(Y) W<sub>2</sub>(Y) R<sub>1</sub>(Y) W<sub>1</sub>(X)</p>
+<ul>
+<li>Both S1 and S2 are conflict serializable</li>
+<li>Only S1 is conflict serializable</li>
+<li>Only S2 is conflict serializable</li>
+<li>None</li>
+</ul>
+<p style="text-align: right">[GATE 2007]</p>
+<p><strong>Solution:</strong> Two transactions of given schedules are:</p>
+<pre> T1: R<sub>1</sub>(X) R<sub>1</sub>(Y) W<sub>1</sub>(X)
+ T2: R<sub>2</sub>(X) R<sub>2</sub>(Y) W<sub>2</sub>(Y)</pre>
+<p>Let us first check serializability of S1:</p>
+<pre>S1: R<sub>1</sub>(X) R<sub>1</sub>(Y) R<sub>2</sub>(X) R<sub>2</sub>(Y) W<sub>2</sub>(Y) W<sub>1</sub>(X)</pre>
+<p>To convert it to a serial schedule, we have to swap non-conflicting operations so that S1 becomes equivalent to serial schedule T1-&gt;T2 or T2-&gt;T1. In this case, to convert it to a serial schedule, we must have to swap R<sub>2</sub>(X) and W<sub>1</sub>(X) but they are conflicting. So S1 can’t be converted to a serial schedule.</p>
+<p>Now, let us check serializability of S2:</p>
+<pre>S2: <strong>R<sub>1</sub>(X) R<sub>2</sub>(X)</strong> R<sub>2</sub>(Y) W<sub>2</sub>(Y) R<sub>1</sub>(Y) W<sub>1</sub>(X)</pre>
+<p>Swapping non conflicting operations R<sub>1</sub>(X) and R<sub>2</sub>(X) of S2, we get</p>
+<pre>S2’: R<sub>2</sub>(X) <strong>R<sub>1</sub>(X) R<sub>2</sub>(Y)</strong> W<sub>2</sub>(Y) R<sub>1</sub>(Y) W<sub>1</sub>(X)</pre>
+<p>Again, swapping non conflicting operations R<sub>1</sub>(X) and R<sub>2</sub>(Y) of S2’, we get</p>
+<pre>S2’’: R<sub>2</sub>(X) R<sub>2</sub>(Y) <strong>R<sub>1</sub>(X) W<sub>2</sub>(Y)</strong> R<sub>1</sub>(Y) W<sub>1</sub>(X)</pre>
+<p>Again, swapping non conflicting operations R<sub>1</sub>(X) and W<sub>2</sub>(Y) of S2’’, we get</p>
+<pre>S2’’’: R<sub>2</sub>(X) R<sub>2</sub>(Y) W<sub>2</sub>(Y) R<sub>1</sub>(X) R<sub>1</sub>(Y) W<sub>1</sub>(X)</pre>
+<p>which is equivalent to a serial schedule T2-&gt;T1.</p>
+<p>So, <strong>correct option is C</strong>. Only S2 is conflict serializable.</p>
+<p>&#160;</p>
+<p><strong>Related Article:</strong><br/>
+<a href="http://quiz.geeksforgeeks.org/dbms-how-to-test-two-schedule-are-view-equal-or-not-2/">View  Serializability </a><br/>
+<a href="https://www.geeksforgeeks.org/precedence-graph-testing-conflict-serializability/">Precedence Graph For Testing Conflict Serializability</a></p>
+<p>Article contributed by Sonal Tuteja. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

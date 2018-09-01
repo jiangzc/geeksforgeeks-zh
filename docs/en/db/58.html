@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Concurrency Control Protocols | Timestamp Ordering Protocols</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Concurrency Control can be implemented in <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocols-lock-based-protocol/" rel="noopener" target="_blank">different ways</a>. One way to implement it is by using <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocols-lock-based-protocol/" rel="noopener" target="_blank">Locks</a>. Now, lets discuss about Time Stamp Ordering Protocol.</p>
+<p>As earlier introduced, <strong>Timestamp</strong> is a unique identifier created by the DBMS to identify a transaction. They are usually assigned in the order in which they are submitted to the system. Refer to the timestamp of a transaction <em>T</em> as <strong><em>TS(T)</em></strong>. For basics of Timestamp you may refer <a href="https://www.geeksforgeeks.org/dbms-introduction-timestamp-deadlock-prevention-schemes/" rel="noopener" target="_blank">here</a>.</p>
+<p><b>Timestamp Ordering Protocol –</b></p>
+<p>The main idea for this protocol is to order the transactions based on their Timestamps. A schedule in which the transactions participate is then serializable and the only <em>equivalent serial schedule permitted</em> has the transactions in the order of their Timestamp Values. Stating simply, the schedule is equivalent to the particular <em>Serial Order</em> corresponding to the <em>order of the Transaction timestamps</em>. Algorithm must ensure that, for each items accessed by <em>Conflicting Operations</em> in the schedule, the order in which the item is accessed does not violate the ordering. To ensure this, use two Timestamp Values relating to each database item <strong>X</strong>.</p>
+<ul>
+<li><strong>W­_TS(X)</strong> is the largest timestamp of any transaction that executed <strong>write(X)</strong> successfully.</li>
+<p></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<li><strong>R_TS(X)</strong> is the largest timestamp of any transaction that executed <strong>read(X)</strong> successfully.</li>
+</ul>
+<p><b>Basic Timestamp Ordering –</b></p>
+<p>Every transaction is issued a timestamp based on when it enters the system. Suppose, if an old transaction T<sub>i</sub> has timestamp TS(T<sub>i</sub>), a new transaction T<sub>j</sub> is assigned timestamp TS(T<sub>j</sub>) such that <strong>TS(T<sub>i</sub>) &lt; TS(T<sub>j</sub>)</strong>.The protocol manages concurrent execution such that the timestamps determine the serializability order. The timestamp ordering protocol ensures that any conflicting read and write operations are executed in timestamp order. Whenever some Transaction <em>T</em> tries to issue a R_item(X) or a W_item(X), the Basic TO algorithm compares the timestamp of <em>T</em> with <strong>R_TS(X) &amp; W_TS(X) </strong>to ensure that the Timestamp order is not violated. This describe the Basic TO protocol in following two cases.</p>
+<ol>
+<li>Whenever a Transaction <em>T</em> issues a <strong>W_item(X)</strong> operation, check the following conditions:<br/>
+<p></p>
+<ul>
+<li>If <em><strong>R_TS(X) &gt; TS(T)</strong></em> or if <em><strong>W_TS(X) &gt; TS(T)</strong></em>, then abort and rollback T and reject the operation. else, </li>
+<p></p>
+<li> Execute W_item(X) operation of T and set W_TS(X) to TS(T).</li>
+</ul>
+</li>
+<li>Whenever a Transaction <em>T</em> issues a <strong>R_item(X)</strong> operation, check the following conditions:<br/>
+<p></p>
+<ul>
+<li>If <em><strong>W_TS(X) &gt; TS(T)</strong></em>, then abort and reject T and reject the operation, else</li>
+<p></p>
+<li>If W_TS(X) &lt;= TS(T), then execute the R_item(X) operation of T and set R_TS(X) to the larger of TS(T) and current R_TS(X).
+</li>
+</ul>
+</li>
+</ol>
+<p>Whenever the Basic TO algorithm detects twp conflicting operation that occur in incorrect order, it rejects the later of the two operation by aborting the Transaction that issued it. Schedules produced by Basic TO are guaranteed to be <em>conflict serializable</em>. Already discussed that using Timestamp, can ensure that our schedule will be <em><a href="https://www.geeksforgeeks.org/dbms-introduction-timestamp-deadlock-prevention-schemes/" rel="noopener" target="_blank">deadlock free</a></em>.</p>
+<p>One drawback of Basic TO protocol is that it <strong>Cascading Rollback</strong> is still possible. Suppose we have a Transaction T<sub>1</sub> and T<sub>2</sub> has used a value written by T<sub>1</sub>. If T<sub>1</sub> is aborted and resubmitted to the system then, T must also be aborted and rolled back. So the problem of Cascading aborts still prevails.</p>
+<p>Let’s gist the Advantages and Disadvantages of Basic TO protocol:</p>
+<ul>
+<li> Timestamp Ordering protocol ensures serializablity since the precedence graph will be of the form:
+<p><img src="../../../imgs/db/b147450b9aed78963303b3bc00b00356.jpg" alt="22" width="577" height="241" class="aligncenter size-full wp-image-191146" srcset="https://www.geeksforgeeks.org/wp-content/uploads/22-6.png 577w, https://www.geeksforgeeks.org/wp-content/uploads/22-6-300x125.png 300w" sizes="(max-width: 577px) 100vw, 577px"/><br/>
+</p><center><b>Image –</b> Precedence Graph for TS ordering</center><p></p>
+</li>
+<li>Timestamp protocol ensures freedom from deadlock as no transaction ever waits.</li>
+<p></p>
+<li>But the schedule may <em>not be cascade free</em>, and may not even be recoverable.</li>
+</ul>
+<p><b>Strict Timestamp Ordering –</b></p>
+<p>A variation of Basic TO is called <strong>Strict TO</strong> ensures that the schedules are both Strict and Conflict Serializable. In this variation, a Transaction T that issues a R_item(X) or W_item(X) such that TS(T) &gt; W_TS(X) has its read or write operation delayed until the Transaction <strong>T<sup>‘</sup></strong> that wrote the values of X has committed or aborted. </p>
+<p><b>Related GATE Questions –</b></p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2010-question-20/" rel="noopener" target="_blank">GATE | GATE CS 2010 | Question 20</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2017-set-1-question-46/" rel="noopener" target="_blank">GATE | GATE-CS-2017 (Set 1) | Question 46</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2004-question-21/" rel="noopener" target="_blank">GATE | GATE-IT-2004 | Question 21</a></li>
+</ol>
+<p><u>Reference</u>: Database System Concepts, Fifth Edition [Silberschatz, Korth, Sudarshan], Chapter-16</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

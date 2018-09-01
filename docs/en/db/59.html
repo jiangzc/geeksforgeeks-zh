@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Introduction to TimeStamp and Deadlock Prevention Schemes</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Deadlock</strong> occurs when each transaction <strong>T</strong> in a schedule of <em>two or more</em> transaction waiting for some item locked by some other transaction <strong>T<sup>‘</sup></strong> in the set. Thus, both end up in a deadlock situation, waiting for the other to release the lock on the item. Deadlocks are a common problem and we have introduced the problem while solving the Concurrency Control by the introduction of <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocols-lock-based-protocol/">Locks</a>. Deadlock avoidance is a major issue and some protocols were suggested to avoid them, like <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocol-two-phase-locking-2-pl-iii/">Conservative 2-PL</a> and <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocol-graph-based-protocol/">Graph Based protocols</a> but some drawbacks are still there. </p>
+<p>Here, we will discuss a new concept of <strong>Transaction Timestamp TS(T<sub>i</sub>)</strong>. A timestamp is a unique identifier created by the DBMS to identify a transaction. They are usually assigned in the order in which they are submitted to the system, so a transaction may be thought of as the transaction start time. </p>
+<p>There may be differnt ways of generating timestamps such as </p>
+<ul>
+<li>A simple counter that increments each time its value is assigned to a transaction. They may be numbered <strong><em>1, 2, 3…</em></strong>. Though we’ll have to reset the counter from time to time to avoid overflow.</li>
+<li>Using the current date/time from the system clock. Just ensuring that no two transaction are given same value in the same clock tick, we will always get a unique timestamp. This method is widely used.</li>
+</ul>
+<h4 class="sigil_not_in_toc">Deadlock Prevention Schemes based on Timestamp…</h4>
+<p>As discussed, Timestamps are unique identifiers assigned to each transaction. They are based on the order in which Transactions are started. Say if  <strong>T<sub>1</sub></strong> starts before <strong>T<sub>2</sub></strong> then <strong>TS(T<sub>1</sub>)</strong> will be less then(&lt;) <strong>TS(T<sub>2</sub>)</strong>.<br/>
+There are two schemes to prevent deadlock called <em>wound-wait</em> and <em>wait-die</em>. Say there are two transactions <strong>T<sub>i</sub></strong> and <strong>T<sub>j</sub></strong>, now say <strong>T<sub>i</sub></strong> tries to lock an item <em>X</em> but item <em>X</em> is already locked by some <strong>T<sub>j</sub></strong>, now in such a conflicting situation the two schemes which prevents deadlock. We’ll use this context shortly.</p>
+<ul>
+<strong>
+<li>Wait_Die :</li></strong> An older transaction is allowed to wait for a younger transaction, whereas a younger transaction requesting an item held by an older transaction is aborted and restarted.<br/>
+From the context above, if <strong>TS(T<sub>i</sub>) &lt; TS(T<sub>j</sub>)</strong>, then (T<sub>i</sub> older than T<sub>j</sub>) T<sub>i</sub> is allowed to wait; otherwise <em>abort T<sub>i</sub></em> (T<sub>i</sub> younger than T<sub>j</sub>) <em>and restart it later with the same timestamp.</em>
+<p><strong>
+</strong></p>
+<li><strong>Wound_Wait :</strong></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ It is just the opposite of the Wait_Die technique. Here, a younger transaction is allowed to wait for an older one, whereas if an older transaction requests an item held by the younger transaction, we preempt the younger transaction by aborting it.<br/>
+From the context above, if <strong>TS(T<sub>i</sub>) &lt; TS(T<sub>j</sub>)</strong>, then (T<sub>i</sub> older than T<sub>j</sub>) T<sub>j</sub> is aborted (i.e., T<sub>i</sub> wounds T<sub>j</sub>) and restarts it later with the same Timestamp;  <em>otherwise <em>abort T<sub>i</sub></em> (T<sub>i</sub> younger than T<sub>j</sub>).</em>
+<p></p>
+</ul>
+<p>Thus, both the schemes end up in aborting the younger of the two transaction that may be involved in a deadlock. It is done on the basis of the assumption that aborting the younger transaction will waste less processing which is logical. In such a case there cannot be a cycle since we are waiting linearly in both the cases.<br/>
+For GATE the theory for these two methods is enough, for more on this you may refer <a href="https://stackoverflow.com/questions/32794142/what-is-the-difference-between-wait-die-and-wound-wait" rel="noopener" target="_blank">here</a>.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>Another group of protocols which prevents deadlock but <em>does not require Timestamps</em>. They are discussed below: </p>
+<ul>
+<strong>
+<li>No-waiting Alogorithm :</li></strong> This follows a simple approach, if a Transaction is unable to obtain a lock, it is immediately aborted and then restarted after a certain time delay without checking if a deadlock will occur or not. Here, no Transaction ever waits so there is no possibility for deadlock.<br/>
+This method is somewhat not practical. It may cause transaction to abort and restart unnecessarily.
+<p><strong>
+</strong></p>
+<li><strong>Cautious Waiting :</strong></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ If  <strong>T<sub>i</sub></strong> tries to lock an item <em>X</em> but is not able to do because <em>X</em> is locked by some <strong>T<sub>j</sub></strong>. In such a conflict, if  <strong>T<sub>j</sub></strong> is not waiting for some other locked item, then  <strong>T<sub>i</sub></strong> is allowed to wait, otherwise <em>abort <strong>T<sub>i</sub></strong>.</em><p></p>
+</ul>
+<p>
+Another approach, to deal with deadlock is deadlock detection, we can use <a href="https://www.geeksforgeeks.org/deadlock-in-dbms/" rel="noopener" target="_blank">Wait-for-Graph</a>. This uses a similar approach when we used to check for cycles while checking for serializablity.<br/>
+<br/>
+<strong>Starvation: </strong> One problem that may occur when we use locking is starvation which occurs when a transaction cannot proceed for an indefinite period of time while other transactions in the system continue normally. This may occur if the waiting scheme for locked items is unfair, giving priority to some transactions over others. We may have some solutions for Starvation. One is using a <strong>first come first serve</strong> queue; transactions are enabled to lock an item in the order in which they originally requested the lock. This is a widely used mechanism to reduce starvation. Our Concurrency Control Manager is responsible to schedule the transactions,  so it employs different methods to overcome them. You may refer <a href="https://www.geeksforgeeks.org/starvation-in-dbms/" rel="noopener" target="_blank">this</a> for detailed explanation.</p>
+<p>Try this question : <a href="https://www.geeksforgeeks.org/gate-gate-cs-2017-set-1-question-46/" rel="noopener" target="_blank">GATE | GATE-CS-2017 (Set 1) | Question 46</a></p>
+<p>Next we’ll discuss the famous Timestamp Ordering Protocol and Thomas Write rule. Till then Happy Learning!</p>
+<p>Reference: Database System Concepts, Fifth Edition [Silberschatz, Korth, Sudarshan], Chapter-16.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

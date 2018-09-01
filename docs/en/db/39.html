@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Database Normalization | Normal Forms</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisite –</b> <a href="http://quiz.geeksforgeeks.org/database-normalization-introduction/">Database normalization and functional dependency concept</a>.</p>
+<p><b>Normalization</b> is the process of minimizing <b>redundancy</b> from a relation or set of relations. Redundancy in relation may cause insertion, deletion and updation anomalies. So, it helps to minimize the redundancy in relations. <b>Normal forms</b> are used to eliminate or reduce redundancy in database tables.</p>
+<h3 class="sigil_not_in_toc">1. First Normal Form –</h3>
+<p>If a relation contain composite or multi-valued attribute, it violates first normal form or a relation is in first normal form if it does not contain any composite or multi-valued attribute.  A relation is in first normal form if every attribute in that relation is <b>singled valued attribute</b>.</p>
+<ul>
+<li><b>Example 1 –</b> Relation STUDENT in table 1 is not in 1NF because of multi-valued attribute STUD_PHONE. Its decomposition into 1NF has been shown in table 2.<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/Normalisation_normalforms_1.png"><img src="../../../imgs/db/97590cbde731c7d6590f2bc167a41826.jpg" alt="image3" width="737" height="360" class="aligncenter size-full wp-image-151209"/></a></li>
+<li><b>Example 2 –</b>
+<pre> 
+ID   Name   Courses
+------------------
+1    A      c1, c2
+2    E      c3
+3    M      C2, c3
+</pre>
+<p>In the above table Course is a multi valued attribute so it is not in 1NF.</p>
+<p>Below Table is in 1NF as there is no multi valued attribute</p><br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<pre>ID   Name   Course
+------------------
+1    A       c1
+1    A       c2
+2    E       c3
+3    M       c1
+3    M       c2</pre>
+<p>&#160;
+</p></li>
+</ul>
+<h3 class="sigil_not_in_toc">2. Second Normal Form –</h3>
+<p>To be in second normal form, a relation must be in first normal form and relation must not contain any partial dependency. A relation is in 2NF iff it has <strong>No Partial Dependency, </strong>i.e.<strong>, </strong>no non-prime attribute (attributes which are not part of any candidate key) is dependent on any proper subset of any candidate key of the table. </p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/Normalisation_normalforms_2.png"><img src="../../../imgs/db/bd92f113b1b188b9d343f3437d3946f8.jpg" alt="image4" width="546" height="141" class="aligncenter size-full wp-image-151210"/></a></p>
+<p><b>Partial Dependency –</b> If proper subset of candidate key determines non-prime attribute, it is called partial dependency. </p>
+<ul>
+<li><b>Example 1 –</b> In relation STUDENT_COURSE given in Table 3,
+<pre>FD set: {COURSE_NO-&gt;COURSE_NAME}
+Candidate Key: {STUD_NO, COURSE_NO}
+</pre>
+<p>In FD COURSE_NO-&gt;COURSE_NAME, COURSE_NO (proper subset of candidate key) is determining COURSE_NAME (non-prime attribute). Hence, it is partial dependency and relation is not in second normal form.<br/>
+To convert it to second normal form, we will decompose the relation STUDENT_COURSE (STUD_NO, COURSE_NO, COURSE_NAME) as :</p>
+<pre>STUDENT_COURSE (STUD_NO, COURSE_NO)
+COURSE (COURSE_NO, COURSE_NAME)
+</pre>
+<p>Note – This decomposition will be lossless join decomposition as well as dependency preserving.</p></li>
+<li><b>Example 2 –</b> Consider following functional dependencies in relation&#160; R (A,&#160; B , C,&#160; D )
+<pre>AB -&gt; C  [A and B together determine C]
+BC -&gt; D  [B and C together determine D]</pre>
+<p>In the above relation, AB is the only candidate key and there is no partial dependency, i.e., any proper subset of AB doesn’t determine any non-prime attribute.</p></li>
+<h3 class="sigil_not_in_toc">3. Third Normal Form –</h3>
+<p>A relation is in third normal form, if there is <b>no transitive dependency</b> for non-prime attributes is it is in second normal form.<br/>
+A relation is in 3NF iff <strong>at least one of the following condition holds</strong> in every non-trivial function dependency X –&gt; Y</p>
+<ol>
+<li>X is a super key.</li>
+<li>Y is a prime attribute (each element of Y is part of some candidate key).</li>
+</ol>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/Normalisation_normalforms_3.png"><img src="../../../imgs/db/ba582802f844ab4505b50765b880d1ad.jpg" alt="image5" width="717" height="159" class="aligncenter size-full wp-image-151212"/></a><br/>
+<strong> Transitive dependency – </strong> If A-&gt;B and B-&gt;C are two FDs then A-&gt;C is called transitive dependency. </p>
+<ul>
+<li><b>Example 1 –</b> In relation STUDENT given in Table 4,
+<p>FD set: {STUD_NO -&gt; STUD_NAME, STUD_NO -&gt; STUD_STATE, STUD_NO -&gt; STUD_COUNTRY, STUD_NO -&gt; STUD_AGE, STUD_STATE -&gt; STUD_COUNTRY}<br/>
+Candidate Key: {STUD_NO} </p>
+<p>For this relation in table 4, STUD_NO -&gt; STUD_STATE and STUD_STATE -&gt; STUD_COUNTRY are true. So STUD_COUNTRY is transitively dependent on STUD_NO. It violates third normal form. To convert it in third normal form, we will decompose the relation STUDENT (STUD_NO, STUD_NAME, STUD_PHONE, STUD_STATE, STUD_COUNTRY_STUD_AGE) as:<br/>
+STUDENT (STUD_NO, STUD_NAME, STUD_PHONE, STUD_STATE, STUD_AGE)<br/>
+STATE_COUNTRY (STATE, COUNTRY)</p></li>
+<li><b>Example 2 –</b> Consider relation R(A, B, C, D, E)<br/>
+  A -&gt; BC,<br/>
+  CD -&gt; E,<br/>
+  B -&gt; D,<br/>
+  E -&gt; A<br/>
+All possible candidate keys in above relation are {A, E, CD, BC} All attribute are on right sides of all functional dependencies are prime.</li>
+<h3 class="sigil_not_in_toc">4. Boyce-Codd Normal Form (BCNF) –</h3>
+<p>A relation R is in BCNF if R is in Third Normal Form and for every FD, LHS is super key. A relation is in BCNF iff in every non-trivial functional dependency X –&gt; Y, X is a super key.</p>
+<ul>
+<li><b>Example 1 –</b> Find the highest normal form of a relation R(A,B,C,D,E) with FD set as {BC-&gt;D, AC-&gt;BE, B-&gt;E}<br/>
+Step 1. As we can see, (AC)+ ={A,C,B,E,D} but none of its subset can determine all attribute of relation, So AC will be candidate key. A or C can’t be derived from any other attribute of the relation, so there will be only 1 candidate key {AC}.<br/>
+Step 2. Prime attribute are those attribute which are part of candidate key {A,C} in this example and others will be non-prime {B,D,E} in this example.<br/>
+Step 3. The relation R is in 1st normal form as a relational DBMS does not allow multi-valued or composite attribute.<br/>
+The relation is in 2nd normal form because BC-&gt;D is in 2nd normal form (BC is not proper subset of candidate key AC) and AC-&gt;BE is in 2nd normal form (AC is candidate key) and B-&gt;E is in 2nd normal form (B is not a proper subset of candidate key AC).<br/>
+The relation is not in 3rd normal form because in BC-&gt;D (neither BC is a super key nor D is a prime attribute) and in B-&gt;E (neither B is a super key nor E is a prime attribute) but to satisfy 3rd normal for, either LHS of an FD should be super key or RHS should be prime attribute.<br/>
+So the highest normal form of relation will be 2nd Normal form.</li>
+<li><b>Example 2 –</b>For example consider relation R(A, B, C)<br/>
+  A -&gt; BC,<br/>
+  B -&gt;<br/>
+A and B both are super keys so above relation is in BCNF.</li>
+</ul>
+<p><strong>Key Points –</strong>
+</p>
+<ol>
+<li> BCNF is free from redundancy.</li>
+<li> If a relation is in BCNF, then 3NF is also also satisfied.</li>
+<li>&#160;If all attributes of relation are prime attribute, then the relation is always in 3NF.</li>
+<li> A relation in a Relational Database is always and at least in 1NF form.</li>
+<li>Every Binary Relation ( a Relation with only 2 attributes ) is always in BCNF.</li>
+<li>If a Relation has only singleton candidate keys( i.e. every candidate key consists of only 1 attribute), then the Relation is always in 2NF( because no Partial functional dependency possible).</li>
+<li> Sometimes going for BCNF form may not preserve functional dependency. In that case go for BCNF only if the lost FD(s) is not required, else normalize till 3NF only.</li>
+<li>There are many more Normal forms that exist after BCNF, like 4NF and more. But in real world database systems it’s generally not required to go beyond BCNF.</li>
+</ol>
+<p></p>
+<p>&#160;</p>
+<p><strong>Exercise 1</strong>: Find the highest normal form in R (A, B, C, D, E) under following functional dependencies.
+</p>
+<pre>  ABC --&gt; D
+  CD --&gt; AE </pre>
+<p></p>
+<p><strong>Important Points</strong> for solving above type of question.<br/>
+<strong>1)</strong> It is always a good idea to start checking from BCNF, then 3 NF and so on.<br/>
+<strong>2) </strong>If any functional dependency satisfied a normal form then there is no need to check for lower normal form. For example, ABC –&gt; D is in BCNF (Note that ABC is a super key), so no need to check this dependency for lower normal forms.</p>
+<p>Candidate keys in given relation are {ABC, BCD}</p>
+<p><strong>BCNF:</strong> ABC -&gt; D is in BCNF. Let us check CD -&gt; AE, CD is not a super key so this dependency is not in BCNF. So, R is not in BCNF.</p>
+<p><strong>3NF:</strong> ABC -&gt; D we don’t need to check for this dependency as it already satisfied BCNF. Let us consider CD -&gt; AE. Since E is not a prime attribute, so relation is not in 3NF.</p>
+<p><strong>2NF: </strong> In 2NF, we need to check for partial dependency. CD which is a proper subset of a candidate key and it determine E, which is non prime attribute. So, given relation is also not in 2 NF. So, the highest normal form is 1 NF.</p>
+<p><b>GATE CS Corner Questions</b><br/>
+Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2012-question-8/" rel="noopener" target="_blank">GATE CS 2012, Question 2</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2013-question-54/" rel="noopener" target="_blank">GATE CS 2013, Question 54</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2013-question-55/" rel="noopener" target="_blank">GATE CS 2013, Question 55</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2005-question-29/" rel="noopener" target="_blank">GATE CS 2005, Question 29</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2002-question-19/" rel="noopener" target="_blank">GATE CS 2002, Question 23</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2002-question-49/" rel="noopener" target="_blank">GATE CS 2002, Question 50</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2001-question-48/" rel="noopener" target="_blank">GATE CS 2001, Question 48</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-1999-question-32/" rel="noopener" target="_blank">GATE CS 1999, Question 32</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2005-question-22/" rel="noopener" target="_blank">GATE IT 2005, Question 22</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2008-question-60/" rel="noopener" target="_blank">GATE IT 2008, Question 60</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2016-set-1-question-31/" rel="noopener" target="_blank">GATE CS 2016 (Set 1), Question 31</a></li>
+</ol>
+<p>See <a href="http://quiz.geeksforgeeks.org/dbms/database-design-normal-forms/">Quiz on Database Normal Forms</a> for all previous year questions.</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ul>
+</ul>
+</div>
+</body>
+</html>

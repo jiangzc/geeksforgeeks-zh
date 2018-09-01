@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">RAID</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>RAID, or “Redundant Arrays of Inexpensive Disks” is a technique which makes use of a combination of multiple disks instead of using a single disk for increased performance, data redundancy or both. The term was coined by David Patterson, Garth A. Gibson, and Randy Katz at the University of California, Berkeley in 1987.</p>
+<p><strong>Why data redundancy?</strong></p>
+<p>Data redundancy, although taking up extra space, adds to disk reliability. This means, in case of disk failure, if the same data is also backed up onto another disk, we can retrieve the data and go on with the operation. On the other hand, if the data is spread across just multiple disks without the RAID technique, the loss of a single disk can affect the entire data.</p>
+<p><strong>Key evaluation points for a RAID System</strong></p>
+<ul>
+<li><strong>Reliability: </strong>How many disk faults can the system tolerate?
+</li>
+<li><strong>Availability:</strong> What fraction of the total session time is a system in uptime mode, i.e. how available is the system for actual use?
+</li>
+<li><strong>Performance: </strong>How good is the response time? How high is the throughput (rate of processing work)? Note that performance contains a lot of parameters and not just the two.
+</li>
+<li><strong>Capacity:</strong> Given a set of N disks each with B blocks, how much useful capacity is available to the user?
+</li>
+</ul>
+<p>RAID is very transparent to the underlying system. This means, to the host system, it appears as a single big disk presenting itself as a linear array of blocks. This allows older technologies to be replaced by RAID without making too many changes in the existing code.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p align="center"><strong>Different RAID levels</strong></p>
+<p><strong>RAID-0 (Striping)</strong></p>
+<ul>
+<li>Blocks are “striped” across disks.
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/raid1-1.png"><img src="../../../imgs/db/04d4fc4d0451fb5a74e6a3b0d6802d3f.jpg" alt="raid0" width="350" height="201" class="alignnone size-full wp-image-179438"/></a></p>
+<p>In the figure, blocks “0,1,2,3” form a stripe.</p>
+</li>
+<li>Instead of placing just one block into a disk at a time, we can work with two (or more) blocks placed into a disk before moving on to the next one.
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/raid2.png"><img src="../../../imgs/db/1755bb96194c8af6890bd2cc7cd83993.jpg" alt="raid0_chunk" width="350" height="201" class="alignnone size-full wp-image-179428"/></a></p>
+</li>
+</ul>
+<p><strong>Evaluation:</strong></p>
+<ul>
+<li>Reliability: 0<br/>
+There is no duplication of data. Hence, a block once lost cannot be recovered.<p></p>
+</li>
+<li>Capacity: N*B<br/>
+The entire space is being used to store data. Since there is no duplication, N disks each having B blocks are fully utilized.
+</li>
+</ul>
+<p><strong>RAID-1 (Mirroring)</strong></p>
+<ul>
+<li>More than one copy of each block is stored in a separate disk. Thus, every block has two (or more) copies, lying on different disks.<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/raid3.png"><img src="../../../imgs/db/50d707c8596463667c5269f61371af48.jpg" alt="raid1" width="350" height="201" class="alignnone size-full wp-image-179429"/></a><p></p>
+<p>The above figure shows a RAID-1 system with mirroring level 2.</p>
+</li>
+<li>RAID 0 was unable to tolerate any disk failure. But RAID 1 is capable of reliability.
+</li>
+</ul>
+<p><strong>Evaluation:</strong></p>
+<p>Assume a RAID system with mirroring level 2.</p>
+<ul>
+<li>Reliability: 1 to N/2<br/>
+1 disk failure can be handled for certain, because blocks of that disk would have duplicates on some other disk. If we are lucky enough and disks 0 and 2 fail, then again this can be handled as the blocks of these disks have duplicates on disks 1 and 3. So, in the best case, N/2 disk failures can be handled.<p></p>
+</li>
+<li>Capacity: N*B/2<br/>
+Only half the space is being used to store data. The other half is just a mirror to the already stored data.
+</li>
+</ul>
+<p><strong>RAID-4 (Block-Level Striping with Dedicated Parity)</strong></p>
+<ul>
+<li>Instead of duplicating data, this adopts a parity-based approach.
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/raid4-1.png"><img src="../../../imgs/db/70b312a71097ac803b0b7d1de3a28fee.jpg" alt="raid4" width="350" height="201" class="alignnone size-full wp-image-179439"/></a></p>
+<p>In the figure, we can observe one column (disk) dedicated to parity.</p>
+</li>
+<li>Parity is calculated using a simple XOR function. If the data bits are 0,0,0,1 the parity bit is XOR(0,0,0,1) = 1. If the data bits are 0,1,1,0 the parity bit is XOR(0,1,1,0) = 0. A simple approach is that even number of ones results in parity 0, and an odd number of ones results in parity 1.
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/raid5-1.png"><img src="../../../imgs/db/4f174e559c81d870ed07f8d56b879208.jpg" alt="parityy" width="350" height="201" class="alignnone size-full wp-image-179433"/></a></p>
+<p>Assume that in the above figure, C3 is lost due to some disk failure. Then, we can recompute the data bit stored in C3 by looking at the values of all the other columns and the parity bit. This allows us to recover lost data.</p>
+</li>
+</ul>
+<p><strong><br/>
+Evaluation:</strong></p>
+<ul>
+<li>Reliability: 1<br/>
+RAID-4 allows recovery of at most 1 disk failure (because of the way parity works). If more than one disk fails, there is no way to recover the data.<p></p>
+</li>
+<li>Capacity: (N-1)*B<br/>
+One disk in the system is reserved for storing the parity. Hence, (N-1) disks are made available for data storage, each disk having B blocks.
+</li>
+</ul>
+<p><strong>RAID-5 (Block-Level Striping with Distributed Parity)</strong></p>
+<ul>
+<li>This is a slight modification of the RAID-4 system where the only difference is that the parity rotates among the drives.
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/raid10.png"><img src="../../../imgs/db/8906e250b6fe347b2310d0892f8475b2.jpg" alt="raid5" width="350" height="201" class="alignnone size-full wp-image-179435"/></a></p>
+<p>In the figure, we can notice how the parity bit “rotates”.</p>
+</li>
+<li>This was introduced to make the random write performance better.
+</li>
+</ul>
+<p><strong>Evaluation:</strong></p>
+<ul>
+<li>Reliability: 1<br/>
+RAID-5 allows recovery of at most 1 disk failure (because of the way parity works). If more than one disk fails, there is no way to recover the data. This is identical to RAID-4.<p></p>
+</li>
+<li>Capacity: (N-1)*B<br/>
+Overall, space equivalent to one disk is utilized in storing the parity. Hence, (N-1) disks are made available for data storage, each disk having B blocks.
+</li>
+</ul>
+<p><strong>What about the other RAID levels?</strong></p>
+<p>RAID-2 consists of bit-level striping using a Hamming Code parity. RAID-3 consists of byte-level striping with a dedicated parity. These two are less commonly used.<br/>
+RAID-6 is a recent advancement which contains a distributed double parity, which involves block-level striping with 2 parity bits instead of just 1 distributed across all the disks. There are also hybrid RAIDs, which make use of more than one RAID levels nested one after the other, to fulfill specific requirements.</p>
+<p><strong>References:</strong></p>
+<ul>
+<li>https://en.wikipedia.org/wiki/RAID
+</li>
+<li>Operating Systems in Three Easy Pieces by Remzi H. Arpaci-Dusseau.
+</li>
+</ul>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

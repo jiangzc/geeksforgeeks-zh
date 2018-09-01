@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Canonical Cover</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><!-- Problem Statement --><br/>
+Whenever a user updates the database, the system must check whether any of the functional dependencies are getting violated in this process. If there is a violation of dependencies in the new database state, the system must roll back. Working with a huge set of <a href="https://www.geeksforgeeks.org/functional-dependency-and-attribute-closure/">functional dependencies</a> can cause unnecessary added computational time. This is where the canonical cover comes into play.<br/>
+A canonical cover of a set of functional dependencies F is a simplified set of functional dependencies that has the same closure as the original set F. </p>
+<p><strong>Important definitions:</strong></p>
+<p><strong>Extraneous attributes:</strong> An attribute of a functional dependency is said to be extraneous if we can remove it without changing the closure of the set of functional dependencies.<br/>
+<strong>Canonical cover:</strong> A canonical cover <img src="../../../imgs/db/9406d2ccdc0c9ab0d52965a08f4ebabb.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="F_{c}" title="Rendered by QuickLaTeX.com" height="23" width="25" style="vertical-align: -4px;"/> of a set of functional dependencies F such that ALL the following properties are satisfied:</p>
+<ul>
+<li>F logically implies all dependencies in <img src="../../../imgs/db/9406d2ccdc0c9ab0d52965a08f4ebabb.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="F_{c}" title="Rendered by QuickLaTeX.com" height="23" width="25" style="vertical-align: -4px;"/>.
+</li>
+<li><img src="../../../imgs/db/9406d2ccdc0c9ab0d52965a08f4ebabb.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="F_{c}" title="Rendered by QuickLaTeX.com" height="23" width="25" style="vertical-align: -4px;"/> logically implies all dependencies in F.
+</li>
+<li>No functional dependency in <img src="../../../imgs/db/9406d2ccdc0c9ab0d52965a08f4ebabb.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="F_{c}" title="Rendered by QuickLaTeX.com" height="23" width="25" style="vertical-align: -4px;"/> contains an extraneous attribute.
+</li>
+<li>Each left side of a functional dependency in  <img src="../../../imgs/db/9406d2ccdc0c9ab0d52965a08f4ebabb.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="F_{c}" title="Rendered by QuickLaTeX.com" height="23" width="25" style="vertical-align: -4px;"/> is unique. That is, there are no two dependencies <img src="../../../imgs/db/bc23c4a6e30d4a70bdb7958623967ddc.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\alpha_{1} \rightarrow \beta_{1}" title="Rendered by QuickLaTeX.com" height="25" width="92" style="vertical-align: -6px;"/> and <img src="../../../imgs/db/2aa520e976d0f676057f2ea83907ccb4.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\alpha_{2} \rightarrow \beta_{2}" title="Rendered by QuickLaTeX.com" height="25" width="93" style="vertical-align: -6px;"/> in such that <img src="../../../imgs/db/0e571185e30b48e1d50ec66920fca71c.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\alpha_{1} \rightarrow \alpha_{2}" title="Rendered by QuickLaTeX.com" height="19" width="95" style="vertical-align: -5px;"/>.
+</li>
+</ul>
+<p align="center"><strong>Finding Canonical Cover</strong></p>
+<p><strong>Algorithm to compute canonical cover of set F:</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<pre><strong>repeat</strong>
+    1. Use the union rule to replace any dependencies in 
+       <img src="../../../imgs/db/bc23c4a6e30d4a70bdb7958623967ddc.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\alpha_{1} \rightarrow \beta_{1}" title="Rendered by QuickLaTeX.com" height="25" width="92" style="vertical-align: -6px;"/> and <img src="../../../imgs/db/be2c824fd9111f3cb2345f9ef2dbf0ab.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\alpha_{1} \rightarrow \beta_{2}" title="Rendered by QuickLaTeX.com" height="25" width="93" style="vertical-align: -6px;"/> with <img src="../../../imgs/db/5a2c0cc164292e7fcaa59b09a7e089eb.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\alpha_{1} \rightarrow \beta_{1}\beta_{2}" title="Rendered by QuickLaTeX.com" height="25" width="120" style="vertical-align: -6px;"/>.
+    2. Find a functional dependency <img src="../../../imgs/db/04f7e1f1e7d8612276f829aa6df998ee.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\alpha \rightarrow \beta" title="Rendered by QuickLaTeX.com" height="25" width="73" style="vertical-align: -6px;"/> with an 
+       extraneous attribute either in <img src="../../../imgs/db/da2f298cb7c1dd3024c0cfda151c6997.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\alpha" title="Rendered by QuickLaTeX.com" height="12" width="15" style="vertical-align: 0px;"/> or in <img src="../../../imgs/db/8e454d4d88b20cce2153b6441f0dc97d.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\beta" title="Rendered by QuickLaTeX.com" height="25" width="16" style="vertical-align: -6px;"/>.
+    3. If an extraneous attribute is found, delete it from <img src="../../../imgs/db/04f7e1f1e7d8612276f829aa6df998ee.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\alpha \rightarrow \beta" title="Rendered by QuickLaTeX.com" height="25" width="73" style="vertical-align: -6px;"/>.
+       <strong>until F does not change</strong>
+</pre>
+<p><strong>Example1:</strong></p>
+<p>Consider the following set <em>F</em> of functional dependencies:</p>
+<p>F= {<br/>
+A <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> BC<br/>
+B <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+A <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B<br/>
+AB <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+}</p>
+<p>Steps to find canonical cover:</p>
+<ol>
+<li>There are two functional dependencies with the same set of attributes on the left:<br/>
+A <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> BC<br/>
+A <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B<p></p>
+<p>These two can be combined to get<br/>
+A <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> BC.</p>
+<p>Now, the revised set F becomes:</p>
+<p>F= {<br/>
+A <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> BC<br/>
+B <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+AB <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+}</p>
+</li>
+<li>There is an extraneous attribute in AB <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C because even after removing AB <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C from the set F, we get the same closures. This is because B <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C is already a part of F.
+<p>Now, the revised set F becomes:</p>
+<p>F= {<br/>
+A <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> BC<br/>
+B <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+}</p>
+</li>
+<li>C is an extraneous attribute in A <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> BC, also A <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B is logically implied by A <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B and B <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C (by transitivity).
+<p>F= {<br/>
+A <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B<br/>
+B <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+}</p>
+</li>
+<li>After this step, F does not change anymore. So,<br/>
+Hence the required canonical cover is,<br/>
+<img src="../../../imgs/db/9406d2ccdc0c9ab0d52965a08f4ebabb.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="F_{c}" title="Rendered by QuickLaTeX.com" height="23" width="25" style="vertical-align: -4px;"/>= {<br/>
+A <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B<br/>
+B <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+}<p></p>
+</li>
+</ol>
+<p><strong>Example2:</strong></p>
+<p>Consider another set F of functional dependencies:</p>
+<p>F={<br/>
+A <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> BC<br/>
+CD <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> E<br/>
+B <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> D<br/>
+E <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> A<br/>
+}</p>
+<ol>
+<li>The left side of each functional dependency in F is unique.
+</li>
+<li>None of the attributes in the left or right side of any functional dependency is extraneous (Checked by applying definition of extraneous attributes on every functional dependency).
+</li>
+<li>Hence, the canonical cover <img src="../../../imgs/db/9406d2ccdc0c9ab0d52965a08f4ebabb.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="F_{c}" title="Rendered by QuickLaTeX.com" height="23" width="25" style="vertical-align: -4px;"/> is equal to F.
+</li>
+</ol>
+<p><strong>Note:</strong> There can be more than one canonical cover <img src="../../../imgs/db/9406d2ccdc0c9ab0d52965a08f4ebabb.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="F_{c}" title="Rendered by QuickLaTeX.com" height="23" width="25" style="vertical-align: -4px;"/> of a set F of functional dependencies.</p>
+<p><strong>How to check whether a set of f.d.’s F canonically cover another set of f.d.’s G?</strong></p>
+<p>Consider the following two sets of functional dependencies:</p>
+<p>F = {<br/>
+        A  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B<br/>
+        AB <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> AC<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> E<br/>
+    }</p>
+<p>G = {<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> BC<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> AB<br/>
+    }</p>
+<p>Now, we are required to find out whether one of these f.d.’s canonically covers the other set of f.d.’s. This means, we need to find out whether F canonically covers G, G canonically covers F, or none of the two canonically cover the other.</p>
+<p>To find out, we follow the following steps:</p>
+<ul>
+<li>Create a singleton right hand side. This means, the attributes to the right side of the f.d. arrow should all be singleton.<br/>
+The functional dependency D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> AC gets broken down into two functional dependencies, D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> A and D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C. <p></p>
+<p>F = {<br/>
+        A  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B<br/>
+        AB <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> A<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> E<br/>
+    }</p>
+</li>
+<li>Remove all extraneous attributes.
+<p>Consider any functional dependency XY <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> Z. If X in itself can determine Z, then the attribute Y is extraneous and can be removed. As we can see, the occurrence of extraneous attributes is possible only in those functional dependencies where there are more than one attributes in the LHS. </p>
+<p>So, consider the functional dependency AB <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C.<br/>
+Now, we must find the closures of A and B to find whether any of these is extraneous.</p>
+<p><img src="../../../imgs/db/4b8548729a7ee2e59bd009717dd4eae7.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="[A]^{+}" title="Rendered by QuickLaTeX.com" height="31" width="46" style="vertical-align: -8px;"/>=AB<br/>
+<img src="../../../imgs/db/f4bac0a9ffcfd17f112a8e395d1bffda.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="[B]^{+}" title="Rendered by QuickLaTeX.com" height="31" width="48" style="vertical-align: -8px;"/>=B</p>
+<p>As we can see, B can be determined from A. This means we can remove B from the functional dependency AB <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C.</p>
+<p>F = {<br/>
+        A  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B<br/>
+        A  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> A<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> E<br/>
+    }</p>
+</li>
+<li>Remove all redundant functional dependencies.
+<p>Check all f.d.’s one by one, and see if by removing a f.d. X  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> Y, we can still find out Y from X by some other f.d. A more formal way to state this is find <img src="../../../imgs/db/aeaba0713016a566bb47214f088dd115.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="[X]^{+}" title="Rendered by QuickLaTeX.com" height="31" width="50" style="vertical-align: -8px;"/> without making use of the f.d. we are testing and check whether Y is a part of the closure. If yes, then the f.d. is redundant.</p>
+<p>Here, when checking for the f.d. D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C, we observe that even after hiding it, the closure of D contains C. This is because we can obtain C from D by the combination of two other f.d.’s D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> A and A  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C. So, <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C is redundant.</p>
+<p>F = {<br/>
+        A  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B<br/>
+        A  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> A<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> E<br/>
+    }</p>
+</li>
+</ul>
+<p>Now, do the same for G.</p>
+<ul>
+<li>Create a singleton right hand side. This means, the attributes to the right side of the f.d. arrow should all be singleton.
+<p>G = {<br/>
+        A  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B<br/>
+        A  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> A<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B<br/>
+    }</p>
+</li>
+<li>Remove all extraneous attributes.<br/>
+Since the RHS of all f.d.’s contains only 1 attribute, there is no extraneous attribute possible.<p></p>
+</li>
+<li>Remove all redundant functional dependencies.
+<p>By looping over all f.d.’s and checking the closure of the LHS in all cases, we observe that the f.d. D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B is redundant as it can be obtained through a combination of 2 other f.d.’s, D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> A and A  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B.</p>
+<p>G = {<br/>
+        A  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> B<br/>
+        A  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> C<br/>
+        D  <img src="../../../imgs/db/a5311d4a49b7f6c916fb7d89f70282db.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\rightarrow" title="Rendered by QuickLaTeX.com" height="15" width="24" style="vertical-align: -1px;"/> A<br/>
+    }</p>
+</li>
+</ul>
+<p>Now, since all f.d.’s of G are already covered in F, we conclude that F covers G.</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

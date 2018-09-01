@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Data Replication</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Data Replication</b> is the process of storing data in more than one site or node. It is useful in <strong> improving the availability of data</strong>. It is simply copying data from a database from one server to another server so that all the users can share the same  data without any inconsistency. The result is a <strong>distributed database</strong> in which users can access data relevant to their tasks without interfering with the work of others.</p>
+<p>Data replication encompasses duplication of transactions on an ongoing basis, so that the <strong>replicate is in a consistently updated state</strong> and synchronized with the source.However in data replication data is available at different locations, but a particular relation has to reside at only one location.</p>
+<p>There can be full replication, in which the whole database is stored at every site. There can also be partial replication, in which some frequently used fragment of the database are replicated and others are not replicated. </p>
+<p><strong>Types of Data Replication –</strong></p>
+<ol>
+<li><strong>Transactional Replication – </strong>  In Transactional replication users receive full initial copies of the database and then receive updates as data changes. Data is copied in real time from the publisher to the receiving database(subscriber) in the same order as they occur with the publisher therefore in this type of replication, <strong>transactional consistency is guaranteed.</strong> Transactional replication is typically used in server-to-server environments. It does not simply copy the data changes, but rather consistently and accurately replicates each change.</li>
+<li><strong>Snapshot Replication –</strong> Snapshot replication distributes data exactly as it appears at a specific moment in time does not monitor for updates to the data. The entire snapshot is generated and sent to Users. <strong>Snapshot replication is generally used when data changes are infrequent</strong>. It is bit slower than transactional because on each attempt it moves multiple records from one end to the other end. Snapshot replication is a good way to perform initial synchronization between the publisher and the subscriber.</li>
+<li><strong>Merge Replication –</strong> Data from two or more databases is combined into a single database. Merge replication is the most complex type of replication because it allows both publisher and subscriber to independently make changes to the database. Merge replication is typically used in server-to-client environments. It allows changes to be sent from one publisher to multiple subscribers.</li>
+</ol>
+<p><strong>Replication Schemes – </strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><strong>1. Full Replication –</strong> The most extreme case is replication of the whole database at every site in the distributed system. This will improve the availability of the system because the system can continue to operate as long as atleast one site is up. </p>
+<p><img src="../../../imgs/db/a333d1dfb5c8d5c683ef1850a183c10b.jpg" alt=""/></p>
+<p><strong>Advantages of full replication –</strong></p>
+<ul>
+<li>High Availability of Data.</li>
+<li>Improves the performance for retrieval of global queries as the result can be obtained locally from any of the local site.</li>
+<li>Faster execution of Queries.</li>
+</ul>
+<p><strong>Disadvantages of full replication –</strong></p>
+<ul>
+<li>Concurrency is difficult to achieve in full replication.</li>
+<li>Slow update process as a single update must be performed at different databases to keep the copies consistent.</li>
+<ul>
+<p><strong>2. No Replication – </strong>The other case of replication involves having No replication – that is, each fragment is stored at only one site.</p>
+<p><img src="../../../imgs/db/2e339bdf104ea78830c4b43ceaa8ec50.jpg" alt=""/></p>
+<p><strong>Advantages of No replication –</strong></p>
+<ul>
+<li>The data can be easily recovered.</li>
+<li>Concurrency can be achieved in no replication. </li>
+</ul>
+<p><strong>Disadvantages of No replication –</strong></p>
+<ul>
+<li>Since multiple users are accessing the same server, it may slow down the execution of queries.</li>
+<li>The data is not easily available as there is no replication.</li>
+</ul>
+<p><strong>3. Partial Replication –</strong>  In this type of replication some fragments of the database may be replicated whereas others may not. The number of copies of the fragment may range from one to the total number of sites in the distributed system. The description of replication of fragments is sometimes called the replication schema.</p>
+<p><img src="../../../imgs/db/4874049ed14775b142c2fec8bdb04072.jpg" alt=""/></p>
+<p><strong>Advantages of Partial replication –</strong></p>
+<ul>
+<li>The number of copies of the fragment depends upon the importance of data.</li>
+</ul>
+<p>
+<strong>ADVANTAGES OF DATA REPLICATION –</strong> Data Replication is generally performed to:</p>
+<ul>
+<li>To provide a consistent copy of data across all the database nodes.</li>
+<li>To increase the availability of data.</li>
+<li>The reliability of data is increased through data replication.</li>
+<li>Data Replication supports multiple users and gives high performance.</li>
+<li>To remove any data redundancy,the databases are merged and slave databases are updated with outdated or incomplete data.</li>
+<li>Since replicas are created there are chances that the data is found itself where the transaction is executing which reduces the data movement.</li>
+<li>To perform faster execution of queries.</li>
+</ul>
+<p><strong>DISADVANTAGES OF DATA REPLICATION –</strong></p>
+<ul>
+<li>More storage space is needed as storing the replicas of same data at different sites consumes more space.</li>
+<li>Data Replication becomes expensive when the replicas at all different sites need to be updated.</li>
+<li>Maintaining Data consistency at all different sites involves complex measures.</li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</ul>
+</ul>
+</div>
+</body>
+</html>

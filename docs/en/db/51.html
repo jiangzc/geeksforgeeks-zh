@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Concurrency Control Protocol | Graph Based Protocol</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Graph Based Protocols are yet another way of implementing <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocols-lock-based-protocol/" rel="noopener" target="_blank">Lock Based Protocols</a>. </p>
+<p>As we know the prime problems with Lock Based Protocol has been avoiding Deadlocks and ensuring a Strict Schedule. We’ve seen that Strict Schedules are possible with following <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocol-two-phase-locking-2-pl-ii/" rel="noopener" target="_blank">Strict or Rigorous 2-PL</a>. We’ve even seen that Deadlocks can be avoided if we follow <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocol-two-phase-locking-2-pl-iii/" rel="noopener" target="_blank">Conservative 2-PL</a> but the problem with this protocol is it cannot be used practically. Graph Based Protocols are used as an alternative to 2-PL. <em>Tree Based Protocols is a simple implementation of Graph Based Protocol</em>.</p>
+<p>A prerequisite of this protocol is that we know the order to access a Database Item. For this we implement a <strong>Partial Ordering</strong> on a set of the <strong>Database Items (D) <em>{d<sub>1</sub>, d<sub>2</sub>, d<sub>3</sub>, ….., d<sub>n</sub>}</em></strong> . The protocol following the implementation of Partial Ordering is stated as-</p>
+<ul>
+<li>If <strong><em>d<sub>i</sub> –&gt; d<sub>j</sub></em></strong> then any transaction accessing both d<sub>i</sub> and d<sub>j</sub> must access d<sub>i</sub> before accessing d<sub>j</sub>.</li>
+<p></p>
+<li>Implies that the set <strong>D</strong> may now be viewed as a directed acyclic graph (DAG), called a <em>database graph</em>.</li>
+</ul>
+<p></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><b>Tree Based Protocol –</b></p>
+<ul>
+<li> Partial Order on Database items determines a tree like structure.</li>
+<li>Only Exclusive Locks are allowed.</li>
+<li>The first lock by T<sub>i</sub> may be on any data item. Subsequently, a data Q can be locked by T<sub>i</sub> only if the parent of Q is currently locked by T<sub>i</sub>.</li>
+<li>Data items can be unlocked at any time.</li>
+</ul>
+<p>Following the Tree based Protocol ensures <strong>Conflict Serializablity and Deadlock Free</strong> schedule. We need not wait for unlocking a Data item as we did in 2-PL protocol, thus increasing the concurrency.</p>
+<p>Now, let us see an Example, following is a <em>Database Graph</em> which will be used as a reference for locking the items subsequently. </p>
+<p><img src="../../../imgs/db/5c5621ff0ba876191e3b28fe6d2a2f49.jpg" alt="222" width="327" height="396" class="aligncenter size-full wp-image-189499" srcset="https://www.geeksforgeeks.org/wp-content/uploads/222-1.png 327w, https://www.geeksforgeeks.org/wp-content/uploads/222-1-248x300.png 248w" sizes="(max-width: 327px) 100vw, 327px"/><br/>
+</p>
+<center><b>Image –</b> Database Graph</center>
+<p></p>
+<p>Let’s look at an example based on the above Database Graph. We have three Transactions in this schedule and this is a skeleton example, i.e, we will only see how Locking and Unlocking works, let’s keep this simple and not make this complex by adding operations on data. </p>
+<p></p>
+<center><br/>
+<table style="width:50%">
+<tbody><tr>
+<th></th>
+<th><strong>T<sub>1</sub></strong></th>
+<th><strong>T<sub>2</sub></strong></th>
+<th><strong>T<sub>3</sub></strong></th>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td>Lock-X(A)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td></td>
+<td>Lock-X(D)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td></td>
+<td>Lock-X(H)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td></td>
+<td>Unlock-X(D)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>Lock-X(E)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td>Lock-X(D)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>7</strong></td>
+<td>Unlock-X(B)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>8</strong></td>
+<td>Unlock-X(E)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>9</strong></td>
+<td></td>
+<td></td>
+<td>Lock-X(B)</td>
+</tr>
+<tr>
+<td><strong>10</strong></td>
+<td></td>
+<td></td>
+<td>Lock-X(E)</td>
+</tr>
+<tr>
+<td><strong>11</strong></td>
+<td></td>
+<td>Unlock-X(H)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>12</strong></td>
+<td>Lock-X(B)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>13</strong></td>
+<td>Lock-X(G)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>14</strong></td>
+<td>Unlock-X(D)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>15</strong></td>
+<td></td>
+<td></td>
+<td>Unlock-X(E)</td>
+</tr>
+<tr>
+<td><strong>16</strong></td>
+<td></td>
+<td></td>
+<td>Unlock-X(B)</td>
+</tr>
+<tr>
+<td><strong>17</strong></td>
+<td>Unlock-X(G)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p></p></center>
+<p></p>
+<p>From the above example, first see that the schedule is Conflict Serializable. Serializablity for Locks can be written as <strong>T<sub>2</sub> –&gt; T<sub>1</sub> –&gt; T<sub>3</sub></strong>.<br/>
+Data items Locked and Unlocked are following the same rule as given above and follows the Database Graph. </p>
+<p>Thus, let’s revise once more what are the key points of Graph Based Protocols.<br/>
+<strong>Advantage –</strong></p>
+<ul>
+<li>Ensures Conflict Serializable Schedule.</li>
+<li>Ensures Deadlock Free Schedule</li>
+<li>Unlocking can be done anytime</li>
+</ul>
+<p>With some advantages comes some Disadvantages also.<br/>
+<strong>Disadvantage –</strong></p>
+<ul>
+<li>Unnecessary locking overheads may happen sometimes, like if we want both D and E, then at least we have to lock B to follow the protocol.</li>
+<li><strong><em>Cascading Rollbacks</em></strong> is still a problem. We don’t follow a rule of when Unlock operation may occur so this problem persists for this protocol.</li>
+<p>Overall this protocol is mostly known and used for its unique way of implementing Deadlock Freedom.</p>
+<p>References: Database System Concepts, Fifth Edition [Silberschatz, Korth, Sudarshan], Chapter-16.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</ul>
+</div>
+</body>
+</html>

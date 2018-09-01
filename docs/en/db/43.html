@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">How to find the highest normal form of a relation</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>To understand this topic, you should have basic idea about</p>
+<p><a href="http://quiz.geeksforgeeks.org/finding-attribute-closure-and-candidate-keys-using-functional-dependencies/">Functional Dependency &amp; Candidate keys</a></p>
+<p><a href="http://quiz.geeksforgeeks.org/database-normalization-normal-forms/">Normal forms</a></p>
+<p><strong>Steps to find the highest normal form of a relation:</strong></p>
+<ol>
+<li>Find all possible candidate keys of the relation.</li>
+<li>Divide all attributes into two categories: prime attributes and non-prime attributes.</li>
+<li>Check for 1<sup>st</sup> normal form then 2<sup>nd</sup> and so on. If it fails to satisfy n<sup>th </sup>normal form condition, highest normal form will be n-1.</li>
+</ol>
+<p><strong>Example 1. </strong><strong>Find the highest normal form of a relation</strong> R(A,B,C,D,E) with FD set {A-&gt;D, B-&gt;A, BC-&gt;D, AC-&gt;BE}</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p style="text-align: justify"><strong>Step 1.</strong>&#160;&#160; As we can see, (AC)<sup>+</sup> ={A,C,B,E,D}&#160; but none of its subset can determine all attribute of relation, So AC will be candidate key. A can be derived from B, so we can replace A in AC by B. So BC will also be a candidate key. So there will be two candidate keys {AC, BC}.</p>
+<p style="text-align: justify"><strong>Step 2.</strong>&#160; Prime attribute are those attribute which are part of candidate key {A,B,C} in this example and others will be non-prime {D,E} in this example.</p>
+<p style="text-align: justify"><strong>Step 3.</strong>&#160; The relation R is in 1<sup>st</sup> normal form as a relational DBMS does not allow multi-valued or composite attribute.</p>
+<p style="text-align: justify">The relation is not in 2<sup>nd</sup> Normal form because A-&gt;D is partial dependency (A which is subset of candidate key AC is determining non-prime attribute D) and 2<sup>nd</sup> normal form does not allow partial dependency.</p>
+<p style="text-align: justify">So the highest normal form will be 1<sup>st</sup> Normal Form.</p>
+<p>&#160;</p>
+<p><strong>Example 2.</strong> Find the highest normal form of a relation<strong> R(A,B,C,D,E) with FD set as {BC-&gt;D, AC-&gt;BE, B-&gt;E}</strong></p>
+<p><strong>Step 1.</strong>&#160;&#160; As we can see, (AC)<sup>+</sup> ={A,C,B,E,D}&#160; but none of its subset can determine all attribute of relation, So AC will be candidate key. A or C can’t be derived from any other attribute of the relation, so there will be only 1 candidate key {AC}.</p>
+<p><strong>Step 2.</strong>&#160; Prime attribute are those attribute which are part of candidate key {A,C} in this example and others will be non-prime {B,D,E} in this example.</p>
+<p><strong>Step 3.</strong>&#160; The relation R is in 1<sup>st</sup> normal form as a relational DBMS does not allow multi-valued or composite attribute.</p>
+<p>The relation is in 2<sup>nd</sup> normal form because BC-&gt;D is in 2<sup>nd</sup> normal form (BC is not proper subset of candidate key AC) and AC-&gt;BE is in 2<sup>nd</sup> normal form (AC is candidate key) and B-&gt;E is in 2<sup>nd</sup> normal form (B is not a proper subset of candidate key AC).</p>
+<p>The relation is not in 3<sup>rd</sup> normal form because in BC-&gt;D (neither BC is a super key nor D is a prime attribute) and in B-&gt;E (neither B is a super key nor E is a prime attribute) but to satisfy 3<sup>rd</sup> normal for, either LHS of an FD should be super key or RHS should be prime attribute.</p>
+<p>So the highest normal form of relation will be 2<sup>nd</sup> Normal form.</p>
+<p>&#160;</p>
+<p><strong>Example 3. </strong>Find the highest normal form of a relation <strong>R(A,B,C,D,E)</strong> with <strong>FD set {B-&gt;A, A-&gt;C, BC-&gt;D, AC-&gt;BE}</strong></p>
+<p><strong>Step 1.</strong>&#160;&#160; As we can see, (B)<sup>+</sup> ={B,A,C,D,E}, so B will be candidate key. B can be derived from AC using AC-&gt;B (Decomposing AC-&gt;BE to AC-&gt;B and AC-&gt;E). So AC will be super key but (C)<sup>+</sup> ={C} and (A)<sup>+</sup> ={A,C,B,E,D}. So A (subset of AC) will be candidate key. So there will be two candidate keys {A,B}.</p>
+<p><strong>Step 2.</strong>&#160; Prime attribute are those attribute which are part of candidate key {A,B} in this example and others will be non-prime {C,D,E} in this example.</p>
+<p><strong>Step 3</strong>.&#160; The relation R is in 1<sup>st</sup> normal form as a relational DBMS does not allow multi-valued or composite attribute.</p>
+<p>The relation is in 2<sup>nd</sup> normal form because B-&gt;A is in 2<sup>nd</sup> normal form (B is a super key) and A-&gt;C is in 2<sup>nd</sup> normal form (A is super key) and BC-&gt;D is in 2<sup>nd</sup> normal form (BC is a super key) and AC-&gt;BE is in 2<sup>nd</sup> normal form (AC is a super key).</p>
+<p>The relation is in 3<sup>rd</sup> normal form because LHS of all FD’s are super keys. The relation is in BCNF as all LHS of all FD’s are super keys. So the highest normal form is BCNF.</p>
+<p>&#160;<br/>
+<iframe width="665" height="374" src="https://www.youtube.com/embed/r1FwnWX3FE8?feature=oembed" frameborder="0" allowfullscreen=""></iframe><br/>
+&#160;</p>
+<p>Article contributed by Sonal Tuteja. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

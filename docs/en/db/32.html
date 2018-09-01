@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Functional Dependency and Attribute Closure</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><!-- Problem Statement --></p>
+<p style="text-align: center"><strong>Functional Dependency</strong></p>
+<p>A functional dependency A-&gt;B in a relation holds if two tuples having same value of attribute A also have same value for attribute B. For Example, in relation STUDENT shown in table 1, Functional Dependencies</p>
+<pre>STUD_NO-&gt;STUD_NAME, STUD_NO-&gt;STUD_ADDR <strong>hold</strong></pre>
+<p>but</p>
+<pre>STUD_NAME-&gt;STUD_ADDR <strong>do not hold</strong></pre>
+<p><a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/image23.png"><img class="aligncenter size-full wp-image-151200" src="../../../imgs/db/1defd3f345025030b461e08a23f292ff.jpg" alt="image2" width="731" height="192"/></a></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p style="text-align: center"><strong>How to find functional dependencies for a relation?</strong></p>
+<p>Functional Dependencies in a relation are dependent on the domain of the relation. Consider the STUDENT relation given in Table 1.</p>
+<ul>
+<li>We know that STUD_NO is unique for each student. So STUD_NO-&gt;STUD_NAME, STUD_NO-&gt;STUD_PHONE, STUD_NO-&gt;STUD_STATE, STUD_NO-&gt;STUD_COUNTRY and STUD_NO -&gt; STUD_AGE all will be true.</li>
+<li>Similarly, STUD_STATE-&gt;STUD_COUNTRY will be true as if two records have same STUD_STATE, they will have same STUD_COUNTRY as well.</li>
+<li>For relation STUDENT_COURSE, COURSE_NO-&gt;COURSE_NAME will be true as two records with same COURSE_NO will have same COURSE_NAME.</li>
+</ul>
+<p><strong>Functional Dependency Set: &#160;</strong>Functional Dependency set or FD set of a relation is the set of all FDs present in the relation. For Example, FD set for relation STUDENT shown in table 1 is:</p>
+<pre> { STUD_NO-&gt;STUD_NAME, STUD_NO-&gt;STUD_PHONE, STUD_NO-&gt;STUD_STATE, STUD_NO-&gt;STUD_COUNTRY, 
+  STUD_NO -&gt; STUD_AGE, STUD_STATE-&gt;STUD_COUNTRY }</pre>
+<p><strong><br/>
+Attribute Closure:&#160;</strong>Attribute closure of an attribute set can be defined as set of attributes which can be functionally determined from it.</p>
+<p><strong>How to find attribute closure of an attribute set?</strong><br/>
+To find attribute closure of an attribute set:</p>
+<ul>
+<li>Add elements of attribute set to the result set.</li>
+<li>Recursively add elements to the result set which can be functionally determined from the elements of the result set.</li>
+</ul>
+<p>Using FD set of table 1, attribute closure can be determined as:</p>
+<pre>(STUD_NO)+ = {STUD_NO, STUD_NAME, STUD_PHONE, STUD_STATE, STUD_COUNTRY, STUD_AGE}
+(STUD_STATE)+ = {STUD_STATE, STUD_COUNTRY}</pre>
+<p style="text-align: center"><strong>How to finding Candidate Keys and Super Keys using Attribute Closure?</strong></p>
+<ul>
+<li>If attribute closure of an attribute set contains all attributes of relation, the attribute set will be super key of the relation.</li>
+<li>If no subset of this attribute set can functionally determine all attributes of the relation, the set will be candidate key as well. For Example, using FD set of table 1,</li>
+</ul>
+<p>(STUD_NO, STUD_NAME)+ = {STUD_NO, STUD_NAME, STUD_PHONE, STUD_STATE, STUD_COUNTRY, STUD_AGE}</p>
+<p>(STUD_NO)+ = {STUD_NO, STUD_NAME, STUD_PHONE, STUD_STATE, STUD_COUNTRY, STUD_AGE}</p>
+<p>(STUD_NO, STUD_NAME) will be super key but not candidate key because its subset (STUD_NO)+ is equal to all attributes of the relation. So, STUD_NO will be a candidate key.</p>
+<p><strong>GATE Question: Consider the relation scheme R = {E, F, G, H, I, J, K, L, M, M} and the set of functional dependencies {{E, F} -&gt; {G}, {F} -&gt; {I, J}, {E, H} -&gt; {K, L}, K -&gt; {M}, L -&gt; {N} on R. What is the key for R? (GATE-CS-2014)</strong><br/>
+A. {E, F}<br/>
+B. {E, F, H}<br/>
+C. {E, F, H, K, L}<br/>
+D. {E}</p>
+<p><strong>Answer:</strong> Finding attribute closure of all given options, we get:<br/>
+{E,F}+ = {EFGIJ}<br/>
+{E,F,H}+ = {EFHGIJKLMN}<br/>
+{E,F,H,K,L}+ = {{EFHGIJKLMN}<br/>
+{E}+ = {E}<br/>
+{EFH}+ and {EFHKL}+ results in set of all attributes, but EFH is minimal. So it will be candidate key. So correct option is (B).</p>
+<p style="text-align: center"><strong> How to check whether an FD can be derived from a given FD set? </strong></p>
+<p>To check whether an FD A-&gt;B can be derived from an FD set F,</p>
+<ol>
+<li>Find (A)+ using FD set F.</li>
+<li>If B is subset of (A)+, then A-&gt;B is true else not true.</li>
+</ol>
+<p><strong>GATE Question: In a schema with attributes A, B, C, D and E following set of functional dependencies are given</strong><br/>
+<strong> {A -&gt; B, A -&gt; C, CD -&gt; E, B -&gt; D, E -&gt; A}</strong><br/>
+<strong> Which of the following functional dependencies is NOT implied by the above set? (GATE IT 2005)</strong><br/>
+A. CD -&gt; AC<br/>
+B. BD -&gt; CD<br/>
+C. BC -&gt; CD<br/>
+D. AC -&gt; BC</p>
+<p><strong>Answer:</strong> Using FD set given in question,<br/>
+(CD)+ = {CDEAB} which means CD -&gt; AC also holds true.<br/>
+(BD)+ = {BD} which means BD -&gt; CD can’t hold true. So this FD is no implied in FD set. So (B) is the required option.<br/>
+Others can be checked in the same way.</p>
+<p style="text-align: center"><strong>Prime and non-prime attributes</strong></p>
+<p>Attributes which are parts of any candidate key of relation are called as prime attribute, others are non-prime attributes. For Example, STUD_NO in STUDENT relation is prime attribute, others are non-prime attribute.</p>
+<p><strong>GATE Question: &#160;Consider a relation scheme R = (A, B, C, D, E, H) on which the following functional dependencies hold: {A–&gt;B, BC–&gt; D, E–&gt;C, D–&gt;A}. What are the candidate keys of R? [GATE 2005]</strong><br/>
+(a) AE, BE<br/>
+(b) AE, BE, DE<br/>
+(c) AEH, BEH, BCH<br/>
+(d) AEH, BEH, DEH</p>
+<p><strong>Answer:</strong> (AE)+ = {ABECD} which is not set of all attributes. So AE is not a candidate key. Hence option A and B are wrong.<br/>
+(AEH)+ = {ABCDEH}<br/>
+(BEH)+ = {BEHCDA}<br/>
+(BCH)+ = {BCHDA} which is not set of all attributes. So BCH is not a candidate key. Hence option C is wrong.<br/>
+So correct answer is D.</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

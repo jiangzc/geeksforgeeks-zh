@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Database Management Systems | Set 10</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Following questions have been asked in GATE CS 2005 exam.<span id="more-20761"></span></p>
+<p><strong>1) Let r be a relation instance with schema R = (A, B, C, D). We define r1 = ‘select A,B,C from r’ and r2 = ‘select A, D from r’. Let s = r1 * r2 where * denotes natural join. Given that the decomposition of r into r1 and r2 is lossy, which one of the following is TRUE?</strong><br/>
+(a) s is subset of r<br/>
+(b) r U s = r<br/>
+(c) r is a subset of s<br/>
+(d) r * s = s</p>
+<p>Answer (c)<br/>
+Consider the following example with lossy decomposition of r into r1 and r2.  We can see that r is a subset of s.</p>
+<pre>Table r
+ A      B      C      D
+---------------------------
+ 1     10     100    1000    
+ 1     20     200    1000    
+ 1     20     200    1001 
+
+Table r1
+ A      B      C
+------------------
+ 1     10     100 
+ 1     20     200 
+
+Table r2
+ A     D  
+-----------
+ 1    1000  
+ 1    1001
+
+Table s (natural join of r1 and r2)
+ A      B      C      D
+---------------------------
+ 1     10     100    1000    
+ 1     20     200    1000    
+ 1     10     100    1001 
+ 1     20     200    1001 
+
+</pre>
+<p><br/><br/>
+<strong>2) Let E1 and E2 be two entities in an E/R diagram with simple single-valued attributes. R1 and R2 are two relationships between E1 and E2, where R1 is one-to-many and R2 is many-to-many. R1 and R2 do not have any attributes of their own. What is the minimum number of tables required to represent this situation in the relational model?</strong><br/>
+(a) 2<br/>
+(b) 3<br/>
+(c) 4<br/>
+(d) 5</p>
+<p>Answer (b)<br/>
+See <a href="http://geeksquiz.com/gate-gate-cs-2005-question-75/">http://geeksquiz.com/gate-gate-cs-2005-question-75/</a> for explanation.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><br/><br/>
+<strong>3) Consider a relation scheme R = (A, B, C, D, E, H) on which the following functional dependencies hold: {A–&gt;�B, BC–&gt;� D, E–&gt;C, D–&gt;A}. What are the candidate keys of R?</strong><br/>
+(a) AE, BE<br/>
+(b) AE, BE, DE<br/>
+(c) AEH, BEH, BCH<br/>
+(d) AEH, BEH, DEH</p>
+<p>Answer (d)<br/>
+A set of attributes S is candidate key of relation R if the closure of S is all attributes of R and there is no subset of S whose closure is all attributes of R.<br/>
+Closure of AEH, i.e. AEH+  = {ABCDEH}<br/>
+Closure of BEH, i.e. BEH+  = {ABCDEH}<br/>
+Closure of DEH, i.e. DEH+  = {ABCDEH}</p>
+<p>Please see <a href="http://geeksquiz.com/gate-corner-2/">GATE Corner</a> for all previous year paper/solutions/explanations, syllabus, important dates, notes, etc.</p>
+<p><br/><br/>
+Please write comments if you find any of the answers/explanations incorrect, or you want to share more information about the topics discussed above.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

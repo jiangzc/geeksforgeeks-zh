@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Bitmap Indexing</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Bitmap Indexing is a special type of database indexing that uses <strong>bitmaps</strong>. This technique is used for huge databases, when column is of low cardinality and these columns are most frequently used in the query.</p>
+<p><strong>Need of Bitmap Indexing –</strong><br/>
+The need of Bitmap Indexing will be clear through the below given example :<br/>
+For example, Let us say that a company holds an employee table with entries like EmpNo, EmpName, Job, New_Emp and salary. Let us assume that the employees are hired once in the year, therefore the table will be updated very less and will remain static most of the time. But the columns will be frequently used in queries to retrieve data like : No. of female employees in the company etc. In this case we need a file organization method whch should be fast enough to give quick results. But any of the traditional file organization method is not that fast, therefore we switch to a better method of storing and retrieving data known as Bitmap Indexing.</p>
+<p><strong>How Bitmap Indexing is done –</strong><br/>
+In the above example of table employee, we can see that the column New_Emp has only two values <strong>Yes</strong> and <strong>No</strong> based upon the fact that the employee is new to the company or not. Simlarily let us assume that the Job of the Employees is divided into 4 categories only i.e Manager, Analyst, Clerk and Salesman. Such columns are called columns with low cardinality. Even though these columns have less unique values, they can be queried very often.</p>
+<p><strong>Bit:</strong> Bit is a basic unit of information used in computing that can have only one of two values either 0 or 1 . The two values of a binary digit can also be interpreted as logical values true/false or yes/no.</p>
+<p>In Bitmap Indexing these bits are used to represent the unique values in those low cardinality columns. This technique of storing the low cardinality rows in form of bits are called bitmap indices.<br/>
+Continuing the Employee example, Given below is the Employee table :<br/>
+<img src="../../../imgs/db/e225310b536ac3b80885c208e1c4e6e1.jpg" alt="" width="300" height="127" class="aligncenter size-medium wp-image-289091"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>If New_Emp is the data to be indexed, the content of the bitmap index is shown as four( As we have four rows in the above table) columns under the heading Bitmap Indices. Here Bitmap Index “Yes” has value 1001 because row 1 and row four has value “Yes” in column New_Emp.<br/>
+<img src="../../../imgs/db/c2b82da91138a9c93adc83db48b4be36.jpg" alt="" width="300" height="112" class="aligncenter size-medium wp-image-289092"/></p>
+<p>In this case there are two such bitmaps, one for “New_Emp” Yes and one for “New_Emp” NO. It is easy to see that each bit in bitmap indices shows that whether a particular row refer to a  person who is New to the company or not.</p>
+<p>The above scenario is the simplest form of Bitmap Indexing. Most columns will have more distinct values. For example the column Job here will have only 4 unique values (As mentioned earlier). Variations on the bitmap index can effectively index this data as well. For Job column the bitmap Indexing is shown below:<br/>
+<img src="../../../imgs/db/2f1104b01fc4fe4bc83f1278cb789f10.jpg" alt="" width="300" height="193" class="aligncenter size-medium wp-image-289093"/></p>
+<p>Now Suppose, If we want to find out the details for the Employee who is not new in the company and is a sales person  then we will run the query:</p>
+<pre> SELECT * 
+        FROM STUDENT 
+            WHERE New_Emp = "No" and Job = "Salesperson";</pre>
+<p>For this query the DBMS will search the bitmap index of both the columns and perform logical AND operation on those bits and find out the actual result:</p>
+<p><img src="../../../imgs/db/97affeea34a18ef430c64c0cb541be07.jpg" alt="" width="300" height="147" class="aligncenter size-medium wp-image-289094"/></p>
+<p>Here the result 0100 represents that the second column has to be retrieved as a result.</p>
+<p><strong>Bitmap Indexing in SQL –</strong> The syntax for creating bitmap index in sql is given below:</p>
+<pre>CREATE BITMAP INDEX Index_Name
+         ON Table_Name (Column_Name);</pre>
+<p>For the above example of employee table, the bitmap index on column New_Emp will be created as follows:</p>
+<pre>CREATE BITMAP INDEX index_New_Emp
+        ON Employee (New_Emp);</pre>
+<p><strong>Advantages –</strong></p>
+<ul>
+<li>Efficiency in terms of insertion deletion and updation</li>
+<li>Faster retrieval of records</li>
+</ul>
+<p><strong>Disadvantages –</strong></p>
+<ul>
+<li>Only suitable for large tables</li>
+<li>Bitmap Indexing is time consuming</li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

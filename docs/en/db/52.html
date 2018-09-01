@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Concurrency Control Protocol | Two Phase Locking (2-PL)-I</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>I think you are now familiar with <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocols-lock-based-protocol/">Concurrency Control Protocols</a>. We have discussed briefly about the first type of Concurrency Control Protocol, i.e., Lock based Protocol.</p>
+<p>Now, recalling where we last left off, there are two types of Locks available <strong>Shared S(a)</strong> and <strong>Exclusive X(a)</strong>. Implementing this lock system without any restrictions gives us the Simple Lock based protocol (or <em>Binary Locking</em>), but it has its own disadvantages, they <strong>does not guarantee Serializability</strong>. Schedules may follow the preceding rules but a non-serializable schedule may result. </p>
+<p>To guarantee serializablity, we must follow some additional protocol <em>concerning the positioning of locking and unlocking operations </em>in every transaction. This is where the concept of Two Phase Locking(2-PL) comes in the picture, 2-PL ensures serializablity. Now, let’s dig deep!</p>
+<h3 class="sigil_not_in_toc">Two Phase Locking –</h3>
+<p>A transaction is said to follow Two Phase Locking protocol if Locking and Unlocking can be done in two phases.</p>
+<ol>
+<li><strong>Growing Phase: </strong> New locks on data items may be acquired but none can be released.</li>
+<li><strong>Shrinking Phase: </strong> Existing locks may be released but no new locks can be acquired. </li>
+</ol>
+<p><b>Note –</b> If lock conversion is allowed, then upgrading of lock( from S(a) to X(a) ) is allowed in Growing Phase and downgrading of lock (from X(a) to S(a)) must be done in shrinking phase.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>Let’s see a transaction implementing 2-PL.<br/>
+</p>
+<center></center>
+<p></p>
+<table style="width:50%">
+<tbody><tr>
+<th></th>
+<th>T<sub>1</sub></th>
+<th>T<sub>2</sub></th>
+</tr>
+<tr>
+<th>1</th>
+<th>lock-S(A)</th>
+<th></th>
+</tr>
+<tr>
+<th>2</th>
+<th></th>
+<th>lock-S(A)</th>
+</tr>
+<tr>
+<th>3</th>
+<th>lock-X(B)</th>
+<th></th>
+</tr>
+<tr>
+<th>4</th>
+<th>…….</th>
+<th>……</th>
+</tr>
+<tr>
+<th>5</th>
+<th>Unlock(A)</th>
+<th></th>
+</tr>
+<tr>
+<th>6</th>
+<th></th>
+<th>Lock-X(C)</th>
+</tr>
+<tr>
+<th>7</th>
+<th>Unlock(B)</th>
+<th></th>
+</tr>
+<tr>
+<th>8</th>
+<th></th>
+<th>Unlock(A)</th>
+</tr>
+<tr>
+<th>9</th>
+<th></th>
+<th>Unlock(C)</th>
+</tr>
+<tr>
+<th>10</th>
+<th>…….</th>
+<th>……</th>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>This is just a skeleton transaction which shows how unlocking and locking works with 2-PL. Note for:<br/>
+<strong>Transaction T<sub>1</sub></strong>:
+</p>
+<ul>
+<li> Growing Phase is from steps 1-3.</li>
+<li>Shrinking Phase is from steps 5-7.</li>
+
+<li>Lock Point at 3</li>
+</ul>
+<p></p>
+<p><strong>Transaction T<sub>2</sub></strong>:
+</p>
+<ul>
+<li> Growing Phase is from steps 2-6.</li>
+<li>Shrinking Phase is from steps 8-9.</li>
+<li>Lock Point at 6</li>
+</ul>
+<p></p>
+<p>Hey, wait!<br/>
+What is <strong>LOCK POINT ?</strong>The Point at which the growing phase ends, i.e., when transaction takes the final lock it needs to carry on its work. Now look at the schedule, you’ll surely understand.</p>
+<p>I have said that 2-PL ensures serializablity, but there are still some drawbacks of 2-PL. Let’s glance at the drawbacks:</p>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/dbms-recoverability-of-schedules/" rel="noopener" target="_blank">Cascading Rollback</a> is possible under 2-PL.</li>
+<li><a href="https://www.geeksforgeeks.org/deadlock-in-dbms/" rel="noopener" target="_blank">Deadlocks</a> and <a href="https://www.geeksforgeeks.org/starvation-in-dbms/" rel="noopener" target="_blank">Starvation</a> is possible.</li>
+</ul>
+<p><b>Cascading Rollbacks in 2-PL –</b><br/>
+Let’s see the following Schedule:</p>
+<p><img src="../../../imgs/db/30ef042760fb8fc847a7e49a9eb97256.jpg" alt="12122" width="960" height="720" class="aligncenter size-full wp-image-187018" srcset="https://www.geeksforgeeks.org/wp-content/uploads/12122.png 960w, https://www.geeksforgeeks.org/wp-content/uploads/12122-300x225.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/12122-768x576.png 768w, https://www.geeksforgeeks.org/wp-content/uploads/12122-660x495.png 660w" sizes="(max-width: 960px) 100vw, 960px"/></p>
+<p>Take a moment to analyze the schedule. Yes, you’re correct, because of Dirty Read in T<sub>2</sub> and T<sub>3</sub> in lines 8 and 12 respectively, when T<sub>1</sub> failed we have to rollback others also. Hence<strong> Cascading Rollbacks are possible in 2-PL.</strong> I have taken skeleton schedules as examples because it’s easy to understand when it’s kept simple. When explained with real time transaction problems with many variables, it becomes very complex.</p>
+<p><b>Deadlock in 2-PL –</b><br/>
+Consider this simple example, it will be easy to understand.Say we have two transactions T<sub>1</sub> and T<sub>2</sub>.</p>
+<pre><strong>Schedule:</strong>   Lock-X<sub>1</sub>(A)   Lock-X<sub>2</sub>(B)  Lock-X<sub>1</sub>(B)  Lock-X<sub>2</sub>(A)</pre>
+<p>Drawing the precedence graph, you may detect the loop. So Deadlock is also possible in 2-PL.<br/>
+<br/>
+Two phase locking may also limit the amount of concurrency that occur in a schedule because a Transaction may not be able to release an item after it has used it. This may be because of the protocols and other restrictions we may put on the schedule to ensure serializablity, deadlock freedom and other factors. This is the price we have to pay to ensure serializablity and other factors, hence it can be considered as a bargain between concurrency and maintaining the ACID properties. </p>
+<p>The above mentioned type of 2-PL is called <strong>Basic 2PL</strong>. To sum it up it ensures Conflict Serializability but <strong><em>does not</em></strong> prevent Cascading Rollback and Deadlock. Further we will  study  three other types of 2PL, Strict 2PL, Conservative 2PL and Rigorous 2PL.</p>
+<p><b>GATE related questions:</b></p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2016-set-2-question-61/" rel="noopener" target="_blank">GATE CS 2016-2 | Question 61</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-1999-question-31/" rel="noopener" target="_blank">GATE CS 1999 | Question 31</a></li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

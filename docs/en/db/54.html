@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Concurrency Control Protocol | Two Phase Locking (2-PL)-III</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocols-two-phase-locking-2-pl/">Basics of Two Phase Locking protocol(2-PL)</a>, <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocol-two-phase-locking-2-pl-ii/">Types of 2-PL</a>. </p>
+<p>Now, we know both Strict 2-PL and Rigorous 2-PL <em>avoids</em> Cascading Rollbacks and <em>ensures</em> a Strict schedule but still cannot guarantee that our schedule is Deadlock free. We have seen both Strict and Rigorous 2-PL are similar in application and a general misconception is common that Conservative 2-PL also follows same sets of protocols as the above two. For clarity let’s go through Conservative 2-PL in details.</p>
+<h3 class="sigil_not_in_toc">Conservative 2-PL –</h3>
+<p>A.K.A <strong>Static 2-PL</strong>, this protocol requires the transaction to lock all the items it access before the Transaction begins execution by predeclaring its read-set and write-set. If any of the predeclared items needed cannot be locked, the transaction does not lock any of the items, instead it waits until all the items are available for locking. So the operation on data cannot start until we lock all the items required.</p>
+<p>Now let’s see an interesting example on Conservative 2-PL. Tell me if the following schedule follows Conservative 2-PL?</p>
+<pre><strong>Schedule: </strong>  Lock-S(A)  Lock-X(B)  Read(A)  Read(B)  Write(A)  Unlock(A)  <strong>Commit</strong>  Unlock(B)</pre>
+<p>Do you think the above Schedule <em>does not follow</em> Conservative 2-PL?  Don’t confuse the protocol as just a modified version of Rigorous 2-PL, We can release the locks whenever we want, but we need to lock all the data items before carrying out any operation. This is what makes it Deadlock-free. The above schedule follows Conservative 2-PL.<br/>
+Some interesting traits about Conservative 2-PL:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<ul>
+<li>Schedule following this will not have a Growing Phase as we’ve seen in Basic, Strict and Rigorous 2-PL. As locking the data before using it is mandatory so this protocol has <em>no Growing phase</em>. Moreover, this rule makes it Deadlock free as if an item is not available for locking the transaction releases all the locks and tries again later, i.e, <em>no Hold and Wait</em>. This makes one of the <a href="https://www.geeksforgeeks.org/operating-system-process-management-deadlock-introduction/" rel="noopener" target="_blank">four necessary conditions for deadlock</a> void.  </li>
+<li>We only have to lock all the items beforehand, so releasing or unlocking them has no restrictions like we had in Strict or Rigorous 2-PL. </li>
+<li>As no operations are done before acquiring all the locks, we have no Growing phase in this protocol unlike Basic, Strict, Rigorous 2-PL.</li>
+<li>Although we get a Deadlock free schedule but in this protocol we may still face drawbacks like <em>Cascading Rollbacks</em>. So this protocol <em>doen not ensure Strict Schedules</em>. This is a disadvantage in comparison to Strict and Rigorous 2-PL. </li>
+</ul>
+<p>
+Let’s discuss an example now. See how the schedule below follows Conservative 2-PL but does not follow Strict and Rigorous 2-PL.</p>
+<table style="width:50%">
+<tbody><tr><th></th>
+<th><strong>T<sub>1</sub></strong></th>
+<th><strong>T<sub>2</sub></strong></th>
+</tr>
+<tr>
+<td><strong>1</strong><p></p>
+</td>
+<td>Lock-X(A)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Lock-X(B)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Read(A)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td>*operation on A</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>Write(A)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td>Unlock(A)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>7</strong></td>
+<td></td>
+<td>Lock-X(A)</td>
+</tr>
+<tr>
+<td><strong>8</strong></td>
+<td></td>
+<td>Read(A)</td>
+</tr>
+<tr>
+<td><strong>9</strong></td>
+<td></td>
+<td>*operation on A</td>
+</tr>
+<tr>
+<td><strong>10</strong></td>
+<td></td>
+<td>Write(A)</td>
+</tr>
+<tr>
+<td><strong>11</strong></td>
+<td></td>
+<td>Unlock(A)</td>
+</tr>
+<tr>
+<td><strong>12</strong></td>
+<td>Read(B)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>13</strong></td>
+<td>*operation on B</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>14</strong></td>
+<td>Write(B)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>15</strong></td>
+<td>Unlock(B)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>16</strong></td>
+<td><strong>Commit</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>17</strong></td>
+<td></td>
+<td><strong>Commit</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Look at the schedule, it completely follows Conservative 2-PL, but fails to meet the requirements of Strict and Conservative 2-PL, that is because we unlock A and B before the transaction commits.<br/>
+ <br/>
+<strong>How can cascading abort happen in Conservative 2-PL?</strong><br/>
+This can happen because a Transaction may carry out a <em>Dirty Read</em> from another Transaction. We don’t have such restrictions in our protocol so this situation is possible.</p>
+<p>Look at the Example given above, we have a Dirty Read operation from <strong>T<sub>1</sub></strong> to <strong>T<sub>2</sub></strong> at Step 10. If <strong>T<sub>1</sub></strong> aborts, then <strong>T<sub>2</sub></strong> would be rolled back. </p>
+<p>GATE related question:<br/>
+<a href="https://www.geeksforgeeks.org/gate-gate-cs-2016-set-1-question-61/" rel="noopener" target="_blank">GATE-CS-2016 (Set 1) | Question 61</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

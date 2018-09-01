@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Denormalization in Databases</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Denormalization is a database optimization technique in which we add redundant data to one or more tables. This can help us avoid costly joins in a relational database.  Note that denormalization does not mean not doing normalization. It is an optimization technique that is applied after doing normalization.</p>
+<p>In a traditional normalized database, we store data in separate logical tables ad attempt to minimize redundant data. We may strive to have only one copy of each piece of data in database.<br/>
+For example, in a normalized database, we might have a Courses table and a Teachers table.Each entry in Courses would store the teacherID for a Course but not the teacherName. When we need to retrieve a list of all Courses with the Teacher name, we would do a join between these two tables.<br/>
+In some ways, this is great; if a teacher changes is or her name, we only have to update the name in one place.<br/>
+The drawback is that if tables are large, we may spend an unnecessarily long time doing joins on tables.<br/>
+Denormalization, then, strikes a different compromise. Under denormalization, we decide that we’re okay with some redundancy and some extra effort to update the database in order to get the efficiency advantages of fewer joins.</p>
+<p><strong>Pros of Denormalization:-    </strong></p>
+<ol>
+<li>Retrieving data is faster since we do fewer joins</li>
+<li>Queries to retrieve can be simpler(and therefore less likely to have bugs),<br/>
+since we need to look at fewer tables.</li>
+</ol>
+<p><strong>Cons of Denormalization:-</strong>    </p>
+<ol>
+<li>Updates and inserts are more expensive.</li>
+<li>Denormalization can make update and insert code harder to write.</li>
+<li>Data may be inconsistent . Which is the “correct” value for a piece of data?</li>
+<li>Data redundancy necessities more storage.</li>
+</ol>
+<p>In a system that demands scalability, like that of any major tech companies, we almost always use elements of both normalized and denormalized databases.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

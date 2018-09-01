@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Lossless Join and Dependency Preserving Decomposition</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Decomposition of a relation is done when a relation in relational model is not in appropriate normal form. Relation R is decomposed into two or more relations if decomposition is lossless join as well as dependency preserving.</p>
+<p style="text-align: center"><strong>Lossless Join Decomposition</strong></p>
+<p>If we decompose a relation R into relations R1 and R2,</p>
+<ul>
+<li>Decomposition is lossy if R1 ⋈ R2 ⊃ R</li>
+<li>Decomposition is lossless if R1 ⋈ R2 = R</li>
+</ul>
+<p><strong> To check for lossless join decomposition using FD set, following conditions must hold: </strong></p>
+<ol>
+<li>Union of Attributes of R1 and R2 must be equal to attribute of R. Each attribute of R must be either in R1 or in R2.
+<pre> Att(R1) U Att(R2) = Att(R)</pre>
+</li>
+<li>Intersection of Attributes of R1 and R2 must not be NULL.
+<pre> Att(R1) ∩ Att(R2) ≠ Φ</pre>
+</li>
+<li>Common attribute must be a key for at least one relation (R1 or R2)
+<pre> Att(R1) ∩ Att(R2) -&gt; Att(R1) or Att(R1) ∩ Att(R2) -&gt; Att(R2)</pre>
+</li>
+</ol>
+<p>For Example, A relation R (A, B, C, D) with FD set{A-&gt;BC} is decomposed into R1(ABC) and R2(AD) which is a lossless join decomposition as:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<ol>
+<li>First condition holds true as Att(R1) U Att(R2) = (ABC) U (AD) = (ABCD) = Att(R).</li>
+<li>Second condition holds true as Att(R1) ∩ Att(R2) = (ABC) ∩ (AD) ≠ Φ</li>
+<li>Third condition holds true as Att(R1) ∩ Att(R2) = A is a key of R1(ABC) because A-&gt;BC is given.</li>
+</ol>
+<p style="text-align: center"><strong>Dependency Preserving Decomposition</strong></p>
+<p>If we decompose a relation R into relations R1 and R2, All dependencies of R either must be a part of R1 or R2 or must be derivable from combination of FD’s of R1 and R2.<br/>
+For Example, A relation R (A, B, C, D) with FD set{A-&gt;BC} is decomposed into R1(ABC) and R2(AD) which is dependency preserving because FD A-&gt;BC is a part of R1(ABC).</p>
+<p><strong>GATE Question: Consider a schema R(A,B,C,D) and functional dependencies A-&gt;B and C-&gt;D. Then the decomposition of R into R1(AB) and R2(CD) is [GATE-CS-2001]</strong><br/>
+A. dependency preserving and lossless join<br/>
+B. lossless join but not dependency preserving<br/>
+C. dependency preserving but not lossless join<br/>
+D. not dependency preserving and not lossless join</p>
+<p><strong>Answer: </strong> For lossless join decomposition, these three conditions must hold true:</p>
+<ol>
+<li>Att(R1) U Att(R2) = ABCD = Att(R)</li>
+<li>Att(R1) ∩ Att(R2) = Φ, which violates the condition of lossless join decomposition. Hence the decomposition is not lossless.</li>
+</ol>
+<p>For dependency preserving decomposition,<br/>
+A-&gt;B can be ensured in R1(AB) and C-&gt;D can be ensured in R2(CD). Hence it is dependency preserving decomposition.<br/>
+So, the correct option is C.<br/>
+This article is contributed by <strong>Sonal Tuteja</strong>. If you like GeeksforGeeks and would like to contribute, you can also write an article using <a href="http://www.contribute.geeksforgeeks.org">contribute.geeksforgeeks.org</a> or mail your article to contribute@geeksforgeeks.org. See your article appearing on the GeeksforGeeks main page and help other Geeks.</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

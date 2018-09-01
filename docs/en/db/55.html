@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Concurrency Control Protocol | Multiple Granularity Locking</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocols-timestamp-ordering-protocols/" rel="noopener" target="_blank">Timestamp Ordering Protocols</a><br/>
+In the various Concurrency Control schemes have used different methods and every individual Data item as the unit on which synchronization is performed. A certain drawback of this technique is if a transaction T<sub>i</sub> needs to access the entire database, and a locking protocol is used, then T<sub>i</sub> must lock each item in the database. It is less efficient, it would be more simpler if T<sub>i</sub> could use a single lock to lock the entire database. But, if it consider the second proposal, this should not in fact overlook the certain flaw in the proposed method. Suppose another transaction just needs to access a few data items from a database, so locking the entire database seems to be unnecessary moreover it may cost us loss of Concurrency, which was our primary goal in the first place. To bargain between Efficiency and Concurrency. Use Granularity. </p>
+<p>Let’s start by understanding what is meant by Granularity.<br/>
+<br/>
+<strong>Granularity –</strong> It is the size of data item  allowed to lock. Now <em>Multiple Granularity</em> means hierarchically breaking up the database into blocks which can be locked and can be track what need to lock and in what fashion. Such a hierarchy can be represented graphically as a tree. </p>
+<p>For example, consider the tree, which consists of four levels of nodes. The highest level represents the entire database. Below it are nodes of type <strong>area</strong>; the database consists of exactly these areas. Area has children nodes which are called files. Every area has those files that  are its child nodes. No file can span more than one area. </p>
+<p>Finally, each file has child nodes called records. As before, the file consists of exactly those records that are its child nodes, and no record can be present in more than one file. Hence, the levels starting from the top level are:</p>
+<ul>
+<li>database</li>
+<li>area</li>
+<li>file</li>
+<li>record</li>
+</ul>
+<p><img src="../../../imgs/db/594aed6a39d7aa90f2bfa3cea096e8be.jpg" alt="" width="872" height="565" class="aligncenter size-full wp-image-385266"/><br/>
+</p>
+<center><b>Figure –</b> Multi Granularity tree Hierarchy</center>
+<p></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>Consider the above diagram for the example given, each node in the tree can be locked individually. As in the <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocols-two-phase-locking-2-pl/">2-phase locking protocol</a>, it shall use shared and exclusive lock modes. When a transaction locks a node, in either shared or exclusive mode, the transaction also implicitly locks all the descendants of that node in the same lock mode. For example, if transaction T<sub>i</sub> gets an explicit lock on file F<sub>c</sub> in exclusive mode, then it has an implicit lock in exclusive mode on all the records belonging to that file. It does not need to lock the individual records of F<sub>c</sub> explicitly. this is the main difference between <a href="https://www.geeksforgeeks.org/dbms-concurrency-control-protocol-graph-based-protocol/" rel="noopener" target="_blank">Tree Based Locking</a> and Hierarchical locking for multiple granularity. </p>
+<p>Now, with locks on files and records made simple, how does the system determine if the root node can be locked? One possibility is for it to search the entire tree but the solution nullifies the whole purpose of the multiple-granularity locking scheme. A more efficient way to gain this knowledge is to introduce a new lock mode, called <em>Intention lock mode</em>.</p>
+<p><strong>Intention Mode Lock –</strong><br/>
+In addition to <strong>S</strong> and <strong>X</strong> lock modes, there are three additional lock modes with multiple granularity:</p>
+<ul>
+<li><strong>Intention-Shared (IS):</strong>  explicit locking at a lower level of the tree but only with shared locks.</li>
+<li><strong>Intention-Exclusive (IX): </strong> explicit locking at a lower level with exclusive or shared locks.</li>
+<li><strong>Shared &amp; Intention-Exclusive (SIX):</strong> the sub-tree rooted by that node is locked explicitly in shared mode and explicit locking is being done at a lower level with exclusive mode locks.</li>
+</ul>
+<p>The compatibility matrix for these lock modes are described below:</p>
+<p><img src="../../../imgs/db/8e0850d2219889117b947ff122070b9b.jpg" alt="" width="687" height="471" class="aligncenter size-full wp-image-385272"/><br/>
+</p>
+<center><b>Figure –</b> Multi Granularity tree Hierarchy</center>
+<p></p>
+<p>The multiple-granularity locking protocol uses the intention lock modes to ensure serializability. It requires that a transaction T<sub>i</sub> that attempts to lock a node must follow these protocols:</p>
+<ol>
+<li> Transaction T<sub>i</sub> must follow the lock-compatibility matrix.</li>
+<p></p>
+<li> Transaction T<sub>i</sub> must lock the root of the tree first, and it can lock it in any mode.</li>
+<p></p>
+<li> Transaction T<sub>i</sub> can lock a node in S or IS mode only if T<sub>i</sub> currently has the parent of the node locked in either IX or IS mode.</li>
+<p></p>
+<li> Transaction T<sub>i</sub> can lock a node in X, SIX, or IX mode only if T<sub>i</sub> currently has the parent of the node locked in either IX or SIX mode.</li>
+<p></p>
+<li> Transaction T<sub>i</sub> can lock a node only if T<sub>i</sub> has not previously unlocked any node (i.e., T<sub>i</sub> is two phase).</li>
+<p></p>
+<li> Transaction T<sub>i</sub> can unlock a node only if T<sub>i</sub> currently has none of the children of the node locked.</li>
+</ol>
+<p>Observe that the multiple-granularity protocol requires that locks be acquired in top-down (root-to-leaf) order, whereas locks must be released in bottom-up (leaf to-root) order.<br/>
+As an illustration of the protocol, consider the tree given above and the transactions:</p>
+<ul>
+<li>Say transaction T<sub>1</sub> reads record R<sub>a2</sub> in file F<sub>a</sub>. Then, T<sub>2</sub> needs to lock the database, area A<sub>1</sub>, and F<sub>a</sub> in IS mode (and in that order), and finally to lock R<sub>a2</sub> in S mode.</li>
+<p></p>
+<li>Say transaction T<sub>2</sub> modifies record R<sub>a9</sub> in file F<sub>a</sub> . Then, T<sub>2</sub> needs to lock the database, area A<sub>1</sub>, and file F<sub>a</sub> (and in that order) in IX mode, and at last to lock R<sub>a9</sub> in X mode.</li>
+<p></p>
+<li>Say transaction T<sub>3</sub> reads all the records in file F<sub>a</sub>. Then, T<sub>3</sub> needs to lock the database and area A<sub>1</sub> (and in that order) in IS mode, and at last to lock F<sub>a</sub> in S mode.</li>
+<p></p>
+<li>Say transaction T<sub>4</sub> reads the entire database. It can do so after locking the database in S mode.</li>
+</ul>
+<p>Note that transactions T<sub>1</sub>, T<sub>3</sub> and T<sub>4</sub> <em>can access the database concurrently</em>. Transaction T<sub>2</sub> can execute concurrently with T<sub>1</sub>, but not with either T<sub>3</sub> or T<sub>4</sub>.<br/>
+This protocol enhances <em>concurrency and reduces lock overhead</em>.Deadlock are still possible in the multiple-granularity protocol, as it is in the two-phase locking protocol. These can be eliminated by using certain <a href="https://www.geeksforgeeks.org/deadlock-in-dbms/" rel="noopener" target="_blank">deadlock elimination techniques</a>.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

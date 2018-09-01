@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Lossless Decomposition</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Decomposition of a relation R into R1 and R2 is a lossless-join decomposition if at least one of the following functional dependencies are in F+ (Closure of functional dependencies)</p>
+<pre>    
+R1 ∩ R2 → R1
+   OR
+R1 ∩ R2 → R2
+</pre>
+<p><strong>Question 1:</strong><br/>
+Let R (A, B, C, D) be a relational schema with the following functional dependencies:</p>
+<pre>A → B, B → C,
+C → D and D → B. 
+
+The decomposition of R into 
+(A, B), (B, C), (B, D)
+</pre>
+<p><b>(A)</b> gives a lossless join, and is dependency preserving<br/>
+<b>(B)</b> gives a lossless join, but is not dependency preserving<br/>
+<b>(C)</b> does not give a lossless join, but is dependency preserving<br/>
+<b>(D)</b> does not give a lossless join and is not dependency preserving</p>
+<p>Refer <a href="http://quiz.geeksforgeeks.org/gate-gate-it-2008-question-59/">this</a> for solution.</p>
+<p><br/><br/>
+<strong>Question 2 </strong><br/>
+R(A,B,C,D) is a relation. Which of the following does not have a lossless join, dependency preserving BCNF decomposition?<br/>
+(A) A-&gt;B, B-&gt;CD<br/>
+(B) A-&gt;B, B-&gt;C, C-&gt;D<br/>
+(C) AB-&gt;C, C-&gt;AD<br/>
+(D) A -&gt;BCD</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>Refer <a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2001-question-48/">this</a> for solution.</p>
+<p>Below is the Quiz of previous year GATE Questions</p>
+<p><a href="http://quiz.geeksforgeeks.org/dbms/database-design-normal-forms/" target="_blank">http://quiz.geeksforgeeks.org/dbms/database-design-normal-forms/</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

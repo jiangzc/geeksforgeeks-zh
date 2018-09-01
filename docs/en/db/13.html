@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Enhanced ER Model</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisite –</b> <a href="https://www.geeksforgeeks.org/database-management-system-er-model/" target="_blank">Introduction of ER Model</a><br/>
+Enhanced entity-relationship diagrams are advanced database diagrams very similar to regular ER diagrams which represents requirements and complexities of complex databases.<br/>
+It is a diagrammatic technique for displaying the Sub Class and Super Class; Specialization and Generalization; Union or Category; Aggregation etc.</p>
+<p><b>Generalization and Specialization –</b><br/>
+These are very common relationship found in real entities. However this kind of relationships was added later as enhanced extension to classical ER model. <b>Specialized class</b> are often called as <b>subclass</b> while <b>generalized class</b> are called superclass, probably inspired by object oriented programming. A sub-class is best understood by <b>“IS-A analysis”</b>. Following statements hopefully makes some sense to your mind “Technician IS-A Employee”, “Laptop IS-A Computer”.</p>
+<p>An entity is specialized type/class of other entity. For example, Technician is special Employee in a university system Faculty is special class of Employee. We call this phenomenon as  generalization/specialization. In the example here Employee is generalized entity class while Technician and Faculty are specialized class of Employee.</p>
+<p><b>Example –</b> This example instance of <strong>“sub-class”</strong> relationships. Here we have four sets employee: Secretary, Technician, and Engineer. Employee is super-class of rest three set of individual sub-class is subset of Employee set.</p>
+<p><img src="../../../imgs/db/08203a8ddf85100e13d422a1947d0276.jpg" alt="Enhanced-ER-Model-Diagram" width="450" height="300" class="aligncenter size-medium"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<ul>
+<li>An entity belonging to a sub-class is related with some super-class entity. For instance emp no 1001 is a secretary, and his typing speed is 68. Emp no 1009 is engineer (sub-class) and her trade is “Electrical”, so forth.</li>
+<li>Sub-class entity “inherits” all attributes of super-class; for example employee 1001 will have attributes eno, name, salary, and typing speed.</li>
+</ul>
+<p><strong>Enhanced ER model of above example –</strong><br/>
+ <img src="../../../imgs/db/fe9ea945414a84c33ec1a47f75e7ffd5.jpg" alt="Enhanced-ER-Model-Diagram" width="588" height="374" class="aligncenter size-medium"/></p>
+<p><b>Constraints –</b> There are two types of constraints on “Sub-class” relationship.  </p>
+<ol>
+<li><b>Total or Partial –</b> A sub-classing relationship is total if every super-class entity is to be associated with some sub-class entity, otherwise partial. Sub-class “job type based employee category” is partial sub-classing – not necessary every employee is one of (secretary, engineer, and technician), i.e. union of these three types is proper subset of all employees. Whereas other sub-classing “Salaried Employee AND Hourly Employee” is total; union of entities from sub-classes is equal to total employee set, i.e. every employee necessarily has to be one of them.</li>
+<li><b>Overlapped or Disjoint – </b> If an entity from super-set can be related (can occur) in multiple sub-class sets, then it is overlapped sub-classing, otherwise disjoint. Both the examples: job-type based and salaries/hourly employee sub-classing are disjoint. </li>
+</ol>
+<p><strong>Note –</strong> These constraints are independent of each other: can be “overlapped and total or partial” or “disjoint and total or partial”. Also sub-classing has transitive property.</p>
+<p><b>Multiple Inheritance (sub-class of multiple super classes) –</b><br/>
+An entity can be sub-class of multiple entity types; such entities are sub-class of multiple entities and have multiple super-classes; Teaching Assistant can subclass of Employee and Student both. A faculty in a university system can be sub-class of Employee and Alumnus both. In multiple inheritance, attributes of sub-class is union of attributes of all super-classes.</p>
+<p><b>Union – </b></p>
+<ul>
+<li>Set of Libray Members is <strong>UNION</strong> of Faculty, Student, and Staff. A union relationship indicates either of type; for example: a library member is either Faculty or Staff or Student.</li>
+<li> Below are two examples shows how <strong>UNION</strong> can be depicted in ERD – Vehicle Owner is UNION of PERSON and Company, and RTO Registered Vehicle is UNION of Car and Truck. </li>
+</ul>
+<p><img src="../../../imgs/db/b92fbec7a6272b659e7bd7fe4c1db604.jpg" alt="Enhanced-ER-Model-Diagram" class="aligncenter size-medium wp-image-248737"/></p>
+<p>You might see some confusion in Sub-class and UNION; consider example in above figure Vehicle is super-class of CAR and Truck; this is very much the correct example of subclass as well but here use it different we are saying RTO Registered vehicle is UNION of Car and Vehicle, they do not inherit any attribute of Vehicle, attributes of car and truck are altogether independent set, where is in sub-classing situation car and truck would be inheriting the attribute of vehicle class. Below is Vehicle as modeled as class of Car and Truck.</p>
+<p><b>References –</b><br/>
+<a href="http://comet.lehman.cuny.edu/jung/cmp420758/chapter8.pdf" target="_blank">comet.lehman.cuny.edu</a><br/>
+<a href="http://www.cs.toronto.edu/~jm/2507S/Notes04/EER.pdf" target="_blank">cs.toronto.edu</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

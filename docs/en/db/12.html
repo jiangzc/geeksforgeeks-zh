@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">ER Model</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>ER Model is used to model the logical view of the system from data perspective which consists of these components:</p>
+<p><strong>Entity, Entity Type, Entity Set –</strong></p>
+<p>An Entity may be an object with a physical existence – a particular person, car, house, or employee – or it may be an object with a conceptual existence – a company, a job, or a university course.</p>
+<p>An Entity is an object of Entity Type and set of all entities is called as entity set. e.g.; E1 is an entity having Entity Type Student and set of all students is called Entity Set. In ER diagram, Entity Type is represented as:</p>
+<p><img class="aligncenter size-full wp-image-19633" src="../../../imgs/db/fdf0649e04c9c3123be31735fe6c5fd6.jpg"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><strong>Attribute(s):</strong><br/>
+Attributes are the <strong>properties which define the entity type</strong>. For example, Roll_No, Name, DOB, Age, Address, Mobile_No are the attributes which defines entity type Student. In ER diagram, attribute is represented by an oval.</p>
+<p><img class="aligncenter size-full wp-image-19634" src="../../../imgs/db/04254c32539d625d94ac18d66ff6b8fd.jpg" alt="er2" width="129" height="60"/></p>
+<ol>
+<li><strong>Key Attribute –</strong><br/>
+The attribute which <strong>uniquely identifies each entity</strong> in the entity set is called key attribute.For example, Roll_No will be unique for each student. In ER diagram, key attribute is represented by an oval with underlying lines. <img class="aligncenter size-full wp-image-19664" src="../../../imgs/db/2d967357f656b3f87534d3f6cc17285c.jpg" alt="rno" width="148" height="54"/><p></p>
+</li>
+<li><strong>Composite Attribute –</strong><br/>
+An attribute <strong>composed of many other attribute</strong> is called as composite attribute. For example, Address attribute of student Entity type consists of Street, City, State, and Country. In ER diagram, composite attribute is represented by an oval comprising of ovals.<p></p>
+<p><img class="aligncenter size-full wp-image-19655" src="../../../imgs/db/9a641f71e0d210460e2b79c94fa0bc4d.jpg" alt="er22" width="528" height="141"/>
+</p></li>
+<li><strong>Multivalued Attribute –</strong><br/>
+An attribute consisting <strong>more than one value</strong> for a given entity. For example, Phone_No (can be more than one for a given student). In ER diagram, multivalued attribute is represented by double oval.<p></p>
+<p><img class="aligncenter size-full wp-image-19666" src="../../../imgs/db/6afbb9aa895b16c45d8c925691322b38.jpg" alt="pno" width="168" height="60"/></p>
+</li>
+<li><strong>Derived Attribute –</strong><br/>
+An attribute which can be <strong>derived from other attributes</strong> of the entity type is known as derived attribute. e.g.; Age (can be derived from DOB). In ER diagram, derived attribute is represented by dashed oval.<p></p>
+<p><img class="aligncenter size-full wp-image-19638" src="../../../imgs/db/80e3cf13e90c291ffe7b749b024d4a73.jpg" alt="er6" width="163" height="64"/>The complete entity type<strong> Student</strong> with its attributes can be represented as:</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Database-Management-System-ER-Model-7.png"><img class="aligncenter size-full wp-image-20805" src="../../../imgs/db/d1c37ec0adbb21333151f99ebed8bedb.jpg" alt="Capture" width="635" height="404"/></a></p>
+</li>
+</ol>
+<p><strong>Relationship Type and Relationship Set:</strong><br/>
+A relationship type represents the <strong>association between entity types</strong>. For example,‘Enrolled in’ is a relationship type that exists between entity type Student and Course. In ER diagram, relationship type is represented by a diamond and connecting the entities with lines.</p>
+<p><img class="aligncenter size-full wp-image-19640" src="../../../imgs/db/8a17a03482dab091e7ea13428e21ef5d.jpg" alt="er8" width="591" height="77"/></p>
+<p>A set of relationships of same type is known as relationship set. The following relationship set depicts S1 is enrolled in C2, S2 is enrolled in C1 and S3 is enrolled in C3.</p>
+<p><img class="aligncenter size-full wp-image-19641" src="../../../imgs/db/3f9831c2e1b75c38ff09e54d84acf38e.jpg" alt="er9" width="421" height="182"/></p>
+<p><strong>Degree of a relationship set:</strong><br/>
+The number of different entity sets <strong>participating in a relationship</strong> set is called as degree of a relationship set.</p>
+<ol>
+<li><strong>Unary Relationship –</strong><br/>
+When there is <strong>only ONE entity set participating in a relation</strong>, the relationship is called as unary relationship. For example, one person is married to only one person.<p></p>
+<p><img class="aligncenter size-full wp-image-19642" src="../../../imgs/db/bd26a3539cd223048fd3195d64447ce7.jpg" alt="er10" width="349" height="97"/></p>
+</li>
+<li><strong>Binary Relationship –</strong><br/>
+When there are <strong>TWO entities set participating in a relation</strong>, the relationship is called as binary relationship.For example, Student is enrolled in Course.<p></p>
+<p><img class="aligncenter size-full wp-image-19643" src="../../../imgs/db/d08016583b89dcb6ad7ab98f7cd50073.jpg" alt="er11" width="550" height="143"/></p>
+</li>
+<li><strong>n-ary Relationship –</strong><br/>
+When there are n entities set participating in a relation, the relationship is called as n-ary relationship.
+</li>
+</ol>
+<p><strong>Cardinality:</strong><br/>
+The <strong>number of times an entity of an entity set participates in a relationship</strong> set is known as cardinality. Cardinality can be of different types:</p>
+<ol>
+<li><strong>One to one –</strong> When each entity in each entity set can take part <strong>only once in the relationship</strong>, the cardinality is one to one. Let us assume that a male can marry to one female and a female can marry to one male. So the relationship will be one to one.
+<p><img class="aligncenter size-full wp-image-19652" src="../../../imgs/db/f8aaa07432f4c744156f2b003bfcd538.jpg" alt="er20" width="525" height="98"/></p>
+<p>Using Sets, it can be represented as:</p>
+<p><img class="aligncenter size-full wp-image-19644" src="../../../imgs/db/345fc3866fbb7fb71894f5df624cc25d.jpg" alt="er12" width="429" height="179"/></p>
+</li>
+<li><strong>Many to one –</strong> When entities in one entity set <strong>can take part only once in the relationship set and entities in other entity set can take part more than once in the relationship set,</strong> cardinality is many to one. Let us assume that a student can take only one course but one course can be taken by many students. So the cardinality will be n to 1. It means that for one course there can be n students but for one student, there will be only one course.
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Database-Management-System-ER-Model-14.png"><img class="aligncenter size-full wp-image-20721" src="../../../imgs/db/e406f9b66bfcd3e67ee29c113049e03b.jpg" alt="ernew" width="538" height="138"/></a><span style="line-height: 1.5">Using Sets, it can be represented as:</span></p>
+<p><img class="aligncenter size-full wp-image-19646" src="../../../imgs/db/c006d36b781265ba78f7765a1452ddd7.jpg" alt="er14" width="383" height="201"/></p>
+<p>In this case, each student is taking only 1 course but 1 course has been taken by many students.</p>
+</li>
+<li><strong>Many to many –</strong> When entities in all entity sets can <strong>take part more than once in the relationship</strong> cardinality is many to many. Let us assume that a student can take more than one course and one course can be taken by many students. So the relationship will be many to many.
+<p><img class="aligncenter size-full wp-image-19662" src="../../../imgs/db/92dddc3e4346b148681850b607127070.jpg" alt="n2" width="563" height="112"/></p>
+<p>Using sets, it can be represented as:</p>
+<p><img class="aligncenter size-full wp-image-19648" src="../../../imgs/db/7258679b924d6b7b1c1588e860dd89f3.jpg" alt="er16" width="371" height="199"/></p>
+<p>In this example, student S1 is enrolled in C1 and C3 and Course C3 is enrolled by S1, S3 and S4. So it is many to many relationships.
+</p></li>
+</ol>
+<p><strong>Participation Constraint:</strong><br/>
+Participation Constraint is applied on the entity participating in the relationship set.</p>
+<ol>
+<li><strong>Total Participation –</strong> Each entity in the entity set<strong> must participate</strong> in the relationship. If each student must enroll in a course, the participation of student will be total. Total participation is shown by double line in ER diagram.
+</li>
+<li><strong>Partial Participation –</strong> The entity in the entity set <strong>may or may NOT participat</strong>e in the relationship. If some courses are not enrolled by any of the student, the participation of course will be partial.
+<p>The diagram depicts the ‘Enrolled in’ relationship set with Student Entity set having total participation and Course Entity set having partial participation.</p>
+<p><img class="aligncenter size-full wp-image-19667" src="../../../imgs/db/d0b17a6abc1fa71842e715e25b711001.jpg" alt="Capture" width="503" height="100"/></p>
+<p>Using set, it can be represented as,</p>
+<p><img src="../../../imgs/db/f53e7fc0a23dc39152feb957d30ac908.jpg" alt="33333" width="449" height="221" class="aligncenter size-full wp-image-200308" srcset="https://www.geeksforgeeks.org/wp-content/uploads/33333-1.png 449w, https://www.geeksforgeeks.org/wp-content/uploads/33333-1-300x148.png 300w" sizes="(max-width: 449px) 100vw, 449px"/></p>
+<p>Every student in Student Entity set is participating in relationship but there exists a course C4 which is not taking part in the relationship.
+</p></li>
+</ol>
+<p><strong>Weak Entity Type and Identifying Relationship:</strong><br/>
+As discussed before, an entity type has a key attribute which uniquely identifies each entity in the entity set. But there exists <strong>some entity type for which key attribute can’t be defined</strong>. These are called Weak Entity type.</p>
+<p>For example, A company may store the information of dependants (Parents, Children, Spouse) of an Employee. But the dependents don’t have existence without the employee. So Dependent will be weak entity type and Employee will be Identifying Entity type for Dependant.</p>
+<p>A weak entity type is represented by a double rectangle. The participation of weak entity type is always total. The relationship between weak entity type and its identifying strong entity type is called identifying relationship and it is represented by double diamond.</p>
+<p><img class="aligncenter size-full wp-image-19663" src="../../../imgs/db/9e0ab873b9350ba45a17d4ae26c03330.jpg" alt="n3" width="452" height="89"/></p>
+<p>&#160;</p>
+<p><strong><a href="http://quiz.geeksforgeeks.org/dbms/er-and-relational-models/" target="_blank">Quiz on ER-MODEL</a></strong></p>
+<p>&#160;</p>
+<p>Article Contributed by Sonal Tuteja. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above</p>
+<p>&#160;</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

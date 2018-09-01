@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Practice questions on B and B+ Trees</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In this article, we will discuss different types of problems based on B and B+ trees. Before understanding this article, you should understand basics of B and B+ trees (see: <a href="https://www.geeksforgeeks.org/b-tree-set-1-introduction-2/" rel="noopener" target="_blank">Introduction</a>, <a href="https://www.geeksforgeeks.org/b-tree-set-1-insert-2/" rel="noopener" target="_blank">Insert</a>, <a href="https://www.geeksforgeeks.org/b-tree-set-3delete/" rel="noopener" target="_blank">Delete</a>). </p>
+<p>These are the types of questions asked in GATE based on B and B+ trees.</p>
+<p><b>Type 1. Based on order and number of keys in B and B+ tree –</b><br/>
+These are the few key points related to order and number of keys:</p>
+<ul>
+<li>A B/B+ tree with order p has maximum p pointers and hence maximum p children.</li>
+<li>A B/B+ tree with order p has minimum ceil(p/2) pointers and hence minimum ceil(p/2) children.</li>
+<li>A B/B+ tree with order p has maximum (p – 1) and minimum ceil(p/2) – 1 keys.</li>
+</ul>
+<p><b>Que – 1.</b> Consider a B+-tree in which the maximum number of keys in a node is 5. What is the minimum number of keys in any non-root node? (GATE CS 2010)<br/>
+(A) 1<br/>
+(B) 2<br/>
+(C) 3<br/>
+(D) 4</p>
+<p><b>Solution:</b>  Assuming order of B+ tree as p, maximum number of keys will be (p – 1). As it is given that,<br/>
+p – 1 = 5 =&gt; p = 6<br/>
+Therefore, minimum number of keys:<br/>
+ceil(p/2) – 1 = 2 </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><b>Type 2. Based on inserting a key in B/B+ tree –</b><br/>
+Given the order of B/B+ tree and keys to be inserted, it can be asked to find resultant B/B+ tree or height of B/B+ tree. </p>
+<p><b>Que – 2.</b> Consider the following 2-3-4 tree (i.e., B-tree with a minimum degree of two) in which each data item is a letter. The usual alphabetical ordering of letters is used in constructing the tree.<br/>
+<img src="../../../imgs/db/24c2908003a8a170ddb0d09fce643e3b.jpg" alt="1" width="381" height="151" class="aligncenter size-full wp-image-176936" srcset="https://www.geeksforgeeks.org/wp-content/uploads/1-18.png 381w, https://www.geeksforgeeks.org/wp-content/uploads/1-18-300x119.png 300w" sizes="(max-width: 381px) 100vw, 381px"/></p>
+<p>What is the result of inserting G in the above tree?<br/>
+(A)<br/>
+<img src="../../../imgs/db/f3e2d152417c1562e199d0e11c548625.jpg" alt="2" width="461" height="261" class="alignnone size-full wp-image-176937" srcset="https://www.geeksforgeeks.org/wp-content/uploads/2-10.png 461w, https://www.geeksforgeeks.org/wp-content/uploads/2-10-300x170.png 300w" sizes="(max-width: 461px) 100vw, 461px"/><br/>
+(B)<br/>
+<img src="../../../imgs/db/17d13560867cc2ead0e78715d8b36610.jpg" alt="3" width="461" height="261" class="alignnone size-full wp-image-176938" srcset="https://www.geeksforgeeks.org/wp-content/uploads/3-8.png 461w, https://www.geeksforgeeks.org/wp-content/uploads/3-8-300x170.png 300w" sizes="(max-width: 461px) 100vw, 461px"/><br/>
+(C)<br/>
+<img src="../../../imgs/db/0157db2acaf569af0626f240050f37f6.jpg" alt="4" width="381" height="151" class="alignnone size-full wp-image-176939" srcset="https://www.geeksforgeeks.org/wp-content/uploads/4-7.png 381w, https://www.geeksforgeeks.org/wp-content/uploads/4-7-300x119.png 300w" sizes="(max-width: 381px) 100vw, 381px"/><br/>
+(D) None</p>
+<p><b>Solution:</b> Since the given B tree has minimum degree as 2, the maximum degree or order will be 2*2 = 4. Therefore, it will have at most 4 pointers or 3 keys.<br/>
+We will traverse from root till leaf node where G is to be inserted. As G is less than L, it will be inserted in leaf node with elements BHI. After insertion of G, the leaf node in sorted order will be BGHI which leads to overflow. It will be split into two parts BG and I and middle element H will be sent to its parent node as: </p>
+<p> <img src="../../../imgs/db/b8f0d49b9640d946a47e411d4a7db6c7.jpg" alt="5" width="461" height="151" class="aligncenter size-full wp-image-176941" srcset="https://www.geeksforgeeks.org/wp-content/uploads/5-4.png 461w, https://www.geeksforgeeks.org/wp-content/uploads/5-4-300x98.png 300w" sizes="(max-width: 461px) 100vw, 461px"/></p>
+<p>Now root node with keys H, L, P, U is overflowed which leads to splitting of root node into two parts HL and U and middle element P will be root node which matches option B.<br/>
+Note: </p>
+<ul>
+<li>There occur 2 splits for insertion of G.</li>
+<li>The height of B tree is 1 (path from root node to leaf node) before insertion of G. After insertion of G, the height of B tree reaches 2.</li>
+</ul>
+<p><b>Type 3. Based on searching a key in B/B+ tree –</b><br/>
+These are the key points related to searching in B/B+ trees:</p>
+<ul>
+<li>For searching a key in B tree, we start from root node and traverse until the key is found or leaf node is reached.</li>
+<li>For searching a key in B+ tree, we start from root node and traverse until leaf node is reached as every key is present in leaf nodes. Also, leaf nodes are connected to each other which help in faster access of data for range queries.</li>
+</ul>
+<p><b>Que – 3.</b> With reference to the B+ tree index of order 1 shown below, the minimum number of nodes (including the root node) that must be fetched in order to satisfy the following query: “Get all records with a search key greater than or equal to 7 and less than 15” is ____. (GATE-CS-2015)<br/>
+ <img src="../../../imgs/db/7a5e5a6d599e2497ba101c94b402e784.jpg" alt="6" width="536" height="196" class="aligncenter size-full wp-image-176942" srcset="https://www.geeksforgeeks.org/wp-content/uploads/6-3.png 536w, https://www.geeksforgeeks.org/wp-content/uploads/6-3-300x110.png 300w" sizes="(max-width: 536px) 100vw, 536px"/></p>
+<p>(A) 4<br/>
+(B) 5<br/>
+(C) 6<br/>
+(D) 7</p>
+<p><b>Solution:</b> First we will search for key equal to 7. For finding 7, we will start from root node and move to node with key 5 and then move to leaf node with keys 5 and 7. So for searching 7, we need to access 3 nodes. </p>
+<p>Once 7 is searched, we can go to next leaf node containing keys 9 and 11. From this, we can go to leaf node with keys 13 and 15. As we want keys less than 15, we can stop here. Therefore total nodes accessed = 3(for searching 7) + 2(for finding keys less than 12) = 5. </p>
+<p> <img src="../../../imgs/db/6b9c8870136e4352da45c1d2fdd073ab.jpg" alt="7" width="536" height="198" class="aligncenter size-full wp-image-176943" srcset="https://www.geeksforgeeks.org/wp-content/uploads/7-2.png 536w, https://www.geeksforgeeks.org/wp-content/uploads/7-2-300x111.png 300w" sizes="(max-width: 536px) 100vw, 536px"/></p>
+<p>Note: If we use B tree, then we need to search 7, 8, 9, 10, 11 individually due of which node access will be higher. Therefore, B+ tee is preferred for range queries.</p>
+<p><b>Type 4. Count of node splitting in B/B+ tree –</b></p>
+<p><b>Que – 4.</b>  A B-tree of order 4 is built from scratch by 10 successive insertions. What is the maximum number of node splitting operations that may take place? (GATE CS 2008)<br/>
+(A) 3<br/>
+(B) 4<br/>
+(C) 5<br/>
+(D) 6</p>
+<p><b>Solution:</b> A B tree having order 4 can have maximum 3 keys.</p>
+<p><img src="../../../imgs/db/6232a6891a338ddb1e5d93ae58a82f6e.jpg" alt="8" width="651" height="465" class="aligncenter size-full wp-image-176944" srcset="https://www.geeksforgeeks.org/wp-content/uploads/8-1.png 651w, https://www.geeksforgeeks.org/wp-content/uploads/8-1-300x214.png 300w" sizes="(max-width: 651px) 100vw, 651px"/></p>
+<p><img src="../../../imgs/db/4c9a4f120ca25188c8bb3ae0af739a82.jpg" alt="9" width="691" height="474" class="aligncenter size-full wp-image-176945" srcset="https://www.geeksforgeeks.org/wp-content/uploads/9-1.png 691w, https://www.geeksforgeeks.org/wp-content/uploads/9-1-300x206.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/9-1-660x453.png 660w" sizes="(max-width: 691px) 100vw, 691px"/></p>
+<p>First 3 insertions will not have any split as shown in Figure (a).<br/>
+On inserting 4th element, there will be 1 split as shown in Figure (b).<br/>
+On inserting 5th element, there will be no split but we will insert in that leaf node having maximum element to produce more splits in further insertions as shown in Figure (c).<br/>
+On inserting 6th element, there will be 1 split as shown in Figure (d).<br/>
+On inserting 7th element, there will be no split but we will insert in that leaf node having maximum element to produce more splits in further insertions as shown in Figure (e).<br/>
+On inserting 8th element, there will be 1 split as shown in Figure (f).<br/>
+On inserting 9th element, there will be no split but we will insert in that leaf node having maximum element to produce more splits in further insertions as shown in Figure (g).<br/>
+On inserting 10th element, there will be 2 split as shown in Figure (h).<br/>
+Total number of splits = 5.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><div>
+
+</div>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

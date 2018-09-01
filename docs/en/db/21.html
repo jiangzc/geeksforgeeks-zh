@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Number of possible Superkeys</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="http://www.geeksforgeeks.org/dbms-relational-model-introduction-and-codd-rules/" rel="noopener" target="_blank">Relational Model Introduction and Codd Rules</a></p>
+<p>Any subset of attributes of a table that can uniquely identify all the tuples of that table is known as a <b>Super key</b>. Its different from the primary and candidate keys in the sense that only the minimal super keys are the candidate/primary keys. </p>
+<p>This means that from a super key when we <b>remove</b> all the attributes that are <b>unnecessary</b> for its uniqueness, only then it <b>becomes a primary/candidate</b> key. So, in essence all primary/candidate keys are super keys but not all super keys are primary/candidate keys. By the formal definition of a Relation(Table) we know that the tuples of a relation are all unique. So the set of all attributes itself is a super key.</p>
+<p>Counting the possible number of super keys for a table is a common question for <strong>GATE</strong>. The examples below will demonstrate all possible types of questions on this topic.</p>
+<ul>
+<li><strong>Example-1 :</strong> Let a Relation R have attributes {a1,a2,a3} &amp; a1 is the candidate key. Then how many super keys are possible?
+<p>Here, any superset of a1 is the super key.<br/>
+Super keys are = {a1, a1 a2, a1 a3, a1 a2 a3}<br/>
+Thus we see that 4 Super keys are possible in this case.</p><br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>In general, if we have ‘N’ attributes with one candidate key then the number of possible super keys are 2^(N-1).
+</p></li>
+<li><strong>Example-2 :</strong>  Let a Relation R have attributes {a1, a2, a3,…,an}. Find Super key of R.<br/>
+Maximum Super keys = 2^{n} – 1.<br/>
+If each attribute of relation is candidate key.<p></p>
+</li>
+<li><strong>Example-3 :</strong> Let a Relation R have attributes {a1, a2, a3,…,an} and the candidate key is “a1 a2 a3” then the possible number of super keys?
+<p>Following the previous formula we have 3 attributes instead of one. So, here the number of possible super keys are 2^(N-3).
+</p></li>
+<li><strong>Example-4 :</strong> Let a Relation R have attributes {a1, a2, a3,…,an} and the candidate keys are “a1”, “a2” then the possible number of super keys?
+<p>This problem now is slightly different since we now have two different candidate keys instead of only one. Tackling problems like these is shown in the diagram below:</p>
+<p><img src="../../../imgs/db/85fbb9aca549d60203a7c6661f33a71a.jpg" width="241" height="161" alt="" class="aligncenter size-full"/></p>
+<p>→ |A1 ∪ A2| = |A1| + |A2| – |A1 ∩ A2|</p>
+<p>= (superkeys possible with candidate key A1) + (superkeys possible with candidate key A2)<br/>
+                                                  – (common superkeys from both A1 and A2)</p>
+<p>= 2^{n-1} + 2^{n-1} – 2^{n-2}</p>
+</li>
+<li><strong>Example-5 :</strong> Let a Relation R have attributes {a1, a2, a3,…,an} and the candidate keys are “a1”, “a2 a3” then the possible number of super keys?
+<p>Super keys of(a1) + Super keys of(a2 a3) – Super keys of(a1 a2 a3)<br/>
+=&gt; 2^(n – 1) + 2^(n – 2) – 2^(n – 3)</p>
+</li>
+<li><strong>Example-6 :</strong> Let a Relation R have attributes {a1, a2, a3,…,an} and the candidate keys are “a1 a2”, “a3 a4” then the possible number of super keys?
+<p>Super keys of(a1 a2) + Super keys of(a3 a4) – Super keys of(a1 a2 a3 a4)<br/>
+=&gt; 2^(n – 2) + 2^(n – 2) – 2^(n – 4)</p>
+</li>
+<li><strong>Example-7 :</strong> Let a Relation R have attributes {a1, a2, a3,…,an} and the candidate keys are “a1 a2”, “a1 a3” then the possible number of super keys?
+<p>Super keys of(a1 a2) + Super keys of(a1 a3) – Super keys of(a1 a2 a3)<br/>
+=&gt; 2^(n – 2) + 2^(n – 2) – 2^(n – 3)</p>
+</li>
+<li><strong>Example-8 :</strong> Let a Relation R have attributes {a1, a2, a3,…,an} and the candidate keys are “a1”, “a2”, “a3” then the possible number of super keys?
+<p>In this question we have 3 different candidate keys. Tackling problems like these is shown in the diagram below.</p>
+<p><img src="../../../imgs/db/e063d4543171cef9495dd084fc63fcb2.jpg" width="386" height="331" alt="" class="aligncenter size-full"/></p>
+<p>→ |A1 ∪ A2 ∪ A3| = |A1| + |A2| + |A1| – |A1 ∩ A2| – |A1 ∩ A3| – |A2 ∩ A3| + |A1 ∩ A2 ∩ A3|</p>
+<p>= (superkeys possible with candidate key A1) + (superkeys possible with candidate key A2) + (superkeys possible with candidate key A3) – (common superkeys from both A1 and A2) – (common superkeys from both A1 and A3) – (common superkeys from both A2 and A3) + (common superkeys from both A1, A2 and A3)</p>
+<p>= 2^{n-1} + 2^{n-1} + 2^{n-1} – 2^{n-2} – 2^{n-2} – 2^{n-2} + 2^{n-3}</p>
+</li>
+<li>
+<p><strong>Example-9 :</strong> A relation R(A, B, C, D, E, F, G, H)and set of functional dependencies are<br/>
+CH-&gt;G,<br/>
+A-&gt;BC,<br/>
+B-&gt;CFH,<br/>
+E-&gt;A,<br/>
+F-&gt;EG<br/>
+Then how many possible super keys are present ? </p>
+<p><strong>Step 1:-</strong>First of all we have to find what the candidate keys are :-<br/>
+as we can see in given functional dependency D is missing but in relation D is given so D must be a prime attribute of Candidate key.</p>
+<p><img src="../../../imgs/db/03842afe528a5c0f55dcaa627c2580af.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(A)^+" title="Rendered by QuickLaTeX.com" height="30" width="53" style="vertical-align: -7px;"/>=<img src="../../../imgs/db/606bc8ec3018695f5a248df1c1ea0e66.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(E)^+" title="Rendered by QuickLaTeX.com" height="30" width="54" style="vertical-align: -7px;"/>=<img src="../../../imgs/db/a4c0c328727b3611e5831aa9b4e02ab7.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(B)^+" title="Rendered by QuickLaTeX.com" height="30" width="55" style="vertical-align: -7px;"/>=<img src="../../../imgs/db/3967a5dadf7adbe35514f38c0027400c.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(F)^+" title="Rendered by QuickLaTeX.com" height="30" width="54" style="vertical-align: -7px;"/> = all attributes of a relation except D<br/>
+so Ck’s are = AD,BD,ED,FD</p>
+<p><strong>Step 2:-</strong>Find superkeys due to single candidate key<br/>
+there is a two possibility of attribute either we select or not hence there will be 2 chances so,<br/>
+A_ _D_ _ _ _ = _ B_ D_ _ _ _ = _ _ _ DE _ _ _ =_ _ _ D_F_ _=<img src="../../../imgs/db/997b8d2ace9734bbc451e85988ec51cf.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(2)^6" title="Rendered by QuickLaTeX.com" height="31" width="41" style="vertical-align: -7px;"/> </p>
+<p><strong>Step 3:-</strong>Find superkeys due to combination of two CK’s<br/>
+so,<br/>
+n(AD ∩ BD)=n(AD ∩ ED)=n(AD ∩ FD)=n(BD ∩ ED)=n(BD ∩ FD)=n(ED ∩ FD) = <img src="../../../imgs/db/3e20fa1c675245f5a997fea84fe8e925.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(2)^5" title="Rendered by QuickLaTeX.com" height="31" width="41" style="vertical-align: -7px;"/></p>
+<p><strong>Step 4:-</strong>Find supekeys due to combination of three CK’s<br/>
+so,<br/>
+n(AD ∩ BD ∩ ED)=n(AD ∩ ED ∩ FD)=n(ED ∩ BD ∩ FD)=n(BD ∩ FD ∩ AD)=<img src="../../../imgs/db/6b167221aca952bf524a0e97fd54993d.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(2)^4" title="Rendered by QuickLaTeX.com" height="31" width="41" style="vertical-align: -7px;"/> </p>
+<p><strong>Step 5:-</strong>Find superkeys due to all so,<br/>
+n(AD ∩ BD ∩ ED ∩ FD)=AB_DEF_ _ =<img src="../../../imgs/db/73a168c76eba5e647d18b46a19b9bfda.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(2)^3" title="Rendered by QuickLaTeX.com" height="31" width="41" style="vertical-align: -7px;"/></p>
+<p>so according to inclusion- exclusion principle :-<br/>
+|W∪X∪Y∪Z|=|W|+|X|+|Y|+|Z|-|W∩X|-|W∩Y|-|W∩Z|-|X∩Y|-|X∩Z|-|Y∩Z|+|W∩X∩Y|+|W∩X∩Z|+|W∩Y∩Z|+|X∩Y∩Z|-|W∩X∩Y∩Z| </p>
+<p>#Supekeys = 4*(<img src="../../../imgs/db/997b8d2ace9734bbc451e85988ec51cf.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(2)^6" title="Rendered by QuickLaTeX.com" height="31" width="41" style="vertical-align: -7px;"/>)-(6*<img src="../../../imgs/db/3e20fa1c675245f5a997fea84fe8e925.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(2)^5" title="Rendered by QuickLaTeX.com" height="31" width="41" style="vertical-align: -7px;"/>)+4*(<img src="../../../imgs/db/6b167221aca952bf524a0e97fd54993d.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(2)^4" title="Rendered by QuickLaTeX.com" height="31" width="41" style="vertical-align: -7px;"/>)-<img src="../../../imgs/db/73a168c76eba5e647d18b46a19b9bfda.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="(2)^3" title="Rendered by QuickLaTeX.com" height="31" width="41" style="vertical-align: -7px;"/> = 120</p>
+<p>So number of superkeys are 120. This explanation is contributed by YaduvanshiRishi.
+</p></li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">How to store a password in database?</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Most of the web applications require their users to authenticate themselves by asking them username and password. They compare the user supplied credentials with the data stored in their database and if the credentials match, the user is granted access. Sounds good! But what will happen if the database in which the website is storing your passwords gets compromised?<br/>
+This article covers various techniques of storing passwords in the database.</p>
+<p>According to <a href="https://nakedsecurity.sophos.com/2013/04/23/users-same-password-most-websites/" target="_blank">naked security</a>, 55% of the net users use the same password for most of the websites! It implies that if the website storing your password in plain text gets compromised, hacker is not only able to gain access of your account on that website but all your social media, email, forums etc accounts in which you are using the same password!<br/>
+<br/>
+Well, many must be wondering that if the database is exposed to the hacker then what can be done? The hacker has access to all the information. WRONG!! There are many ways through which the process of retrieving password from the database can be made cumbersome for the hacker. Even then the developers tend to ignore the basic guidelines and store the passwords in plain text.There are over 30% websites which store your passwords in plain text (including some reputed sites also). If the website is storing your password in plain text then no matter how strong password you choose, you are not safe!<br/>
+<br/>
+<strong><br/>
+<em>Storing plain text passwords in the database is a sin.</em><br/>
+</strong><br/>
+<br/>
+One might also think that if not plain text then we must encrypt the password and then store. It is also a terrible idea. Encryption functions provide one-one mapping between input and output and they are always reversible. If the hacker gets the key, he will be able to decrypt the passwords. The better way would be to use a one way cryptographic hash function. Hash function provides a many-one mapping between input and output and it is practically impossible to reverse a output. A good cryptographic hash function has lesser number of <a href="https://en.wikipedia.org/wiki/Collision_(computer_science)" target="_blank">Collisions</a> (i.e for different input values to the function it is difficult to get the same output). Collisions cannot be completely avoided because of <a href="https://en.wikipedia.org/wiki/Pigeonhole_principle" target="_blank">pigeonhole principle</a>. For hashing passwords we can assume that the hash function will generate unique output i.e for no two different passwords we will get a same hash value.<br/>
+<br/>
+Some of the popular cryptographic hash functions are <a href="https://en.wikipedia.org/wiki/MD5" target="_blank">MD5</a> and <a href="https://en.wikipedia.org/wiki/SHA-1" target="_blank">SHA1</a>. Instead of storing plain text password in the database one way is to store the hash of the password. You might be thinking that if we cannot get the actual password back from the hash then how are we going to verify the credentials that the user entered? It’s simple, apply the same hash function on the password which user entered and then compare it with the hash stored in the database. If both hashes match then the user is authenticated (since hash of same input will give same output). Now if the attacker is able to get database access, he will be only able to view the hashed output and not the actual password.<br/>
+<br/>
+<strong><em>Using cryptographic hash function is better than storing plain text password</em>.</strong><br/>
+<br/>
+Hackers are smart guys and once they came to know that developers are storing hashed passwords, they pre-computed hash of large number of words (from a popular word list or dictionary words). They created a table of words and their corresponding hashes. This table is known as <a href="https://en.wikipedia.org/wiki/Rainbow_table" target="_blank">Rainbow Table</a> and it is readily available online. They can use this table to reverse lookup the actual password by comparing the hashes obtained from the database. Hence it is very important to have a <strong>strong password</strong> since the possibility of your password appearing in the word list becomes less.</p>
+<p><img src="../../../imgs/db/98c24e6ea4d10dee10341c83454b6d25.jpg" alt="password-rainbow-table" class="alignnone size-full wp-image-170780"/></p>
+<p>
+Simply storing the hash of a password is not going to help anymore. Processing power has increased drastically with the introduction of GPUs and CUDA, OpenCL libraries. A fast GPU can generate millions of MD5/SHA1 hashes in one second. Hence a hacker can easily generate large number of hashes by brute-forcing various possible combinations and can compare it with the hashes stored in the database to extract the actual password.<br/>
+</p>
+<p><strong>Even hashed passwords are not secure! Surprised?<br/>
+</strong><br/>
+<br/>
+Don’t loose hope! There is still something that developers can do to keep your passwords away from prying eyes of the hackers. Make the passwords delicious by adding some salt to them! Yeah, right..! Add a <a href="https://en.wikipedia.org/wiki/Salt_(cryptography)" target="_blank">salt</a>. A salt is random data that is concatenated with your password before sending it as the input of the hashing function.<br/>
+<br/>
+<strong>For example</strong> :<br/>
+If your password is <em>abc</em> and the salt is <em>!ZaP0#8</em>, the result of <strong><em>hashFunction(‘abc!ZaP0#8’)</em></strong> will be stored in the database instead of <strong><em>hashFunction(‘abc’)</em></strong>.<br/>
+Hence the rainbow table attacks won’t be effective now as the probability that rainbow table contains hash of <em>‘abc!ZaP0#8’</em> is meager (because generally rainbow tables are constructed from common words, dictionary words etc). Salt is not stored in the database and only present in the application configuration file which is not accessible to outer world. Gaining access to the source files is difficult than gaining access to the database.<br/>
+<br/>
+The above salting method is static. We have one fixed salt for all the passwords. To authenticate the user, first concatenate the fixed salt to the user supplied input (password) and then pass the value to the hashing function and compare it with the value stored in the database. However this approach is still vulnerable to brute-force and if the attacker is able to get the static salt he can use the old attack methodology by concatenating the salt in every word.<br/>
+<br/>
+A better approach would be to use a dynamic salt. For each user a new salt is generated by cryptographically strong random string generator. The password entered by user is concatenated with a random generated salt as well as a static salt. The concatenated string is passed as the input of hashing function. The result obtained is stored in database. Dynamic salt is required to be stored in the database since it is different for different users. When the user is to be authenticated, first the value of dynamic salt for that user is fetched from the database, it is concatenated with user supplied input and the static salt. The result is compared with the hash stored in the database.<br/>
+<br/>
+If the database is compromised the hacker will not only get your password hashes but also the dynamic salt used. You might be wondering then what is the advantage of dynamic salt over static salt if attacker has dynamic salt? Even if the attacker has dynamic salt he needs to create a new hash-table (or rainbow table) for each and every user present in the database (as per dynamic salt). This is a lot more expensive operation than creating just one table for all the users.<br/>
+<br/>
+The above approach is quite good to slow down a hacker. However it is recommended to use algorithms like <em>bcrypt</em> and <em>scrypt</em> instead of MD5/SHA1. Bcrypt is a hashing algorithm based on Blowfish. It requires you to specify a cost/work factor. The work factor makes the overall process slower and hence time taken to generate hash-table would increase multiple times.<br/>
+<br/>
+<strong>References : </strong><br/>
+<a href="https://nakedsecurity.sophos.com/2013/11/20/serious-security-how-to-store-your-users-passwords-safely/" target="_blank">https://nakedsecurity.sophos.com/2013/11/20/serious-security-how-to-store-your-users-passwords-safely/</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

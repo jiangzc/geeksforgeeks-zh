@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">ACID Properties in DBMS</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>A transaction is a single logical unit of work which accesses and possibly modifies the contents of a database. Transactions access data using read and write operations.<br/>
+In order to maintain consistency in a database, before and after transaction, certain properties are followed. These are called <strong>ACID</strong> properties.</p>
+<p><strong>Atomicity</strong><br/>
+By this, we mean that either the entire transaction takes place at once or doesn’t happen at all. There is no midway i.e. transactions do not occur partially. Each transaction is considered as one unit and either runs to completion or is not executed at all. It involves following two operations.<br/>
+  —<strong>Abort</strong>: If a transaction aborts, changes made to database are not visible.<br/>
+  —<strong>Commit</strong>: If a transaction commits, changes made are visible.<br/>
+Atomicity is also known as the ‘All or nothing rule’.<br/>
+Consider the following transaction <strong>T</strong> consisting of <strong>T1</strong> and <strong>T2</strong>: Transfer of 100 from account <strong>X</strong> to account <strong>Y</strong>.</p>
+<p><img src="../../../imgs/db/8655989a0a7822d3e1c419407cec9fb9.jpg" width="356" height="146" alt="" class="aligncenter size-full"/></p>
+<p>If the transaction fails after completion of <strong>T1</strong>  but before completion of <strong>T2</strong>.( say, after <strong>write(X)</strong> but before <strong>write(Y)</strong>), then amount has been deducted from <strong>X</strong> but not added to <strong>Y</strong>. This results in an inconsistent database state. Therefore, the transaction must be executed in entirety in order to ensure correctness of database state.</p>
+<p>&#160;<br/>
+<strong>Consistency</strong><br/>
+This means that integrity constraints must be maintained so that the database is consistent before and after the transaction. It refers to correctness of a database. Referring to the example above,<br/>
+The total amount before and after the transaction must be maintained.<br/>
+Total <strong>before T</strong> occurs = <strong>500 + 200 = 700</strong>.<br/>
+Total <strong>after  T occurs</strong> = <strong>400 + 300 = 700</strong>.<br/>
+Therefore, database is <strong>consistent</strong>. Inconsistency occurs in case <strong>T1</strong> completes but <strong>T2</strong> fails. As a result T is incomplete.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>&#160;<br/>
+<strong>Isolation</strong><br/>
+This property ensures that multiple transactions can occur concurrently without leading to inconsistency of database state. Transactions occur independently without interference. Changes occurring in a particular transaction will not be visible to any other transaction until that particular change in that transaction is written to memory or has been committed. This property ensures that the execution of transactions concurrently will result in a state that is equivalent to a state achieved these were executed serially in some order.<br/>
+Let <strong>X</strong>= 500, <strong>Y</strong> = 500.<br/>
+Consider two transactions <strong>T</strong> and <strong> T”.</strong></p>
+<p><img src="../../../imgs/db/02852aa5bf03ac9091826f996df17407.jpg" width="313" height="143" alt="" class="aligncenter size-full"/></p>
+<p>Suppose <strong>T</strong>  has been executed till <strong>Read (Y)</strong> and then <strong>T’’</strong> starts. As a result , interleaving of operations takes place due to which <strong>T’’</strong> reads correct value of <strong>X</strong> but incorrect value of <strong>Y</strong> and sum computed by<br/>
+<strong>T’’: (X+Y = 50, 000+500=50, 500)</strong><br/>
+is thus not consistent with the sum at end of transaction: <strong><br/>
+T: (X+Y =  50, 000 + 450 = 50, 450)</strong>.<br/>
+This results in database inconsistency, due to a loss of 50 units. Hence, transactions must take place in isolation and changes should be visible only after a they have been made to the main memory.</p>
+<p>&#160;<br/>
+<strong>Durability:</strong><br/>
+This property ensures that once the transaction has completed execution, the updates and modifications to the database are stored in and written to disk and they persist even is system failure occurs. These updates now become permanent and are stored in a non-volatile memory. The effects of the transaction, thus, are never lost.</p>
+<p>The <strong>ACID</strong> properties, in totality, provide a mechanism to ensure correctness and consistency of a database in a way such that each transaction is a group of operations that acts a single unit, produces consistent results, acts in isolation from other operations and updates that it makes are durably stored.</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

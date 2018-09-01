@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Dependency Preserving Decomposition</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Dependency Preservation</strong></p>
+<p>A Decomposition D = { R1, R2, R3….Rn } of R is dependency preserving wrt a set F of Functional dependency if<span id="more-142373"></span></p>
+<pre><strong>(F1 ∪ F2 ∪ … ∪ Fm)+ = F+.</strong>
+Consider a relation R
+R ---&gt; F{...with some functional dependency(FD)....}
+
+R is decomposed or divided into R1 with FD { f1 } and R2 with { f2 }, then
+there can be three cases:
+
+<strong>f1 U f2 = F</strong> -----&gt; Decomposition is dependency preserving. 
+<strong>f1 U f2</strong> is a subset of F -----&gt; Not Dependency preserving.
+<strong>f1 U f2 </strong>is a super set of F -----&gt; This case is not possible.</pre>
+<p>&#160;</p>
+<p><strong>Problem:</strong> Let a relation R (A, B, C, D ) and functional dependency {AB –&gt; C, C –&gt; D, D –&gt; A}. Relation R is decomposed into R1( A, B, C) and R2(C, D). Check whether decomposition is dependency preserving or not.<br/>
+<strong>Solution:</strong>
+</p>
+<pre>R1(A, B, C) and R2(C, D)
+
+Let us find closure of F1 and F2
+To find closure of F1, consider all combination of
+ABC. i.e., find closure of A, B, C, AB, BC and AC
+Note ABC is not considered as it is always ABC 
+
+closure(A) = { A }  // Trivial
+closure(B) = { B }  // Trivial
+closure(C) = {C, A, D} but D can't be in closure as D is not present R1.
+           = {C, A}
+C--&gt; A   // Removing C from right side as it is trivial attribute
+
+closure(AB) = {A, B, C, D}
+            = {A, B, C}
+AB --&gt; C  // Removing AB from right side as these are trivial attributes
+
+closure(BC) = {B, C, D, A}
+            = {A, B, C}
+BC --&gt; A  // Removing BC from right side as these are trivial attributes
+
+closure(AC) = {A, C, D}
+AC --&gt; D  // Removing AC from right side as these are trivial attributes             
+
+
+F1 {C--&gt; A, AB --&gt; C, BC --&gt; A}.
+Similarly F2 { C--&gt; D }
+
+In the original Relation Dependency { AB --&gt; C , C --&gt; D , D --&gt; A}.
+AB --&gt; C is present in F1.
+C --&gt; D is present in F2.
+D --&gt; A is not preserved.
+
+F1 U F2 is a subset of F. So <strong>given decomposition is not dependency preserving</strong>g.</pre>
+<p></p>
+<p><strong>Question 1:</strong><br/>
+Let R (A, B, C, D) be a relational schema with the following functional dependencies:</p>
+<pre>A → B, B → C,
+C → D and D → B. 
+
+The decomposition of R into 
+(A, B), (B, C), (B, D)
+</pre>
+<p><b>(A)</b> gives a lossless join, and is dependency preserving<br/>
+<b>(B)</b> gives a lossless join, but is not dependency preserving<br/>
+<b>(C)</b> does not give a lossless join, but is dependency preserving<br/>
+<b>(D)</b> does not give a lossless join and is not dependency preserving</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>Refer <a href="http://quiz.geeksforgeeks.org/gate-gate-it-2008-question-59/">this</a> for solution.</p>
+<p><br/><br/>
+<strong>Question 2 </strong><br/>
+R(A,B,C,D) is a relation. Which of the following does not have a lossless join, dependency preserving BCNF decomposition?<br/>
+(A) A-&gt;B, B-&gt;CD<br/>
+(B) A-&gt;B, B-&gt;C, C-&gt;D<br/>
+(C) AB-&gt;C, C-&gt;AD<br/>
+(D) A -&gt;BCD</p>
+<p>Refer <a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2001-question-48/">this</a> for solution.</p>
+<p>Below is the Quiz of previous year GATE Questions.</p>
+<p><a href="http://quiz.geeksforgeeks.org/dbms/database-design-normal-forms/" target="_blank">http://quiz.geeksforgeeks.org/dbms/database-design-normal-forms/</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

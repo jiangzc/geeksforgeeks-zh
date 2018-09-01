@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Database Management System Introduction | Set 2 (3-Tier Architecture)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><a href="http://quiz.geeksforgeeks.org/database-management-system-introduction-set-1/">Database Management System – Introduction | Set 1</a></p>
+<p style="text-align: center"><strong>DBMS 3-tier Architecture</strong></p>
+<p>DBMS 3-tier architecture divides the complete system into three inter-related but independent modules as shown in Figure 1.</p>
+<p>&#160;</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/dbms-3tier.jpg"><img class="aligncenter size-full wp-image-27834" src="../../../imgs/db/2644c949af50ac64219c9fbf0d1110ad.jpg" alt="dbms-3-tier-architecture" width="362" height="189"/></a></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>&#160;</p>
+<p style="text-align: center"><strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </strong>Figure 1</p>
+<p><strong>Physical Level:</strong> At physical level, the information about location of database objects in data store is kept. Various users are DBMS are unaware about the locations of these objects.</p>
+<p><strong>Conceptual Level: </strong>At conceptual level, data is represented in the form of various database tables. For Example, STUDENT database may contain STUDENT and COURSE tables which will be visible to users but users are unaware about their storage.</p>
+<p><strong>External Level: </strong>&#160;An external level specifies a&#160;view&#160;of the data in terms of conceptual level tables.&#160; Each external level view is used to cater the needs of a particular category of users. For Example, FACULTY of a university is interested in looking course details of students, STUDENTS are interested in looking all details related to academics, accounts, courses and hostel details as well. So, different views can be generated for different users.</p>
+<p style="text-align: center"><strong>Data Independence</strong></p>
+<p>Data independence means change of data at one level should not affect another level. Two types of data independence are required in this architecture:</p>
+<p><strong>Physical Data Independence:</strong> Any change in physical location of tables and indexes should not affect conceptual level or external view of data. This data independence is easy to achieve and implemented by most of the DBMS.</p>
+<p><strong>Conceptual Data Independence:</strong> The data at conceptual level schema and external level schema must be independent. This means, change in conceptual schema should not affect external schema. e.g.; Adding or deleting attributes of a table should not affect the user’s view of table. But this type of independence is difficult to achieve as compared to physical data independence because the changes in conceptual schema are reflected in user’s view.</p>
+<p style="text-align: center">&#160;<strong>Phases of database design</strong></p>
+<p><strong>&#160;</strong>Database designing for a real world application starts from capturing the requirements to physical implementation using DBMS software which consists of following steps shown in Figure 2.</p>
+<p><strong>&#160;</strong><strong>Conceptual Design: </strong>The requirements of database are captured using high level conceptual data model. For Example, ER model is used for conceptual design of database.</p>
+<p><strong>Logical Design: </strong>Logical Design represents data in the form of relational model. ER diagram produced in conceptual design phase is used to convert the data into Relational Model.</p>
+<p><strong>Physical Design:</strong> In physical design, data in relational model is implemented using commercial DBMS like Oracle, DB2.<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/phases-of-dbms.jpg"><img class="aligncenter size-full wp-image-27835" src="../../../imgs/db/061bfc3e31a327e63b70f741950b4597.jpg" alt="phases-of-db" width="325" height="345"/></a><br/>
+</p>
+<center><b>Figure 2</b></center>
+<p></p>
+<p style="text-align: center"><strong>Advantages of DBMS</strong></p>
+<p><strong>&#160;</strong>DBMS helps in efficient organization of data in database which has following advantages over typical file system.</p>
+<ul>
+<li><strong>Minimized redundancy and data consistency:</strong> Data is normalized in DBMS to minimize the redundancy which helps in keeping data consistent. For Example, student information can be kept at one place in DBMS and accessed by different users.</li>
+</ul>
+<ul>
+<li><strong>Simplified Data Access:</strong> A user need only name of the relation not exact location to access data, so the process is very simple.</li>
+</ul>
+<ul>
+<li><strong>Multiple data views:</strong> Different views of same data can be created to cater the needs of different users. For Example, faculty salary information can be hidden from student view of data but shown in admin view.</li>
+</ul>
+<ul>
+<li><strong>Data Security:</strong> Only authorized users are allowed to access the data in DBMS. Also, data can be encrypted by DBMS which makes it secure.</li>
+</ul>
+<ul>
+<li><strong>Concurrent access to data: </strong>Data can be accessed concurrently by different users at same time in DBMS.</li>
+</ul>
+<ul>
+<li><strong>Backup and Recovery mechanism:</strong> DBMS backup and recovery mechanism helps to avoid data loss and data inconsistency in case of catastrophic failures.</li>
+</ul>
+<p>Also see</p>
+<ul>
+<li class="entry-title"><a href="http://quiz.geeksforgeeks.org/category/articles/dbms-articles/">All DBMS Articles</a></li>
+<li class="entry-title"><a href="http://quiz.geeksforgeeks.org/quiz-corner/#DBMS%20Mock%20Tests">DBMS Quizzes</a></li>
+</ul>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

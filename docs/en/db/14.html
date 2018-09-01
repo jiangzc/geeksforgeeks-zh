@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Minimization of  ER Diagram</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Entity Relationship (ER) Diagram is diagrammatic representation of data in databases, it shows how data is related.<span id="more-142372"></span></p>
+<p>Note: This article for those who already know what is ER diagram and how to draw ER diagram.</p>
+<p><strong>1) When there is One to Many cardinality in ER diagram.</strong><br/>
+For example, a student can be enrolled only in one course, but a course can be enrolled by many students</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/07/many2one.png"><img class="alignnone size-medium wp-image-18116" src="../../../imgs/db/0f1fdb48b81e13b6a552dd841a96717a.jpg" alt="many2one" width="600" height="495"/></a><br/>
+For Student(SID, Name), SID is the primary key.&#160; For Course ( CID, C_name ), CID is the primary key</p>
+<pre>           Student                           Course 
+        (SID   Name)                    ( CID   C_name )
+        --------------                  -----------------
+          1      A                        c1      Z
+          2      B                        c2      Y
+          3      C                        c3      X
+          4      D
+
+              Enroll 
+            (SID   CID)
+             ----------
+             1       C1
+             2       C1
+             3       c3
+             4       C2</pre>
+<p>Now the question is, what should be the primary key for Enroll SID or CID or combined.&#160; We can’t have CID as primary key as you can see in enroll for the same CID we have multiples SID.&#160; (SID , CID) can distinguish table uniquely, but it is not minimum.&#160; So SID is the primary key for the relation enroll.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>For above ER diagram, we considered three tables in database</p>
+<pre>Student 
+Enroll
+Course</pre>
+<p>But we can combine Student and Enroll table renamed as Student_enroll.</p>
+<pre>                 Student_Enroll 
+                ( SID   Name   CID )
+                ---------------------
+                  1      A      c1
+                  2      B      c1
+                  3      C      c3
+                  4      D      c2</pre>
+<p>Student and enroll tables are merged now .</p>
+<p>So require minimum two DBMS tables for Student_enroll and Course.</p>
+<p><strong>Note: </strong>In One to Many relationship we can have minimum two tables.</p>
+<p>&#160;</p>
+<p><strong>2. When there is Many to Many cardinality in ER Diagram.</strong><br/>
+Let us consider above example with the change that now student can also enroll more than 1 course.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/07/many2many.png"><img class="alignnone size-medium wp-image-18115" src="../../../imgs/db/d5f9f7047ad7c9c57a62423d25db77cc.jpg" alt="many2many" width="600" height="495"/></a></p>
+<pre>  Student                            Course
+( SID   Name)                    ( CID   C_name )
+--------------                  -----------------
+   1      A                        c1      Z
+   2      B                        c2      Y
+   3      C                        c3      X
+   4      D
+
+              Enroll 
+           ( SID   CID )
+             ----------
+             1       C1
+             1       C2
+             2       C1
+             2       C2
+             3       c3
+             4       C2</pre>
+<p>Now, same question what is the primary key of Enroll relation, if we carefully analyse the Enroll primary key for Enroll<br/>
+table is ( SID , CID ).</p>
+<p>But in this case we can’t merge Enroll table with any one of Student and Course. If we try to merge Enroll with any one of the Student and Course it will create redundant data.</p>
+<p><strong>Note:</strong> Minimum three tables are required in Many to Many relationship.</p>
+<p>&#160;</p>
+<p><strong>3. One to One Relationship</strong></p>
+<p>There are two possibilities<br/>
+<strong>A) If we have One to One relationship and we have total participation at at-least one end.</strong></p>
+<p>For example, consider the below ER diagram.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/07/one2oneT1.png"><img class="alignnone size-medium wp-image-18114" src="../../../imgs/db/a406a30775ba27bdc158baea1147ac16.jpg" alt="one2oneT" width="600" height="495"/></a></p>
+<p>A1 and B1 are primary keys of E1 and E2 respectively.</p>
+<p>In the above Diagram we have total participation at E1 end.</p>
+<p>Only the primary key of E1, which is in total participation should be allowed as the primary key of the reduced table, since if the primary key of E2 is used, it might have null values for many of its entries, since its participation is only partial and may not have corresponding entries for all its values.</p>
+<p><b>Note –</b> Only one table required. </p>
+<p>&#160;</p>
+<p><strong>B) One to One relationship with no total participation.</strong></p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/07/one2one.png"><img class="alignnone size-medium wp-image-18111" src="../../../imgs/db/f150d32cd185c97c41d08ffc5d485859.jpg" alt="one2one" width="600" height="495"/></a><br/>
+A1 and B1 are primary keys of E1 and E2 respectively.</p>
+<p>Primary key of R can be A1 or B1, but we can’t still combine all the three table into one. if we do, so some entries in combined table may have NULL entries. So idea of merging all three table into one is not good.</p>
+<p>But we can merge R into E1 or E2.&#160; So minimum 2 tables are required.</p>
+<p>&#160;<br/>
+Below are the Gate Previous Year question.<br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2008-question-82/" target="_blank">http://quiz.geeksforgeeks.org/gate-gate-cs-2008-question-82/</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2008-question-83/" target="_blank">http://quiz.geeksforgeeks.org/gate-gate-cs-2008-question-83/</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

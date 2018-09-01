@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Starvation in DBMS</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Starvation or Livelock is the situation when a transaction has to wait for a indefinate period of time to acquire a lock. </p>
+<p><strong>Reasons of Starvation –</strong></p>
+<ul>
+<li>If waiting scheme for locked items is unfair. ( priority queue )</li>
+<li>Victim selection. ( same transaction is selected as a victim repeatedly )</li>
+<li>Resource leak.</li>
+<li>Via denial-of-service attack.</li>
+</ul>
+<p>Starvation can be best explained with the help of an example – Suppose there are 3 transactions namely  T1, T2, and T3 in a database that are trying to acquire a lock on data item ‘ I ‘  . Now, suppose the scheduler grants the lock to T1(may be due to some priority), and the other two transactions are waiting for the lock. As soon as the execution of T1 is over, another transaction T4 also come over and request unlock on data item I. Now, this time the scheduler grants lock to T4, and T2, T3 has to wait again . In this way if new transactions keep on requesting the lock, T2 and T3 may have to wait for an indefinate period of time, that leads to  <strong>Starvation</strong>.</p>
+<p><strong>What are the solutions to starvation –</strong></p>
+<ol>
+<li><strong>Increasing Priority –</strong><br/>
+Starvation occurs when a transaction has to wait for an indefinate time, In this situation we can increase the priority of that particular transaction/s. But the drawback with this solution is that it may happen that the other transaction may have to wait longer untill the highest priority transaction comes and proceeds.</li>
+<li><strong>Modification in Victim Seletion algorithm –</strong><br/>
+If a transaction has been a victim of repeated selections, then the algorithm can be modified by lowering its priority over other transactions.</li>
+<li><strong>First Come First Serve approach –</strong><br/>
+A fair scheduling approach i.e FCFS can be adopted, In which the transaction can acquire a lock on an Item in the order, in which the requested the lock.</li>
+<li><strong>Wait die  and wound wait scheme –</strong><br/>
+These are the schemes that uses timestamp ordering mechanism of transaction .<br/>
+For detailed study refer : <a href="https://www.geeksforgeeks.org/deadlock-in-dbms/" rel="noopener" target="_blank">Wait die and Wound wait scheme</a></li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

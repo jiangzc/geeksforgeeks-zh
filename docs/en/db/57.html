@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Log based recovery</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><a href="https://www.geeksforgeeks.org/acid-properties-in-dbms/">Atomicity </a> property of DBMS states that either all the operations of transactions must be performed or none. The modifications done by an aborted transaction should not be visible to database and the modifications done by committed transaction should be visible.</p>
+<p>To achieve our goal of atomicity, user must first output to stable storage information describing the modifications, without modifying the database itself. This information can help us ensure that all modifications performed by committed transactions are reflected in the database. This information can also help us ensure that no modifications made by an aborted transaction persist in the database.</p>
+<p><strong>Log and log records –</strong><br/>
+The log is a sequence of log records, recording all the update activities in the database. In a stable storage, logs for each transaction are maintained. Any operation which is performed on the database is recorded is on the log. Prior to performing any modification to database, an update log record is created to reflect that modification. </p>
+<p>An update log record represented as: &lt;Ti, Xj, V1, V2&gt; has these fields:</p>
+<ol>
+<li><strong>Transaction identifier:</strong> Unique Identifier of the transaction that performed the write operation.</li>
+<li><strong>Data item:</strong> Unique identifier of the data item written.</li>
+<li><strong>Old value:</strong> Value of data item prior to write.</li>
+<li><strong>New value:</strong> Value of data item after write operation.</li>
+</ol>
+<p>Other type of log records are:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<ol>
+<li><b>&lt;Ti start&gt;</b>: It contains information about when a transaction Ti starts.</li>
+<li><b>&lt;Ti commit&gt;</b>: It contains information about when a transaction Ti commits.</li>
+<li><b>&lt;Ti abort&gt;</b>: It contains information about when a transaction Ti aborts.</li>
+</ol>
+<p><strong>Undo and Redo Operations –</strong><br/>
+Because all database modifications must be preceded by creation of log record, the system has available both the old value prior to modification of data item and new value that is to be written for data item. This allows system to perform redo and undo operations as appropriate:</p>
+<ol>
+<li><strong>Undo:</strong> using a log record sets the data item specified in log record to old value.</li>
+<li><strong>Redo:</strong> using a log record sets the data item specified in log record to new value. </li>
+</ol>
+<p><strong>The database can be modified using two approaches –</strong></p>
+<ol>
+<li><strong>Deferred Modification Technique:</strong> If the transaction does not modify the database until it has committed, it is said to use deferred modification technique.</li>
+<li><strong>Immediate Modification Technique:</strong> If database modification occur while transaction is still active, it is said to use immediate modification technique.</li>
+</ol>
+<p><strong>Recovery using Log records –</strong><br/>
+After a system crash has occurred, the system consults the log to determine which transactions need to be redone and which need to be undone.</p>
+<ol>
+<li>Transaction Ti needs to be undone if the log contains the record &lt;Ti start&gt; but does not contain either the record &lt;Ti commit&gt; or the record &lt;Ti abort&gt;.</li>
+<li>Transaction Ti needs to be redone if log contains record &lt;Ti start&gt; and either the record &lt;Ti commit&gt; or the record &lt;Ti abort&gt;.</li>
+</ol>
+<p><strong>Use of Checkpoints –</strong><br/>
+When a system crash occurs, user must consult the log. In principle, that need to search the entire log to determine this information. There are two major difficulties with this approach:</p>
+<ol>
+<li>The search process is time-consuming.</li>
+<li>Most of the transactions that, according to our algorithm, need to be redone have already written their updates into the database. Although redoing them will cause no harm, it will cause recovery to take longer.</li>
+</ol>
+<p>To reduce these types of overhead, user introduce checkpoints. A log record of the form &lt;checkpoint L&gt; is used to represent a checkpoint in log where L is a list of transactions active at the time of the checkpoint. When a checkpoint log record is added to log all the transactions that have committed before this checkpoint have &lt;Ti commit&gt; log record before the checkpoint record. Any database modifications made by Ti is written to the database either prior to the checkpoint or as part of the checkpoint itself. Thus, at recovery time, there is no need to perform a redo operation on Ti.</p>
+<p>After a system crash has occurred, the system examines the log to find the last &lt;checkpoint L&gt; record. The redo or undo operations need to be applied only to transactions in L, and to all transactions that started execution after the  record was written to the log. Let us denote this set of transactions as T. Same rules of undo and redo are applicable on T as mentioned in Recovery using Log records part.</p>
+<p>Note that user need to only examine the part of the log starting with the last checkpoint log record to find the set of transactions T, and to find out whether a commit or abort record occurs in the log for each transaction in T. For example, consider the set of transactions {T0, T1, . . ., T100}. Suppose that the most recent checkpoint took place during the execution of transaction T67 and T69, while T68 and all transactions with subscripts lower than 67 completed before the checkpoint. Thus, only transactions T67, T69, . . ., T100 need to be considered during the recovery scheme. Each of them needs to be redone if it has completed (that is, either committed or aborted); otherwise, it was incomplete, and needs to be undone.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

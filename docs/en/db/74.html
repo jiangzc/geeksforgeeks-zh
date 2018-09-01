@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Database File Indexing – B+ Tree (Introduction)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In order, to implement dynamic multilevel indexing, <a href="https://www.geeksforgeeks.org/b-tree-set-1-introduction-2/">B-tree</a> and B+ tree are generally employed. The drawback of B-tree used for indexing, however is that it stores the data pointer (a pointer to the disk file block containing  the key value), corresponding to a particular key value, along with that key value in the node of a B-tree. This technique, greatly reduces the number of entries that can be packed into a node of a B-tree, thereby contributing to the increase in the number of levels in the B-tree, hence increasing the search time of a record.</p>
+<p>B+ tree eliminates the above drawback by storing data pointers only at the leaf nodes of the tree. Thus, the structure of leaf nodes of a B+ tree is quite different from the structure of internal nodes of the B+ tree. It may be noted here that, since data pointers are present only at the leaf nodes, the leaf nodes must necessarily store all the key values along with their corresponding data pointers to the disk file block, in order to access them. Moreover, the leaf nodes are linked to provide ordered access to the records. The leaf nodes, therefore form the first level of index, with the internal nodes forming the other levels of a multilevel index. Some of the key values of the leaf nodes also appear in the internal nodes, to simply act as a medium to control the searching of a record. </p>
+<p>From the above discussion it is apparent that a B+ tree, unlike a B-tree has two orders, ‘a’ and ‘b’, one for the internal nodes and the other for the external (or leaf) nodes. </p>
+<p><strong>The structure of the internal nodes of a B+ tree of order ‘a’ is as follows:</strong></p>
+<ol>
+<li>Each internal node is of the form :<br/>
+&lt;P<sub>1</sub>, K<sub>1</sub>, P<sub>2</sub>, K<sub>2</sub>, ….., P<sub>c-1</sub>, K<sub>c-1</sub>, P<sub>c</sub>&gt;<br/>
+   where c &lt;= a and each <strong>P<sub>i</sub> is a tree pointer (i.e points to another node of the tree)</strong> and, each <strong>K<sub>i</sub> is a key value</strong> (see diagram-I for reference).<p></p><br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+</li>
+<li>Every internal node has : K<sub>1</sub> &lt; K<sub>2</sub> &lt; …. &lt; K<sub>c-1</sub>
+</li>
+<li>For each search field values ‘X’ in the sub-tree pointed at by P<sub>i</sub>, the following condition holds :<br/>
+   K<sub>i-1</sub> &lt; X &lt;= K<sub>i</sub>, for 1 &lt; i &lt; c and,<br/>
+   K<sub>i-1</sub> &lt; X, for i = c<br/>
+(See diagram I for reference)
+</li>
+<li>Each internal nodes has at most ‘a’ tree pointers.
+</li>
+<li>The root node has, at least two tree pointers, while the other internal nodes have at least \ceil(a/2) tree pointers each.
+</li>
+<li>If any internal node has ‘c’ pointers, c &lt;= a, then it has 'c – 1' key values.
+</li>
+</ol>
+<p><img src="../../../imgs/db/744b97d60b57a632f51b976403efcfff.jpg" width="1074" height="482" alt="" class="aligncenter size-full"/><br/>
+</p>
+<center><b>Diagram-I</b></center>
+<p></p>
+<p><strong>The structure of the leaf nodes of a B+ tree of order ‘b’ is as follows:</strong></p>
+<ol>
+<li>Each leaf node is of the form :<br/>
+&lt;&lt;K<sub>1</sub>, D<sub>1</sub>&gt;, &lt;K<sub>2</sub>, D<sub>2</sub>&gt;, ….., &lt;K<sub>c-1</sub>, D<sub>c-1</sub>&gt;, P<sub>next</sub>&gt;<br/>
+   where c &lt;= b and each <strong>D<sub>i</sub> is a data pointer (i.e points to actual record in the disk whose key value is K<sub>i</sub> or to a disk file block containing that record)</strong> and, each <strong>K<sub>i</sub> is a key value</strong> and, <strong>P<sub>next</sub> points to next leaf node in the B+ tree</strong> (see diagram II for reference).
+</li>
+<li>Every leaf node has : K<sub>1</sub> &lt; K<sub>2</sub> &lt; …. &lt; K<sub>c-1</sub>, c &lt;= b
+</li>
+<li>Each leaf node has at least \ceil(b/2) values.
+</li>
+<li>All leaf nodes are at same level.
+</li>
+</ol>
+<p><img src="../../../imgs/db/4933de67959aea5123c2e77919a6f746.jpg" width="792" height="272" alt="" class="aligncenter size-full"/><br/>
+</p>
+<center><b>Diagram-II</b></center>
+<p></p>
+<p>Using the P<sub>next</sub> pointer it is viable to traverse all the leaf nodes, just like a linked list, thereby achieving ordered access to the records stored in the disk.</p>
+<p><strong>A Diagram of B+ Tree –</strong></p>
+<p><img src="../../../imgs/db/645b60d0320e700bd5a281d8de1c4506.jpg" width="901" height="461" alt="" class="aligncenter size-full"/></p>
+<p><strong>Advantage –</strong><br/>
+A B+ tree with ‘l’ levels can store more entries in its internal nodes compared to a B-tree having the same ‘l’ levels. This accentuates the significant improvement made to the search time for any given key. Having lesser levels and presence of P<sub>next</sub> pointers imply that B+ tree are very quick and efficient in accessing records from disks.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

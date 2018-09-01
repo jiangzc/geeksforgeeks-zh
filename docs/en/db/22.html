@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Anomalies in Relational Model</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>We strongly recommend to refer below posts as a prerequisite of this.<br/>
+<a href="http://quiz.geeksforgeeks.org/dbms-relational-model-introduction-and-codd-rules/">Relational Model Introduction and Codd Rules</a><br/>
+<a href="http://quiz.geeksforgeeks.org/dbms-keys-candidate-super-primary-alternate-and-foreign/">Keys in Relational Model (Candidate, Super, Primary, Alternate and Foreign)</a></p>
+<p><strong>Anomalies</strong><br/>
+There are different types of anomalies which can occur in referencing and referenced relation which can be discussed as:</p>
+<p><a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/image7.png"><img src="../../../imgs/db/56b5887a42a4c875c577f07f52db5d5c.jpg" alt="image" width="731" height="349" class="aligncenter size-full wp-image-151197"/></a></p>
+<p><strong>Insertion anomaly:</strong> If a tuple is inserted in referencing relation and referencing attribute value is not present in referenced attribute, it will not allow inserting in referencing relation. For Example, If we try to insert a record in STUDENT_COURSE with STUD_NO =7, it will not allow. </p>
+<p><strong>Deletion and Updation anomaly:</strong>  If a tuple is deleted or updated from referenced relation and referenced attribute value is used by referencing attribute in referencing relation, it will not allow deleting the tuple from referenced relation. For Example, If we try to delete a record from STUDENT with STUD_NO =1, it will not allow. To avoid this, following can be used in query:</p>
+<ul>
+<li><strong>ON DELETE/UPDATE SET NULL:</strong> If a tuple is deleted or updated from referenced relation and referenced attribute value is used by referencing attribute in referencing relation, it will delete/update the tuple from referenced relation and set the value of referenced attribute to NULL.</li>
+<li><strong>ON DELETE/UPDATE CASCADE:</strong> If a tuple is deleted or updated from referenced relation and referenced attribute value is used by referencing attribute in referencing relation, it will delete/update the tuple from referenced relation and referencing relation as well.</li>
+</ul>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

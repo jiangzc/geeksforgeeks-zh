@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Basic Operators in Relational Algebra</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Basics of Relational model: <a href="http://quiz.geeksforgeeks.org/relational-model/" target="_blank">Relational Model</a></p>
+<p>Relational Algebra is a procedural query language which takes relations as an input and returns relation as an output. There are some basic operators which can be applied on relations to produce required results which we will discuss one by one. We will use STUDENT_SPORTS, EMPLOYEE and STUDENT relations as given in Table 1, Table 2 and Table 3 respectively to understand the various operators.</p>
+<p style="text-align: center"><strong>  <strong>Table 1 : STUDENT_SPORTS </strong></strong></p>
+<table>
+<tbody>
+<tr>
+<td width="97"><strong>ROLL_NO</strong></td>
+<td width="97"><strong>SPORTS</strong></td>
+</tr>
+<tr>
+<td width="97">1</td>
+<td width="97">Badminton</td>
+</tr>
+<tr>
+<td width="97">2</td>
+<td width="97">Cricket</td>
+</tr>
+<tr>
+<td width="97">2</td>
+<td width="97">Badminton</td>
+</tr>
+<tr>
+<td width="97">4</td>
+<td width="97">Badminton</td>
+</tr>
+</tbody>
+</table>
+<p>&#160;</p>
+<p style="text-align: center"><strong>  <strong>Table 2 : EMPLOYEE</strong></strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<table>
+<tbody>
+<tr>
+<td width="97"><strong>EMP_NO</strong></td>
+<td width="130"><strong>NAME</strong></td>
+<td width="135"><strong>ADDRESS</strong></td>
+<td width="135"><strong>PHONE</strong></td>
+<td width="68"><strong>AGE</strong></td>
+</tr>
+<tr>
+<td width="97">1</td>
+<td width="130">RAM</td>
+<td width="135">DELHI</td>
+<td width="135">9455123451</td>
+<td width="68">18</td>
+</tr>
+<tr>
+<td width="97">5</td>
+<td width="130">NARESH</td>
+<td width="135">HISAR</td>
+<td width="135">9782918192</td>
+<td width="68">22</td>
+</tr>
+<tr>
+<td width="97">6</td>
+<td width="130">SWETA</td>
+<td width="135">RANCHI</td>
+<td width="135">9852617621</td>
+<td width="68">21</td>
+</tr>
+<tr>
+<td width="97">4</td>
+<td width="130">SURESH</td>
+<td width="135">DELHI</td>
+<td width="135">9156768971</td>
+<td width="68">18</td>
+</tr>
+</tbody>
+</table>
+<p>&#160;</p>
+<p style="text-align: center"><strong>&#160;</strong><strong>Table 3 : STUDENT</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="97"><strong>ROLL_NO</strong></td>
+<td width="130"><strong>NAME</strong></td>
+<td width="135"><strong>ADDRESS</strong></td>
+<td width="135"><strong>PHONE</strong></td>
+<td width="68"><strong>AGE</strong></td>
+</tr>
+<tr>
+<td width="97">1</td>
+<td width="130">RAM</td>
+<td width="135">DELHI</td>
+<td width="135">9455123451</td>
+<td width="68">18</td>
+</tr>
+<tr>
+<td width="97">2</td>
+<td width="130">RAMESH</td>
+<td width="135">GURGAON</td>
+<td width="135">9652431543</td>
+<td width="68">18</td>
+</tr>
+<tr>
+<td width="97">3</td>
+<td width="130">SUJIT</td>
+<td width="135">ROHTAK</td>
+<td width="135">9156253131</td>
+<td width="68">20</td>
+</tr>
+<tr>
+<td width="97">4</td>
+<td width="130">SURESH</td>
+<td width="135">DELHI</td>
+<td width="135">9156768971</td>
+<td width="68">18</td>
+</tr>
+</tbody>
+</table>
+<p><em><span style="color: #0000ff"><strong>Selection operator (σ):</strong> </span></em>Selection operator is used to select tuples from a relation based on some condition.&#160;Syntax:</p>
+<pre style="text-align: center"><strong>σ<sub> (Cond)</sub>(Relation Name)</strong></pre>
+<p>Extract students whose age is greater than 18 from STUDENT relation given in Table 1</p>
+<pre style="text-align: center"><strong>σ<sub> (AGE&gt;18)</sub>(STUDENT)</strong></pre>
+<p><strong>RESULT:</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="97"><strong>ROLL_NO</strong></td>
+<td width="130"><strong>NAME</strong></td>
+<td width="135"><strong>ADDRESS</strong></td>
+<td width="135"><strong>PHONE</strong></td>
+<td width="68"><strong>AGE</strong></td>
+</tr>
+<tr>
+<td width="97">3</td>
+<td width="130">SUJIT</td>
+<td width="135">ROHTAK</td>
+<td width="135">9156253131</td>
+<td width="68">20</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color: #0000ff"><em><strong>Projection Operator (∏):</strong></em></span> Projection operator is used to project particular columns from a relation.&#160;Syntax:</p>
+<pre style="text-align: center"><strong>∏<sub>(Column 1,Column 2….Column n)</sub>(Relation Name)</strong></pre>
+<p>Extract ROLL_NO and NAME from STUDENT relation given in Table 1</p>
+<pre style="text-align: center"><strong>∏<sub>(ROLL_NO,NAME)</sub>(STUDENT)</strong></pre>
+<p><strong>RESULT:</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="97"><strong>ROLL_NO</strong></td>
+<td width="130"><strong>NAME</strong></td>
+</tr>
+<tr>
+<td width="97">1</td>
+<td width="130">RAM</td>
+</tr>
+<tr>
+<td width="97">2</td>
+<td width="130">RAMESH</td>
+</tr>
+<tr>
+<td width="97">3</td>
+<td width="130">SUJIT</td>
+</tr>
+<tr>
+<td width="97">4</td>
+<td width="130">SURESH</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note: </strong>If resultant relation after projection has duplicate rows, it will be removed. For Example:&#160; ∏<sub>(ADDRESS)</sub>(STUDENT) will remove one duplicate row with value DELHI and return three rows.</p>
+<p><em><span style="color: #0000ff"><strong>Cross Product(X):</strong></span></em> Cross product is used to join two relations. For every row of Relation1, each row of Relation2 is concatenated. If Relation1 has m tuples and and Relation2 has n tuples, cross product of Relation1 and Relation2 will have m X n tuples.&#160;Syntax:</p>
+<pre style="text-align: center"><strong>Relation1 X Relation2</strong></pre>
+<p>To&#160;apply Cross Product on STUDENT relation given in Table 1 and STUDENT_SPORTS relation given in Table 2,</p>
+<pre style="text-align: center"><strong>STUDENT X STUDENT_SPORTS</strong></pre>
+<p style="text-align: left"><strong>RESULT:</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="93"><strong>ROLL_NO</strong></td>
+<td width="97"><strong>NAME</strong></td>
+<td width="108"><strong>ADDRESS</strong></td>
+<td width="108"><strong>PHONE</strong></td>
+<td width="55"><strong>AGE</strong></td>
+<td width="92"><strong>ROLL_NO</strong></td>
+<td width="86"><strong>SPORTS</strong></td>
+</tr>
+<tr>
+<td width="93">1</td>
+<td width="97">RAM</td>
+<td width="108">DELHI</td>
+<td width="108">9455123451</td>
+<td width="55">18</td>
+<td width="92">1</td>
+<td width="86">Badminton</td>
+</tr>
+<tr>
+<td width="93">1</td>
+<td width="97">RAM</td>
+<td width="108">DELHI</td>
+<td width="108">9455123451</td>
+<td width="55">18</td>
+<td width="92">2</td>
+<td width="86">Cricket</td>
+</tr>
+<tr>
+<td width="93">1</td>
+<td width="97">RAM</td>
+<td width="108">DELHI</td>
+<td width="108">9455123451</td>
+<td width="55">18</td>
+<td width="92">2</td>
+<td width="86">Badminton</td>
+</tr>
+<tr>
+<td width="93">1</td>
+<td width="97">RAM</td>
+<td width="108">DELHI</td>
+<td width="108">9455123451</td>
+<td width="55">18</td>
+<td width="92">4</td>
+<td width="86">Badminton</td>
+</tr>
+<tr>
+<td width="93">2</td>
+<td width="97">RAMESH</td>
+<td width="108">GURGAON</td>
+<td width="108">9652431543</td>
+<td width="55">18</td>
+<td width="92">1</td>
+<td width="86">Badminton</td>
+</tr>
+<tr>
+<td width="93">2</td>
+<td width="97">RAMESH</td>
+<td width="108">GURGAON</td>
+<td width="108">9652431543</td>
+<td width="55">18</td>
+<td width="92">2</td>
+<td width="86">Cricket</td>
+</tr>
+<tr>
+<td width="93">2</td>
+<td width="97">RAMESH</td>
+<td width="108">GURGAON</td>
+<td width="108">9652431543</td>
+<td width="55">18</td>
+<td width="92">2</td>
+<td width="86">Badminton</td>
+</tr>
+<tr>
+<td width="93">2</td>
+<td width="97">RAMESH</td>
+<td width="108">GURGAON</td>
+<td width="108">9652431543</td>
+<td width="55">18</td>
+<td width="92">4</td>
+<td width="86">Badminton</td>
+</tr>
+<tr>
+<td width="93">3</td>
+<td width="97">SUJIT</td>
+<td width="108">ROHTAK</td>
+<td width="108">9156253131</td>
+<td width="55">20</td>
+<td width="92">1</td>
+<td width="86">Badminton</td>
+</tr>
+<tr>
+<td width="93">3</td>
+<td width="97">SUJIT</td>
+<td width="108">ROHTAK</td>
+<td width="108">9156253131</td>
+<td width="55">20</td>
+<td width="92">2</td>
+<td width="86">Cricket</td>
+</tr>
+<tr>
+<td width="93">3</td>
+<td width="97">SUJIT</td>
+<td width="108">ROHTAK</td>
+<td width="108">9156253131</td>
+<td width="55">20</td>
+<td width="92">2</td>
+<td width="86">Badminton</td>
+</tr>
+<tr>
+<td width="93">3</td>
+<td width="97">SUJIT</td>
+<td width="108">ROHTAK</td>
+<td width="108">9156253131</td>
+<td width="55">20</td>
+<td width="92">4</td>
+<td width="86">Badminton</td>
+</tr>
+<tr>
+<td width="93">4</td>
+<td width="97">SURESH</td>
+<td width="108">DELHI</td>
+<td width="108">9156768971</td>
+<td width="55">18</td>
+<td width="92">1</td>
+<td width="86">Badminton</td>
+</tr>
+<tr>
+<td width="93">4</td>
+<td width="97">SURESH</td>
+<td width="108">DELHI</td>
+<td width="108">9156768971</td>
+<td width="55">18</td>
+<td width="92">2</td>
+<td width="86">Cricket</td>
+</tr>
+<tr>
+<td width="93">4</td>
+<td width="97">SURESH</td>
+<td width="108">DELHI</td>
+<td width="108">9156768971</td>
+<td width="55">18</td>
+<td width="92">2</td>
+<td width="86">Badminton</td>
+</tr>
+<tr>
+<td width="93">4</td>
+<td width="97">SURESH</td>
+<td width="108">DELHI</td>
+<td width="108">9156768971</td>
+<td width="55">18</td>
+<td width="92">4</td>
+<td width="86">Badminton</td>
+</tr>
+</tbody>
+</table>
+<p><em><span style="color: #0000ff"><strong>Union (U):</strong> </span></em>Union on two relations R1 and R2 can only be computed if R1 and R2 are <strong>union compatible</strong> (These two relation should have same number of attributes and corresponding attributes in two relations have same domain) . Union operator when applied on two relations R1 and R2 will give a relation with tuples which are either in R1 or in R2. The tuples which are in both R1 and R2 will appear only once in result relation.&#160;Syntax:</p>
+<pre style="text-align: center"><strong>&#160;Relation1&#160;U Relation2</strong></pre>
+<p>Find person who are either student or employee, we can use Union operator like:</p>
+<pre style="text-align: center"><strong>STUDENT U EMPLOYEE</strong></pre>
+<p><strong>RESULT:</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="97"><strong>ROLL_NO</strong></td>
+<td width="130"><strong>NAME</strong></td>
+<td width="135"><strong>ADDRESS</strong></td>
+<td width="135"><strong>PHONE</strong></td>
+<td width="68"><strong>AGE</strong></td>
+</tr>
+<tr>
+<td width="97">1</td>
+<td width="130">RAM</td>
+<td width="135">DELHI</td>
+<td width="135">9455123451</td>
+<td width="68">18</td>
+</tr>
+<tr>
+<td width="97">2</td>
+<td width="130">RAMESH</td>
+<td width="135">GURGAON</td>
+<td width="135">9652431543</td>
+<td width="68">18</td>
+</tr>
+<tr>
+<td width="97">3</td>
+<td width="130">SUJIT</td>
+<td width="135">ROHTAK</td>
+<td width="135">9156253131</td>
+<td width="68">20</td>
+</tr>
+<tr>
+<td width="97">4</td>
+<td width="130">SURESH</td>
+<td width="135">DELHI</td>
+<td width="135">9156768971</td>
+<td width="68">18</td>
+</tr>
+<tr>
+<td width="97">5</td>
+<td width="130">NARESH</td>
+<td width="135">HISAR</td>
+<td width="135">9782918192</td>
+<td width="68">22</td>
+</tr>
+<tr>
+<td width="97">6</td>
+<td width="130">SWETA</td>
+<td width="135">RANCHI</td>
+<td width="135">9852617621</td>
+<td width="68">21</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color: #0000ff"><em><strong>Minus (-):</strong></em></span> Minus on two relations R1 and R2 can only be computed if R1 and R2 are <strong>union compatible</strong>. Minus operator when applied on two relations as R1-R2 will give a relation with tuples which are in R1 but not in R2.&#160;Syntax:</p>
+<pre style="text-align: center"><strong>&#160;Relation1 - Relation2</strong></pre>
+<p>Find person who are student but not employee, we can use minus operator like:</p>
+<pre style="text-align: center"><strong>STUDENT - EMPLOYEE</strong></pre>
+<p><strong>RESULT:</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="97"><strong>ROLL_NO</strong></td>
+<td width="130"><strong>NAME</strong></td>
+<td width="135"><strong>ADDRESS</strong></td>
+<td width="135"><strong>PHONE</strong></td>
+<td width="68"><strong>AGE</strong></td>
+</tr>
+<tr>
+<td width="97">2</td>
+<td width="130">RAMESH</td>
+<td width="135">GURGAON</td>
+<td width="135">9652431543</td>
+<td width="68">18</td>
+</tr>
+<tr>
+<td width="97">3</td>
+<td width="130">SUJIT</td>
+<td width="135">ROHTAK</td>
+<td width="135">9156253131</td>
+<td width="68">20</td>
+</tr>
+</tbody>
+</table>
+<p><em><span style="color: #0000ff"><strong>Rename(ρ): </strong></span></em>Rename operator is used to give another name to a relation.&#160;Syntax:</p>
+<pre style="text-align: center"><strong>ρ(Relation2, Relation1)</strong></pre>
+<p>To rename STUDENT relation to STUDENT1, we can use rename operator like:</p>
+<pre style="text-align: center"><strong>ρ(STUDENT1, STUDENT)</strong></pre>
+<p><strong>&#160;</strong>If you&#160;want to create a relation STUDENT_NAMES with ROLL_NO and NAME from STUDENT, it can be done using rename operator as:</p>
+<pre style="text-align: center"><strong>ρ(STUDENT_NAMES, ∏<sub>(ROLL_NO, NAME)</sub>(STUDENT))</strong></pre>
+<hr/>
+<p style="text-align: left"><a href="http://quiz.geeksforgeeks.org/extended-operators-in-relational-algebra/" target="_blank">Extended Relational Algebra Operators</a>&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160;<a href="http://quiz.geeksforgeeks.org/database-management-system-relational-algebra/" target="_blank">Overview of Relational Algebra Operators</a></p>
+<p style="text-align: left">Previous Year Gate Questions<br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-50/" target="_blank">http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-50/</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-43/" target="_blank">http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-43/</a></p>
+<p>Article contributed by Sonal Tuteja. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

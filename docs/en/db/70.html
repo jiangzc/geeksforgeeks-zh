@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Indexing in Databases | Set 1</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Indexing is a way to optimize performance of a database by minimizing the number of disk accesses required when a query is processed.</p>
+<p>An index or database index is a data structure which is used to quickly locate and access the data in a database table.</p>
+<p>Indexes are created using some database columns.</p>
+<ul>
+<li>The first column is the Search key that contains a copy of the primary key or candidate key of the table. These values are stored in sorted order so that the corresponding data can be accessed quickly (Note that the data may or may not be stored in sorted order).</li>
+<li>The second column is the Data Reference which contains a set of pointers holding the address of the disk block where that particular key value can be found.</li>
+</ul>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2016/07/indexing2.png"><img src="../../../imgs/db/bbc102430c169605d4622450e08f6cbd.jpg" alt="indexing2" width="362" height="126" class="aligncenter size-full wp-image-27345"/></a></p>
+<p>There are two kinds of indices:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<ol>
+<li><strong>Ordered indices:</strong> Indices are based on a sorted ordering of the values.</li>
+<li><strong>Hash indices:</strong> Indices are based on the values being distributed uniformly across a range of buckets. The buckets to which a value is assigned is determined by function called a hash function.</li>
+</ol>
+<p>There is no comparison between both the techniques, it depends on the database application on which it is being applied. </p>
+<ul>
+<li><strong>Access Types</strong>: e.g. value based search, range access, etc. </li>
+<li><strong>Access Time</strong>: Time to find particular data element or set of elements.</li>
+<li><strong>Insertion Time</strong>: Time taken to find the appropriate space and insert a new data time.</li>
+<li><strong>Deletion Time</strong>: Time taken to find an item and delete it as well as update the index structure.</li>
+<li><strong>Space Overhead</strong>: Additional space required by the index.</li>
+</ul>
+<h2 class="sigil_not_in_toc"><strong>Indexing Methods</strong></h2>
+<h3 class="sigil_not_in_toc"><strong>Ordered Indices </strong></h3>
+<p>The indices are usually sorted so that the searching is faster. The indices which are sorted are known as ordered indices.</p>
+<ul>
+<li>If the search key of any index specifies same order as the sequential order of the file, it is known as primary index or clustering index.<br/>
+<strong>Note:</strong> The search key of a primary index is usually the primary key, but it is not necessarily so.</li>
+<li> If the search key of any index specifies an order different from the sequential order of the file, it is called the secondary index or non-clustering index.</li>
+</ul>
+<h3 class="sigil_not_in_toc"><strong> Clustered Indexing</strong></h3>
+<p>Clustering index is defined on an ordered data file. The data file is ordered on a non-key field. In some cases, the index is created on non-primary key columns which may not be unique for each record. In such cases, in order to identify the records faster, we will group two or more columns together to get the unique values and create index out of them. This method is known as clustering index. Basically, records with similar characteristics are grouped together and indexes are created for these groups.</p>
+<p> For example, students studying in each semester are grouped together. i.e. 1<sup>st</sup>  Semester students, 2<sup>nd</sup>  semester students, 3<sup>rd</sup>  semester students etc are grouped.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2016/07/cluster_index.png"><img src="../../../imgs/db/a5ada734fef4738a130b5377337566bd.jpg" alt="cluster_index" width="702" height="322" class="alignnone size-full wp-image-32415"/></a><br/>
+<strong>​Clustered index sorted according to first name (Search key) </strong></p>
+<h3 class="sigil_not_in_toc"><strong>Primary Index​ ​</strong></h3>
+<p>In this case, the data is sorted according to the search key. It induces sequential file organisation.<br/>
+In this case, the primary key of the database table is used to create the index. As primary keys are unique and are stored in sorted manner, the performance of searching operation is quite efficient. The primary index is classified into two types : <strong>Dense Index</strong> and <strong>Sparse Index</strong>.</p>
+<h4 class="sigil_not_in_toc"><strong>(I) Dense Index : ​</strong></h4>
+<ul>
+<li>For every search key value in the data file, there is an index record.</li>
+<li> This record contains the search key and also a reference to the first data record with that search key value. </li>
+</ul>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2016/07/indexing5.png"><img src="../../../imgs/db/6a0ac9475a6d83e54e306deb99e9dbee.jpg" alt="indexing5" width="377" height="319" class="aligncenter size-full wp-image-27348"/></a></p>
+<h4 class="sigil_not_in_toc"><strong>(II) Sparse Index :</strong></h4>
+<p> ​
+</p>
+<ul>
+<li> The index record appears only for a few items in the data file. Each item points to a block as shown.</li>
+<li> To locate a record, we find the index record with the largest search key value less than or equal to the search key value we are looking for.</li>
+<li>We start at that record pointed to by the index record, and proceed along the pointers in the file (that is, sequentially) until we find the desired record. </li>
+</ul>
+<p></p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2016/07/indexing6.png"><img src="../../../imgs/db/6ff4c8fc3f37faeb3a91575cbe92380f.jpg" alt="indexing6" width="528" height="411" class="aligncenter size-full wp-image-27349"/></a></p>
+<p>&#160;</p>
+<h3 class="sigil_not_in_toc"><strong>Non­-Clustered Indexing</strong></h3>
+<p> ​A non clustered index just tells us where the data lies, i.e. it gives us a list of virtual pointers or references to the location where the data is actually stored. Data is not physically stored in the order of the index. Instead , data is present in leaf nodes. For eg. the contents page of a book. Each entry gives us the page number or location of the information stored. The actual data here(information on each page of book) is not organised but we have an ordered reference(contents page) to where the data points actually lie. </p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2016/07/indexing3.png"><img src="../../../imgs/db/931fc4f32929ff6a25d946e6b5001841.jpg" alt="indexing3" width="1097" height="717" class="aligncenter size-full wp-image-27346"/></a></p>
+<p>It requires more time as compared to clustered index because some amount of extra work is done in order to extract the data by further following the pointer. In case of clustered index, data is directly present in front of the index. </p>
+<h3 class="sigil_not_in_toc"><strong> Secondary Index​</strong></h3>
+<p>It is used to optimize query processing and access records in a database with some information other than the usual search key (primary key). In this two levels of indexing are used in order to reduce the mapping size of the first level and in general. Initially, for the first level, a large range of numbers is selected so that the  mapping size is small. Further, each range is divided into further sub ranges. </p>
+<p>In order for quick memory access, first level is stored in the primary memory. Actual physical location of the data is determined by the second mapping level.  </p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2016/07/indexing4.png"><img src="../../../imgs/db/9b45179bd25bdcef86bd7b1d7a83b0ea.jpg" alt="indexing4" width="989" height="703" class="aligncenter size-full wp-image-27347"/></a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

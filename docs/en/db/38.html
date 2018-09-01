@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Database Normalization | Introduction</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Database normalization is the process of organizing the attributes of database to reduce or eliminate <strong>data redundancy (having same data but at different places) </strong>. <span id="more-142370"></span></p>
+<p><strong>Problems because of data redundancy</strong><br/>
+Data redundancy unnecessarily increases size of database as same data is repeated on many places. Inconsistency problems also arise during insert, delete and update operations.</p>
+<p><strong>Functional Dependency</strong><br/>
+Functional Dependency is a constraint between two sets of attributes in a relation from a database. Functional dependency is denoted by arrow (→). If an attributed A functionally determines B, then it is written as A → B.<br/>
+For example employee_id → name means employee_id functionally determines name of employee. As another example in a time table database, {student_id, time} → {lecture_room}, student ID and time determine the lecture room where student should be.</p>
+<p><strong>What does functionally dependent mean?</strong><br/>
+A function dependency A → B mean for all instances of a particular value of A, there is same value of B.</p>
+<p>For example in the below table A → B is true, but B → A is not true as there are different values of A for B = 3.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<pre>A   B
+------
+1   3
+2   3
+4   0
+1   3
+4   0</pre>
+<p>&#160;</p>
+<p><strong>Trivial Functional Dependency</strong><br/>
+X –&gt; Y is trivial only when Y is subset of X.<br/>
+Examples</p>
+<pre>ABC --&gt; AB
+ABC --&gt; A
+ABC --&gt; ABC</pre>
+<p><strong>Non Trivial Functional Dependencies</strong><br/>
+X –&gt; Y is a non trivial functional dependencies when Y is not a subset of X.</p>
+<p>X –&gt; Y is called completely non-trivial when X intersect Y is NULL.<br/>
+Examples:</p>
+<pre>Id --&gt; Name, 
+Name --&gt; DOB</pre>
+<p>&#160;</p>
+<ul>
+<li><a href="http://quiz.geeksforgeeks.org/database-normalization-normal-forms/">Normal Forms</a></li>
+<li><a href="http://quiz.geeksforgeeks.org/dbms/database-design-normal-forms/">Quiz on Normalization</a> </li>
+</ul>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

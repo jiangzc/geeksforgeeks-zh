@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">File Organization – Set 3</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/dbms-file-organization-set-1/" rel="noopener" target="_blank">File Organization – Set 1</a>, <a href="https://www.geeksforgeeks.org/hashing-in-dbms/" rel="noopener" target="_blank">File Organization-Set 2</a></p>
+<h3 class="sigil_not_in_toc">B+ Tree File Organization –</h3>
+<p>B+ Tree, as the name suggests, It uses a tree like structure to store records in File. It uses the concept of Key indexing where the primary key is used to sort the records. For each primary key, an index value is generated and mapped with the record. An index of a record is the address of record in the file.</p>
+<p>B+ Tree is very much similar to binary search tree, with the only difference that instead of just two children, it can have more than two. All the information is stored in leaf node and the intermediate nodes acts as pointer to the leaf nodes. The information in leaf nodes always remain a sorted sequential linked list.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/B-TREE.bmp"><img src="../../../imgs/db/47751cbe7f434354b278daeba17faee5.jpg" alt="" width="1434" height="751" class="alignnone size-full wp-image-287195"/></a></p>
+<p>In the above diagram 56 is the root node which is also called the main node of the tree.<br/>
+The intermediate nodes here, just consist the address of leaf nodes. They do not contain any actual record. Leaf nodes consist of the actual record. All leaf nodes are balanced.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><strong>Pros and Cons of B+ Tree File Organization –</strong><br/>
+<strong>Pros –</strong></p>
+<ul>
+<li>Tree traversal is easier and faster.</li>
+<li>Searching becomes easy as all records are stored only in leaf nodes and are sorted sequential linked list.</li>
+<li>There is no restriction on B+ tree size. It may grows/shrink as the size of data increases/decreases.</li>
+</ul>
+<p><strong>Cons –</strong></p>
+<ul>
+<li>Inefficient for static tables.</li>
+</ul>
+<h3 class="sigil_not_in_toc">Cluster File Organization –</h3>
+<p>In cluster file organization, two or more related tables/records are stored withing same file known as clusters. These files will have two or more tables in the same data block and the key attributes which are used to map these table together are stored only once.  </p>
+<p>Thus it lowers the cost of searching and retrieving various records in different files as they are now combined and kept in a single cluster.<br/>
+For example we have two tables or relation Employee and Department. These table are related to each other.</p>
+<p><img src="../../../imgs/db/e72151b1906e76a629db860c473f341d.jpg" alt="" width="1234" height="521" class="aligncenter size-full wp-image-288344"/></p>
+<p>Therefore these table are allowed to combine using a join operation and can be seen in a cluster file.</p>
+<p><img src="../../../imgs/db/e69be0d2a14d946a0559442f699d70de.jpg" width="1280" height="720" class="aligncenter size-full"/></p>
+<p>If we have to insert, update or delete any record we can directly do so. Data is sorted based on the primary key or the key with which searching is done. <strong>Cluster key</strong> is the key with which joining of the table is performed.</p>
+<p><strong>Types of Cluster File Organization –</strong> There are two ways to implement this method:</p>
+<ol>
+<li><strong>Indexed Clusters –</strong> In Indexed clustering the records are group based on the cluster key and stored together. The above mentioned example of Emplotee and Department relationship is an example of Indexed Cluster where the records are based on the Department ID.</li>
+<li><strong>Hash Clusters –</strong> This is very much similar to indexed cluster with only difference that instead of storing the records based on cluster key, we generate hash key value and store the records with same hash key value.</li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/><hr/>
+
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Equivalence of Functional Dependencies</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>For understanding equivalence of Functional Dependencies Sets (FD sets), basic idea about Attribute Closuresis given in&#160;<a href="http://quiz.geeksforgeeks.org/finding-attribute-closure-and-candidate-keys-using-functional-dependencies/">this </a>article<a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/12/fd1.png"><br/>
+</a></p>
+<p>Given a Relation with different FD sets for that relation, we have to find out whether one FD set is subset of other or both are equal.</p>
+<p><strong>How to find relationship between two FD sets?</strong></p>
+<p>Let FD1 and FD2 are two FD sets for a relation R.</p>
+<ol>
+<li>If all FDs of FD1 can be derived from FDs present in FD2, we can say that FD2 ⊃ FD1.</li>
+<li>If all FDs of FD2 can be derived from FDs present in FD1, we can say that FD1 ⊃ FD2.</li>
+<li>If 1 and 2 both are true, FD1=FD2.</li>
+</ol>
+<p>All these three cases can be shown using Venn diagram as:<img class="aligncenter size-full wp-image-21873" src="../../../imgs/db/e23da9ec1c85e826932ce360eaf58de9.jpg" alt="fd1" width="584" height="168"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p><strong>Q. Let us take an example to show the relationship between two FD sets. A relation R(A,B,C,D) having two FD sets FD1 = {A-&gt;B, B-&gt;C, AB-&gt;D} and FD2 = {A-&gt;B, B-&gt;C, A-&gt;C, A-&gt;D}</strong></p>
+<p><strong>Step 1.</strong>&#160; Checking whether all FDs of FD1 are present in FD2</p>
+<ul>
+<li>A-&gt;B in set FD1 is present in set FD2.</li>
+<li>B-&gt;C in set FD1 is also present in set FD2.</li>
+<li>AB-&gt;D in present in set FD1 but not directly in FD2 but we will check whether we can derive it or not. For set FD2, (AB)<sup>+ </sup>= {A,B,C,D}. It means that AB can functionally determine A, B, C and D. So AB-&gt;D will also hold in set FD2.</li>
+</ul>
+<p>As all FDs in set FD1 also hold in set FD2, FD2 ⊃ FD1 is true.</p>
+<p><strong>Step 2.</strong>&#160; Checking whether all FDs of FD2 are present in FD1</p>
+<ul>
+<li>A-&gt;B in set FD2 is present in set FD1.</li>
+<li>B-&gt;C in set FD2 is also present in set FD1.</li>
+<li>A-&gt;C is present in FD2 but not directly in FD1 but we will check whether we can derive it or not. For set FD1, (A)<sup>+ </sup>= {A,B,C,D}. It means that A can functionally determine A, B, C and D. SO A-&gt;C will also hold in set FD1.</li>
+<li>A-&gt;D is present in FD2 but not directly in FD1 but we will check whether we can derive it or not. For set FD1, (A)<sup>+ </sup>= {A,B,C,D}. It means that A can functionally determine A, B, C and D. SO A-&gt;D will also hold in set FD1.</li>
+</ul>
+<p>As all FDs in set FD2 also hold in set FD1, FD1 ⊃ FD2 is true.</p>
+<p><strong>Step 3.</strong> As FD2 ⊃ FD1 and FD1 ⊃ FD2 both are true FD2 =FD1 is true. These two FD sets are semantically equivalent.</p>
+<hr/>
+<p><strong>Q. Let us take another example to show the relationship between two FD sets. A relation R2(A,B,C,D) having two FD sets FD1 = {A-&gt;B, B-&gt;C,A-&gt;C} and FD2 = {A-&gt;B, B-&gt;C, A-&gt;D}</strong></p>
+<p><strong>Step 1.</strong>&#160; Checking whether all FDs of FD1 are present in FD2</p>
+<ul>
+<li>A-&gt;B in set FD1 is present in set FD2.</li>
+<li>B-&gt;C in set FD1 is also present in set FD2.</li>
+<li>A-&gt;C is present in FD1 but not directly in FD2 but we will check whether we can derive it or not. For set FD2, (A)<sup>+ </sup>= {A,B,C,D}. It means that A can functionally determine A, B, C and D. SO A-&gt;C will also hold in set FD2.</li>
+</ul>
+<p>As all FDs in set FD1 also hold in set FD2, FD2 ⊃ FD1 is true.</p>
+<p><strong>Step 2.</strong>&#160; Checking whether all FDs of FD2 are present in FD1</p>
+<ul>
+<li>A-&gt;B in set FD2 is present in set FD1.</li>
+<li>B-&gt;C in set FD2 is also present in set FD1.</li>
+<li>A-&gt;D is present in FD2 but not directly in FD1 but we will check whether we can derive it or not. For set FD1, (A)<sup>+ </sup>= {A,B,C}. It means that A can’t functionally determine D. SO A-&gt;D will not hold in FD1.</li>
+</ul>
+<p>As all FDs in set FD2 do not hold in set FD1, FD2 ⊄ FD1.</p>
+<p><strong>Step 3.</strong> In this case, FD2 ⊃ FD1 and FD2 ⊄ FD1, these two FD sets are not semantically equivalent.</p>
+<p><iframe width="665" height="374" src="https://www.youtube.com/embed/WD4xfGDCTmQ?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

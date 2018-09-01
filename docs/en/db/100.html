@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Last Minute Notes – DBMS</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>See Last Minute Notes on all subjects <a href="http://quiz.geeksforgeeks.org/lmns/">here</a>.</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium">We will discuss the important key points useful for GATE exams in summarized form. For details you may refer <a href="http://quiz.geeksforgeeks.org/gate-cs-notes/" target="_blank">this</a>.<br/>
+</span></span></p>
+<p>&#160;</p>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>E-R Diagram: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">The most common asked questions in ER diagram is minimum number of tables required for a given ER diagram. Generally, following criteria are used:</span></span></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>&#160;</p>
+<p>&#160;</p>
+<table width="359" cellspacing="0" cellpadding="8">
+<colgroup>
+<col width="163"/>
+<col width="163"/>
+ </colgroup>
+<tbody>
+<tr valign="top">
+<td width="163"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Cardinality</b></span></span></td>
+<td width="163"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Minimum No. of tables</b></span></span></td>
+</tr>
+<tr valign="top">
+<td width="163"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">1:1 cardinality with partial participation of both entities</span></span></td>
+<td width="163"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">2</span></span></td>
+</tr>
+<tr valign="top">
+<td width="163"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">1:1 cardinality with total participation of atleast 1 entity</span></span></td>
+<td width="163"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">1</span></span></td>
+</tr>
+<tr valign="top">
+<td width="163"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">1:n cardinality </span></span></td>
+<td width="163"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">2</span></span></td>
+</tr>
+<tr valign="top">
+<td width="163"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">m:n cardinality</span></span></td>
+<td width="163"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">3</span></span></td>
+</tr>
+</tbody>
+</table>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Note:</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> This is a general observation. Special cases need to be taken care. We may need extra table if attribute of a relationship can’t be moved to any entity side.</span></span></p>
+<p>&#160;</p>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Keys of a relation:</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> There are various types of keys in a relation which are:</span></span></p>
+<ul>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Candidate Key: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">The minimal set of attributes which can determine a tuple uniquely. There can be more than 1 candidate key of a relation and its proper subset can’t determine tuple uniquely and it can’t be NULL.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Super Key: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">The set of attributes which can determine a tuple uniquely. A candidate key is always a super key but vice versa is not true. </span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Primary Key and Alternate Key:</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> Among various candidate keys, one key is taken primary key and others are alternate keys.</span></span></li>
+</ul>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Normal Forms</b></span></span></p>
+<ul>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>First Normal Form: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">A relation is in first normal form if it does not contain any multi-valued or composite attribute.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Second Normal Form: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">A relation is in second normal form if it does not contain any partial dependency. A dependency is called partial dependency if any proper subset of candidate key determines non-prime (which are not part of candidate key) attribute.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Third Normal Form: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">A relation is in third normal form if it does not contain any transitive dependency. For a relation to be in Third Normal Form, either LHS of FD should be super key or RHS should be prime attribute.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Boyce-Codd Normal Form: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">A relation is in</span></span><b> </b><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Boyce-Codd</span></span><b> </b><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Normal Form if LHS of every FD is super key. The relationship between Normal Forms can be represented as: </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>1NF</b></span></span><span style="color: #222222"><span style="font-family: Cambria Math,serif"><span style="font-size: medium"><b>⊃</b></span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>2NF</b></span></span><span style="color: #222222"><span style="font-family: Cambria Math,serif"><span style="font-size: medium"><b>⊃</b></span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>3NF</b></span></span><span style="color: #222222"><span style="font-family: Cambria Math,serif"><span style="font-size: medium"><b>⊃</b></span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>BCNF</b></span></span></li>
+</ul>
+<p>&#160;</p>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Relational Algebra: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Procedural language with basic and extended operators. </span></span></p>
+<p>&#160;</p>
+<table width="743" cellspacing="0" cellpadding="8">
+<colgroup>
+<col width="105"/>
+<col width="604"/>
+ </colgroup>
+<tbody>
+<tr valign="top">
+<td width="105"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Basic Operator</b></span></span></td>
+<td width="604"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Semantic</b></span></span></td>
+</tr>
+<tr valign="top">
+<td width="105"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>σ (Selection)</b></span></span></td>
+<td width="604"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Select rows based on given condition</span></span></td>
+</tr>
+<tr valign="top">
+<td width="105">∏ <span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>(Projection)</b></span></span></td>
+<td width="604"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Project some columns</span></span></td>
+</tr>
+<tr valign="top">
+<td width="105"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>X (Cross Product)</b></span></span></td>
+<td width="604"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Cross product of relations, returns </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>m*n</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> rows where m and n are number of rows in R1 and R2 respectively. </span></span></td>
+</tr>
+<tr valign="top">
+<td width="105"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>U (Union)</b></span></span></td>
+<td width="604"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Return those tuples which are either in R1 or in R2. Max no. of rows returned </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>= m+n </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">and</span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Min no. of rows returned = </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>max(m,n)</b></span></span></td>
+</tr>
+<tr valign="top">
+<td width="105" height="26"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>– (Minus)</b></span></span></td>
+<td width="604"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">R1-R2 returns those tuples which are in R1 but not in R2. Max no. of rows returned = </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>m </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">and </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Min no. of rows returned = </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>m-n</b></span></span></td>
+</tr>
+<tr valign="top">
+<td width="105"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>ρ (Rename)</b></span></span></td>
+<td width="604"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Renaming a relation to other relation.</span></span></td>
+</tr>
+</tbody>
+</table>
+<p>&#160;</p>
+<p>&#160;</p>
+<p>&#160;</p>
+<table width="743" cellspacing="0" cellpadding="8">
+<colgroup>
+<col width="125"/>
+<col width="584"/>
+ </colgroup>
+<tbody>
+<tr valign="top">
+<td width="125"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Extended Operator</b></span></span></td>
+<td width="584"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Semantic</b></span></span></td>
+</tr>
+<tr valign="top">
+<td width="125">∩ <span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>(Intersection)</b></span></span></td>
+<td width="584"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Returns those tuples which are in both R1 and R2. Max no. of rows returned = min(m,n) and Min no. of rows returned = 0</span></span></td>
+</tr>
+<tr valign="top">
+<td width="125" height="41">
+<p align="left"><span style="color: #121214">⋈</span><span style="color: #121214"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>c (Conditional Join)</b></span></span></span></p>
+</td>
+<td width="584"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Selection from two or more tables based on some condition (Cross product followed by selection)</span></span></td>
+</tr>
+<tr valign="top">
+<td width="125">
+<p align="left"><span style="color: #121214">⋈</span><span style="color: #121214"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>c(Equi Join)</b></span></span></span></p>
+</td>
+<td width="584"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">It is a special case of conditional join when only equality condition is applied between attributes. </span></span></td>
+</tr>
+<tr valign="top">
+<td width="125">
+<p align="left"><span style="color: #121214">⋈</span><span style="color: #121214"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>(Natural Join)</b></span></span></span></p>
+</td>
+<td width="584"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">In natural join, equality condition on common attributes hold and duplicate attributes are removed by default. </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Note:</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> Natural Join is equivalent to cross product if two relations have no attribute in common and natural join of a relation R with itself will return R only.</span></span></td>
+</tr>
+<tr valign="top">
+<td width="125">
+<p align="left"><span style="color: #121214"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>/(Division Operator)</b></span></span></span></p>
+</td>
+<td width="584"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Division operator A/B will return those tuples in A which is associated with every tuple of B.</span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Note:</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Attributes of B should be proper subset of attributes of A. </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">The attributes in A/B will be Attributes of A- Attribute of B. </span></span></td>
+</tr>
+</tbody>
+</table>
+<p>&#160;</p>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>SQL: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">As opposed to Relational Algebra, SQL is a non-procedural language.</span></span></p>
+<p>&#160;</p>
+<table width="718" cellspacing="0" cellpadding="8">
+<colgroup>
+<col width="342"/>
+<col width="342"/>
+ </colgroup>
+<tbody>
+<tr valign="top">
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Operator</b></span></span></td>
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Meaning</b></span></span></td>
+</tr>
+<tr valign="top">
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Select</b></span></span></td>
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Selects columns from a relation or set of relations.</span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Note: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">As opposed to Relational Algebra, it may give duplicate tuples for repeated value of an attribute.</span></span></td>
+</tr>
+<tr valign="top">
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>From</b></span></span></td>
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>From</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> is used to give input as relation or set of relations from which data needs to be selected.</span></span></td>
+</tr>
+<tr valign="top">
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>where</b></span></span></td>
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Where </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">is used to give condition to be used to filter tuples</span></span></td>
+</tr>
+<tr valign="top">
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Group By</b></span></span></td>
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Group By </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">is used to group the tuples based on some attribute or set of attributes like counting the no. of students group by department.</span></span></td>
+</tr>
+<tr valign="top">
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Aggregate functions</b></span></span></td>
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Find the aggregated value of an attribute. Used mostly with group by. e.g.; count, sum, min max. </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>select count(*) from student group by dept_id</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Note:</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> we can select only those columns which are part of group by.</span></span><b> </b></td>
+</tr>
+<tr valign="top">
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Nested Queried</b></span></span></td>
+<td width="342"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">When one query is a part of other query. Solving nested queries questions can be learnt in </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>http://quiz.geeksforgeeks.org/nested-queries-sql/</b></span></span></td>
+</tr>
+</tbody>
+</table>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Conflict serializable and Conflict Equivalent:</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> A schedule is conflict serializable if it is conflict equivalent to a serial schedule. </span></span></p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Checking for Conflict Serializability</b></span></span></p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium">To check whether a schedule is conflict serializable or not, find all </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>conflicting operations pair</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">s of a schedule and draw precedence graph ( For all conflicting operation pair, an edge from T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> to T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">j</span></span></sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> if one operation of conflicting pair is from T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> and other from T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">j</span></span></sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> and operation of T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> occurs before T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">j</span></span></sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> in schedule). If graph does not contain cycle, the schedule is conflict serializable else it is not conflict serializable.</span></span></p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Schedules are said to be conflict equivalent if 1 schedule can be converted into another by swapping non conflicting operations.</span></span></p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Note:</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> Two phase locking protocol produce conflict serializable schedule but may suffer from deadlock. On the other hand, Time-Stamp based protocols are free from deadlock yet produce conflict serializable schedule.</span></span><br/>
+<span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>View Serializable and View Equivalence:</b> <span style="color: #252525">Two schedules S1 and S2 are said to be view-equivalent if all conditions are satisfied for all objects:</span></span></span></p>
+<ul>
+<li>
+<p align="left"><span style="color: #252525"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">If the transaction </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub> <span style="color: #252525"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">in S1 reads an initial value for object X, in S2 also, </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> must read the initial value of X</span></span></span><span style="color: #252525"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">.</span></span></span></p>
+</li>
+<li>
+<p align="left"><span style="color: #252525"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">If the transaction</span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub><span style="color: #252525"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> in S1 reads the value written by transaction </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">j </span></span></sub><span style="color: #252525"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">in S1 for object X, same should be done in S2.</span></span></span></p>
+</li>
+<li>
+<p align="left"><span style="color: #252525"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">If the transaction </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub><span style="color: #252525"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> in S1 is the final transaction to write the value for an object X, in S2 also, </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> must write the final value of X.</span></span></span></p>
+</li>
+</ul>
+<p align="left"><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">A schedule is view serializable if it is view equivalent to any serial schedule.</span></span></span></p>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Irrecoverable Schedules: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b><span style="color: #000000"> </span></b></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">For a transaction pair &lt;</span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">, </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">j</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> &gt;, if </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">j</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> is reading the value updated by Ti and Tj is committed before commit of Ti, the schedule will be irrecoverable.</span></span></span></p>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Recoverable Schedules: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b><span style="color: #000000"> </span></b></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">For a transaction pair &lt;</span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">, </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">j</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> &gt;, if </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">j</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> is reading the value updated by Ti and Tj is committed after commit of Ti, the schedule will be recoverable.</span></span></span></p>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Cascadeless Recoverable Schedules: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b><span style="color: #000000"> </span></b></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">For a transaction pair &lt;</span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">, </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">j</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> &gt;, if value updated by Ti is read by Tj only after commit of </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">, the schedule will be cascadeless recoverable.</span></span></span></p>
+<p>&#160;</p>
+<p><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Strict Recoverable:</b></span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> For a transaction pair &lt;</span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">, </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">j</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> &gt;, if value updated by Ti is read or written by Tj only after commit of </span></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T</span></span><sub><span style="font-family: Times New Roman,serif"><span style="font-size: medium">i</span></span></sub><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">, the schedule will be strict recoverable. The relationship between them can be represented as: </span></span></span><span style="color: #252525"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> </span></span></span></p>
+<p>&#160;</p>
+<p><span style="color: #252525"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Strict </b></span></span></span><span style="color: #252525"><span style="font-family: Cambria Math,serif"><span style="font-size: medium"><b>⊂</b></span></span></span><b> </b><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Cascadeless Recoverable </b></span></span><span style="color: #252525"><span style="font-family: Cambria Math,serif"><span style="font-size: medium"><b>⊂</b></span></span></span><span style="color: #252525"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b> recoverable </b></span></span></span><span style="color: #252525"><span style="font-family: Cambria Math,serif"><span style="font-size: medium"><b>⊂</b></span></span></span><span style="color: #252525"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b> all schedules</b></span></span></span></p>
+<p>&#160;</p>
+<p><a href="https://www.geeksforgeeks.org/dbms-gq/file-structures-sequential-files-indexing-b-and-b-trees-gq/" rel="noopener" target="_blank"><br/>
+</a></p>
+<h5 class="sigil_not_in_toc"><a href="https://www.geeksforgeeks.org/dbms-gq/file-structures-sequential-files-indexing-b-and-b-trees-gq/" rel="noopener" target="_blank">File structures : </a></h5>
+<a href="https://www.geeksforgeeks.org/dbms-gq/file-structures-sequential-files-indexing-b-and-b-trees-gq/" rel="noopener" target="_blank">
+<p></p></a><p></p>
+<p><b>Primary Index :</b> A primary index is an ordered file, records of fixed length with two fields. First field is same as primary key as data file and second field is a pointer to data block, where the key is available.</p>
+<p>The average number of block accesses using index = <b>log<sub>2</sub> Bi + 1</b>, where Bi = number of index blocks.<br/>
+&#160;<br/>
+<b> Clustering Index : </b>Clustering index is created on data file whose records are physically ordered on a non-key field (called Clustering field).<br/>
+&#160;<br/>
+<b> Secondary Index : </b>Secondary index provides secondary means of accessing a file for which primary access already exists. </p>
+<pre> Number of index entries = Number of records</pre>
+<p>&#160;<br/>
+<b><u> B Trees :</u></b><br/>
+At every level , we have Key and Data Pointer and data pointer points to either block or record.</p>
+<p><a href="https://www.geeksforgeeks.org/b-tree-set-1-introduction-2/" rel="noopener" target="_blank"><b>Properties of B-Trees :</b></a><br/>
+Root of B-tree can have children between <b>2</b> and <b>P</b>, where P is Order of tree.</p>
+<p><b>Order of tree</b> –  Maximum number of children a node can have.</p>
+<p>Internal node can have children between <b>⌈ P/2 ⌉</b> and <b> P </b><br/>
+Internal node can have keys between <b>⌈ P/2 ⌉ – 1</b> and <b> P-1</b></p>
+<p><a href="https://www.geeksforgeeks.org/data-structure-gq/b-and-b-trees-gq/" rel="noopener" target="_blank"><b><u> B+ Trees :</u></b></a><br/>
+In B+ trees structure of leaf and non-leaf are different, so their order is. Order of non-leaf will be higher as compared to leaf nodes.</p>
+<p>Searching time will be less in B+ tress, since it doesn’t have record pointers in non-leaf because of which depth will decrease.</p>
+<p><br/><br/>
+<br/><br/>
+This article has been contributed by Sonal Tuteja.<br/>
+&#160;</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

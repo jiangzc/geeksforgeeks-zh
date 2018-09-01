@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Database Management Systems | Set 6</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Following questions have been asked in GATE 2009 CS exam.<span id="more-20654"></span></p>
+<p><strong>1) Consider two transactions T1 and T2, and four schedules S1, S2, S3, S4 of T1 and T2 as given below:</strong><br/>
+T1 = R1[X] W1[X] W1[Y]<br/>
+T2 = R2[X] R2[Y] W2[Y]<br/>
+S1 = R1[X] R2[X] R2[Y] W1[X] W1[Y] W2[Y]<br/>
+S2 = R1[X] R2[X] R2[Y] W1[X] W2[Y] W1[Y]<br/>
+S3 = R1[X] W1[X] R2[X] W1[Y] R2[Y] W2[Y]<br/>
+S1 = R1[X] R2[Y]R2[X]W1[X] W1[Y] W2[Y]<br/>
+<strong>Which of the above schedules are conflict-serializable?</strong><br/>
+(A) S1 and S2<br/>
+(B) S2 and S3<br/>
+(C) S3 only<br/>
+(D) S4 only</p>
+<p>Answer (B)<br/>
+There can be two possible serial schedules T1 T2 and T2 T1.  The serial schedule T1 T2 has the following sequence of operations<br/>
+R1[X] W1[X] W1[Y] R2[X] R2[Y] W2[Y]<br/>
+And the schedule T2 T1 has the following sequence of operations.<br/>
+R2[X] R2[Y] W2[Y] R1[X] W1[X] W1[Y]<br/>
+The Schedule S2 is conflict-equivalent to T2 T1 and S3 is conflict-equivalent to T1 T2.</p>
+<p><br/><br/>
+<strong>2) Let R and S be relational schemes such that R={a,b,c} and S={c}. Now consider<br/>
+the following queries on the database:</strong><br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/GATE2009DBMS11.gif"><img src="../../../imgs/db/351c86da512e9b698016f83e8422e431.jpg" alt="" title="GATE2009DBMS1" width="350" height="70"/></a></p>
+<pre>IV) SELECT R.a, R.b
+       FROM R,S
+            WHERE R.c=S.c
+</pre>
+<p><strong>Which of the above queries are equivalent?</strong><br/>
+(A) I and II<br/>
+(B) I and III<br/>
+(C) II and IV<br/>
+(D) III and IV</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          
+          
+        <br/>
+            
+<p>Answer (A)<br/>
+I and II describe the division operator in <a href="http://en.wikipedia.org/wiki/Relational_algebra">Relational Algebra</a> and <a href="http://en.wikipedia.org/wiki/Tuple_relational_calculus">Tuple Relational Calculus</a> respectively. See Page 3 of <a href="http://users.abo.fi/soini/divisionEnglish.pdf">this </a> and slide numbers 9,10 of <a href="http://www-inst.eecs.berkeley.edu/~cs186/fa05/lecs/10CalcSQLI-6up.pdf">this </a>for more details.</p>
+<p><br/><br/>
+<strong>3) Consider the following relational schema:
+</strong></p>
+<pre><strong>Suppliers(<u>sid:integer</u>, sname:string, city:string, street:string)
+Parts(<u>pid:integer</u>, pname:string, color:string)
+Catalog(<u>sid:integer, pid:integer</u>, cost:real)</strong></pre>
+<strong>
+<p>Consider the following relational query on the above database:</p></strong><p></p>
+<pre>SELECT S.sname
+    FROM Suppliers S
+        WHERE S.sid NOT IN (SELECT C.sid
+                            FROM Catalog C
+                            WHERE C.pid NOT IN (SELECT P.pid  
+                                                FROM Parts P                                                                                                    
+                                                WHERE P.color&lt;&gt; 'blue'))
+</pre>
+<p><strong>Assume that relations corresponding to the above schema are not empty. Which one of the following is the correct interpretation of the above query?<br/>
+</strong><br/>
+(A) Find the names of all suppliers who have supplied a non-blue part.<br/>
+(B) Find the names of all suppliers who have not supplied a non-blue part.<br/>
+(C) Find the names of all suppliers who have supplied only blue parts.<br/>
+(D) Find the names of all suppliers who have not supplied only blue parts.</p>
+<p>Answer (A)<br/>
+The subquery “<em>SELECT P.pid FROM Parts P WHERE P.color&lt;&gt; ‘blue’</em>” gives pids of parts which are not blue. The bigger subquery “<em>SELECT C.sid FROM Catalog C WHERE C.pid NOT IN (SELECT P.pid FROM Parts P WHERE P.color&lt;&gt; ‘blue’)</em>” gives sids of all those suppliers who have supplied blue parts.  The complete query gives the names of all suppliers who have supplied a non-blue part</p>
+<p><br/><br/>
+<strong>4) Assume that, in the suppliers relation above, each supplier and each street within a city has a unique name, and (sname, city) forms a candidate key. No other functional dependencies are implied other than those implied by primary and candidate keys. Which one of the following is TRUE about the above schema?</strong><br/>
+(A) The schema is in BCNF<br/>
+(B) The schema is in 3NF but not in BCNF<br/>
+(C) The schema is in 2NF but not in 3NF<br/>
+(D) The schema is not in 2NF</p>
+<p>Answer (A)<br/>
+A relation is in <a href="http://en.wikipedia.org/wiki/Boyce%E2%80%93Codd_normal_form" target="_blank">BCNF </a>if for every one of its dependencies X ? Y, at least one of the following conditions hold:
+</p>
+<pre>    X ? Y is a trivial functional dependency (Y ? X)
+    X is a superkey for schema R </pre>
+<p></p>
+<p>Since  (sname, city) forms a candidate key, there is no non-tirvial dependency X ? Y where X is not a superkey</p>
+<p><strong>Please see <a href="http://geeksquiz.com/gate-corner-2/">GATE Corner</a> for all previous year paper/solutions/explanations, syllabus, important dates, notes, etc.</strong></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

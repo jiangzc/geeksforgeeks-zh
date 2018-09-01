@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">ER Model: Generalization, Specialization and Aggregation</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisite –</b> <a href="http://gdevtest.geeksforgeeks.org/database-management-system-er-model/">Introduction of ER Model</a><br/>
+Generalization, Specialization and Aggregation in ER model are used for data abstraction in which abstraction mechanism is used to hide details of a set of objects.</p>
+<p><strong>Generalization –</strong><br/>
+Generalization is the process of extracting common properties from a set of entities and create a generalized entity from it. It is a bottom-up approach in which two or more entities can be generalized to a higher level entity if they have some attributes in common. For Example, STUDENT and FACULTY can be generalized to a higher level entity called PERSON as shown in Figure 1. In this case, common attributes like P_NAME, P_ADD become part of higher entity (PERSON) and specialized attributes like S_FEE become part of specialized entity (STUDENT).<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/generalization.png"><img src="../../../imgs/db/449620fd8dabb417a1ec535420ac8824.jpg" alt="img1" width="562" height="492" class="aligncenter size-full wp-image-151300"/></a></p>
+<p><strong>Specialization –</strong><br/>
+In specialization, an entity is divided into sub-entities based on their characteristics. It is a top-down approach where higher level entity is specialized into two or more lower level entities. For Example, EMPLOYEE entity in an Employee management system can be specialized into DEVELOPER, TESTER etc. as shown in Figure 2. In this case, common attributes like E_NAME, E_SAL etc. become part of higher entity (EMPLOYEE) and specialized attributes like TES_TYPE become part of specialized entity (TESTER).<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/specialization.png"><img src="../../../imgs/db/0a07948661426b3b0137047e5d6c4d3b.jpg" alt="img2" width="562" height="563" class="aligncenter size-full wp-image-151301"/></a></p>
+<p><strong>Aggregation –</strong><br/>
+An ER diagram is not capable of representing relationship between an entity and a relationship which may be required in some scenarios. In those cases, a relationship with its corresponding entities is aggregated into a higher level entity. For Example, Employee working for a project may require some machinery. So, REQUIRE relationship is needed between relationship WORKS_FOR and entity MACHINERY. Using aggregation, WORKS_FOR relationship with its entities EMPLOYEE and PROJECT is aggregated into single entity and relationship REQUIRE is created between aggregated entity and MACHINERY.<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/aggregation.png"><img src="../../../imgs/db/b6be2fc5ebeb1cecb22c1c85d045d937.jpg" alt="img3" width="491" height="425" class="aligncenter size-full wp-image-151307"/></a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>
