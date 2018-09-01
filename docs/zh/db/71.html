@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> B&#x6811;|</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7B2C;1&#x96C6;&#xFF08;&#x7B80;&#x4ECB;&#xFF09;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> B-Tree&#x662F;&#x4E00;&#x79CD;&#x81EA;&#x6211;&#x5E73;&#x8861;&#x7684;&#x641C;&#x7D22;&#x6811;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x5927;&#x591A;&#x6570;&#x5176;&#x4ED6;&#x81EA;&#x5E73;&#x8861;&#x641C;&#x7D22;&#x6811;&#xFF08;&#x5982;<a href="https://www.geeksforgeeks.org/avl-tree-set-1-insertion/">AVL</a>&#x548C;&#x7EA2;&#x9ED1;&#x6811;&#xFF09;&#x4E2D;&#xFF0C;&#x5047;&#x8BBE;&#x4E00;&#x5207;&#x90FD;&#x5728;&#x4E3B;&#x5B58;&#x50A8;&#x5668;&#x4E2D;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8981;&#x7406;&#x89E3;B&#x6811;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x8003;&#x8651;&#x5927;&#x91CF;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x4E0D;&#x9002;&#x5408;&#x4E3B;&#x5B58;&#x3002;</span> <span id="more-117057"></span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5F53;&#x952E;&#x6570;&#x5F88;&#x9AD8;&#x65F6;&#xFF0C;&#x4EE5;&#x5757;&#x7684;&#x5F62;&#x5F0F;&#x4ECE;&#x78C1;&#x76D8;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E0E;&#x4E3B;&#x5B58;&#x50A8;&#x5668;&#x8BBF;&#x95EE;&#x65F6;&#x95F4;&#x76F8;&#x6BD4;&#xFF0C;&#x78C1;&#x76D8;&#x8BBF;&#x95EE;&#x65F6;&#x95F4;&#x975E;&#x5E38;&#x957F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F7F;&#x7528;B-Trees&#x7684;&#x4E3B;&#x8981;&#x601D;&#x60F3;&#x662F;&#x51CF;&#x5C11;&#x78C1;&#x76D8;&#x8BBF;&#x95EE;&#x6B21;&#x6570;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5927;&#x591A;&#x6570;&#x6811;&#x64CD;&#x4F5C;&#xFF08;&#x641C;&#x7D22;&#xFF0C;&#x63D2;&#x5165;&#xFF0C;&#x5220;&#x9664;&#xFF0C;&#x6700;&#x5927;&#xFF0C;&#x6700;&#x5C0F;&#xFF0C;..&#x7B49;&#xFF09;&#x9700;&#x8981;O&#xFF08;h&#xFF09;&#x78C1;&#x76D8;&#x8BBF;&#x95EE;&#xFF0C;&#x5176;&#x4E2D;h&#x662F;&#x6811;&#x7684;&#x9AD8;&#x5EA6;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> B&#x6811;&#x662F;&#x4E00;&#x68F5;&#x80A5;&#x80D6;&#x7684;&#x6811;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x901A;&#x8FC7;&#x5728;B&#x6811;&#x8282;&#x70B9;&#x4E2D;&#x653E;&#x7F6E;&#x6700;&#x5927;&#x53EF;&#x80FD;&#x5BC6;&#x94A5;&#xFF0C;B&#x6811;&#x7684;&#x9AD8;&#x5EA6;&#x4FDD;&#x6301;&#x8F83;&#x4F4E;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x901A;&#x5E38;&#xFF0C;B&#x6811;&#x8282;&#x70B9;&#x5927;&#x5C0F;&#x4FDD;&#x6301;&#x7B49;&#x4E8E;&#x78C1;&#x76D8;&#x5757;&#x5927;&#x5C0F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7531;&#x4E8E;B-Tree&#x7684;h&#x503C;&#x8F83;&#x4F4E;&#xFF0C;&#x56E0;&#x6B64;&#x4E0E;&#x5E73;&#x8861;&#x4E8C;&#x8FDB;&#x5236;&#x641C;&#x7D22;&#x6811;&#xFF08;&#x5982;AVL&#x6811;&#xFF0C;&#x7EA2;&#x9ED1;&#x6811;&#xFF0C;&#x7B49;&#x7B49;&#xFF09;&#x76F8;&#x6BD4;&#xFF0C;&#x5927;&#x591A;&#x6570;&#x64CD;&#x4F5C;&#x7684;&#x603B;&#x78C1;&#x76D8;&#x8BBF;&#x95EE;&#x91CF;&#x663E;&#x7740;&#x51CF;&#x5C11;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>B&#x6811;&#x7684;&#x5C5E;&#x6027;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>1&#xFF09;</strong>&#x6240;&#x6709;&#x53F6;&#x5B50;&#x5904;&#x4E8E;&#x540C;&#x4E00;&#x6C34;&#x5E73;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>2&#xFF09;</strong> B&#x6811;&#x7531;&#x672F;&#x8BED;<em>&#x6700;&#x5C0F;&#x5EA6;</em> &apos;t&apos;&#x5B9A;&#x4E49;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> t&#x7684;&#x503C;&#x53D6;&#x51B3;&#x4E8E;&#x78C1;&#x76D8;&#x5757;&#x5927;&#x5C0F;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>3&#xFF09;</strong>&#x9664;root&#x4E4B;&#x5916;&#x7684;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x5FC5;&#x987B;&#x81F3;&#x5C11;&#x5305;&#x542B;t-1&#x4E2A;&#x5BC6;&#x94A5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> Root&#x53EF;&#x80FD;&#x5305;&#x542B;&#x6700;&#x5C11;1&#x4E2A;&#x5BC6;&#x94A5;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>4&#xFF09;</strong>&#x6240;&#x6709;&#x8282;&#x70B9;&#xFF08;&#x5305;&#x62EC;&#x6839;&#xFF09;&#x6700;&#x591A;&#x53EF;&#x5305;&#x542B;2t  -  1&#x4E2A;&#x5BC6;&#x94A5;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>5&#xFF09;</strong>&#x8282;&#x70B9;&#x7684;&#x5B50;&#x8282;&#x70B9;&#x6570;&#x7B49;&#x4E8E;&#x5176;&#x4E2D;&#x7684;&#x952E;&#x6570;&#x52A0;1&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>6&#xFF09;</strong>&#x8282;&#x70B9;&#x7684;&#x6240;&#x6709;&#x5BC6;&#x94A5;&#x6309;&#x9012;&#x589E;&#x987A;&#x5E8F;&#x6392;&#x5E8F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E24;&#x4E2A;&#x952E;k1&#x548C;k2&#x4E4B;&#x95F4;&#x7684;&#x5B50;&#x5305;&#x542B;&#x8303;&#x56F4;&#x4E3A;k1&#x548C;k2&#x7684;&#x6240;&#x6709;&#x952E;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>7&#xFF09;</strong> B-Tree&#x4ECE;&#x6839;&#x589E;&#x957F;&#x548C;&#x7F29;&#x5C0F;&#xFF0C;&#x8FD9;&#x4E0E;&#x4E8C;&#x8FDB;&#x5236;&#x641C;&#x7D22;&#x6811;&#x4E0D;&#x540C;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E8C;&#x5143;&#x641C;&#x7D22;&#x6811;&#x5411;&#x4E0B;&#x751F;&#x957F;&#xFF0C;&#x4E5F;&#x4ECE;&#x5411;&#x4E0B;&#x6536;&#x7F29;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>8&#xFF09;</strong>&#x4E0E;&#x5176;&#x4ED6;&#x5E73;&#x8861;&#x4E8C;&#x8FDB;&#x5236;&#x641C;&#x7D22;&#x6811;&#x4E00;&#x6837;&#xFF0C;&#x641C;&#x7D22;&#xFF0C;&#x63D2;&#x5165;&#x548C;&#x5220;&#x9664;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A;O&#xFF08;Logn&#xFF09;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4EE5;&#x4E0B;&#x662F;&#x6700;&#x5C0F;&#x5EA6;&#x4E3A;3&#x7684;B&#x6811;&#x793A;&#x4F8B;&#x3002;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x5728;&#x5B9E;&#x9645;B&#x6811;&#x4E2D;&#xFF0C;&#x6700;&#x5C0F;&#x5EA6;&#x7684;&#x503C;&#x8FDC;&#x5927;&#x4E8E;3&#x3002;</span> <br> <a href="https://www.geeksforgeeks.org/wp-content/uploads/BTreeIntro1.png"><img src="../../../imgs/db/11a7868d6f1f642403197333a02d3ed4.jpg" alt="BTreeIntro" width="510" height="182" class="aligncenter size-full wp-image-117073"></a> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x641C;&#x7D22;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x641C;&#x7D22;&#x7C7B;&#x4F3C;&#x4E8E;&#x4E8C;&#x8FDB;&#x5236;&#x641C;&#x7D22;&#x6811;&#x4E2D;&#x7684;&#x641C;&#x7D22;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BA9;&#x8981;&#x641C;&#x7D22;&#x7684;&#x5BC6;&#x94A5;&#x4E3A;k&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x4ECE;root&#x5F00;&#x59CB;&#xFF0C;&#x9012;&#x5F52;&#x5730;&#x904D;&#x5386;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x8BBF;&#x95EE;&#x8FC7;&#x7684;&#x975E;&#x53F6;&#x8282;&#x70B9;&#xFF0C;&#x5982;&#x679C;&#x8282;&#x70B9;&#x6709;&#x5BC6;&#x94A5;&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x8FD4;&#x56DE;&#x8282;&#x70B9;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5426;&#x5219;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x91CD;&#x590D;&#x5230;&#x8282;&#x70B9;&#x7684;&#x9002;&#x5F53;&#x5B50;&#x8282;&#x70B9;&#xFF08;&#x5C31;&#x5728;&#x7B2C;&#x4E00;&#x4E2A;&#x66F4;&#x5927;&#x7684;&#x952E;&#x4E4B;&#x524D;&#x7684;&#x5B50;&#x8282;&#x70B9;&#xFF09;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x6211;&#x4EEC;&#x5230;&#x8FBE;&#x53F6;&#x8282;&#x70B9;&#x5E76;&#x4E14;&#x5728;&#x53F6;&#x8282;&#x70B9;&#x4E2D;&#x627E;&#x4E0D;&#x5230;k&#xFF0C;&#x5219;&#x8FD4;&#x56DE;NULL&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x7279;&#x62C9;&#x5F17;&#x65AF;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x904D;&#x5386;&#x4E5F;&#x7C7B;&#x4F3C;&#x4E8E;&#x4E8C;&#x53C9;&#x6811;&#x7684;Inorder&#x904D;&#x5386;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x4ECE;&#x6700;&#x5DE6;&#x8FB9;&#x7684;&#x5B69;&#x5B50;&#x5F00;&#x59CB;&#xFF0C;&#x9012;&#x5F52;&#x5730;&#x6253;&#x5370;&#x6700;&#x5DE6;&#x8FB9;&#x7684;&#x5B69;&#x5B50;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x5269;&#x4F59;&#x7684;&#x5B69;&#x5B50;&#x548C;&#x94A5;&#x5319;&#x91CD;&#x590D;&#x76F8;&#x540C;&#x7684;&#x8FC7;&#x7A0B;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6700;&#x540E;&#xFF0C;&#x9012;&#x5F52;&#x6253;&#x5370;&#x6700;&#x53F3;&#x8FB9;&#x7684;&#x5B69;&#x5B50;&#x3002;</span> </p><br><!-- post_top_responsive --><br>
+            
+<pre class="brush: cpp; highlight: [16,17,19,20,37,38,39,41,42,43,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100]; title: ; notranslate" title="">// C++ implemntation of search() and traverse() methods
+#include&lt;iostream&gt;
+using namespace std;
+
+// A BTree node
+class BTreeNode
+{
+    int *keys;  // An array of keys
+    int t;      // Minimum degree (defines the range for number of keys)
+    BTreeNode **C; // An array of child pointers
+    int n;     // Current number of keys
+    bool leaf; // Is true when node is leaf. Otherwise false
+public:
+    BTreeNode(int _t, bool _leaf);   // Constructor
+
+    // A function to traverse all nodes in a subtree rooted with this node
+    void traverse();
+
+    // A function to search a key in subtree rooted with this node.    
+    BTreeNode *search(int k);   // returns NULL if k is not present.
+
+// Make BTree friend of this so that we can access private members of this
+// class in BTree functions
+friend class BTree;
+};
+
+// A BTree
+class BTree
+{
+    BTreeNode *root; // Pointer to root node
+    int t;  // Minimum degree
+public:
+    // Constructor (Initializes tree as empty)
+    BTree(int _t)
+    {  root = NULL;  t = _t; }
+
+    // function to traverse the tree
+    void traverse()
+    {  if (root != NULL) root-&gt;traverse(); }
+
+    // function to search a key in this tree
+    BTreeNode* search(int k)
+    {  return (root == NULL)? NULL : root-&gt;search(k); }
+};
+
+// Constructor for BTreeNode class
+BTreeNode::BTreeNode(int _t, bool _leaf)
+{
+    // Copy the given minimum degree and leaf property
+    t = _t;
+    leaf = _leaf;
+
+    // Allocate memory for maximum number of possible keys
+    // and child pointers
+    keys = new int[2*t-1];
+    C = new BTreeNode *[2*t];
+
+    // Initialize the number of keys as 0
+    n = 0;
+}
+
+// Function to traverse all nodes in a subtree rooted with this node
+void BTreeNode::traverse()
+{
+    // There are n keys and n+1 children, travers through n keys
+    // and first n children
+    int i;
+    for (i = 0; i &lt; n; i++)
+    {
+        // If this is not leaf, then before printing key[i],
+        // traverse the subtree rooted with child C[i].
+        if (leaf == false)
+            C[i]-&gt;traverse();
+        cout &lt;&lt; &quot; &quot; &lt;&lt; keys[i];
+    }
+
+    // Print the subtree rooted with last child
+    if (leaf == false)
+        C[i]-&gt;traverse();
+}
+
+// Function to search key k in subtree rooted with this node
+BTreeNode *BTreeNode::search(int k)
+{
+    // Find the first key greater than or equal to k
+    int i = 0;
+    while (i &lt; n &amp;&amp; k &gt; keys[i])
+        i++;
+
+    // If the found key is equal to k, return this node
+    if (keys[i] == k)
+        return this;
+
+    // If key is not found here and this is a leaf node
+    if (leaf == true)
+        return NULL;
+
+    // Go to the appropriate child
+    return C[i]-&gt;search(k);
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x4E0D;&#x5305;&#x542B;&#x9A71;&#x52A8;&#x7A0B;&#x5E8F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x5C06;&#x5728;&#x4E0B;&#x4E00;&#x7BC7;&#x5173;&#x4E8E;B-Tree&#x63D2;&#x5165;&#x7684;&#x6587;&#x7AE0;&#x4E2D;&#x4ECB;&#x7ECD;&#x5B8C;&#x6574;&#x7684;&#x7A0B;&#x5E8F;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B9A;&#x4E49;B&#x6811;&#x6709;&#x4E24;&#x79CD;&#x7EA6;&#x5B9A;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x6309;&#x6700;&#x5C0F;&#x7A0B;&#x5EA6;&#x5B9A;&#x4E49;&#xFF08;&#x5728;<a href="http://www.flipkart.com/introduction-algorithms-3rd/p/itmczynzhyhxv2gs%3Fpid%3D9788120340077%26affid%3Dsandeepgfg" target="_blank">Cormen&#x4E66;&#x4E2D;</a>&#x5B9A;&#x4E49;&#xFF09;&#xFF0C;&#x7B2C;&#x4E8C;&#x79CD;&#x662F;&#x6309;&#x987A;&#x5E8F;&#x5B9A;&#x4E49;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x9075;&#x5FAA;&#x4E86;&#x6700;&#x4F4E;&#x5B66;&#x4F4D;&#x516C;&#x7EA6;&#xFF0C;&#x5E76;&#x5C06;&#x5728;B-Tree&#x7684;&#x5373;&#x5C06;&#x53D1;&#x5E03;&#x7684;&#x5E16;&#x5B50;&#x4E2D;&#x9075;&#x5FAA;&#x76F8;&#x540C;&#x7684;&#x89C4;&#x5B9A;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E3A;&#x4E86;&#x66F4;&#x597D;&#x7684;&#x53EF;&#x8BFB;&#x6027;&#xFF0C;&#x4E0A;&#x8FF0;&#x7A0B;&#x5E8F;&#x4E2D;&#x4F7F;&#x7528;&#x7684;&#x53D8;&#x91CF;&#x540D;&#x79F0;&#x4E5F;&#x4E0E;Cormen&#x4E66;&#x7C4D;&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x63D2;&#x5165;&#x548C;&#x5220;&#x9664;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="https://www.geeksforgeeks.org/b-tree-set-1-insert-2/">B&#x6811;&#x63D2;&#x5165;</a></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="https://www.geeksforgeeks.org/b-tree-set-3delete/">B&#x6811;&#x5220;&#x9664;</a></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x53C2;&#x8003;&#x6587;&#x732E;&#xFF1A;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="http://www.flipkart.com/introduction-algorithms-3rd/p/itmczynzhyhxv2gs%3Fpid%3D9788120340077%26affid%3Dsandeepgfg" target="_blank">Clifford Stein&#xFF0C;Thomas H. Cormen&#xFF0C;Charles E. Leiserson&#xFF0C;Ronald L. Rivest&#x7684;&#x7B2C;3&#x7248;&#x7B97;&#x6CD5;&#x7B80;&#x4ECB;</a></span> </p><br><!-- post_bottom_responsive --><br><br><!-- .entry-meta --></div></body></html>
