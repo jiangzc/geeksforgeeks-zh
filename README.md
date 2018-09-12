@@ -24,6 +24,7 @@
 目前已上传的章节有：
 
 +   [数据库](docs/zh/db)
++   [计算理论](docs/zh/comp-theory)
 
 ## 贡献指南
 
