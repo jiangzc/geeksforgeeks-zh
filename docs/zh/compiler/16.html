@@ -1,0 +1,326 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/compiler/16.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7A0B;&#x5E8F;&#x8BA1;&#x7B97;&#x7B2C;&#x4E00;&#x548C;&#x8DDF;&#x968F;&#x7ED9;&#x5B9A;&#x8BED;&#x6CD5;&#x7684;&#x96C6;&#x5408;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x7EE7;&#x7EED;&#x4E4B;&#x524D;&#xFF0C;&#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;&#x60A8;&#x719F;&#x6089;&#x8BED;&#x6CD5;&#x5206;&#x6790;&#xFF0C;LL&#xFF08;1&#xFF09;&#x89E3;&#x6790;&#x7684;&#x57FA;&#x7840;&#x77E5;&#x8BC6;&#x4EE5;&#x53CA;&#x8BA1;&#x7B97;&#x8BED;&#x6CD5;&#x7684;First&#x548C;Follow&#x96C6;&#x7684;&#x89C4;&#x5219;&#x3002;</span> </p><ol><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="http://quiz.geeksforgeeks.org/compiler-design-introduction-to-syntax-analysis/" rel="noopener" target="_blank">&#x8BED;&#x6CD5;&#x5206;&#x6790;&#x7B80;&#x4ECB;</a></span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="http://quiz.geeksforgeeks.org/compiler-design-why-first-and-follow/" rel="noopener" target="_blank">&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5148;&#x8DDF;&#x968F;&#xFF1F;</a></span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="http://quiz.geeksforgeeks.org/compiler-design-first-in-syntax-analysis/" rel="noopener" target="_blank">&#x9996;&#x5148;&#x5728;&#x8BED;&#x6CD5;&#x5206;&#x6790;&#x4E2D;&#x8BBE;&#x7F6E;</a></span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="https://www.geeksforgeeks.org/compiler-design-follow-set-in-syntax-analysis/" rel="noopener" target="_blank">FOLLOW&#x5728;&#x8BED;&#x6CD5;&#x5206;&#x6790;&#x4E2D;&#x8BBE;&#x7F6E;</a></span> </li></ol><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5047;&#x8BBE;&#x8BFB;&#x8005;&#x719F;&#x6089;&#x4E0A;&#x9762;&#x8BA8;&#x8BBA;&#x7684;&#x57FA;&#x7840;&#x77E5;&#x8BC6;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x5F00;&#x59CB;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x5B9E;&#x73B0;C&#x7A0B;&#x5E8F;&#x6765;&#x8BA1;&#x7B97;&#x7ED9;&#x5B9A;&#x8BED;&#x6CD5;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x548C;&#x540E;&#x7EED;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x793A;&#x4F8B;&#xFF1A;</strong></span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left"><strong>Input :</strong></span>
+<span class="pre-span" style="direction: ltr; text-align: left">E -&gt; TR</span>
+<span class="pre-span" style="direction: ltr; text-align: left">R -&gt; +TR|</span> <span class="pre-span" style="direction: ltr; text-align: left">#</span>
+<span class="pre-span" style="direction: ltr; text-align: left">T -&gt; FY</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Y -&gt; *FY |</span> <span class="pre-span" style="direction: ltr; text-align: left">#</span>
+<span class="pre-span" style="direction: ltr; text-align: left">F -&gt; (E) |</span> <span class="pre-span" style="direction: ltr; text-align: left">i</span>
+
+
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Output :</strong></span>
+ <span class="pre-span" style="direction: ltr; text-align: left">First(E)= { (, i, }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">First(R)= { +, #, }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">First(T)= { (, i, }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">First(Y)= { *, #, }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">First(F)= { (, i, }</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">-----------------------------------------------</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">Follow(E) = { $, ), }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">Follow(R) = { $, ), }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">Follow(T) = { +, $, ), }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">Follow(Y) = { +, $, ), }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">Follow(F) = { *, +, $, ), }</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x51FD;&#x6570;follow&#x548C;followfirst&#x90FD;&#x53C2;&#x4E0E;&#x8BA1;&#x7B97;&#x7ED9;&#x5B9A;&#x975E;&#x7EC8;&#x7AEF;&#x7684;&#x8DDF;&#x968F;&#x96C6;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8D77;&#x59CB;&#x7B26;&#x53F7;&#x7684;&#x8DDF;&#x968F;&#x96C6;&#x5C06;&#x59CB;&#x7EC8;&#x5305;&#x542B;&#x201C;$&#x201D;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x73B0;&#x5728;&#x5173;&#x6CE8;&#x7684;&#x8BA1;&#x7B97;&#x5C5E;&#x4E8E;&#x4E09;&#x5927;&#x6848;&#x4F8B;&#xFF1A;</span> </p><ul><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x4EFB;&#x4F55;&#x751F;&#x4EA7;&#x7684;RHS&#x4E0A;&#x7684;&#x975E;&#x7EC8;&#x7AEF;&#x7D27;&#x8DDF;&#x4E00;&#x4E2A;&#x7EC8;&#x7AEF;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x53EF;&#x4EE5;&#x7ACB;&#x5373;&#x5305;&#x542B;&#x5728;&#x8BE5;&#x975E;&#x7EC8;&#x7AEF;&#x7684;&#x8DDF;&#x968F;&#x96C6;&#x4E2D;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x4EFB;&#x4F55;&#x751F;&#x4EA7;&#x7684;RHS&#x4E0A;&#x7684;&#x975E;&#x7EC8;&#x7AEF;&#x7D27;&#x63A5;&#x7740;&#x662F;&#x975E;&#x7EC8;&#x7AEF;&#xFF0C;&#x5219;&#x65B0;&#x7684;&#x975E;&#x7EC8;&#x7AEF;&#x7684;&#x7B2C;&#x4E00;&#x5957;&#x5305;&#x542B;&#x5728;&#x6211;&#x4EEC;&#x539F;&#x59CB;&#x975E;&#x7EC8;&#x7AEF;&#x7684;&#x4EE5;&#x4E0B;&#x96C6;&#x5408;&#x4E2D;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x9047;&#x5230;epsilon&#x5373;&#x201C;&#xFF03;&#x201D;&#xFF0C;&#x5219;&#x8F6C;&#x5230;&#x751F;&#x4EA7;&#x4E2D;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x7B26;&#x53F7;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x6CE8;&#x610F;&#xFF1A;</strong> &#x201C;&#xFF03;&#x201D;&#x6C38;&#x8FDC;&#x4E0D;&#x4F1A;&#x5305;&#x542B;&#x5728;&#x4EFB;&#x4F55;&#x975E;&#x7EC8;&#x7AEF;&#x7684;&#x5173;&#x6CE8;&#x96C6;&#x4E2D;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x5728;&#x8BA1;&#x7B97;&#x8DDF;&#x968F;&#x65F6;&#x8FBE;&#x5230;&#x751F;&#x4EA7;&#x7ED3;&#x675F;&#xFF0C;&#x5219;&#x8BE5;&#x975E;&#x7EC8;&#x7AEF;&#x7684;&#x8DDF;&#x968F;&#x96C6;&#x5C06;&#x5305;&#x62EC;&#x8BE5;&#x751F;&#x4EA7;&#x7684;LHS&#x4E0A;&#x7684;&#x975E;&#x7EC8;&#x7AEF;&#x7684;&#x8DDF;&#x968F;&#x96C6;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x9012;&#x5F52;&#x8F7B;&#x677E;&#x5B9E;&#x73B0;&#x3002;</span> </li></ul><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x5047;&#x8BBE;&#xFF1A;</strong></span> </p><ol><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> Epsilon&#x7528;&apos;&#xFF03;&apos;&#x8868;&#x793A;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4EA7;&#x54C1;&#x7684;&#x5F62;&#x5F0F;&#x4E3A;A = B&#xFF0C;&#x5176;&#x4E2D;&#x201C;A&#x201D;&#x662F;&#x5355;&#x4E2A;&#x975E;&#x7EC8;&#x7AEF;&#xFF0C;&#x201C;B&#x201D;&#x53EF;&#x4EE5;&#x662F;&#x7EC8;&#x7AEF;&#x548C;&#x975E;&#x7EC8;&#x7AEF;&#x7684;&#x4EFB;&#x610F;&#x7EC4;&#x5408;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7B2C;&#x4E00;&#x4E2A;&#x751F;&#x4EA7;&#x89C4;&#x5219;&#x7684;LHS&#x662F;&#x8D77;&#x59CB;&#x7B26;&#x53F7;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BED;&#x6CD5;&#x4E0D;&#x662F;&#x9012;&#x5F52;&#x7684;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x975E;&#x7EC8;&#x7AEF;&#x7684;&#x6BCF;&#x4E2A;&#x751F;&#x4EA7;&#x90FD;&#x8F93;&#x5165;&#x4E0D;&#x540C;&#x7684;&#x751F;&#x4EA7;&#x7EBF;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x53EA;&#x6709;&#x5927;&#x5199;&#x5B57;&#x6BCD;&#x662F;&#x975E;&#x7EC8;&#x7AEF;&#xFF0C;&#x5176;&#x4ED6;&#x4E00;&#x5207;&#x90FD;&#x662F;&#x7EC8;&#x7AEF;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E0D;&#x4F7F;&#x7528; &apos;&#xFF01;&apos;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6216;&apos;$&apos;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x662F;&#x4E3A;&#x7279;&#x6B8A;&#x76EE;&#x7684;&#x800C;&#x4FDD;&#x7559;&#x7684;&#x3002;</span> </li></ol><p><span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x8BF4;&#x660E;&#xFF1A;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5C06;&#x8BED;&#x6CD5;&#x5B58;&#x50A8;&#x5728;2D&#x5B57;&#x7B26;&#x9635;&#x5217;<strong><code>production</code></strong> &#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong><code>findfirst</code></strong>&#x51FD;&#x6570;&#x7528;&#x4E8E;&#x8BA1;&#x7B97;&#x4EFB;&#x4F55;&#x975E;&#x7EC8;&#x7AEF;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BA1;&#x7B97;<strong><code>first</code></strong>&#x5C5E;&#x4E8E;&#x4E24;&#x4E2A;&#x5927;&#x6848;&#xFF1A;</span> </p><ul><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x751F;&#x4EA7;&#x7684;RHS&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x7B26;&#x53F7;&#x662F;&#x7EC8;&#x7AEF;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5305;&#x542B;&#x5728;&#x7B2C;&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#x4E2D;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x751F;&#x4EA7;&#x7684;RHS&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x7B26;&#x53F7;&#x662F;&#x975E;&#x7EC8;&#x7AEF;&#xFF0C;&#x5219;&#x5728;&#x8BE5;&#x975E;&#x7EC8;&#x7AEF;&#x4E0A;&#x518D;&#x6B21;&#x8C03;&#x7528;findfirst&#x51FD;&#x6570;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5904;&#x7406;&#x8FD9;&#x4E9B;&#x60C5;&#x51B5;&#xFF0C;&#x5982;&#x9012;&#x5F52;&#x662F;&#x6700;&#x597D;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x540C;&#x6837;&#xFF0C;&#x5982;&#x679C;&#x65B0;&#x7684;&#x975E;&#x7EC8;&#x7AEF;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5305;&#x542B;epsilon&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x79FB;&#x52A8;&#x5230;&#x539F;&#x59CB;&#x751F;&#x4EA7;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x7B26;&#x53F7;&#xFF0C;&#x8BE5;&#x7B26;&#x53F7;&#x53EF;&#x4EE5;&#x518D;&#x6B21;&#x662F;&#x7EC8;&#x7AEF;&#x6216;&#x975E;&#x7EC8;&#x7AEF;&#x3002;</span> </li></ul><p></p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x6CE8;&#x610F;&#xFF1A;</strong>&#x5BF9;&#x4E8E;&#x7B2C;&#x4E8C;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x5373;&#x4F7F;&#x4EE3;&#x7801;&#x770B;&#x8D77;&#x6765;&#x5F88;&#x5B8C;&#x7F8E;&#xFF0C;&#x4E5F;&#x5F88;&#x5BB9;&#x6613;&#x6210;&#x4E3A;INFINITE LOOP&#x7684;&#x727A;&#x7272;&#x54C1;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x56E0;&#x6B64;&#xFF0C;&#x59CB;&#x7EC8;&#x8DDF;&#x8E2A;&#x6240;&#x6709;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x5E76;&#x4E14;&#x6C38;&#x8FDC;&#x4E0D;&#x518D;&#x8C03;&#x7528;&#x76F8;&#x540C;&#x7684;&#x51FD;&#x6570;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x3002;</span> </p><p><!-- To show strongly recommend and practice link    --></p><div id="practiceLinkDiv"><h2 class="sigil_not_in_toc"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="https://ide.geeksforgeeks.org/">&#x5EFA;&#x8BAE;&#xFF1A;&#x5728;&#x7EE7;&#x7EED;&#x4F7F;&#x7528;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E4B;&#x524D;&#xFF0C;&#x8BF7;&#x5148;&#x5728;<b><i><u>{IDE}</u></i></b>&#x4E0A;&#x5C1D;&#x8BD5;&#x60A8;&#x7684;&#x65B9;&#x6CD5;&#x3002;</a></span> </h2></div><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4EE5;&#x4E0B;&#x662F;&#x5B9E;&#x65BD;&#xFF1A;</span> </p><pre class="brush: c; title: ; notranslate" title="">// C program to calculate the First and
+// Follow sets of a given grammar
+#include&lt;stdio.h&gt;
+#include&lt;ctype.h&gt;
+#include&lt;string.h&gt;
+
+// Functions to calculate Follow
+void followfirst(char, int, int);
+void follow(char c);
+
+// Function to calculate First
+void findfirst(char, int, int);
+
+int count, n = 0;
+
+// Stores the final result 
+// of the First Sets
+char calc_first[10][100];
+
+// Stores the final result
+// of the Follow Sets
+char calc_follow[10][100];
+int m = 0;
+
+// Stores the production rules
+char production[10][10];
+char f[10], first[10];
+int k;
+char ck;
+int e;
+
+int main(int argc, char **argv)
+{
+    int jm = 0;
+    int km = 0;
+    int i, choice;
+    char c, ch;
+    count = 8;
+    
+    // The Input grammar
+    strcpy(production[0], &quot;E=TR&quot;);
+    strcpy(production[1], &quot;R=+TR&quot;);
+    strcpy(production[2], &quot;R=#&quot;);
+    strcpy(production[3], &quot;T=FY&quot;);
+    strcpy(production[4], &quot;Y=*FY&quot;);
+    strcpy(production[5], &quot;Y=#&quot;);
+    strcpy(production[6], &quot;F=(E)&quot;);
+    strcpy(production[7], &quot;F=i&quot;);
+    
+    int kay;
+    char done[count];
+    int ptr = -1;
+    
+    // Initializing the calc_first array
+    for(k = 0; k &lt; count; k++) {
+        for(kay = 0; kay &lt; 100; kay++) {
+            calc_first[k][kay] = &apos;!&apos;;
+        }
+    }
+    int point1 = 0, point2, xxx;
+    
+    for(k = 0; k &lt; count; k++)
+    {
+        c = production[k][0];
+        point2 = 0;
+        xxx = 0;
+        
+        // Checking if First of c has
+        // already been calculated
+        for(kay = 0; kay &lt;= ptr; kay++)
+            if(c == done[kay])
+                xxx = 1;
+                
+        if (xxx == 1)
+            continue;
+        
+        // Function call    
+        findfirst(c, 0, 0);
+        ptr += 1;
+        
+        // Adding c to the calculated list
+        done[ptr] = c;
+        printf(&quot;\n First(%c) = { &quot;, c);
+        calc_first[point1][point2++] = c;
+        
+        // Printing the First Sets of the grammar
+        for(i = 0 + jm; i &lt; n; i++) {
+            int lark = 0, chk = 0;
+            
+            for(lark = 0; lark &lt; point2; lark++) {
+                
+                if (first[i] == calc_first[point1][lark])
+                {
+                    chk = 1;
+                    break;
+                }
+            }
+            if(chk == 0)
+            {
+                printf(&quot;%c, &quot;, first[i]);
+                calc_first[point1][point2++] = first[i];
+            }
+        }
+        printf(&quot;}\n&quot;);
+        jm = n;
+        point1++;
+    }
+    printf(&quot;\n&quot;);
+    printf(&quot;-----------------------------------------------\n\n&quot;);
+    char donee[count];
+    ptr = -1;
+    
+    // Initializing the calc_follow array
+    for(k = 0; k &lt; count; k++) {
+        for(kay = 0; kay &lt; 100; kay++) {
+            calc_follow[k][kay] = &apos;!&apos;;
+        }
+    }
+    point1 = 0;
+    int land = 0;
+    for(e = 0; e &lt; count; e++)
+    {
+        ck = production[e][0];
+        point2 = 0;
+        xxx = 0;
+        
+        // Checking if Follow of ck
+        // has alredy been calculated
+        for(kay = 0; kay &lt;= ptr; kay++)
+            if(ck == donee[kay])
+                xxx = 1;
+                
+        if (xxx == 1)
+            continue;
+        land += 1;
+        
+        // Function call
+        follow(ck);
+        ptr += 1;
+        
+        // Adding ck to the calculated list
+        donee[ptr] = ck;
+        printf(&quot; Follow(%c) = { &quot;, ck);
+        calc_follow[point1][point2++] = ck;
+        
+        // Printing the Follow Sets of the grammar
+        for(i = 0 + km; i &lt; m; i++) {
+            int lark = 0, chk = 0;
+            for(lark = 0; lark &lt; point2; lark++) 
+            {
+                if (f[i] == calc_follow[point1][lark])
+                {
+                    chk = 1;
+                    break;
+                }
+            }
+            if(chk == 0)
+            {
+                printf(&quot;%c, &quot;, f[i]);
+                calc_follow[point1][point2++] = f[i];
+            }
+        }
+        printf(&quot; }\n\n&quot;);
+        km = m;
+        point1++; 
+    }
+}
+
+void follow(char c)
+{
+    int i, j;
+    
+    // Adding &quot;$&quot; to the follow
+    // set of the start symbol
+    if(production[0][0] == c) {
+        f[m++] = &apos;$&apos;;
+    }
+    for(i = 0; i &lt; 10; i++)
+    {
+        for(j = 2;j &lt; 10; j++)
+        {
+            if(production[i][j] == c)
+            {
+                if(production[i][j+1] != &apos;\0&apos;)
+                {
+                    // Calculate the first of the next
+                    // Non-Terminal in the production
+                    followfirst(production[i][j+1], i, (j+2));
+                }
+                
+                if(production[i][j+1]==&apos;\0&apos; &amp;&amp; c!=production[i][0])
+                {
+                    // Calculate the follow of the Non-Terminal
+                    // in the L.H.S. of the production
+                    follow(production[i][0]);
+                }
+            } 
+        }
+    }
+}
+
+void findfirst(char c, int q1, int q2)
+{
+    int j;
+    
+    // The case where we 
+    // encounter a Terminal
+    if(!(isupper(c))) {
+        first[n++] = c;
+    }
+    for(j = 0; j &lt; count; j++)
+    {
+        if(production[j][0] == c)
+        {
+            if(production[j][2] == &apos;#&apos;)
+            {
+                if(production[q1][q2] == &apos;\0&apos;)
+                    first[n++] = &apos;#&apos;;
+                else if(production[q1][q2] != &apos;\0&apos; 
+                          &amp;&amp; (q1 != 0 || q2 != 0))
+                {
+                    // Recursion to calculate First of New
+                    // Non-Terminal we encounter after epsilon
+                    findfirst(production[q1][q2], q1, (q2+1));
+                }
+                else
+                    first[n++] = &apos;#&apos;;
+            }
+            else if(!isupper(production[j][2]))
+            {
+                first[n++] = production[j][2];
+            }
+            else 
+            {
+                // Recursion to calculate First of
+                // New Non-Terminal we encounter 
+                // at the beginning
+                findfirst(production[j][2], j, 3);
+            }
+        }
+    } 
+}
+
+void followfirst(char c, int c1, int c2)
+{
+    int k;
+    
+    // The case where we encounter
+    // a Terminal
+    if(!(isupper(c)))
+        f[m++] = c;
+    else
+    {
+        int i = 0, j = 1;
+        for(i = 0; i &lt; count; i++)
+        {
+            if(calc_first[i][0] == c)
+                break;
+        }
+        
+        //Including the First set of the
+        // Non-Terminal in the Follow of
+        // the original query
+        while(calc_first[i][j] != &apos;!&apos;)
+        {
+            if(calc_first[i][j] != &apos;#&apos;) 
+            {
+                f[m++] = calc_first[i][j];
+            }
+            else
+            {
+                if(production[c1][c2] == &apos;\0&apos;)
+                {
+                    // Case where we reach the
+                    // end of a production
+                    follow(production[c1][0]);
+                }
+                else
+                {
+                    // Recursion to the next symbol
+                    // in case we encounter a &quot;#&quot;
+                    followfirst(production[c1][c2], c1, c2+1);
+                }
+            }
+            j++;
+        }
+    }
+}
+
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F93;&#x51FA;&#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">First(E)= { (, i, }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">First(R)= { +, #, }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">First(T)= { (, i, }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">First(Y)= { *, #, }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">First(F)= { (, i, }</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">-----------------------------------------------</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">Follow(E) = { $, ), }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">Follow(R) = { $, ), }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">Follow(T) = { +, $, ), }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">Follow(Y) = { +, $, ), }</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">Follow(F) = { *, +, $, ), }</span>
+
+</pre><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><hr><hr><!-- .entry-meta --></div></body></html>

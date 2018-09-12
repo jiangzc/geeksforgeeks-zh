@@ -1,0 +1,178 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/compiler/9.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7528;&#x4E8E;&#x68C0;&#x6D4B;C&#x7A0B;&#x5E8F;&#x4E2D;&#x7684;&#x4EE4;&#x724C;&#x7684;C&#x7A0B;&#x5E8F;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F17;&#x6240;&#x5468;&#x77E5;&#xFF0C; <a href="https://www.geeksforgeeks.org/compiler-lexical-analysis/">Lexical Analysis</a>&#x662F;&#x7F16;&#x8BD1;&#x5668;&#x7684;&#x7B2C;&#x4E00;&#x9636;&#x6BB5;&#xFF0C;&#x4E5F;&#x79F0;&#x4E3A;&#x626B;&#x63CF;&#x5668;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B83;&#x5C06;&#x8F93;&#x5165;&#x7A0B;&#x5E8F;&#x8F6C;&#x6362;&#x4E3A;&#x4EE4;&#x724C;&#x5E8F;&#x5217;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> AC&#x7A0B;&#x5E8F;&#x7531;&#x5404;&#x79CD;&#x4EE4;&#x724C;&#x7EC4;&#x6210;&#xFF0C;&#x4EE4;&#x724C;&#x53EF;&#x4EE5;&#x662F;&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x6807;&#x8BC6;&#x7B26;&#xFF0C;&#x5E38;&#x91CF;&#xFF0C;&#x5B57;&#x7B26;&#x4E32;&#x6587;&#x5B57;&#x6216;&#x7B26;&#x53F7;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F8B;&#x5982;&#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">1) Keywords:</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Examples- for, while, if etc.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">2) Identifier</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Examples- Variable name, function name etc.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">3) Operators:</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Examples- &apos;+&apos;, &apos;++&apos;, &apos;-&apos; etc.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">4) Separators:</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Examples- &apos;, &apos; &apos;;&apos;</span> <span class="pre-span" style="direction: ltr; text-align: left">etc</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E2A;C&#x7A0B;&#x5E8F;&#xFF0C;&#x7528;&#x4E8E;&#x6253;&#x5370;&#x7ED9;&#x5B9A;C&#x7A0B;&#x5E8F;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x6587;&#x5B57;&#xFF0C;&#x6709;&#x6548;&#x6807;&#x8BC6;&#x7B26;&#xFF0C;&#x65E0;&#x6548;&#x6807;&#x8BC6;&#x7B26;&#xFF0C;&#x6574;&#x6570;&#xFF0C;&#x5B9E;&#x6570;&#xFF1A;</span> </p>
+<pre class="brush: c; title: ; notranslate" title="">#include &lt;stdbool.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+
+// Returns &apos;true&apos; if the character is a DELIMITER.
+bool isDelimiter(char ch)
+{
+    if (ch == &apos; &apos; || ch == &apos;+&apos; || ch == &apos;-&apos; || ch == &apos;*&apos; || 
+        ch == &apos;/&apos; || ch == &apos;,&apos; || ch == &apos;;&apos; || ch == &apos;&gt;&apos; || 
+        ch == &apos;&lt;&apos; || ch == &apos;=&apos; || ch == &apos;(&apos; || ch == &apos;)&apos; || 
+        ch == &apos;[&apos; || ch == &apos;]&apos; || ch == &apos;{&apos; || ch == &apos;}&apos;)
+        return (true);
+    return (false);
+}
+
+// Returns &apos;true&apos; if the character is an OPERATOR.
+bool isOperator(char ch)
+{
+    if (ch == &apos;+&apos; || ch == &apos;-&apos; || ch == &apos;*&apos; || 
+        ch == &apos;/&apos; || ch == &apos;&gt;&apos; || ch == &apos;&lt;&apos; || 
+        ch == &apos;=&apos;)
+        return (true);
+    return (false);
+}
+
+// Returns &apos;true&apos; if the string is a VALID IDENTIFIER.
+bool validIdentifier(char* str)
+{
+    if (str[0] == &apos;0&apos; || str[0] == &apos;1&apos; || str[0] == &apos;2&apos; ||
+        str[0] == &apos;3&apos; || str[0] == &apos;4&apos; || str[0] == &apos;5&apos; || 
+        str[0] == &apos;6&apos; || str[0] == &apos;7&apos; || str[0] == &apos;8&apos; || 
+        str[0] == &apos;9&apos; || isDelimiter(str[0]) == true)
+        return (false);
+    return (true);
+}
+
+// Returns &apos;true&apos; if the string is a KEYWORD.
+bool isKeyword(char* str)
+{
+    if (!strcmp(str, &quot;if&quot;) || !strcmp(str, &quot;else&quot;) ||
+        !strcmp(str, &quot;while&quot;) || !strcmp(str, &quot;do&quot;) || 
+        !strcmp(str, &quot;break&quot;) || 
+         !strcmp(str, &quot;continue&quot;) || !strcmp(str, &quot;int&quot;)
+        || !strcmp(str, &quot;double&quot;) || !strcmp(str, &quot;float&quot;)
+        || !strcmp(str, &quot;return&quot;) || !strcmp(str, &quot;char&quot;)
+        || !strcmp(str, &quot;case&quot;) || !strcmp(str, &quot;char&quot;)
+        || !strcmp(str, &quot;sizeof&quot;) || !strcmp(str, &quot;long&quot;)
+        || !strcmp(str, &quot;short&quot;) || !strcmp(str, &quot;typedef&quot;)
+        || !strcmp(str, &quot;switch&quot;) || !strcmp(str, &quot;unsigned&quot;)
+        || !strcmp(str, &quot;void&quot;) || !strcmp(str, &quot;static&quot;)
+        || !strcmp(str, &quot;struct&quot;) || !strcmp(str, &quot;goto&quot;))
+        return (true);
+    return (false);
+}
+
+// Returns &apos;true&apos; if the string is an INTEGER.
+bool isInteger(char* str)
+{
+    int i, len = strlen(str);
+
+    if (len == 0)
+        return (false);
+    for (i = 0; i &lt; len; i++) {
+        if (str[i] != &apos;0&apos; &amp;&amp; str[i] != &apos;1&apos; &amp;&amp; str[i] != &apos;2&apos;
+            &amp;&amp; str[i] != &apos;3&apos; &amp;&amp; str[i] != &apos;4&apos; &amp;&amp; str[i] != &apos;5&apos;
+            &amp;&amp; str[i] != &apos;6&apos; &amp;&amp; str[i] != &apos;7&apos; &amp;&amp; str[i] != &apos;8&apos;
+            &amp;&amp; str[i] != &apos;9&apos; || (str[i] == &apos;-&apos; &amp;&amp; i &gt; 0))
+            return (false);
+    }
+    return (true);
+}
+
+// Returns &apos;true&apos; if the string is a REAL NUMBER.
+bool isRealNumber(char* str)
+{
+    int i, len = strlen(str);
+    bool hasDecimal = false;
+
+    if (len == 0)
+        return (false);
+    for (i = 0; i &lt; len; i++) {
+        if (str[i] != &apos;0&apos; &amp;&amp; str[i] != &apos;1&apos; &amp;&amp; str[i] != &apos;2&apos;
+            &amp;&amp; str[i] != &apos;3&apos; &amp;&amp; str[i] != &apos;4&apos; &amp;&amp; str[i] != &apos;5&apos;
+            &amp;&amp; str[i] != &apos;6&apos; &amp;&amp; str[i] != &apos;7&apos; &amp;&amp; str[i] != &apos;8&apos;
+            &amp;&amp; str[i] != &apos;9&apos; &amp;&amp; str[i] != &apos;.&apos; || 
+            (str[i] == &apos;-&apos; &amp;&amp; i &gt; 0))
+            return (false);
+        if (str[i] == &apos;.&apos;)
+            hasDecimal = true;
+    }
+    return (hasDecimal);
+}
+
+// Extracts the SUBSTRING.
+char* subString(char* str, int left, int right)
+{
+    int i;
+    char* subStr = (char*)malloc(
+                  sizeof(char) * (right - left + 2));
+
+    for (i = left; i &lt;= right; i++)
+        subStr[i - left] = str[i];
+    subStr[right - left + 1] = &apos;\0&apos;;
+    return (subStr);
+}
+
+// Parsing the input STRING.
+void parse(char* str)
+{
+    int left = 0, right = 0;
+    int len = strlen(str);
+
+    while (right &lt;= len &amp;&amp; left &lt;= right) {
+        if (isDelimiter(str[right]) == false)
+            right++;
+
+        if (isDelimiter(str[right]) == true &amp;&amp; left == right) {
+            if (isOperator(str[right]) == true)
+                printf(&quot;&apos;%c&apos; IS AN OPERATOR\n&quot;, str[right]);
+
+            right++;
+            left = right;
+        } else if (isDelimiter(str[right]) == true &amp;&amp; left != right
+                   || (right == len &amp;&amp; left != right)) {
+            char* subStr = subString(str, left, right - 1);
+
+            if (isKeyword(subStr) == true)
+                printf(&quot;&apos;%s&apos; IS A KEYWORD\n&quot;, subStr);
+
+            else if (isInteger(subStr) == true)
+                printf(&quot;&apos;%s&apos; IS AN INTEGER\n&quot;, subStr);
+
+            else if (isRealNumber(subStr) == true)
+                printf(&quot;&apos;%s&apos; IS A REAL NUMBER\n&quot;, subStr);
+
+            else if (validIdentifier(subStr) == true
+                     &amp;&amp; isDelimiter(str[right - 1]) == false)
+                printf(&quot;&apos;%s&apos; IS A VALID IDENTIFIER\n&quot;, subStr);
+
+            else if (validIdentifier(subStr) == false
+                     &amp;&amp; isDelimiter(str[right - 1]) == false)
+                printf(&quot;&apos;%s&apos; IS NOT A VALID IDENTIFIER\n&quot;, subStr);
+            left = right;
+        }
+    }
+    return;
+}
+
+// DRIVER FUNCTION
+int main()
+{
+     // maximum legth of string is 100 here 
+    char str[100] = &quot;int a = b + 1c; &quot;;
+
+    parse(str); // calling the parse function
+
+    return (0);
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F93;&#x51FA;&#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">&apos;int&apos; IS A KEYWORD</span>
+<span class="pre-span" style="direction: ltr; text-align: left">&apos;a&apos; IS A VALID IDENTIFIER</span>
+<span class="pre-span" style="direction: ltr; text-align: left">&apos;=&apos; IS AN OPERATOR</span>
+<span class="pre-span" style="direction: ltr; text-align: left">&apos;b&apos; IS A VALID IDENTIFIER</span>
+<span class="pre-span" style="direction: ltr; text-align: left">&apos;+&apos; IS AN OPERATOR</span>
+<span class="pre-span" style="direction: ltr; text-align: left">&apos;1c&apos; IS NOT A VALID IDENTIFIER</span>
+</pre><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><!-- .entry-meta --></div></body></html>

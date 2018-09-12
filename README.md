@@ -25,6 +25,7 @@
 
 +   [数据库](docs/zh/db)
 +   [计算理论](docs/zh/comp-theory)
++   [编译](docs/zh/compiler)
 
 ## 贡献指南
 
