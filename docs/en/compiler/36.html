@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Compiler Theory | Set 1</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Following questions have been asked in GATE CS exam.<span id="more-1756"></span></p>
+<p><strong>1. Which of the following derivations does a top-down parser use while parsing an input string? The input is assumed to be scanned in left to right order (GATE CS 2000).</strong><br/>
+(a) Leftmost derivation<br/>
+(b) Leftmost derivation traced out in reverse<br/>
+(c) Rightmost derivation<br/>
+(d) Rightmost derivation traced out in reverse</p>
+<p><strong>Answer</strong> (a)</p>
+<p><strong>Top-down parsing (LL)</strong><br/>
+In top down parsing, we just start with the start symbol and compare the right side of the different productions against the first piece of input to see which of the productions should be used. </p>
+<p>A top down parser is called LL parser because it parses the input from <strong>L</strong>eft to right, and constructs a <strong>L</strong>eftmost derivation of the sentence.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Algorithm (Top Down Parsing) </strong>
+</p>
+<pre>  a) In the current string, choose leftmost nonterminal.
+  b) Choose a production for the chosen nonterminal. 
+  c) In the string, replace the nonterminal by the right-hand-side 
+     of the rule.
+  d) Repeat until no more nonterminals. 
+</pre>
+<p></p>
+<p>LL grammars are often classified by numbers, such as LL(1), LL(0) and so on. The number in the parenthesis tells the maximum number of terminals we may have to look at at a time to choose the right production at any point in the grammar. </p>
+<p>The most common (and useful) kind of LL grammar is LL(1) where you can always choose the right production by looking at only the first terminal on the input at any given time. With LL(2) you have to look at two symbols, and so on. There exist grammars that are not LL(k) grammars for any fixed value of k at all, and they are sadly quite common.</p>
+<p>Let us see an example of top down parsing for following grammar.  Let input string be ax. </p>
+<pre>    S -&gt; Ax
+    A -&gt; a
+    A -&gt; b
+</pre>
+<p>An LL(1) parser starts with S and asks “which production should I attempt?” Naturally, it predicts the only alternative of S. From there it tries to match A by calling method A (in a recursive-descent parser). Lookahead a predicts production</p>
+<pre>   A -&gt; a
+</pre>
+<p>The parser matches a, returns to S and matches x. Done. The derivation tree is:</p>
+<pre>     S
+    / \
+   A   x
+   |
+   a
+</pre>
+<p><strong>References:</strong><br/>
+<a href="http://www.garshol.priv.no/download/text/bnf.html">http://www.garshol.priv.no/download/text/bnf.html</a><br/>
+<a href="http://en.wikipedia.org/wiki/Top-down_parsing">http://en.wikipedia.org/wiki/Top-down_parsing</a><br/>
+<a href="http://www.cs.wm.edu/~noonan/animations/lderive.html">http://www.cs.wm.edu/~noonan/animations/lderive.html</a><br/>
+<a href="http://en.wikipedia.org/wiki/LL_parser">http://en.wikipedia.org/wiki/LL_parser</a><br/>
+<br/><br/><br/>
+<strong><br/>
+2. The process of assigning load addresses to the various parts of the program and adjusting the code and data in the program to reflect the assigned addresses is called (GATE CS 2001)</strong><br/>
+a) Assembly<br/>
+b) Parsing<br/>
+c) Relocation<br/>
+d) Symbol resolution </p>
+<p><strong>Answer: (c)</strong><br/>
+Relocation is the process of replacing symbolic references or names of libraries with actual usable addresses in memory before running a program. It is typically done by the linker during compilation (at compile time), although it can be done at runtime by a relocating loader. Compilers or assemblers typically generate the executable with zero as the lower-most starting address. Before the execution of object code, these addresses should be adjusted so that they denote the correct runtime addresses.</p>
+<p>Relocation is typically done in two steps:<br/>
+   1. Each object code has various sections like code, data, .bss etc. To combine all the objects to a single executable, the linker merges all sections of similar type into a single section of that type. The linker then assigns runtime addresses to each section and each symbol. At this point, the code (functions) and data (global variables) will have unique runtime addresses.<br/>
+   2. Each section refers to one or more symbols which should be modified so that they point to the correct runtime addresses.</p>
+<p><strong>References:</strong><br/>
+<a href="http://en.wikipedia.org/wiki/Relocation_(computer_science)">http://en.wikipedia.org/wiki/Relocation_(computer_science)</a><br/>
+<br/><br/><br/>
+<strong>3. Which of the following statements is false? (GATE CS 2001)</strong><br/>
+a) An unambiguous grammar has same leftmost and rightmost derivation<br/>
+b) An LL(1) parser is a top-down parser<br/>
+c) LALR is more powerful than SLR<br/>
+d) An ambiguous grammar can never be LR(k) for any k </p>
+<p><strong>Answer: (a)  </strong><br/>
+If a grammar has more than one leftmost (or rightmost) derivation for a single sentential form, the grammar is ambiguous. The leftmost and rightmost derivations for a sentential form may differ, even in an unambiguous grammar<br/>
+<strong><br/>
+4. Which of the following grammar rules violate the requirements of an operator grammar? P, Q, R are nonterminals, and r,s,t are terminals (GATE CS 2004).<br/>
+(i)	P -&gt; QR<br/>
+(ii)	P -&gt; QsR<br/>
+(iii)	P  -&gt; ε<br/>
+(iV)	P  -&gt; QtRr</strong></p>
+<p>a) (i) only<br/>
+b) (i) and (iii) only<br/>
+c) (ii) and (iii) only<br/>
+d) (iii) and (iv) only</p>
+<p><strong>Answer: (b)</strong><br/>
+<strong>Explanation:</strong><br/>
+An <em>operator precedence parser</em> is a bottom-up parser that interprets an operator-precedence grammar. For example, most calculators use operator precedence parsers to convert from the human-readable infix notation with order of operations format into an internally optimized computer-readable format like Reverse Polish notation (RPN).</p>
+<p>An <em>operator precedence grammar</em> is a kind of context-free grammar that can be parsed with an operator-precedence parser. It has the property that no production has either an empty (ε) right-hand side or two adjacent nonterminals in its right-hand side. These properties allow the terminals of the grammar to be described by a precedence relation, and the a parser that exploits that relation is considerably simpler than more general-purpose parsers such as LALR parsers.<br/>
+<strong><br/>
+References:</strong><br/>
+<a href="http://en.wikipedia.org/wiki/Operator-precedence_grammar">http://en.wikipedia.org/wiki/Operator-precedence_grammar</a><br/>
+<a href="http://en.wikipedia.org/wiki/Operator-precedence_parser">http://en.wikipedia.org/wiki/Operator-precedence_parser</a></p>
+<p><strong><br/>
+5. Consider the grammar with the following translation rules and E as the start symbol.<br/>
+E -&gt;   E1 #T    {E.value =  E1.value * T.value}<br/>
+        | T          {E.value = T.value}<br/>
+T -&gt;  T1 &amp; F    {T.value =  T1.value + F.value}<br/>
+        |F           {T.value= F.value}<br/>
+F -&gt; num       {F.value = num.value}</strong></p>
+<p>Compute E.value for the root of the parse tree for the expression:2 # 3 &amp; 5 # 6 &amp;4. (GATE CS 2004)<br/>
+a)	200<br/>
+b)	180<br/>
+c)	160<br/>
+d)	40</p>
+<p><strong>Answer: (c)</strong><br/>
+<strong>Explanation:</strong><br/>
+We can calculate the value by constructing the parse tree for the expression 2 # 3 &amp; 5 # 6 &amp;4. </p>
+<p>Alternatively, we can calculate by considering following precedence and associativity rules.<br/>
+Precedence in a grammar is enforced by making sure that a production rule with higher precedence operator will never produce an expression with operator with lower precedence.<br/>
+In the given grammar ‘&amp;’ has higher precedence than ‘#’. </p>
+<p>Left associativity for operator * in a grammar is enforced by making sure that  for a production rule like S -&gt; S1 * S2 in grammar, S2 should never produce an expression with *. On the other hand, to ensure right associativity, S1 should never produce an expression with *.<br/>
+In the given grammar, both ‘#’ and &amp; are left-associative.</p>
+<p>So expression 2 # 3 &amp; 5 # 6 &amp;4 will become<br/>
+((2 # (3 &amp; 5)) # (6 &amp; 4))<br/>
+Let us apply translation rules, we get<br/>
+((2 * (3 + 5)) * (6 + 4)) = 160.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

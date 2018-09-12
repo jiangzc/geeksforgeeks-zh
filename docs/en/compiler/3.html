@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Phases of a Compiler</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b> Prerequisite –</b> <a href="https://www.geeksforgeeks.org/introduction-compiler-design/">Introduction of Compiler design</a></p>
+<p>We basically have two phases of compilers, namely Analysis phase and Synthesis phase. Analysis phase creates an intermediate representation from the given source code. Synthesis phase creates an equivalent target program from the intermediate representation.</p>
+<p><img src="../../../imgs/compiler/317aa5be6cd6a8643749fc82e27e6327.jpg" alt="" width="973" height="776" class="aligncenter size-full wp-image-260796"/></p>
+<p><b>Symbol Table –</b> It is a data structure being used and maintained by the compiler, consists all the identifier’s name along with their types. It helps the compiler to function smoothly by finding the identifiers quickly. </p>
+<p>The compiler has two modules namely front end and back end. Front-end constitutes of the Lexical analyzer, semantic analyzer, syntax analyzer and intermediate code generator. And the rest are assembled to form the back end.</p>
+<ol>
+<li><b>Lexical Analyzer –</b> It reads the program and converts it into tokens. It converts a stream of lexemes into a stream of tokens. Tokens are defined by regular expressions which are understood by the lexical analyzer. It also removes white-spaces and comments.</li>
+<li><b>Syntax Analyzer –</b> It is sometimes called as parser. It constructs the parse tree. It takes all the tokens one by one and uses Context Free Grammar to construct the parse tree.
+<p><em><em>Why Grammar ?</em></em><br/>
+The rules of programming can be entirely represented in some few productions. Using these productions we can represent what the program actually is. The input has to be checked whether it is in the desired format or not.</p>
+<p>Syntax error can be detected at this level if the input is not in accordance with the grammar.<br/>
+<img src="../../../imgs/compiler/06cb1ef6c5ba1ecf4ea063c2ba647275.jpg" width="303" height="268" class="aligncenter size-full"/></p>
+</li>
+<li><b>Semantic Analyzer –</b> It verifies the parse tree, whether it’s meaningful or not. It furthermore produces a verified parse tree.</li>
+<li><b>Intermediate Code Generator –</b> It generates intermediate code, that is a form which can be readily executed by machine  We have many popular intermediate codes. Example – Three address code etc. Intermediate code is converted to machine language using the last two phases which are platform dependent.
+<p>Till intermediate code, it is same for every compiler out there, but after that, it depends on the platform. To build a new compiler we don’t need to build it from scratch. We can take the intermediate code from the already existing compiler and build the last two parts. </p></li>
+<li><b>Code Optimizer –</b> It transforms the code so that it consumes fewer resources and produces more speed. The meaning of the code being transformed is not altered. Optimisation can be categorized into two types: machine dependent and machine independent. </li>
+<li><b>Target Code Generator –</b> The main purpose of Target Code generator is to write a code that the machine can understand. The output is dependent on the type of assembler. This is the final stage of compilation.</li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

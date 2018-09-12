@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Parsing | Set 2 (Bottom Up or  Shift Reduce Parsers)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In this article we are discussing the Bottom Up parser.<br/>
+<strong>Bottom Up Parsers / Shift Reduce Parsers</strong><br/>
+Build the parse tree from leaves to root. Bottom up parsing can be defined as an attempt to reduce the input string w to the start symbol of a grammar by tracing out the rightmost derivations of w in reverse.<br/>
+Eg.<br/>
+<img src="../../../imgs/compiler/a704a23dc0353175d20b8c7e6c33b20c.jpg" alt=""/><br/>
+<strong>Classification of bottom up parsers</strong><br/>
+<img src="../../../imgs/compiler/7f35001d498387faed953d46287aee23.jpg" alt=""/><br/>
+A general shift reduce parsing is LR parsing. The L stands for scanning the input from left to right    and R stands for constructing a rightmost derivation in reverse.<br/>
+Here we will look at the construction of GOTO graph of a grammar by using all the four LR parsing techniques. For solving questions in GATE we have to construct the GOTO directly for the given grammar to save time.<br/>
+<br/><br/>
+<strong>LR(0) Parser</strong><br/>
+We need two functions –<br/>
+Closure()<br/>
+Goto()</p>
+<p><strong>Augmented Grammar</strong><br/>
+If G is a grammar with start symbol S then G’, the augmented grammar for G, is the grammar with new start symbol S’ and a production S’ -&gt; S. The purpose of this new starting production is to indicate to the parser when it should stop parsing and announce acceptance of input.<br/>
+Let a grammar be S -&gt; AA<br/>
+              A -&gt; aA | b<br/>
+The augmented grammar for the above grammar will be<br/>
+            S’ -&gt; S<br/>
+            S -&gt; AA<br/>
+            A -&gt; aA | b</p>
+<p><strong>LR(0) Items</strong><br/>
+An LR(0) is the item of a grammar G is a production of G with a dot at some position in the right side.<br/>
+S -&gt; ABC yields four items<br/>
+S -&gt; .ABC<br/>
+S -&gt; A.BC<br/>
+S -&gt; AB.C<br/>
+S -&gt; ABC.<br/>
+The production A -&gt; ε generates only one item A -&gt; .ε</p>
+<p>
+<strong>Closure Operation</strong>:<br/>
+If I is a set of items for a grammar G, then closure(I) is the set of items constructed from I by the two rules:</p>
+<ol>
+<li>Initially every item in I is added to closure(I).</li>
+<li>If A -&gt; α.Bβ is in closure(I) and B -&gt; γ is a production then add the item B -&gt; .γ to I, If it is not already there. We apply this rule until no more items can be added to closure(I).
+</li>
+</ol>
+<p>Eg:<br/>
+<img src="../../../imgs/compiler/734fb3d53df1a2d3286496e8dea80934.jpg" alt=""/><br/>
+<br/><br/>
+<strong>Goto Operation </strong>:<br/>
+Goto(I, X)  =  1. Add I by moving dot after X.<br/>
+&#160;   &#160; &#160; &#160;  &#160;  &#160;  &#160;  &#160;  &#160;  &#160;  &#160;  2. Apply closure to first step.<br/>
+<img src="../../../imgs/compiler/3d304f5883f601d12254e24b63502c92.jpg" alt=""/><br/>
+<br/><br/>
+<strong>Construction of GOTO graph-</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li>State I<sub>0</sub> – closure of augmented LR(0) item</li>
+<li>Using I<sub>0</sub> find all collection of sets of LR(0) items with the help of DFA</li>
+<li>Convert DFA to LR(0) parsing table</li>
+</ul>
+<p>
+<strong>Construction of LR(0) parsing table</strong>:</p>
+<ul>
+<li>The action function takes as arguments a state i and a terminal a (or $ , the input end marker). The value of ACTION[i, a] can have one of four forms:
+<ol>
+<li> Shift j, where j is a state.</li>
+<li> Reduce A -&gt; β.</li>
+<li> Accept</li>
+<li>Error</li>
+</ol>
+</li>
+<li> We extend the GOTO function, defined on sets of items, to states: if GOTO[I<sub>i</sub> , A] = I<sub>j</sub> then GOTO also maps a state i and a nonterminal A to state j.</li>
+</ul>
+<p>
+Eg:<br/>
+Consider the grammar S -&gt;AA<br/>
+            A -&gt; aA | b<br/>
+Augmented grammar S’ -&gt; S<br/>
+            S -&gt; AA<br/>
+            A -&gt; aA | b</p>
+<p>The LR(0) parsing table for above GOTO graph will be –<br/>
+<img src="../../../imgs/compiler/f3eed33ae50dfc373884419f97261fd7.jpg" alt=""/></p>
+<p>Action part of the table contains all the terminals of the grammar whereas the goto part contains all the nonterminals. For every state of goto graph we write all the goto operations in the table. If goto is applied to a terminal than it is written in the action part if goto is applied on a nonterminal it is written in goto part. If on applying goto a production is reduced ( i.e if the dot reaches at the end of production and no further closure can be applied) then it is denoted as R<sub>i</sub> and if the production is not reduced (shifted) it is denoted as S<sub>i</sub>.<br/>
+If a production is reduced it is written under all the terminals in LR(0) parser.<br/>
+If in a state the start symbol of grammar is reduced it is written under $ symbol as accepted.</p>
+<p>
+<strong>NOTE:</strong> If in any state both reduced and shifted productions are present or two reduced productions are present it is called a conflict situation and the grammar is not LR grammar.<br/>
+<img src="../../../imgs/compiler/d32c3d777c5cb4decf32c5af32650267.jpg" alt=""/></p>
+<p><strong>NOTE:</strong><br/>
+1. Two reduced productions in one state – RR conflict.<br/>
+2. One reduced and one shifted production in one state – SR conflict.<br/>
+<br/>
+If no SR or RR conflict present in the parsing table then the grammar is LR(0) grammar.<br/>
+In above grammar no conflict so it is LR(0) grammar.<br/>
+<br/>
+<strong>NOTE —</strong>In solving GATE question we don’t need to make the parsing table, by looking at the GOTO graph only we can determine if the grammar is LR(0) grammar or not. We just have to look for conflicts in the goto graph i.e if a state contains two reduced or one reduced and one shift entry for a TERMINAL variable then there is a conflict and it is not LR(0) grammar. (In case of one shift with a VARIABLE and one reduced there will be no conflict because then the shift entries will go to GOTO part of table and reduced entries will go in ACTION part and thus no multiple entries).<br/>
+<br/><br/>
+<br/>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

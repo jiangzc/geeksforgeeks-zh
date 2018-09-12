@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">FIRST Set in Syntax Analysis</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>FIRST(X) for a grammar symbol X is the set of terminals that begin the strings derivable from X. <span id="more-142746"></span></p>
+<p><strong>Rules to compute FIRST set:</strong></p>
+<ol>
+<li> If x is a terminal, then FIRST(x) = { ‘x’ } </li>
+<li>  If x-&gt; Є, is a production rule, then add Є to FIRST(x). </li>
+<li>  If X-&gt;Y1 Y2 Y3….Yn is a production,
+<ol type="a">
+<li>  FIRST(X) = FIRST(Y1)</li>
+<li> If FIRST(Y1) contains Є then FIRST(X) = { FIRST(Y1) – Є } U { FIRST(Y2) }</li>
+<li> If FIRST (Yi) contains Є for all i = 1 to n, then add Є to FIRST(X).</li>
+</ol>
+</li>
+</ol>
+<p><strong>Example 1:</strong>
+</p>
+<pre>Production Rules of Grammar
+E  -&gt; TE’
+E’ -&gt; +T E’|Є
+T  -&gt; F T’
+T’ -&gt; *F T’ | Є
+F  -&gt; (E) | id
+
+<strong>FIRST sets</strong>
+FIRST(E) = FIRST(T) = { ( , id }
+FIRST(E’) = { +, Є }
+FIRST(T) = FIRST(F) = { ( , id }
+FIRST(T’) = { *, Є }
+FIRST(F) = { ( , id }</pre>
+<p></p>
+<p><strong>Example 2:</strong>
+</p>
+<pre>Production Rules of Grammar
+S -&gt; ACB | Cbb | Ba
+A -&gt; da | BC
+B -&gt; g | Є
+C -&gt; h | Є
+
+<strong>FIRST sets</strong>
+FIRST(S) = FIRST(A) U FIRST(B) U FIRST(C)
+         = { d, g, h, Є, b, a}
+FIRST(A) = { d } U FIRST(B) = { d, g , h, Є }
+FIRST(B) = { g , Є }
+FIRST(C) = { h , Є }</pre>
+<p></p>
+<p><strong>Notes: </strong>
+</p>
+<ol>
+<li>The grammar used above is Context-Free Grammar (CFG). Syntax of most of the programming language can be specified using CFG.</li>
+<li> CFG is of the form A -&gt; B , where A is a single Non-Terminal, and B can be a set of grammar symbols ( i.e. Terminals as well as Non-Terminals)</li>
+</ol>
+<p></p>
+<p>In the next article “FOLLOW sets in Compiler Design” we will see how to compute Follow sets.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

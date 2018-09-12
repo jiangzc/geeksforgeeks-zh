@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">FOLLOW Set in Syntax Analysis</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>We have discussed following topics on Syntax Analysis.</p>
+<p><a href="http://quiz.geeksforgeeks.org/compiler-design-introduction-to-syntax-analysis/">Introduction to Syntax Analysis</a><br/>
+<a href="http://quiz.geeksforgeeks.org/compiler-design-why-first-and-follow/">Why FIRST and FOLLOW?</a><br/>
+<a href="http://quiz.geeksforgeeks.org/compiler-design-first-in-syntax-analysis/">FIRST Set in Syntax Analysis</a></p>
+<p>In this post, FOLLOW Set is discussed.</p>
+<p><strong>Follow(X)</strong> to be the set of terminals that can appear immediately to the right of Non-Terminal X in some sentential form.<br/>
+Example:
+</p>
+<pre>S -&gt;Aa | Ac
+A -&gt;b  
+
+      S                  S  
+     /  \              /   \
+    A    a            A     C  
+    |                 |
+    b                 b   
+
+Here, FOLLOW (A) = {a, c}
+</pre>
+<p></p>
+<p><u><strong><br/>
+Rules to compute FOLLOW set:</strong></u>
+</p>
+<pre>1) FOLLOW(S) = { $ }   // where S is the starting Non-Terminal
+
+2) If A -&gt; pBq is a production, where p, B and q are any grammar symbols,
+   then everything in FIRST(q)  except Є is in FOLLOW(B.
+
+3) If A-&gt;pB is a production, then everything in FOLLOW(A) is in FOLLOW(B).
+
+4) If A-&gt;pBq is a production and FIRST(q) contains Є, 
+   then FOLLOW(B) contains { FIRST(q) – Є } U FOLLOW(A) </pre>
+<p></p>
+<p><strong>Example 1:</strong></p>
+<pre><strong>Production Rules:</strong>
+E -&gt; TE’
+E’ -&gt; +T E’|Є
+T -&gt; F T’
+T’ -&gt; *F T’ | Є
+F -&gt; (E) | id
+
+<strong>FIRST set</strong>
+FIRST(E) = FIRST(T) = { ( , id }
+FIRST(E’) = { +, Є }
+FIRST(T) = FIRST(F) = { ( , id }
+FIRST(T’) = { *, Є }
+FIRST(F) = { ( , id }
+
+<strong>FOLLOW Set</strong>
+FOLLOW(E)  = { $ , ) }  // Note  ')' is there because of 5th rule
+FOLLOW(E’) = FOLLOW(E) = {  $, ) }  // See 1st production rule
+FOLLOW(T)  = { FIRST(E’) – Є } U FOLLOW(E’) = { + , $ , ) }
+FOLLOW(T’) = FOLLOW(T) =      { + , $ , ) }
+FOLLOW(F)  = { FIRST(T’) –  Є } U FOLLOW(T’) = { *, +, $) }
+</pre>
+<p><strong><br/>
+Example 2:</strong></p>
+<pre><strong>Production Rules:</strong>
+S -&gt; ACB|Cbb|Ba
+A -&gt; da|BC
+B-&gt; g|Є
+C-&gt; h| Є
+
+<strong>FIRST set</strong>
+FIRST(S) = FIRST(A) U FIRST(B) U FIRST(C) = { d, g, h, Є, b, a}
+FIRST(A) = { d } U FIRST(B) = { d, g, h, Є }
+FIRST(B) = { g, Є }
+FIRST(C) = { h, Є }
+
+<strong>FOLLOW Set</strong>
+FOLLOW(S) = { $ }
+FOLLOW(A)  = { h, g, $ }
+FOLLOW(B) = { a, $, h, g }
+FOLLOW(C) = { b, g, $, h }
+</pre>
+<p><strong><br/>
+Note :</strong>
+</p>
+<ol>
+<li>Є as a FOLLOW doesn’t mean anything (Є is an empty string).</li>
+<li>$ is called end-marker, which represents the end of the input string, hence used while parsing to indicate that the input string has been completely processed.</li>
+<li>The grammar used above is Context-Free Grammar (CFG). The syntax of a programming language can be specified using CFG.</li>
+<li>CFG is of the form A -&gt; B , where A is a single Non-Terminal, and B can be a set of grammar symbols ( i.e. Terminals as well as Non-Terminals)</li>
+<p><a href="http://quiz.geeksforgeeks.org/parsing-and-syntax-directed-translation/">Quiz on Syntax Analysis</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ol>
+<p></p>
+</div>
+</body>
+</html>

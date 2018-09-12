@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Shift Reduce Parser in Compiler</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/parsing-set-2-bottom-up-or-shift-reduce-parsers/" rel="noopener" target="_blank">Parsing | Set 2 (Bottom Up or Shift Reduce Parsers)</a></p>
+<p><strong>Shift Reduce parser</strong> attempts for the construction of parse in a similar manner as done in bottom up parsing i.e. the parse tree is constructed from leaves(bottom) to the root(up). A more general form of shift reduce parser is LR parser.<br/>
+This parser requires some data structures i.e.</p>
+<ul>
+<li>A input buffer for storing the input string.</li>
+<li>A stack for storing and accessing the production rules.</li>
+</ul>
+<p><b>Basic Operations –</b></p>
+<ul>
+<li><strong>Shift: </strong> This involves moving of symbols from input buffer onto the stack.</li>
+<li><strong>Reduce: </strong> If the handle appears on top of the stack then, its reduction by using appropriate production rule is done i.e. RHS of production rule is popped out of stack and LHS of production rule is pushed onto the stack.</li>
+<li><strong>Accept: </strong>If only start symbol is present in the stack and the input buffer is empty then, the parsing action is called accept. When accept action is obtained, it is means successful parsing is done.</li>
+<li><strong>Error: </strong>This is the situation in which the parser can neither perform shift action nor reduce action and not even accept action.</li>
+</ul>
+<p><strong>Example 1 –</strong> Consider the grammar<br/>
+                 S –&gt; S + S<br/>
+                 S –&gt; S * S<br/>
+                 S –&gt; id<br/>
+ Perform Shift Reduce parsing for input string “id + id + id”.<br/>
+&#160;</p>
+<p><img src="../../../imgs/compiler/e5c7e0202085829a460df0ee5ca17e8a.jpg" alt="" width="641" height="482" class="aligncenter size-full wp-image-416088"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>&#160;</p>
+<p><strong>Example 2 –</strong> Consider the grammar<br/>
+                 E –&gt; 2E2<br/>
+                 E –&gt; 3E3<br/>
+                 E –&gt; 4<br/>
+ Perform Shift Reduce parsing for input string “32423”.<br/>
+&#160;</p>
+<p><img src="../../../imgs/compiler/23892225d7983af2a91d7483ec359248.jpg" alt="" width="641" height="402" class="aligncenter size-full wp-image-416099"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

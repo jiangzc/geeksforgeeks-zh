@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Static and Dynamic Scoping</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>The <strong>scope</strong> of a variable x is the region of the program in which uses of x refers to its declaration. One of the basic reasons of scoping is to keep variables in different parts of program distinct from one another. Since there are only a small number is short variable names, and programmers share habits about naming of variables (e.g., i for an array index), in any program of moderate size the same variable name will be used in multiple different scopes.</p>
+<p>Scoping is generally divided into two classes:<br/>
+<strong>1.</strong>Static Scoping<br/>
+<strong>2.</strong>Dynamic Scoping</p>
+<p><strong>Static Scoping:</strong><br/>
+Static scoping is also called <strong>lexical scoping</strong>. In this scoping a variable always refers to its top level environment. This is a property of the program text and unrelated to the run time call stack. Static scoping also makes it much easier to make a modular code as programmer can figure out the scope just by looking at the code. In contrast, dynamic scope requires the programmer to anticipate all possible dynamic contexts.</p>
+<p>In most of the programming languages including C, C++ and Java, variables are always statically (or lexically) scoped i.e., binding of a variable can be determined by  program text and is independent of the run-time function call stack. <span id="more-161795"></span></p>
+<p>For example, output for the below program is 10, i.e., the value returned by f() is not dependent on who is calling it (Like g() calls it and has a x with value 20).  f() always returns the value of global variable x.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre class="brush: c; title: ; notranslate" title="">// A C program to demonstrate static scoping.
+#include&lt;stdio.h&gt;
+int x = 10;
+
+// Called by g()
+int f()
+{
+   return x;
+}
+
+// g() has its own variable
+// named as x and calls f()
+int g()
+{
+   int x = 20;
+   return f();
+}
+
+int main()
+{
+  printf("%d", g());
+  printf("\n");
+  return 0;
+}
+</pre>
+<p>Output :
+</p>
+<pre>10</pre>
+<p></p>
+<p>To sum up in static scoping the compiler first searches in the current block, then in the surrounding blocks successively and finally in the global variables. </p>
+<p><strong>Dynamic Scoping:</strong><br/>
+With dynamic scope, a global identifier refers to the identifier associated with the most recent environment, and is uncommon in modern languages. In technical terms, this means that each identifier has a global stack of bindings and the occurrence of a identifier is searched in the most recent binding. </p>
+<p>In simpler terms, in dynamic scoping the compiler first searches the current block and then successively all the calling functions.</p>
+<div class="noIdeBtnDiv">
+<pre class="brush: c; title: ; notranslate" title="">// Since dynamic scoping is very uncommon in 
+// the familiar languages, we consider the 
+// following pseudo code as our example. It
+// prints 20 in a language that uses dynamic
+// scoping.   
+
+int x = 10;
+
+// Called by g()
+int f()
+{
+   return x;
+}
+
+// g() has its own variable
+// named as x and calls f()
+int g()
+{
+   int x = 20;
+   return f();
+}
+
+main()
+{
+  printf(g());
+}</pre>
+</div>
+<p>Output in a a language that uses Dynamic Scoping : </p>
+<pre>20</pre>
+<p><strong>Static Vs Dynamic Scoping</strong><br/>
+In most of the programming languages static scoping is dominant. This is simply because in static scoping it’s easy to reason about and understand just by looking at code. We can see what variables are in the scope just by looking at the text in the editor.</p>
+<p>Dynamic scoping does not care how the code is written, but instead how it executes. Each time a new function is executed, a new scope is pushed onto the stack.</p>
+<p><a href="https://en.wikipedia.org/wiki/Perl">Perl</a> supports both dynamic ans static scoping. Perl’s keyword “my” defines a statically scoped local variable, while the keyword “local” defines dynamically scoped local variable. </p>
+<div class="noIdeBtnDiv">
+<pre class="brush: perl; title: ; notranslate" title=""># A perl code to demonstrate dynamic scoping
+$x = 10;
+sub f 
+{ 
+   return $x; 
+}
+sub g 
+{ 
+   # Since local is used, x uses
+   # dynamic scoping. 
+   local $x = 20; 
+
+   return f(); 
+}
+print g()."\n";
+</pre>
+</div>
+<p>Output :
+</p>
+<pre>20</pre>
+<p></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

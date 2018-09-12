@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Code Optimization</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>The code optimization in the synthesis phase is a program transformation technique, which tries to improve the intermediate code by making it consume fewer resources (i.e. CPU, Memory) so that faster-running machine code will result. Compiler optimizing process should meet the following objectives :</p>
+<ul>
+<li>The optimization must be correct, it must not, in any way, change the meaning of the program.</li>
+<li>Optimization should increase the speed and performance of the program.</li>
+<li>The compilation time must be kept reasonable.</li>
+<li>The optimization process should not delay the overall compiling process.</li>
+</ul>
+<p><b>When to Optimize?</b><br/>
+Optimization of the code is often performed at the end of the development stage since it reduces readability and adds code that is used to increase the performance.</p>
+<p><b>Types of Code Optimization –</b>The optimization process can be broadly classified into two types :</p>
+<ol>
+<li><b>Machine Independent Optimization –</b> This code optimization phase attempts to improve the <b>intermediate code</b> to get a better target code as the output. The part of the intermediate code which is transformed here does not involve any CPU registers or absolute memory locations.</li>
+<li><b>Machine Dependent Optimization –</b> Machine-dependent optimization is done after the <b>target code</b> has been generated and when the code is transformed according to the target machine architecture. It involves CPU registers and may have absolute memory references rather than relative references. Machine-dependent optimizers put efforts to take maximum <b>advantage</b> of the memory hierarchy. </li>
+</ol>
+<p>Code Optimization is done in the following different ways : </p>
+<ol>
+<li>Compile Time Evaluation :
+<div class="noIdeBtnDiv">
+<pre class="brush: c; title: ; notranslate" title="">(i)  A = 2*(22.0/7.0)*r 
+     Perform 2*(22.0/7.0)*r at compile time.
+(ii)  x = 12.4
+      y = x/2.3 
+      Evaluate x/2.3 as 12.4/2.3 at compile time.
+</pre>
+</div>
+</li>
+<li>Variable Propagation :
+<div class="noIdeBtnDiv">
+<pre class="brush: c; title: ; notranslate" title="">     //Before Optimization 
+     c = a * b                                               
+     x = a                                                  
+     till                                                           
+     d = x * b + 4 
+
+    
+     //After Optimization 
+     c = a * b  
+     x = a
+     till
+     d = a * b + 4
+</pre>
+</div>
+<p>     Hence, after variable propagation, a*b and x*b will be identified as common sub-expression.</p></li>
+<li>Dead code elimination : Variable propagation often leads to making assignment statement into dead code
+<div class="noIdeBtnDiv">
+<pre class="brush: c; title: ; notranslate" title="">      c = a * b                                                
+      x = a                                                
+      till                                                          
+      d = a * b + 4   
+
+      //After elimination :
+      c = a * b
+      till
+      d = a * b + 4
+
+</pre>
+</div>
+</li>
+<li> Code Motion :<br/>
+•    Reduce the evaluation frequency of expression.<br/>
+•    Bring loop invariant statements out of the loop.<p></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<div class="noIdeBtnDiv">
+<pre class="brush: c; title: ; notranslate" title="">      a = 200;
+       while(a&gt;0)
+       {
+           b = x + y;
+           if (a % b == 0}
+           printf(“%d”, a);
+         }
+
+
+      //This code can be further optimized as
+      a = 200;
+      b = x + y;
+      while(a&gt;0)
+       {
+           if (a % b == 0}
+           printf(“%d”, a);
+         }
+
+</pre>
+</div>
+</li>
+<li> Induction Variable and Strength Reduction :<br/>
+•    An induction variable is used in loop for the following kind of assignment i = i  + constant.<br/>
+•    Strength reduction means replacing the high strength operator by the low strength.<p></p>
+<div class="noIdeBtnDiv">
+<pre class="brush: c; title: ; notranslate" title="">i = 1;                                                                      
+while (i&lt;10)                                                          
+{                                                                             
+    y = i * 4; 
+}
+
+
+//After Reduction
+i = 1
+t = 4
+{ 
+   while( t&lt;40) 
+   y = t; 
+   t = t + 4;
+}
+</pre>
+</div>
+</li>
+</ol>
+<p><b>Reference –</b> https://en.wikipedia.org/wiki/Optimizing_compiler                                                                   </p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

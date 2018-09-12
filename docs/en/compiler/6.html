@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Error Handling in Compiler Design</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>The tasks of the <b>Error Handling</b> process are to detect each error, report it to the user, and then make some recover strategy and implement them to handle error. During this whole process processing time of program should not be slow. An <strong>Error</strong> is the blank entries in the symbol table.</p>
+<p><strong>Types or Sources of Error –</strong> There are two types of error: run-time and compile-time error:</p>
+<ol>
+<li>A <strong>run-time error</strong> is an error which takes place during the execution of a program, and usually happens because of adverse system parameters or invalid input data. The lack of sufficient memory to run an application or a memory conflict with another program and logical error are example of this. Logic errors, occur when executed code does not produce the expected result. Logic errors are best handled by meticulous program debugging.</li>
+<li>
+ <strong>Compile-time errors</strong> rises at compile time, before execution of the program. Syntax error or missing file reference that prevents the program from successfully compiling is the example of this.</li>
+</ol>
+<p> <strong>Classification of Compile-time error –</strong></p>
+<ol>
+<li><strong>Lexical </strong>: This includes misspellings of identifiers, keywords or operators</li>
+<li><strong>Syntactical</strong> : missing semicolon or unbalanced parenthesis</li>
+<li><strong>Semantical</strong> : incompatible value assignment or type mismatches between operator and operand</li>
+<li><strong>Logical</strong> : code not reachable, infinite loop.</li>
+</ol>
+<p><strong>Finding error or reporting an error –</strong> Viable-prefix is the property of a parser which allows early detection of syntax errors.</p>
+<ul>
+<li><strong>Goal:</strong> detection of an error as soon as possible without further consuming unnecessary input
+</li>
+<li><strong>How:</strong> detect an error as soon as the prefix of the input does not match a prefix of any string in the<br/>
+language.
+</li>
+<li><strong>Example:</strong> for(<strong>;</strong>), this will report an error as for have two semicolons inside braces.
+</li>
+</ul>
+<p><b>Error Recovery –</b><br/>
+The basic requirement for the compiler is to simply stop and issue a message, and cease compilation. There are some common recovery methods that are follows.</p>
+<ol>
+<li><strong>Panic mode recovery:</strong> This is the easiest way of error-recovery and also, it prevents the parser from developing infinite loops while recovering error. The parser discards the input symbol one at a time until one of the designated (like end, semicolon) set of synchronizing tokens (are typically the statement or expression terminators) is found. This is adequate when the presence of multiple errors in same statement is rare. Example: Consider the erroneous expression- (1 + + 2) + 3. Panic-mode recovery: Skip ahead to next integer and then continue. Bison: use the special terminal<strong> error</strong> to describe how much input to skip.
+<pre>E-&gt;int|E+E|(E)|error int|(error) </pre>
+</li>
+<li><strong>Phase level recovery:</strong> Perform local correction on the input to repair the error. But error correction is difficult in this strategy.
+</li>
+<li><strong>Error productions:</strong> Some common errors are known to the compiler designers that may occur in the code. Augmented grammars can also be used, as productions that generate erroneous constructs when these errors are encountered. Example: write 5x instead of 5*x
+</li>
+<li><strong>Global correction:</strong> Its aim is to make as few changes as possible while converting an incorrect input string to a valid string. This strategy is costly to implement.
+</li>
+</ol>
+<p>Next related article – <a href="https://www.geeksforgeeks.org/error-detection-recovery-compiler/" rel="noopener" target="_blank">Error detection and Recovery in Compiler</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

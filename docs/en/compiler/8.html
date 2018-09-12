@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Lexical Analysis</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Lexical Analysis is the first phase of compiler also known as scanner. It converts the input program into a sequence of <strong>Tokens</strong>.</p>
+<p>Lexical Analysis can be implemented with the <a href="http://quiz.geeksforgeeks.org/toc-finite-automata-introduction/" target="_blank">Deterministic finite Automata</a>.</p>
+<p><strong>What is a token?</strong><br/>
+A lexical token is a sequence of characters that can be treated as a unit in the grammar of the programming languages.</p>
+<p><strong>Example of tokens:</strong></p>
+<ul>
+<li>Type token (id, number, real, . . . )</li>
+<li>Punctuation tokens (IF, void, return, . . . )</li>
+<li>Alphabetic tokens (keywords)</li>
+</ul>
+<pre>Keywords; Examples-for, while, if etc.
+Identifier; Examples-Variable name, function name etc.
+Operators; Examples '+', '++', '-' etc.
+Separators; Examples ',' ';' etc</pre>
+<p><strong>Example of Non-Tokens:</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li>Comments, preprocessor directive, macros, blanks, tabs, newline &#160;etc</li>
+</ul>
+<p><strong>How Lexical Analyzer functions<a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/10/la.png"><br/>
+</a></strong><br/>
+1. Tokenization .i.e Dividing the program into valid tokens.<br/>
+2. Remove white space characters.<br/>
+3. Remove comments.<br/>
+4. It also provides help in generating error message by providing row number and column number.</p>
+<p><img class="aligncenter size-full wp-image-19686" src="../../../imgs/compiler/6a718c2fae2bc4c77651d2772bb21cef.jpg" alt="la" width="500" height="500"/></p>
+<p>The lexical analyzer identifies the error with the help of automation machine and the grammar of&#160; the given language on which it is based like C , C++.</p>
+<p>Suppose we pass a statement through lexical analyzer –</p>
+<p><strong>a&#160;= b + c</strong> ; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;It will generate token sequence like this:</p>
+<p><strong>id=id+id</strong>; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Where each id reference to it’s variable in the symbol table referencing all details</p>
+<p>For example, consider the program</p>
+<pre>int main()
+{
+  // 2 variables
+  int a, b;
+  a = 10;
+ return 0;
+}</pre>
+<p>All the valid tokens are:</p>
+<pre>'int'  'main'  '('  ')'  '{'  '}'  'int'  'a' ','  'b'  ';'
+ 'a'  '='  '10'  ';' 'return'  '0'  ';'  '}'</pre>
+<p>Above are the valid tokens.<br/>
+You can observe that we have omitted comments.</p>
+<p>As another example, consider below printf statement.<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/07/token.png"><img class="alignnone size-medium wp-image-18180" src="../../../imgs/compiler/0e9617f5070c616d5776ce9262946aa8.jpg" alt="token" width="300" height="126"/></a><br/>
+There are 5 valid token in this printf statement.<br/>
+<strong>Exercise 1:</strong><br/>
+Count number of tokens :</p>
+<pre>int main()
+{
+  int a = 10, b = 20;
+  printf("sum is :%d",a+b);
+  return 0;
+}
+Answer: Total number of token: 27.</pre>
+<p><strong>Exercise 2:</strong></p>
+<p>Count number of tokens :</p>
+<p>int max(int i);</p>
+<ul>
+<li>Lexical analyzer first read <strong>int</strong> and finds it to be valid and accepts as token</li>
+<li><strong>max</strong> is read by it and found to be valid function name after reading<strong> (</strong></li>
+<li><strong>int</strong> &#160;is also a token , then again<strong> i</strong> as another token&#160;and finally <strong>;</strong></li>
+</ul>
+<pre> Answer:  Total number of tokens 7:     int, max, ( ,int, i, ), ;</pre>
+<p>Below are previous year GATE question on Lexical analysis.</p>
+<p><a href="http://quiz.geeksforgeeks.org/lexical-analysis/" target="_blank">http://quiz.geeksforgeeks.org/lexical-analysis/</a><br/>
+</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

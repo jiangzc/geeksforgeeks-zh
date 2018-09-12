@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Why FIRST and FOLLOW?</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><u><strong>Why FIRST?</strong></u><br/>
+We saw the need of backtrack in the <a href="http://quiz.geeksforgeeks.org/compiler-design-introduction-to-syntax-analysis/">previous article</a> of on Introduction to Syntax Analysis, which is really a complex process to implement. There can be easier way to sort out this problem:<span id="more-142745"></span></p>
+<p>If the compiler would have come to know in advance, that what is the “first character of the string produced when a production rule is applied”, and comparing it to the current character or token in the input string it sees, it can wisely take decision on which production rule to apply. </p>
+<p>Let’s take the same grammar from the previous article:
+</p>
+<pre>S -&gt; cAd
+A -&gt; bc|a 
+And the input string is “cad”. </pre>
+<p></p>
+<p>Thus, in the example above, if it knew that after reading character ‘c’ in the input string and applying     S-&gt;cAd, next character in the input string is ‘a’, then it would have ignored the production rule A-&gt;bc (because ‘b’ is the first character of the string produced by this production rule, not ‘a’ ), and directly use the production rule A-&gt;a (<u>because ‘a’ is the first character of the string produced by this production rule, and is same as the current character of the input string which is also ‘a’</u>).<br/>
+Hence it is validated that if the compiler/parser knows about <u>first character of the string that can be obtained by applying a production rule,</u> then it can wisely apply the correct production rule to get the correct syntax tree for the given input string.</p>
+<p><u><strong>Why FOLLOW?</strong></u><br/>
+The parser faces one more problem. Let us consider below grammar to understand this problem.
+</p>
+<pre> A -&gt; aBb
+ B -&gt; c | ε
+ And suppose the input string is “ab” to parse. </pre>
+<p></p>
+<p>As the first character in the input is a, the parser applies the rule A-&gt;aBb.
+</p>
+<pre>          A
+        / |  \
+      a   B   b</pre>
+<p></p>
+<p>Now the parser checks for the second character of the input string which is b, and the Non-Terminal to derive is B, but the parser can’t get any string derivable from B that contains b as first character.<br/>
+But the Grammar does contain a production rule B -&gt; ε, if that is applied then B will vanish, and the parser gets the input “ab” , as shown below. But the parser can apply it only when it knows that the character that follows B is same as the current character in the input.  </p>
+<p>In RHS of A -&gt; aBb, b follows Non-Terminal B, i.e. FOLLOW(B) = {b}, and the current input character read is also b. Hence the parser applies this rule. And it is able to get the string “ab” from the given grammar.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre>           A                    A
+        /  |  \              /    \                                                
+      a    B    b    =&gt;     a      b       
+           |
+           ε </pre>
+<p>So FOLLOW can make a Non-terminal to vanish out if needed to generate the string from the parse tree. </p>
+<p>&#160;</p>
+<p>The conclusions is, we need to find FIRST and FOLLOW sets for a given grammar, so that the parser can properly apply the needed rule at the correct position.</p>
+<p>In the next article, we will discus formal definitions of FIRST and FOLLOW, and some easy rules to compute these sets.</p>
+<p><a href="http://quiz.geeksforgeeks.org/parsing-and-syntax-directed-translation/">Quiz on Syntax Analysis</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

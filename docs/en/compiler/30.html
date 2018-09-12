@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Introduction of Object Code</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Let assume that, you have a c program, then you give the C program to compiler and compiler will produce the output in assembly code.Now, that assembly language code will give to the assembler and assembler is going to produce you some code. That is known as <b>Object Code</b>.</p>
+<p><img src="../../../imgs/compiler/611640954bbf4b1da0f3160176b775d9.jpg" alt="compilation" width="320" height="363" class="alignnone size-full wp-image-161417"/></p>
+<p>But, when you compile a program, then you are not going to use both compiler and assembler.You just take the program and give it to the compiler and compiler will give you the directly executable code. The compiler is actually combined inside the assembler along with loader and linker.So all the module kept together in the compiler software itself. So when you calling gcc, you are actually not just calling the compiler, you are calling the compiler, then assembler, then linker and loader.</p>
+<p>Once you call the compiler, then your object code is going to present in Hard-disk. This object code contains various part –</p>
+<p><img src="../../../imgs/compiler/582657cb2b12635f9061d2f58aa38c7a.jpg" alt="compilation2" width="320" height="380" class="alignnone size-full wp-image-161418"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li><strong>Header –</strong><br/>
+The header will say what are the various parts present in this object code and then point that parts.So header will say where the text segment is going to start and a pointer to it and where the data segment going to start and it say where the relocation information and symbol information there.<p></p>
+<p>It is nothing but like an index, like you have a textbook, there an index page will contains at what page number each topic present. Similarly, the header will tell you, what are the palaces at which each information is present.So that later for other software it will be useful to directly go into those segment.</p></li>
+<li><strong>Text segment –</strong><br/>
+It is nothing but the set of instruction.</li>
+<li><strong>Data segment –</strong><br/>
+Data segment will contain whatever data you have used.For example, you might have used something constraint, then that going to be present in the data segment.</li>
+<li><strong>Relocation Information –</strong><br/>
+Whenever you try to write a program, we generally use symbol to specify anything.Let us assume you have instruction 1, instruction 2, instruction 3, instruction 4,….<br/>
+<img src="../../../imgs/compiler/b8289a1b259938aaded4081897d5a2fc.jpg" alt="compilation3" width="320" height="443" alignnone="" size-full="" srcset="https://www.geeksforgeeks.org/wp-content/uploads/compilation3.jpg 401w, https://www.geeksforgeeks.org/wp-content/uploads/compilation3-218x300.jpg 218w" sizes="(max-width: 401px) 100vw, 401px"/><p></p>
+<p>Now if you say somewhere Goto L4 (Even if you don’t write Goto statement in the high-level language, the output of the compiler will write it), then that code will be converted into object code and L4 will be replaced by Goto 4. Now Goto 4 for the level L4 is going to work fine, as long as the program is going to be loaded starting at address no 0. But most of the cases, the initial part of the RAM is going to be dedicated to the operating system. Even if it is not dedicated to the operating system, then might be some other process which will already be running at address no 0. So, when you are going to load the program into memory, means if the program has to be load in the main memory, it might be loaded anywhere.Let us say 1000 is the new starting address, then all the addresses has to be changed, that is known as <b>Reallocation</b>.<br/>
+<img src="../../../imgs/compiler/3eb591d5308b2ad958da5f8a199091d3.jpg" alt="compilation4" width="450" height="300" class="alignnone size-full wp-image-161422"/></p>
+<p>The original address is known as <b>Relocatable address</b> and the final address which we get after loading the program into main memory is known as the <b>Absolute address</b>.</p>
+<h3 class="sigil_not_in_toc">Symbol table –</h3>
+<p>It contains every symbol that you have in your program.for example, int a, b, c then, a, b, c are the symbol.it will show what are the variables that your program contains.</p>
+<h3 class="sigil_not_in_toc">Debugging information –</h3>
+<p>It will help to find how a variable is keeping on changing.</p>
+<p><strong>GATE CS Corner Questions</strong></p>
+<p>Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<p><a href="https://www.geeksforgeeks.org/gate-gate-cs-2001-question-17/" target="_blank">1. GATE-CS-2001 | Question 17</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		<!-- .entry-meta -->
+	</li>
+</ul>
+</div>
+</body>
+</html>

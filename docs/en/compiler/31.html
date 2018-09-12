@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Data flow analysis in Compiler</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>It is the analysis of flow of data in control flow graph, i.e., the analysis that determines the information regarding the definition and use of data in program. With the help of this analysis optimization can be done. In general, its process in which values are computed using data flow analysis.The data flow property represents information which can be used for optimization. </p>
+<p><b>Basic Terminologies –</b></p>
+<ul>
+<li><strong>Definition Point:</strong> a point in a program containing some definition.</li>
+<li><strong>Reference Point:</strong> a point in a program containing a reference to a data item.</li>
+<li><strong>Evaluation Point:</strong> a point in a program containing evaluation of expression.</li>
+</ul>
+<p><img src="../../../imgs/compiler/f1ba3ce83aaa5570572f2504bc759f88.jpg" alt="" width="661" height="420" class="aligncenter size-full wp-image-422913"/></p>
+<p><b>Data Flow Properties –</b></p>
+<ul>
+<li><strong>Available Expression –</strong> A expression is said to be available at a program point x iff along paths its reaching to x. A Expression is available at its evaluation point.<br/>
+A expression a+b is said to be available if none of the operands gets modified before their use.<p></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Example –</strong><br/>
+<img src="../../../imgs/compiler/2c4ac64c95d9af412775fa61f69e8f52.jpg" alt="" width="761" height="301" class="aligncenter size-full wp-image-422940"/></p>
+<p><b>Advantage –</b><br/>
+It is used to eliminate common sub expressions.</p>
+</li>
+<p>&#160;</p>
+<li><strong>Reaching Definition –</strong> A definition D is reaches a point x if there is path from D to x in which D is not killed, i.e., not redefined.
+<p><strong>Example –</strong><br/>
+<img src="../../../imgs/compiler/7186c9a37d6cc94c942421a3cf3814f3.jpg" alt="" width="801" height="301" class="aligncenter size-full wp-image-422955"/></p>
+<p><b>Advantage –</b><br/>
+It is used in constant and variable propagation.</p>
+</li>
+<p>&#160;</p>
+<li><strong>Live variable –</strong> A variable is said to be live at some point p if from p to end the variable is used before it is redefined else it becomes dead.
+<p><strong>Example –</strong><br/>
+<img src="../../../imgs/compiler/ef1697cf175fbcf5bd0d532aae539c3c.jpg" alt="" width="561" height="441" class="aligncenter size-full wp-image-422978"/></p>
+<p><b>Advantage –</b></p>
+<ol>
+<li>It is useful for register allocation.</li>
+<li>It is used in dead code elimination.</li>
+</ol>
+</li>
+<p>&#160;</p>
+<li><strong>Busy Expression –</strong> An expression is busy along a path iff its evaluation exists along that path and none of its operand definition exists before its evaluation along the path.
+<p><b>Advantage –</b><br/>
+It is used for performing code movement optimization.
+</p></li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

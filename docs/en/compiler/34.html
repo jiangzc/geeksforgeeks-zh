@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Runtime Environments</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>A translation needs to relate the static source text of a program to the dynamic actions that must occur at runtime to implement the program. The program consists of names for procedures, identifiers etc., that require mapping with the actual memory location at runtime.</p>
+<p>Runtime environment is a state of the target machine, which may include software libraries, environment variables, etc., to provide services to the processes running in the system.</p>
+<p style="text-align: center"><strong>SOURCE LANGUAGE ISSUES</strong></p>
+<p align="center"><strong>Activation Tree</strong></p>
+<p>A program consist of procedures, a procedure definition is a declaration that, in its simplest form, associates an identifier (procedure name) with a statement (body of the procedure). &#160;Each execution of procedure is referred to as an activation of the procedure. Lifetime of an activation is the sequence of steps present in the execution of the procedure. If ‘a’ and ‘b’ be two procedures then their activations will be non-overlapping (when one is called after other) or nested (nested procedures). A procedure is recursive if a new activation begins before an earlier activation of the same procedure has ended. An activation tree shows the way control enters and leaves activations.<br/>
+Properties of activation trees are :-</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li>Each node represents an activation of a procedure.</li>
+<li>The root shows the activation of the main function.</li>
+<li>The node for procedure ‘x’ is the parent of node for procedure ‘y’ if and only if the control flows from procedure x to procedure y.</li>
+</ul>
+<p><b>Example –</b> Consider the following program of Quicksort</p>
+<pre>main() {
+
+      Int n;
+      readarray();
+      quicksort(1,n);
+}
+
+quicksort(int m, int n) {
+
+     Int i= partition(m,n);
+     quicksort(m,i-1);
+     quicksort(i+1,n);
+}</pre>
+<p>The activation tree for this program will be:</p>
+<p><img src="../../../imgs/compiler/c4f79af8d806e8971bf7c248f679f7d1.jpg" alt="1" width="599" height="394" class="aligncenter size-full wp-image-192314" srcset="https://www.geeksforgeeks.org/wp-content/uploads/1-35.png 599w, https://www.geeksforgeeks.org/wp-content/uploads/1-35-300x197.png 300w" sizes="(max-width: 599px) 100vw, 599px"/></p>
+<p>First main function as root then main calls readarray and quicksort. Quicksort in turn calls partition and quicksort again. The flow of control in a program corresponds to the depth first traversal of activation tree which starts at the root.</p>
+<p align="center"><strong>CONTROL STACK AND ACTIVATION RECORDS</strong></p>
+<p>Control stack or runtime stack is used to keep track of the live procedure activations i.e the procedures whose execution have not been completed. A procedure name is pushed on to the stack when it is called (activation begins) and it is popped when it returns (activation ends). Information needed by a single execution of a procedure is managed using an activation record or frame. When a procedure is called, an activation record is pushed into the stack and as soon as the control returns to the caller function the activation record is popped.</p>
+<p><img src="../../../imgs/compiler/8d2e921c00dae02809e23073f69549dd.jpg" alt="2" width="573" height="339" class="aligncenter size-full wp-image-192316"/></p>
+<p>A general activation record consist of the following things:</p>
+<ul>
+<li><strong>Local variables:</strong> hold the data that is local to the execution of the procedure.</li>
+<li><strong>Temporary values</strong>: stores the values that arise in the evaluation of an expression.</li>
+<li><strong>Machine status:</strong> holds the information about status of machine just before the function call.</li>
+<li><strong>Access link (optional):</strong> refers to non-local data held in other activation records.</li>
+<li><strong>Control link (optional):</strong> points to activation record of caller.</li>
+<li><strong>Return value:</strong> used by the called procedure to return a value to calling procedure</li>
+<li>Actual parameters</li>
+</ul>
+<p>Control stack for the above quicksort example:</p>
+<p><img src="../../../imgs/compiler/78d5a42d286bc8d911aefad36f6ba3ec.jpg" alt="3" width="422" height="318" class="aligncenter size-full wp-image-192318" srcset="https://www.geeksforgeeks.org/wp-content/uploads/3-17.png 422w, https://www.geeksforgeeks.org/wp-content/uploads/3-17-300x226.png 300w" sizes="(max-width: 422px) 100vw, 422px"/></p>
+<p><img src="../../../imgs/compiler/29637e5c2f69f39d00ddf048f64fb968.jpg" alt="4" width="541" height="226" class="aligncenter size-full wp-image-192319"/></p>
+<p align="center"><strong>SUBDIVISION OF RUNTIME MEMORY</strong></p>
+<p>Runtime storage can be subdivide to hold :</p>
+<ul>
+<li>Target code- the program code , it is static as its size can be determined at compile time</li>
+<li>Static data objects</li>
+<li>Dynamic data objects- heap</li>
+<li>Automatic data objects- stack</li>
+</ul>
+<p><img src="../../../imgs/compiler/83b60c2d6a51feda41b427f19212ba6e.jpg" alt="5" width="588" height="300" class="aligncenter size-full wp-image-192320"/></p>
+<p align="center"><strong>STORAGE ALLOCATION TECHNIQUES</strong></p>
+<p><strong>I. Static Storage Allocation</strong></p>
+<ul>
+<ul>
+<li>For any program if we create memory at compile time, memory will be created in the static area.</li>
+<li>For any program if we create memory at compile time only, memory is created only once.</li>
+<li>It don’t support dynamic data structure i.e memory is created at compile time and deallocated after program completion.</li>
+<li>The drawback with static storage allocation is recursion is not supported.</li>
+<li>Another drawback is size of data should be known at compile time</li>
+</ul>
+</ul>
+<p>Eg- FORTRAN was designed to permit static storage allocation.</p>
+<p><strong>II. Stack Storage Allocation</strong></p>
+<ul>
+<li>Storage is organised as a stack and activation records are pushed and popped as activation begin and end respectively. Locals are contained in activation records so they are bound to fresh storage in each activation.</li>
+<li>Recursion is supported in stack allocation</li>
+</ul>
+<p><strong>III. Heap Storage Allocation</strong></p>
+<ul>
+<li>Memory allocation and deallocation can be done at any time and at any place depending on the requirement of the user.</li>
+<li>Heap allocation is used to dynamically allocate memory to the variables and claim it back when the variables are no more required.</li>
+<li>Recursion is supported.</li>
+</ul>
+<p><img src="../../../imgs/compiler/e4189d71d0cd923f2b49dd45bb08fa86.jpg" alt="activation_5"/></p>
+<p align="center"><strong>PARAMETER PASSING</strong></p>
+<p>The communication medium among procedures is known as parameter passing. The values of the variables from a calling procedure are transferred to the called procedure by some mechanism.</p>
+<p style="text-align: left" align="center"><strong>Basic terminology :</strong></p>
+<ul>
+<li><strong>R- value:&#160;</strong>The value of an expression is called its r-value. The value contained in a single variable also becomes an r-value if its appear on the right side of the assignment operator. R-value can always be assigned to some other variable.</li>
+<li><strong>L-value:&#160;</strong>The location of the memory(address) where the expression is stored is known as the l-value of that expression. It always appears on the left side if the assignment operator.<br/>
+<img src="../../../imgs/compiler/35b851fe96c4acd4bce2f7a26a6446fd.jpg" alt="activation_6"/><p></p>
+<p><strong>i.Formal Parameter:&#160;</strong>Variables that take the information passed by the caller procedure are called formal parameters. These variables are declared in the definition of the called function.</p>
+<p><strong>ii.Actual Parameter:&#160;</strong>Variables whose values and functions are passed to the called function are called actual parameters. These variables are specified in the function call as arguments.</p></li>
+</ul>
+<p align="center"><strong>Different ways of passing the parameters to the procedure</strong></p>
+<ul>
+<li><strong>Call by Value</strong><br/>
+In call by value the calling procedure pass the r-value of the actual parameters and the compiler puts that into called procedure’s activation record. Formal parameters hold the values passed by the calling procedure, thus any changes made in the formal parameters does not affect the actual parameters.<img src="../../../imgs/compiler/56cc4350aeb9e3b94d3ed844f396c614.jpg" alt="activation_7"/></li>
+<li><strong>Call by Reference</strong>In call by reference the formal and actual parameters refers to same memory location. The l-value of actual parameters is copied to the activation record of the called function. Thus the called function has the address of the actual parameters. If the actual parameters does not have a l-value (eg- i+3) then it is evaluated in a new temporary location and the address of the location is passed. Any changes made in the formal parameter is reflected in the actual parameters (because changes are made at the address).
+<p><img src="../../../imgs/compiler/a0bc54404524824fff36200a471cd1ab.jpg" alt="activation_8"/></p></li>
+<li><strong>Call by Copy Restore</strong><br/>
+In call by copy restore compiler copies the value in formal parameters when the procedure is called and copy them back in actual parameters when control returns to the called function. The r-values are passed and on return r-value of formals are copied into l-value of actuals.<br/>
+<img src="../../../imgs/compiler/b08f42b37b65346636351992b85d7b14.jpg" alt="activation_9"/></li>
+<li><strong>Call by Name</strong><br/>
+In call by name the actual parameters are substituted for formals in all the places formals occur in the procedure. It is also referred as lazy evaluation because evaluation is done on parameters only when needed.<img src="../../../imgs/compiler/dcd2ec1eb862636d6d08ec881c21158e.jpg" alt="activation_10"/></li>
+</ul>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

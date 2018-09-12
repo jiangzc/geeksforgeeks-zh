@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Syntax Directed Translation</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Background :</strong> Parser uses a CFG(Context-free-Grammer) to validate the input string and produce output for next phase of the compiler. Output could be either a parse tree or abstract syntax tree. Now to interleave semantic analysis with syntax analysis phase of the compiler, we use Syntax Directed Translation. </p>
+<p><strong>Definition</strong><br/>
+Syntax Directed Translation are augmented rules to the grammar that facilitate semantic analysis. SDT involves passing information bottom-up and/or top-down the parse tree in form of attributes attached to the nodes. Syntax directed translation rules use 1) lexical values of nodes, 2) constants &amp; 3) attributes associated to the non-terminals in their definitions. </p>
+<p>Example </p>
+<pre>E -&gt; E+T | T
+T -&gt; T*F | F
+F -&gt; INTLIT
+</pre>
+<p>This is a grammar to syntactically validate an expression having additions and multiplications in it. Now, to carry out semantic analysis we will augment SDT rules to this grammar, in order to pass some information up the parse tree and check for semantic errors, if any. In this example we will focus on evaluation of the given expression, as we don’t have any semantic assertions to check in this very basic example.</p>
+<pre>E -&gt; E+T     { E.val = E.val + T.val }   PR#1
+E -&gt; T       { E.val = T.val }           PR#2
+T -&gt; T*F     { T.val = T.val * F.val }   PR#3
+T -&gt; F       { T.val = F.val }           PR#4
+F -&gt; INTLIT  { F.val = INTLIT.lexval }   PR#5
+</pre>
+<p>For understanding translation rules further, we take the first SDT augmented to [ E -&gt; E+T ] production rule. The translation rule in consideration has val as attribute for both the non-terminals – E &amp; T. Right hand side of the translation rule corresponds to attribute values of right side nodes of the production rule and vice-versa. Generalizing, SDT are augmented rules to a CFG that associate 1) set of attributes to every node of the grammar and 2) set of translation rules to every production rule using attributes, constants and lexical values.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Let’s take a string to see how semantic analysis happens – S = 2+3*4. Parse tree corresponding to S would be</p>
+<p><img src="../../../imgs/compiler/507f4acd7caa6ee27f1f7edde7bc424a.jpg" alt="vineet_article"/></p>
+<p>To evaluate translation rules, we can employ one depth first search traversal on the parse tree. This is possible only because SDT rules don’t impose any specific order on evaluation until children attributes are computed before parents for a grammar having all synthesized attributes. Otherwise, we would have to figure out the best suited plan to traverse through the parse tree and evaluate all the attributes in one or more traversals. For better understanding, we will move bottom up in left to right fashion for computing translation rules of our example. </p>
+<p><img src="../../../imgs/compiler/655f220405c60f47a53c62b5ec3355d2.jpg"/></p>
+<p>Above diagram shows how semantic analysis could happen. The flow of information happens bottom-up and all the children attributes are computed before parents, as discussed above. Right hand side nodes are sometimes annotated with subscript 1 to distinguish between children and parent.<br/>
+Additional Information<br/>
+<strong>Synthesized Attributes</strong> are such attributes that depend only on the attribute values of children nodes.<br/>
+Thus [ E -&gt; E+T { E.val = E.val + T.val } ] has a synthesized attribute val corresponding to node E. If all the semantic attributes in an augmented grammar are synthesized, one depth first search traversal in any order is sufficient for semantic analysis phase.</p>
+<p><strong>Inherited Attributes</strong> are such attributes that depend on parent and/or siblings attributes.<br/>
+Thus [ Ep -&gt; E+T { Ep.val = E.val + T.val, T.val = Ep.val } ], where E &amp; Ep are same production symbols annotated to differentiate between parent and child, has an inherited attribute val corresponding to node T.</p>
+<p>Reference:<br/>
+<a href="http://www.personal.kent.edu/~rmuhamma/Compilers/MyCompiler/syntaxDirectTrans.htm">http://www.personal.kent.edu/~rmuhamma/Compilers/MyCompiler/syntaxDirectTrans.htm</a><br/>
+<a href="http://pages.cs.wisc.edu/~fischer/cs536.s06/course.hold/html/NOTES/4.SYNTAX-DIRECTED-TRANSLATION.html">http://pages.cs.wisc.edu/~fischer/cs536.s06/course.hold/html/NOTES/4.SYNTAX-DIRECTED-TRANSLATION.html</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

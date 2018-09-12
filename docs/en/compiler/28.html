@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Intermediate Code Generation</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In the analysis-synthesis model of a compiler, the front end of a compiler translates a source program into an independent intermediate code, then the back end of the compiler uses this intermediate code to generate the target code (which can be understood by the machine).</p>
+<p>The benefits of using machine independent intermediate code are:</p>
+<ul>
+<li>Because of the machine independent intermediate code, portability will be enhanced.For ex, suppose, if a compiler translates the source language to its target machine language without having the option for generating intermediate code, then for each new machine, a full native compiler is required. Because, obviously, there were some modifications in the compiler itself according to the machine specifications. </li>
+<li>Retargeting is facilitated</li>
+<li>It is easier to apply source code modification to improve the performance of source code by optimising the intermediate code.</li>
+</ul>
+<p><img src="../../../imgs/compiler/e83ff284029855daebeef96ff622d91e.jpg" alt="1" width="593" height="611" class="aligncenter size-full wp-image-192287" srcset="https://www.geeksforgeeks.org/wp-content/uploads/1-34.png 593w, https://www.geeksforgeeks.org/wp-content/uploads/1-34-291x300.png 291w" sizes="(max-width: 593px) 100vw, 593px"/></p>
+<p>If we generate machine code directly from source code then for n target machine we will have n optimisers and n code generators but if we will have a machine independent intermediate code,<br/>
+we will have only one optimiser. Intermediate code can be either language specific (e.g., Bytecode for Java) or language. independent (three-address code).</p>
+<p>The following are commonly used intermediate code representation:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li><strong>Postfix Notation –</strong>
+<p>The ordinary (infix) way of writing the sum of a and b is with operator in the middle : a + b<br/>
+The postfix notation for the same expression places the operator at the right end as ab +. In general, if e1 and e2 are any postfix expressions, and + is any binary operator, the result of applying + to the values denoted by e1 and e2 is postfix notation by e1e2 +. No parentheses  are needed in postfix notation because the position and arity (number of arguments) of the operators permit only one way to decode a postfix expression. In postfix notation the operator follows the operand.</p>
+<p><b>Example –</b> The postfix representation of the expression (a – b) * (c + d) + (a – b) is : &#160;   ab – cd + ab -+*.<br/>
+Read more: <a href="https://www.geeksforgeeks.org/stack-set-2-infix-to-postfix/" rel="noopener" target="_blank">Infix to Postfix</a></p>
+</li>
+<li><strong>Three-Address Code –</strong><br/>
+A statement involving no more than three references(two for operands and one for result) is known as three address statement. A sequence of three address statements is known as three address code. Three address statement is of the form x = y op z , here x, y, z will have address (memory location). Sometimes a statement might contain less than three references but it is still called three address statement.<p></p>
+<p><b>Example –</b> The three address code for the expression a + b * c + d :</p>
+<p>T 1 = b * c<br/>
+T 2 = a + T 1<br/>
+T 3 = T 2 + d</p>
+<p>T 1 , T 2 , T 3 are temporary variables.</p>
+</li>
+<li><strong>Syntax Tree –</strong><br/>
+Syntax tree is nothing more than condensed form of a parse tree. The operator and keyword nodes of the parse tree are moved to their parents and a chain of single productions is replaced by single link in syntax tree the internal nodes are operators and child nodes are operands. To form syntax tree put parentheses in the expression, this way it's easy to recognize which operand should come first.<p></p>
+<p><b>Example –</b><br/>
+ x = (a + b * c) / (a – b * c)</p>
+<p><img src="../../../imgs/compiler/b1f81524a50cd6e44f069a8c47acf875.jpg" alt="2" width="647" height="583" class="aligncenter size-full wp-image-192288" srcset="https://www.geeksforgeeks.org/wp-content/uploads/2-19.png 647w, https://www.geeksforgeeks.org/wp-content/uploads/2-19-300x270.png 300w" sizes="(max-width: 647px) 100vw, 647px"/>
+</p></li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

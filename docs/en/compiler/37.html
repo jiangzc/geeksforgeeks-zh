@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Compiler Theory | Set 2</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Following questions have been asked in GATE CS exam. <span id="more-3309"></span></p>
+<p><strong>1. Given the following expression grammar:<br/>
+E -&gt; E * F | F+E | F<br/>
+F -&gt; F-F | id<br/>
+which of the following is true? (GATE CS 2000)<br/>
+</strong>(a) * has higher precedence than +<br/>
+(b) – has higher precedence than *<br/>
+(c) + and — have same precedence<br/>
+(d) + has higher precedence than *</p>
+<p>Answer(b)</p>
+<p>Precedence in a grammar is enforced by making sure that a production rule with higher precedence operator will never produce an expression with operator with lower precedence.<br/>
+In the given grammar ‘-’ has higher precedence than ‘*’</p>
+<p><strong><br/>
+2. Consider a program P that consists of two source modules M1 and M2 contained in two different files. If M1 contains a reference to a function defined in M2 the reference will be resolved at (GATE CS 2004)</strong><br/>
+a)	Edit time<br/>
+b)	Compile time<br/>
+c)	Link time<br/>
+d)	Load time</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Answer (c)<br/>
+Compiler transforms source code into the target language. The target language is generally in binary form known as object code.  Typically, an object file can contain three kinds of symbols:</p>
+<p>    * defined symbols, which allow it to be called by other modules,<br/>
+    * undefined symbols, which call the other modules where these symbols are defined, and<br/>
+    * local symbols, used internally within the object file to facilitate relocation.</p>
+<p>When a program comprises multiple object files, the linker combines these files into a unified executable program, resolving the symbols as it goes along.<br/>
+<a href="http://en.wikipedia.org/wiki/Compiler">http://en.wikipedia.org/wiki/Compiler</a><br/>
+<a href="http://en.wikipedia.org/wiki/Linker_%28computing%29">http://en.wikipedia.org/wiki/Linker_%28computing%29</a></p>
+<p><strong><br/>
+3. Which of the following suffices to convert an arbitrary CFG to an LL(1) grammar?  (GATE CS 2003)</strong><br/>
+(a) Removing left recursion alone<br/>
+(b) Factoring the grammar alone<br/>
+(c) Removing left recursion and factoring the grammar<br/>
+(d) None of the above </p>
+<p>Answer(d)<br/>
+Removing left recursion and factoring the grammar do not suffice to convert an arbitrary CFG to LL(1) grammar.<br/>
+<a href="http://pages.cpsc.ucalgary.ca/~robin/class/411/LL1.3.html">http://pages.cpsc.ucalgary.ca/~robin/class/411/LL1.3.html</a></p>
+<p><strong>4. Assume that the SLR parser for a grammar G has n1 states and the LALR parser for G has n2 states. The relationship between nl and n2 is (GATE CS 2003) </strong><br/>
+(a) n1 is necessarily less than n2<br/>
+(b) n1 is necessarily equal to n2<br/>
+(c) n1 is necessarily greater than n2<br/>
+(d) none of the above </p>
+<p>Answer (b)  </p>
+<p><a href="http://parasol.tamu.edu/people/rwerger/Courses/434/lec10.pdf">http://parasol.tamu.edu/people/rwerger/Courses/434/lec10.pdf</a><br/>
+<a href="http://dragonbook.stanford.edu/lecture-notes/Stanford-CS143/11-LALR-Parsing.pdf">http://dragonbook.stanford.edu/lecture-notes/Stanford-CS143/11-LALR-Parsing.pdf</a></p>
+<p><strong>Please see <a href="http://geeksquiz.com/gate-corner-2/">GATE Corner</a> for all previous year paper/solutions/explanations, syllabus, important dates, notes, etc.</strong></p>
+<p>Please write comments if you find any of the answers/explanations incorrect, or you want to share more information about the topics discussed above.</p>
+<ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ol>
+</div>
+</body>
+</html>

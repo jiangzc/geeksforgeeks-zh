@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Classification of top down parsers</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Parsing is classified into two categories, i.e. Top Down Parsing and Bottom-Up Parsing. Top-Down Parsing is based on Left Most Derivation whereas Bottom Up Parsing is dependent on Reverse Right Most Derivation.</p>
+<p>The process of constructing the parse tree which starts from the root and goes down to the leaf is Top-Down Parsing.</p>
+<ul>
+<li>Top-Down Parsers constructs from the Grammar which is free from ambiguity and left recursion.</li>
+<li>Top Down Parsers uses leftmost derivation to construct a parse tree.</li>
+<li>It allows a grammar which is free from Left Factoring.</li>
+</ul>
+<p><b>Classification of Top-Down Parsing –</b></p>
+<ol>
+<li><strong>With Backtracking:</strong> Brute Force Technique or Recursive Descent Parsing</li>
+<li><strong>Without Backtracking:</strong> Predictive Parsing or Non-Recursive Parsing or LL(1) Parsing or Table Driver Parsing</li>
+</ol>
+<p><b>Brute Force Technique or Recursive Descent Parsing –</b></p>
+<ol>
+<li>Whenever a Non-terminal spend first time then go with the first alternative and compare with the given I/P String</li>
+<li>If matching doesn’t occur then go with the second alternative and compare with the given I/P String.</li>
+<li>If matching again not found then go with the alternative and so on.</li>
+<li>Moreover, If matching occurs for at least one alternative, then the I/P string is parsed successfully.</li>
+</ol>
+<p><b>LL(1) or Table Driver or Predictive Parser –</b></p>
+<ol>
+<li>In LL1, 1 stands for Look Ahead Symbol, 1st L stands for Left Most Derivation whereas Second L stands for Left to right scan of strings.</li>
+<li>LL(1) parsing is constructed from the grammar which is free from left recursion, common prefix, and ambiguity.</li>
+<li>LL(1) parser depends on 1 look ahead symbol to predict the production to expand the parse tree.</li>
+<li>This parser is Non-Recursive.</li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

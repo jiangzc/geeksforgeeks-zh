@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Introduction of Compiler design</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Compiler</b> is a software which converts a program written in high level language (Source Language) to low level language (Object/Target/Machine Language).</p>
+<p><img src="../../../imgs/compiler/3104b19f4a963ef4e58e69f30ceedf8e.jpg" alt="" class="aligncenter size-large wp-image-260751"/></p>
+<ul>
+<li><b>Cross Compiler</b> that runs on a machine ‘A’ and produces a code for another machine ‘B’.  It is capable of creating code for a platform other than the one on which the compiler is running.</li>
+<li><b>Source-to-source Compiler</b> or  transcompiler or transpiler is a compiler that translates source code written in one programming language into source code of another programming language.</li>
+</ul>
+<p><b>Language processing systems (using Compiler) –</b><br/>
+We know a computer is a logical assembly of Software and Hardware. The hardware knows a language, that is hard for us to grasp, consequently we tend to write programs in high-level language, that is much less complicated for us to comprehend and maintain in thoughts. Now these programs go through a series of transformation so that they can readily be used machines. This is where language procedure systems come handy.<br/>
+<img src="../../../imgs/compiler/a44554ca9db76b5416b8bf0b50d416b9.jpg" class="aligncenter size-full"/></p>
+<ul>
+<li><b>High Level Language –</b> If a program contains #define or #include directives such as #include or #define it is called HLL. They are closer to humans but far from machines. These (#) tags are called pre-processor directives. They direct the pre-processor about what to do.</li>
+<li><b>Pre-Processor –</b>  The pre-processor removes all the #include directives by including the files called file inclusion and all the #define directives using macro expansion. It performs file inclusion, augmentation, macro-processing etc.</li>
+<li><b>Assembly Language –</b> Its neither in binary form nor high level. It is an intermediate state that is combination of machine instructions and some other useful data needed for execution.</li>
+<li><b>Assembler –</b> For every platform (Hardware + OS) we will have a assembler. They are not universal since for each platform we have one. The output of assembler is called object file. Its translates assembly language to machine code. </li>
+<li><b>Interpreter –</b> An interpreter converts high level language into low level machine language, just like a compiler. But they are different in the way the read the input. The Compiler in on go reads the inputs, does the processing and executes the source code whereas the assembler does the same line by line. Interpreted programs are usually slower with respect to compiled ones.</li>
+<li><b>Relocatable Machine Code –</b> It can be loaded at any point and can be run. The address within the program will be in such a way that it will cooperate for the program movement.</li>
+<li><b>Loader/Linker –</b> It converts the relocatable code into absolute code and tries to run the program resulting in a running program or an error message (or sometimes both can happen). Linker loads variety of object files into a single file to make it executable. Then loader loads it in memory and executes it.</li>
+</ul>
+<p><b>Phases of a Compiler –</b><br/>
+There are two major phases of compilation, which in turn have many parts. Each of them are take input from the output of the previous level and work in a coordinated way.<br/>
+<img src="../../../imgs/compiler/317aa5be6cd6a8643749fc82e27e6327.jpg" alt="" width="638" height="479" class="aligncenter size-full wp-image-261323"/><br/>
+</p>
+<center></center>
+<p></p>
+<p><b>Analysis Phase –</b> An intermediate representation is created from the give source code :</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li>Lexical Analyzer</li>
+<li>Syntax Analyzer</li>
+<li>Semantic Analyzer</li>
+</ol>
+<p>Lexical analyzer divides the program into “tokens”, Syntax analyzer recognizes “sentences” in the program using syntax of language and Semantic analyzer checks static semantics of each construct.<br/>
+<b>Synthesis Phase –</b> Equivalent target program is created from the intermediate representation. It has three parts :</p>
+<ol start="4">
+<li>Intermediate Code Generator</li>
+<li>Code Optimizer</li>
+<li>Code Generator</li>
+</ol>
+<p>Intermediate Code Generator generates “abstract” code, Code Optimizer optimizes the abstract code, and final Code Generator translates abstract intermediate code into specific machine instructions.</p>
+<p><b>GATE CS Corner Questions</b></p>
+<p>Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2011-question-1/" target="_blank">GATE CS 2011, Question 1</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2011-question-19/" target="_blank">GATE CS 2011, Question 19</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2009-question-17/" target="_blank">GATE CS 2009, Question 17</a></li>
+<li><a href="https://www.geeksforgeeks.org/aptitude-gate-cs-1998-question-27/" target="_blank">GATE CS 1998, Question 27</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2008-question-11/" target="_blank">GATE CS 2008, Question 85</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-1997-question-8/" target="_blank">GATE CS 1997, Question 8</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-3-question-27/" target="_blank">GATE CS 2014 (Set 3), Question 65</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2015-set-2-question-29/" target="_blank">GATE CS 2015 (Set 2), Question 29</a></li>
+</ol>
+<p><b>References –</b><br/>
+<a href="https://viden.io/knowledge/488/attachments/2376?name=viden-clip-K467-introduction+to+compiling.pdf" target="_blank">Introduction to compiling – viden.io</a><br/>
+<a href="https://www.slideshare.net/IffatAnjum/lecture-01-introduction-to-compiler" target="_blank">slideshare</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

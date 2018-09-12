@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Symbol Table in Compiler</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Prerequisite –</strong> <a href="https://www.geeksforgeeks.org/compiler-design-phases-compiler/" rel="noopener" target="_blank">Phases of a Compiler</a></p>
+<p><strong>Symbol Table</strong> is an important data structure created and maintained by the compiler in order to keep track of semantics of variable i.e. it stores information about scope and binding information about names, information about instances of various entities such as variable and function names, classes, objects, etc.</p>
+<ul>
+<li>It is built in  lexical and syntax analysis phases.</li>
+<li>The information is collected by the analysis phases of compiler and is used by synthesis phases of compiler to generate code.</li>
+<li>It is used by compiler to achieve compile time efficiency.</li>
+<li>It is used by various phases of compiler as follows :-
+<ol>
+<li><strong>Lexical Analysis:</strong> Creates new table entries in the table, example like entries about token.</li>
+<li><strong>Syntax Analysis:</strong> Adds information regarding attribute type, scope, dimension, line of reference, use, etc in the table.</li>
+<li><strong>Semantic Analysis:</strong> Uses available information in the table to check for semantics i.e. to verify that expressions and assignments are semantically correct(type checking) and update it accordingly.</li>
+<li><strong>Intermediate Code generation:</strong> Refers symbol table for knowing how much and what type of run-time is allocated and table helps in adding temporary variable information.</li>
+<li><strong>Code Optimization:</strong> Uses information present in symbol table for machine dependent optimization.</li>
+<li><strong>Target Code generation:</strong> Generates code by using address information of identifier present in the table.</li>
+</ol>
+</li>
+</ul>
+<p><b>Symbol Table entries –</b> Each entry in symbol table is associated  with attributes that support compiler in different phases.<br/>
+<b>Items stored in Symbol table:</b></p>
+<ul>
+<li>Variable names and constants</li>
+<li>Procedure and function names</li>
+<li>Literal constants and strings</li>
+<li>Compiler generated temporaries</li>
+<li>Labels in source languages</li>
+</ul>
+<p><b>Information used by compiler from Symbol table:</b></p>
+<ul>
+<li>Data type and name</li>
+<li>Declaring procedures</li>
+<li>Offset in storage</li>
+<li>If structure or record then, pointer to structure table.</li>
+<li>For parameters, whether parameter passing by value or by reference</li>
+<li>Number and type of arguments passed to function </li>
+<li>Base Address</li>
+</ul>
+<p><b>Operations of Symbol table –</b> The basic operations defined on a symbol table include:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/compiler/76e1ba59181b179fa3a0a8b875b17253.jpg" alt="" width="741" height="321" class="aligncenter size-full wp-image-395094"/></p>
+<p><b>Implementation of Symbol table –</b><br/>
+Following are commonly used data structure for implementing symbol table :-</p>
+<ol>
+<li><b>List –</b>
+<ul>
+<li>In this method, an array is used to store names and associated information.</li>
+<li>A pointer<b> “available”</b> is maintained at end of all stored records and new names are added in the order as they arrive </li>
+<li>To search for a name we start from beginning of list till available pointer and if not found we get an error <b>“use of undeclared name”</b></li>
+<li>While inserting a new name we must ensure that it is not already present otherwise error occurs i.e. <b>“Multiple defined name”</b></li>
+<li>Insertion is fast O(1), but lookup is slow for large tables – O(n) on average</li>
+<li>Advantage is that it takes minimum amount of space.</li>
+</ul>
+</li>
+<p></p>
+<li><b><a href="https://www.geeksforgeeks.org/data-structures/linked-list/" rel="noopener" target="_blank">Linked List</a> –</b>
+<ul>
+<li>This implementation is using linked list. A link field is added to each record.</li>
+<li>Searching of names is done in order pointed by link of link field.</li>
+<li>A pointer <b>“First”</b> is maintained to point to first record of symbol table.</li>
+<li>Insertion is fast O(1), but lookup is slow for large tables – O(n) on average</li>
+</ul>
+</li>
+<p></p>
+<li><b><a href="https://www.geeksforgeeks.org/hashing-data-structure/" rel="noopener" target="_blank">Hash Table</a> –</b>
+<ul>
+<li>In hashing scheme two tables are maintained – a hash table and symbol table and is the most commonly used method to implement symbol tables..</li>
+<li>A hash table is an array with index range: 0 to tablesize – 1.These entries are pointer pointing to names of symbol table.</li>
+<li>To search for a name we use hash function that will result in any integer between 0 to tablesize – 1.</li>
+<li>Insertion and lookup can be made very fast – O(1).</li>
+<li>Advantage is wuick search is possible and disadvantage is that hashing is complicated to implement.</li>
+</ul>
+</li>
+<p></p>
+<li><b><a href="https://www.geeksforgeeks.org/binary-search-tree-data-structure/" rel="noopener" target="_blank">Binary Search Tree</a> –</b>
+<ul>
+<li>Another approach to oimplement symbol table is to use binary search tree i.e. we add two link fields i.e. left and right child.</li>
+<li> All names are created as child of root node that always follow the property of binary search tree.</li>
+<li>Insertion and lookup are O(log<sub>2</sub> n) on average.</li>
+</ul>
+</li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>
