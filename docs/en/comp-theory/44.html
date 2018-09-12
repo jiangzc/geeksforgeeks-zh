@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Last Minute Notes – Theory of Computation</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>See Last Minute Notes on all subjects <a href="http://quiz.geeksforgeeks.org/lmns/">here</a>.</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium">We will discuss the important key points useful for GATE exams in summarized form. For details you may refer <a href="http://quiz.geeksforgeeks.org/gate-cs-notes/" target="_blank">this</a>.<br/>
+</span></span></p>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Finite Automata: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">It is used to recognize patterns of specific type input. It is the most restricted type of automata which can accept only regular languages (languages which can be expressed by regular expression using OR (+), Concatenation (.), Kleene Closure(*) like a*b*, (a+b) etc.) </span></span></p>
+<p>&#160;</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Deterministic FA and Non-Deterministic FA: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">In deterministic FA, there is only one move from every state on every input symbol but in Non-Deterministic FA, there can be zero or more than one move from one state for an input symbol.</span></span></p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Note:</b></span></span></p>
+<ul>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Language accepted by NDFA and DFA are same.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Power of NDFA and DFA is same.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">No. of states in NDFA is less than or equal to no. of states in equivalent DFA.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">For NFA with n-states, in worst case, the maximum states possible in DFA is 2<sup>n</sup></span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Every NFA can be converted to corresponding DFA.</span></span></li>
+</ul>
+<p>&#160;<br/>
+<span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Identities of Regular Expression :</b></span></span></p>
+<blockquote><p>
+Φ + R = R + Φ = R<br/>
+Φ * R = R * Φ = Φ<br/>
+ε * R = R * ε = R<br/>
+ε* = ε<br/>
+Φ* = ε<br/>
+ε + RR* = R*R + ε = R*</p>
+<p>(a+b)* = (a* + b*)* = (a* b*)* = (a* + b)* = (a + b*)* = a*(ba*)* = b*(ab*)*
+</p>
+</blockquote>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Push Down Automata: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Pushdown Automata has extra memory called stack which gives more power than Finite automata. It is used to recognize context free languages.</span></span></p>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Deterministic and Non-Deterministic PDA:</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> In deterministic PDA, there is only one move from every state on every input symbol but in Non-Deterministic PDA, there can be more than one move from one state for an input symbol.</span></span></p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Note:</b></span></span></p>
+<ul>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Power of NPDA is more than DPDA.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">It is not possible to convert every NPDA to corresponding DPDA.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Language accepted by DPDA is subset of language accepted by NPDA.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">The languages accepted by DPDA are called DCFL (Deterministic Context Free Languages) which are subset of NCFL (Non Deterministic CFL) accepted by NPDA. </span></span></li>
+</ul>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Linear Bound Automata: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Linear Bound Automata has finite amount of memory called tape which can be used to recognize Context Sensitive Languages.</span></span></p>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">LBA is more powerful than Push down automata.</span></span></li>
+<pre><b> FA &lt; PDA &lt; LBA &lt; TM </b></pre>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b><a href="https://www.geeksforgeeks.org/turing-machine/" rel="noopener" target="_blank">Turing Machine :</a></b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Turing machine has infinite size tape and it is used to accept Recursive Enumerable Languages.</span></span></p>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Turing Machine can move in both directions. Also, it doesn’t accept ε .</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">If the string inserted in not in language, machine will halt in non-final state.</span></span></li>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Deterministic and Non-Deterministic Turing Machines: </b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">In deterministic turing machine, there is only one move from every state on every input symbol but in Non-Deterministic turing machine, there can be more than one move from one state for an input symbol.</span></span></p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Note:</b></span></span></p>
+<ul>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Language accepted by NTM, multi-tape TM and DTM are same.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Power of NTM, Multi-Tape TM and DTM is same.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Every NTM can be converted to corresponding DTM.</span></span></li>
+</ul>
+<p>&#160;</p>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Chomsky Classification of Languages:</b></span></span></p>
+<table width="718" cellspacing="0" cellpadding="8">
+<colgroup>
+<col width="116"/>
+<col width="142"/>
+<col width="121"/>
+<col width="117"/>
+<col width="140"/>
+ </colgroup>
+<tbody>
+<tr valign="top" style="padding:8px;background-color:#4CB96B;text-align:center;">
+<td width="116"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Grammar Type</b></span></span></td>
+<td width="142"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Production Rules</b></span></span></td>
+<td width="121"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Language Accepted</b></span></span></td>
+<td width="117"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Automata</b></span></span></td>
+<td width="140"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Closed Under</b></span></span></td>
+</tr>
+<tr valign="top">
+<td width="116"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Type-3 (Regular Gramar)</b></span></span></td>
+<td width="142"><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">A→a</span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> </span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">or</span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> </span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">A→aB where </span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">A,B </span></span></span><span style="color: #000000"><span style="font-family: Cambria Math,serif"><span style="font-size: medium">∈</span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> N(non terminal) and a</span></span></span><span style="color: #000000"><span style="font-family: Cambria Math,serif"><span style="font-size: medium">∈</span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">T(Terminal)</span></span></span></td>
+<td width="121"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Regular</span></span></td>
+<td width="117"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Finite Automata</span></span></td>
+<td width="140"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Union, Intersection, Complementation, Concatenation, Kleene Closure</span></span></td>
+</tr>
+<tr valign="top" style="background-color:rgba(183,223,182,0.4);text-align:center;">
+<td width="116"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Type-2 (Context Free Grammar)</b></span></span></td>
+<td width="142">
+<p align="justify"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><span style="color: #000000">A-&gt;ρ where A </span><span style="color: #000000"><span style="font-family: Cambria Math,serif">∈</span></span><span style="color: #000000">N</span></span></span></p>
+<p align="justify"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><span style="color: #000000">and</span><span style="color: #000000"> </span><span style="color: #000000">ρ </span><span style="color: #000000"><span style="font-family: Cambria Math,serif">∈</span></span><span style="color: #000000"> (T</span><span style="color: #000000"><span style="font-family: Cambria Math,serif">∪</span></span><span style="color: #000000">N)</span><span style="color: #000000"><sup>*</sup></span> </span></span></p>
+</td>
+<td width="121"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Context Free</span></span></td>
+<td width="117"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Push Down Automata</span></span></td>
+<td width="140"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Union, Concatenation, Kleene Closure</span></span></td>
+</tr>
+<tr valign="top">
+<td width="116"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Type-1 (Context Sensitive Grammar)</b></span></span></td>
+<td width="142"><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">α→β where α</span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">,</span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> β</span></span></span><span style="color: #000000"><span style="font-family: Cambria Math,serif"><span style="font-size: medium">∈</span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> (T</span></span></span><span style="color: #000000"><span style="font-family: Cambria Math,serif"><span style="font-size: medium">∪</span></span></span><span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">N)</span></span></span><span style="color: #000000"><sup><span style="font-family: Times New Roman,serif"><span style="font-size: medium">*</span></span></sup></span> <span style="color: #000000"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> and len(α) &lt;= len(β) and α should contain atleast 1 non terminal.</span></span></span></td>
+<td width="121"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Context Sensitive</span></span></td>
+<td width="117"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Linear Bound Automata</span></span></td>
+<td width="140"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Union, Intersection, Complementation, Concatenation, Kleene Closure</span></span></td>
+</tr>
+<tr valign="top" style="background-color:rgba(183,223,182,0.4);text-align:center;">
+<td width="116"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Type-0 (Recursive Enumerable)</b></span></span></td>
+<td width="142">
+<p align="justify"><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><span style="color: #000000">α → β where α</span><span style="color: #000000">,</span><span style="color: #000000"> β</span><span style="color: #000000"><span style="font-family: Cambria Math,serif">∈</span></span><span style="color: #000000"> (T</span><span style="color: #000000"><span style="font-family: Cambria Math,serif">∪</span></span><span style="color: #000000">N)</span><span style="color: #000000"><sup>*</sup></span><span style="color: #000000"> and </span><span style="color: #000000">α contains atleast 1 non-terminal</span></span></span></p>
+</td>
+<td width="121"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Recursive Enumerable</span></span></td>
+<td width="117"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Turing Machine</span></span></td>
+<td width="140"><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Union, Intersection, Concatenation, Kleene Closure</span></span></td>
+</tr>
+</tbody>
+</table>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Relationship between these can be represented as:</span></span></p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2016/02/lmn-os.png"><img src="../../../imgs/comp-theory/60acdda16e46e5327fe2df382169babb.jpg" alt="lmn-os" width="713" height="390" class="aligncenter size-full wp-image-23587"/></a></p>
+<p>&#160;</p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Decidable and Undecidable Problems:</b></span></span></p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium">A language is </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Decidable or Recursive</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> if a Turing machine can be constructed which accepts the strings which are part of language and rejects others. e.g.; A number is prime or not is a decidable problem.</span></span></p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium">A language is </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Semi</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium">–</span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Decidable or Recursive Enumerable</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> if a turing machine can be constructed which accepts the strings which are part of language and it may loop forever for strings which are not part of language.</span></span></p>
+<p><span style="font-family: Times New Roman,serif"><span style="font-size: medium">A problem is </span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>undecidable</b></span></span><span style="font-family: Times New Roman,serif"><span style="font-size: medium"> if we can’t construct an algorithms and Turing machine which can give yes or no answer. e.g.; Whether a CFG is ambiguous or not is undecidable. </span></span></p>
+<p><img src="../../../imgs/comp-theory/867fbf7506c661bc8d6f21bc47c97abc.jpg" alt="Untitled 2 - LibreOffice Calc_005" width="672" height="256" class="aligncenter size-full wp-image-175508" srcset="https://www.geeksforgeeks.org/wp-content/uploads/Untitled-2-LibreOffice-Calc_005.png 672w, https://www.geeksforgeeks.org/wp-content/uploads/Untitled-2-LibreOffice-Calc_005-300x114.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/Untitled-2-LibreOffice-Calc_005-660x251.png 660w" sizes="(max-width: 672px) 100vw, 672px"/><br/>
+&#160;<br/>
+<span style="font-family: Times New Roman,serif"><span style="font-size: medium"><b>Countability :</b></span></span></p>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Set of all strings over any finite alphabet are countable.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Every subset of countable set is either finite or countable.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">Set of all Turing Machines are countable.</span></span></li>
+<li><span style="font-family: Times New Roman,serif"><span style="font-size: medium">The set of all languages that are not recursive enumerable is Uncountable.</span></span></li>
+<p><br/><br/>
+<br/><br/>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

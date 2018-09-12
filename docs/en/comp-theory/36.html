@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Construct a Turing Machine for language L = {ww<sup>r</sup> | w ∈ {0, 1}}</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/turing-machine/" rel="noopener" target="_blank">Turing Machine</a><br/>
+The language L = {ww<sup>r</sup> | w ∈ {0, 1}} represents a kind of language where you use only 2 character, i.e., 0 and 1. The first part of language can be any string of 0 and 1. The second part is the reverse of the first part. Combining both these parts out string will be formed. Any such string which falls in this category will be accepted by this language. The beginning and end of string is marked by $ sign. </p>
+<p>For example, if first part w = 1 1 0 0 1 then second part w<sup>r</sup> = 1 0 0 1 1. It is clearly visible that w<sup>r</sup> is the reverse of w, so the string 1 1 0 0 1 1 0 0 1 1  is a part of given language. </p>
+<p><b>Examples –</b></p>
+<pre>Input : 0 0 1 1 1 1 0 0
+Output : Accepted
+Input : 1 0 1 0 0 1 0 1 
+Output : Accepted
+</pre>
+<p><b>Basic Representation –</b></p>
+<p><img src="../../../imgs/comp-theory/2ccd99e731c222bd7290835b26cfdd58.jpg" alt="" width="756" height="372" class="aligncenter size-full wp-image-410793"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><b>Assumption:</b> We will replace 0 by Y and 1 by X.</p>
+<p><b>Approach Used –</b><br/>
+First check the first symbol, if it’s 0 then replace it by Y and by X if it’s 1. Then go to the end of string. So last symbol is same as first. We replace it also by X or Y depending on it.<br/>
+Now again come back to the position next to the symbol replace from the starting and repeat the same process as told above.</p>
+<p>One important thing to note is that since w<sup>r</sup> is reverse of w of both of them will have equal number of symbols. Every time replace a nth symbol from beginning of string, replace a corresponding nth symbol from the end.</p>
+<ul>
+<li><b>Step-1:</b><br/>
+If symbol is 0 replace it by Y and move right, Go to state Q2<br/>
+If symbol is 1 replace it by X and move right, Go to state Q1<p></p>
+</li>
+<li><b>Step-2:</b><br/>
+If symbol is 0 replace it by 0 and move right, remain on same state<br/>
+If symbol is 1 replace it by 1 and move right, remain on same state<br/>
+——————————————————————-<br/>
+If symbol is X replace it by X and move right, Go to state Q3<br/>
+If symbol is Y replace it by Y and move right, Go to state Q3<br/>
+If symbol is $ replace it by $ and move right, Go to state Q3<p></p>
+</li>
+<li><b>Step-3:</b><br/>
+If symbol is 1 replace it by X and move left, Go to state Q4<br/>
+If symbol is 0 replace it by Y and move left, Go to state Q5 <p></p>
+</li>
+<li><b>Step-4:</b><br/>
+If symbol is 1 replace it by 1 and move left<br/>
+If symbol is 0 replace it by 0 and move left<br/>
+Remain on same state<p></p>
+</li>
+<li><b>Step-5:</b><br/>
+If symbol is X replace it by X and move right<br/>
+If symbol is Y replace it by Y and move right<br/>
+Go to state Q0 <p></p>
+</li>
+<li><b>Step-6:</b><br/>
+If symbol is X replace it by X and move right<br/>
+If symbol is Y replace it by Y and move right<br/>
+Go to state Q6<br/>
+ELSE<br/>
+Go to step 1<p></p>
+</li>
+<li><b>Step-7:</b><br/>
+If symbol is X replace it by X and move right, Remain on same state<br/>
+If symbol is Y replace it by Y and move right, Remain on same state<br/>
+If symbol is $ replace it by $ and move left, STRING IS ACCEPTED, GO TO FINAL STATE Q7 <p></p>
+</li>
+</ul>
+<p><img src="../../../imgs/comp-theory/60f0f38bc8c700bd337d34b4e0bd8b05.jpg" alt="" width="768" height="712" class="aligncenter size-full wp-image-410799"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

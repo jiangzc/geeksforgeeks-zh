@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Construct a Turing Machine for language L = {ww | w ∈ {0,1}}</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/turing-machine/" rel="noopener" target="_blank">Turing Machine</a><br/>
+The language L = {ww | w ∈ {0, 1}} tells that every string of 0’s and 1’s which is followed by itself falls under this language. The logic for solving this problem can be divided into 2 parts:</p>
+<ol>
+<li>Finding the mid point of the string
+</li>
+<li>After we have found the mid point we match the symbols
+</li>
+</ol>
+<p><b>Example –</b> Lets understand it with the help of an example. Lets string 1 0 1 1 0 1, so w = 1 0 1 and string is of form (ww).<br/>
+The first thing that we do is to find mid point. For his we convert 1 in the beginning into Y and move right till end of string. Here we convert 1 into y.</p>
+<p>Now our string would look like Y 0 1 1 0 Y. Now move left till, find a X or Y. When we do so, convert the 0 or 1 right of it to X or Y respectively and then do the same on right end. Now our string would look like Y X 1 1 X Y. Thereafter, convert these 1’s also and finally it would look like Y X Y <b>Y</b> X Y.</p>
+<p>At this point you have achieved first objective which was to find the mid point. Now convert all X and Y on the left of mid point into 0 and 1 respectively, so string becomes 1 0 1 Y X Y. Now, convert the 1 into Y and move right till, find Y in the beginning of right part of string and convert this Y into a blank (denoted by B). Now string looks like Y 0 1 B X Y.</p>
+<p>Similarly, apply this on 0 and x followed by 1 and Y. After this string looks like Y X Y B B B. Now that you have no 0 and 1 and all X and Y on right part of string are converted into blanks so our string will be accepted.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><b>Assuption:</b> We will replace 0 by X and 1 by Y.</p>
+<p><b>Approach Used –</b><br/>
+The first thing is to find the mid point of the string, convert a 0 or 1 from the beginning of the string into X or Y respectively and a corresponding 0 or 1 into X or Y from the end of the string. After continuously doing it a point is reached when all 0’s and 1’s have been converted into X and Y respectively. At this point you are on the mid point of the string. So, our first objectively is fulfilled.</p>
+<p>Now, convert all X’s and Y’s on the left of the mid point into 0’s and 1’s. At this point the first half the string is in the form of 0 and 1. The second half of the string is in the form of X and Y.</p>
+<p>Now, start from the beginning of the string. If you have a 0 then convert it into X and move right till reach the second half, here if we find X then convert it into a blank(B). Then traverse back till find an X or a Y. We convert the 0 or 1 on right of it into X or Y respectively and correspondingly, convert its X or Y in the second half of string into a blank(B). </p>
+<p>Keep doing this till, converted all symbols on left part of string into X and Y and all symbols on right of string into blanks. If any one part is completely converted but still some symbols in other half are left unchanged then string will not be accepted. If you did not find an X or Y in second half for a corresponding 0 or 1 respectively in the first half. Then also string will not be accepted.</p>
+<p><n>Examples:</n></p>
+<pre>Input  : 1 1 0 0 1 1 0 0 
+Output : Accepted
+
+Input  : 1 0 1 1 1 0 1
+Output : Not accepted
+</pre>
+<ul>
+<li><b>Step-1:</b><br/>
+If symbol is 0 replace it by X and move right<br/>
+If symbol is 1 replace it by Y and move right,<br/>
+Go to state Q1 and step 2<br/>
+———————————————<br/>
+If symbol is X replace it by X and move left or<br/>
+If symbol is Y replace it by Y and move left,<br/>
+Go to state Q4 and step 5<p></p>
+</li>
+<li><b>Step-1:</b><br/>
+If symbol is 0 replace it by 0 and move right, remain on same state<br/>
+If symbol is 1 replace it by 1 and move right, remain on same state<br/>
+———————————————<br/>
+If symbol is X replace it by X and move left or<br/>
+If symbol is Y replace it by Y and move left or<br/>
+If symbol is $ replace it by $ and move left, Go to state Q2 and step 3<p></p>
+</li>
+<li><b>Step-1:</b><br/>
+If symbol is 0 replace it by X and move left, or<br/>
+If symbol is 1 replace it by Y and move left,<br/>
+Go to state Q3 and step 4 <p></p>
+</li>
+<li><b>Step-1:</b><br/>
+If symbol is 0 replace it by 0 and move left, remain on same state<br/>
+If symbol is 1 replace it by 1 and move left, remain on same state<br/>
+———————————————<br/>
+If symbol is X replace it by X and move right or<br/>
+If symbol is Y replace it by Y and move right,<br/>
+Go to state Q0 and step 1<p></p>
+</li>
+<li><b>Step-1:</b><br/>
+If symbol is X replace it by X and move left or<br/>
+If symbol is Y replace it by Y and move left<br/>
+Go to state Q4 and step 6<p></p>
+</li>
+<li><b>Step-1:</b><br/>
+If symbol is X replace it by 0 and move left, remain on same state<br/>
+If symbol is Y replace it by 1 and move left, remain on same state<br/>
+– – – – – – – – – — – – – – – – – – – —<br/>
+If symbol is $ replace it by $ and move right<br/>
+Go to state Q4 and step 7<p></p>
+</li>
+<li><b>Step-1:</b><br/>
+If symbol is 0 replace it by X and move right, go to state Q6 and step 8<br/>
+If symbol is 1 replace it by Y and move right, go to state Q7 and step 9<br/>
+– – – – – – – – – — – – – – – – – – – —<br/>
+If symbol is B replace it by B and move left, STRING ACCEPTED, GO TO FINAL STATE Q9<p></p>
+</li>
+<li><b>Step-1:</b><br/>
+If symbol is 0 replace it by 0 and move right, remain on same state<br/>
+If symbol is 1 replace it by 1 and move right, remain on same state<br/>
+If symbol is B replace it by B and move right, remain on same state<br/>
+ – — – – – – – – – – – – – – – – – – – –<br/>
+If symbol is X replace it by B and move left<br/>
+Go to state Q8 and step 10<p></p>
+</li>
+<li><b>Step-1:</b>
+<p>If symbol is 0 replace it by 0 and move right, remain on same state<br/>
+If symbol is 1 replace it by 1 and move right, remain on same state<br/>
+If symbol is B replace it by B and move right, remain on same state<br/>
+ – — – – – – – – – – – – – – – – – – – –<br/>
+If symbol is Y replace it by B and move left<br/>
+Go to state Q8 and step 10</p>
+</li>
+<li><b>Step-1:</b><br/>
+If symbol is 0 replace it by 0 and move left, remain on same state<br/>
+If symbol is 1 replace it by 1 and move left, remain on same state<br/>
+If symbol is B replace it by B and move left, remain on same state<br/>
+ – — – – – – – – – – – – – – – – – – – –<br/>
+If symbol is Y replace it by Y and move right or<br/>
+If symbol is X replace it by X and move right<br/>
+Go to state Q5 and step 7
+</li>
+</ul>
+<p><img src="../../../imgs/comp-theory/44b67b47d285084f2155ac3fb65dfdce.jpg" alt="" width="1004" height="908" class="aligncenter size-full wp-image-410827"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

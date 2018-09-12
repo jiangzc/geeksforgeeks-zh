@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Decidable and undecidable problems</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/turing-machine/" rel="noopener" target="_blank">Turing Machine</a></p>
+<p>A problem is said to be <b>Decidable</b> if  we can always construct a corresponding <b>algorithm</b> that can answer the problem correctly. We can intuitively understand Decidable problems by considering a simple example. Suppose we are asked to compute all the prime numbers in the range of 1000 to 2000. To find the <b>solution</b> of this problem, we can easily devise an algorithm that can enumerate all the prime numbers in this range.</p>
+<p>Now talking about Decidability in terms of a Turing machine, a problem is said to be a Decidable problem if there exist a corresponding Turing machine which <b>halts</b> on every input with an answer- <b>yes or no</b>. It is also important to know that these problems are termed as <b>Turing Decidable</b> since a Turing machine always halts on every input, accepting or rejecting it.</p>
+<p><b>Semi- Decidable Problems –</b><br/>
+Semi-Decidable problems are those for which a Turing machine halts on the input accepted by it but it can either halt or loop forever on the input which is rejected by the Turing Machine. Such problems are termed as <b>Turing Recognisable</b> problems.</p>
+<p><b>Examples –</b> We will now consider few important <b>Decidable problems</b>:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li>Are two <b>regular</b> languages L and M <b>equivalent</b>?<br/>
+We can easily check this by using Set Difference operation.<br/>
+L-M =Null and M-L =Null.<br/>
+Hence (L-M) U (M-L) = Null, then L,M are equivalent.
+</li>
+<li>Membership of a CFL?<br/>
+We can always find whether a string exist in a given CFL by using on algorithm based on dynamic programming.
+</li>
+<li>Emptiness of a CFL<br/>
+By checking the production rules of the CFL we can easily state whether the language generates any strings or not.
+</li>
+</ul>
+<p><b>Undecidable Problems –</b><br/>
+The problems for which we can’t construct an algorithm that can answer the problem correctly in a finite time are termed as Undecidable Problems. These problems are not even partially decidable and can lead a Turing machine to loop forever without answering at all.</p>
+<p>We can understand Undecidable Problems intuitively by considering <b>Fermat’s Theorem</b>, a popular Undecidable Problem which states that no three positive integers a, b and c for any n&gt;=2 can ever satisfy the equation: a^n + b^n = c^n.</p>
+<p>If we feed this problem to a Turing machine to find such a solution which gives a contradiction then a Turing Machine might run forever, to find the suitable values of n, a, b and c. But we are always unsure whether a contradiction exists or not and hence we term this problem as an <b>Undecidable Problem</b>.</p>
+<p><b>Examples –</b> These are few important <b>Undecidable Problems</b>:</p>
+<ul>
+<li>Whether a CFG generates all the strings or not?<br/>
+As a CFG generates infinite strings ,we can’t ever reach up to the last string and hence it is Undecidable.</li>
+<li>Whether two CFG L and M equal?<br/>
+Since we cannot determine all the strings of any CFG , we can predict that two CFG are equal or not.</li>
+<li>Ambiguity of CFG?<br/>
+There exist no algorithm which can check whether for the ambiguity of a CFL. We can only check if any particular string of the CFL generates two different parse trees then the CFL is ambiguous.</li>
+<li>Is it possible to convert a given ambiguous CFG into corresponding non-ambiguous CFL?<br/>
+It is also an Undecidable Problem as there doesn’t exist any algorithm for the conversion of an ambiguous CFL to non-ambiguous CFL.</li>
+<li>Is a language Learning which is a CFL, regular?<br/>
+This is an Undecidable Problem as we can not find from the production rules of the CFL whether it is regular or not.</li>
+</ul>
+<p>Some more <b>Undecidable Problems</b> related to Turing machine:</p>
+<ul>
+<li><b>Membership</b> problem of a Turing Machine?</li>
+<li><b>Finiteness</b> of a Turing Machine?</li>
+<li><b>Emptiness</b> of a Turing Machine?</li>
+<li>Whether the language accepted by Turing Machine is regular or CFL?</li>
+</ul>
+<p>Read next articles – <a href="https://www.geeksforgeeks.org/theory-of-computation-decidability/" rel="noopener" target="_blank">Decidability</a>, <a href="https://www.geeksforgeeks.org/undecidability-and-reducibility/" rel="noopener" target="_blank">Undecidability and Reducibility</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

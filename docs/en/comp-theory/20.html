@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Simplifying Context Free Grammars</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>The definition of context free grammars (CFGs) allows us to develop a wide variety of grammars. Most of the time, some of the productions of CFGs are not useful and are redundant. This happens because the definition of CFGs does not restrict us from making these redundant productions.</p>
+<p>By simplifying CFGs we remove all these redundant productions from a grammar , while keeping the transformed grammar equivalent to the original grammar. Two grammars are called equivalent if they produce the same language. Simplifying CFGs is necessary to later convert them into Normal forms.</p>
+<p>Types of redundant productions and the procedure of removing them are mentioned below.<br/>
+<strong>1. Useless productions</strong> – The productions that can never take part in derivation of any string , are called useless productions. Similarly , a variable that can never take part in derivation of any string is called a useless variable. For eg.</p>
+<pre>S -&gt; abS | abA | abB
+A -&gt; cd
+B -&gt; aB
+C -&gt; dc 						
+</pre>
+<p>In the example above , production ‘C -&gt; dc’ is useless because the variable ‘C’ will never occur in derivation of any string. The other productions are written in such a way that variable ‘C’ can never reached from the starting variable ‘S’.</p>
+<p>Production ‘B -&gt;aB’ is also useless because there is no way it will ever terminate . If it never terminates , then it can never produce a string. Hence the production can never take part in any derivation.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>To remove useless productions , we first find all the variables which will never lead to a terminal string such as variable ‘B’. We then remove all the productions in which variable ‘B’ occurs.<br/>
+So the modified grammar becomes –</p>
+<pre>S -&gt; abS | abA
+A -&gt; cd
+C -&gt; dc
+</pre>
+<p>We then try to identify all the variables that can never be reached from the starting variable such as variable ‘C’. We then remove all the productions in which variable ‘C’ occurs.<br/>
+The grammar below is now free of useless productions –</p>
+<pre>S -&gt; abS | abA
+A -&gt; cd
+</pre>
+<p><strong>2. λ productions</strong> – The productions of type ‘A -&gt; λ’ are called λ productions ( also called lambda productions and null productions) . These productions can only be removed from those grammars that do not generate λ (an empty string). It is possible for a grammar to contain null productions and yet not produce an empty string.</p>
+<p>To remove null productions , we first have to find all the nullable variables. A variable ‘A’ is called nullable if λ can be derived from ‘A’. For all the productions of type ‘A -&gt; λ’ , ‘A’ is a nullable variable. For all the productions of type ‘B -&gt; A1A2…An ‘ , where all ’Ai’s are nullable variables , ‘B’ is also a nullable variable.</p>
+<p>After finding all the nullable variables, we can now start to construct the null production free grammar. For all the productions in the original grammar , we add the original production as well as all the combinations of the production that can be formed by replacing the nullable variables in the production by λ. If all the variables on the RHS of the production are nullable , then we do not add ‘A -&gt; λ’ to the new grammar. An example will make the point clear. Consider the grammar –</p>
+<pre>S -&gt; ABCd						(1)
+A -&gt; BC						        (2)
+B -&gt; bB | λ						(3)	
+C -&gt; cC | λ						(4)	
+</pre>
+<p>Lets first find all the nullable variables. Variables ‘B’ and ‘C’ are clearly nullable because they contain ‘λ’ on the RHS of their production. Variable ‘A’ is also nullable because in (2) , both variables on the RHS are also nullable. Similarly , variable ‘S’ is also nullable. So variables ‘S’ , ‘A’ , ‘B’ and ‘C’ are nullable variables.</p>
+<p>Lets create the new grammar. We start with the first production. Add the first production as it is. Then we create all the possible combinations that can can be formed by replacing the nullable variables with λ. Therefore line (1) now becomes ‘S -&gt; ABCd | ABd | ACd | BCd | Ad | Bd |Cd | d ’.We apply the same rule to line (2) but we do not add ‘A -&gt; λ’ even though it is a possible combination. We remove all the productions of type ‘V -&gt; λ’. The new grammar now becomes –</p>
+<pre>S -&gt; ABCd | ABd | ACd | BCd | Ad  |  Bd  |Cd | d
+A -&gt; BC | B | C
+B -&gt; bB | b
+C -&gt; cC | c
+</pre>
+<p><strong>3. Unit productions</strong> – The productions of type ‘A -&gt; B’ are called unit productions.<br/>
+To create a unit production free grammar ‘Guf’ from the original grammar ‘G’ , we follow the procedure mentioned below.</p>
+<p>First add all the non-unit productions of ‘G’ in ‘Guf’. Then for each variable ‘A’ in grammar ‘G’ , find all the variables ‘B’ such that ‘A *=&gt; B’. Now , for all variables like ‘A ’ and ‘B’, add ‘A -&gt; x1 | x2 | …xn’ to ‘Guf’ where ‘B -&gt; x1 | x2 | …xn ‘ is in ‘Guf’ . None of the x1 , x2 … xn are single variables because we only added non-unit productions in ‘Guf’. Hence the resultant grammar is unit production free. For eg.</p>
+<pre>S -&gt; Aa | B
+A -&gt; b | B
+B -&gt; A | a
+</pre>
+<p>Lets add all the non-unit productions of ‘G’ in ‘Guf’. ‘Guf’ now becomes –</p>
+<pre>S -&gt; Aa
+A -&gt; b
+B -&gt; a
+</pre>
+<p>Now we find all the variables that satisfy ‘X *=&gt; Z’. These are ‘S *=&gt; A’ , ‘S*=&gt;B’, ‘A *=&gt; B’ and ‘B *=&gt; A’. For ‘A *=&gt; B’ , we add ‘A -&gt; a’ because ‘B -&gt;a’ exists in ‘Guf’. ‘Guf’ now becomes</p>
+<pre>	
+S -&gt; Aa
+A -&gt; b | a
+B -&gt; a
+</pre>
+<p>For ‘B *=&gt; A’ , we add ‘B -&gt; b’ because ‘A -&gt; b’ exists in ‘Guf’. The new grammar now becomes</p>
+<pre>S -&gt; Aa
+A -&gt; b | a
+B -&gt; a | b
+</pre>
+<p>We follow the same step for ‘S *=&gt; A’ and ‘S*=&gt;B’ and finally get the following grammar –</p>
+<pre>S -&gt; Aa | b | a
+A -&gt; b | a
+B -&gt; a | b
+</pre>
+<p><strong>Note:</strong> To remove all kinds of productions mentioned above, first remove the null productions, then the unit productions and finally , remove the useless productions. Following this order is very important to get the correct result.</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

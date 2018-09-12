@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Pushdown Automata Acceptance by Final State</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>We have discussed Pushdown Automata (PDA) and its <a href="https://www.geeksforgeeks.org/theory-of-computation-pushdown-automata/" rel="noopener" target="_blank">acceptance by empty stack</a> article. Now, in this article, we will discuss how PDA can accept a CFL based on final state. Given a PDA P as:</p>
+<pre>P = (Q, Σ, Γ, δ, q0, Z, F)</pre>
+<p>The language accepted by P is the set of all strings consuming which PDA can move from initial state to final state irrespective to any symbol left on the stack which can be depicted as:</p>
+<pre>L(P) = {w |(q0, w, Z) =&gt;(qf, ɛ, s)}</pre>
+<p>Here, from start state q0 and stack symbol Z, final state qf ɛ F is reached when input w is consumed. The stack can contain string s which is irrelevant as final state is reached and w will be accepted.  </p>
+<p><b>Example:</b> Define the pushdown automata for language {a^nb^n | n &gt; 0} using final state.<br/>
+<b>Solution:</b> M = where Q = {q0, q1, q2, q3} and ∑ = {a, b} and Γ = { A, Z } and F={q3} and δ is given by:</p>
+<pre>δ( q0, a, Z ) = { ( q1, AZ ) }
+δ( q1, a, A) = { ( q1, AA ) }
+δ( q1, b, A) = { ( q2, ɛ) }
+δ( q2, b, A) = { ( q2, ɛ) }
+δ( q2, ɛ, Z) = { ( q3, Z) }</pre>
+<p>Let us see how this automata works for aaabbb:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/comp-theory/9b83e96713af813f1ae85914acb11db1.jpg" alt="1" width="605" height="352" class="aligncenter size-full wp-image-184840" srcset="https://www.geeksforgeeks.org/wp-content/uploads/1-11.jpg 605w, https://www.geeksforgeeks.org/wp-content/uploads/1-11-300x175.jpg 300w" sizes="(max-width: 605px) 100vw, 605px"/></p>
+<p><b>Explanation:</b> Initially, the state of automata is q0 and symbol on stack is Z and the input is aaabbb as shown in row 0. On reading a (shown in bold in row 1), the state will be changed to q1 and it will push symbol A on stack. On next a (shown in row 2), it will push another symbol A on stack and remain in state q1. After reading 3 a’s, the stack will be AAAZ with A on the top. </p>
+<p>After reading b (as shown in row 4), it will pop A and move to state q2 and stack will be AAZ. When all b’s are read, the state will be q2 and stack will be Z. In row 7, on input symbol ɛ and Z on stack, it will move to q3. As final state q3 has been reached after processing input, the string will be accepted.<br/>
+This type of acceptance is known as <i>acceptance by final state</i>. </p>
+<p>Next we will see how this automata works for aab:</p>
+<p><img src="../../../imgs/comp-theory/0a0fa01b335edcc4865fe3bfdd5a9088.jpg" alt="2" width="602" height="256" class="aligncenter size-full wp-image-184841" srcset="https://www.geeksforgeeks.org/wp-content/uploads/2-10.jpg 602w, https://www.geeksforgeeks.org/wp-content/uploads/2-10-300x128.jpg 300w" sizes="(max-width: 602px) 100vw, 602px"/>    </p>
+<p>As we can see in row 4, the input has been processed and PDA is in state q2 which is non-final state, the string aab will not be accepted.</p>
+<p>Let us discuss question based on this:</p>
+<p><b>Que-1.</b> Consider the transition diagram of a PDA given below with input alphabet ∑ = {a, b}and stack alphabet Γ = {X, Z}. Z is the initial stack symbol. Let L denote the language accepted by the PDA.       (GATE-CS-2016)</p>
+<p><img src="../../../imgs/comp-theory/be0bcc14add58a87cb1cb6555bb9db92.jpg" width="749" height="339" alt="" class="alignnone size-full"/></p>
+<p><b>Solution:</b> We first label the state of given PDA as:<br/>
+ <img src="../../../imgs/comp-theory/bceb936982dd91c0abe8ffc823be367d.jpg" alt="3333" width="421" height="150" class="aligncenter size-full wp-image-184842" srcset="https://www.geeksforgeeks.org/wp-content/uploads/3333.png 421w, https://www.geeksforgeeks.org/wp-content/uploads/3333-300x107.png 300w" sizes="(max-width: 421px) 100vw, 421px"/></p>
+<p>Next, the given PDA P can be written as:</p>
+<pre> Q = {q0, q1, q2} and ∑ = {a, b} 
+And Γ = {A, Z} and F={q0,q2} and δ is given by :
+δ( q0, a, Z ) = {( q0, XZ)}
+δ( q0, a, X) = {( q0, XX )}
+δ( q0, b, X) = {( q1, ɛ)}
+δ( q1, b, X) = {( q1, ɛ)}
+δ( q1, ɛ, Z) = {( q2, Z)}</pre>
+<p>As we can see, q0 is initial as well as final state, ɛ will be accepted. For every a, X is pushed onto stack and PDA remains in final state. Therefore, any number of a’s can be accepted by PDA.</p>
+<p>If input contains b, X is popped from stack for every b. Then PDA is moved to final state if stack becomes empty after processing input (δ( q1, ɛ, Z) = {( q2, Z)}). Therefore, number of b must be equal to number of b if they exist. </p>
+<p>As there is only one move for a given state and input, the PDA is deterministic. So, correct option is (D).  </p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><div>
+
+</div>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

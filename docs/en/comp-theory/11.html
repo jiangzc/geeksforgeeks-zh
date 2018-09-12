@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">DFA of a string with at least two 0’s and at least two 1’s</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Problem –</b> Draw detereministic finite automata (DFA) of a string with at least two 0’s and at least two 1’s.</p>
+<p>The first thing that come to mind after reading this question us that we count the number of 1’s and 0’s. Thereafter if they both are at least 2 the string is accepted else not accepted. But we do not have any concept of memory in a DFA so we cannot do it by this method.</p>
+<pre>Input  : 1 0 1 1 0 0
+Output : Accepted
+
+Input  : 1 1 1 0 1 
+Output : Not accepted
+</pre>
+<p><b>Approach Used –</b><br/>
+The first thing we observe is that both 0’s and 1’s should be at least 2. If any of these is less than 2, then string will not be accepted. In this string will be accepted in only last case where both 0’s and 1’s will be at least 2.</p>
+<p></p>
+<center></center>
+<p></p>
+<table style="width:80%">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">State</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Count of 0</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Count of 1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Q0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">Q1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">Q2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">&gt;=2</td>
+</tr>
+<tr>
+<td style="text-align:center">Q3</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">Q4</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">Q5</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">&gt;=2</td>
+</tr>
+<tr>
+<td style="text-align:center">Q6</td>
+<td style="text-align:center">&gt;=2</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">Q7</td>
+<td style="text-align:center">&gt;=2</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">Q8 ACCEPTED</td>
+<td style="text-align:center">&gt;=2</td>
+<td style="text-align:center">&gt;=2</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Initially count of both 0 and 1 is zero and we are on state Q0.</p>
+<ul>
+<li><b>Step-1:</b> If input is 1 then count of 1 increases to 1. Goto state Q1<br/>
+            If input is 0 then count of 0 increases to 1. Goto state Q3
+</li>
+<li><b>Step-2:</b> If input is 1 then count of 1 increases to 2. Goto state Q2<br/>
+            If input is 0 then count of 0 increases to 1. Goto state Q4 <p></p>
+</li>
+<li><b>Step-3:</b> If input is 1 then count of 1 keeps increasing by 1. Remain in the same state<br/>
+            If input is 0 then count of 0 increases to 1. Goto state Q5<p></p>
+</li>
+<li><b>Step-4:</b> If input is 1 then count of 1 increases to 1. Goto state Q4<br/>
+            If input is 0 then count of 0 increases to 2. Goto state Q6<p></p>
+</li>
+<li><b>Step-5:</b> If input is 1 then count of 1 increases to 2. Goto state Q5<br/>
+            If input is 0 then count of 0 increases to 2. Goto state Q7 <p></p>
+</li>
+<li><b>Step-6:</b> If input is 1 then count of 1 keeps increasing by 1. Remain in the same state.<br/>
+            If input is 0 then count of 0 increases to 2. Goto state Q8 <p></p>
+</li>
+<li><b>Step-7:</b> If input is 1 then count of 1 increases to 1. Goto state Q7<br/>
+            If input is 0 then count of 0 keeps increasing by 1. Remain in the same state. <p></p>
+</li>
+<li><b>Step-8:</b> If input is 1 then count of 1 increases to 2. Goto state Q8<br/>
+            If input is 0 then count of 0 keeps increasing by 1. Remain in the same state. <p></p>
+</li>
+<li><b>Step-9:</b> If input is 1 then count of 1 keeps increasing by 1. Remain in the same state.<br/>
+            If input is 0 then count of 0 keeps increasing by 1. Remain in the same state.<br/>
+            If string is finished then ACCEPTED <p></p>
+</li>
+</ul>
+<p><img src="../../../imgs/comp-theory/771eed79af89861721c1f68c5e2906a0.jpg" alt="" width="829" height="568" class="aligncenter size-full wp-image-414592"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

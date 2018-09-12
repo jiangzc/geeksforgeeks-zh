@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">DFA in LEX code which accepts even number of zeros and even number of ones</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Lex is a computer program that generates lexical analyzers, which is commonly used with the YACC parser generator. Lex, originally written by Mike Lesk and Eric Schmidt and described in 1975,is the standard lexical analyzer generator on many Unix systems, and an equivalent tool is specified as part of the POSIX standard. Lex reads an input stream specifying the lexical analyzer and outputs source code implementing the lexer in the C programming language.</p>
+<p><strong>Deterministic Finite Acceptor –</strong><br/>
+In the theory of computation, a branch of theoretical computer science, a deterministic finite automaton (DFA)— also known as a deterministic finite acceptor (DFA) and a deterministic finite state machine (DFSM)— is a finite-state machine that accepts and rejects strings of symbols and only produces a unique computation (or run) of the automaton for each input string. Deterministic refers to the uniqueness of the computation. In search of the simplest models to capture finite-state machines, McCulloch and Pitts were among the first researchers to introduce a concept similar to finite automata in 1943.</p>
+<p><strong>Approach –</strong></p>
+<p><img src="../../../imgs/comp-theory/3cadd34d59802c8380ae70613bfd05a7.jpg" alt="33" width="290" height="249" class="aligncenter size-full wp-image-184385"/></p>
+<p>LEX provides us with an <strong>INITIAL</strong> state by default. So in order to make a DFA, use this initial state as the initial state of the DFA. Define two more states <strong>A and B</strong> where B is the dead state that would be use if encounter a wrong or invalid input. When user get input which is an invalid input, move to state B and print message “INVALID” and if user reaches INITIAL state from state A with a “\n” then display a message “Not Accepted”. But if user get a \n on the initial state, user display a message “Accepted”.</p>
+<p><strong>Examples –</strong></p>
+<pre>Input : 1001
+Output : Accepted
+
+Input : hjabdba
+Output : INVALID
+</pre>
+<p>To implement the above DFA, user needs to write the below code in a lex file with a .l extention.</p>
+<p><strong>NOTE :</strong></p>
+<blockquote><p>
+To compile a lex program, user need a UNIX system and flex which can be installed using <strong> sudo apt-get install flex</strong><br/>
+With all the above specification open unix terminal and do the following:<br/>
+<strong>1.</strong> Use the lex program to change the specification file into a C language program. The resulting program is in the lex.yy.c file.<br/>
+<strong>2.</strong> Use the cc command with the -ll flag to compile and link the program with a library of lex subroutines. The resulting executable program is in the a.out file.</p>
+<pre>lex lextest
+cc lex.yy.c -lfl
+</pre>
+</blockquote>
+<p><strong>Code –</strong></p>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<div class="noIdeBtnDiv">
+<pre class="brush: cpp; title: ; notranslate" title="">%{
+%}
+
+%s A B
+
+%%
+&lt;INITIAL&gt;1 BEGIN INITIAL;
+&lt;INITIAL&gt;0 BEGIN A;
+&lt;INITIAL&gt;[^0|\n] BEGIN B;
+&lt;INITIAL&gt;\n BEGIN INITIAL; printf("Accepted\n");
+&lt;A&gt;1 BEGIN A;
+&lt;A&gt;0 BEGIN INITIAL;
+&lt;A&gt;[^0|\n] BEGIN B;
+&lt;A&gt;\n BEGIN INITIAL; printf("Not Accepted\n");
+&lt;B&gt;0 BEGIN B;
+&lt;B&gt;1 BEGIN B;
+&lt;B&gt;[^0|\n] BEGIN B;
+&lt;B&gt;\n {BEGIN INITIAL; printf("INVALID\n");}
+%%
+
+void main()
+{
+yylex();
+}
+
+</pre>
+</div>
+<p><strong>Output –</strong></p>
+<pre>nickhil@NICKHIL:~$ lex prpg11.l
+nickhil@NICKHIL:~$ cc lex.yy.c -lfl
+nickhil@NICKHIL:~$ ./a.out
+1000
+Not Accepted
+hello
+INVALID
+01010101
+Accepted
+
+</pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

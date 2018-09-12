@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Construct Pushdown Automata for given languages</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/theory-of-computation-pushdown-automata/" rel="noopener" target="_blank">Pushdown Automata</a>, <a href="https://www.geeksforgeeks.org/pushdown-automata-acceptance-final-state/" rel="noopener" target="_blank">Pushdown Automata Acceptance by Final State</a><br/>
+A push down automata is similar to deterministic finite automata except that it has a few more properties than a DFA.The data structure used for implementing a PDA is stack. A PDA has an output associated with every input. All the inputs are either pushed into a stack or just ignored. User can perform the basic push and pop operations on the stack which is use for PDA. One of the problems associated with DFAs was that could not make a count of number of characters which were given input to the machine. This problem is avoided by PDA as it uses a stack which provides us this facility also.</p>
+<p><b>A Pushdown Automata (PDA) can be defined as –</b><br/>
+ M = (Q, Σ, Γ, δ, q0, Ζ, F) where</p>
+<ul>
+<li> Q is a finite set of states</li>
+<li> Σ is a finite set which is called the input alphabet</li>
+<li> Γ is a finite set which is called the stack alphabet</li>
+<li> δ is a finite subset of Q X ( Σ ∪ {ε} X Γ X Q X Γ<sup>*</sup>) the transition relation.</li>
+<li> q<sub>0</sub> ∈ Q is the start state</li>
+<li> Ζ  ∈ Γ is the initial stack symbol</li>
+<li> F ⊆ Q is the set of accepting states</li>
+</ul>
+<p><b>Representation of State Transition –</b></p>
+<p><a href="https://contribute.geeksforgeeks.org/representation/"><img src="../../../imgs/comp-theory/8944e4a7f4ea11a12d93107d22e03e91.jpg" alt="" width="655" height="337" class="aligncenter size-full wp-image-370691"/></a><!-- Problem Statement --></p>
+<p><b>Representation of Push in a PDA –</b></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><a href="https://contribute.geeksforgeeks.org/push-7/"><img src="../../../imgs/comp-theory/4cfa06255cb94242efdc63fba235388b.jpg" alt="" width="842" height="440" class="aligncenter size-full wp-image-371920"/></a></p>
+<p><b>Representation of Pop in a PDA –</b></p>
+<p><a href="https://contribute.geeksforgeeks.org/pop/"><img src="../../../imgs/comp-theory/5386194703d9adaf0bd444a8846d86d5.jpg" alt="" width="789" height="385" class="aligncenter size-full wp-image-370689"/></a></p>
+<p><b>Representation of Ignore in a PDA –</b></p>
+<p><a href="https://contribute.geeksforgeeks.org/ignore/"><img src="../../../imgs/comp-theory/1348cbb1fd89314d39c51e43bccd9446.jpg" alt="" width="794" height="344" class="aligncenter size-full wp-image-370685"/></a></p>
+<h3 class="sigil_not_in_toc">Q) Construct a PDA for language L = {0<sup>n</sup>1<sup>m</sup>2<sup>m</sup>3<sup>n</sup> | n&gt;=1, m&gt;=1}</h3>
+<p><b>Approach used in this PDA –</b><br/>
+First 0’s are pushed into stack. Then 1’s are pushed into stack.<br/>
+Then for every 2 as input a 1 is popped out of stack. If some 2’s are still left and top of stack is a 0 then string is not accepted by the PDA. Thereafter if 2’s are finished and top of stack is a 0 then for every 3 as input equal number of 0’s are popped out of stack. If string is finished and stack is empty then string is accepted by the PDA otherwise not accepted.</p>
+<ul>
+<li><b>Step-1:</b> On receiving 0 push it onto stack. On receiving 1, push it onto stack and goto next state</li>
+<li><b>Step-2:</b> On receiving 1 push it onto stack. On receiving 2, pop  1 from stack and goto next state</li>
+<li><b>Step-3:</b> On receiving 2 pop 1 from stack. If all the 1’s have been popped out of stack and now receive 3 then pop a 0 from stack and goto next state</li>
+<li><b>Step-4:</b> On receiving 3 pop 0 from stack. If input is finished and stack is empty then goto last state and string is accepted</li>
+</ul>
+<p><a href="https://contribute.geeksforgeeks.org/pdasoln1/"><img src="../../../imgs/comp-theory/bc4b4b6fd390d7081dc09431c48f11bc.jpg" alt="" width="665" height="324" class="aligncenter size-large wp-image-370686"/></a></p>
+<p>Examples:</p>
+<pre>Input  : 0 0 1 1 1 2 2 2 3 3
+Result : ACCEPTED
+
+Input  : 0 0 0 1 1 2 2 2 3 3 
+Result : NOT ACCEPTED
+</pre>
+<h3 class="sigil_not_in_toc">Q) Construct a PDA for language L = {0<sup>n</sup>1<sup>m</sup> | n &gt;= 1, m &gt;= 1, m &gt; n+2}</h3>
+<p><b>Approach used in this PDA –</b><br/>
+First 0’s are pushed into stack.When 0’s are finished, two 1’s are ignored. Thereafter for every 1 as input a 0 is popped out of stack. When stack is empty and still some 1’s are left then all of them are ignored.</p>
+<ul>
+<li><b>Step-1:</b> On receiving 0 push it onto stack. On receiving 1, ignore it and goto next state</li>
+<li><b>Step-2:</b> On receiving 1, ignore it and goto next state</li>
+<li><b>Step-3:</b> On receiving 1, pop a 0 from top of stack and go to next state</li>
+<li><b>Step-4:</b> On receiving 1, pop a 0 from top of stack. If stack is empty, on receiving 1 ingore it and goto next state</li>
+<li><b>Step-5:</b> On receiving 1 ignore it. If input is finished then goto last state</li>
+</ul>
+<p><a href="https://contribute.geeksforgeeks.org/pdasoln2/"><img src="../../../imgs/comp-theory/e03750ba1aed913e49f912ff5602bced.jpg" alt="" width="665" height="344" class="aligncenter size-large wp-image-370688"/></a></p>
+<p>Examples:</p>
+<pre>Input  : 0 0 0 1 1 1 1 1 1
+Result : ACCEPTED
+
+Input  : 0 0 0 0 1 1 1 1
+Result : NOT ACCEPTED</pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

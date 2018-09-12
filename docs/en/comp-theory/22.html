@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Union &amp; Intersection of Regular languages with CFL</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisite –</b> <a href="http://Chomsky Hierarchy" rel="noopener" target="_blank">Chomsky Hierarchy</a>, <a href="https://www.geeksforgeeks.org/regular-expressions-regular-grammar-and-regular-languages/" rel="noopener" target="_blank">Regular Languages </a> </p>
+<p>As we all are aware that languages accepted by <b>finite automata</b> are called <b>regular</b> languages and those which are accepted by <b>push down automata</b> are called <b>context free</b> languages But, when it comes to the union or intersection of these two languages some people find it difficult to analyse whether the intersection results in a regular or a context-free language.</p>
+<p>The first thing to observe is <b>every</b> regular language is actually context-free,the reason is quite simple. One way to call a language regular is by designing its equivalent finite automata or in other words if we can design a finite automata for a particular language then only we can call that language – regular and same exists for context free languages, if it is possible to design a push down automata for a particular language then only it is called context free.</p>
+<p>Now a push down automata in simple words is actually a finite automata with a <b>memory</b> provided to it as <b>infinite stack</b>. What you need to observe that is possible to design a finite automata for a particular language then it is also possible to design its equivalent push down automata what we have to do is just <b>not to use</b> the infinite stack available in it. Its that simple. Observe this and finally what will you get is that for every regular language it is possible to design finite automata and thus push down automata. This is the reason why every regular language can also be called context-free or in other words regular languages are subset of context-free languages.</p>
+<p><b>Union of Regular language with context free language –</b><br/>
+As all regular languages are context-free the union of both results in a context-free language. But it is always good to understand with the help of an example.<br/>
+Let’s take a language L1 = {0*1*} (regular) and L2 = {0^n1^n |n&gt;=0} (context-free)<br/>
+And let L=L1 U L2 which will result in union of both these languages and that will be :</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>L = {0*1*} which is regular language but since every regular language is context-free. So, we can say the union of two always results in context-free language.</p>
+<p><b>Intersection of Regular language with context-free language –</b><br/>
+Because now we know that all regular languages are subset of context-free there is no problem in understanding the union of two but when we talk about intersection again the answer is context-free language. Yes, the intersection of a regular and a context-free language always result in a context-free language.</p>
+<p>Let’s again take the above example in which L1 and L2 are same but now let<br/>
+        L= L1 ∩ L2 which will easily result in<br/>
+        L={0^n1^n | n&gt;=0} which is context-free .<br/>
+You can take more such examples and verify that the union and intersection of a regular language and a context-free language always results in a context-free language.   </p>
+<p>Read Next article – <a href="https://www.geeksforgeeks.org/theory-of-computation-closure-properties-of-context-free-languages/" rel="noopener" target="_blank">Closure Properties of Context Free Languages</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

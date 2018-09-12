@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Designing Finite Automata from Regular Expression</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In this article, we will see some popular regular expressions and how we can convert them to finite automata.</p>
+<ul>
+<li>
+<strong>Even number of a’s :</strong> The regular expression for even number of a’s is <strong>(b|ab*ab*)*</strong>. We can construct a finite automata as shown in Figure 1.<p></p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/automatafigure1.jpg"><img src="../../../imgs/comp-theory/12e83925859c19fc4c4a6fc3ecb0403c.jpg" alt="automata" width="400" height="250" class="aligncenter size-full wp-image-28110"/></a></p>
+<p>The above automata will accept all strings which have even number of a’s. For zero a’s, it will be in q0 which is final state. For one ‘a’, it will go from q0 to q1 and the string will not be accepted. For two a’s at any positions, it will go from q0 to q1 for 1st ‘a’ and q1 to q0 for second ‘a’. So, it will accept all strings with even number of a’s.
+</p></li>
+<li>
+<strong>String with ‘ab’ as substring :</strong> The regular expression for strings with ‘ab’ as substring is <strong>(a|b)*ab(a|b)*</strong>. We can construct finite automata as shown in Figure 2.<p></p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Automatafigure2.jpg"><img src="../../../imgs/comp-theory/7a0f5bbd45ba18811bd3d2f3a7173043.jpg" alt="fig 2" width="665" height="197" class="aligncenter size-large wp-image-24949"/></a></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>The above automata will accept all string which have ‘ab’ as substring. The automata will remain in initial state q0 for b’s. It will move to q1 after reading ‘a’ and remain in same state for all ‘a’ afterwards. Then it will move to q2 if ‘b’ is read. That means, the string has read ‘ab’ as substring if it reaches q2.
+</p></li>
+<li>
+<strong>String with count of ‘a’ divisible by 3 : </strong>The regular expression for strings with count of a divisible by 3 is {a<sup>3n</sup> | n &gt;= 0}. We can construct automata as shown in Figure 3.<p></p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/automatafigure3.jpg"><img src="../../../imgs/comp-theory/32cd1adcf0df4570a3170c220b41745b.jpg" alt="fig 3" width="859" height="435" class="aligncenter size-full wp-image-24950"/></a></p>
+<p>The above automata will accept all string of form a<sup>3n</sup>. The automata will remain in initial state q0 for ɛ and it will be accepted. For string ‘aaa’, it will move from q0 to q1 then q1 to q2 and then q2 to q0. For every set of three a’s, it will come to q0, hence accepted. Otherwise, it will be in q1 or q2, hence rejected.</p>
+<p><strong>Note :</strong> If we want to design a finite automata with number of a’s as 3n+1, same automata can be used with final state as q1 instead of q0.<br/>
+If we want to design a finite automata with language {a<sup>kn</sup> | n &gt;= 0}, k states are required. We have used k = 3 in our example.
+</p></li>
+<li>
+<strong>Binary numbers divisible by 3 :</strong> The regular expression for binary numbers which are divisible by three is <strong>(0|1(01*0)*1)*</strong>. The examples of binary number divisible by 3 are 0, 011, 110, 1001, 1100, 1111, 10010 etc. The DFA corresponding to binary number divisible by 3 can be shown in Figure 4.<p></p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/automata3tuple.jpg"><img src="../../../imgs/comp-theory/83ee28c603a237e02cf8919888d787d4.jpg" alt="fig 4" width="665" height="318" class="aligncenter size-large wp-image-24951"/></a></p>
+<p>The above automata will accept all binary numbers divisible by 3. For 1001, the automata will go from q0 to q1, then q1 to q2, then q2 to q1 and finally q2 to q0, hence accepted. For 0111, the automata will go from q0 to q0, then q0 to q1, then q1 to q0 and finally q0 to q1, hence rejected.
+</p></li>
+<li>
+<strong>String with regular expression (111 + 11111)* :</strong> The string accepted using this regular expression will have 3, 5, 6(111 twice), 8 (11111 once and 111 once), 9 (111 thrice), 10 (11111 twice) and all other counts of 1 afterwards. The DFA corresponding to given regular expression is given in Figure 5.<p></p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Automata8tuple.jpg"><img src="../../../imgs/comp-theory/413779df67c2364d45f41b25d71c589f.jpg" alt="fig 5" width="665" height="301" class="aligncenter size-large wp-image-24952"/></a>
+</p></li>
+</ul>
+<p>&#160;<br/>
+<strong>Question :</strong> What will be the minimum number of states for strings with odd number of a’s?<br/>
+<strong>Solution :</strong> The regular expression for odd number of a is b*ab*(ab*ab*)* and corresponding automata is given in Figure 6 and minimum number of states are 2.<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/automata2tuple.jpg"><img src="../../../imgs/comp-theory/e932d86d5e32823a68b2acf71bc349e3.jpg" alt="fig 6" width="300" height="220" class="aligncenter size-medium wp-image-24953"/></a><br/>
+&#160;<br/>
+&#160;<br/>
+</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

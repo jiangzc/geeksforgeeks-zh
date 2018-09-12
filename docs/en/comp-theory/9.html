@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Generating regular expression from finite automata</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/toc-finite-automata-introduction/" rel="noopener" target="_blank">Introduction of FA</a>, <a href="https://www.geeksforgeeks.org/regular-expressions-regular-grammar-and-regular-languages/" rel="noopener" target="_blank">Regular expressions, grammar and language</a>, <a href="https://www.geeksforgeeks.org/designing-finite-automata-from-regular-expression/" rel="noopener" target="_blank">Designing FA from Regular Expression</a></p>
+<p>There are two methods to convert FA to regular expression –<br/>
+<strong>1. State Elimination Method –</strong></p>
+<ul>
+<li><strong>Step 1 –</strong><br/>
+If the start state is an accepting state or has transitions in, add a new non-accepting start state and add an €-transition between the new start state and the former start state.</li>
+<li><strong>Step 2 –</strong><br/>
+If there is more than one accepting state or if the single accepting state has transitions out, add a new accepting state, make all other states non-accepting, and add an €-transition from each former accepting state to the new accepting state.</li>
+<li><strong>Step 3 –</strong><br/>
+For each non-start non-accepting state in turn, eliminate the state and update transitions accordingly.</li>
+</ul>
+<p><strong><u>Example </u></strong> :-<br/>
+<img src="../../../imgs/comp-theory/4bc098ed720b48543148692452de2ae4.jpg" alt="" width="1018" height="312" class="alignnone size-full wp-image-298421"/></p>
+<p><strong><u>Solution </u>:-<br/>
+<u>Step 1</u><br/>
+<img src="../../../imgs/comp-theory/510acb31387076709aa8e0a5cf47b248.jpg" alt="" width="959" height="359" class="alignnone size-full wp-image-298424"/></strong></p>
+<p><u>Step 2</u><br/>
+<img src="../../../imgs/comp-theory/d14ff670b4932060001ff437e28f40a5.jpg" alt="" width="1030" height="496" class="alignnone size-full wp-image-298426"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><u>Step 3</u><br/>
+<img src="../../../imgs/comp-theory/586c23328877b27bca1af202f5e7f6bf.jpg" alt="" width="1098" height="502" class="alignnone size-full wp-image-298427"/></p>
+<p><img src="../../../imgs/comp-theory/09e9ab88f6d1117f9b76c589c6008fc7.jpg" alt="" width="1018" height="520" class="alignnone size-full wp-image-298432"/></p>
+<p><img src="../../../imgs/comp-theory/0678b25ddc170bf782bf458068b250ec.jpg" alt="" width="986" height="457" class="alignnone size-full wp-image-298433"/></p>
+<p><img src="../../../imgs/comp-theory/1b4cba75be729907a8746bf197b01b85.jpg" alt="" width="900" height="319" class="alignnone size-full wp-image-298434"/></p>
+<p><strong>2. Arden’s Theorem –</strong> Let P and Q be 2 regular expressions. If P does not contain null string, then following equation in R, viz R = Q + RP, Has a unique solution by R = QP*</p>
+<p><strong>Assumptions –</strong> </p>
+<ul>
+<li>The transition diagram should not have €-moves.</li>
+<li>It must have only one initial state.</li>
+</ul>
+<p><strong><u>Using Arden’s Theorem to find Regular Expression of Deterministic Finite automata –</u></strong></p>
+<ol>
+<li>For getting the regular expression for the automata we first create equations of the given form for all the states<br/>
+<strong>q<sub>1</sub> = q<sub>1</sub>w<sub>11</sub> +q<sub>2</sub>w<sub>21</sub> +…+q<sub>n</sub>w<sub>n1</sub> +€ (q<sub>1</sub> is the initial state)<br/>
+q<sub>2</sub> = q<sub>1</sub>w<sub>12</sub> +q<sub>2</sub>w<sub>22</sub> +…+q<sub>n</sub>w<sub>n2</sub><br/>
+.<br/>
+.<br/>
+.<br/>
+q<sub>n</sub> = q<sub>1</sub>w<sub>1n</sub> +q<sub>2</sub>w<sub>2n</sub> +…+q<sub>n</sub>w<sub>nn</sub><br/>
+</strong><br/>
+w<sub>ij</sub> is the regular expression representing the set of labels of edges from q<sub>i</sub> to q<sub>j</sub><p></p>
+<p><strong>Note –</strong> For parallel edges there will be that many expressions for that state in the expression.
+</p></li>
+<li>Then we solve these equations to get the equation for q<sub>i</sub> in terms of w<sub>ij</sub> and that expression is the required solution, where q<sub>i</sub> is a final state.
+</li>
+</ol>
+<p><strong><u>Example </u>:-</strong></p>
+<p><img src="../../../imgs/comp-theory/ffb999d2c94e701369d5e2e6b06103c3.jpg" alt="" width="430" height="321" class="aligncenter size-full wp-image-298991"/></p>
+<p><u>Solution</u> :-<br/>
+Here the initial state is q<sub>2</sub> and the final state is q<sub>1</sub>.<br/>
+The equations for the three states q<sub>1</sub>, q<sub>2</sub>, and q<sub>3</sub> are as follows ?<br/>
+q<sub>1</sub> = q<sub>1</sub>a + q<sub>3</sub>a + €                      ( € move is because q<sub>1</sub> is the initial state)<br/>
+q<sub>2</sub> = q<sub>1</sub>b + q<sub>2</sub>b + q<sub>3</sub>b<br/>
+q<sub>3</sub> = q<sub>2</sub>a<br/>
+Now, we will solve these three equations ?<br/>
+q<sub>2</sub> = q<sub>1</sub>b + q<sub>2</sub>b + q<sub>3</sub>b<br/>
+     = q<sub>1</sub>b + q<sub>2</sub>b + (q<sub>2</sub>a)b                                     (Substituting value of q<sub>3</sub>)<br/>
+    = q<sub>1</sub>b + q<sub>2</sub>(b + ab)<br/>
+     = q<sub>1</sub>b (b + ab)*                                    (Applying Arden’s Theorem)<br/>
+q<sub>1</sub> = q<sub>1</sub>a + q<sub>3</sub>a + €<br/>
+= q<sub>1</sub>a + q<sub>2</sub>aa + €                                            (Substituting value of q<sub>3</sub>)<br/>
+= q<sub>1</sub>a + q<sub>1</sub>b(b + ab*)aa + €                              (Substituting value of q<sub>2</sub>)<br/>
+= q<sub>1</sub>(a + b(b + ab)*aa) + €<br/>
+= € (a+ b(b + ab)*aa)*<br/>
+= (a + b(b + ab)*aa)*<br/>
+Hence, the regular expression is (a + b(b + ab)*aa)*.</p>
+<p><b>GATE CS Corner Questions</b></p>
+<p>Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2008-question-52/" rel="noopener" target="_blank">GATE CS 2008, Question 52</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2007-question-74/" rel="noopener" target="_blank">GATE CS 2007, Question 74</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-1-question-25/" rel="noopener" target="_blank">GATE CS 2014 (Set-1), Question 25</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-1-question-46/" rel="noopener" target="_blank">GATE CS 2014 (Set-1), Question 65</a></li>
+<li><a href="https://www.geeksforgeeks.org/aptitude-gate-it-2006-question-5/" rel="noopener" target="_blank">GATE IT 2006, Question 5</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2013-question-33/" rel="noopener" target="_blank">GATE CS 2013, Question 33</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2012-question-16/" rel="noopener" target="_blank">GATE CS 2012, Question 12</a></li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

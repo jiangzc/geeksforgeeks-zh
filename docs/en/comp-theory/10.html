@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">DFA for Strings not ending with “THE”</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Problem –</b> Accept Strings that not ending with substring “THE”. Check if a given string is ending with “the” or not. The different forms of “the” which are avoided in the end of the string are:</p>
+<pre>"THE", "ThE", "THe", "tHE", "thE", "The", "tHe" and "the"</pre>
+<p>All those strings that are ending with any of the above mentioned forms of “the” are not accepted.</p>
+<p><b>Determinitis finite automata (DFA) of strings that not ending with “THE” –</b><br/>
+The initial and starting state in this dfa is Qo</p>
+<p><img src="../../../imgs/comp-theory/6a76604da0ed497cd4dbcd752cdafb6a.jpg" alt="" width="768" height="547" class="aligncenter size-full wp-image-374614"/></p>
+<p><b>Approach used in the program –</b><br/>
+In this program, consider the 4 states to be 0, 1, 2 and 3. Now let us take a variable named DFA which will be initially 0. Whenever any transition takes place, it will update the value of DFA with the number associated with new state.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><b>Example:</b> If a transition occurs from state 0 to state 1 then the value of DFA will be updated to 1. If a transition occurs from state 2 to state 3 then the value of dfa will be updated to 3. In this way, apply this algorithm on entire string and if in the end, then reach state 0, 1 or 2 then our string will be accepted otherwise not.</p>
+<pre>Input : XYzabCthe
+Output : NOT ACCEPTED
+
+Input :  Themaliktth
+Output :  ACCEPTED</pre>
+<pre class="brush: cpp; title: ; notranslate" title="">// CPP program to implement DFS that accepts
+// all string that do not end with "THE"
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+// dfa tells the number associated
+// with the present state
+int dfa = 0;
+
+// This function is for
+// the starting state (zeroth) of DFA
+void start(char c)
+{
+    // On receiving 'T' or 't' goto first state (1)
+    if (c == 't' || c == 'T')
+        dfa = 1;
+}
+
+// This function is for the first state of DFA
+void state1(char c)
+{
+    // On receiving 'T' or 't' goto first state (1)
+    if (c == 't' || c == 'T')
+        dfa = 1;
+
+    // On receiving 'H' or 'h' goto second state (2)
+    else if (c == 'h' || c == 'H')
+        dfa = 2;
+
+    // else goto starting state (0)
+    else
+        dfa = 0;
+}
+
+// This function is for the second state of DFA
+void state2(char c)
+{
+    // On receiving 'E' or 'e' goto third state (3)
+    // else goto starting state (0)
+    if (c == 'e' || c == 'E')
+        dfa = 3;
+    else
+        dfa = 0;
+}
+
+// This function is for the third state of DFA
+void state3(char c)
+{
+    // On receiving 'T' or 't' goto first state (1)
+    // else goto starting state (0)
+    if (c == 't' || c == 'T')
+        dfa = 1;
+    else
+        dfa = 0;
+}
+
+bool isAccepted(char str[])
+{
+    // store length of string
+    int len = strlen(str);
+
+    for (int i=0; i &lt; len; i++) {
+            if (dfa == 0)
+                start(str[i]);
+
+            else if (dfa == 1)
+                state1(str[i]);
+
+            else if (dfa == 2)
+                state2(str[i]);
+
+            else
+                state3(str[i]);        
+    }
+
+    return (dfa != 3);
+}
+
+// driver code
+int main()
+{
+    char str[] = "forTHEgeeks";
+    if (isAccepted(str) == true)
+        printf("\nACCEPTED\n");
+    else
+        printf("NOT ACCEPTED\n");
+    return 0;
+}
+</pre>
+<div class="outputDiv">
+<b>Output:</b><p></p>
+<pre>ACCEPTED
+</pre>
+</div>
+<p>The time complexity of this program is O(n)</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

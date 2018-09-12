@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Mealy&#160;and&#160;Moore&#160;Machines</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p style="text-align: justify"><b>Moore&#160;Machines:</b>&#160;Moore&#160;machines&#160;are&#160;finite&#160;state&#160;machines&#160;with&#160;output&#160;value&#160;and&#160;its&#160;output&#160;depends&#160;only&#160;on present&#160;state.&#160;It&#160;can&#160;be&#160;defined&#160;as&#160;(Q,&#160;q0,&#160;<b>∑,&#160;</b>O,&#160;δ,&#160;λ)&#160;where:</p>
+<ul>
+<li>Q&#160;is&#160;finite&#160;set&#160;of&#160;states.</li>
+<li>q0&#160;is&#160;the&#160;initial&#160;state.</li>
+<li><b>∑&#160;</b>is&#160;the&#160;input&#160;alphabet.</li>
+<li>O&#160;is&#160;the&#160;output&#160;alphabet.</li>
+<li>δ&#160;is&#160;transition&#160;function&#160;which&#160;maps&#160;Q×<b>∑&#160;</b>→&#160;Q.</li>
+<li>λ&#160;is&#160;the&#160;output&#160;function&#160;which&#160;maps&#160;Q&#160;→&#160;O.</li>
+</ul>
+<p><img src="../../../imgs/comp-theory/266adf48be7c70c9af94468681a8983b.jpg" width="652" height="407" alt="" class="aligncenter size-full"/></p>
+<p></p>
+<center><b>Figure 1</b></center>
+<p></p>
+<p style="text-align: justify">In&#160;the&#160;moore&#160;machine&#160;shown&#160;in&#160;Figure&#160;1,&#160;the&#160;output&#160;is&#160;represented&#160;with&#160;each&#160;input&#160;state&#160;separated&#160;by&#160;/.&#160;The&#160;length of&#160;output&#160;for&#160;a&#160;moore&#160;machine&#160;is&#160;greater&#160;than&#160;input&#160;by&#160;1.
+</p>
+<ul>
+<li><b>Input:&#160;</b>11</li>
+<li><b>Transition:</b>&#160;δ&#160;(q0,11)=&gt;&#160;δ(q2,1)=&gt;q2</li>
+<li><b>Output:&#160;</b>000&#160;(0&#160;for&#160;q0,&#160;0&#160;for&#160;q2&#160;and&#160;again&#160;0&#160;for&#160;q2)</li>
+</ul>
+<p style="text-align: justify"><b>&#160;</b><b>Mealy&#160;Machines:</b>&#160;Mealy&#160;machines&#160;are&#160;also&#160;finite&#160;state&#160;machines&#160;with&#160;output&#160;value&#160;and&#160;its&#160;output&#160;depends on present&#160;state&#160;and&#160;current&#160;input&#160;symbol.&#160;It&#160;can&#160;be&#160;defined&#160;as&#160;(Q,&#160;q0,&#160;<b>∑,&#160;</b>O,&#160;δ,&#160;λ’)&#160;where:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li>Q&#160;is&#160;finite&#160;set&#160;of&#160;states.</li>
+<li>q0&#160;is&#160;the&#160;initial&#160;state.</li>
+<li><b>∑&#160;</b>is&#160;the&#160;input&#160;alphabet.</li>
+<li>O&#160;is&#160;the&#160;output&#160;alphabet.</li>
+<li>δ&#160;is&#160;transition&#160;function&#160;which&#160;maps&#160;Q×<b>∑&#160;</b>→&#160;Q.</li>
+<li>‘λ’&#160;is&#160;the&#160;output&#160;function&#160;which&#160;maps&#160;Q×<b>∑</b>→&#160;O.</li>
+</ul>
+<p><img src="../../../imgs/comp-theory/8ba108125d6bbf42cbe4c048542fa8dc.jpg" width="453" height="376" alt="" class="aligncenter size-full"/><br/>
+</p>
+<center><b>Figure 2</b></center>
+<p></p>
+<p style="text-align: justify">In&#160;the&#160;mealy&#160;machine&#160;shown&#160;in&#160;Figure&#160;1,&#160;the&#160;output&#160;is&#160;represented&#160;with&#160;each&#160;input&#160;symbol&#160;for&#160;each state&#160;separated by&#160;/.&#160;The&#160;length&#160;of&#160;output&#160;for&#160;a&#160;mealy&#160;machine&#160;is&#160;equal&#160;to&#160;the&#160;length&#160;of&#160;input.</p>
+<ul>
+<li><b>Input:</b>11</li>
+<li><b>Transition:</b>&#160;δ&#160;(q0,11)=&gt;&#160;δ(q2,1)=&gt;q2</li>
+<li><b>Output:&#160;</b>00&#160;(q0&#160;to&#160;q2&#160;transition&#160;has&#160;Output&#160;0&#160;and&#160;q2&#160;to&#160;q2&#160;transition&#160;also&#160;has&#160;Output&#160;0)</li>
+</ul>
+<p style="text-align: center"><b>Conversion&#160;from&#160;Mealy&#160;to&#160;Moore&#160;Machine</b></p>
+<p>Let&#160;us&#160;take&#160;the&#160;transition&#160;table&#160;of&#160;mealy&#160;machine&#160;shown&#160;in&#160;Figure&#160;2.</p>
+<table>
+<tbody>
+<tr>
+<td width="127"></td>
+<td colspan="2" width="255"><strong>Input=0</strong></td>
+<td colspan="2" width="255"><strong>Input=1</strong></td>
+</tr>
+<tr>
+<td width="127"><strong>Present&#160;State</strong></td>
+<td width="127"><strong>Next&#160;State</strong></td>
+<td width="127"><strong>Output</strong></td>
+<td width="127"><strong>Next&#160;State</strong></td>
+<td width="127"><strong>Output</strong></td>
+</tr>
+<tr>
+<td width="127">q0</td>
+<td width="127">q1</td>
+<td width="127">0</td>
+<td width="127">q2</td>
+<td width="127">0</td>
+</tr>
+<tr>
+<td width="127">q1</td>
+<td width="127">q1</td>
+<td width="127">0</td>
+<td width="127">q2</td>
+<td width="127">1</td>
+</tr>
+<tr>
+<td width="127">q2</td>
+<td width="127">q1</td>
+<td width="127">1</td>
+<td width="127">q2</td>
+<td width="127">0</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><b>Table&#160;1</b></p>
+<p style="text-align: justify"><b>Step&#160;1.</b>&#160;First&#160;find&#160;out&#160;those&#160;states&#160;which&#160;have&#160;more&#160;than&#160;1&#160;outputs&#160;associated&#160;with&#160;them.&#160;q1&#160;and&#160;q2&#160;are&#160;the&#160;states which&#160;have&#160;both&#160;output&#160;0&#160;and&#160;1&#160;associated&#160;with&#160;them.</p>
+<p style="text-align: justify"><b>Step&#160;2.</b>&#160;Create&#160;two&#160;states&#160;for&#160;these&#160;states.&#160;For&#160;q1,&#160;two&#160;states&#160;will&#160;be&#160;q10&#160;(state&#160;with&#160;output&#160;0)&#160;and&#160;q11&#160;(state&#160;with output&#160;1).&#160;Similarly&#160;for&#160;q2,&#160;two&#160;states&#160;will&#160;be&#160;q20&#160;and&#160;q21.</p>
+<p style="text-align: justify"><b>Step&#160;3.</b>&#160;Create&#160;an&#160;empty&#160;moore&#160;machine&#160;with&#160;new&#160;generated&#160;state.&#160;For&#160;moore&#160;machine,&#160;Output&#160;will&#160;be&#160;associated&#160;to &#160;each&#160;state&#160;irrespective&#160;of&#160;inputs.</p>
+<table>
+<tbody>
+<tr>
+<td width="127"></td>
+<td width="127">Input=0</td>
+<td width="127">Input=1</td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">Present&#160;State</td>
+<td width="127">Next&#160;State</td>
+<td width="127">Next&#160;State</td>
+<td width="127">Output</td>
+</tr>
+<tr>
+<td width="127">q0</td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">q10</td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">q11</td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">q20</td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">q21</td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><b>Table&#160;2</b></p>
+<p><strong>Step&#160;4.</strong>&#160;Fill&#160;the&#160;entries&#160;of&#160;next&#160;state&#160;using&#160;mealy&#160;machine&#160;transition&#160;table&#160;shown&#160;in&#160;Table&#160;1.&#160;For&#160;q0&#160;on&#160;input&#160;0,&#160;&#160;next state&#160;is&#160;q10&#160;(q1&#160;with&#160;output&#160;0).&#160;Similarly,&#160;for&#160;q0&#160;on&#160;input&#160;1,&#160;next&#160;state&#160;is&#160;q20&#160;(q2&#160;with&#160;output&#160;0).&#160;For&#160;q1&#160;(both&#160;q10&#160;and&#160;q11)&#160;on&#160;input&#160;0,&#160;next&#160;state&#160;is&#160;q10.&#160;Similarly,&#160;for&#160;q1(both&#160;q10&#160;and&#160;q11),&#160;next&#160;state&#160;is&#160;q21.&#160;&#160;For&#160;q10,&#160;output&#160;will&#160;be&#160;0&#160;and&#160;&#160;for&#160;q11,&#160;output&#160;will&#160;be&#160;1.&#160;Similarly,&#160;other&#160;entries&#160;can&#160;be&#160;filled.</p>
+<table>
+<tbody>
+<tr>
+<td width="127"></td>
+<td width="127">Input=0</td>
+<td width="127">Input=1</td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">Present&#160;State</td>
+<td width="127">Next&#160;State</td>
+<td width="127">Next&#160;State</td>
+<td width="127">Output</td>
+</tr>
+<tr>
+<td width="127">q0</td>
+<td width="127">q10</td>
+<td width="127">q20</td>
+<td width="127">0</td>
+</tr>
+<tr>
+<td width="127">q10</td>
+<td width="127">q10</td>
+<td width="127">q21</td>
+<td width="127">0</td>
+</tr>
+<tr>
+<td width="127">q11</td>
+<td width="127">q10</td>
+<td width="127">q21</td>
+<td width="127">1</td>
+</tr>
+<tr>
+<td width="127">q20</td>
+<td width="127">q11</td>
+<td width="127">q20</td>
+<td width="127">0</td>
+</tr>
+<tr>
+<td width="127">q21</td>
+<td width="127">q11</td>
+<td width="127">q20</td>
+<td width="127">1</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><b>Table&#160;3</b></p>
+<p>This&#160;is&#160;the&#160;transition&#160;table&#160;of&#160;moore&#160;machine&#160;shown&#160;in&#160;Figure&#160;1.</p>
+<p style="text-align: center"><b>Conversion&#160;from&#160;moore&#160;machine&#160;to&#160;mealy&#160;machine</b></p>
+<p>Let&#160;us&#160;take&#160;the&#160;moore&#160;machine&#160;of&#160;Figure&#160;1&#160;and&#160;its&#160;transition&#160;table&#160;is&#160;shown&#160;in&#160;Table&#160;3.</p>
+<p><b>Step&#160;1.&#160;</b>Construct&#160;an&#160;empty&#160;mealy&#160;machine&#160;using&#160;all&#160;states&#160;of&#160;moore&#160;machine&#160;as&#160;shown&#160;in&#160;Table&#160;4.</p>
+<table>
+<tbody>
+<tr>
+<td width="127"><strong>&#160;</strong></td>
+<td colspan="2" width="255"><strong>Input=0</strong></td>
+<td colspan="2" width="255"><strong>Input=1</strong></td>
+</tr>
+<tr>
+<td width="127"><strong>Present&#160;State</strong></td>
+<td width="127"><strong>Next&#160;State</strong></td>
+<td width="127"><strong>Output</strong></td>
+<td width="127"><strong>Next&#160;State</strong></td>
+<td width="127"><strong>Output</strong></td>
+</tr>
+<tr>
+<td width="127">q0</td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">q10</td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">q11</td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">q20</td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">q21</td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+<td width="127"></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><b>Table&#160;4</b></p>
+<p style="text-align: justify"><b>Step&#160;2:</b>&#160;Next&#160;state&#160;for&#160;each&#160;state&#160;can&#160;also&#160;be&#160;directly&#160;found&#160;from&#160;moore&#160;machine&#160;transition&#160;Table&#160;as:</p>
+<table>
+<tbody>
+<tr>
+<td width="127"></td>
+<td colspan="2" width="255"><strong>Input=0</strong></td>
+<td colspan="2" width="255"><strong>Input=1</strong></td>
+</tr>
+<tr>
+<td width="127"><strong>Present&#160;State</strong></td>
+<td width="127"><strong>Next&#160;State</strong></td>
+<td width="127"><strong>Output</strong></td>
+<td width="127"><strong>Next&#160;State</strong></td>
+<td width="127"><strong>Output</strong></td>
+</tr>
+<tr>
+<td width="127">q0</td>
+<td width="127">q10</td>
+<td width="127"></td>
+<td width="127">q20</td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">q10</td>
+<td width="127">q10</td>
+<td width="127"></td>
+<td width="127">q21</td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">q11</td>
+<td width="127">q10</td>
+<td width="127"></td>
+<td width="127">q21</td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">q20</td>
+<td width="127">q11</td>
+<td width="127"></td>
+<td width="127">q20</td>
+<td width="127"></td>
+</tr>
+<tr>
+<td width="127">q21</td>
+<td width="127">q11</td>
+<td width="127"></td>
+<td width="127">q20</td>
+<td width="127"></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><b>Table&#160;5</b></p>
+<p style="text-align: justify"><b>Step&#160;3:&#160;</b>As&#160;we&#160;can&#160;see&#160;output corresponding&#160;to&#160;each input&#160;in&#160;moore&#160;machine&#160;transition&#160;table.&#160;Use&#160;this&#160;to&#160;fill&#160;the&#160;Output &#160;entries.&#160;e.g.;&#160;Output&#160;corresponding&#160;to&#160;q10,&#160;q11,&#160;q20&#160;and&#160;q21&#160;are&#160;0,&#160;1,&#160;0&#160;and&#160;1&#160;respectively.&#160;&#160;<b>&#160;</b></p>
+<table>
+<tbody>
+<tr>
+<td width="127"></td>
+<td colspan="2" width="255"><strong>Input=0</strong></td>
+<td colspan="2" width="255"><strong>Input=1</strong></td>
+</tr>
+<tr>
+<td width="127"><strong>Present&#160;State</strong></td>
+<td width="127"><strong>Next&#160;State</strong></td>
+<td width="127"><strong>Output</strong></td>
+<td width="127"><strong>Next&#160;State</strong></td>
+<td width="127"><strong>Output</strong></td>
+</tr>
+<tr>
+<td width="127">q0</td>
+<td width="127">q10</td>
+<td width="127">0</td>
+<td width="127">q20</td>
+<td width="127">0</td>
+</tr>
+<tr>
+<td width="127">q10</td>
+<td width="127">q10</td>
+<td width="127">0</td>
+<td width="127">q21</td>
+<td width="127">1</td>
+</tr>
+<tr>
+<td width="127">q11</td>
+<td width="127">q10</td>
+<td width="127">0</td>
+<td width="127">q21</td>
+<td width="127">1</td>
+</tr>
+<tr>
+<td width="127">q20</td>
+<td width="127">q11</td>
+<td width="127">1</td>
+<td width="127">q20</td>
+<td width="127">0</td>
+</tr>
+<tr>
+<td width="127">q21</td>
+<td width="127">q11</td>
+<td width="127">1</td>
+<td width="127">q20</td>
+<td width="127">0</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><b>Table&#160;6</b></p>
+<p style="text-align: justify"><b>&#160;</b><b>Step&#160;4:&#160;</b>&#160;As&#160;we&#160;can&#160;see&#160;from&#160;table&#160;6,&#160;q10&#160;and&#160;q11&#160;are&#160;similar&#160;to&#160;each&#160;other&#160;(same&#160;value&#160;of&#160;next&#160;state&#160;and&#160;Output&#160;for &#160;different&#160;Input).&#160;Similarly,&#160;q20&#160;and&#160;q21&#160;are&#160;also&#160;similar.&#160;So,&#160;q11&#160;and&#160;q21&#160;can&#160;be&#160;eliminated.</p>
+<table>
+<tbody>
+<tr>
+<td width="127"></td>
+<td colspan="2" width="255"><strong>Input=0</strong></td>
+<td colspan="2" width="255"><strong>Input=1</strong></td>
+</tr>
+<tr>
+<td width="127"><strong>Present&#160;State</strong></td>
+<td width="127"><strong>Next&#160;State</strong></td>
+<td width="127"><strong>Output</strong></td>
+<td width="127"><strong>Next&#160;State</strong></td>
+<td width="127"><strong>Output</strong></td>
+</tr>
+<tr>
+<td width="127">q0</td>
+<td width="127">q10</td>
+<td width="127">0</td>
+<td width="127">q20</td>
+<td width="127">0</td>
+</tr>
+<tr>
+<td width="127">q10</td>
+<td width="127">q10</td>
+<td width="127">0</td>
+<td width="127">q21</td>
+<td width="127">1</td>
+</tr>
+<tr>
+<td width="127">q20</td>
+<td width="127">q11</td>
+<td width="127">1</td>
+<td width="127">q20</td>
+<td width="127">0</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><b>Table&#160;7</b></p>
+<p style="text-align: justify">This&#160;is&#160;the&#160;same&#160;mealy&#160;machine&#160;shown&#160;in&#160;Table&#160;1.&#160;So&#160;we&#160;have&#160;converted&#160;mealy&#160;to&#160;moore&#160;machine&#160;and&#160;converted &#160;back&#160;moore&#160;to&#160;mealy.</p>
+<p style="text-align: justify"><b>Note:</b>&#160;Number of states&#160;in&#160;mealy&#160;machine&#160;can’t&#160;be&#160;greater&#160;than number&#160;&#160;of&#160;states&#160;in&#160;moore&#160;machine.</p>
+<p style="text-align: justify"><b>Example:</b>&#160;The&#160;Finite&#160;state&#160;machine&#160;described&#160;by&#160;the&#160;following&#160;state&#160;diagram&#160;with&#160;A&#160;as&#160;starting&#160;state,&#160;where&#160;an&#160;arc label&#160;is&#160;x&#160;/&#160;y&#160;and&#160;x&#160;stands&#160;for&#160;1-bit&#160;input&#160;and&#160;y&#160;stands&#160;for&#160;2-&#160;bit&#160;output?</p>
+<p><img src="../../../imgs/comp-theory/08b8c7fe7be002b3a4d8e7090adafce2.jpg" width="562" height="272" alt="" class="aligncenter size-full"/></p>
+<p>Outputs&#160;the&#160;sum&#160;of&#160;the&#160;present&#160;and&#160;the&#160;previous&#160;bits&#160;of&#160;the&#160;input.<b>&#160;</b></p>
+<ol style="text-align: justify">
+<li>Outputs&#160;01&#160;whenever&#160;the&#160;input&#160;sequence&#160;contains&#160;11.</li>
+<li>Outputs&#160;00&#160;whenever&#160;the&#160;input&#160;sequence&#160;contains&#160;10.</li>
+<li>None&#160;of&#160;these.</li>
+</ol>
+<p style="text-align: justify"><b>Solution:</b>&#160;Let&#160;us&#160;take&#160;different&#160;inputs&#160;and&#160;its&#160;output&#160;and&#160;check&#160;which&#160;option&#160;works:</p>
+<p style="text-align: justify"><b>Input:</b>&#160;01</p>
+<p style="text-align: justify"><b>Output:</b>&#160;00&#160;01&#160;&#160;(For&#160;0,&#160;Output&#160;is&#160;00&#160;and&#160;state&#160;is&#160;A.&#160;Then,&#160;for&#160;1,&#160;Output&#160;is&#160;01&#160;and&#160;state&#160;will&#160;be&#160;B)</p>
+<p style="text-align: justify"><b>Input:&#160;</b>11</p>
+<p style="text-align: justify"><b>Output:</b>&#160;01&#160;10&#160;(For&#160;1,&#160;Output&#160;is&#160;01&#160;and&#160;state&#160;is&#160;B.&#160;Then,&#160;for&#160;1,&#160;Output&#160;is&#160;10&#160;and&#160;state&#160;is&#160;C)</p>
+<p style="text-align: justify">As&#160;we&#160;can&#160;see,&#160;it&#160;is&#160;giving&#160;the&#160;binary&#160;sum&#160;of&#160;present&#160;and&#160;previous&#160;bit.&#160;For&#160;first&#160;bit,&#160;previous&#160;bit&#160;is&#160;taken&#160;as&#160;0.</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

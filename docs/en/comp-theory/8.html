@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Star Height of Regular Expression and Regular Language</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>The <strong>star height</strong> relates to the field of theoretical of computation (TOC). It is used to indicate the structural complexity of regular expressions and regular languages. Here complexity, relates to the maximum nesting depth of Kleene stars present in a regular expression.<br/>
+It may be noted here that a regular language may be represented by regular expressions that are not unique, yet equivalent. These regular expressions may have different star heights depending on their structural complexity(i.e nesting). But <strong>star height of a regular language is a unique number and is equal to the least star height of any regular expression representing that language.</strong> In this context <strong>generalized star height</strong> is an appropriate terminology, that defines the minimum nesting depth of Kleene stars to describe the language by means of a generalized regular expression. For example:</p>
+<p>The language “aba” over the set of alphabets {a, b} can be generated using regular expressions,</p>
+<pre>(a + b)* ...... (1) Star height = 1
+(a* b*)* ...... (2) Star height = 2</pre>
+<p>But we consider the least star height. Therefore the star height of the regular language “aba” is one. </p>
+<p><strong>Star height is also defined for regular expressions as the maximum nesting depth of Kleene stars appearing in that expression.</strong> In order to state star height, “h” of a regular expression formally, one can write as,</p>
+<p>h(<img src="../../../imgs/comp-theory/2e8a7ac66542317be45c695ae849580d.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\phi" title="Rendered by QuickLaTeX.com" height="25" width="15" style="vertical-align: -6px;"/>) = 0, where <img src="../../../imgs/comp-theory/2e8a7ac66542317be45c695ae849580d.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\phi" title="Rendered by QuickLaTeX.com" height="25" width="15" style="vertical-align: -6px;"/> is the empty set<br/>
+h(<img src="../../../imgs/comp-theory/9e0d0faaeb36399f71c3ccdd6c2b69d0.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\epsilon" title="Rendered by QuickLaTeX.com" height="13" width="9" style="vertical-align: -1px;"/>) = 0, where <img src="../../../imgs/comp-theory/9e0d0faaeb36399f71c3ccdd6c2b69d0.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\epsilon" title="Rendered by QuickLaTeX.com" height="13" width="9" style="vertical-align: -1px;"/> is the empty string<br/>
+h(t) = 0, where t may be any terminal symbol of an alphabet set<br/>
+h(EF) = max(h(E), h(F)), where E, F denotes regular expressions<br/>
+h(E*) = h(E) + 1</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Some examples are:</p>
+<ul>
+<li> h(a*(b a*)*) = 2</li>
+<li> h((a b*) + (a* a b*)*b)*) = 3</li>
+<li> h(a) = 0</li>
+</ul>
+<p>Prof. Eggan tried to give a relationship between the loop complexity of an automaton that accepts a language L, and the star height of the language, L.<br/>
+<strong>The star height of a language, L is equal to the minimal loop complexity of an automaton that accepts, L.</strong> It can also be stated that the loop complexity of an automata that is both <strong>accessible (i.e automata constructed by deleting all non-accessible states and any transitions to or from them)</strong> and <strong>co-accessible (i.e a state q of an automaton is said to be co-accessible if there is a string s that takes us from q to a marked state)</strong> is the minimum of star heights of regular expressions obtained by different possible executions of the state elimination method (or BMC algorithm).  </p>
+<p>It is apparent that a regular language of star height zero can represent only a finite number of regular languages. The generalized star height considers that taking complement of a regular expression would not lead to an increase in star height. This consideration yields interesting results at its disposal. </p>
+<p>For example – consider the set of alphabets {x, y}. The star height of the regular expression for the regular language “all strings beginning and ending with x”, i.e</p>
+<pre>h(x(x + y)*x+x) = 1, since only one level of Kleene nesting exists</pre>
+<p>But the same language can also be represented by the regular expression x <img src="../../../imgs/comp-theory/2e8a7ac66542317be45c695ae849580d.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\phi" title="Rendered by QuickLaTeX.com" height="25" width="15" style="vertical-align: -6px;"/>^c x + x, because <img src="../../../imgs/comp-theory/2e8a7ac66542317be45c695ae849580d.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\phi" title="Rendered by QuickLaTeX.com" height="25" width="15" style="vertical-align: -6px;"/>^c denotes set of all strings over the input alphabets.</p>
+<pre>Now, h(x <img src="../../../imgs/comp-theory/2e8a7ac66542317be45c695ae849580d.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\phi" title="Rendered by QuickLaTeX.com" height="25" width="15" style="vertical-align: -6px;"/>^c x + x) = 0, as no Kleene nesting present</pre>
+<p><strong>Therefore the generalized star height of the language is 0 even though its star height is 1.</strong></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Construct Pushdown Automata for all length palindrome</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>A <a href="https://www.geeksforgeeks.org/theory-of-computation-pushdown-automata/">Pushdown Automaton</a> (PDA) is like an epsilon Non deterministic Finite Automata (NFA) with infinite stack. PDA is a way to implement context free languages. Hence, it is important to learn, how to draw PDA.</p>
+<p><i>Here, take the example of odd length palindrome:</i><br/>
+<b>Que-1:</b> Construct a PDA for language L = {wcw’ | w={0, 1}*} where w’ is the reverse of w.</p>
+<p><strong>Approach used in this PDA –</strong><br/>
+Keep on pushing 0’s and 1’s no matter whatever is on the top of stack until reach the middle element. When middle element ‘c’ is scanned then process it without making any changes in stack. Now if scanned symbol is ‘1’ and top of stack also contain ‘1’ then pop the element from top of stack or if scanned symbol is ‘0’ and top of stack also contain ‘0’ then pop the element from top of stack. If string becomes empty or scanned symbol is ‘$’ and stack becomes empty, then reach to final state else move to dead state.</p>
+<ul>
+<li><strong>Step 1:</strong> On receiving 0 or 1, keep on pushing it on top of stack without going to next state.
+</li>
+<li><strong>Step 2:</strong> On receiving an element ‘c’, move to next state without making any change in stack.
+</li>
+<li><strong>Step 3:</strong> On receiving an element, check if symbol scanned is ‘1’ and top of stack also contain ‘1’ or if symbol scanned is ‘0’ and top of stack also contain ‘0’ then pop the element from top of stack else move to dead state. Keep on repeating step 3 until string becomes empty.
+</li>
+<li><strong>Step 4:</strong> Check if symbol scanned is ‘$’ and stack does not contain any element then move to final state else move to dead state.
+</li>
+</ul>
+<p><img src="../../../imgs/comp-theory/267685b755ff1eeaebe10ec265486fe1.jpg" alt="odd length palindrome"/></p>
+<p><b>Examples:</b></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre>Input : 1 0 1 0 1 0 1 0 1
+Output :ACCEPTED
+
+Input : 1 0 1 0 1 1 1 1 0
+Output :NOT ACCEPTED
+</pre>
+<p><i>Now, take the example of even length palindrome:</i><br/>
+<b>Que-2:</b> Construct a PDA for language L = {ww’ | w={0, 1}*} where w’ is the reverse of w.</p>
+<p><strong>Approach used in this PDA –</strong><br/>
+For construction of even length palindrome, user has to use Non Deterministic Pushdown Automata (NPDA). A NPDA is basically an NFA with a stack added to it.<br/>
+The NPDA for this language is identical to the previous one except for epsilon transition. However, there is a significant difference, that this PDA must guess when to stop pushing symbols, jump to the final state and start matching off of the stack. Therefore this machine is decidedly non-deterministic.<br/>
+Keep on pushing 0’s and 1’s no matter whatever is on the top of stack and at the same time keep a check on the input string, whether reach to the second half of input string or not. If reach to last element of first half of the input string then after processing the last element of first half of input string make an epsilon move and move to next state. Now if scanned symbol is ‘1’ and top of stack also contain ‘1’ then pop the element from top of stack or if scanned symbol is ‘0’ and top of stack also contain ‘0’ then pop the element from top of stack. If string becomes empty or scanned symbol is ‘$’ and stack becomes empty, then reach to final state else move to dead state.</p>
+<ul>
+<li><strong>Step 1:</strong> On receiving 0 or 1, keep on pushing it on top of stack and at a same time keep on checking whether reach to second half of input string or not.
+</li>
+<li><strong>Step 2:</strong> If reach to last element of first half of input string, then push that element on top of stack and then make an epsilon move to next state.
+</li>
+<li><strong>Step 3:</strong> On receiving an element, check if symbol scanned is ‘1’ and top of stack also contain ‘1’ or if symbol scanned is ‘0’ and top of stack also contain ‘0’ then pop the element from top of stack else move to dead state. Keep on repeating step 3 until string becomes empty.
+</li>
+<li><strong>Step 4:</strong> Check if symbol scanned is ‘$’ and stack does not contain any element then move to final state else move to dead state.
+</li>
+</ul>
+<p><img src="../../../imgs/comp-theory/8004e424abda3f79f9409208b047af94.jpg" alt="even length palindrome"/></p>
+<p><b>Examples:</b></p>
+<pre>Input : 1 0 0 1 1 1 1 0 0 1
+Output :ACCEPTED
+
+Input : 1 0 0 1 1 1
+Output :NOT ACCEPTED
+</pre>
+<p><i>Now, take the example of all length palindrome, i.e. a PDA which can accept both odd length palindrome and even length palindrome:</i><br/>
+<b>Que-3:</b> Construct a PDA for language L = {ww’ | wcw’, w={0, 1}*} where w’ is the reverse of w.</p>
+<p><strong>Approach used in this PDA –</strong><br/>
+For construction of all length palindrome, user has to use NPDA.<br/>
+The approach is similar to above example, except now along with epsilon move now user has to show one more transition move of symbol ‘c’ i.e. if string is of odd length and if reach to middle element ‘c’ then just process it and move to next state without making any change in stack.</p>
+<ul>
+<li><strong>Step 1:</strong> On receiving 0 or 1, keep on pushing it on top of stack and at a same time keep on checking, if input string is of even length then whether reach to second half of input string or not, however if the input string is of odd length then keep on checking whether reach to middle element or not.
+</li>
+<li><strong>Step 2:</strong> If input string is of even length and reach to last element of first half of input string, then push that element on top of stack and then make an epsilon move to next state or if the input string is of odd length then on receiving an element ‘c’, move to next state without making any change in stack.
+</li>
+<li><strong>Step 3:</strong> On receiving an element, check if symbol scanned is ‘1’ and top of stack also contain ‘1’ or if symbol scanned is ‘0’ and top of stack also contain ‘0’ then pop the element from top of stack else move to dead state. Keep on repeating step 3 until string becomes empty.
+</li>
+<li><strong>Step 4:</strong> Check if symbol scanned is ‘$’ and stack does not contain any element then move to final state else move to dead state.
+</li>
+</ul>
+<p><img src="../../../imgs/comp-theory/262092e27a2e269af036bbbf0c5b9660.jpg" alt="all length palindrome"/></p>
+<p><b>Examples:</b></p>
+<pre>Input : 1 1 0 0 1 1 1 1 0 0 1 1
+Output :ACCEPTED
+
+Input : 1 0 1 0 1 0 1
+Output :ACCEPTED
+</pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

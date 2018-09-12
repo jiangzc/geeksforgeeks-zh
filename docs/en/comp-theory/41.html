@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Decidability</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Identifying languages (or problems*) as decidable, undecidable or partially decidable is a very common question in GATE. With correct knowledge and ample experience, this question becomes very easy to solve.</p>
+<p>Lets start with some definitions:-</p>
+<p>&#160;<br/>
+<strong>Recursive language(REC)</strong> – A language ‘L’ is said to be recursive if there exists a Turing machine which will accept all the strings in ‘L’ and reject all the strings not in ‘L’. The Turing machine will halt every time and give an answer(accepted or rejected) for each and every string input.<br/>
+&#160;</p>
+<p><strong>Recursively enumerable language(RE)</strong> – A language ‘L’ is said to be a recursively enumerable language if there exists a Turing machine which will accept (and therefore halt) for all the input strings which are in ‘L’ but may or may not halt for all input strings which are not in ‘L’. By definition , all REC languages are also RE languages but not all RE languages are REC languages.<br/>
+&#160;</p>
+<p><strong>Decidable language</strong> – A language ‘L’ is decidable if it is a recursive language. All decidable languages are recursive languages and vice-versa.<br/>
+&#160;</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Partially decidable language</strong> – A language ‘L’ is partially decidable if ‘L’ is a RE language.<br/>
+&#160;<br/>
+<strong>Undecidable language</strong> – A language is undecidable if it is not decidable. An undecidable language maybe a partially decidable language or something else but not decidable. If a language is not even partially decidable , then there exists no Turing machine for that language.<br/>
+&#160;</p>
+<p>Now lets solve some examples – </p>
+<p>&#160;<br/>
+One way to solve decidability problems is by trying to reduce an already known undecidable problem to the given problem. By reducing a problem P1 to P2, we mean that we are trying to solve P1 by using the algorithm used to solve P2.</p>
+<p>If we can reduce an already known undecidable problem P1 to a given problem P2 , then we can surely say that P2 is also undecidable. If P2 was decidable, then P1 would also be decidable but that becomes a contradiction because P1 is known to be undecidable.</p>
+<p>For eg.</p>
+<p><strong> 1. Given a Turing machine ‘M’, we need to find out whether a state ‘Q’ is ever reached when a string ‘w’ is entered in ‘M’. This problem is also known as the ‘State Entry problem’. </strong>  </p>
+<p>Now lets try to reduce the Halting problem to the State Entry problem. A Turing machine only halts when a transition function δ (qi , a) is not defined. Change every undefined function δ(qi,a) to δ(qi,a) = (Q, a, L or R). Note that the state Q can only be reached when the Turing machine halts.</p>
+<p>Suppose we have have an algorithm for solving the State Entry problem which will halt every time and tell us whether state Q can be reached or not. By telling us that we can or cannot reach state Q  every time, it is telling us that the Turing machine will or will not halt, every time. But we know that is not possible because the halting problem is undecidable. That means that our assumption that there exists an algorithm which solves the State Entry problem and halts and gives us an answer every time, is false. Hence, the state entry problem is undecidable.<br/>
+&#160;</p>
+<p><strong> 2. Given two regular languages L1 and L2, is the problem of finding whether a string ‘w’ exists in both L1 and L2, a decidable problem or not.</strong></p>
+<p>First we make two Turing machines TM1 and TM2 which simulate the DFAs of languages L1 and L2 respectively. We know that a DFA always halts, so a Turing machine simulating a DFA will also always halt. We enter the string ‘w’ in TM1 and TM2. Both Turing machines will halt and give us an answer. We can connect the outputs of the Turing machines to a modified ‘AND’ gate which will output ‘yes’ only when both the Turing machines answer ‘yes’. Otherwise it will output ‘no’.</p>
+<p>Since this system of two Turing machines and a modified AND gate will always stop, this problem is a decidable problem.</p>
+<p>&#160;<br/>
+There are a lot of questions on this topic. There is no universal algorithm to solve them. Most of the questions require unique and ingenious proofs. Here is where experience is needed. By solving a lot of these problems, one can become very quick in coming up with proofs for these problems on the spot. So, keep practicing.</p>
+<p>&#160;<br/>
+*The words ‘language’ and ‘problem’ can be used synonymously in Theory of computation. For eg. The ‘Halting problem’ can also be written as ‘L = {&lt;M, w&gt; | Turing machine ‘M’ halts on input ‘w’}’. Here ‘L’ is a language.</p>
+<p>&#160;<br/>
+
+&#160;&#160;<br/>
+</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

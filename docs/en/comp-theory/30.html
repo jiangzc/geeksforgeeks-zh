@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Pushdown Automata</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>We have already discussed <a href="http://quiz.geeksforgeeks.org/toc-finite-automata-introduction/">finite automata</a>. But finite automata can be used to accept only regular languages.<br/>
+Pushdown Automata is a finite automata with extra memory called stack which helps Pushdown automata to recognize Context Free Languages.<br/>
+&#160;<br/>
+A Pushdown Automata (PDA) <q> can be defined as :</q></p>
+<ul>
+<li>Q is the set of states</li>
+<li>∑ is the set of input symbols</li>
+<li>Γ is the set of pushdown symbols (which can be pushed and popped from stack)</li>
+<li>q0 is the initial state</li>
+<li>Z is the initial pushdown symbol (which is initially present in stack)</li>
+<li>F is the set of final states</li>
+<li>δ is a transition function which maps Q x { ∑ ∪ ɛ } x Γ into Q x Γ *. In a given state, PDA will read input symbol and stack symbol (top of the stack) and move to a new state and change the symbol of stack.</li>
+</ul>
+<p>&#160;<br/>
+<strong>Example :</strong> Define the pushdown automata for language {a<sup>n</sup>b<sup>n</sup> | n &gt; 0}<br/>
+<strong>Solution : </strong>M = <q> where Q = { q0, q1 } and ∑ = { a, b } and Γ = { A, Z } and δ is given by :</q></p>
+<p>δ( q0, a, Z ) = { ( q0, AZ ) }<br/>
+δ( q0, a, A) = { ( q0, AA ) }<br/>
+δ( q0, b, A) = { ( q1, ɛ) }<br/>
+δ( q1, b, A) = { ( q1, ɛ) }<br/>
+δ( q1, ɛ, Z) = { ( q1, ɛ) }<br/>
+&#160;<br/>
+Let us see how this automata works for aaabbb.<br/>
+<img src="../../../imgs/comp-theory/674d2d6b9eac018589d99d6c9d213529.jpg" alt="" class="aligncenter size-medium wp-image-178704" srcset="https://www.geeksforgeeks.org/wp-content/uploads/PDA_1.png 626w, https://www.geeksforgeeks.org/wp-content/uploads/PDA_1-300x143.png 300w" sizes="(max-width: 626px) 100vw, 626px"/><br/>
+<strong>Explanation :</strong> Initially, the state of automata is q0 and symbol on stack is Z and the input is aaabbb as shown in row 1. On reading ‘a’ (shown in bold in row 2), the state will remain q0 and it will push symbol A on stack. On next ‘a’ (shown in row 3), it will push another symbol A on stack. After reading 3 a’s, the stack will be AAAZ with A on the top. After reading  ‘b’ (as shown in row 5), it will pop A and move to state q1 and stack will be AAZ. When all b’s are read, the state will be q1 and stack will be Z. In row 8, on input symbol ‘ɛ’ and Z on stack, it will pop Z and stack will be empty. This type of acceptance is known as <strong>acceptance by empty stack.</strong><br/>
+&#160;<br/>
+<strong>Note : </strong></p>
+<ul>
+<li>The above pushdown automaton is deterministic in nature because there is only one move from a state on an input symbol and stack symbol.</li>
+<li>The non-deterministic pushdown automata can have more than one move from a state on an input symbol and stack symbol.</li>
+<li>It is not always possible to convert non-deterministic pushdown automata to deterministic pushdown automata.</li>
+<li>Power of non-deterministic PDA is more as compared to deterministic PDA as some languages which are accepted by NPDA but not by deterministic PDA which will be discussed in next article.</li>
+<li>The push down automata can either be implemented using empty stack or by final state and one can be converted to another.</li>
+</ul>
+<p>&#160;<br/>
+<strong>Question :</strong> Which of the following pairs have DIFFERENT expressive power?</p>
+<p>A. Deterministic finite automata(DFA) and Non-deterministic finite automata(NFA)<br/>
+B. Deterministic push down automata(DPDA)and Non-deterministic push down automata(NPDA)<br/>
+C. Deterministic single-tape Turing machine and Non-deterministic single-tape Turing machine<br/>
+D. Single-tape Turing machine and multi-tape Turing machine</p>
+<p><strong>Solution :</strong> Every NFA can be converted into DFA. So, there expressive power is same. As discussed above, every NPDA can’t be converted to DPDA. So, the power of NPDA and DPDA is not same. Hence option (B) is correct.<br/>
+&#160;<br/>
+<br/>
+&#160;<br/>
+</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>
