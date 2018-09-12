@@ -1,0 +1,95 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/comp-theory/10.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B57;&#x7B26;&#x4E32;&#x7684;DFA&#x4E0D;&#x4EE5;&#x201C;THE&#x201D;&#x7ED3;&#x5C3E;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x95EE;&#x9898; -</b>&#x63A5;&#x53D7;&#x4E0D;&#x4EE5;&#x5B50;&#x4E32;&#x201C;THE&#x201D;&#x7ED3;&#x5C3E;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x68C0;&#x67E5;&#x7ED9;&#x5B9A;&#x5B57;&#x7B26;&#x4E32;&#x662F;&#x5426;&#x4EE5;&#x201C;the&#x201D;&#x7ED3;&#x5C3E;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x672B;&#x5C3E;&#x907F;&#x514D;&#x7684;&#x4E0D;&#x540C;&#x5F62;&#x5F0F;&#x7684;&#x201C;the&#x201D;&#x662F;&#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">&quot;THE&quot;, &quot;ThE&quot;, &quot;THe&quot;, &quot;tHE&quot;, &quot;thE&quot;, &quot;The&quot;, &quot;tHe&quot; and &quot;the&quot;</span> </pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6240;&#x6709;&#x90A3;&#x4E9B;&#x4EE5;&#x4EFB;&#x4F55;&#x4E0A;&#x8FF0;&#x5F62;&#x5F0F;&#x7684;&#x201C;the&#x201D;&#x7ED3;&#x5C3E;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x90FD;&#x4E0D;&#x88AB;&#x63A5;&#x53D7;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x786E;&#x5B9A;&#x6027;&#x6709;&#x9650;&#x81EA;&#x52A8;&#x673A;&#xFF08;DFA&#xFF09;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E0D;&#x4EE5;&#x201C;THE&#x201D;&#x7ED3;&#x5C3E; - </b></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x4E2A;dfa&#x7684;&#x521D;&#x59CB;&#x72B6;&#x6001;&#x548C;&#x8D77;&#x59CB;&#x72B6;&#x6001;&#x662F;Qo</span> </p><p><img src="../../../imgs/comp-theory/6a76604da0ed497cd4dbcd752cdafb6a.jpg" alt="" width="768" height="547" class="aligncenter size-full wp-image-374614"></p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x7A0B;&#x5E8F;&#x4E2D;&#x4F7F;&#x7528;&#x7684;&#x65B9;&#x6CD5; - </b></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#x4E2D;&#xFF0C;&#x8003;&#x8651;4&#x4E2A;&#x72B6;&#x6001;&#x4E3A;0,1,2&#x548C;3.&#x73B0;&#x5728;&#x8BA9;&#x6211;&#x4EEC;&#x53D6;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;DFA&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x8BE5;&#x53D8;&#x91CF;&#x6700;&#x521D;&#x4E3A;0.&#x6BCF;&#x5F53;&#x53D1;&#x751F;&#x4EFB;&#x4F55;&#x8F6C;&#x6362;&#x65F6;&#xFF0C;&#x5B83;&#x5C06;&#x4F7F;&#x7528;&#x4E0E;&#x4E4B;&#x5173;&#x8054;&#x7684;&#x6570;&#x5B57;&#x66F4;&#x65B0;DFA&#x7684;&#x503C;&#x3002;&#x65B0;&#x56FD;&#x5BB6;&#x3002;</span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x793A;&#x4F8B;&#xFF1A;</b>&#x5982;&#x679C;&#x4ECE;&#x72B6;&#x6001;0&#x8F6C;&#x6362;&#x5230;&#x72B6;&#x6001;1&#xFF0C;&#x5219;DFA&#x7684;&#x503C;&#x5C06;&#x66F4;&#x65B0;&#x4E3A;1.&#x5982;&#x679C;&#x4ECE;&#x72B6;&#x6001;2&#x8F6C;&#x6362;&#x5230;&#x72B6;&#x6001;3&#xFF0C;&#x5219;dfa&#x7684;&#x503C;&#x5C06;&#x66F4;&#x65B0;&#x4E3A;3.&#x8FD9;&#x6837;&#xFF0C;&#x5E94;&#x7528;&#x6B64;&#x6574;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x5982;&#x679C;&#x6700;&#x540E;&#xFF0C;&#x7136;&#x540E;&#x5230;&#x8FBE;&#x72B6;&#x6001;0,1&#x6216;2&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5C06;&#x88AB;&#x63A5;&#x53D7;&#xFF0C;&#x5426;&#x5219;&#x4E0D;&#x88AB;&#x63A5;&#x53D7;&#x3002;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">Input : XYzabCthe</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Output : NOT ACCEPTED</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Input : Themaliktth</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Output : ACCEPTED</span> </pre>
+<pre class="brush: cpp; title: ; notranslate" title="">// CPP program to implement DFS that accepts
+// all string that do not end with &quot;THE&quot;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+// dfa tells the number associated
+// with the present state
+int dfa = 0;
+
+// This function is for
+// the starting state (zeroth) of DFA
+void start(char c)
+{
+    // On receiving &apos;T&apos; or &apos;t&apos; goto first state (1)
+    if (c == &apos;t&apos; || c == &apos;T&apos;)
+        dfa = 1;
+}
+
+// This function is for the first state of DFA
+void state1(char c)
+{
+    // On receiving &apos;T&apos; or &apos;t&apos; goto first state (1)
+    if (c == &apos;t&apos; || c == &apos;T&apos;)
+        dfa = 1;
+
+    // On receiving &apos;H&apos; or &apos;h&apos; goto second state (2)
+    else if (c == &apos;h&apos; || c == &apos;H&apos;)
+        dfa = 2;
+
+    // else goto starting state (0)
+    else
+        dfa = 0;
+}
+
+// This function is for the second state of DFA
+void state2(char c)
+{
+    // On receiving &apos;E&apos; or &apos;e&apos; goto third state (3)
+    // else goto starting state (0)
+    if (c == &apos;e&apos; || c == &apos;E&apos;)
+        dfa = 3;
+    else
+        dfa = 0;
+}
+
+// This function is for the third state of DFA
+void state3(char c)
+{
+    // On receiving &apos;T&apos; or &apos;t&apos; goto first state (1)
+    // else goto starting state (0)
+    if (c == &apos;t&apos; || c == &apos;T&apos;)
+        dfa = 1;
+    else
+        dfa = 0;
+}
+
+bool isAccepted(char str[])
+{
+    // store length of string
+    int len = strlen(str);
+
+    for (int i=0; i &lt; len; i++) {
+            if (dfa == 0)
+                start(str[i]);
+
+            else if (dfa == 1)
+                state1(str[i]);
+
+            else if (dfa == 2)
+                state2(str[i]);
+
+            else
+                state3(str[i]);        
+    }
+
+    return (dfa != 3);
+}
+
+// driver code
+int main()
+{
+    char str[] = &quot;forTHEgeeks&quot;;
+    if (isAccepted(str) == true)
+        printf(&quot;\nACCEPTED\n&quot;);
+    else
+        printf(&quot;NOT ACCEPTED\n&quot;);
+    return 0;
+}
+</pre><div class="outputDiv"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x8F93;&#x51FA;&#xFF1A;</b></span> <p></p><pre> <span class="pre-span" style="direction: ltr; text-align: left">ACCEPTED</span>
+</pre></div><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F;O&#xFF08;n&#xFF09;</span> </p><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><hr><hr><!-- .entry-meta --></div></body></html>

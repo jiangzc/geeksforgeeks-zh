@@ -1,0 +1,455 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/comp-theory/14.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F7F;&#x7528;epsilon&#x5B9E;&#x65BD;NFA&#x7684;&#x8BA1;&#x5212;&#x8F6C;&#x79FB;&#x5230;DFA&#x8F6C;&#x6362;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x975E;&#x51B3;&#x5B9A;&#x6027;&#x6709;&#x9650;&#x81EA;&#x52A8;&#x673A;&#xFF08;NFA&#xFF09;&#xFF1A;</strong> NFA&#x662F;&#x4E00;&#x4E2A;&#x6709;&#x9650;&#x81EA;&#x52A8;&#x673A;&#xFF0C;&#x5BF9;&#x4E8E;&#x67D0;&#x4E9B;&#x60C5;&#x51B5;&#xFF0C;&#x5F53;&#x5355;&#x4E2A;&#x8F93;&#x5165;&#x88AB;&#x8D4B;&#x4E88;&#x5355;&#x4E2A;&#x72B6;&#x6001;&#x65F6;&#xFF0C;&#x673A;&#x5668;&#x4F1A;&#x8FDB;&#x5165;&#x591A;&#x4E8E;1&#x4E2A;&#x72B6;&#x6001;&#xFF0C;&#x5373;&#x4E00;&#x4E9B;&#x8FD0;&#x52A8;&#x4E0D;&#x80FD;&#x7531;&#x73B0;&#x5728;&#x552F;&#x4E00;&#x786E;&#x5B9A;&#x72B6;&#x6001;&#x548C;&#x5F53;&#x524D;&#x8F93;&#x5165;&#x7B26;&#x53F7;&#x3002;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">An NFA can be represented as <strong>M = { Q, &#x2211;, &#x2202;, q0, F}</strong></span> </pre><blockquote><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> Q&#x2192;&#x6709;&#x9650;&#x975E;&#x7A7A;&#x72B6;&#x6001;&#x96C6;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#x3A3;&#x2192;&#x6709;&#x9650;&#x7684;&#x975E;&#x7A7A;&#x8F93;&#x5165;&#x7B26;&#x53F7;&#x96C6;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#x2202;&#x2192;&#x8FC7;&#x6E21;&#x529F;&#x80FD;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> q0&#x2192;&#x5F00;&#x59CB;&#x72B6;&#x6001;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> F&#x2192;&#x6700;&#x7EC8;&#x72B6;&#x6001;</span> </p></blockquote><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>NFA&#x4E0E;&#xFF08;null&#xFF09;&#x6216;&#x2208;move&#xFF1A;</strong>&#x5982;&#x679C;&#x4EFB;&#x4F55;&#x6709;&#x9650;&#x81EA;&#x52A8;&#x673A;&#x5305;&#x542B;&#x3B5;&#xFF08;null&#xFF09;&#x79FB;&#x52A8;&#x6216;&#x4E8B;&#x52A1;&#xFF0C;&#x5219;&#x8BE5;&#x6709;&#x9650;&#x81EA;&#x52A8;&#x673A;&#x79F0;&#x4E3A;NFA&#xFF0C;&#x5176;&#x4E2D;&#x2208;&#x79FB;&#x52A8;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x793A;&#x4F8B;&#xFF1A;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8003;&#x8651;&#x4E0B;&#x9762;&#x7684;NFA&#x56FE;&#xFF0C;&#x5176;&#x4E2D;&#x2208;move&#xFF1A;</span> </p><p><img src="../../../imgs/comp-theory/b05ea6543743cd7a99a2645373d8ac87.jpg" alt="" width="500" height="200" class="alignnone size-medium wp-image-314790"><br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x4E0A;&#x8FF0;NFA&#x7684;&#x8FC7;&#x6E21;&#x72B6;&#x6001;&#x8868;</strong></span> </p><table style="border :2px solid black"><tbody><tr style="border :2px solid black"><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x72B6;&#x6001;</span> </th><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 0</span> </th><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 1</span> </th><th> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5C0F;&#x91CF;</span> </th></tr><tr style="border :2px solid black"><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E00;&#x4E2A;</span> </th><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> B&#xFF0C;C</span> </th><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E00;&#x4E2A;</span> </th><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E59;</span> </th></tr><tr style="border :2px solid black"><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E59;</span> </th><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> - </span> </th><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E59;</span> </th><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> C</span> </th></tr><tr style="border :2px solid black"><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> C</span> </th><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> C</span> </th><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> C</span> </th><th style="border :2px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> - </span> </th></tr></tbody></table><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>Epsilon&#xFF08;&#x3B5;&#xFF09; - &#x95ED;&#x5305;&#xFF1A;</strong>&#x7ED9;&#x5B9A;&#x72B6;&#x6001;X&#x7684;Epsilon&#x95ED;&#x5305;&#x662F;&#x4E00;&#x7EC4;&#x72B6;&#x6001;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;&#x72B6;&#x6001;X&#x5230;&#x8FBE;&#xFF0C;&#x53EA;&#x6709;&#xFF08;null&#xFF09;&#x6216;&#x3B5;&#x79FB;&#x52A8;&#xFF0C;&#x5305;&#x62EC;&#x72B6;&#x6001;X&#x672C;&#x8EAB;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x72B6;&#x6001;&#x7684;&#x3B5;-&#x95ED;&#x5408;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4EE5;&#x9012;&#x5F52;&#x65B9;&#x5F0F;&#x4ECE;&#x5355;&#x4E2A;&#x3B5;&#x79FB;&#x52A8;&#x4ECE;X&#x5230;&#x8FBE;&#x7684;&#x72B6;&#x6001;&#x7684;&#x3B5;-&#x95ED;&#x5408;&#x7684;&#x5E76;&#x96C6;&#x64CD;&#x4F5C;&#x6765;&#x83B7;&#x5F97;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5BF9;&#x4E8E;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x2208;&#x95ED;&#x5305;&#x5982;&#x4E0B;&#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left"><strong>&#x2208; closure(A) :</strong> {A, B, C}</span>
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>&#x2208; closure(B) :</strong> {B, C}</span>
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>&#x2208; closure(C) :</strong> {C}</span> </pre><p></p><p><br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x786E;&#x5B9A;&#x6027;&#x6709;&#x9650;&#x81EA;&#x52A8;&#x673A;&#xFF08;DFA&#xFF09;&#xFF1A;</strong> DFA&#x662F;&#x4E00;&#x79CD;&#x6709;&#x9650;&#x81EA;&#x52A8;&#x673A;&#xFF0C;&#x5176;&#x4E2D;&#xFF0C;&#x5BF9;&#x4E8E;&#x6240;&#x6709;&#x60C5;&#x51B5;&#xFF0C;&#x5F53;&#x5355;&#x4E2A;&#x8F93;&#x5165;&#x88AB;&#x8D4B;&#x4E88;&#x5355;&#x4E2A;&#x72B6;&#x6001;&#x65F6;&#xFF0C;&#x673A;&#x5668;&#x8FDB;&#x5165;&#x5355;&#x4E2A;&#x72B6;&#x6001;&#xFF0C;&#x5373;&#xFF0C;&#x673A;&#x5668;&#x7684;&#x6240;&#x6709;&#x8FD0;&#x52A8;&#x53EF;&#x4EE5;&#x7531;&#x552F;&#x4E00;&#x786E;&#x5B9A;&#x7684;&#x5F53;&#x524D;&#x72B6;&#x6001;&#x548C;&#x5F53;&#x524D;&#x8F93;&#x5165;&#x7B26;&#x53F7;&#x3002;</span> </p><p></p><h4 class="sigil_not_in_toc"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5C06;&#x3B5;-move&#x8F6C;&#x6362;&#x4E3A;DFA&#x7684;&#x6B65;&#x9AA4;&#xFF1A;</span> </h4><blockquote><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x6B65;&#x9AA4;1&#xFF1A;</strong>&#x53D6;&#x2208;&#x95ED;&#x5305;&#xFF0C;&#x5C06;NFA&#x7684;&#x5F00;&#x59CB;&#x72B6;&#x6001;&#x4F5C;&#x4E3A;DFA&#x7684;&#x5F00;&#x59CB;&#x72B6;&#x6001;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x6B65;&#x9AA4;2&#xFF1A;</strong>&#x627E;&#x5230;&#x6BCF;&#x4E2A;&#x8F93;&#x5165;&#x7B26;&#x53F7;&#x53EF;&#x4EE5;&#x4ECE;&#x5F53;&#x524D;&#x904D;&#x5386;&#x7684;&#x72B6;&#x6001;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#xFF08;&#x8FC7;&#x6E21;&#x4EF7;&#x503C;&#x7684;&#x8054;&#x5408;&#x53CA;&#x5176;&#x5728;&#x5F53;&#x524D;DFA&#x72B6;&#x6001;&#x4E0B;&#x7684;&#x6BCF;&#x4E2A;NFA&#x72B6;&#x6001;&#x7684;&#x5173;&#x95ED;&#xFF09;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x6B65;&#x9AA4;3&#xFF1A;</strong>&#x5982;&#x679C;&#x53D1;&#x73B0;&#x4EFB;&#x4F55;&#x65B0;&#x72B6;&#x6001;&#xFF0C;&#x8BF7;&#x5C06;&#x5176;&#x4F5C;&#x4E3A;&#x5F53;&#x524D;&#x72B6;&#x6001;&#x5E76;&#x91CD;&#x590D;&#x6B65;&#x9AA4;2&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x6B65;&#x9AA4;4&#xFF1A;</strong>&#x91CD;&#x590D;&#x6B65;&#x9AA4;2&#x548C;&#x6B65;&#x9AA4;3&#xFF0C;&#x76F4;&#x5230;DFA&#x8F6C;&#x6362;&#x8868;&#x4E2D;&#x6CA1;&#x6709;&#x65B0;&#x72B6;&#x6001;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x6B65;&#x9AA4;5&#xFF1A;</strong>&#x5C06;&#x5305;&#x542B;NFA&#x6700;&#x7EC8;&#x72B6;&#x6001;&#x7684;DFA&#x72B6;&#x6001;&#x6807;&#x8BB0;&#x4E3A;DFA&#x7684;&#x6700;&#x7EC8;&#x72B6;&#x6001;&#x3002;</span> </p></blockquote><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x4E0E;&#x4E0A;&#x8FF0;NFA&#x5BF9;&#x5E94;&#x7684;DFA&#x7684;&#x8FC7;&#x6E21;&#x72B6;&#x6001;&#x8868;</strong></span> </p><table style="border :3px solid black"><tbody><tr style="border :3px solid black"><th style="border :3px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x72B6;&#x6001;</span> </th><th style="border :3px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 0</span> </th><th style="border :3px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 1</span> </th></tr><tr style="border :3px solid black"><th style="border :3px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> A&#xFF0C;B&#xFF0C;C</span> </th><th style="border :3px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> B&#xFF0C;C</span> </th><th style="border :3px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> A&#xFF0C;B&#xFF0C;C</span> </th></tr><tr><th style="border :3px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> B&#xFF0C;C</span> </th><th style="border :3px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> C</span> </th><th style="border :3px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> B&#xFF0C;C</span> </th></tr><tr style="border :3px solid black"><th style="border :3px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> C</span> </th><th style="border :3px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> C</span> </th><th style="border :3px solid black"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> C</span> </th></tr></tbody></table><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>DFA&#x72B6;&#x6001;&#x56FE;</strong></span> <br><img src="../../../imgs/comp-theory/c95ffbdc6f28acc5c9c29cb520724c6a.jpg" alt="" class="alignnone size-medium wp-image-314801"></p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F8B;&#x5B50; &#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left"><strong>Input :</strong> 6</span>
+        <span class="pre-span" style="direction: ltr; text-align: left">2</span>
+        <span class="pre-span" style="direction: ltr; text-align: left">FC - BF</span>
+        <span class="pre-span" style="direction: ltr; text-align: left">- C -</span>
+        <span class="pre-span" style="direction: ltr; text-align: left">- - D</span>
+        <span class="pre-span" style="direction: ltr; text-align: left">EA -</span>
+        <span class="pre-span" style="direction: ltr; text-align: left">A - BF</span>
+        <span class="pre-span" style="direction: ltr; text-align: left">- - -</span>
+
+
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Output :</strong></span>
+ <span class="pre-span" style="direction: ltr; text-align: left">STATES OF NFA : A, B, C, D, E, F,</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">GIVEN SYMBOLS FOR NFA: 0, 1, eps</span>
+
+
+ <span class="pre-span" style="direction: ltr; text-align: left">NFA STATE TRANSITION TABLE</span> 
+
+
+<span class="pre-span" style="direction: ltr; text-align: left">STATES |0 |1 eps</span>
+<span class="pre-span" style="direction: ltr; text-align: left">--------+------------------------------------</span>
+<span class="pre-span" style="direction: ltr; text-align: left">A |FC |- |BF</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">B |- |C |-</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">C |- |- |DD |E |A |-</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">E |A |- |BF</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">F |- |- |-</span>     
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (A) : ABF</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (B) : B</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (C) : CD</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (D) : D</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (E) : BEF</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (F) : F</span>
+
+
+<span class="pre-span" style="direction: ltr; text-align: left">********************************************************</span>
+
+         <span class="pre-span" style="direction: ltr; text-align: left">DFA TRANSITION STATE TABLE</span>          
+
+
+ <span class="pre-span" style="direction: ltr; text-align: left">STATES OF DFA : ABF, CDF, CD, BEF,</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">GIVEN SYMBOLS FOR DFA: 0, 1,</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">STATES |0 |1</span>    
+<span class="pre-span" style="direction: ltr; text-align: left">--------+-----------------------</span>
+<span class="pre-span" style="direction: ltr; text-align: left">ABF |CDF |CD</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">CDF |BEF |ABF</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">CD |BEF |ABF</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">BEF |ABF |CD</span>     
+
+
+
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Input :</strong></span>
+<span class="pre-span" style="direction: ltr; text-align: left">9</span>
+<span class="pre-span" style="direction: ltr; text-align: left">2</span>
+<span class="pre-span" style="direction: ltr; text-align: left">- - BH</span>
+<span class="pre-span" style="direction: ltr; text-align: left">- - CE</span>
+<span class="pre-span" style="direction: ltr; text-align: left">D - -</span>
+<span class="pre-span" style="direction: ltr; text-align: left">- - G</span>
+<span class="pre-span" style="direction: ltr; text-align: left">- F -</span>
+<span class="pre-span" style="direction: ltr; text-align: left">- - G</span>
+<span class="pre-span" style="direction: ltr; text-align: left">- - BH</span>
+<span class="pre-span" style="direction: ltr; text-align: left">I - -</span>
+<span class="pre-span" style="direction: ltr; text-align: left">- - -</span>
+
+
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Output :</strong></span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">STATES OF NFA : A, B, C, D, E, F, G, H, I,</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">GIVEN SYMBOLS FOR NFA: 0, 1, eps</span>
+
+
+ <span class="pre-span" style="direction: ltr; text-align: left">NFA STATE TRANSITION TABLE</span> 
+
+
+<span class="pre-span" style="direction: ltr; text-align: left">STATES |0 |1 eps</span>
+<span class="pre-span" style="direction: ltr; text-align: left">--------+------------------------------------</span>
+<span class="pre-span" style="direction: ltr; text-align: left">A |- |- |BH</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">B |- |- |CE</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">C |D |- |-</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">D |- |- |GE |- |F |-</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">F |- |- |GG |- |- |BH</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">H |I |- |-</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">I |- |- |-</span>     
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (A) : ABCEH</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (B) : BCE</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (C) : C</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (D) : BCDEGH</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (E) : E</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (F) : BCEFGH</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (G) : BCEGH</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (H) : H</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">e-Closure (I) : I</span>
+
+
+<span class="pre-span" style="direction: ltr; text-align: left">********************************************************</span>
+
+         <span class="pre-span" style="direction: ltr; text-align: left">DFA TRANSITION STATE TABLE</span>          
+
+
+ <span class="pre-span" style="direction: ltr; text-align: left">STATES OF DFA : ABCEH, BCDEGHI, BCEFGH,</span>
+
+ <span class="pre-span" style="direction: ltr; text-align: left">GIVEN SYMBOLS FOR DFA: 0, 1,</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">STATES |0 |1</span>    
+<span class="pre-span" style="direction: ltr; text-align: left">--------+-----------------------</span>
+<span class="pre-span" style="direction: ltr; text-align: left">ABCEH |BCDEGHI |BCEFGH</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">BCDEGHI |BCDEGHI |BCEFGH</span>     
+<span class="pre-span" style="direction: ltr; text-align: left">BCEFGH |BCDEGHI |BCEFGH</span>     
+
+</pre><p><br><br><!-- To show strongly recommend and practice link    --></p><div id="practiceLinkDiv"><h2 class="sigil_not_in_toc"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="https://ide.geeksforgeeks.org/">&#x5EFA;&#x8BAE;&#xFF1A;&#x5728;&#x7EE7;&#x7EED;&#x4F7F;&#x7528;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E4B;&#x524D;&#xFF0C;&#x8BF7;&#x5148;&#x5728;<b><i><u>{IDE}</u></i></b>&#x4E0A;&#x5C1D;&#x8BD5;&#x60A8;&#x7684;&#x65B9;&#x6CD5;&#x3002;</a></span> </h2></div><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x8BF4;&#x660E;&#xFF1A;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F93;&#x5165;&#x7684;&#x7B2C;&#x4E00;&#x884C;&#x5305;&#x542B;NFA&#x7684;&#x72B6;&#x6001;&#x6570;&#xFF08; <strong>N</strong> &#xFF09;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F93;&#x5165;&#x7684;&#x7B2C;&#x4E8C;&#x884C;&#x8868;&#x793A;&#x8F93;&#x5165;&#x7B26;&#x53F7;&#x7684;&#x6570;&#x91CF;&#xFF08; <strong>S</strong> &#xFF09;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x793A;&#x4F8B;1&#x4E2D;&#xFF0C;NFA&#x7684;&#x72B6;&#x6001;&#x6570;&#x662F;6&#xFF0C;&#x5373;&#xFF08; <strong>A&#xFF0C;B&#xFF0C;C&#xFF0C;D&#xFF0C;E&#xFF0C;F</strong> &#xFF09;&#x548C;2&#x4E2A;&#x8F93;&#x5165;&#x7B26;&#x53F7;&#xFF0C;&#x5373;&#xFF08; <strong>0,1</strong> &#xFF09;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7531;&#x4E8E;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x2208;move&#x6765;&#x5904;&#x7406;NFA&#xFF0C;&#x56E0;&#x6B64;&#x5C06;&#x6DFB;&#x52A0;<strong>&#x2208;</strong>&#x4F5C;&#x4E3A;&#x989D;&#x5916;&#x7684;&#x8F93;&#x5165;&#x7B26;&#x53F7;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x63A5;&#x4E0B;&#x6765;&#x7684;<strong>N</strong>&#x884C;&#x5305;&#x542B;&#x6BCF;&#x4E2A;NFA&#x72B6;&#x6001;&#x7684;&#x8F6C;&#x6362;&#x503C;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7B2C;i&#x884C;&#xFF0C;&#x7B2C;j&#x5217;&#x7684;&#x503C;&#x8868;&#x793A;&#x7B2C;j&#x4E2A;&#x8F93;&#x5165;&#x7B26;&#x53F7;&#x4E0A;&#x7684;&#x7B2C;i&#x4E2A;&#x72B6;&#x6001;&#x7684;&#x8F6C;&#x6362;&#x503C;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x91CC;&#x662F;example1 <strong>&#x8F6C;&#x6362;&#xFF08;A&#xFF0C;0&#xFF09;&#xFF1A;FC</strong> &#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5BF9;&#x4E8E;&#x901A;&#x8FC7;&#x8F6C;&#x6362;&#x8F93;&#x5165;NFA&#x83B7;&#x5F97;&#x7684;&#x76F8;&#x5E94;NFA&#x548C;DFA&#x7684;&#x6BCF;&#x4E2A;&#x72B6;&#x6001;&#xFF0C;&#x8F93;&#x51FA;&#x5305;&#x542B;NFA&#xFF0C;&#x3B5;&#x95ED;&#x5305;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD8;&#x6307;&#x5B9A;&#x4E86;DFA&#x7684;&#x72B6;&#x6001;&#x548C;&#x8F93;&#x5165;&#x7B26;&#x53F7;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4EE5;&#x4E0B;&#x662F;&#x4E0A;&#x8FF0;&#x65B9;&#x6CD5;&#x7684;&#x5B9E;&#x65BD;&#xFF1A;</span> </p>
+<pre class="brush: c; title: ; notranslate" title="">// C Program to illustrate how to convert e-nfa to DFA
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#define MAX_LEN 100
+
+char NFA_FILE[MAX_LEN];
+char buffer[MAX_LEN];
+int zz = 0;
+
+// Structure to store DFA states and their
+// status ( i.e new entry or already present)
+struct DFA {
+  char *states;
+  int count;
+} dfa;
+
+int last_index = 0;
+FILE *fp;
+int symbols;
+
+/* reset the hash map*/
+void reset(int ar[], int size) {
+  int i;
+
+  // reset all the values of
+  // the mapping array to zero
+  for (i = 0; i &lt; size; i++) {
+    ar[i] = 0;
+  }
+}
+
+// Check which States are present in the e-closure
+
+/* map the states of NFA to a hash set*/
+void check(int ar[], char S[]) {
+  int i, j;
+
+  // To parse the individual states of NFA
+  int len = strlen(S);
+  for (i = 0; i &lt; len; i++) {
+
+    // Set hash map for the position
+    // of the states which is found
+    j = ((int)(S[i]) - 65);
+    ar[j]++;
+  }
+}
+
+// To find new Closure States
+void state(int ar[], int size, char S[]) {
+  int j, k = 0;
+
+  // Combine multiple states of NFA
+  // to create new states of DFA
+  for (j = 0; j &lt; size; j++) {
+    if (ar[j] != 0)
+      S[k++] = (char)(65 + j);
+  }
+
+  // mark the end of the state
+  S[k] = &apos;\0&apos;;
+}
+
+// To pick the next closure from closure set
+int closure(int ar[], int size) {
+  int i;
+
+  // check new closure is present or not
+  for (i = 0; i &lt; size; i++) {
+    if (ar[i] == 1)
+      return i;
+  }
+  return (100);
+}
+
+// Check new DFA states can be
+// entered in DFA table or not
+int indexing(struct DFA *dfa) {
+  int i;
+
+  for (i = 0; i &lt; last_index; i++) {
+    if (dfa[i].count == 0)
+      return 1;
+  }
+  return -1;
+}
+
+/* To Display epsilon closure*/
+void Display_closure(int states, int closure_ar[],
+                     char *closure_table[],
+                     char *NFA_TABLE[][symbols + 1],
+                     char *DFA_TABLE[][symbols]) {
+  int i;
+  for (i = 0; i &lt; states; i++) {
+    reset(closure_ar, states);
+    closure_ar[i] = 2;
+
+    // to neglect blank entry
+    if (strcmp(&amp;NFA_TABLE[i][symbols], &quot;-&quot;) != 0) {
+
+      // copy the NFA transition state to buffer
+      strcpy(buffer, &amp;NFA_TABLE[i][symbols]);
+      check(closure_ar, buffer);
+      int z = closure(closure_ar, states);
+
+      // till closure get completely saturated
+      while (z != 100)
+      {
+        if (strcmp(&amp;NFA_TABLE[z][symbols], &quot;-&quot;) != 0) {
+          strcpy(buffer, &amp;NFA_TABLE[z][symbols]);
+
+          // call the check function
+          check(closure_ar, buffer);
+        }
+        closure_ar[z]++;
+        z = closure(closure_ar, states);
+      }
+    }
+
+    // print the e closure for every states of NFA
+    printf(&quot;\n e-Closure (%c) :\t&quot;, (char)(65 + i));
+
+    bzero((void *)buffer, MAX_LEN);
+    state(closure_ar, states, buffer);
+    strcpy(&amp;closure_table[i], buffer);
+    printf(&quot;%s\n&quot;, &amp;closure_table[i]);
+  }
+}
+
+/* To check New States in DFA */
+int new_states(struct DFA *dfa, char S[]) {
+
+  int i;
+
+  // To check the current state is already
+  // being used as a DFA state or not in
+  // DFA transition table
+  for (i = 0; i &lt; last_index; i++) {
+    if (strcmp(&amp;dfa[i].states, S) == 0)
+      return 0;
+  }
+
+  // push the new
+  strcpy(&amp;dfa[last_index++].states, S);
+
+  // set the count for new states entered
+  // to zero
+  dfa[last_index - 1].count = 0;
+  return 1;
+}
+
+// Transition function from NFA to DFA
+// (generally union of closure operation )
+void trans(char S[], int M, char *clsr_t[], int st,
+               char *NFT[][symbols + 1], char TB[]) {
+  int len = strlen(S);
+  int i, j, k, g;
+  int arr[st];
+  int sz;
+  reset(arr, st);
+  char temp[MAX_LEN], temp2[MAX_LEN];
+  char *buff;
+
+  // Transition function from NFA to DFA
+  for (i = 0; i &lt; len; i++) {
+
+    j = ((int)(S[i] - 65));
+    strcpy(temp, &amp;NFT[j][M]);
+
+    if (strcmp(temp, &quot;-&quot;) != 0) {
+      sz = strlen(temp);
+      g = 0;
+
+      while (g &lt; sz) {
+        k = ((int)(temp[g] - 65));
+        strcpy(temp2, &amp;clsr_t[k]);
+        check(arr, temp2);
+        g++;
+      }
+    }
+  }
+
+  bzero((void *)temp, MAX_LEN);
+  state(arr, st, temp);
+  if (temp[0] != &apos;\0&apos;) {
+    strcpy(TB, temp);
+  } else
+    strcpy(TB, &quot;-&quot;);
+}
+
+/* Display DFA transition state table*/
+void Display_DFA(int last_index, struct DFA *dfa_states,
+                 char *DFA_TABLE[][symbols]) {
+  int i, j;
+  printf(&quot;\n\n********************************************************\n\n&quot;);
+  printf(&quot;\t\t DFA TRANSITION STATE TABLE \t\t \n\n&quot;);
+  printf(&quot;\n STATES OF DFA :\t\t&quot;);
+
+  for (i = 1; i &lt; last_index; i++)
+    printf(&quot;%s, &quot;, &amp;dfa_states[i].states);
+  printf(&quot;\n&quot;);
+  printf(&quot;\n GIVEN SYMBOLS FOR DFA: \t&quot;);
+
+  for (i = 0; i &lt; symbols; i++)
+    printf(&quot;%d, &quot;, i);
+  printf(&quot;\n\n&quot;);
+  printf(&quot;STATES\t&quot;);
+
+  for (i = 0; i &lt; symbols; i++)
+    printf(&quot;|%d\t&quot;, i);
+  printf(&quot;\n&quot;);
+
+  // display the DFA transition state table
+  printf(&quot;--------+-----------------------\n&quot;);
+  for (i = 0; i &lt; zz; i++) {
+    printf(&quot;%s\t&quot;, &amp;dfa_states[i + 1].states);
+    for (j = 0; j &lt; symbols; j++) {
+      printf(&quot;|%s \t&quot;, &amp;DFA_TABLE[i][j]);
+    }
+    printf(&quot;\n&quot;);
+  }
+}
+
+// Driver Code
+int main() {
+  int i, j, states;
+  char T_buf[MAX_LEN];
+
+  // creating an array dfa structures
+  struct DFA *dfa_states = malloc(MAX_LEN * (sizeof(dfa)));
+  states = 6, symbols = 2;
+
+  printf(&quot;\n STATES OF NFA :\t\t&quot;);
+  for (i = 0; i &lt; states; i++)
+
+    printf(&quot;%c, &quot;, (char)(65 + i));
+  printf(&quot;\n&quot;);
+  printf(&quot;\n GIVEN SYMBOLS FOR NFA: \t&quot;);
+
+  for (i = 0; i &lt; symbols; i++)
+
+    printf(&quot;%d, &quot;, i);
+  printf(&quot;eps&quot;);
+  printf(&quot;\n\n&quot;);
+  char *NFA_TABLE[states][symbols + 1];
+
+  // Hard coded input for NFA table
+  char *DFA_TABLE[MAX_LEN][symbols];
+  strcpy(&amp;NFA_TABLE[0][0], &quot;FC&quot;);
+  strcpy(&amp;NFA_TABLE[0][1], &quot;-&quot;);
+  strcpy(&amp;NFA_TABLE[0][2], &quot;BF&quot;);
+  strcpy(&amp;NFA_TABLE[1][0], &quot;-&quot;);
+  strcpy(&amp;NFA_TABLE[1][1], &quot;C&quot;);
+  strcpy(&amp;NFA_TABLE[1][2], &quot;-&quot;);
+  strcpy(&amp;NFA_TABLE[2][0], &quot;-&quot;);
+  strcpy(&amp;NFA_TABLE[2][1], &quot;-&quot;);
+  strcpy(&amp;NFA_TABLE[2][2], &quot;D&quot;);
+  strcpy(&amp;NFA_TABLE[3][0], &quot;E&quot;);
+  strcpy(&amp;NFA_TABLE[3][1], &quot;A&quot;);
+  strcpy(&amp;NFA_TABLE[3][2], &quot;-&quot;);
+  strcpy(&amp;NFA_TABLE[4][0], &quot;A&quot;);
+  strcpy(&amp;NFA_TABLE[4][1], &quot;-&quot;);
+  strcpy(&amp;NFA_TABLE[4][2], &quot;BF&quot;);
+  strcpy(&amp;NFA_TABLE[5][0], &quot;-&quot;);
+  strcpy(&amp;NFA_TABLE[5][1], &quot;-&quot;);
+  strcpy(&amp;NFA_TABLE[5][2], &quot;-&quot;);
+  printf(&quot;\n NFA STATE TRANSITION TABLE \n\n\n&quot;);
+  printf(&quot;STATES\t&quot;);
+
+  for (i = 0; i &lt; symbols; i++)
+    printf(&quot;|%d\t&quot;, i);
+  printf(&quot;eps\n&quot;);
+
+  // Displaying the matrix of NFA transition table
+  printf(&quot;--------+------------------------------------\n&quot;);
+  for (i = 0; i &lt; states; i++) {
+    printf(&quot;%c\t&quot;, (char)(65 + i));
+
+    for (j = 0; j &lt;= symbols; j++) {
+      printf(&quot;|%s \t&quot;, &amp;NFA_TABLE[i][j]);
+    }
+    printf(&quot;\n&quot;);
+  }
+  int closure_ar[states];
+  char *closure_table[states];
+
+  Display_closure(states, closure_ar, closure_table, NFA_TABLE, DFA_TABLE);
+  strcpy(&amp;dfa_states[last_index++].states, &quot;-&quot;);
+
+  dfa_states[last_index - 1].count = 1;
+  bzero((void *)buffer, MAX_LEN);
+
+  strcpy(buffer, &amp;closure_table[0]);
+  strcpy(&amp;dfa_states[last_index++].states, buffer);
+
+  int Sm = 1, ind = 1;
+  int start_index = 1;
+
+  // Filling up the DFA table with transition values
+  // Till new states can be entered in DFA table
+  while (ind != -1) {
+    dfa_states[start_index].count = 1;
+    Sm = 0;
+    for (i = 0; i &lt; symbols; i++) {
+
+      trans(buffer, i, closure_table, states, NFA_TABLE, T_buf);
+
+      // storing the new DFA state in buffer
+      strcpy(&amp;DFA_TABLE[zz][i], T_buf);
+
+      // parameter to control new states
+      Sm = Sm + new_states(dfa_states, T_buf);
+    }
+    ind = indexing(dfa_states);
+    if (ind != -1)
+      strcpy(buffer, &amp;dfa_states[++start_index].states);
+    zz++;
+  }
+  // display the DFA TABLE
+  Display_DFA(last_index, dfa_states, DFA_TABLE);
+
+  return 0;
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x4F7F;&#x7528;NFA&#x548C;&#x2208;move&#xFF1A;</strong>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x60F3;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x63A5;&#x53D7;&#x8BED;&#x8A00;&#x7684;FA&#xFF0C;&#x6709;&#x65F6;&#x5019;&#x6784;&#x5EFA;&#x76F4;&#x63A5;NFA&#x6216;DFA&#x53D8;&#x5F97;&#x975E;&#x5E38;&#x56F0;&#x96BE;&#x6216;&#x8005;&#x4F3C;&#x4E4E;&#x662F;&#x4E0D;&#x53EF;&#x80FD;&#x7684;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F46;&#x662F;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x5177;&#x6709;&#x2208;&#x79FB;&#x52A8;&#x7684;NFA&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x5BB9;&#x6613;&#x5730;&#x6784;&#x9020;&#x548C;&#x63CF;&#x8FF0;&#x8FC7;&#x6E21;&#x56FE;&#x3002;</span> </p><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><hr><hr><!-- .entry-meta --></div></body></html>
