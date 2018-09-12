@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Master Slave JK Flip Flop</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisite –</b> <a href="https://www.geeksforgeeks.org/flip-flop-types-and-their-conversion/" target="_blank">Flip-flop types and their Conversion</a></p>
+<p><b>Race Around Condition In JK Flip-flop –</b> For J-K flip-flop, if J=K=1, and if clk=1 for a long period of time, then Q output will toggle as long as CLK is high, which makes the output of the flip-flop unstable or uncertain. This problem is called race around condition in J-K flip-flop. This problem (Race Around Condition) can be avoided by ensuring that the  clock input is at logic “1” only for a very short time. This introduced the concept of <b>Master Slave JK</b> flip flop.</p>
+<p><b>Master Slave JK flip flop –</b><br/>
+The Master-Slave Flip-Flop is basically a combination of two JK  flip-flops connected together in a series configuration. Out of these, one acts as the <strong>“master”</strong> and the other as a <strong>“slave”</strong>. The output from the master flip flop is connected to the two inputs of the slave flip flop whose output is fed back to inputs of the master flip flop. </p>
+<p>In addition to these two flip-flops, the circuit also includes an <strong>inverter</strong>. The inverter is connected to clock pulse in such a way that the inverted clock pulse is given to the slave flip-flop. In other words if CP=0 for a master flip-flop, then CP=1 for a slave flip-flop and if CP=1 for master flip flop then it becomes 0 for slave flip flop.</p>
+<p><img src="../../../imgs/digital-logic/94d7657de2b04903d5a88799fd644549.jpg" alt="" width="584" height="337" class="aligncenter size-full wp-image-274087"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Working of a master slave flip flop –</strong></p>
+<ol>
+<li>When the clock pulse goes to 1, the slave is isolated; J and K inputs may affect the state of the system. The slave flip-flop is isolated until the CP goes to 0. When the CP goes back to 0, information is passed from the master flip-flop to the slave and output is obtained.</li>
+<li>Firstly the master flip flop is positive level triggered and the slave flip flop is negative level triggered, so the master responds before the slave.</li>
+<li>If J=0 and K=1, the high Q’ output of the master goes to the K input of the slave and the clock forces the slave to reset, thus the slave copies the master.</li>
+<li>If J=1 and K=0, the high Q output of the master goes to the J input of the slave and the Negative transition of the clock sets the slave, copying the master. </li>
+<li>If J=1 and K=1, it toggles on the positive transition of the clock and thus the slave toggles on the negative transition of the clock.</li>
+<li>If J=0 and K=0, the flip flop is disabled and Q remains unchanged.</li>
+</ol>
+<p><strong>Timing Diagram of a Master flip flop –</strong></p>
+<p><img src="../../../imgs/digital-logic/c09c3633cd5956516e8734ef364274c8.jpg" alt=""/></p>
+<ol>
+<li>When the Clock pulse is high the output of master is high and remains high till the clock is low because the state is stored.</li>
+<li>Now the output of master becomes low when the clock pulse becomes high again and remains low until the clock becomes high again.</li>
+<li>Thus toggling takes place for a clock cycle.</li>
+<li>When the clock pulse is high, the master is operational but not the slave thus the output of the slave remains low till the clock remains high.</li>
+<li>When the clock is low, the slave becomes operational and remains high until the clock again becomes low.</li>
+<li>Toggling takes place during the whole process since the output is changing once in a cycle.</li>
+</ol>
+<p>This makes the Master-Slave J-K flip flop a Synchronous device as it only passes data with the timing of the clock signal.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

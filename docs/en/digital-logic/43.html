@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Synchronous Sequential Circuits | Digital Logic</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Steps to solve a problem:<br/>
+<strong>1.</strong> Draw the state diagram from the problem statement or from the given state table.</p>
+<p><strong>Example:</strong> Serial Adder.<br/>
+The functioning of serial adder can be depicted by the following state diagram. X1 and X2 are inputs, A and B are states representing carry.</p>
+<p><img src="../../../imgs/digital-logic/571ec775ef4c30060edd79b645c6cbf4.jpg" alt="" class="aligncenter size-medium wp-image-180376" srcset="https://www.geeksforgeeks.org/wp-content/uploads/synchronous_1.png 596w, https://www.geeksforgeeks.org/wp-content/uploads/synchronous_1-300x110.png 300w" sizes="(max-width: 596px) 100vw, 596px"/></p>
+<p>
+<strong>2.</strong> Draw the state table. If there is any redundant state then reduce the state table.<br/>
+<img src="../../../imgs/digital-logic/d30a39bf4bebb29b773e66ea63a6899e.jpg" alt="" class="aligncenter size-medium wp-image-180379" srcset="https://www.geeksforgeeks.org/wp-content/uploads/synchronous_2.png 593w, https://www.geeksforgeeks.org/wp-content/uploads/synchronous_2-300x120.png 300w" sizes="(max-width: 593px) 100vw, 593px"/><br/>
+<br/>
+<strong>3.</strong> Select <strong>state assignment</strong> i.e. assign binary numbers to the states according to total number states. Also decide the memory element (flip-flops) for the circuit.<br/>
+A -&gt; 0</p>
+<p>B -&gt; 1<br/>
+<strong>4.</strong> Replace the assignments in the state table to obtain Transition table:<br/>
+<img src="../../../imgs/digital-logic/4b448515abcc6b597ca63cf32b4f17ed.jpg" alt="" class="aligncenter size-medium wp-image-180380" srcset="https://www.geeksforgeeks.org/wp-content/uploads/synchronous_3.png 586w, https://www.geeksforgeeks.org/wp-content/uploads/synchronous_3-300x92.png 300w" sizes="(max-width: 586px) 100vw, 586px"/><br/>
+<br/>
+<strong>5.</strong> Separate the output table from the transition table.<br/>
+<img src="../../../imgs/digital-logic/80877e1c7ffb4ec61a53e7e6ffabfdff.jpg" alt="" class="aligncenter size-medium wp-image-180381" srcset="https://www.geeksforgeeks.org/wp-content/uploads/synchronous_4.png 581w, https://www.geeksforgeeks.org/wp-content/uploads/synchronous_4-300x92.png 300w" sizes="(max-width: 581px) 100vw, 581px"/><br/>
+</p>
+<center>
+<p><font size="6">z = x<sub>1</sub>x’<sub>2</sub>y+x’<sub>1</sub>x<sub>2</sub>y’+x<sub>1</sub>x<sub>2</sub>y+x<sub>1</sub>x’<sub>2</sub>y’</font></p>
+<p></p></center>
+<br/>
+<br/>
+<strong>6.</strong> Excitation table for the flip-flop is obtained from the transition table using the output of flip-flop.<br/>
+<strong>Excitation table for D flip-flop:</strong><br/>
+<img src="../../../imgs/digital-logic/40fd5bc8496b2ecc1b8134dd4fd610bf.jpg" alt="" class="aligncenter size-medium wp-image-180382" srcset="https://www.geeksforgeeks.org/wp-content/uploads/synchronous_5.png 593w, https://www.geeksforgeeks.org/wp-content/uploads/synchronous_5-300x105.png 300w" sizes="(max-width: 593px) 100vw, 593px"/><br/>
+<center>
+<p><font size="6">D = x<sub>1</sub> x<sub>2</sub> +x<sub>1</sub> y+x<sub>2</sub> y</font></p>
+<p></p></center>
+<br/>
+<br/>
+<strong>7.</strong> Draw the circuit diagram using gates and flip-flops.<br/>
+<img src="../../../imgs/digital-logic/812ca375605d0fa5812d6f45c1bdd1fa.jpg" alt="" class="aligncenter size-medium wp-image-180398" srcset="https://www.geeksforgeeks.org/wp-content/uploads/synchronous_6.png 716w, https://www.geeksforgeeks.org/wp-content/uploads/synchronous_6-300x181.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/synchronous_6-660x397.png 660w" sizes="(max-width: 716px) 100vw, 716px"/><br/>
+<br/><br/><br/>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

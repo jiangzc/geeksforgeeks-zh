@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Full Adder | Digital Electronics</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Full Adder is the adder which adds three inputs and produces two outputs. The first two inputs are A and B and the third input is an input carry as C-IN. The output carry is designated as C-OUT and the normal output is designated as S which is SUM.<br/>
+A full adder logic is designed in such a manner that can take eight inputs together to create a byte-wide adder and cascade the carry bit from one adder to the another.</p>
+<p><img src="../../../imgs/digital-logic/84bfee1611d0d468775fb21710333378.jpg" width="334" height="165" alt="" class="aligncenter size-full"/></p>
+<p><strong>Full Adder Truth Table:</strong></p>
+<p><img src="../../../imgs/digital-logic/fcddcae4d7b8252becc4ca24ad9af8ce.jpg" width="464" height="203" alt="" class="aligncenter size-full"/></p>
+<p><strong>Logical Expression for SUM:</strong><br/>
+= A’ B’ C-IN + A’ B C-IN’ + A B’ C-IN’ + A B C-IN<br/>
+= C-IN (A’ B’ + A B) + C-IN’ (A’ B + A B’)<br/>
+= C-IN XOR (A XOR B)<br/>
+= (1,2,4,7)</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Logical Expression for C-OUT:</strong><br/>
+= A’ B C-IN + A B’ C-IN + A B C-IN’ + A B C-IN<br/>
+= A B + B C-IN + A C-IN<br/>
+= (3,5,6,7)</p>
+<p><strong>Another form in which C-OUT can be implemented:</strong><br/>
+= A B + A C-IN + B C-IN (A + A’)<br/>
+= A B C-IN + A B + A C-IN + A’ B C-IN<br/>
+= A B (1 +C-IN) + A C-IN + A’ B C-IN<br/>
+= A B + A C-IN + A’ B C-IN<br/>
+= A B + A C-IN (B + B’) + A’ B C-IN<br/>
+= A B C-IN + A B + A B’ C-IN + A’ B C-IN<br/>
+= A B (C-IN + 1) + A B’ C-IN + A’ B C-IN<br/>
+= A B + A B’ C-IN + A’ B C-IN<br/>
+= AB + C-IN (A’ B + A B’)<br/>
+Therefore COUT = AB + C-IN (A EX – OR B)</p>
+<p><img src="../../../imgs/digital-logic/6328507e86f8064d14d4e8f3b9d042fb.jpg" width="714" height="342" alt="" class="aligncenter size-full"/></p>
+<p align="center">Full Adder logic circuit.</p>
+<p><strong>Implementation of Full Adder using Half Adders</strong><br/>
+2 Half Adders and a OR gate is required to implement a Full Adder.</p>
+<p><img src="../../../imgs/digital-logic/e39775be631a3972e3edfc6836aece2a.jpg" width="633" height="244" alt="" class="aligncenter size-full"/></p>
+<p>With this logic circuit, two bits can be added together, taking a carry from the next lower order of magnitude, and sending a carry to the next higher order of magnitude.</p>
+<p><strong>Implementation of Full Adder using NAND gates:</strong></p>
+<p><img src="../../../imgs/digital-logic/0f47a596912f7c6898269330644dd8c7.jpg" width="943" height="421" alt="" class="aligncenter size-full"/></p>
+<p><strong>Implementation of Full Adder using NOR gates:</strong><br/>
+Total 9 NOR gates are required to implement a Full Adder.</p>
+<p><img src="../../../imgs/digital-logic/88904820f2b523d66a8d4e1599b8cc1f.jpg" width="1013" height="472" alt="" class="aligncenter size-full"/></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">BCD Adder</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>BCD stand for binary coded decimal. Suppose, we have two 4-bit numbers A and B. The value of A and B can varies from 0(0000 in binary) to 9(1001 in binary) because we are considering decimal numbers.</p>
+<p><img src="../../../imgs/digital-logic/aca7e7fe5b329dd19bdc41c8c6c91aa0.jpg" width="436" height="312" alt="" class="aligncenter size-full"/></p>
+<p>The output will varies from 0 to 18, if we are not considering the carry from the previous sum. But if we are considering the carry, then the maximum value of output will be 19 (i.e. 9+9+1 = 19).<br/>
+When we are simply adding A and B, then we get the binary sum. Here, to get the output in BCD form, we will use BCD Adder.</p>
+<p><b>Example 1:</b></p>
+<pre>Input :
+A = 0111  B = 1000 
+Output :
+Y = 1 0101
+
+Explanation: We are adding A(=7) and B(=8). 
+The value of binary sum will be 1111(=15). 
+But, the BCD sum will be 1 0101, 
+where 1 is 0001 in binary and 5 is 0101 in binary.
+</pre>
+<p><b>Example 2:</b></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre>Input :
+A = 0101  B = 1001
+Output :
+Y = 1 0100
+
+Explanation: We are adding A(=5) and B(=9). 
+The value of binary sum will be 1110(=14). 
+But, the BCD sum will be 1 0100, 
+where 1 is 0001 in binary and 4 is 0100 in binary.
+</pre>
+<p><strong>Note –</strong> If the sum of two number is less then or equal to 9, then the value of BCD sum and binary sum will be same otherwise they will differ by 6(0110 in binary).<br/>
+Now, lets move to the table and find out the logic when we are going to add “0110”. </p>
+<p><img src="../../../imgs/digital-logic/0eb76b5464b726063f2c25bba097d683.jpg" width="420" height="386" alt="" class="aligncenter size-full"/></p>
+<p>We are adding “0110” (=6) only to the second half of the table.<br/>
+<strong>The conditions are:</strong></p>
+<ol>
+<li>If C’ = 1       (Satisfies 16-19)</li>
+<li>If S3′.S2′ = 1  (Satisfies 12-15)</li>
+<li>If S3′.S1′ = 1  (Satisfies 10 and 11)</li>
+</ol>
+<p>So, our logic is</p>
+<pre><strong>C' + S3'.S2' + S3'.S1' = 1</strong>
+</pre>
+<p><strong>Implementation :</strong></p>
+<p><img src="../../../imgs/digital-logic/fa6033d1987ad10d81785e5dbb35950b.jpg" width="414" height="425" alt="" class="aligncenter size-full"/></p>
+<p>Read related articles: <a href="https://www.geeksforgeeks.org/digital-electronics-bcd-7-segment-decoder/" rel="noopener" target="_blank">BCD to 7 Segment Decoder</a>, <a href="https://www.geeksforgeeks.org/digital-logic-code-converters-bcd8421-tofrom-excess-3/" rel="noopener" target="_blank">BCD(8421) to/from Excess-3</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

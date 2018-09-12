@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">What is Scrambling?</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/digital-electronics-block-coding/" rel="noopener" target="_blank">Block Coding</a>, <a href="https://www.geeksforgeeks.org/digital-electronics-difference-unipolar-polar-bipolar-line-coding-schemes/" rel="noopener" target="_blank">Line Coding</a><br/>
+A computer network is designed to send information from one point to another. Data that we send can either be digital or analog. Also signals that represent data can also be digital or analog.<br/>
+ Thus to send data by using signals, we must able to convert data into signals this conversion can be Analog to Analog, Analog to Digital, Digital to Analog or Digital to Digital.</p>
+<p>Digital to Digital conversion involves three techniques – Line Coding, Block Coding, and Scrambling. <a href="https://www.geeksforgeeks.org/digital-electronics-difference-unipolar-polar-bipolar-line-coding-schemes/">Line Coding</a> is always needed, whereas <a href="https://www.geeksforgeeks.org/digital-electronics-block-coding/" rel="noopener" target="_blank">Block Coding</a> and Scrambling may or may not be needed depending upon need.</p>
+<p><b>Scrambling</b> is a technique that does not increase the number of bits and does provide synchronization. Problem with technique like Bipolar AMI(Alternate Mark Inversion) is that continuous sequence of zero’s create synchronization problems one solution to this is Scrambling.</p>
+<p>There are two common scrambling techniques:</p>
+<ol>
+<li>B8ZS(Bipolar with 8-zero substitution)</li>
+<li>HDB3(High-density bipolar3-zero)</li>
+</ol>
+<p><strong>B8ZS(Bipolar with 8-zero substitution) –</strong><br/>
+This technique is similar to Bipolar AMI except when eight consecutive zero-level voltages are encountered they are replaced by the sequence,”000VB0VB”.<br/>
+<strong>Note –</strong> </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li>V(Violation), is a non-zero voltage which means signal have same polarity as the previous non-zero voltage. Thus it is violation of general AMI technique.</li>
+<li>B(Bipolar), also non-zero voltage level which is in accordance with the AMI rule (i.e.,opposite polarity from the previous non-zero voltage).</li>
+</ul>
+<p>Example: Data = 100000000</p>
+<p><img src="../../../imgs/digital-logic/af3e62e660aa4354970723ec2ad64df5.jpg" alt="B8ZS"/></p>
+<p><strong>Note –</strong> Both figures (left and right one) are correct, depending upon last non-zero voltage signal of previous data sequence (i.e., sequence before current data sequence “100000000”). </p>
+<p><strong>HDB3(High-density bipolar3-zero) –</strong><br/>
+In this technique four consecutive zero-level voltages are replaced with a sequence “000V” or “B00V”.</p>
+<p>Rules for using these sequences:</p>
+<ul>
+<li>If the number of nonzero pulses after the last substitution is odd, the substitution pattern will be “000V”, this helps maintaining total number of nonzero pulses even.</li>
+<li>If the number of nonzero pulses after the last substitution is even, the substitution pattern will be “B00V”. Hence even number of nonzero pulses is maintained again.</li>
+</ul>
+<p>Example: Data = 1100001000000000</p>
+<p><img src="../../../imgs/digital-logic/3b9c188358f2cd48adc898bac6f57661.jpg" alt="HDB3"/></p>
+<p><strong>Explanation –</strong> After representing first two 1’s of data we encounter four consecutive zeros.Since our last substitutions were two 1’s(thus number of non-zero pulses is even).So,we substitute four zeros with “B00V”.</p>
+<p><strong>Note –</strong> Zero non-zero pulses are also even. </p>
+<p><strong>Reference-</strong><br/>
+<a href="https://www.amazon.in/COMMUNICATIONS-NETWORKING-UPDATE-Behrouz-Forouzan/dp/0070499357?tag=googinhydr18418-21">Data Communications and Networking</a> By Behrouz A.Forouzan (Book)</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

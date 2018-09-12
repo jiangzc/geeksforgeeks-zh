@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Encoder</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>An Encoder is a <b>combinational circuit</b> that performs the reverse operation of Decoder.It has maximum of <b>2^n input lines</b> and <b>‘n’ output lines</b>, hence it encodes the information from 2^n inputs into an n-bit code. It will produce a binary code equivalent to the input, which is active High. Therefore, the encoder encodes 2^n input lines with ‘n’ bits. </p>
+<p><img src="../../../imgs/digital-logic/a1c4101597e364d04d93d0e83695a8f2.jpg" alt="" width="300" height="145" class="aligncenter size-medium wp-image-248337"/></p>
+<h3 class="sigil_not_in_toc">4 : 2 Encoder –</h3>
+<p>The 4 to 2 Encoder consists of <strong>four inputs Y3, Y2, Y1 &amp; Y0 and two outputs A1 &amp; A0</strong>. At any time, only one of these 4 inputs can be ‘1’ in order to get the respective binary code at the output. The figure below shows the logic symbol of 4 to 2 encoder : </p>
+<p><img src="../../../imgs/digital-logic/839162a85be4e63c6972db071b2b2385.jpg" alt="" width="300" height="145" class="aligncenter size-medium wp-image-248337"/></p>
+<p>The Truth table of 4 to 2 encoder is as follows :</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/digital-logic/a5d6688e91484a0e70b640b90c3ca75c.jpg" alt="" width="370" height="200" class="aligncenter size-medium wp-image-248337"/></p>
+<p><strong>Logical expression for A1 and A0 :</strong></p>
+<pre>A1 = Y3 + Y2
+A0 = Y3 + Y1
+</pre>
+<p>The above two Boolean functions A1 and A0 can be implemented using two input OR gates :</p>
+<p><img src="../../../imgs/digital-logic/855b48a07b5071479fc247b4ac8bc332.jpg" alt="" width="300" height="145" class="aligncenter size-medium wp-image-248337"/></p>
+<h3 class="sigil_not_in_toc"> 8 : 3 Encoder (Octal to Binary) –</h3>
+<p>The 8 to 3 Encoder or octal to Binary encoder consists of <strong>8 inputs </strong>: Y7 to Y0 and <b>3 outputs</b> : A2, A1 &amp; A0. Each input line corresponds to each octal digit and three outputs generate corresponding binary code.</p>
+<p>The figure below shows the logic symbol of octal to binary encoder: </p>
+<p><img src="../../../imgs/digital-logic/2523c92bdbe63b4886b4a49efb696139.jpg" alt="" width="300" height="145" class="aligncenter size-medium wp-image-248337"/></p>
+<p>The truth table for 8 to 3 encoder is as follows :</p>
+<p><img src="../../../imgs/digital-logic/ec3014175ce01f97d60f7ff268aca46b.jpg" alt="" width="370" height="200" class="aligncenter size-medium wp-image-248337"/></p>
+<p><strong>Logical expression for A2, A1 and A0 :</strong></p>
+<pre>A2 = Y7 + Y6 + Y5 + Y4
+A1 = Y7 + Y6 + Y3 + Y2
+A0 = Y7 + Y5 + Y3 + Y1
+</pre>
+<p>The above two Boolean functions A2, A1 and A0 can be implemented using four input OR gates :</p>
+<p><img src="../../../imgs/digital-logic/4acef27dbe7e7178f88557c2059b7ad7.jpg" alt="" width="370" height="200" class="aligncenter size-medium wp-image-248337"/></p>
+<h3 class="sigil_not_in_toc">Decimal to BCD Encoder –</h3>
+<p>The decimal to binary  encoder usually consists of <strong>10 input lines</strong> and <b>4 output lines</b>. Each input line corresponds to the each decimal digit and 4 outputs correspond to the BCD code. This encoder accepts the decoded decimal data as an input and encodes it to the BCD output which is available on the output lines. The figure below shows the logic symbol of decimal to BCD encoder : </p>
+<p><img src="../../../imgs/digital-logic/b87736ad73ab2c1c8e1d1bd3a90df804.jpg" alt="" width="300" height="145" class="aligncenter size-medium wp-image-248337"/></p>
+<p>The truth table for decimal to BCD encoder is as follows:</p>
+<p><img src="../../../imgs/digital-logic/f5b22dd7247316978d22501039ce5e3f.jpg" alt="" width="370" height="200" class="aligncenter size-medium wp-image-248337"/></p>
+<p><strong>Logical expression for A3, A2, A1 and A0 :</strong></p>
+<pre> A3 = Y9 + Y8
+ A2 = Y7 + Y6 + Y5 +Y4
+ A1 = Y7 + Y6 + Y3 +Y2
+ A0 = Y9 + Y7 +Y5 +Y3 + Y1
+</pre>
+<p>The above two Boolean functions can be implemented using OR gates :</p>
+<p><img src="../../../imgs/digital-logic/63cf01fdb1f9d883b03f27fc52c83243.jpg" alt="" width="370" height="200" class="aligncenter size-medium wp-image-248337"/></p>
+<h3 class="sigil_not_in_toc">Priority Encoder –</h3>
+<p>A 4 to 2 priority encoder has <strong>4 inputs</strong> : Y3, Y2, Y1 &amp; Y0 and <b>2 outputs</b> : A1 &amp; A0. Here, the input, Y3 has the <b>highest priority</b>, whereas the input, Y0 has the <b>lowest priority</b>. In this case, even if more than one input is ‘1’ at the same time, the output will be the (binary) code corresponding to the input, which is having <strong>higher priority</strong>.</p>
+<p>The truth table for priority encoder is as follows :</p>
+<p><img src="../../../imgs/digital-logic/2e44a80d6862d1b6d1c3528b33ef130a.jpg" alt="" width="370" height="200" class="aligncenter size-medium wp-image-248337"/></p>
+<p><img src="../../../imgs/digital-logic/a03ac8b0d3969b1b9c6a8af85fe61651.jpg" alt="" width="370" height="200" class="aligncenter size-medium wp-image-248337"/></p>
+<p><img src="../../../imgs/digital-logic/ea820b18fa95bbc2490775ff00e6b588.jpg" alt="" width="370" height="200" class="aligncenter size-medium wp-image-248337"/></p>
+<p>The above two Boolean functions can be implemented as :</p>
+<p><img src="../../../imgs/digital-logic/0dbbdbef777b0b0520a8723d97de8163.jpg" alt="" width="370" height="200" class="aligncenter size-medium wp-image-248337"/></p>
+<p><strong>Drawbacks of Normal Encoders –</strong></p>
+<ol>
+<li>There is an ambiguity, when all outputs of encoder are equal to zero. </li>
+<li>If more than one input is active High, then the encoder produces an output, which may not be the correct code.</li>
+</ol>
+<p>So, to overcome these difficulties, we should assign priorities to each input of encoder. Then, the output of encoder will be the ( code corresponding to the active High inputs, which has higher priority.</p>
+<p><strong>Uses of Encoders –</strong></p>
+<ol>
+<li>Encoders are very common electronic circuits used in all digital systems.</li>
+<li>Encoders are used to translate the decimal values to the binary in order to perform the binary functions such as addition, subtraction, multiplication, etc.</li>
+<li>Other applications especially for Priority Encoders may include detecting interrupts in microprocessor applications.</li>
+</ol>
+<p><b>GATE CS Corner Questions</b></p>
+<p>Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2013-question-5/" target="_blank">GATE CS 2013, Question 65</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-3-question-18/" target="_blank">GATE CS 2014 (Set 3), Question 65</a></li>
+</ol>
+<p><b>References –</b><br/>
+<a href="https://en.wikipedia.org/wiki/Encoder_(digital)" target="_blank">Encoder – Wikipedia</a><br/>
+<a href="https://en.wikipedia.org/wiki/Priority_encoder" target="_blank">Priority encoder – Wikipedia</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

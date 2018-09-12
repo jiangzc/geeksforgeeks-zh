@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Number System and base conversions | Digital Electronics</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Electronic and Digital systems may use a variety of different number systems, (e.g. Decimal, Hexadecimal, Octal, Binary).</p>
+<p>A number N in base or radix b can be written as:<br/>
+(N)<sub>b</sub> = d<sub>n-1</sub> d<sub>n-2</sub> — — — — d<sub>1</sub> d<sub>0</sub> . d<sub>-1</sub> d<sub>-2</sub> — — — — d<sub>-m</sub></p>
+<p>In the above, d<sub>n-1</sub> to d<sub>0</sub> is integer part, then follows a radix point, and then d<sub>-1</sub> to d<sub>-m</sub> is fractional part. </p>
+<p>d<sub>n-1</sub> = Most significant bit (MSB)</p>
+<p>d<sub>-m</sub> = Least significant bit (LSB)</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/digital-logic/439d2a194fa04c0f30379bcf2e5d49ec.jpg" width="323" height="109" alt="" class="aligncenter size-full"/></p>
+<p>
+<strong>How to convert a number from one base to another?</strong><br/>
+Follow the example illustrations:</p>
+<h2 class="sigil_not_in_toc">1. Decimal to Binary</h2>
+<p>(10.25)<sub>10</sub><br/>
+</p>
+<p><img src="../../../imgs/digital-logic/723436f869285f6d48256c9fa09dd5eb.jpg" width="303" height="294" alt="" class="aligncenter size-full"/></p>
+<p><strong>Note: </strong>Keep multiplying the fractional part with 2 until decimal part 0.00 is obtained.<br/>
+(0.25)<sub>10</sub> = (0.01)<sub>2</sub></p>
+<p><strong>Answer:</strong> (10.25)<sub>10</sub> = (1010.01)<sub>2</sub><br/>
+</p>
+<h2 class="sigil_not_in_toc">2. Binary to Decimal</h2>
+<p>(1010.01)<sub>2</sub></p>
+<p>1×2<sup>3</sup> + 0x2<sup>2</sup> + 1×2<sup>1</sup>+ 0x2<sup>0</sup> + 0x2 <sup>-1</sup> + 1×2 <sup>-2</sup> = 8+0+2+0+0+0.25 = 10.25</p>
+<p>(1010.01)<sub>2</sub> = (10.25)<sub>10</sub><br/>
+</p>
+<h2 class="sigil_not_in_toc">3. Decimal to Octal</h2>
+<p>(10.25)<sub>10</sub></p>
+<p>(10)<sub>10</sub> = (12)<sub>8</sub></p>
+<p>Fractional part:</p>
+<p>0.25 x 8 = 2.00<br/>
+<br/>
+<strong>Note:</strong> Keep multiplying the fractional part with 8 until decimal part .00 is obtained.<br/>
+(.25)<sub>10</sub> = (.2)<sub>8</sub></p>
+<p><strong>Answer:</strong> (10.25)<sub>10</sub> = (12.2)<sub>8</sub><br/>
+</p>
+<h2 class="sigil_not_in_toc">4. Octal to Decimal</h2>
+<p>(12.2)<sub>8</sub><br/>
+1 x 8<sup>1</sup> + 2 x 8<sup>0</sup> +2 x 8<sup>-1</sup> = 8+2+0.25 = 10.25</p>
+<p>(12.2)<sub>8</sub> = (10.25)<sub>10</sub><br/>
+</p>
+<h2 class="sigil_not_in_toc">5. Hexadecimal and Binary</h2>
+<p>To convert from Hexadecimal to Binary, write the 4-bit binary equivalent of hexadecimal.</p>
+<p><img src="../../../imgs/digital-logic/5a70cef8e62dac2f016e6497bd1c3370.jpg" width="321" height="328" alt="" class="aligncenter size-full"/></p>
+<p>
+(3A)<sub>16</sub> = (00111010)<sub>2</sub><br/>
+To convert from Binary to Hexadecimal, group the bits in groups of 4 and write the hex for the 4-bit binary. Add 0's to adjust the groups.<br/>
+1111011011<br/>
+(001111011011 )<sub>2</sub> = (3DB)<sub>16</sub></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Counters in Digital Logic</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p style="text-align: justify">According to Wikipedia, in digital logic and computing, a <a href="https://en.wikipedia.org/wiki/Counter_(digital)" target="_blank"><strong>C</strong><b>ounter</b></a> is a device which stores (and sometimes displays) the number of times a particular event or process has occurred, often in relationship to a clock signal.&#160;Counters are used in digital electronics for counting purpose, they can count specific event happening in the circuit. For example, in UP&#160;counter a counter increases count for every rising edge of clock. Not only counting, a counter can follow the certain sequence based on our design like any random sequence 0,1,3,2… .They can also &#160;be designed with the help of flip flops.</p>
+<p style="text-align: center"><strong><u>Counter Classification</u></strong></p>
+<p>Counters are broadly divided into two categories</p>
+<ol>
+<li>Asynchronous counter</li>
+<li>Synchronous counter</li>
+</ol>
+<p>1.&#160;<strong><u>Asynchronous Counter </u></strong></p>
+<p>In asynchronous counter we don’t use universal clock, only first flip flop is driven by main clock and the clock input of rest of the following counters is driven by output of previous flip flops. We can understand it by following diagram-<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/counters-in-digital-logic.png"><img class="aligncenter size-full wp-image-20060" src="../../../imgs/digital-logic/ea13351c2d3d7bcb1f2e0755014c843b.jpg" alt="digi1" width="628" height="438"/></a></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>It is evident from timing diagram that Q0 is changing as soon as the rising edge of clock pulse is encountered, Q1 is changing when rising edge of Q0 is encountered(because Q0 is like clock pulse for second flip flop) and so on. In this way ripples are generated through Q0,Q1,Q2,Q3 hence it is also called <strong>RIPPLE&#160;counter.</strong></p>
+<p>2. <strong><u>Synchronous Counter</u></strong></p>
+<p>Unlike the asynchronous counter, synchronous counter has one global clock which drives each flip flop so output changes in parallel. The one advantage of synchronous counter over asynchronous counter is, it can operate on higher frequency than asynchronous counter as it does not have cumulative delay because of same clock is given to each flip flop.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/synchronous-counters.png"><img class="aligncenter size-full wp-image-20061" src="../../../imgs/digital-logic/e04bd60dac65a150a767d3d8f9ecdac6.jpg" alt="digi2" width="628" height="307"/></a></p>
+<p><strong>&#160;&#160; Synchronous&#160; counter circuit</strong></p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/timing-diagram-synchronous-counter.png&quot;"><img class="aligncenter size-full wp-image-20062" src="../../../imgs/digital-logic/0489f45283b0bbaba9e5e156644987bf.jpg" alt="digi3" width="670" height="333"/></a></p>
+<p style="text-align: center"><strong>Timing diagram synchronous counter</strong></p>
+<p>From circuit diagram we see that Q0 bit gives response to each falling edge of clock while Q1 is dependent on Q0, Q2 is dependent on Q1 and Q0 , Q3 is dependent on Q2,Q1 and Q0.</p>
+<p style="text-align: left"><strong><strong><u>Decade Counter</u></strong></strong></p>
+<p>A decade counter counts ten different states and then reset to its initial states. A simple decade counter will count from 0 to 9 but we can also make the decade counters which can go through any ten states between 0 to 15(for 4 bit counter).</p>
+<table>
+<tbody>
+<tr>
+<td width="85">Clock pulse</td>
+<td width="36">Q3</td>
+<td width="32">Q2</td>
+<td width="32">Q1</td>
+<td width="32">Q0</td>
+</tr>
+<tr>
+<td width="85">0</td>
+<td width="36">0</td>
+<td width="32">0</td>
+<td width="32">0</td>
+<td width="32">0</td>
+</tr>
+<tr>
+<td width="85">1</td>
+<td width="36">0</td>
+<td width="32">0</td>
+<td width="32">0</td>
+<td width="32">1</td>
+</tr>
+<tr>
+<td width="85">2</td>
+<td width="36">0</td>
+<td width="32">0</td>
+<td width="32">1</td>
+<td width="32">0</td>
+</tr>
+<tr>
+<td width="85">3</td>
+<td width="36">0</td>
+<td width="32">0</td>
+<td width="32">1</td>
+<td width="32">1</td>
+</tr>
+<tr>
+<td width="85">4</td>
+<td width="36">0</td>
+<td width="32">1</td>
+<td width="32">0</td>
+<td width="32">0</td>
+</tr>
+<tr>
+<td width="85">5</td>
+<td width="36">0</td>
+<td width="32">1</td>
+<td width="32">0</td>
+<td width="32">1</td>
+</tr>
+<tr>
+<td width="85">6</td>
+<td width="36">0</td>
+<td width="32">1</td>
+<td width="32">1</td>
+<td width="32">0</td>
+</tr>
+<tr>
+<td width="85">7</td>
+<td width="36">0</td>
+<td width="32">1</td>
+<td width="32">1</td>
+<td width="32">1</td>
+</tr>
+<tr>
+<td width="85">8</td>
+<td width="36">1</td>
+<td width="32">0</td>
+<td width="32">0</td>
+<td width="32">0</td>
+</tr>
+<tr>
+<td width="85">9</td>
+<td width="36">1</td>
+<td width="32">0</td>
+<td width="32">0</td>
+<td width="32">1</td>
+</tr>
+<tr>
+<td width="85">10</td>
+<td width="36">0</td>
+<td width="32">0</td>
+<td width="32">0</td>
+<td width="32">0</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Truth table for simple decade counter</strong></p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/decade-counter-circuit-diagram.png"><img class="aligncenter size-full wp-image-20063" src="../../../imgs/digital-logic/cc7711d5e94814e007fe4bedcb7ced1e.jpg" alt="digi4" width="610" height="317"/></a></p>
+<p style="text-align: center"><strong>Decade counter circuit diagram</strong></p>
+<p>We see from circuit diagram that we have used nand gate for Q3 and Q1 and feeding this to clear input line because binary representation of 10 is—</p>
+<p>1010</p>
+<p>And we see Q3 and Q1 are 1 here, if we give NAND&#160;of these two bits to clear input then counter will be clear at 10 and again start from beginning.</p>
+<p><strong><u>Important point</u></strong>: Number of flip flops used in counter are always greater than equal to (<strong>log<sub>2</sub>&#160;n</strong>)&#160; where n=number of states in counter.</p>
+<p style="text-align: center"><strong><u>Some previous years gate questions on Counters</u></strong></p>
+<p><strong>Q1. Consider the partial implementation of a 2-bitt counter using T flip-flops following the sequence 0-2-3-1-0, as shown below</strong></p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/counters-in-digital-logic-3.png"><img class="aligncenter size-full wp-image-20064" src="../../../imgs/digital-logic/4ebd312271200f48708827e706f0ffc0.jpg" alt="digi5" width="501" height="201"/></a></p>
+<p><strong>To complete the circuit, the input X should be</strong></p>
+<p><strong>(A)&#160;Q2′</strong><br/>
+<strong> (B)&#160;Q2 + Q1</strong><br/>
+<strong> (C)&#160;(Q1 ⊕ Q2)’</strong><br/>
+<strong> (D)&#160;Q1 ⊕ Q2&#160;&#160;&#160;&#160;&#160;</strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; (GATE-CS-2004)</p>
+<p><strong>Solution:</strong></p>
+<p>From circuit we see</p>
+<p>T1=XQ1’+X’Q1—-(1)</p>
+<p>AND</p>
+<p>T2=(Q2 ⊕ Q1)’—-(2)</p>
+<p>AND DESIRED OUTPUT IS 00-&gt;10-&gt;11-&gt;01-&gt;00</p>
+<p>SO X SHOULD BE&#160;<strong>Q1Q2’+Q1’Q2</strong>&#160;SATISFYING 1 AND 2.</p>
+<p>SO ANS IS (D) PART.</p>
+<hr/>
+<p>&#160;</p>
+<p><strong>Q2. The control signal functions of a 4-bit binary counter are given below (where X is “don’t care”)</strong><br/>
+<strong> The counter is connected as follows:</strong></p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/counters-in-digital-logic-4.png"><img class="aligncenter size-full wp-image-20065" src="../../../imgs/digital-logic/80aaa451681a7271a8c4a755293cc906.jpg" alt="digi6" width="574" height="439"/></a></p>
+<p><strong>Assume that the counter and gate delays are negligible. If the counter starts at 0, then it cycles through the following sequence:</strong></p>
+<p><strong>(A) 0,3,4 </strong></p>
+<p><strong>(B) 0,3,4,5</strong></p>
+<p><strong>&#160;(C) 0,1,2,3,4</strong></p>
+<p><strong>&#160;(D) 0,1,2,3,4,5&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </strong>(GATE-CS-2007)</p>
+<p><strong>Solution:</strong></p>
+<p>Initially A1 A2 A3 A4 =0000</p>
+<p>Clr=A1 and A3</p>
+<p>So when A1 and A3 both are 1 it again goes to 0000</p>
+<p>Hence 0000(init.) -&gt; 0001(A1 and A3=0)-&gt;0010 (A1 and A3=0) -&gt; 0011(A1 and A3=0) -&gt; 0100 (<strong>A1 and A3=1</strong>)[ clear condition satisfied] -&gt;0000(init.) so it goes through 0-&gt;1-&gt;2-&gt;3-&gt;4</p>
+<p>Ans is (C) part.</p>
+<hr/>
+<p><a href="http://quiz.geeksforgeeks.org/digital-logic-number-representation/" target="_blank">Quiz&#160;on Digital Logic</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

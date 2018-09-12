@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Variable entrant map (VEM)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/k-mapkarnaugh-map/" rel="noopener" target="_blank">Karnaugh Map (K-map)</a><br/>
+K-map is the best manual technique to solve Boolean equations, but it becomes difficult to manage when number of variables exceed 5 or 6. So, a technique called Variable Entrant Map (VEM) is used to increase the effective size of k-map. It allows a smaller map to handle large number of variables. This is done by writing output in terms of input.</p>
+<p><b>Example –</b> A 3-variable function can be defined as a function of 2-variables if the output is written in terms of third variable.</p>
+<p>Consider a function <strong>F(A,B,C) = (0,1,2,5)</strong><br/>
+<img src="../../../imgs/digital-logic/18365dcc463b8bb4ebc94c44000f6c7a.jpg" alt="" width="240" height="300" class="aligncenter size-medium wp-image-386425"/></p>
+<p>If we define F in terms of ‘C’, then this function can be written as:<br/>
+<img src="../../../imgs/digital-logic/7b1cb88d1d25157086ca302e1482486f.jpg" alt="" width="300" height="263" class="aligncenter size-medium wp-image-387391"/></p>
+<p>And the VEM for this is:<br/>
+<img src="../../../imgs/digital-logic/98fd84e8c4dd3a14cdd5815a029f2159.jpg" alt="" width="300" height="300" class="aligncenter size-medium wp-image-387633"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Advantages of using VEM –</strong></p>
+<ul>
+<li>A VEM can be used to plot more than ‘n’ variables using an ‘n’ variable K-map.
+</li>
+<li>It is commonly used to solve problems involving multiplexers.
+</li>
+</ul>
+<p><strong>Minimization procedure for VEM –</strong> Now, let’s see how to find SOP expression if a VEM is given.</p>
+<ol>
+<li>Write all the variables(original and complimented forms are treated as two different variables) in the map as 0, leave 0’s, minterms and don’t cares as it is and obtain the SOP expression.
+</li>
+<li>(a) Select one variable and make all occurrences of that variable as 1, write minterms (1’s) as don’t cares, leave 0’s and don’t cares as it is. Now, obtain the SOP expression.<br/>
+   (b) Multiply the obtained SOP expression with the concerned variable.
+</li>
+<li>Repeat step 2 for all the variables in the k-map.
+</li>
+<li>SOP of VEM is obtained by ORing all the obtained SOP expressions.
+</li>
+</ol>
+<p>Let’s apply the above procedure on a sample VEM (X is used to represent don’t care):</p>
+<p><img src="../../../imgs/digital-logic/c5c4471c30d5b27e2ec1c92de5d61f07.jpg" alt="" width="300" height="300" class="aligncenter size-medium wp-image-389024"/></p>
+<p><strong>Step 1:</strong> Write all the variables as 0 (D and D’ are considered as two different variables), leave minterms, 0’s and don’t cares as it is and obtain the SOP expression.</p>
+<p><img src="../../../imgs/digital-logic/f3e0b88952e6f1ec79109691efc38c50.jpg" alt="" width="300" height="300" class="aligncenter size-medium wp-image-389025"/></p>
+<pre> SOP obtained: A'C</pre>
+<p><strong>Step 2:</strong><br/>
+(a) Replace all occurances of D with 1, all occurrences of D’ with 0 and all 1’s with don’t care. Leave 0’s and don’t cares as it is.<br/>
+<img src="../../../imgs/digital-logic/a981933c6f82ea4b1d34fbe54f08e8d2.jpg" alt="" width="300" height="300" class="aligncenter size-medium wp-image-389026"/></p>
+<p>(b) Multiply the obtained SOP with the concerned variable.</p>
+<pre>SOP obtained: AC'D</pre>
+<p><strong>Step 3:</strong> Repeat step 2 for D’</p>
+<p>(a) Replace all occurrences of D’ with 1, all occurrences of D with 0  and all 1’s with don’t care. Leave 0’s and don’t cares as it is.<br/>
+<img src="../../../imgs/digital-logic/9ed418c67b92b43c0420a030a10de690.jpg" alt="" width="300" height="300" class="aligncenter size-medium wp-image-389029"/></p>
+<p>(b) Multiply the obtained SOP with the concerned variable.</p>
+<pre>SOP obtained: CD' </pre>
+<p><strong>Step 4:</strong> SOP of VEM is obtained by <strong>ORing</strong> all the obtained SOP expressions. Therefore, the SOP expression for the given VEM is: </p>
+<pre>A'C + AC'D + CD' </pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

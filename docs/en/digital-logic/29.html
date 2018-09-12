@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">BCD to 7 Segment Decoder</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/number-system-and-base-conversions/" rel="noopener" target="_blank">Number System and base conversions</a>, <a href="https://www.geeksforgeeks.org/digital-logic-code-converters-bcd8421-tofrom-excess-3/" rel="noopener" target="_blank">BCD(8421)</a></p>
+<p>In <strong>Binary Coded Decimal (BCD)</strong> encoding scheme each of the decimal numbers(0-9) is represented by its equivalent binary pattern(which is generally of 4-bits).</p>
+<p>Whereas, <strong>Seven segment</strong> display is an electronic device which consists of seven Light Emitting Diodes (LEDs) arranged in a some definite pattern (common cathode or common anode type), which is used to display Hexadecimal numerals(in this case decimal numbers,as input is BCD i.e., 0-9).</p>
+<p>Two types of seven segment LED display:</p>
+<ol>
+<li><strong>Common Cathode Type:</strong> In this type of display all cathodes of the seven LEDs are connected together to the ground or -Vcc(hence,common cathode) and LED displays digits when some ‘HIGH’ signal is supplied to the individual anodes.</li>
+<li><strong>Common Anode Type:</strong> In this type of display all the anodes of the seven LEDs are connected to battery or +Vcc and LED displays digits when some ‘LOW’ signal is supplied to the individual cathodes.</li>
+</ol>
+<p>But, seven segment display does not work by directly supplying voltage to different segments of LEDs. First, our decimal number is changed to its BCD equivalent signal then BCD to seven segment decoder converts that signals to the form which is fed to seven segment display.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>This BCD to seven segment decoder has four input lines (A, B, C and D) and 7 output lines (a, b, c, d, e, f and g), this output is given to seven segment LED display which displays the decimal number depending upon inputs.</p>
+<p><img src="../../../imgs/digital-logic/9099bb9e3321b113ec00f39bfe4321a1.jpg" width="515" height="264" class="aligncenter size-full"/></p>
+<p><strong>Truth Table –</strong> For common cathode type BCD to seven segment decoder:</p>
+<p><img src="../../../imgs/digital-logic/91894ef67af2b3445fff18d713ee23ff.jpg" width="393" height="218" class="aligncenter size-full"/></p>
+<p><strong>Note –</strong> </p>
+<ul>
+<li>For Common Anode type seven segment LED display, we only have to interchange all ‘0s’ and ‘1s’ in the output side i.e., (for a, b, c, d, e, f, and g replace all ‘1’ by ‘0’ and vice versa) and solve using K-map.</li>
+<li>Output for first combination of inputs (A, B, C and D) in Truth Table corresponds to ‘0’ and last combination corresponds to ‘9’. Similarly rest corresponds from 2 to 8 from top to bottom. </li>
+<li>BCD numbers only range from 0 to 9,thus rest inputs from 10-F are invalid inputs.</li>
+</ul>
+<p><strong>Example –</strong></p>
+<p><img src="../../../imgs/digital-logic/e7a267fb5036df85165ed4ca68143f71.jpg" width="511" height="210" class="aligncenter size-full"/></p>
+<p><strong>Explanation –</strong><br/>
+For combination where all the inputs (A, B, C and D) are zero (see Truth Table), our output lines are a = 1, b = 1, c = 1, d = 1, e = 1, f = 1 and g = 0. So 7 segment display shows ‘zero’ as output. </p>
+<p>Similarly, for combination where one of the input is one (D = 1) and rest are zero,our output lines  are a = 0, b = 1, c = 1, d = 0, e = 0, f = 0 and g = 0. So only LEDs ‘b’ and ‘c’ (see diagram above) will glow and 7 segment display shows ‘one’ as output.</p>
+<p><strong>K-Maps:</strong><br/>
+#for a:<br/>
+<img src="../../../imgs/digital-logic/f0c6d380b09d47deea5fb54b6bae2342.jpg" alt="a"/></p>
+<p>#for b:<br/>
+<img src="../../../imgs/digital-logic/2f45195eb3b74f566ae0878285bf7d83.jpg" alt="b"/></p>
+<p>#for c:<br/>
+<img src="../../../imgs/digital-logic/85bcf8c55446e470d017c7ae493cd20e.jpg" alt="c"/></p>
+<p>#for d:<br/>
+<img src="../../../imgs/digital-logic/1d816294cc69d0b6d1d57e1517870f6a.jpg" alt="d"/></p>
+<p>#for e:<br/>
+<img src="../../../imgs/digital-logic/79386a473660e1b783f4299e2ae86c44.jpg" alt="e"/></p>
+<p>#for f:<br/>
+<img src="../../../imgs/digital-logic/a393c50e5e473af70ab2866bcdecafec.jpg" alt="f"/></p>
+<p>#for g:<br/>
+<img src="../../../imgs/digital-logic/ce03da6c9baf972a9a0d71acbbae9021.jpg" alt="g"/></p>
+<p><strong>Applications –</strong><br/>
+Seven-segment displays are used to display the digits in calculators, clocks, various measuring instruments, digital watches and digital counters.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

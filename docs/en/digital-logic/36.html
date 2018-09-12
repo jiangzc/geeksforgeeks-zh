@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Binary Decoder</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In Digital Electronics, discrete quantities of information are represented by binary codes. A&#160;binary code of <b>n bits</b> is capable of representing up to <b>2^n distinct elements</b> of coded information. The name <b>“Decoder”</b> means to translate or decode coded information from one format into another, so a digital decoder transforms a set of digital input signals into an equivalent decimal code at its output. A <b>decoder</b> is a <b>combinational circuit</b> that converts binary information from <b>n input lines</b> to a maximum of <b>2^n unique output lines</b>.<br/>
+<img src="../../../imgs/digital-logic/f67c64a7527ebd99a7710e4a9e45bac6.jpg" alt="" width="300" height="145" class="aligncenter size-medium wp-image-248337"/></p>
+<h3 class="sigil_not_in_toc">Binary Decoder –</h3>
+<ul>
+<li>Binary Decoders are another type of digital logic device that has inputs of 2-bit, 3-bit or 4-bit codes depending upon the number of data input lines, so a decoder that has a set of two or more bits will be defined as having an n-bit code, and therefore it will be possible to represent 2^n possible values. </li>
+<li>If a binary decoder receives n inputs it activates one and only one of its 2^n outputs based on that input with all other outputs deactivated. If the n -bit coded information has unused combinations, the decoder may have fewer than 2^n outputs. </li>
+<li>Example, an inverter ( NOT-gate ) can be classified as a 1-to-2 binary decoder as 1-input and 2-outputs is possible. i.e an input A can give either A or A complement as the output.
+</li>
+<li>Then we can say that a standard combinational logic decoder is an n-to-m decoder, where m &lt;= 2^n, and whose output, Q is dependent only on its present input states. </li>
+<li>Their purpose is to generate the 2^n (or fewer) minterms of n input variables. Each combination of inputs will assert a unique output. </li>
+</ul>
+<p>A Binary Decoder converts coded inputs into coded outputs, where the input and output codes are different and decoders are available to “decode” either a Binary or BCD (8421 code) input pattern to typically a Decimal output code.<br/>
+Practical “binary decoder” circuits include, 2-to-4, 3-to-8 and 4-to-16 line configurations.</p>
+<h3 class="sigil_not_in_toc">2-to-4 Binary Decoder –</h3>
+<p><img src="../../../imgs/digital-logic/9864d71f098df403f24ed92bac305cbb.jpg" width="446" height="230" class="aligncenter size-medium"/></p>
+<p>The 2-to-4 line binary decoder depicted above consists of an array of four AND gates. The 2 binary inputs labelled A and B are decoded into one of 4 outputs, hence the description of 2-to-4 binary decoder. Each output represents one of the minterms of the 2 input variables, (each output = a minterm).</p>
+<p><img src="../../../imgs/digital-logic/5228ee1eb6daf805e51b78fbcef9c4ad.jpg" width="441" height="144" class="alignnone size-medium"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>The binary inputs A and B determine which output line from Q0 to Q3 is “HIGH” at logic level “1” while the remaining outputs are held “LOW” at logic “0” so only one output can be active (HIGH) at any one time. Therefore, whichever output line is “HIGH” identifies the binary code present at the input, in other words it “decodes” the binary input.</p>
+<p>Some binary decoders have an additional input pin labelled “Enable” that controls the outputs from the device. This extra input allows the decoders outputs to be turned “ON” or “OFF” as required. Output is only generated when the Enable input has value 1; otherwise, all outputs are 0. Only a small change in the implementation is required: the Enable input is fed into the AND gates which produce the outputs.</p>
+<p>If Enable is 0, all AND gates are supplied with one of the inputs as 0 and hence no output is produced. When Enable is 1, the AND gates get one of the inputs as 1, and now the output depends upon the remaining inputs. Hence the output of the decoder is dependent on whether the Enable is high or low.</p>
+<p><b>GATE CS Corner Questions</b></p>
+<p>Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2007-question-8/" target="_blank">GATE CS 2007, Question 85</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2013-question-5/" target="_blank">GATE CS 20130, Question 65</a></li>
+</ol>
+<p><b>References –</b></p>
+<p><a href="http://www.electronicshub.org/binary-decoder/" target="_blank">electronicshub – Binary Decoder</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

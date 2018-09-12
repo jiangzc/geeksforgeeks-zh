@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Asynchronous Sequential Circuits</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/digital-logic-introduction-sequential-circuits/" rel="noopener" target="_blank">Introduction of Sequential Circuits</a></p>
+<p><b>Sequential</b> circuits are those which use <b>previous and current input</b> variables by storing their information and placing them back into the circuit on the next clock (activation) cycle.  </p>
+<p>There are two types of input to the combinational logic. <b>External inputs</b> which come from outside the circuit design which are not controlled by the circuit <b>Internal inputs</b> which are functions of a previous output state. </p>
+<p>Asynchronous sequential circuits <b>do not use clock signals</b> as synchronous circuits do. Instead, the circuit is driven by the pulses of the inputs which means the state of the circuit changes when the inputs change. Also, they don’t use clock pulses. The change of internal state occurs when there is a change in the input variable. Their memory elements are either un-clocked flip-flops or time-delay elements. They are similar to combinational circuits with feedback.</p>
+<p><b>Advantages –</b></p>
+<ul>
+<li>No clock signal, hence no waiting for a clock pulse to begin processing inputs, therefore fast. Their speed is faster and theoretically limited only by propagation delays of the logic gates.</li>
+<li>Robust handling. Higher performance function units, which provide average-case completion rather than worst-case completion. <b>Lower power consumption</b> because no transistor transitions when it is not performing a useful computation. Absence of clock drivers reduce power consumption. Less severe electromagnetic interference (EMI).</li>
+<li>More tolerant to process variations and external voltage fluctuations. Achieve high performance while gracefully handling variable input and output rates and mismatched pipeline stage delays. Freedom from difficulties of distributing a high-fan-out, timing-sensitive clock signal. Better modularity.</li>
+<li><b>Less assumptions</b> about the manufacturing process. Circuit speed adapts to changing temperature and voltage conditions. Immunity to transistor-to-transistor variability in the manufacturing process, which is one of the most serious problems faced by the semiconductor industry</li>
+</ul>
+<p><b>Disadvantages –</b></p>
+<ul>
+<li>Some asynchronous circuits may require extra power for certain operations.</li>
+<li>More <b>difficult to design</b> and subject to problems like sensitivity to the relative arrival times of inputs at gates. If transitions on two inputs arrive at almost the same time, the circuit can go into the wrong state depending on slight differences in the propagation delays of the gates which is known as <b>race condition</b>. </li>
+<li>Number of circuit elements (transistors) maybe double that of synchronous circuits. Fewer people are trained in this style compared to synchronous design. Difficult to test and debug. Their <b>output</b> is <b>uncertain</b>.</li>
+<li>Performance of asynchronous circuits may be reduced in architectures that have a complex data path. Lack of dedicated, asynchronous design-focused commercial EDA tools.</li>
+</ul>
+<p><b>References –</b><br/>
+<a href="https://en.wikipedia.org/wiki/Asynchronous_circuit" rel="noopener" target="_blank">Asynchronous circuit – Wikipedia</a><br/>
+<a href="https://viden.io/knowledge/412/attachments/2070?name=viden-clip-K391-asychronous1.pdf" rel="noopener" target="_blank">Asynchronous Sequential Circuits – viden</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

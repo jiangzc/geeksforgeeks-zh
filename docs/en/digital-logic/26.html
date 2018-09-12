@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Full Subtractor</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>A full subtractor  is a <b>combinational circuit</b> that performs subtraction of two bits, one is minuend and other is subtrahend, taking into account borrow of the previous adjacent lower minuend bit. This circuit<strong> has three inputs and two outputs</strong>. The three inputs A, B and Bin, denote the minuend, subtrahend, and previous borrow, respectively. The two outputs, D and Bout  represent the difference and output borrow, respectively.</p>
+<p><img src="../../../imgs/digital-logic/1ce6ab9fa276be594fecfba4b40dae88.jpg" alt="" width="300" height="183" class="aligncenter size-medium wp-image-241919"/></p>
+<p><strong>Truth Table –</strong></p>
+<p><img src="../../../imgs/digital-logic/26c281598e119378da6abf4aa7b80ede.jpg" alt="" width="300" height="212" class="aligncenter size-medium wp-image-241921"/></p>
+<p>From above table we can draw the K-Map as shown  for “difference” and “borrow”.<br/>
+<img src="../../../imgs/digital-logic/1350bb3b474e835f73e80871a3e2c31c.jpg" alt="" width="300" height="237" class="aligncenter size-medium wp-image-241924"/><br/>
+<img src="../../../imgs/digital-logic/f866ec37a966ff8c3528f8475405c490.jpg" alt="" width="300" height="235" class="aligncenter size-medium wp-image-241925"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Logical expression for difference –</strong></p>
+<pre>D   = A’B’Bin + A’BBin’ + AB’Bin’ + ABBin
+    = Bin(A’B’ + AB)  + Bin’(AB’ + A’B)
+    = Bin( A XNOR B) + Bin’(A XOR B)
+    = Bin (A XOR B)’  +  Bin’(A XOR B)
+    = Bin XOR (A XOR B)
+    = (A XOR B) XOR Bin
+</pre>
+<p><strong>Logical expression for borrow –</strong></p>
+<pre>Bout = A’B’Bin + A’BBin’ + A’BBin + ABBin      
+     = A’B’Bin +A’BBin’ + A’BBin + A’BBin + A’BBin + ABBin
+     = A’Bin(B + B’) + A’B(Bin + Bin’) + BBin(A + A’)
+     = A’Bin + A’B + BBin
+
+OR
+
+Bout = A’B’Bin + A’BBin’ + A’BBin + ABBin      
+     = Bin(AB + A’B’) + A’B(Bin + Bin’)
+     = Bin( A XNOR B) + A’B
+     = Bin (A XOR B)’ + A’B
+</pre>
+<p><strong>Logic Circuit for Full Subtractor –</strong><br/>
+<img src="../../../imgs/digital-logic/f9abb6a29ea8a29d7c5e0f9bd7432f24.jpg" alt="" width="300" height="128" class="aligncenter size-medium wp-image-241939"/></p>
+<p><b>Implementation</b> of Full Subtractor using Half Subtractors –<br/>
+2 Half Subtractors and an OR gate is required to implement a Full Subtractor.<br/>
+<img src="../../../imgs/digital-logic/df7706a5a0be31a6ec32bb8f187e313a.jpg" alt="" width="350" height="200" class="aligncenter size-medium wp-image-241941"/></p>
+<p><b>Reference –</b> <a href="https://en.wikipedia.org/wiki/Subtractor#Full_Subtractor" target="_blank">Full Subtractor – Wikipedia</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

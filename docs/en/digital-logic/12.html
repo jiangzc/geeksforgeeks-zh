@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Canonical and Standard Form</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Canonical Form –</b>  In Boolean algebra,Boolean function can be expressed as Canonical Disjunctive Normal Form known as <b> minterm </b> and some are expressed as Canonical Conjunctive Normal Form known as <b> maxterm </b>.<br/>
+In Minterm, we look for the functions where the output results in “1” while in Minterm we look for function where the output results in “0”.<br/>
+We perform <strong> Sum of minterm </strong> also known as Sum of products (SOP) .<br/>
+We perform <strong> Product of Maxterm </strong> also known as Product of sum (POS).<br/>
+Boolean functions expressed as a sum of minterms or product of maxterms are said to be in  canonical form.</p>
+<p><b>Standard Form –</b> A Boolean variable can be expressed in either true form or complemented form. In standard form Boolean function will contain all the variables in either true form or complemented form while in canonical number of variables depends on the output of SOP or POS.</p>
+<p>A Boolean function can be expressed algebraically from a given truth table by forming a :</p>
+<ul>
+<li>minterm for each combination of the variables that produces a 1 in the function and then taking the OR of all those terms.</li>
+<li>maxterm for each combination of the variables that produces a 0 in the function and then taking the AND of all those terms.</li>
+</ul>
+<p><b>Truth table representing minterm and maxterm –</b> </p>
+<p><img src="../../../imgs/digital-logic/6ba1df89bb5eb37ccb1b816cb8d1574a.jpg" alt="" width="619" height="373" class="aligncenter size-full wp-image-249129"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>From the above table it is clear that minterm is expressed in product format and maxterm is expressed in sum format.</p>
+<p><b> Sum of minterms –</b><br/>
+The minterms whose sum defines the Boolean function are those which give the 1’s of the function in a truth table. Since the function can be either 1 or 0 for each minterm, and since there are 2^n minterms, one can calculate all the functions that can be formed with n variables to be (2^(2^n)). It is sometimes convenient to express a Boolean function in its sum of minterm form.</p>
+<ul>
+<li><b>Example –</b> Express the Boolean function  F = A + B’C    as a sum of minterms. </li>
+<li><b>Solution –</b><br/>
+A = A(B + B’) = AB + AB’<br/>
+This function is still missing one variable, so<br/>
+A = AB(C + C’) + AB'(C + C’) = ABC + ABC’+ AB’C + AB’C’<br/>
+The second term    B’C    is missing one variable; hence,<br/>
+B’C = B’C(A + A’) = AB’C + A’B’C<br/>
+Combining all terms, we have<br/>
+F = A + B’C = ABC + ABC’ + AB’C + AB’C’ + A’B’<br/>
+But AB’C appears twice, and<br/>
+according to theorem    1 (x + x = x),    it is possible to remove one of those occurrences. Rearranging the minterms in ascending order, we finally obtain<br/>
+F = A’B’C + AB’C + AB’C + ABC’ + ABC<br/>
+= m1 + m4 + m5 + m6 + m7<br/>
+SOP is represented as Sigma(1, 4, 5, 6, 7) </li>
+<ul>
+<p><b>Product of maxterms –</b><br/>
+Each of the 2^2n functions of n binary variables can be also expressed as a product of maxterms. To express a Boolean function as a product of maxterms, it must first be brought into a form of OR terms. </p>
+<ul>
+<li><b>Example –</b> Express the Boolean function F = xy + x’z as a product of maxterms</li>
+<li><b>Solution –</b><br/>
+F = xy + x’z<br/>
+= (xy + x’)(xy + z)<br/>
+= (x + x’)(y + x’)(x + z)(y + z)<br/>
+= (x’ + y)(x + z)(y + z)<br/>
+  x’ + y = x’ + y + zz’<br/>
+ = (x’+ y + z)(x’ + y + z’) x + z<br/>
+= x + z + yy’<br/>
+ = (x + y + z)(x + y’ + z) y + z<br/>
+ = y + z + xx’<br/>
+ = (x + y + z)(x’ + y + z)<br/>
+F = (x + y + z)(x + y’ + z)(x’ + y + z)(x’ + y + z’)<br/>
+= M0*M2*M4*M5<br/>
+POS is represented as Pi(0, 2, 4, 5)</li>
+<p><b>Conversion between Canonical Forms – </b><br/>
+The complement of a function expressed as the sum of minterms equals the sum of minterms missing from the original function. This is because the original function is expressed by those minterms which make the function equal to 1, whereas its complement is a 1 for those minterms for which the function is a 0. </p>
+<ul>
+<li><b>Example –</b>
+<p>F(A, B, C) = Sigma(1, 4, 5, 6, 7)<br/>
+F'(A, B, C) = Sigma(0, 2, 3) = m0 + m2 + m3<br/>
+Now, if we take the complement of F’ by DeMorgan’s theorem, we obtain F in a different form:<br/>
+ F = (m0 + m2 + m3)’<br/>
+= m0’m2’m3′<br/>
+= M0*M2*M3<br/>
+= PI(0, 2, 3)
+</p></li>
+</ul>
+<p><b>Conversion in standard form –</b><br/>
+The two canonical forms of Boolean algebra are basic forms that one obtains from reading a given function from the truth table. These forms are very seldom the ones with the least number of literals, because each minterm or maxterm must contain, by definition, all the variables, either complemented or uncomplemented. </p>
+<ul>
+<li><b>Example –</b> Convert Boolean expression in standard form F=y’+xz’+xyz</li>
+<li><b>Solution –</b> F = (x+x’)y'(z+z’)+x(y+y’)z’ +xyz<br/>
+F = xy’z+ xy’z’+x’y’z+x’y’z’+ xyz’+xy’z’+xyz
+</li>
+</ul>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ul>
+</ul>
+</ul>
+</div>
+</body>
+</html>

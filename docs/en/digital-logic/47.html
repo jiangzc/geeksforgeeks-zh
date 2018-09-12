@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Design counter for given sequence</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/counters-in-digital-logic/" rel="noopener" target="_blank">Counters</a><br/>
+<b>Problem –</b> Design synchronous counter for sequence: 0 → 1 → 3 → 4 → 5 → 7 → 0, using T flip-flop.</p>
+<p><b>Explanation –</b> For given sequence, state transition diagram as following below:</p>
+<p><img src="../../../imgs/digital-logic/b6a4bb0e32d1a331b9dbfe5dffef50c9.jpg" alt="" width="201" height="191" class="aligncenter size-full wp-image-422529"/></p>
+<p>State transition table logic:</p>
+<p></p>
+<center></center>
+<p></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<table style="width:80%">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Present State</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Next State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">7</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>State transition table for given sequence:</p>
+<table style="width:100%">
+<thead>
+<tr>
+<th colspan="3" style="padding:8px;background-color:#4CB96B;text-align:center">Present State</th>
+<th colspan="3" style="padding:8px;background-color:#4CB96B;text-align:center">Next State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Q<sub>3</sub></td>
+<td style="text-align:center">Q<sub>2</sub></td>
+<td style="text-align:center">Q<sub>1</sub></td>
+<td style="text-align:center">Q<sub>3</sub>(t+1)</td>
+<td style="text-align:center">Q<sub>2</sub>(t+1)</td>
+<td style="text-align:center">Q<sub>1</sub>(t+1)</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>T flip-flop –</strong> If value of Q  changes  either from 0 to 1 or from 1 to 0 then input for T flip-flop is 1 else input value is 0.</p>
+<p></p>
+<center></center>
+<p></p>
+<table style="width:80%">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Q<small>t</small></th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Q<small>t+1</small></th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center"><strong>T</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>Draw input table of all T flip-flops by using the excitation table of T flip-flop. As nature of T flip-flop is toggle in nature. Here, Q3 as Most significant bit and Q1 as least significant bit.</p>
+<p></p>
+<center></center>
+<p></p>
+<table border="1" style="width:80%">
+<thead>
+<tr>
+<th colspan="4" style="padding:8px;background-color:#4CB96B;text-align:center">Input table of Flip-Flops</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">T<sub>3</sub></td>
+<td style="text-align:center">T<sub>2</sub></td>
+<td style="text-align:center">T<sub>1</sub></td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>Find value of T<sub>3</sub>, T<sub>2</sub>, T<sub>1</sub> in terms of Q<sub>3</sub>, Q<sub>2</sub>, Q<sub>1</sub> using K-Map (Karnaugh Map):</p>
+<p><img src="../../../imgs/digital-logic/05d90f74bccb57d730f8f9287fde7efc.jpg" width="600" height="305" class="aligncenter size-full"/></p>
+<p>Therefore,</p>
+<pre>T<sub>3</sub> = Q<sub>2</sub> </pre>
+<p><img src="../../../imgs/digital-logic/2fa2c468eedd80834a58cfa8c11f715f.jpg" width="600" height="309" class="aligncenter size-full"/></p>
+<p>Therefore,</p>
+<pre>T<sub>2</sub> = Q<sub>1</sub> + Q<sub>2</sub></pre>
+<p><img src="../../../imgs/digital-logic/f4b180606dd96d481bae935530c7a9d0.jpg" width="600" height="310" class="aligncenter size-full"/></p>
+<p>Therefore,</p>
+<pre>T<sub>1</sub> = Q<sub>3</sub>’Q<sub>2</sub>’ + Q<sub>3</sub>Q<sub>2</sub> </pre>
+<p>Now, you can design required circuit using expressions of K-maps:</p>
+<p><img src="../../../imgs/digital-logic/9c103a2228fa3e65e2f5a4126397a203.jpg" alt="66666" width="783" height="473" class="aligncenter size-full wp-image-199693" srcset="https://www.geeksforgeeks.org/wp-content/uploads/66666.png 783w, https://www.geeksforgeeks.org/wp-content/uploads/66666-300x181.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/66666-768x464.png 768w, https://www.geeksforgeeks.org/wp-content/uploads/66666-660x399.png 660w" sizes="(max-width: 783px) 100vw, 783px"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

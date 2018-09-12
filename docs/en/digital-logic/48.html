@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">n-bit Johnson Counter</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/counters-in-digital-logic/" rel="noopener" target="_blank">Counters</a></p>
+<p>Johnson counter also known as creeping counter, is an example of synchronous counter. In Johnson counter, the complemented output of last flip flop is connected to input of first flip flop and to implement n-bit Johnson counter we require n flip-flop.It is one of the most important type of shift register counter. It is formed by the feedback of the output to its own input.Johnson counter is a ring with an inversion.Another name of Johnson counter are:creeping counter, twisted ring counter, walking counter, mobile counter and switch tail counter.</p>
+<blockquote><p> Total number of used and unused states in n-bit Johnson counter:<br/>
+             number of used states=2n<br/>
+             number of unused states=2<sup>n</sup> – 2*n
+</p>
+</blockquote>
+<p><b> Example:</b><br/>
+If n=4<br/>
+ 4-bit Johnson counter</p>
+<p>Initially, suppose all flip-flops are reset.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/digital-logic/289a211426ea310f3a7cd0c90adc21b8.jpg" alt="11" width="791" height="315" class="aligncenter size-full wp-image-186899" srcset="https://www.geeksforgeeks.org/wp-content/uploads/11-2.jpg 791w, https://www.geeksforgeeks.org/wp-content/uploads/11-2-300x119.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/11-2-768x306.jpg 768w, https://www.geeksforgeeks.org/wp-content/uploads/11-2-660x263.jpg 660w" sizes="(max-width: 791px) 100vw, 791px"/></p>
+<p><strong>Truth Table:</strong></p>
+<p><img src="../../../imgs/digital-logic/a113cb69e37b2eb2896407b19401bf73.jpg" alt="22" width="578" height="379" class="aligncenter size-full wp-image-186900" srcset="https://www.geeksforgeeks.org/wp-content/uploads/22.jpg 578w, https://www.geeksforgeeks.org/wp-content/uploads/22-300x197.jpg 300w" sizes="(max-width: 578px) 100vw, 578px"/></p>
+<p>where,<br/>
+CP is clock pulse and<br/>
+Q1, Q2, Q3, Q4 are the states.</p>
+<p>Question: Determine the total number of used and unused states in 4-bit Johnson counter.</p>
+<p>Answer: Total number of used states= 2*n<br/>
+                           = 2*4<br/>
+                           = 8<br/>
+Total number of unused states= 2<sup>n</sup> – 2*n<br/>
+                             = 2<sup>4</sup>-2*4<br/>
+                             = 8<br/>
+Everything has some advantages and disadvantages.<br/>
+<strong>Advantages of Johnson counter:</strong></p>
+<ul>
+<li>The Johnson counter has same number of flip flop but it can count twice the number of states the ring counter can count.</li>
+<li>It can be implemented using D and JK flip flop.</li>
+<li>Johnson ring counter is used to count the data in a continuous loop.</li>
+<li>Johnson counter is a self-decoding circuit.</li>
+</ul>
+<p><strong>Disadvantages of Johnson counter:</strong></p>
+<ul>
+<li>Johnson counter doesn’t count in a binary sequence.</li>
+<li>In Johnson counter more number of states remain unutilized than the number of states being utilized.</li>
+<li>The number of flip flops needed is one half the number of timing signals.</li>
+<li>It can be constructed for any number of timing sequence.</li>
+</ul>
+<p><strong>Applications of Johnson counter:</strong></p>
+<ul>
+<li>Johnson counter is used as a synchronous decade counter or divider circuit.</li>
+<li>It is used in hardware logic design to create complicated Finite states machine. ex: ASIC and FPGA design.</li>
+<li>The 3 stage Johnson counter is used as a 3 phase square wave generator which produces 1200 phase shift.</li>
+<li>It is used to divide the frequency of the clock signal by varrying their feedback.</li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

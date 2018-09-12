@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Analog to digital conversion</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Digital Signal:</strong>  A digital signal is a signal that represents data as a sequence of discrete values; at any given time it can only take on one of a finite number of values. </p>
+<p><strong>Analog Signal:</strong> An analog signal is any continuous signal for which the time varying feature of the signal is a representation of some other time varying quantity  i.e., analogous to another time varying signal.</p>
+<p>The following techniques can be used for Analog to Digital Conversion:</p>
+<h3 class="sigil_not_in_toc">a. PULSE CODE MODULATION:</h3>
+<p>  The most common technique to change an analog signal to digital data is called pulse code modulation (PCM). A PCM  encoder has the following three processes:</p>
+<ol type="a">
+<li>Sampling</li>
+<li>Quantization</li>
+<li>Encoding</li>
+</ol>
+<p><strong>Low pass filter :</strong><br/>
+The low pass filter eliminates the high frequency components present in the input analog signal to ensure that the input signal to sampler is free from the unwanted frequency components.This is done to avoid aliasing of the message signal.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol type="a">
+<li><strong>Sampling –</strong> The first step in PCM is sampling. Sampling is a process of measuring the amplitude of a continuous-time signal at discrete instants, converting the continuous signal into a discrete signal. There are three sampling methods:
+<p><b>(i) Ideal Sampling:</b> In ideal Sampling also known as Instantaneous sampling pulses from the analog signal are sampled. This is an ideal sampling method and cannot be easily implemented.</p>
+<p><img src="../../../imgs/digital-logic/6c911e0bfe0306f22bb8f58088081710.jpg" alt=""/></p>
+<p><b>(ii) Natural Sampling: </b> Natural Sampling is a practical method of sampling in which pulse have finite width equal to T.The result is a sequence of samples that retain the shape of the analog signal.</p>
+<p><img src="../../../imgs/digital-logic/16f119ff6bae21ede35ec827955ce1e9.jpg" alt=""/></p>
+<p><b>(iii) Flat top sampling:</b> In comparison to natural sampling flat top sampling can be easily obtained. In this sampling technique, the top of the samples remains constant by using a circuit. This is the most common sampling method used.</p>
+<p><img src="../../../imgs/digital-logic/6867b5d0c11cd2f9c80e3f106f536e19.jpg" alt=""/></p>
+<p><strong><br/>
+Nyquist Theorem:</strong><br/>
+One important consideration is the sampling rate or frequency. According to the Nyquist theorem, the sampling rate must be at least 2 times the highest frequency contained in the signal. It is also know as the minimum sampling rate and given by:<br/>
+                                                                Fs =2*fh
+</p></li>
+<li><strong>Quantization –</strong><br/>
+The result of sampling is a series of pulses with amplitude values between the maximum and minimum amplitudes of the signal. The set of amplitudes can be infinite with  non integral values between two limits.<p></p>
+<p>The following are the steps in Quantization:</p>
+<ol>
+<li>We assume that the signal has amplitudes between Vmax and Vmin</li>
+<li>We divide it into L zones each of height d where,<br/>
+                           d= (Vmax- Vmin)/ L<p></p>
+<p><img src="../../../imgs/digital-logic/d5edd9750c92d1918bf6e463a4c392bd.jpg" alt=""/></p>
+</li>
+<li>The value at the top of each sample in the graph shows the actual amplitude.</li>
+<li>The normalized pulse amplitude modulation(PAM) value is calculated using the formula amplitude/d.</li>
+<li>After this we calculate the quantized value which the process selects from the middle of each zone.</li>
+<li>The Quantized error is given by the difference between quantised value and normalised PAM value.</li>
+<li>The Quantization code for each sample based on quantization levels at the left of the graph.</li>
+</ol>
+</li>
+<li><strong>Encoding –</strong><br/>
+The digitization of analog signal is done by the encoder. After each sample is quantized and the number of bits per sample is decided, each sample can be changed to an n bit code.Encoding also minimizes the bandwidth used.
+</li>
+</ol>
+<h3 class="sigil_not_in_toc">b. DELTA MODULATION : </h3>
+<p>Since PCM is a very complex technique, other techniques have been developed to reduce the complexity of PCM. The simplest is delta Modulation. Delta Modulation finds the change from the previous value. </p>
+<p><b>Modulator –</b> The modulator is used at the sender site to create a stream of bits from an analog signal. The process records a small positive change called delta. If the delta is positive, the process records a 1 else the process records a 0. The modulator builds a second signal that resembles a staircase. The input signal is then compared with this gradually made staircase signal. </p>
+<p><img src="../../../imgs/digital-logic/3008f9c10f688f9aec4143e8420066b6.jpg" alt=""/></p>
+<p>We have the following rules for output:</p>
+<ol>
+<li>If the input analog signal is higher than the last value of the staircase signal, increase delta by 1, and the bit in the digital data is 1.</li>
+<li>If the input analog signal is lower than the last value of the staircase signal, decrease delta by 1, and the bit in the digital data is 0.</li>
+<p><img src="../../../imgs/digital-logic/faf25222e70dc2e362346bc2e2e30b3c.jpg" alt=""/>
+</p>
+</ol>
+<h3 class="sigil_not_in_toc">c. ADAPTIVE DELTA MODULATION:</h3>
+<p>The performance of a delta modulator can be improved significantly by making the step size of the modulator assume a time-varying form.A larger step-size is needed where the message has a steep slope of modulating signal and a smaller step-size is needed where the message has a small slope.The size is adapted according to the level of the input signal. This method is known as adaptive delta modulation (ADM).</p>
+<p><img src="../../../imgs/digital-logic/7956a5841c9cf05371b1ac1fec4723b4.jpg" alt=""/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

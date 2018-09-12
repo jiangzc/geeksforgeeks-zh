@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Consensus theorem</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/mathematics-properties-boolean-algebra/" rel="noopener" target="_blank">Properties of Boolean algebra</a>, <a href="https://www.geeksforgeeks.org/digital-logic-minimization-boolean-functions/" rel="noopener" target="_blank">Minimization of Boolean Functions</a></p>
+<p>Redundancy theorem is used as a Boolean algebra trick in Digital Electronics. It is also known as Consensus Theorem:</p>
+<pre>  AB + A'C + BC = AB + A'C</pre>
+<p>The consensus or resolvent of the terms AB and A’C is BC. It is the conjunction of all the unique literals of the terms, excluding the literal that appears unnegated in one term and negated in the other.</p>
+<p>The conjunctive dual of this equation is:</p>
+<pre>(A+B).(A'+C).(B+C) = (A+B).(A'+C)</pre>
+<p>In the second line, we omit the third product term BC.Here, the term BC is known as Redundant term. In this way we use this theorem to simply the Boolean Algebra. Conditions for applying Redundancy theorem are:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li>Three variables must present in the expression.Here A, B and C are used as variables.</li>
+<li>Each variables is repeated twice.</li>
+<li>One variable must present in complemented form.</li>
+</ol>
+<p>After applying this theorem we can only take those terms which contains the complemented variable.</p>
+<p><b>Proof –</b> We can also prove it like this:</p>
+<pre>Y = AB + A'C + BC
+Y = AB + A'C + BC.1
+Y = AB + A'C + BC.(A + A')
+Y = AB + A'C + ABC + A'BC
+Y = AB(1 + C) + A'C(1 + B)
+Y = AB + A'C             </pre>
+<p><b>Example-1.</b> </p>
+<pre>F = AB + BC' + AC</pre>
+<p>Here, we have three variables A, B and C and all are repeated twice. The variable C is present in complemented form. So, all the conditions are satisfied for applying this theorem.</p>
+<p><img src="../../../imgs/digital-logic/c469aebed7dedf8197c1f71abc1568ce.jpg" width="545" height="137" alt="" class="aligncenter size-full"/></p>
+<p>After applying Redundancy theorem we can write only the terms containing complemented variables (i.e, C) and omit the Redundancy term i.e., AB.</p>
+<pre> .'. F = BC' + AC</pre>
+<p><b>Example-2.</b> </p>
+<pre>F = (A + B).(A' + C).(B + C)</pre>
+<p>Three variables are present and all are repeated twice. The variable A is present in complemented form.Thus, all the three conditions of this theorem is satisfied.</p>
+<p><img src="../../../imgs/digital-logic/849a2ee0f60d883fee9600e92e19933d.jpg" width="537" height="130" alt="" class="aligncenter size-full"/></p>
+<p>After applying Redundancy theorem we can write only the terms containing complemented variables (i.e, A) and omit the Redundancy term i.e., (B + C).</p>
+<pre>.'. F = (A + B).(A' + C)</pre>
+<p>Consider the following equation:</p>
+<pre>Y = AB + A'C + BC</pre>
+<p>The third product term BC is a redundant consensus term. If A switches from 1 to 0 while B=1 and C=1, Y remains 1. During the transition of signal A in logic gates, both the first and second term may be 0 momentarily. The third term prevents a glitch since its value of 1 in this case is not affected by the transition of signal A.</p>
+<p>Thus. it is important to remove Logic Redundancy because it causes unnecessary network complexity and raises the cost of implementation. </p>
+<p>So, in this way we can minimize a Boolean expression to solve it.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

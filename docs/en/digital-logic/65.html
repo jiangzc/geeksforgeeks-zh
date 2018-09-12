@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Digital to Analog Conversion</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Digital Signal –</strong> A digital signal is a signal that represents data as a sequence of discrete values; at any given time it can only take on one of a finite number of values.</p>
+<p><strong>Analog Signal – </strong>An analog signal is any continuous signal for which the time varying feature of the signal is a representation of some other time varying quantity i.e., analogous to another time varying signal.</p>
+<p>The following techniques can be used for Digital to Analog Conversion:</p>
+<p><strong>1. Amplitude Shift keying –</strong> Amplitude Shift Keying is a technique in which carrier signal is analog and data to be modulated is digital. The amplitude of analog carrier signal is modified to reflect binary data.</p>
+<p>  The binary signal when modulated gives a zero value when the binary data represents 0 while gives the carrier output when data is 1. The frequency and phase of the carrier signal remain constant.<br/>
+<img src="../../../imgs/digital-logic/5ae03a57030516b932d67249c25b62e0.jpg" alt="wave_ask2" width="300" height="290" class="alignnone size-medium wp-image-176680" srcset="https://www.geeksforgeeks.org/wp-content/uploads/wave_ask2-300x290.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/wave_ask2.jpg 510w" sizes="(max-width: 300px) 100vw, 300px"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Advantages of amplitude shift Keying –</strong></p>
+<ul>
+<li>It can be used to transmit digital data over optical fiber.</li>
+<li>The receiver and transmitter have a simple design which also makes it comparatively inexpensive.</li>
+<li>It uses lesser bandwidth as compared to FSK thus it offers high bandwidth efficiency.</li>
+</ul>
+<p><strong>Disadvantages of amplitude shift Keying –</strong></p>
+<ul>
+<li>It is susceptible to noise interference and entire transmissions could be lost due to this.</li>
+<li>It has lower power efficiency.</li>
+</ul>
+<p><strong>2. Frequency Shift keying – </strong>In this modulation the frequency of analog carrier signal is modified to reflect binary data.</p>
+<p>The output of a frequency shift keying modulated wave is high in frequency for a binary high input and is low in frequency for a binary low input. The amplitude and phase of the carrier signal remain constant.<br/>
+<img src="../../../imgs/digital-logic/f0d198f4bd19515c761fe38840fbf8f1.jpg" alt="wave_fsk2" width="300" height="298" class="alignnone size-medium wp-image-176678" srcset="https://www.geeksforgeeks.org/wp-content/uploads/wave_fsk2-300x298.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/wave_fsk2-100x100.jpg 100w, https://www.geeksforgeeks.org/wp-content/uploads/wave_fsk2.jpg 502w" sizes="(max-width: 300px) 100vw, 300px"/></p>
+<p><strong>Advantages of frequency shift Keying –</strong></p>
+<ul>
+<li>Frequency shift keying modulated signal can help avoid the noise problems beset by ASK.</li>
+<li>It has lower chances of an error.</li>
+<li>It provides high signal to noise ratio.</li>
+<li>The transmitter and receiver implementations are simple for low data rate application.</li>
+</ul>
+<p><strong>Disadvantages of frequency shift Keying –</strong></p>
+<ul>
+<li>It uses larger bandwidth as compared to ASK thus it offers less bandwidth efficiency.</li>
+<li>It has lower power efficiency.</li>
+</ul>
+<p><strong>3. Phase Shift keying – </strong>In this modulation the phase of the analog carrier signal is modified to reflect binary data.The amplitude and frequency of the carrier signal remains constant.                                                                                                                                                                           </p>
+<p><img src="../../../imgs/digital-logic/06fc8d06fff88baf5ff922805e13d420.jpg" alt="wave_psk2" width="300" height="298" class="alignnone size-medium wp-image-176679" srcset="https://www.geeksforgeeks.org/wp-content/uploads/wave_psk2-300x298.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/wave_psk2-100x100.jpg 100w, https://www.geeksforgeeks.org/wp-content/uploads/wave_psk2.jpg 497w" sizes="(max-width: 300px) 100vw, 300px"/></p>
+<p>It is further categorized as follows:</p>
+<ol>
+<li><strong>Binary Phase Shift Keying (BPSK):</strong><br/>
+                               BPSK also known as phase reversal keying or 2PSK is the simplest form of phase shift keying. The Phase of the carrier wave is changed according to the two binary inputs. In Binary Phase shift keying, difference of 180 phase shift is used between binary 1 and binary 0.<p></p>
+<p>                          This is regarded as the most robust digital modulation technique and is used for long distance wireless communication.</p>
+</li>
+<li><strong>Quadrature phase shift keying:</strong><br/>
+                   This technique is used to increase the bit rate i.e we can code two bits onto one single element. It uses four phases to encode two bits per symbol. QPSK uses phase shifts of multiples of 90 degrees.<p></p>
+<p>      It has double data rate carrying capacity compare to BPSK as two bits are mapped on each constellation points.
+</p></li>
+</ol>
+<p><strong>Advantages of phase shift Keying –</strong></p>
+<ul>
+<li>It is a more power efficient modulation technique as compared to ASK and FSK. </li>
+<li>It has lower chances of an error.</li>
+<li>It allows data to be carried along a communication signal much more efficiently as compared to FSK.</li>
+</ul>
+<p><strong>Disadvantages of phase shift Keying –</strong></p>
+<ul>
+<li>It offers low bandwidth efficiency.</li>
+<li>The detection and recovery algorithms of binary data is very complex.</li>
+<li>It is a non coherent reference signal.</li>
+</ul>
+<p><b>Reference – </b><br/>
+<a href="https://en.wikipedia.org/wiki/Digital-to-analog_converter" rel="noopener" target="_blank">Digital-to-analog converter – Wikipedia</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

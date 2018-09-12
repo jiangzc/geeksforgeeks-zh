@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Parallel Adder &amp; Parallel Subtractor</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/full-adder-digital-electronics/" rel="noopener" target="_blank">Full adder</a>, <a href="https://www.geeksforgeeks.org/digital-logic-full-subtractor/" rel="noopener" target="_blank">Full Subtractor</a></p>
+<p><strong>Parallel Adder –</strong><br/>
+A single full adder performs the addition of two one bit numbers and an input carry. But a <b>Parallel Adder</b> is a digital circuit capable of finding the arithmetic <b>sum</b> of two binary numbers that is <b>greater than one bit</b> in length by operating on corresponding pairs of bits in parallel. It consists of<strong> full adders connected in a chain</strong> where the output carry from each full adder is connected to the carry input of the next higher order full adder in the chain.<strong> A n bit parallel adder requires n full adders to perform the operation.</strong> So for the two-bit number, two adders are needed while for four bit number, four adders are needed and so on. Parallel adders normally incorporate carry lookahead logic to ensure that carry propagation between subsequent stages of addition does not limit addition speed. </p>
+<p><img src="../../../imgs/digital-logic/6b8435e1a148dcd999681babb7f418a1.jpg" width="968" height="345" class="aligncenter size-full"/></p>
+<p><strong>Working of parallel Adder –</strong></p>
+<ol>
+<li>As shown in the figure, firstly the full adder FA1 adds A1 and B1 along with the carry C1 to generate the sum S1 (the first bit of the output sum) and the carry C2 which is connected to the next adder in chain.</li>
+<li>Next, the full adder FA2 uses this carry bit C2 to add with the input bits A2 and B2 to generate the sum S2(the second bit of the output sum) and the carry C3 which is again further connected to the next adder in chain and so on.</li>
+<li>The process continues till the last full adder FAn uses the carry bit Cn to add with its input An and Bn to generate the last bit of the output along last carry bit Cout.</li>
+</ol>
+<p><strong>Parallel Subtractor –</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>A Parallel Subtractor is a digital circuit capable of finding the arithmetic difference of two binary numbers that is greater than one bit in length by operating on corresponding pairs of bits in parallel. The parallel subtractor can be designed in several ways including combination of half and full subtractors, all full subtractors or all full adders with subtrahend complement input.</p>
+<p><img src="../../../imgs/digital-logic/7ad5fbb6090ddc4991be006e9381ab9d.jpg" alt=""/></p>
+<p><strong>Working of Parallel Subtractor – </strong></p>
+<ol>
+<li>As shown in the figure, the parallel binary subtractor is formed by combination of all full adders with subtrahend complement input.</li>
+<li>This operation considers that the addition of minuend along with the 2’s complement of the subtrahend is equal to their subtraction.</li>
+<li>Firstly the 1’s complement of B is obtained by the NOT gate and 1 can be added through the carry to find out the 2’s complement of B. This is further added to A to carry out the arithmetic subtraction.</li>
+<li>The process continues till the last full adder FAn uses the carry bit Cn to add with its input An and 2’s complement of Bn to generate the last bit of the output along last carry bit Cout.</li>
+</ol>
+<p><strong>Advantages of parallel Adder/Subtractor –</strong></p>
+<ol>
+<li>The parallel adder/subtractor  performs the addition operation faster as compared to serial adder/subtractor.</li>
+<li>Time required for addition does not depend on the number of bits.</li>
+<li>The output is in parallel form i.e  all the bits are added/subtracted at the same time.</li>
+<li>It is less costly.</li>
+</ol>
+<p><strong>Disadvantages of parallel Adder/Subtractor –</strong></p>
+<ol>
+<li>Each adder has to wait for the carry which is to be generated from the previous adder in chain.</li>
+<li>The propagation delay( delay associated with the travelling of carry bit) is found to increase with the increase in the number of bits to be added.</li>
+</ol>
+<p><b>Reference –</b> <a href="https://en.wikipedia.org/wiki/Adder_(electronics)" rel="noopener" target="_blank">Adder – Wikipedia</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

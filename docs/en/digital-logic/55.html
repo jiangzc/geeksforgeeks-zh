@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Programming Array Logic</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Programmable Array Logic (PAL) is a commonly used  programmable logic device (PLD). It has programmable AND array and fixed OR array. Because only the AND array is programmable, it is easier to use but not flexible as compared to Programmable Logic Array (PLA). PAL’s only limitation is number of AND gates.<br/>
+PAL consist of small programmable read only memory (PROM) and additional output logic used to implement a particular desired logic function with limited components.</p>
+<p><b>Comparison with other Programmable Logic Devices:</b><br/>
+Main difference between PLA, PAL and ROM is their basic structure. In PLA, programmable AND gate is followed by programmable OR gate. In PAL, programmable AND gate is followed by fixed OR gate. In ROM, fixed AND gate array is followed by programmable OR gate array. </p>
+<p>Describing the PAL structure (programmable AND gate followed by fixed OR gate).</p>
+<p><b>Example:</b> Realize the given function by using PAL:<br/>
+Any form from sum of product (SOP) form or product of sum (POS) can be used for realization of a boolean function.<br/>
+There are three inputs A, B, C and three functions X, Y, Z. Using sum of product (SOP) terms to express the given function as follows:-</p>
+<p><img src="../../../imgs/digital-logic/fe3bbe3413950b210767be9fdf64169f.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" X(A, B, C)=\sum(2, 3, 5, 7)  " title="Rendered by QuickLaTeX.com" height="27" width="299" style="vertical-align: -7px;"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/digital-logic/3b3a14a11ea274d4fb9a0239a207c779.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" Y(A, B, C)=\sum(0, 1, 5) " title="Rendered by QuickLaTeX.com" height="27" width="271" style="vertical-align: -7px;"/></p>
+<p><img src="../../../imgs/digital-logic/69e93c1d8897a2c393016f516c0bae12.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" Z(A, B, C)=\sum(0, 2, 3, 5) " title="Rendered by QuickLaTeX.com" height="27" width="294" style="vertical-align: -7px;"/></p>
+<p>Following Truth table will be helpful in understanding function on number of inputs:</p>
+<table width="100%">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B">A</th>
+<th style="padding:8px;background-color:#4CB96B">B</th>
+<th style="padding:8px;background-color:#4CB96B">C</th>
+<th style="padding:8px;background-color:#4CB96B">X</th>
+<th style="padding:8px;background-color:#4CB96B">Y</th>
+<th style="padding:8px;background-color:#4CB96B">Z</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><b>Finding X, Y, Z:</b><br/>
+Look for high min terms (function value is equal to 1 in case of SOP) in each function output:<br/>
+X = A’B + AC<br/>
+Y = A’B + B’C<br/>
+Z = A’B + A’C + AB’C</p>
+<p><img src="../../../imgs/digital-logic/e224b70cf4c6877a17ea4fe7aa73f0eb.jpg" alt="" width="800" height="651" class="aligncenter size-full wp-image-330862"/></p>
+<p>AND array has been programmed but have to work with fixed OR array as per requirement. Desired lines will be connected in PLDs.</p>
+<p><b>Advantages of PAL:</b></p>
+<ul>
+<li> Highly efficient </li>
+<li> Low production cost as compared to PLA</li>
+<li> Highly secure</li>
+<li> High Reliability</li>
+<li> Low power required for working.</li>
+<li> More flexible to design.</li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

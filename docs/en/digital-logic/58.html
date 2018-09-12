@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Block Coding</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Conversion of Digital Data to Digital Signal involves three techniques:</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/digital-electronics-difference-unipolar-polar-bipolar-line-coding-schemes/">Line Coding</a></li>
+<li>Block Coding</li>
+<li>Scrambling</li>
+</ol>
+<p>Out of which Line coding is always needed, block coding and scrambling may or may not be needed.</p>
+<p><b>Block coding</b> helps in error detection and re-transmission of the signal. It is normally referred to as mB/nB coding as it replaces each m-bit data group with an n-bit data group (where n&gt;m). Thus, its adds extra bits (redundancy bits) which helps in synchronization at receiver’s and sender’s end and also providing some kind of error detecting capability.</p>
+<p>It normally involves three steps: division, substitution, and combination. In the division step,a sequence of bits is divided into groups of m-bits. In the substitution step, we substitute an m-bit group for an n-bit group. Finally, the n-bit groups are combined together to form a stream which has more bits than the original bits.</p>
+<p>Examples of mB/nB coding:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>4B/5B (four binary/five binary ) –</strong><br/>
+This coding scheme is used in combination with NRZ-I. The problem with NRZ-I was that it has a synchronization problem for long sequences of zeros. So, to overcome it we substitute the bit stream from 4-bit to 5-bit data group <strong>before encoding it with NRZ-I</strong>. So that it does not have a long stream of zeros. The block-coded stream does not have more than three consecutive zeros (see encoding table).</p>
+<p><img src="../../../imgs/digital-logic/5c3dd5e547c0436d2c682705537ea960.jpg" alt="mB/nB"/></p>
+<p>At the receiver, the NRZ-I encoded digital signal is first decoded into a stream of bits and then decoded again to remove the redundancy bits.</p>
+<p><strong>Drawback –</strong> Though  4B/5B encoding solves the problem of synchronization,it increases the signal rate of NRZ-L.Moreover,it does not solve the DC component problem of NRZ-L.</p>
+<p><strong>8B/10B (eight binary/ten binary) –</strong><br/>
+This encoding is similar to 4B/5B encoding except that a group of 8 bits of data is now substituted by a 10-bit code and it provides greater error detection capability than 4B/5B.<br/>
+It is actually a combination of 5B/6B and 3B/4B encoding.The most five significant bits of a 10-bit block is fed into the 5B/6B encoder; the least 3 significant bits is fed into a 3B/4B encoder. The split is done to simplify the mapping table.</p>
+<p><img src="../../../imgs/digital-logic/9a5a8569af65c5a327c3ea397090ba9a.jpg" alt="mB/nB"/></p>
+<p>A group of 8 bits can have 2^8 different combinations while a group of 10 bits can have 2^10 different combinations. This means that there are 2^10-2^8=768 redundant groups that are not used for 8B/10B encoding and can be used for error detection and <a href="https://en.wikipedia.org/wiki/8b/10b_encoding#Running_disparity">disparity</a> check.</p>
+<p>Thus, this technique is better than 4B/5B because of better error-checking capability and better synchronization.</p>
+<p><strong>Reference-</strong><br/>
+<a href="https://www.amazon.in/COMMUNICATIONS-NETWORKING-UPDATE-Behrouz-Forouzan/dp/0070499357?tag=googinhydr18418-21&amp;tag=googinkenshoo-21&amp;ascsubtag=f648c41b-4e1c-497e-9a52-031912e87d54">Data Communications and Networking</a> By Behrouz A.Forouzan(Book)</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

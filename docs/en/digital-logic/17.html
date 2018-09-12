@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Implicants in K-Map</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Prerequisite –</strong> <a href="https://www.geeksforgeeks.org/k-mapkarnaugh-map/" rel="noopener" target="_blank">K – Map (Karnaugh Map)</a><br/>
+Implicant is a product/minterm term in Sum of Products (SOP) or sum/maxterm term in Product of Sums (POS) of a Boolean function. E.g., consider a boolean function, F = AB + ABC + BC. Implicants are AB, ABC and BC.</p>
+<ol>
+<li><b>Prime Implicants –</b><br/>
+A group of square or rectangle made up of bunch of adjacent minterms which is allowed by definition of K-Map are called <strong>prime implicants(PI)</strong> i.e. all possible groups formed in K-Map.<br/>
+<strong>Example:</strong><br/>
+<img src="../../../imgs/digital-logic/57c514fa605aa9bf8485fa838e6a15b3.jpg" alt="" width="311" height="221" class="aligncenter size-full wp-image-396150"/><p></p>
+</li>
+<li><b>Essential Prime Implicants –</b><br/>
+These are those subcubes(groups) which cover atleast one minterm that can’t be covered by any other prime implicant. <strong>Essential prime implicants(EPI)</strong> are those prime implicants which always appear in final solution.<br/>
+<strong>Example:</strong><br/>
+<img src="../../../imgs/digital-logic/c5c8200204318c1feebf3827614cd16d.jpg" alt="" width="371" height="221" class="aligncenter size-full wp-image-397162"/>
+</li>
+<li><b>Redundant Prime Implicants –</b><br/>
+The prime implicants for which each of its minterm is covered by some essential prime implicant are <strong>redundant prime implicants(RPI)</strong>. This prime implicant never appears in final solution.<br/>
+<strong>Example:</strong><br/>
+<img src="../../../imgs/digital-logic/5835769e881c543cc32c560af3bd2321.jpg" alt="" width="391" height="221" class="aligncenter size-full wp-image-397164"/>
+</li>
+<li><b>Selective Prime Implicants</b><br/>
+The prime implicants for which are neither essential nor redundant prime implicants are called <strong>selective prime implicants(SPI)</strong>. These are also known as non-essential prime implicants. They may appear in some solution or may not appear in some solution.<br/>
+<strong>Example:</strong><br/>
+<img src="../../../imgs/digital-logic/d4e8757a8ebf07d6420de20f8c2c73a3.jpg" alt="" width="391" height="221" class="aligncenter size-full wp-image-397167"/>
+</li>
+</ol>
+<p><strong>Example-1:</strong> Given F = ∑(1, 5, 6, 7, 11, 12, 13, 15), find number of implicant, PI, EPI, RPI and SPI.</p>
+<p><img src="../../../imgs/digital-logic/82c30314b28b1fcd79d365c37027af6e.jpg" alt="" width="601" height="411" class="aligncenter size-full wp-image-396239"/></p>
+<pre>No. of Implicants = 8
+No. of Prime Implicants(PI) = 5
+No. of Essential Prime Implicants(EPI) = 4
+No. of Redundant Prime Implicants(RPI) = 1
+No. of Selective Prime Implicants(SPI) = 0</pre>
+<p><strong>Example-2:</strong> Given F = ∑(0, 1, 5, 8, 12, 13), find number of implicant, PI, EPI, RPI and SPI.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/digital-logic/aa1dc2667ed0fe2ada8603410e205df6.jpg" alt="" width="601" height="491" class="aligncenter size-full wp-image-396276"/></p>
+<pre>No. of Implicants = 6
+No. of Prime Implicants(PI) = 6
+No. of Essential Prime Implicants(EPI) = 0
+No. of Redundant Prime Implicants(RPI) = 0
+No. of Selective Prime Implicants(SPI) = 6</pre>
+<p><strong>Example-3:</strong> Given F = ∑(0, 1, 5, 7, 15, 14, 10), find number of implicant, PI, EPI, RPI and SPI.</p>
+<p><img src="../../../imgs/digital-logic/392d298f71f9c3ee15329d34d5238af3.jpg" alt="" width="601" height="491" class="aligncenter size-full wp-image-396282"/></p>
+<pre>No. of Implicants = 7
+No. of Prime Implicants(PI) = 6
+No. of Essential Prime Implicants(EPI) = 2
+No. of Redundant Prime Implicants(RPI) = 0
+No. of Selective Prime Implicants(SPI) = 4</pre>
+<p><strong>Example-4:</strong> <a href="https://www.geeksforgeeks.org/gate-gate-it-2006-question-35/" rel="noopener" target="_blank">GATE IT 2006 | Question 35</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

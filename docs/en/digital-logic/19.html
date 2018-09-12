@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Minimization of Boolean Functions</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>As discussed in the <a href="https://www.geeksforgeeks.org/mathematics-representation-boolean-functions/" target="_blank">“Representation of Boolean Functions”</a> every boolean function can be expressed as a sum of minterms or a product of maxterms. Since the number of literals in such an expression is usually high, and the complexity of the digital logic gates that implement a Boolean function is directly related to the complexity of the algebraic expression from which the function is implemented, it is preferable to have the most simplified form of the algebraic expression.<br/>
+The process of simplifying the algebraic expression of a boolean function is called <strong>minimization</strong>. Minimization is important since it reduces the cost and complexity of the associated circuit.<br/>
+For example, the function <img src="../../../imgs/digital-logic/55c112002f6e3078d88c486474c8a3b0.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="F=x^\prime y^\prime z + x^\prime yz + xy^\prime" title="Rendered by QuickLaTeX.com" height="26" width="259" style="vertical-align: -5px;"/> can be minimized to <img src="../../../imgs/digital-logic/39cae835552a27d2fe5eab1059772ab4.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="F=x^\prime z + xy^\prime" title="Rendered by QuickLaTeX.com" height="26" width="157" style="vertical-align: -5px;"/>. The circuits associated with above expressions is –<br/>
+<img src="../../../imgs/digital-logic/ed3fb2907a16239c10d9dd9d4d3d397d.jpg" alt="" width="500" height="450" class="aligncenter wp-image-246038"/><br/>
+It is clear from the above image that the minimized version of the expression takes a less number of logic gates and also reduces the complexity of the circuit substantially. Minimization is hence important to find the most economic equivalent representation of a boolean function.<br/>
+Minimization can be done using Algebraic Manipulation or <a href="https://www.geeksforgeeks.org/k-mapkarnaugh-map/" target="_blank">K-Map</a> method. Each method has it’s own merits and demerits.</p>
+<p><strong>Minimization using Algebraic Manipulation –</strong></p>
+<p>This method is the simplest of all methods used for minimization. It is suitable for medium sized expressions involving 4 or 5 variables. Algebraic manipulation is a manual method, hence it is prone to human error.<br/>
+Common Laws used in algebraic manipulation :</p>
+<ol>
+<li><img src="../../../imgs/digital-logic/2f0d51e1c9ccaf947f9d2c92bdbc3547.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\:A + A^\prime = 1 " title="Rendered by QuickLaTeX.com" height="24" width="125" style="vertical-align: -3px;"/></li>
+<li><img src="../../../imgs/digital-logic/da581097fe0a46c527c30434db842a16.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\:A + A^\prime B = A + B" title="Rendered by QuickLaTeX.com" height="24" width="207" style="vertical-align: -3px;"/></li>
+<li><img src="../../../imgs/digital-logic/efb6a1b1a557c40981c2051875935d01.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\:A + AB = A" title="Rendered by QuickLaTeX.com" height="23" width="147" style="vertical-align: -3px;"/></li>
+</ol>
+<ul>
+<li><strong>Example 1 –</strong> Minimize the following boolean function using algebraic manipulation-<br/>
+<img src="../../../imgs/digital-logic/a77baf82dfd0f734074b46abadbf49e4.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="F=ABC^\prime D^\prime + ABC^\prime D + AB^\prime C^\prime D + ABCD + AB^\prime CD + ABCD^\prime \\        + AB^\prime CD^\prime" title="Rendered by QuickLaTeX.com" height="56" width="769" style="vertical-align: -3px;"/><p></p>
+</li>
+<li><strong>Solution –</strong> Properties refer to the three common laws mentioned above.
+<p class="ql-center-displayed-equation" style="line-height: 387px;"><span class="ql-right-eqno"> &#160; </span><span class="ql-left-eqno"> &#160; </span><img src="../../../imgs/digital-logic/377ef52a7ec8fd0521ad739870eb60f0.jpg" height="387" width="789" class="ql-img-displayed-equation quicklatex-auto-format" alt=" \begin{align*} F=\:&amp;ABC^\prime(D^\prime + D) +AB^\prime C^\prime D + ACD(B + B^\prime) &amp;&amp;\\ &amp;\:+ ACD^\prime(B + B^\prime)&amp;&amp;\\ =\:&amp;ABC^\prime +AB^\prime C^\prime D + ACD +ACD^\prime &amp;&amp; \text{Using Property-1}\\ =\:&amp;ABC^\prime +AB^\prime C^\prime D + AC(D +D^\prime )&amp;&amp;\\ =\:&amp;ABC^\prime +AB^\prime C^\prime D + AC &amp;&amp; \text{Using Property-1}\\ =\:&amp;A(BC^\prime +C)+AB^\prime C^\prime D &amp;&amp;\\ =\:&amp;A(B+C)+AB^\prime C^\prime D&amp;&amp; \text{Using Property-2}\\ =\:&amp;AB +AC+AB^\prime C^\prime D &amp;&amp;\\ =\:&amp;AB + AC + A C^\prime D &amp;&amp; \text{Using Property-2}\\ =\:&amp;AB + AC + AD &amp;&amp; \text{Using Property-2}\\ \end{align*} " title="Rendered by QuickLaTeX.com"/></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+</li>
+</ul>
+<p><strong>Minimization using K-Map –</strong></p>
+<p>The Algebraic manipulation method is tedious and cumbersome. The K-Map method is faster and can be used to solve boolean functions of upto 5 variables. Please refer this <a href="https://www.geeksforgeeks.org/k-mapkarnaugh-map/" target="_blank">link</a> to learn more about K-Map.</p>
+<ul>
+<li><strong>Example 2 –</strong> Consider the same expression from example-1 and minimize it using K-Map.
+</li>
+<li><strong>Solution –</strong> The following is a 4 variable K-Map of the given expression.<br/>
+<img src="../../../imgs/digital-logic/0df9bffd9725d958f568643867c0ee21.jpg" alt="" width="300" height="241" class="aligncenter size-medium wp-image-246036"/><br/>
+The above figure highlights the prime implicants in green, red and blue.<br/>
+The green one spans the whole third row, which gives us – <img src="../../../imgs/digital-logic/7e062a84cae3f1fd21c0673485b319f6.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="AB" title="Rendered by QuickLaTeX.com" height="20" width="40" style="vertical-align: 0px;"/><br/>
+The red one spans 4 squares, which gives us – <img src="../../../imgs/digital-logic/5363b838d41f0f7f87464486bcf9a70e.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="AD" title="Rendered by QuickLaTeX.com" height="20" width="42" style="vertical-align: 0px;"/><br/>
+The blue one spans 4 squares, which gives us – <img src="../../../imgs/digital-logic/5e758bf1728915da4a2cd731b172a4eb.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="AC" title="Rendered by QuickLaTeX.com" height="21" width="40" style="vertical-align: -1px;"/><br/>
+So, the minimized boolean expression is- <img src="../../../imgs/digital-logic/411c45f9f1862c51e6cce87798b2cc97.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="AB+AC+AD" title="Rendered by QuickLaTeX.com" height="23" width="188" style="vertical-align: -3px;"/>
+</li>
+</ul>
+<p><strong>GATE CS Corner Questions</strong></p>
+<p>Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<p>1. <a href="https://www.geeksforgeeks.org/gate-gate-cs-2012-question-30/">GATE CS 2012, Question 30</a><br/>
+2. <a href="https://www.geeksforgeeks.org/gate-gate-cs-2007-question-32/">GATE CS 2007, Question 32</a><br/>
+3. <a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-3-question-17/">GATE CS 2014 Set-3, Question 17</a><br/>
+4. <a href="https://www.geeksforgeeks.org/gate-gate-cs-2005-question-18/">GATE CS 2005, Question 18</a><br/>
+5. <a href="https://www.geeksforgeeks.org/gate-gate-cs-2004-question-17/">GATE CS 2004, Question 17</a><br/>
+6. <a href="https://www.geeksforgeeks.org/gate-gate-cs-2003-question-45/">GATE CS 2003, Question 45</a><br/>
+7. <a href="https://www.geeksforgeeks.org/gate-gate-cs-2002-question-12/">GATE CS 2002, Question 12</a></p>
+<p><strong>References-</strong></p>
+<p><a href="https://en.wikipedia.org/wiki/Karnaugh_map" target="_blank">K-Map – Wikipedia</a><br/>
+Digital Design, 5th edition by Morris Mano and Michael Ciletti</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

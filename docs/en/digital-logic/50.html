@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Ripple Counter</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/counters-in-digital-logic/" rel="noopener" target="_blank">Counters</a>, <a href="https://www.geeksforgeeks.org/digital-logic-n-bit-johnson-counter/" rel="noopener" target="_blank">n-bit Johnson Counter</a><br/>
+A <b>counter</b> is basically used to count the number of clock pulses applied to a flip-flop. It can also be used for Frequency divider, time measurement, frequency measurement, distance measurement and also for generating square waveforms. In this, the flip-flops are asynchronous counters and are supplied with different clock signals, there may be a delay in producing output.<br/>
+Also, a few numbers of logic gates are needed to design asynchronous counters. So they are elementary in design and also are less expensive. </p>
+<p><b>Ripple counter –</b><br/>
+A n-bit ripple counter can count up to 2<sup>n</sup> states. It is also known as MOD n counter. It is known as ripple counter because of the way the clock pulse ripples its way through the flip-flops. Some of the features of ripple counter are:</p>
+<ol>
+<li>It is an asynchronous counter.
+</li>
+<li>Different flip-flops are used with a different clock pulse.
+</li>
+<li>All the flip-flops are used in toggle mode.
+</li>
+<li>Only one flip-flop is applied with an external clock pulse and another flip-flop clock is obtained from the output of the previous flip-flop.
+</li>
+<li>The flip-flop applied with external clock pulse act as LSB (Least Significant Bit) in the counting sequence.
+</li>
+</ol>
+<p>A counter may be an up counter that counts upwards or can be a down counter that counts downwards or can do both i.e.count up as well as count downwards depending on the input control. The sequence of counting usually gets repeated after a limit. When counting up, for n-bit counter the count sequence goes from 000, 001, 010, … 110, 111, 000, 001, … etc. When counting down the count sequence goes in the opposite manner: 111, 110, … 010, 001, 000, 111, 110, … etc.</p>
+<p><b>A 3-bit Ripple counter using JK flip-flop –</b></p>
+<p><img src="../../../imgs/digital-logic/821cceda2cf51afc90b82c29ce9ef458.jpg" alt="" width="450" height="350" class="aligncenter size-full wp-image-409035"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>In the circuit shown in above figure, Q0(LSB) will toggle for every clock pulse because JK flip-flop works in toggle mode when both J and K are applied 1, 1 or high input. The following counter will toggle when the previous one changes from 1 to 0</p>
+<p><b>Truth Table –</b></p>
+<p><img src="../../../imgs/digital-logic/b1a335c6aa0bc329027b582f0bfa15c3.jpg" width="400" height="300" class="aligncenter size-full"/></p>
+<p>The 3-bit ripple counter used in the circuit above has eight different states, each one of which represents a count value.  Similarly, a counter having n flip-flops can have a maximum of 2 to the power n states. The number of states that a counter owns is known as its mod (modulo) number. Hence a 3-bit counter is a mod-8 counter.</p>
+<p>A mod-n counter may also be described as a divide-by-n counter. This is because the most significant flip-flop (the furthest flip-flop from the original clock pulse) produces one pulse for every n pulses at the clock input of the least significant flip-flop (the one triggers by the clock pulse). Thus, the above counter is an example of a divide-by-4 counter. </p>
+<p><b>Timing diagram –</b> Let us assume that the clock is negative edge triggered so above counter will act as an up counter because the clock is negative edge triggered and output is taken from Q.</p>
+<p><img src="../../../imgs/digital-logic/efacadc8237a688738a6df6459b367ca.jpg" width="400" height="300" class="aligncenter size-full"/></p>
+<p>Counters are used very frequently to divide clock frequencies and their uses mainly involve in digital clocks and in multiplexing. The widely known example of the counter is parallel to serial data conversion logic.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

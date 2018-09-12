@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Amortized analysis for increment in counter</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b><a href="http://www.geeksforgeeks.org/analysis-algorithm-set-5-amortized-analysis-introduction/">Amortized analysis</a></b> refers to determining the time-averaged running time for a sequence (not an individual) operation. It is different from average case analysis because here, we don’t assumes that the data arranged in average (not very bad) fashion like we do for average case analysis for <a href="http://www.geeksforgeeks.org/quick-sort/">quick sort</a>. That is, amortized analysis is worst case analysis but for a sequence of operation rather than individual one. It applies to the method that consists for the sequence of operation, where vast majority of operation is cheap but some of the operation are expensive. This can be visualized with the help of binary counter which is implemented below.</p>
+<p>Let’s see this by implementing a increment counter in C. First, let’s see how counter increment works.<br/>
+Let a variable <b>i</b> contains a value 0 and we performs i++ many time. Since, on hardware every operation is performed in binary form. Let binary number stored in 8 bit. So, value is 00000000. Let’s increment many time. So, the pattern we finds are as :</p>
+<p>00000000, 00000001, 00000010, 00000011, 00000100, 00000101, 00000110, 00000111, 00001000 and so on …..</p>
+<p><b>Steps :</b><br/>
+<b>1.</b> Iterate from rightmost and make all one to zero until finds first zero.<br/>
+<b>2.</b> After iteration, if index is greater than or equal to zero, then make zero lie on that position to one.</p>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre class="brush: cpp; title: ; notranslate" title="">#include &lt;bits / stdc++.h&gt;
+using namespace std;
+
+int main()
+{
+    char str[] = "10010111";
+    int length = strlen(str);
+    int i = length - 1;
+    while (str[i] == '1') {
+        str[i] = '0';
+        i--;
+    }
+    if (i &gt;= 0)
+        str[i] = '1';
+    printf("% s", str);
+}
+</pre>
+<p>Output:</p>
+<pre>10011000
+<!-- Your Output -->
+</pre>
+<p>On a simple look on program or algorithm, its running cost looks proportional to the number of bit but in real, it is not proportional to number of bit. Let’s see how !</p>
+<p>Let’s assume that increment operation is performed k time. We see that in every increment, its rightmost bit is getting flipped. So, number of flipping for LSB is k. For, second rightmost is flipped after a gap, i.e., 1 time in 2 increment. 3rd rightmost – 1 time in 4 increment.  4th rightmost – 1 time in 8 increment. So, number of flipping is k/2 for 2nd rightmost bit, k/4 for 3rd rightmost bit, k/8 for 4th rightmost bit and so on …</p>
+<p>Total cost will be the total number of flipping, that is,<br/>
+C(k) = k + k/2 + k/4 + k/8 + k/16 + …… which is Geometric Progression series and also,<br/>
+C(k) &lt; k + k/2 + k/4 + k/8 + k/16 + k/32 + …… up to infinity<br/>
+So, C(k) &lt; k/(1-1/2)<br/>
+and so, C(k) &lt; 2k<br/>
+So, C(k)/k &lt; 2<br/>
+Hence, we find that average cost for increment a counter for one time is constant and it does not depend on the number of bit. We conclude that increment of a counter is constant cost operation.</p>
+<p><b>Refernces :</b></p>
+<ol>
+<li><a href="http://www.cs.cornell.edu/courses/cs3110/2013sp/supplemental/recitations/rec21.html"> http://www.cs.cornell.edu/courses/cs3110/2013sp/supplemental/recitations/rec21.html</a></li>
+<li><a href="http://faculty.cs.tamu.edu/klappi/csce411-s17/csce411-amortized3.pdf">http://faculty.cs.tamu.edu/klappi/csce411-s17/csce411-amortized3.pdf</a></li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

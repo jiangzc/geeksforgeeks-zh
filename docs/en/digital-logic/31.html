@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Carry Look-Ahead Adder</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Motivation behind Carry Look-Ahead Adder :</b><br/>
+In ripple carry adders, for each adder block, the two bits that are to be added are available instantly. However, each adder block waits for the carry to arrive from its previous block. So, it is not possible to generate the sum and carry of any block until the input carry is known. The <img src="../../../imgs/digital-logic/22f5f374a4fa16b74483b66340f36b42.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="i^{th}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: 0px;"/> block waits for the <img src="../../../imgs/digital-logic/3a0aca94ea3b1081997ca2d5a408e28a.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="i-1^{th}" title="Rendered by QuickLaTeX.com" height="25" width="73" style="vertical-align: -1px;"/> block to produce its carry. So there will be a considerable time delay which is carry propagation delay.</p>
+<p><img src="../../../imgs/digital-logic/5a2b7c938d32aa7dcb7953ae4f8e55f3.jpg" width="500" height="200" class="aligncenter size-full"/></p>
+<p>Consider the above 4-bit ripple carry adder. The sum <img src="../../../imgs/digital-logic/a64cb7e7503e1080b7e16029e4248aad.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="S_{4}" title="Rendered by QuickLaTeX.com" height="24" width="25" style="vertical-align: -4px;"/> is produced by the corresponding full adder as soon as the input signals are applied to it. But the carry input <img src="../../../imgs/digital-logic/2b2fdfe5bd48ee6bae993dd0928ef9b2.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{4}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/> is not available on its final steady state value until carry <img src="../../../imgs/digital-logic/08afc037f5ede21a60dcf2beb6aff20b.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{3}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/> is available at its steady state value. Similarly <img src="../../../imgs/digital-logic/08afc037f5ede21a60dcf2beb6aff20b.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{3}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/> depends on <img src="../../../imgs/digital-logic/6da4babd7e7d0ca78e65229fdfd12fff.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{2}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/> and <img src="../../../imgs/digital-logic/6da4babd7e7d0ca78e65229fdfd12fff.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{2}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/> on <img src="../../../imgs/digital-logic/9b609d87ba291796bdb79b3f277534e0.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{1}" title="Rendered by QuickLaTeX.com" height="25" width="27" style="vertical-align: -5px;"/>. Therefore, though the carry must propagate to all the stages in order that output <img src="../../../imgs/digital-logic/f16dd7d0165de2adb4cc78b0f97160ba.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="S_{3}" title="Rendered by QuickLaTeX.com" height="24" width="25" style="vertical-align: -4px;"/> and carry <img src="../../../imgs/digital-logic/2b2fdfe5bd48ee6bae993dd0928ef9b2.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{4}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/> settle their final steady-state value.</p>
+<p>The propagation time is equal to the propagation delay of each adder block, multiplied by the number of adder blocks in the circuit. For example, if each full adder stage has a propagation delay of 20 nanoseconds, then <img src="../../../imgs/digital-logic/f16dd7d0165de2adb4cc78b0f97160ba.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="S_{3}" title="Rendered by QuickLaTeX.com" height="24" width="25" style="vertical-align: -4px;"/> will reach its final correct value after 60 (20 × 3) nanoseconds. The situation gets worse, if we extend the number of stages for adding more number of bits.</p>
+<p><b>Carry Look-ahead Adder :</b><br/>
+A carry look-ahead adder reduces the propagation delay by introducing more complex hardware. In this design, the ripple carry design is suitably transformed such that the carry logic over fixed groups of bits of the adder is reduced to two-level logic. Let us discuss the design in detail.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/digital-logic/c4307dd210fe2f8ec6a2e457fc0bdb07.jpg" alt="" width="400" height="273" class="aligncenter size-full wp-image-270622"/></p>
+<p><img src="../../../imgs/digital-logic/7158ed3e9ea30a6a944e6fb12635c165.jpg" alt="" width="350" height="377" class="aligncenter size-full wp-image-270637"/></p>
+<p>Consider the full adder circuit shown above with corresponding truth table. We define two variables as <b>‘carry generate’</b> <img src="../../../imgs/digital-logic/b13f4c273a850256466f9e3d9a08ac58.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="G_{i}" title="Rendered by QuickLaTeX.com" height="24" width="27" style="vertical-align: -4px;"/> and <b>‘carry propagate’</b> <img src="../../../imgs/digital-logic/17ec8f664f8a709017f691421c3eb7c1.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="P_{i}" title="Rendered by QuickLaTeX.com" height="23" width="23" style="vertical-align: -4px;"/> then,<br/>
+<img src="../../../imgs/digital-logic/43055f1277a7c88a371556de5730c0ad.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" P_{i} = A_{i} \oplus B_{i} \newline G_{i} = A_{i} B_{i} " title="Rendered by QuickLaTeX.com" height="57" width="146" style="vertical-align: -4px;"/></p>
+<p>The sum output and carry output can be expressed in terms of carry generate <img src="../../../imgs/digital-logic/b13f4c273a850256466f9e3d9a08ac58.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="G_{i}" title="Rendered by QuickLaTeX.com" height="24" width="27" style="vertical-align: -4px;"/> and carry propagate <img src="../../../imgs/digital-logic/17ec8f664f8a709017f691421c3eb7c1.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="P_{i}" title="Rendered by QuickLaTeX.com" height="23" width="23" style="vertical-align: -4px;"/> as</p>
+<p><img src="../../../imgs/digital-logic/b9f848f04c8a77d80a8d35516cb612bb.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" S_{i} = P_{i} \oplus C_{i} \newline C_{i} +1 = G_{i} + P_{i} C_{i} " title="Rendered by QuickLaTeX.com" height="57" width="219" style="vertical-align: -4px;"/><br/>
+where <img src="../../../imgs/digital-logic/b13f4c273a850256466f9e3d9a08ac58.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="G_{i}" title="Rendered by QuickLaTeX.com" height="24" width="27" style="vertical-align: -4px;"/> produces the carry when both <img src="../../../imgs/digital-logic/323757aa6bf343dcc21b467e6be3567f.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="A_{i}" title="Rendered by QuickLaTeX.com" height="24" width="27" style="vertical-align: -4px;"/>, <img src="../../../imgs/digital-logic/e79e9e3c317ca60cf1b52a272904ce8d.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="B_{i}" title="Rendered by QuickLaTeX.com" height="23" width="26" style="vertical-align: -4px;"/> are 1 regardless of the input carry. <img src="../../../imgs/digital-logic/17ec8f664f8a709017f691421c3eb7c1.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="P_{i}" title="Rendered by QuickLaTeX.com" height="23" width="23" style="vertical-align: -4px;"/> is associated with the propagation of carry from <img src="../../../imgs/digital-logic/84d4f071ee3cf587c00e1def95891948.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{i}" title="Rendered by QuickLaTeX.com" height="24" width="25" style="vertical-align: -4px;"/> to <img src="../../../imgs/digital-logic/4612a89df904cc7d12f6c06403835ecd.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{i} + 1" title="Rendered by QuickLaTeX.com" height="24" width="69" style="vertical-align: -4px;"/>.</p>
+<p>The carry output Boolean function of each stage in a 4 stage carry look-ahead adder can be expressed as</p>
+<p><img src="../../../imgs/digital-logic/7959963130d2db5656a8027a95b8989c.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" C_{1} = G_{0} + P_{0} C_{in} \newline C_{2} = G_{1} + P_{1} C_{1} = G_{1} + P_{1} G_{0} + P_{1} P_{0} C_{in} \newline C_{3} = G_{2} + P_{2} C_{2} = G_{2} + P_{2} G_{1} + P_{2} P_{1} G_{0} + P_{2} P_{1} P_{0} C_{in} \newline C_{4} = G_{3} + P_{3} C_{3} = G_{3} + P_{3} G_{2} + P_{3} P_{2} G_{1} + P_{3} P_{2} P_{1} G_{0} + P_{3} P_{2} P_{1} P_{0} C_{in} \newline " title="Rendered by QuickLaTeX.com" height="123" width="802" style="vertical-align: 28px;"/></p>
+<p>From the above Boolean equations we can observe that <img src="../../../imgs/digital-logic/2b2fdfe5bd48ee6bae993dd0928ef9b2.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{4}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/> does not have to wait for <img src="../../../imgs/digital-logic/08afc037f5ede21a60dcf2beb6aff20b.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{3}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/> and <img src="../../../imgs/digital-logic/6da4babd7e7d0ca78e65229fdfd12fff.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{2}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/> to propagate but actually <img src="../../../imgs/digital-logic/2b2fdfe5bd48ee6bae993dd0928ef9b2.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{4}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/> is propagated at the same time as <img src="../../../imgs/digital-logic/08afc037f5ede21a60dcf2beb6aff20b.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{3}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/> and <img src="../../../imgs/digital-logic/6da4babd7e7d0ca78e65229fdfd12fff.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{2}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/>. Since the Boolean expression for each carry output is the sum of products so these can be implemented with one level of AND gates followed by an OR gate.</p>
+<p>The implementation of three Boolean functions for each carry output (<img src="../../../imgs/digital-logic/6da4babd7e7d0ca78e65229fdfd12fff.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{2}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/>, <img src="../../../imgs/digital-logic/08afc037f5ede21a60dcf2beb6aff20b.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{3}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/> and <img src="../../../imgs/digital-logic/2b2fdfe5bd48ee6bae993dd0928ef9b2.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C_{4}" title="Rendered by QuickLaTeX.com" height="24" width="28" style="vertical-align: -4px;"/>) for a carry look-ahead carry generator shown in below figure.</p>
+<p><img src="../../../imgs/digital-logic/a02240183de07621e914c1ee4e6b6ebb.jpg" alt="" width="540" height="407" class="aligncenter size-full wp-image-270640"/></p>
+<p><b>Time Complexity Analysis :</b><br/>
+We could think of a carry look-ahead adder as made up of two “parts”</p>
+<ol>
+<li>The part that computes the carry for each bit.</li>
+<li>The part that adds the input bits and the carry for each bit position.</li>
+</ol>
+<p>The <img src="../../../imgs/digital-logic/76e987261d5d1bb3614be836ce978780.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="log(n)" title="Rendered by QuickLaTeX.com" height="27" width="68" style="vertical-align: -7px;"/> complexity arises from the part that generates the carry, not the circuit that adds the bits.<br/>
+Now, for the generation of the <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-42e1e410c8e9c360c10fadc508b3cab2_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="n^{th}" title="Rendered by QuickLaTeX.com" height="24" width="35" style="vertical-align: 0px;"/> carry bit, we need to perform a AND between (n+1) inputs. The complexity of the adder comes down to how we perform this AND operation. If we have AND gates, each with a fan-in (number of inputs accepted) of k, then we can find the AND of all the bits in <img src="../../../imgs/digital-logic/cb3c4b6e025c21efaf51a4e08ad3d030.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="log_{k}(n+1)" title="Rendered by QuickLaTeX.com" height="27" width="124" style="vertical-align: -7px;"/> time. This is represented in asymptotic notation as <img src="../../../imgs/digital-logic/1a55597a040d18dc4261a83a26f736f2.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="\Theta(log n)" title="Rendered by QuickLaTeX.com" height="27" width="88" style="vertical-align: -7px;"/>.</p>
+<p><b>Advantages and Disadvantages of Carry Look-Ahead Adder :</b><br/>
+<b>Advantages –</b></p>
+<ul>
+<li>The propagation delay is reduced.</li>
+<li>It provides the fastest addition logic.</li>
+</ul>
+<p><b>Disadvantages –</b></p>
+<ul>
+<li>The Carry Look-ahead adder circuit gets complicated as the number of variables increase.</li>
+<li> The circuit is costlier as it involves more number of hardware.</li>
+</ul>
+<p><b>GATE CS Corner Questions</b></p>
+<p>Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2016-set-1-question-43/" rel="noopener" target="_blank">GATE CS 2016 (Set-1), Question 43</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2004-question-62/" rel="noopener" target="_blank">GATE CS 2004, Question 90</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2007-question-35/" rel="noopener" target="_blank">GATE CS 2007, Question 85</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2006-question-36/" rel="noopener" target="_blank">GATE CS 2006, Question 85</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-1997-question-15/" rel="noopener" target="_blank">GATE CS 1997, Question 15</a></li>
+</ol>
+<p><b>References –</b><br/>
+<a href="http://cse10-iitkgp.virtual-labs.ac.in/cla_design.html" rel="noopener" target="_blank">iitkgp.virtual-labs</a><br/>
+<a href="https://en.wikipedia.org/wiki/Carry-lookahead_adder" rel="noopener" target="_blank">Carry-lookahead adder – Wikipedia</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Combinational circuits using Decoder</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite- <a href="https://www.geeksforgeeks.org/digital-logic-binary-decoder/" rel="noopener" target="_blank">Binary Decoder</a>,  <a href="https://www.geeksforgeeks.org/multiplexers-digital-electronics/" rel="noopener" target="_blank">Multiplexers</a></p>
+<p>A Decoder is a combinational circuit that converts binary information from <img src="../../../imgs/digital-logic/42ce0a847b20a2f8a781c8a50bdab975.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="n" title="Rendered by QuickLaTeX.com" height="12" width="15" style="vertical-align: 0px;"/> input lines to <img src="../../../imgs/digital-logic/364792ee2e3d46fcd847e7915a7e50b5.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="2^n" title="Rendered by QuickLaTeX.com" height="19" width="24" style="vertical-align: 0px;"/> unique output lines. Apart from the Input lines, a decoder may also have an Enable input line.</p>
+<p><strong>Decoder as a De-Multiplexer –</strong></p>
+<p>A Decoder with Enable input can function as a demultiplexer. A demultiplexer is a circuit that receives information from a single line and directs it to one of <img src="../../../imgs/digital-logic/364792ee2e3d46fcd847e7915a7e50b5.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="2^n" title="Rendered by QuickLaTeX.com" height="19" width="24" style="vertical-align: 0px;"/> possible output lines.</p>
+<p>A <img src="../../../imgs/digital-logic/364792ee2e3d46fcd847e7915a7e50b5.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="2^n" title="Rendered by QuickLaTeX.com" height="19" width="24" style="vertical-align: 0px;"/> demultiplexor receives as input, <img src="../../../imgs/digital-logic/42ce0a847b20a2f8a781c8a50bdab975.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="n" title="Rendered by QuickLaTeX.com" height="12" width="15" style="vertical-align: 0px;"/> selection lines and one Input line. These selection lines are used to select one output line out of <img src="../../../imgs/digital-logic/364792ee2e3d46fcd847e7915a7e50b5.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="2^n" title="Rendered by QuickLaTeX.com" height="19" width="24" style="vertical-align: 0px;"/> possible lines. To implement a <img src="../../../imgs/digital-logic/364792ee2e3d46fcd847e7915a7e50b5.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="2^n" title="Rendered by QuickLaTeX.com" height="19" width="24" style="vertical-align: 0px;"/> demultiplexor, we use a <img src="../../../imgs/digital-logic/ea6605c0e23f930c4c229822acda37a5.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="n:2^n" title="Rendered by QuickLaTeX.com" height="19" width="63" style="vertical-align: 0px;"/> decoder with Enable input. The <img src="../../../imgs/digital-logic/42ce0a847b20a2f8a781c8a50bdab975.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="n" title="Rendered by QuickLaTeX.com" height="12" width="15" style="vertical-align: 0px;"/> selection lines of the demultiplexer are the <img src="../../../imgs/digital-logic/42ce0a847b20a2f8a781c8a50bdab975.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="n" title="Rendered by QuickLaTeX.com" height="12" width="15" style="vertical-align: 0px;"/> input lines that the decoder gets and the one input line of demulitplexer is the Enable input of the Decoder.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Making 1:4 demultiplexer using 2:4 Decoder with Enable input. Let A, B be the selection lines and EN be the input line for the demultiplexer.<br/>
+The decoder shown below functions as a 1:4 demultiplexer when EN is taken as a data input line and A and B are taken as the selection inputs. The single input variable E has a path to all four outputs, but the input information is directed to only one of the output lines, as specified by the binary combination of the two selection lines A and B. This can be verified from the truth table of the circuit.</p>
+<p><img src="../../../imgs/digital-logic/1ecb3d04440beaa07f348dab7efa3a8e.jpg" alt="333" width="300" height="192" class="aligncenter size-full wp-image-186952"/></p>
+<p><b>Truth Table-</b><br/>
+<img src="../../../imgs/digital-logic/c4ebd00d2d1677c55d0a2cd73e5deb77.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" \begin{tabular}{|c|c|c||c|c|c|c|} \hline E &amp; A &amp; B &amp; D_0 &amp; D_1 &amp; D_2 &amp; D_3\\ \hline \hline 0 &amp; X &amp; X &amp; 0 &amp; 0 &amp; 0 &amp; 0\\ \hline 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\ \hline 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\ \hline 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\ \hline 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\ \hline \end{tabular} " title="Rendered by QuickLaTeX.com" height="208" width="391" style="vertical-align: -97px;"/></p>
+<p><strong>Combinational Logic Implementation using Decoder –</strong></p>
+<p>A decoder takes <img src="../../../imgs/digital-logic/42ce0a847b20a2f8a781c8a50bdab975.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="n" title="Rendered by QuickLaTeX.com" height="12" width="15" style="vertical-align: 0px;"/> input lines and has <img src="../../../imgs/digital-logic/364792ee2e3d46fcd847e7915a7e50b5.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="2^n" title="Rendered by QuickLaTeX.com" height="19" width="24" style="vertical-align: 0px;"/> output lines. These output lines can provide the <img src="../../../imgs/digital-logic/364792ee2e3d46fcd847e7915a7e50b5.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="2^n" title="Rendered by QuickLaTeX.com" height="19" width="24" style="vertical-align: 0px;"/> minterms of <img src="../../../imgs/digital-logic/42ce0a847b20a2f8a781c8a50bdab975.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="n" title="Rendered by QuickLaTeX.com" height="12" width="15" style="vertical-align: 0px;"/> input variables.<br/>
+Since any boolean function can be expressed as a sum of minterms, a decoder that can generate these minterms along with external OR gates that form their logical sums, can be used to form a circuit of any boolean function.</p>
+<p>For example, if we need to implement the logic of a full adder, we need a 3:8 decoder and OR gates. The input to the full adder, first and second bits and carry bit, are used as input to the decoder. Let x, y and z represent these three bits. Sum and Carry outputs of a full adder have the following truth tables-<br/>
+<img src="../../../imgs/digital-logic/eadc78725908cdf1f842ccfd88ee5ba4.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" \begin{tabular}{|c|c|c||c|c|} \hline x &amp; y &amp; z &amp; S &amp; C\\ \hline \hline 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\ \hline 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0\\ \hline 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\ \hline 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1\\ \hline 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\ \hline 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1\\ \hline 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\ \hline 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1\\ \hline \end{tabular} " title="Rendered by QuickLaTeX.com" height="309" width="224" style="vertical-align: -148px;"/><br/>
+Therefore we have-<br/>
+<img src="../../../imgs/digital-logic/24ed28e7fe0349b3451689fabd8dd080.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="S = \sum (1, 2, 4, 7)" title="Rendered by QuickLaTeX.com" height="27" width="186" style="vertical-align: -7px;"/><br/>
+<img src="../../../imgs/digital-logic/35ac43f6961dae172f3513c285842082.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="C = \sum (3, 5, 6, 7)" title="Rendered by QuickLaTeX.com" height="27" width="189" style="vertical-align: -7px;"/><br/>
+The following circuit diagram shows the implementation of Full adder using a 3:8 Decoder and OR gates.</p>
+<p><img src="../../../imgs/digital-logic/ca4d26db0862cbceafb4dfbaa56ca45f.jpg" width="749" height="414" alt="" class="aligncenter size-full"/></p>
+<p><strong>References-</strong></p>
+<p>Digital Design, 5th edition by Morris Mano and Michael Ciletti</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

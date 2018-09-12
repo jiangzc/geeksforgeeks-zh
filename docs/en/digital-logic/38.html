@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Multiplexers | Digital Electronics</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>It is a combinational circuit which have many data inputs and single output depending on control or select inputs.​ For N input lines, log n (base2) selection lines, or we can say that for 2<sup>n</sup> input lines, n selection lines are required. Multiplexers are also known as <strong>“Data n selector, parallel to serial convertor, many to one circuit, universal logic circuit​”</strong>. Multiplexers are mainly used to increase amount of the data that can be sent over the network within certain amount of time and bandwidth.</p>
+<p><img src="../../../imgs/digital-logic/d8fae3d08ab4f4a34aa2c517ff50966a.jpg" width="409" height="316" alt="" class="aligncenter size-full"/></p>
+<p>Now the implementation of 4:1 Multiplexer using truth table and gates.</p>
+<p><img src="../../../imgs/digital-logic/bee96685835dae4c563c001f4168aa79.jpg" width="349" height="223" alt="" class="aligncenter size-full"/></p>
+<p><img src="../../../imgs/digital-logic/090f9581f8b37c9936138ad3998ad32b.jpg" width="682" height="502" alt="" class="aligncenter size-full"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Multiplexer can act as universal combinational circuit. All the standard logic gates can be implemented with multiplexers.</p>
+<p align="center"><strong>a) Implementation of NOT gate using 2 : 1 Mux</strong></p>
+<p><strong>NOT Gate :</strong></p>
+<p><img src="../../../imgs/digital-logic/6351773a017a9a2fb9f976e77f1be008.jpg" width="556" height="231" alt="" class="aligncenter size-full"/></p>
+<p>We can analyze it<br/>
+Y = x’.1 + x.0 = x’<br/>
+It is NOT Gate using 2:1 MUX.<br/>
+The implementation of NOT gate is done using “n” selection lines. It cannot be implemented using “n-1” selection lines. Only NOT gate cannot be implemented using “n-1” selection lines.</p>
+<p>&#160;</p>
+<p align="center"><strong>b) Implementation of AND gate using 2 : 1 Mux</strong></p>
+<p><strong>AND GATE</strong></p>
+<p><img src="../../../imgs/digital-logic/d6e991699817dba2a955814054961daa.jpg" width="694" height="225" alt="" class="aligncenter size-full"/></p>
+<p>This implementation is done using “n-1” selection lines.</p>
+<p>&#160;</p>
+<p align="center"><strong>c) Implementation of OR gate using 2 : 1 Mux using “n-1” selection lines.</strong></p>
+<p><strong>OR GATE</strong></p>
+<p><img src="../../../imgs/digital-logic/63536d00a3aae417a5f86e9ce8c54c4c.jpg" width="686" height="216" alt="" class="aligncenter size-full"/></p>
+<p>Implementation of NAND, NOR, XOR and XNOR gates requires two 2:1 Mux. First multiplexer will act as NOT gate which will provide complemented input to the second multiplexer.</p>
+<p align="center"><strong>d) Implementation of NAND gate using 2 : 1 Mux</strong></p>
+<p><strong>NAND GATE</strong></p>
+<p><img src="../../../imgs/digital-logic/cf230efaeebdda9d2d196fb446823130.jpg" width="583" height="235" alt="" class="aligncenter size-full"/></p>
+<p align="center"><strong>e) Implementation of NOR gate using 2 : 1 Mux</strong></p>
+<p><strong>NOR GATE</strong></p>
+<p><img src="../../../imgs/digital-logic/26d9f395d65f7ef10ae66c864a4cb92b.jpg" width="583" height="235" alt="" class="aligncenter size-full"/></p>
+<p align="center"><strong>f) Implementation of EX-OR gate using 2 : 1 Mux</strong></p>
+<p><strong>EX-OR GATE</strong></p>
+<p><img src="../../../imgs/digital-logic/84e74fbf56e00f8c9ca25721fc85f1bc.jpg" width="583" height="235" alt="" class="aligncenter size-full"/></p>
+<p align="center"><strong>g) Implementation of EX-NOR gate using 2 : 1 Mux</strong></p>
+<p><strong>EX-NOR GATE</strong></p>
+<p><img src="../../../imgs/digital-logic/cf1705553f02180aced6629b4972cd52.jpg" width="583" height="235" alt="" class="aligncenter size-full"/></p>
+<p><strong>Implementation of Higher order MUX using lower order MUX</strong></p>
+<p align="center"><strong>a) 4 : 1 MUX using 2 : 1 MUX</strong></p>
+<p><strong>Three(3)</strong> ​2 : 1 MUX are required to implement 4 : 1 MUX.</p>
+<p><img src="../../../imgs/digital-logic/485845f84eb9ab7dce708c897e91d16e.jpg" width="805" height="478" alt="" class="aligncenter size-full"/></p>
+<p>Similarly,</p>
+<p>While 8 : 1 MUX require <strong>seven(7)</strong> ​2 : 1 MUX, 16 : 1 MUX require <strong>fifteen(15)</strong> ​2 :1 MUX, 64 : 1 MUX requires <strong>sixty three(63)​</strong> 2 : 1 MUX.<br/>
+Hence, we can draw a conclusion,<br/>
+2<sup>n</sup> : 1 MUX requires <strong>(2n- 1)</strong> 2 : 1 MUX.</p>
+<p align="center"><strong>b) 16 : 1 MUX using 4 : 1 MUX</strong></p>
+<p><img src="../../../imgs/digital-logic/af53ab8e371b50c836bb9c52d6b7dabd.jpg" width="516" height="745" alt="" class="aligncenter size-full"/></p>
+<p>In general, to implement B : 1 MUX using A : 1 MUX , one formula is used to implement the same.<br/>
+B / A = K1,<br/>
+K1/ A = K2,<br/>
+K2/ A = K3</p>
+<p>………………</p>
+<p>K<sub>N-1</sub> / A = K<sub>N</sub> = 1 (till we obtain 1 count of MUX).</p>
+<p>And then add all the numbers of MUXes = K1 + K2 + K3 + …. + K<sub>N</sub>.<br/>
+For example​ : To implement 64 : 1 MUX using 4 : 1 MUX<br/>
+Using the above formula, we can obtain the same.<br/>
+64 / 4 = 16<br/>
+16 / 4 = 4<br/>
+4 / 4 = 1 (till we obtain 1 count of MUX)<br/>
+Hence, total number of 4 : 1 MUX are required to implement 64 : 1 MUX = 16 + 4 + 1 = 21.</p>
+<p><strong>An example to implement a boolean function if minimal and don’t care terms are given using MUX​.</strong><br/>
+f ( A, B, C) = Σ ( 1, 2, 3, 5, 6 ) with don’t care (7) using 4 : 1 MUX using as<br/>
+<strong>a) AB as select</strong> : ​Expanding the minterms to its boolean form and will see its 0 or 1 value in Cth place so that they can be placed in that manner.</p>
+<p><img src="../../../imgs/digital-logic/ac5e2cf9016927a6da9061e691c216f2.jpg" width="713" height="494" alt="" class="aligncenter size-full"/></p>
+<p><strong>b) AC as select</strong> : Expanding the minterms to its boolean form and will see its 0 or 1 value in Bth place so that they can be place in that manner.</p>
+<p><img src="../../../imgs/digital-logic/3cadfd8e3bb0781f0e395da2c4be5e1d.jpg" width="724" height="464" alt="" class="aligncenter size-full"/></p>
+<p><strong>c) BC as select</strong> : ​Expanding the minterms to its boolean form and will see its 0 or 1 value in A<sup>th</sup> place so that they can be place in that manner.</p>
+<p><img src="../../../imgs/digital-logic/653e42f268ce03e0b6789688620dd110.jpg" width="744" height="454" alt="" class="aligncenter size-full"/></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

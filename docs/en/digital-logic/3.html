@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Floating Point Representation | Digital Logic</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>
+<strong>1. To convert the floating point into decimal, we have 3 elements in a 32-bit floating point representation:</strong><br/>
+   &#160; &#160;   i) Sign<br/>
+   &#160; &#160;   ii) Exponent<br/>
+   &#160; &#160;   iii) Mantissa</p>
+<ul>
+<li><strong>Sign</strong> bit is the first bit of the binary representation. '1' implies negative number and '0' implies positive number.<br/>
+<strong>Example:</strong> 11000001110100000000000000000000 This is negative number.</li>
+<p></p>
+<li><strong>Exponent</strong> is decided by the next 8 bits of binary representation. 127 is the unique number for 32 bit floating point representation. It is known as bias. It is determined by 2<sup>k-1</sup> -1 where 'k' is the number of bits in exponent field.
+<p>There are 2 exponent bits in 8-bit representation and 8 exponent bits in 32-bit representation.<br/>
+Thus<br/>
+bias = 3 for 8 bit conversion (2<sup>2-1</sup> -1 = 4-1 = 3)<br/>
+bias = 127 for 32 bit conversion. (2<sup>8-1</sup> -1 = 128-1 = 127)</p>
+<p><strong>Example:</strong> 01000001110100000000000000000000<br/>
+10000011 = (131)<sub>2</sub><br/>
+131-127 = 4</p>
+<p>Hence the exponent of 2 will be 4 i.e. 2<sup>4</sup> = 16.</p></li>
+<li><strong>Mantissa</strong> is calculated from the remaining 24 bits of the binary representation. It consists of '1' and a fractional part which is determined by:
+<p><strong>Example:</strong></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>01000001110100000000000000000000</p>
+<p>The fractional part of mantissa is given by:</p>
+<p>1*(1/2) + 0*(1/4) + 1*(1/8) + 0*(1/16) +……… = 0.625</p>
+<p>Thus the mantissa will be 1 + 0.625 = 1.625</p>
+<p>The decimal number hence given as: Sign*Exponent*Mantissa = (-1)*(16)*(1.625) = -26</p></li>
+</ul>
+<p><strong>2. To convert the decimal into floating point, we have 3 elements in a 32-bit floating point representation:</strong><br/>
+   &#160; &#160;   i) Sign (MSB)<br/>
+   &#160; &#160;   ii) Exponent (8 bits after MSB)<br/>
+   &#160; &#160;   iii) Mantissa (Remaining 23 bits)</p>
+<ul>
+<li><strong>Sign bit</strong> is the first bit of the binary representation. '1' implies negative number and '0' implies positive number.<br/>
+ Example: To convert -17 into 32-bit floating point representation Sign bit = 1</li>
+<li><strong>Exponent</strong> is decided by the nearest smaller or equal to 2<sup>n</sup> number. For 17, 16 is the nearest 2<sup>n</sup>.  Hence the exponent of 2 will be 4 since 2<sup>4</sup> = 16. 127 is the unique number for 32 bit floating point representation. It is known as bias. It is determined by 2<sup>k-1</sup> -1 where 'k' is the number of bits in exponent field.
+<p>Thus bias = 127 for 32 bit. (2<sup>8-1</sup> -1 = 128-1 = 127)</p>
+<p>Now, 127 + 4 = 131 i.e. 10000011 in binary representation.</p></li>
+<li><strong>Mantissa:</strong> 17 in binary = 10001.
+<p>Move the binary point so that there is only one bit from the left. Adjust the exponent of 2 so that the value does not change. This is normalizing the number. 1.0001 x 2<sup>4</sup>. Now, consider the fractional part and represented as 23 bits by adding zeros.</p>
+<p>00010000000000000000000</p></li>
+<p>Thus the floating point representation of -17 is 1 10000011 00010000000000000000000
+</p>
+</ul>
+<p>
+Related Link:<br/>
+<a href="https://www.youtube.com/watch?v=03fhijH6e2w">https://www.youtube.com/watch?v=03fhijH6e2w</a><br/>
+More questions on number representation:<br/>
+<a href="http://quiz.geeksforgeeks.org/number-representation/">http://quiz.geeksforgeeks.org/number-representation/</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

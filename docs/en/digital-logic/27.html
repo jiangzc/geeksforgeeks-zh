@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Code Converters – BCD(8421) to/from Excess-3</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Prerequisite –</strong> <a href="https://www.geeksforgeeks.org/number-system-and-base-conversions/" target="_blank">Number System and base conversions</a></p>
+<p>Excess-3 binary code is a <strong>unweighted self-complementary</strong> BCD code.<br/>
+Self-Complementary property means that the 1’s complement of an excess-3 number is the excess-3 code of the 9’s complement of the corresponding decimal number. This property is useful since a decimal number can be nines’ complemented (for subtraction) as easily as a binary number can be ones’ complemented; just by inverting all bits.<br/>
+For example, the excess-3 code for 3(0011) is 0110 and to find the excess-3 code of the complement of 3, we just need to find the 1’s complement of 0110 -&gt; 1001, which is also the excess-3 code for the 9’s complement of 3 -&gt; (9-3) = 6.</p>
+<h3 class="sigil_not_in_toc">Converting BCD(8421) to Excess-3 –</h3>
+<p>As is clear by the name, a BCD digit can be converted to it’s corresponding Excess-3 code by simply adding 3 to it.<br/>
+Let <img src="../../../imgs/digital-logic/ee24029f58c5c7bc83e49cef4ff77456.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="A,\:B,\:C,\:and\:D" title="Rendered by QuickLaTeX.com" height="25" width="184" style="vertical-align: -5px;"/> be the bits representing the binary numbers, where <img src="../../../imgs/digital-logic/4bf58c30470f92164b71a158e9fd8b22.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="D" title="Rendered by QuickLaTeX.com" height="19" width="21" style="vertical-align: 0px;"/> is the LSB and <img src="../../../imgs/digital-logic/cc10d3b72431cdd6ba563d3cc2a57d7f.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="A" title="Rendered by QuickLaTeX.com" height="20" width="19" style="vertical-align: 0px;"/> is the MSB, and<br/>
+Let <img src="../../../imgs/digital-logic/e451f912b5426268b2308c2b0e4b188c.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="w,\:x,\:y,\:and\:z" title="Rendered by QuickLaTeX.com" height="24" width="164" style="vertical-align: -5px;"/> be the bits representing the gray code of the binary numbers, where <img src="../../../imgs/digital-logic/bfd03be88bf95b51b8145f4395cca36b.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="z" title="Rendered by QuickLaTeX.com" height="12" width="12" style="vertical-align: 0px;"/> is the LSB and <img src="../../../imgs/digital-logic/b27d57e3f417abb002a05eaa8a1ff42e.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="w" title="Rendered by QuickLaTeX.com" height="12" width="19" style="vertical-align: 0px;"/> is the MSB.<br/>
+The truth table for the conversion is given below. The X’s mark don’t care conditions.<br/>
+<img src="../../../imgs/digital-logic/dcd7200cd26a857b859ee0807785f18b.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" \begin{tabular}{||c|c|c|c||c|c|c|c||} \hline  \multicolumn{4}{||c||}{BCD(8421)} &amp; \multicolumn{4}{|c||}{Excess-3}\\ \hline  A &amp; B &amp; C &amp; D &amp; w &amp; x &amp; y &amp; z \\ \hline \hline  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\  \hline  0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\  \hline  0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\  \hline  0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\  \hline \hline  0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\  \hline  0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\  \hline  0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\  \hline  0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\  \hline \hline  1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 \\  \hline  1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\  \hline  1 &amp; 0 &amp; 1 &amp; 0 &amp; X &amp; X &amp; X &amp; X \\  \hline  1 &amp; 0 &amp; 1 &amp; 1 &amp; X &amp; X &amp; X &amp; X \\  \hline \hline  1 &amp; 1 &amp; 0 &amp; 0 &amp; X &amp; X &amp; X &amp; X \\  \hline  1 &amp; 1 &amp; 0 &amp; 1 &amp; X &amp; X &amp; X &amp; X \\  \hline  1 &amp; 1 &amp; 1 &amp; 0 &amp; X &amp; X &amp; X &amp; X \\ \hline  1 &amp; 1 &amp; 1 &amp; 1 &amp; X &amp; X &amp; X &amp; X \\ \hline \hline \end{tabular} " title="Rendered by QuickLaTeX.com" height="632" width="403" style="vertical-align: -309px;"/><br/>
+To find the corresponding digital circuit, we will use the K-Map technique for each of the Excess-3 code bits as output with all of the bits of the BCD number as input.</p>
+<p><img src="../../../imgs/digital-logic/a86f5ee63c74dbd25c338d906c25a1fd.jpg" alt="35777" width="541" height="523" class="aligncenter size-full wp-image-191310" srcset="https://www.geeksforgeeks.org/wp-content/uploads/35777.png 541w, https://www.geeksforgeeks.org/wp-content/uploads/35777-300x290.png 300w" sizes="(max-width: 541px) 100vw, 541px"/></p>
+<p>Corresponding minimized Boolean expressions for Excess-3 code bits –<br/>
+<img src="../../../imgs/digital-logic/5ecf20efc4acdef67cd03c2128bad10c.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" w = A+BC+BD\\ x = B^\prime C + B^\prime D +BC^\prime D^\prime\\ y = CD + C^\prime D^\prime \\ z = D^\prime " title="Rendered by QuickLaTeX.com" height="118" width="291" style="vertical-align: 0px;"/><br/>
+The corresponding digital circuit-<br/>
+<img src="../../../imgs/digital-logic/22218310bfb62ffcd784cd60cc68f61c.jpg" alt="" width="564" height="410" class="aligncenter size-full wp-image-247090"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<h3 class="sigil_not_in_toc">Converting Excess-3 to BCD(8421) –</h3>
+<p>Excess-3 code can be converted back to BCD in the same manner.<br/>
+Let <img src="../../../imgs/digital-logic/ee24029f58c5c7bc83e49cef4ff77456.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="A,\:B,\:C,\:and\:D" title="Rendered by QuickLaTeX.com" height="25" width="184" style="vertical-align: -5px;"/> be the bits representing the binary numbers, where <img src="../../../imgs/digital-logic/4bf58c30470f92164b71a158e9fd8b22.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="D" title="Rendered by QuickLaTeX.com" height="19" width="21" style="vertical-align: 0px;"/> is the LSB and <img src="../../../imgs/digital-logic/cc10d3b72431cdd6ba563d3cc2a57d7f.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="A" title="Rendered by QuickLaTeX.com" height="20" width="19" style="vertical-align: 0px;"/> is the MSB, and<br/>
+Let <img src="../../../imgs/digital-logic/e451f912b5426268b2308c2b0e4b188c.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="w,\:x,\:y,\:and\:z" title="Rendered by QuickLaTeX.com" height="24" width="164" style="vertical-align: -5px;"/> be the bits representing the gray code of the binary numbers, where <img src="../../../imgs/digital-logic/bfd03be88bf95b51b8145f4395cca36b.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="z" title="Rendered by QuickLaTeX.com" height="12" width="12" style="vertical-align: 0px;"/> is the LSB and <img src="../../../imgs/digital-logic/b27d57e3f417abb002a05eaa8a1ff42e.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="w" title="Rendered by QuickLaTeX.com" height="12" width="19" style="vertical-align: 0px;"/> is the MSB.<br/>
+The truth table for the conversion is given below. The X’s mark don’t care conditions.<br/>
+<img src="../../../imgs/digital-logic/60a9c7c1e73e388e0cbc1aa0f93dec9c.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" \begin{tabular}{||c|c|c|c||c|c|c|c||} \hline  \multicolumn{4}{||c||}{Excess-3} &amp; \multicolumn{4}{|c||}{BCD}\\ \hline  w &amp; x &amp; y &amp; z &amp; A &amp; B &amp; C &amp; D \\ \hline \hline  0 &amp; 0 &amp; 0 &amp; 0 &amp; X &amp; X &amp; X &amp; X \\  \hline  0 &amp; 0 &amp; 0 &amp; 1 &amp; X &amp; X &amp; X &amp; X \\  \hline  0 &amp; 0 &amp; 1 &amp; 0 &amp; X &amp; X &amp; X &amp; X \\  \hline  0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\  \hline \hline  0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\  \hline  0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\  \hline  0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\  \hline  0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\  \hline \hline  1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\  \hline  1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\  \hline  1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\  \hline  1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\  \hline \hline  1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\  \hline  1 &amp; 1 &amp; 0 &amp; 1 &amp; X &amp; X &amp; X &amp; X \\  \hline  1 &amp; 1 &amp; 1 &amp; 0 &amp; X &amp; X &amp; X &amp; X \\ \hline  1 &amp; 1 &amp; 1 &amp; 1 &amp; X &amp; X &amp; X &amp; X \\ \hline \hline \end{tabular} " title="Rendered by QuickLaTeX.com" height="632" width="386" style="vertical-align: -309px;"/><br/>
+K-Map for D-<br/>
+<img src="../../../imgs/digital-logic/1df595d712eda71adefd9572326de609.jpg" alt="" width="300" height="272" class="aligncenter size-medium wp-image-247753"/><br/>
+K-Map for C-<br/>
+<img src="../../../imgs/digital-logic/99b4ef200715e00098249ddf1cb89cbd.jpg" alt="" width="300" height="263" class="aligncenter size-medium wp-image-247754"/><br/>
+K-Map for B-<br/>
+<img src="../../../imgs/digital-logic/2775ccf1e295c62a4040a1924459d7cc.jpg" alt="" width="300" height="271" class="aligncenter size-medium wp-image-247755"/><br/>
+K-Map for A-<br/>
+<img src="../../../imgs/digital-logic/ddc81f07273cfdef2a4b074637d0f566.jpg" alt="" width="300" height="272" class="aligncenter size-medium wp-image-247756"/><br/>
+Corresponding minimized boolean expressions for Excess-3 code bits –<br/>
+<img src="../../../imgs/digital-logic/acbcd960d82a323608dd430e572a4df6.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" A = wx+wyz\\ B = x^\prime y^\prime + x^\prime z^\prime +xyz\\ C = y^\primez+ yz^\prime \\ D = z^\prime " title="Rendered by QuickLaTeX.com" height="118" width="247" style="vertical-align: 0px;"/><br/>
+The corresponding digital circuit –<br/>
+Here <img src="../../../imgs/digital-logic/647fbb69775d1552af91d88e51baa4ff.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="E_3,\:E_2,\:E_1,\:and\:E_0" title="Rendered by QuickLaTeX.com" height="24" width="223" style="vertical-align: -5px;"/> correspond to <img src="../../../imgs/digital-logic/e451f912b5426268b2308c2b0e4b188c.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="w,\:x,\:y,\:and\:z" title="Rendered by QuickLaTeX.com" height="24" width="164" style="vertical-align: -5px;"/> and <img src="../../../imgs/digital-logic/82fc8c0b6cba11d244514b0c005369b1.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="B_3,\:B_2,\:B_1,\:and\:B_0" title="Rendered by QuickLaTeX.com" height="24" width="225" style="vertical-align: -5px;"/> correspond to <img src="../../../imgs/digital-logic/ee24029f58c5c7bc83e49cef4ff77456.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="A,\:B,\:C,\:and\:D" title="Rendered by QuickLaTeX.com" height="25" width="184" style="vertical-align: -5px;"/>.</p>
+<p><img src="../../../imgs/digital-logic/61a7b7b9af3f56d915dbb1ed2887aac6.jpg" alt="Excess-3 to BCD"/></p>
+<p><strong>References-</strong></p>
+<p>Digital Design, 5th edition by Morris Mano and Michael Ciletti<br/>
+<a href="https://en.wikipedia.org/wiki/Excess-3">Excess-3 – Wikipedia</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

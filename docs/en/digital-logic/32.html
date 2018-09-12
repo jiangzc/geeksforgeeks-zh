@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Magnitude Comparator</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>A magnitude digital Comparator is a combinational circuit that <strong>compares two digital or binary numbers</strong> in order to find out whether one binary number is equal, less than or greater than the other  binary number. We logically design a circuit for which we will have two inputs one for A and other for B and have three output terminals, one for A &gt; B condition, one for A = B condition and one for A &lt; B condition.</p>
+<p><img src="../../../imgs/digital-logic/70938ea239fb2ecf30d930194746f074.jpg" alt="" width="300" height="86" class="aligncenter size-medium wp-image-283117"/></p>
+<h3 class="sigil_not_in_toc">1-Bit Magnitude Comparator –</h3>
+<p>A comparator used to compare two bits is called a single bit comparator. It consists of two inputs each for two single bit numbers and three outputs to generate less than, equal to and greater than between two binary numbers.</p>
+<p>The truth table for a 1-bit comparator is given below:</p>
+<p><img src="../../../imgs/digital-logic/3a3b9d821564a085c81fb488b000bf2e.jpg" alt="" width="300" height="135" class="aligncenter size-medium wp-image-283119"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>From the above truth table logical expressions for each output can be expressed as follows:</p>
+<pre>A&gt;B: AB'
+A&lt;B: A'B
+A=B: A'B' + AB
+</pre>
+<p>From the above expressions we can derive the following formula:</p>
+<p><img src="../../../imgs/digital-logic/c98a4fb994cd2d5e2abf12e9cf3ecd1c.jpg" alt=""/></p>
+<p>By using these Boolean expressions, we can implement a logic circuit for this comparator as given below:</p>
+<p><img src="../../../imgs/digital-logic/b7be7c9920a0b44e86106b38b87564d4.jpg" alt=""/></p>
+<h3 class="sigil_not_in_toc">2-Bit Magnitude Comparator –</h3>
+<p>A comparator used to compare two binary numbers each of two bits is called a 2-bit Magnitude comparator. It consists of four inputs  and three outputs to generate less than, equal to and greater than between two binary numbers.</p>
+<p>The truth table for a 2-bit comparator is given below:</p>
+<p><img src="../../../imgs/digital-logic/3e57dc29d72703364de66380b02547f1.jpg" alt=""/></p>
+<p>From the above truth table K-map for each output can be drawn as follows:</p>
+<p><img src="../../../imgs/digital-logic/0643d7e017e3e418851f568f086f824b.jpg" alt=""/></p>
+<p><img src="../../../imgs/digital-logic/e3fdd997ef9806cdca1842dd577fcd8a.jpg" alt=""/></p>
+<p><img src="../../../imgs/digital-logic/a085bba0001a9919c7eb6a0b00ffdbe8.jpg" alt=""/></p>
+<p>From the above K-maps logical expressions for each output can be expressed as follows:</p>
+<pre>A&gt;B:A1B1’ + A0B1’B0’ + A1A0B0’
+A=B: A1’A0’B1’B0’ + A1’A0B1’B0 + A1A0B1B0 + A1A0’B1B0’
+   : A1’B1’ (A0’B0’ + A0B0) + A1B1 (A0B0 + A0’B0’)
+   : (A0B0 + A0’B0’) (A1B1 + A1’B1’)
+   : (A0 Ex-Nor B0) (A1 Ex-Nor B1)
+A&lt;B:A1’B1 + A0’B1B0 + A1’A0’B0
+</pre>
+<p>By using these Boolean expressions, we can implement a logic circuit for this comparator as given below:</p>
+<p><img src="../../../imgs/digital-logic/8e61d28d0a9b7d40c29c660c23dbe1ca.jpg" alt=""/></p>
+<h3 class="sigil_not_in_toc">4-Bit Magnitude Comparator –</h3>
+<p>A comparator used to compare two binary numbers each of four bits is called a 4-bit magnitude comparator. It consists of eight inputs each for two four bit numbers and three outputs to generate less than, equal to and greater than between two binary numbers.</p>
+<p>In a 4-bit comparator the condition of A&gt;B can be possible in the following four cases:</p>
+<ol>
+<li>If A3 = 1 and B3 = 0</li>
+<li>If A3 = B3 and A2 = 1 and B2 = 0</li>
+<li>If A3 = B3, A2 = B2 and A1 = 1 and B1 = 0</li>
+<li>If A3 = B3, A2 = B2, A1 = B1  and A0 = 1 and B0 = 0</li>
+</ol>
+<p>Similarly the condition for A&lt;B can be possible in the following four cases:</p>
+<ol>
+<li>If A3 = 0 and B3 = 1</li>
+<li>If A3 = B3 and A2 = 0 and B2 = 1</li>
+<li>If A3 = B3, A2 = B2 and A1 = 0 and B1 = 1</li>
+<li>If A3 = B3, A2 = B2, A1 = B1  and A0 = 0 and B0 = 1</li>
+</ol>
+<p>The condition of A=B is possible only when all the individual bits of one number exactly coincide with corresponding bits of another number.</p>
+<p>From the above statements logical expressions for each output can be expressed as follows:</p>
+<p><strong><br/>
+AA, 831331 r: (A3 EioNor 33)A2132′ a (A3 Ex-Nor 133) (A2 Ex-Nor 132)A131′ a (A3 Ex-Nor 33) (A2 ENor132) (Al Ex-Nor 31)A01301<br/>
+,13: A3’03 a (A3 Ex-Nor 33)A211:12 a (A3 Ex-Nor 83) (A2 Ex-Nor 132)Ar131 a (A3 Ex-Nor 33) (A2 Ex-Nor32) (Al Ex-Nor 131)A0N30<br/>
+A=B: (A3 Ex-Nor B3) (A2 Ex-Nor 82) (Al Ex-Nor BI) (AO Ex-Nor BO)<br/>
+</strong></p>
+<p>By using these Boolean expressions, we can implement a logic circuit for this comparator as given below:</p>
+<p><img src="../../../imgs/digital-logic/2c7a9efbc51e81b440345b9ed290c846.jpg" alt=""/></p>
+<h3 class="sigil_not_in_toc">Cascading Comparator –</h3>
+<p>A comparator performing the comparison operation to more than four bits by cascading two or more 4-bit comparators is called cascading comparator.  When two comparators are to be cascaded, the outputs of the lower-order comparator are connected to corresponding inputs of the higher-order comparator. </p>
+<p><img src="../../../imgs/digital-logic/e6d6ac92d93e7e030199fcc3eeeb05e3.jpg" alt=""/></p>
+<h3 class="sigil_not_in_toc">Applications of Comparators –</h3>
+<ol>
+<li>Comparators are used in central processing units (CPUs) and microcontrollers (MCUs).</li>
+<li>These are used in control applications in which the binary numbers representing physical variables such as temperature, position, etc. are compared with a reference value.</li>
+<li>Comparators are also used as process controllers and for Servo motor control.</li>
+<li>Used in password verification and biometric applications.</li>
+</ol>
+<p><b>References –</b><br/>
+<a href="https://en.wikipedia.org/wiki/Digital_comparator" rel="noopener" target="_blank">Digital comparator – Wikipedia</a><br/>
+<a href="http://epgp.inflibnet.ac.in/epgpdata/uploads/epgp_content/S000574EE/P001494/M015069/ET/1459849153et09.pdf" rel="noopener" target="_blank">Comparator – epgp.inflibnet</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>
