@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Pipelining | Set 2 (Dependencies and Data Hazard)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Please see <a href="http://quiz.geeksforgeeks.org/computer-organization-and-architecture-pipelining-set-1-execution-stages-and-throughput/"><strong>Set 1</strong></a> for Execution, Stages and Performance (Throughput) and <a href="http://quiz.geeksforgeeks.org/computer-organization-and-architecture-pipelining-set-3-types-and-stalling"><strong>Set 3</strong></a> for Types of Pipeline and Stalling.<br/>
+&#160;<br/>
+<strong>Dependencies in a pipelined processor</strong></p>
+<p>There are mainly three types of dependencies possible in a pipelined processor. These are :<br/>
+1) Structural Dependency<br/>
+2) Control Dependency<br/>
+3) Data Dependency</p>
+<p>These dependencies may introduce stalls in the pipeline. </p>
+<p><strong>Stall :</strong> A stall is a cycle in the pipeline without new input.<br/>
+&#160;<br/>
+<strong>Structural dependency</strong></p>
+<p>This dependency arises due to the resource conflict in the pipeline. A resource conflict is a situation when more than one instruction tries to access the same resource in the same cycle. A resource can be a register, memory, or ALU.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Example:</p>
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Instruction / Cycle</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">1</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">2</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">3</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">4</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>1</sub></td>
+<td style="text-align:center;">IF(Mem)</td>
+<td style="text-align:center;">ID</td>
+<td style="text-align:center;">EX</td>
+<td style="text-align:center;"><mark>Mem</mark>
+</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>2</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">IF(Mem)</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">ID</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">EX</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>3</sub></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">IF(Mem)</td>
+<td style="text-align:center;">ID</td>
+<td style="text-align:center;">EX</td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>4</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"><mark>IF(Mem)</mark>
+</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">ID</td>
+</tr>
+</tbody>
+</table>
+<p>In the above scenario, in cycle 4, instructions I<sub>1</sub> and I<sub>4</sub> are trying to access same resource (Memory) which introduces a resource conflict.<br/>
+To avoid this problem, we have to keep the instruction on wait until the required resource (memory in our case) becomes available. This wait will introduce stalls in the pipeline as shown below:</p>
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:left; font-size:85%;">Cycle</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">1</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">2</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">3</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">4</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">5</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">6</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">7</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>1</sub></td>
+<td style="font-size:93%;">IF(Mem)</td>
+<td style="text-align:center;">ID</td>
+<td style="text-align:center;">EX</td>
+<td style="text-align:center;">Mem</td>
+<td style="text-align:center;">WB</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>2</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:left;font-size:93%;">IF(Mem)</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">ID</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">EX</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Mem</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">WB</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>3</sub></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;font-size:93%;">IF(Mem)</td>
+<td style="text-align:center;">ID</td>
+<td style="text-align:center;">EX</td>
+<td style="text-align:center;">Mem</td>
+<td style="text-align:center;">WB</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>4</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:yellow;;text-align:center;">–</td>
+<td style="background-color:yellow;text-align:center;">–</td>
+<td style="background-color:yellow;;text-align:center;">–</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center; font-size:93%;">IF(Mem)</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+</tr>
+</tbody>
+</table>
+<p>&#160;<br/>
+<strong>Solution for structural dependency</strong><br/>
+To minimize structural dependency stalls in the pipeline, we use a hardware mechanism called Renaming.<br/>
+<strong>Renaming :</strong> According to renaming, we divide the memory into two independent modules used to store the instruction and data separately called Code memory(CM) and Data memory(DM) respectively. CM will contain all the instructions and DM will contain all the operands that are required for the instructions.</p>
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Instruction/ Cycle</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">1</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">2</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">3</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">4</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">5</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">6</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>1</sub></td>
+<td style="text-align:center;">IF(CM)</td>
+<td style="text-align:center;">ID</td>
+<td style="text-align:center;">EX</td>
+<td style="text-align:center;">DM</td>
+<td style="text-align:center;">WB</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>2</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">IF(CM)</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">ID</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">EX</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">DM</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">WB</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>3</sub></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">IF(CM)</td>
+<td style="text-align:center;">ID</td>
+<td style="text-align:center;">EX</td>
+<td style="text-align:center;">DM</td>
+<td style="text-align:center;">WB</td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>4</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">IF(CM)</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">ID</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">EX</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">DM</td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>5</sub></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">IF(CM)</td>
+<td style="text-align:center;">ID</td>
+<td style="text-align:center;">EX</td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>6</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">IF(CM)</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">ID</td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>7</sub></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">IF(CM)</td>
+</tr>
+</tbody>
+</table>
+<p>&#160;<br/>
+&#160;<br/>
+<strong>Control Dependency (Branch Hazards)</strong><br/>
+This type of dependency occurs during the transfer of control instructions such as BRANCH, CALL, JMP, etc. On many instruction architectures, the processor will not know the target address of these instructions when it needs to insert the new instruction into the pipeline. Due to this, unwanted instructions are fed to the pipeline.</p>
+<p>Consider the following sequence of instructions in the program:<br/>
+100: I<sub>1</sub><br/>
+101: I<sub>2</sub> (JMP 250)<br/>
+102: I<sub>3</sub><br/>
+.<br/>
+.<br/>
+250: BI<sub>1</sub></p>
+<p>Expected output: I<sub>1</sub> -&gt; I<sub>2</sub> -&gt; BI<sub>1</sub></p>
+<p>NOTE: Generally, the target address of the JMP instruction is known after ID stage only.</p>
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Instruction/ Cycle</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">1</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">2</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">3</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">4</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">5</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>1</sub></td>
+<td style="text-align:center;">IF</td>
+<td style="text-align:center;">ID</td>
+<td style="text-align:center;">EX</td>
+<td style="text-align:center;">MEM</td>
+<td style="text-align:center;">WB</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>2</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">IF</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">ID (PC:250)</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">EX</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Mem</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">WB</td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>3</sub></td>
+<td style="background-color:YELLOW; text-align:center;"></td>
+<td style="background-color:YELLOW;text-align:center;"></td>
+<td style="background-color:YELLOW;text-align:center;">IF</td>
+<td style="background-color:YELLOW;text-align:center;">ID</td>
+<td style="background-color:YELLOW;text-align:center;">EX</td>
+<td style="background-color:YELLOW;text-align:center;">Mem</td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">BI<sub>1</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">IF</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">ID</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">EX</td>
+</tr>
+</tbody>
+</table>
+<p>Output Sequence: I<sub>1</sub> -&gt; I<sub>2</sub> -&gt; I<sub>3</sub> -&gt; BI<sub>1</sub></p>
+<p>So, the output sequence is not equal to the expected output, that means the pipeline is not implemented correctly.</p>
+<p>To correct the above problem we need to stop the Instruction fetch until we get target address of branch instruction. This can be implemented by introducing delay slot until we get the target address.</p>
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Instruction/ Cycle</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">1</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">2</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">3</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">4</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">5</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>1</sub></td>
+<td style="text-align:center;">IF</td>
+<td style="text-align:center;">ID</td>
+<td style="text-align:center;">EX</td>
+<td style="text-align:center;">MEM</td>
+<td style="text-align:center;">WB</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>2</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">IF</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">ID (PC:250)</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">EX</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Mem</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">WB</td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">Delay</td>
+<td style="text-align:center;">–</td>
+<td style="text-align:center;">–</td>
+<td style="text-align:center;">–</td>
+<td style="text-align:center;">–</td>
+<td style="text-align:center;">–</td>
+<td style="text-align:center;">–</td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">BI<sub>1</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">IF</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">ID</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">EX</td>
+</tr>
+</tbody>
+</table>
+<p>Output Sequence: I<sub>1</sub> -&gt; I<sub>2</sub> -&gt; Delay (Stall) -&gt; BI<sub>1</sub></p>
+<p>As the delay slot performs no operation, this output sequence is equal to the expected output sequence. But this slot introduces stall in the pipeline.</p>
+<p><strong>Branch penalty :</strong> The number of stalls introduced during the branch operations in the pipelined processor is known as branch penalty.</p>
+<p><strong>NOTE :</strong> As we see that the target address is available after the ID stage, so the number of stalls introduced in the pipeline is 1. Suppose, the branch target address would have been present after the ALU stage, there would have been 2 stalls. Generally, if the target address is present after the k<sup>th</sup> stage, then there will be (k – 1) stalls in the pipeline.</p>
+<p>Total number of stalls introduced in the pipeline due to branch instructions = <strong>Branch frequency * Branch Penalty</strong></p>
+<p>&#160;<br/>
+&#160;</p>
+<p><strong>Data Dependency (Data Hazard)</strong><br/>
+Let us consider an ADD instruction S, such that<br/>
+S : ADD R1, R2, R3<br/>
+Addresses read by S = I(S) = {R2, R3}<br/>
+Addresses written by S = O(S) = {R1}</p>
+<p>Now, we say that instruction S2 depends in instruction S1, when</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/formula-41.jpg"><img src="../../../imgs/arch/a0ce18165539e13ae6ab6b8c3c169898.jpg" alt="pipelining 7" width="665" height="37" class="aligncenter size-large wp-image-24675"/></a><br/>
+This condition is called Bernstein condition.</p>
+<p>Three cases exist:</p>
+<ul>
+<li>Flow (data) dependence: O(S1) ∩ I (S2), S1 → S2 and S1 writes after something read by S2</li>
+<li>Anti-dependence: I(S1) ∩ O(S2), S1 → S2 and S1 reads something before S2 overwrites it</li>
+<li>Output dependence: O(S1) ∩ O(S2), S1 → S2 and both write the same memory location.</li>
+</ul>
+<p>Example: Let there be two instructions I1 and I2 such that:<br/>
+I1 : ADD R1, R2, R3<br/>
+I2 : SUB R4, R1, R2</p>
+<p>When the above instructions are executed in a pipelined processor, then data dependency condition will occur, which means that I<sub>2</sub> tries to read the data before I<sub>1</sub> writes it, therefore, I<sub>2</sub> incorrectly gets the old value from I<sub>1</sub>.</p>
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Instruction / Cycle</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">1</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">2</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">3</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>1</sub></td>
+<td style="text-align:center;">IF</td>
+<td style="text-align:center;">ID</td>
+<td style="text-align:center;">EX</td>
+<td style="text-align:center;">DM</td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>2</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">IF</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"><mark>ID(Old value)</mark>
+</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">EX</td>
+</tr>
+</tbody>
+</table>
+<p>To minimize data dependency stalls in the pipeline, <strong>operand forwarding </strong>is used.</p>
+<p><strong>Operand Forwarding :</strong> In operand forwarding, we use the interface registers present between the stages to hold intermediate output so that dependent instruction can access new value from the interface register directly.</p>
+<p>Considering the same example:<br/>
+I1 : ADD R1, R2, R3<br/>
+I2 : SUB R4, R1, R2</p>
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Instruction / Cycle</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">1</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">2</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">3</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>1</sub></td>
+<td style="text-align:center;">IF</td>
+<td style="text-align:center;">ID</td>
+<td style="text-align:center;">EX</td>
+<td style="text-align:center;">DM</td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">I<sub>2</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">IF</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">ID</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">EX</td>
+</tr>
+</tbody>
+</table>
+<p>&#160;<br/>
+&#160;<br/>
+<strong>Data Hazards</strong></p>
+<p>Data hazards occur when instructions that exhibit data dependence, modify data in different stages of a pipeline. Hazard cause delays in the pipeline. There are mainly three types of data hazards:</p>
+<p>1) RAW (Read after Write) [Flow dependency]<br/>
+2) WAR (Write after Read) [Anti-Data dependency]<br/>
+3) WAW (Write after Write) [Output dependency]</p>
+<p>Let there be two instructions I and J, such that J follow I. Then, </p>
+<ul>
+<li>
+RAW hazard occurs when instruction J tries to read data before instruction I writes it.<br/>
+Eg:<br/>
+I: R2 &lt;- R1 + R3<br/>
+J: R4 &lt;- R2 + R3
+</li>
+<li>
+WAR hazard occurs when instruction J tries to write data before instruction I reads it.<br/>
+Eg:<br/>
+ I: R2 &lt;- R1 + R3<br/>
+ J: R3 &lt;- R4 + R5
+</li>
+<li>
+WAW hazard occurs when instruction J tries to write output before instruction I writes it.<br/>
+ Eg:<br/>
+ I: R2 &lt;- R1 + R3<br/>
+ J: R2 &lt;- R4 + R5
+</li>
+</ul>
+<p>WAR and WAW hazards occur during the out-of-order execution of the instructions.</p>
+<p>&#160;<br/>
+Sources :  <a href="http://goo.gl/J9KVNt">goo.gl/J9KVNt</a><br/>
+<a href="https://en.wikipedia.org/wiki/Hazard_(computer_architecture)">https://en.wikipedia.org/wiki/Hazard_(computer_architecture)</a><br/>
+<a href="https://en.wikipedia.org/wiki/Data_dependency">https://en.wikipedia.org/wiki/Data_dependency</a><br/>
+</p>
+
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

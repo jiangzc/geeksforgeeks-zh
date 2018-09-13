@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Pipelining | Set 3 (Types and Stalling)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Please see <a href="http://quiz.geeksforgeeks.org/computer-organization-and-architecture-pipelining-set-1-execution-stages-and-throughput/"><strong>Set 1</strong></a> for Execution, Stages and Performance (Throughput) and <a href="http://quiz.geeksforgeeks.org/computer-organization-and-architecture-pipelining-set-2-dependencies-and-data-hazard/"><strong>Set 2</strong></a> for Dependencies and Data Hazard.<br/>
+&#160;<br/>
+<strong>Types of pipeline</strong></p>
+<ul>
+<li>Uniform delay pipeline<br/>
+In this type of pipeline, all the stages will take same time to complete an operation.<br/>
+In uniform delay pipeline, <strong>Cycle Time (Tp) = Stage Delay</strong><p></p>
+<p>If buffers are included between the stages then, <strong>Cycle Time (Tp) = Stage Delay + Buffer Delay</strong></p></li>
+<p>&#160;	</p>
+<li>Non-Uniform delay pipeline<br/>
+In this type of pipeline, different stages take different time to complete an operation.<br/>
+In this type of pipeline, Cycle Time (Tp) = Maximum(Stage Delay)<p></p>
+<p>	For example, if there are 4 stages with delays, 1 ns, 2 ns, 3 ns, and 4 ns, then</p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>	Tp = Maximum(1 ns, 2 ns, 3 ns, 4 ns) = 4 ns</p>
+<p>	If buffers are included between the stages, </p>
+<p>	Tp = Maximum(Stage delay + Buffer delay)</p>
+<p><strong>Example :</strong> Consider a 4 segment pipeline with stage delays (2 ns, 8 ns, 3 ns, 10 ns). Find the time taken to execute 100 tasks in the above pipeline.<br/>
+<strong>Solution :</strong> As the above pipeline is a non-linear pipeline,<br/>
+Tp = max(2, 8, 3, 10) = 10 ns<br/>
+We know that ET<sub>pipeline</sub> = (k + n – 1) Tp = (4 + 100 – 1) 10 ns = 1030 ns</p>
+<p>NOTE: MIPS = Million instructions per second</p></li>
+</ul>
+<p>&#160;</p>
+<p><strong>Performance of pipeline with stalls</strong></p>
+<p>Speed Up (S) = Performance<sub>pipeline</sub> / Performance<sub>non-pipeline</sub><br/>
+=&gt; S = Average Execution Time<sub>non-pipeline</sub> / Average Execution Time<sub>pipeline</sub><br/>
+=&gt; S = CPI<sub>non-pipeline</sub> * Cycle Time<sub>non-pipeline</sub> / CPI<sub>pipeline</sub> * Cycle Time<sub>pipeline</sub></p>
+<p>Ideal CPI of the pipelined processor is ‘1’. But due to stalls, it becomes greater than ‘1’.<br/>
+=&gt; S = CPI<sub>non-pipeline</sub> * Cycle Time<sub>non-pipeline</sub>  / (1 + Number of stalls per Instruction) * Cycle Time<sub>pipeline</sub></p>
+<p>As Cycle Time<sub>non-pipeline</sub> =   Cycle Time<sub>pipeline</sub>,</p>
+<p><strong>Speed Up (S) = CPI<sub>non-pipeline</sub> / (1 + Number of stalls per instruction)</strong><br/>
+&#160;<br/>
+Sources :  <a href="http://goo.gl/J9KVNt">goo.gl/J9KVNt</a><br/>
+<a href="https://en.wikipedia.org/wiki/Hazard_(computer_architecture)">https://en.wikipedia.org/wiki/Hazard_(computer_architecture)</a><br/>
+<a href="https://en.wikipedia.org/wiki/Data_dependency">https://en.wikipedia.org/wiki/Data_dependency</a><br/>
+</p>
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

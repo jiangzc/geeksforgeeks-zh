@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Computer Arithmetic | Set – 2</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>&#160;</p>
+<p><span style="color: #000000"><span style="font-family: Droid Serif,serif"><u><b>FLOATING POINT ADDITION AND SUBTRACTION</b></u></span></span></p>
+<ul>
+<li><span style="color: #000000"><span style="font-family: Droid Serif,serif"><b>FLOATING POINT ADDITION</b></span></span></li>
+</ul>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">To understand floating point addition, first we see addition of real numbers in decimal as same logic is applied in both cases.</span></span></p>
+<p>&#160;</p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif"><b>For</b><b> example, </b>we have to add <b>1.1 * 10</b><sup><b>3 </b></sup>and <b>50.</b></span></span></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">We cannot add these numbers directly. First, we need to align the exponent and then, we can add significand.</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">After aligning exponent, we get <b>50 = 0.05 * 10</b><sup><b>3</b></sup> </span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Now adding significand, <b>0.05 + 1.1 = 1.15</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">So, finally we get <b>(1.1 * 10</b><sup><b>3 </b></sup><b>+ 50) = 1.15 * 10</b><sup><b>3</b></sup></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Here, notice that we shifted <b>50</b> and made it <b>0.05</b> to add these numbers.</span></span></p>
+<p>&#160;</p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif"><b>Now let </b><b>u</b><b>s take example of floating point number addition</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">We follow these steps to add two numbers:</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">1. Align the significand</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">2. Add the significands</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">3. Normalize the result</span></span></p>
+<p>&#160;</p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif"><b>Let </b><b>the </b><b>two numbers </b><b>be</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">x = 9.75</span></span> <span style="color: #000000"><span style="font-family: Droid Serif,serif"><br/>
+</span></span><span style="color: #000000"><span style="font-family: Droid Serif,serif">y = 0.5625</span></span></p>
+<p>&#160;</p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Converting them into 32-bit floating point representation,</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif"><b>9.75</b>’s representation in 32-bit format = <b>0 10000010 00111000000000000000000</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif"><b>0.5625</b>’s representation in 32-bit format = <b>0 01111110 00100000000000000000000</b></span></span></p>
+<p>&#160;</p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Now we get the difference of exponents to know how much shifting is required.</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">(<b>10000010 – 01111110</b>)<span style="font-size: xx-small">2 </span>= (<b>4</b>)<span style="font-size: xx-small">10</span></span></span></p>
+<p>&#160;</p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Now, we shift the mantissa of lesser number right side by 4 units.</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Mantissa of <b>0.5625 = 1.00100000000000000000000</b> </span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">(note that 1 before decimal point is understood in 32-bit representation)</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Shifting right by <b>4</b> units, we get<b> 0.00010010000000000000000</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Mantissa of <b>9.75 </b>= <b>1. 00111000000000000000000</b></span></span></p>
+<p>&#160;</p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Adding mantissa of both</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"> <span style="font-family: Droid Serif,serif"><b>0. 00010010000000000000000</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif"><b>+ 1. 00111000000000000000000</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">————————————————-</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"> <span style="font-family: Droid Serif,serif"><b>1. 01001010000000000000000</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">In final answer, we take exponent of bigger number </span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">So, final answer consist of :</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Sign bit = <b>0</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Exponent of bigger number = <b>10000010</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Mantissa = <b>01001010000000000000000</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">32 bit representation of answer = <strong>x + y</strong> = <b>0 10000010 01001010000000000000000</b></span></span></p>
+<p>&#160;</p>
+<ul>
+<li><span style="color: #000000"><span style="font-family: Droid Serif,serif"><b>FLOATING POINT SUBTRACTION</b></span></span></li>
+</ul>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Subtraction is similar to addition with some differences like we subtract mantissa unlike addition and in sign bit we put the sign of greater number.</span></span></p>
+<p>&#160;</p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif"><b>Let </b><b>the </b><b>two numbers </b><b>be</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">x = 9.75</span></span> <span style="color: #000000"><span style="font-family: Droid Serif,serif"><br/>
+</span></span><span style="color: #000000"><span style="font-family: Droid Serif,serif">y = – </span></span><span style="color: #000000"><span style="font-family: Droid Serif,serif">0</span></span><span style="color: #000000"><span style="font-family: Droid Serif,serif">.5625</span></span></p>
+<p>&#160;</p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Converting them into 32-bit floating point representation</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif"><b>9.75</b>’s representation in 32-bit format = <b>0 10000010 00111000000000000000000</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif"><b>– 0.5625</b>’s representation in 32-bit format = <b>1 01111110 00100000000000000000000</b></span></span></p>
+<p>&#160;</p>
+<p style="padding-left: 30px">Now, we find the difference of exponents to know how much shifting is required.</p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">(<b>10000010 – 01111110</b>)<span style="font-size: xx-small">2 </span>= (<b>4</b>)<span style="font-size: xx-small">10</span></span></span><br/>
+<span style="color: #000000"><span style="font-family: Droid Serif,serif">Now, we shift the mantissa of lesser number right side by 4 units.</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Mantissa of <strong>–</strong> <b>0.5625 = 1.00100000000000000000000</b> </span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">(note that 1 before decimal point is understood in 32-bit representation)</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Shifting right by <b>4</b> units,<b> 0.00010010000000000000000</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Mantissa of <b>9.75</b>= <b>1. 00111000000000000000000</b></span></span></p>
+<p>&#160;</p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Subtracting mantissa of both</span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"> <span style="font-family: Droid Serif,serif"><b>0. 00010010000000000000000</b></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif"><b>– 1. 00111000000000000000000</b></span></span></p>
+<p style="padding-left: 30px">————————————————</p>
+<p style="padding-left: 30px"><strong><span style="color: #000000"> <span style="font-family: Droid Serif,serif">1. 00100110000000000000000</span></span></strong></p>
+<p>&#160;</p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">Sign bit of bigger number =<strong> 0</strong></span></span></p>
+<p style="padding-left: 30px"><span style="color: #000000"><span style="font-family: Droid Serif,serif">So, finally the answer = <b>x – y = 0 10000010 00100110000000000000000</b></span></span><br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/floating-point-arithmetic.jpg"><img class="aligncenter size-full wp-image-22805" src="../../../imgs/arch/7bcdb3b7f080f9afa8ad8a45955a9598.jpg" alt="last" width="800" height="800"/></a></p>
+<p>&#160;</p>
+<p>&#160;</p>
+<p>&#160;</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

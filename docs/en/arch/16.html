@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Non-Restoring Division For Unsigned Integer</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In earlier post <a href="https://www.geeksforgeeks.org/restoring-division-algorithm-unsigned-integer/">Restoring Division</a> learned about restoring division. Now, here perform Non-Restoring division, it is less complex than the restoring one because simpler operation are involved i.e. addition and subtraction, also now restoring step is performed. In the method, rely on the sign bit of the register which initially contain  zero named as A.</p>
+<p>Here is the flow chart given below.</p>
+<p><img src="../../../imgs/arch/6bb0e27ff4b072e1b61f77895188ecb2.jpg" width="752" height="1548" alt="" class="aligncenter size-full"/></p>
+<p>Let’s pick the step involved:</p>
+<ul>
+<li><b>Step-1:</b> First the registers are initialized with corresponding values (Q = Dividend, M = Divisor, A = 0, n = number of bits in dividend)</li>
+<li><b>Step-2:</b> Check the sign bit of register A</li>
+<li><b>Step-3:</b> If it is 1 shift left content of AQ and perform A = A+M, otherwise shift left AQ and perform A = A-M (means add 2’s complement of M to A and store it to A)</li>
+<li><b>Step-4:</b> Again the sign bit of register A</li>
+<li><b>Step-5:</b> If sign bit is 1 Q[0] become 0 otherwise Q[1] become 1 (Q[0] means least significant bit of register Q)</li>
+<li><b>Step-6:</b> Decrements value of N by 1</li>
+<li><b>Step-7:</b> If N is not equal to zero go to <b>Step 2</b> otherwise go to next step</li>
+<li><b>Step-8:</b> If sign bit of A is 1 then perform A = A+M</li>
+<li><b>Step-9:</b> Register Q contain quotient and A contain remainder</li>
+<p>
+<b>Examples:</b> Perform Non_Restoring Division for Unsigned Integer</p>
+<pre>Dividend =11
+Divisor  =3  
+-M =11101
+</pre>
+<p></p>
+<center><br/>
+<table width="80%">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">N</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">M</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">A</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Q</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">00011</td>
+<td style="text-align:center">00000</td>
+<td style="text-align:center">1011</td>
+<td style="text-align:center">Start</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00001</td>
+<td style="text-align:center">011_</td>
+<td style="text-align:center">Left shift AQ</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">11110</td>
+<td style="text-align:center">011_</td>
+<td style="text-align:center">A=A+M</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">11110</td>
+<td style="text-align:center">0110</td>
+<td style="text-align:center">Q[0]=0</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">11100</td>
+<td style="text-align:center">110_</td>
+<td style="text-align:center">Left shift AQ</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">11111</td>
+<td style="text-align:center">110_</td>
+<td style="text-align:center">A=A+M</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">11111</td>
+<td style="text-align:center">1100</td>
+<td style="text-align:center">Q[0]=0</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">11111</td>
+<td style="text-align:center">100_</td>
+<td style="text-align:center">Left Shift AQ</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00010</td>
+<td style="text-align:center">100_</td>
+<td style="text-align:center">A=A+M</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00010</td>
+<td style="text-align:center">1001</td>
+<td style="text-align:center">Q[0]=1</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00101</td>
+<td style="text-align:center">001_</td>
+<td style="text-align:center">Left Shift AQ</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00010</td>
+<td style="text-align:center">001_</td>
+<td style="text-align:center">A=A-M</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00010</td>
+<td style="text-align:center">0011</td>
+<td style="text-align:center">Q[0]=1</td>
+</tr>
+</tbody>
+</table>
+<p></p></center>
+<p></p>
+<pre>Quotient  = 3 (Q)
+Remainder = 2 (A)
+</pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Program for Binary To Decimal Conversion</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Given a binary number as input, we need to write a program to convert the given binary number into equivalent decimal number.</p>
+<p>Examples:</p>
+<pre>Input : 111
+Output : 7
+
+Input : 1010
+Output : 10
+
+Input: 100001
+Output: 33
+</pre>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc">
+                                                <a href="https://practice.geeksforgeeks.org/problems/binary-number-to-decimal-number/0">Recommended: Please solve it on “<b><i><u>PRACTICE</u></i></b> ” first, before moving on to the solution.</a><br/>
+                                            </h2>
+<p></p>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>The idea is to extract the digits of given binary number starting from right most digit and keep a variable dec_value. At the time of extracting digits from the binary number, multiply the digit with the proper base (Power of 2) and add it to the variable dec_value. At the end, the variable dec_value will store the required decimal number.</p>
+<p>For Example:<br/>
+If the binary number is 111.<br/>
+dec_value = 1*(2^2) + 1*(2^1) + 1*(2^0) = 7</p>
+<p>Below diagram explains how to convert ( 1010 ) to equivalent decimal value:<br/>
+<img src="../../../imgs/arch/ff805067b34615bf560d13fbb2e10c59.jpg" alt="binary2decimal" width="930" height="521" class="aligncenter size-full wp-image-150926" srcset="https://www.geeksforgeeks.org/wp-content/uploads/binary2decimal.png 930w, https://www.geeksforgeeks.org/wp-content/uploads/binary2decimal-300x168.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/binary2decimal-768x430.png 768w, https://www.geeksforgeeks.org/wp-content/uploads/binary2decimal-660x370.png 660w" sizes="(max-width: 930px) 100vw, 930px"/></p>
+<p>Below is the implementation of above idea :<br/>
+</p>
+<div class="responsive-tabs">
+<h2 class="tabtitle sigil_not_in_toc">C++</h2>
+<div class="tabcontent">
+</div>
+</div>
+<p></p>
+<pre class="brush: cpp; title: ; notranslate" title="">// C++ program to convert binary to decimal
+#include&lt;iostream&gt;
+using namespace std;
+
+// Function to convert binary to decimal
+int binaryToDecimal(int n)
+{
+    int num = n;
+    int dec_value = 0;
+    
+    // Initializing base value to 1, i.e 2^0
+    int base = 1;
+    
+    int temp = num;
+    while (temp)
+    {
+        int last_digit = temp % 10;
+        temp = temp/10;
+        
+        dec_value += last_digit*base;
+        
+        base = base*2;
+    }
+    
+    return dec_value;
+}
+
+// Driver program to test above function
+int main()
+{
+    int num = 10101001;
+    
+    cout &lt; &lt;binaryToDecimal(num)&lt;&lt;endl;
+}
+</pre>
+
+</div>
+<h2 class="tabtitle sigil_not_in_toc">PHP</h2>
+<div class="tabcontent">
+
+<pre class="brush: php; title: ; notranslate" title="">&lt;?php
+// PHP program to convert 
+// binary to decimal
+
+// Function to convert 
+// binary to decimal
+function binaryToDecimal($n)
+{
+    $num = $n;
+    $dec_value = 0;
+    
+    // Initializing base value 
+    // to 1, i.e 2^0
+    $base = 1;
+    
+    $temp = $num;
+    while ($temp)
+    {
+        $last_digit = $temp % 10;
+        $temp = $temp / 10;
+        
+        $dec_value += $last_digit
+                        * $base;
+        $base = $base*2;
+    }
+    return $dec_value;
+}
+
+    // Driver Code
+    $num = 10101001;
+    echo binaryToDecimal($num),"\n";
+
+// This code is contributed by ajit
+?&gt;
+
+</pre>
+<p></p>
+</div>
+</body>
+</html>

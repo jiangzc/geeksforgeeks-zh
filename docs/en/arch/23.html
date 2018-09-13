@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Cache Memory</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p style="text-align: justify">
+</p>
+<p>As CPU has to fetch instruction from main memory speed of CPU depending on fetching speed from main memory. CPU contains register which has fastest access but they are limited in number as well as costly. Cache is cheaper so we can access cache. Cache memory is a very high speed memory that is placed between the CPU and main memory, to operate at the speed of the CPU.</p>
+<p style="text-align: justify">It  is used to reduce the average time to access data from the <a href="https://en.wikipedia.org/wiki/Main_memory">main memory</a>. The cache is a smaller and  faster memory which stores copies of the data from frequently used main memory locations. Most CPUs have different independent caches, including instruction and data.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/cache.png"><img class="aligncenter size-full wp-image-21606" src="../../../imgs/arch/3b07bc19e74773a700358b0240c8167f.jpg" alt="cm1" width="763" height="270"/></a></p>
+<h4 class="sigil_not_in_toc"> Levels of memory –</h4>
+<ul>
+<li><b>Level 1 or Register –</b> It is a type of memory in which data is stored and accepted that are immediately stored in CPU. Most commonly used register is accumulator, Program counter, address register etc. </li>
+<li><b>Level 2 or Cache memory –</b> It is the fastest memory which has faster access time where data is temporarily stored for faster access.</li>
+<li><b>Level 3 or Main Memory –</b> It is memory on which computer works currently it is small in size and once power is off data no longer stays in this memory</li>
+<li><b>Level 4 or Secondary Memory –</b> It is external memory which is not fast as main memory but data stays permanently in this memory</li>
+</ul>
+<p><strong>Cache Performance</strong></p>
+<p>When the processor needs to read or write a location in main memory, it first checks for a corresponding entry in the cache.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li>If the processor finds that the memory location is in the cache, a <strong>cache hit</strong> has occurred and data is read from chache</li>
+<li style="text-align: justify">If the processor <strong>does not</strong> find the memory location in the cache, a <strong>cache miss</strong> has occurred. For a cache miss, the cache allocates a new entry and copies in data from main memory, then the request is fulfilled from the contents of the cache.</li>
+</ul>
+<p>The performance of cache memory is frequently measured in terms of a quantity called <strong>Hit ratio.</strong></p>
+<pre>              Hit ratio = hit / (hit + miss) =  no. of hits/total accesses</pre>
+<p>We can improve Cache performance using higher cache block size, higher associativity, reduce miss rate, reduce miss penalty, and reduce Reduce the time to hit in the cache.</p>
+<h4 class="sigil_not_in_toc">Cache Mapping</h4>
+<p>The three different types of mapping used for the purpose of cache memory are as follow,</p>
+<ul>
+<li>Direct mapping</li>
+<li>Associative mapping, </li>
+<li>Set-Associative mapping.</li>
+</ul>
+<p style="text-align: justify"><strong>Direct mapping</strong>: In direct mapping assigned each memory block to a specific line in the cache. If a line is previously taken up by a memory block when a new block needs to be loaded, the old block is trashed. An address space is split into two parts index field and tag field. The cache is used to store the tag field whereas the rest is stored in the main memory. Direct mapping`s performance is directly proportional to the Hit ratio.<strong><br/>
+<img class="aligncenter size-full wp-image-21607" src="../../../imgs/arch/d1ce9120b4dd6b8ca637d0f986488853.jpg" alt="cm2" width="568" height="382"/></strong></p>
+<p style="text-align: justify"><strong>Associative mapping</strong>: In this type of mapping the associative memory is used to store content and addresses both of the memory word. Any block can go into any line of the cache. This means that the word id bits are used to identify which word in the block is needed, but the tag becomes all of the remaining bits. This enables the placement of the any word at any place in the cache memory. It is considered to be the fastest and the most flexible mapping form.</p>
+<p><img class="aligncenter size-full wp-image-21608" src="../../../imgs/arch/eae08e9ef2d82c6d3f6337d4a2348113.jpg" alt="cm3" width="465" height="393"/></p>
+<p style="text-align: justify"><strong>Set-associative mapping</strong>: This form of mapping is a enhanced form of the direct mapping where the drawbacks of direct mapping is removed. Set associative addresses the problem of possible thrashing in the direct mapping method. It does this by saying that instead of having exactly one line that a block can map to in the cache, we will group a few lines together creating a <strong><em>set</em></strong>. Then a block in memory can map to any one of the lines of a specific set..Set-associative mapping allows that each word that is present in the cache can have two or more words in the main memory for the same index address. Set associative cache mapping combines the best of direct and associative cache mapping techniques<img class="aligncenter size-full wp-image-21609" src="../../../imgs/arch/1b5b0919f6edcaa5ec9a15e950b81ca9.jpg" alt="cm4" width="669" height="382"/></p>
+<p style="text-align: center"><strong>Sample GATE Question</strong></p>
+<h4 class="sigil_not_in_toc"> Uses of Cache</h4>
+<ol>
+<li>Usually, the cache memory can store a reasonable number of blocks at any given time, but this number is small compared to the total number of blocks in the main memory. </li>
+<li>The correspondence between the main memory blocks and those in the cache is specified by a mapping function. </li>
+</ol>
+<h4 class="sigil_not_in_toc"> Types of Cache</h4>
+<ul>
+<li> <b>Primary Cache –</b> A primary cache is always located on the processor chip. This cache is small and its access time is comparable to that of processor registers. </li>
+<li> <b>Secondary Cache –</b> secondary cache is placed between the primary cache and the rest of the memory. It is referred to as the level 2 (L2) cache. Often, the Level 2 cache is also housed on the processor chip. </li>
+
+<h4 class="sigil_not_in_toc">Locality of reference </h4>
+<p>Since size of cache memory is less as compared to main memory. So to check which part of main memory should be given priority and loaded in cache is decided based on locality of reference.</p>
+<p><b> Types of Locality of reference </b></p>
+<ol>
+<li><strong>Spatial Locality of reference</strong> – this says that there is chance that element will be present in the close proximity to the reference point and next time if again searched then more close proximity to the point of reference. </li>
+<li><strong>Temporal Locality of reference</strong> – In this Least recently used algorithm will be used. Whenever there is page fault occurs within word will not only load word in main memory but complete page fault will be loaded because spatial locality of reference rule says that if you are referring any word next word will be referred in its register that’s why we load complete page table so complete block will be loaded. </li>
+</ol>
+<h4 class="sigil_not_in_toc"> Related questions – </h4>
+<p><strong> 1. A computer has a 256 KByte, 4-way set associative, write back data cache with block size of 32 Bytes. The processor sends 32 bit addresses to the cache controller. Each cache tag directory entry contains, in addition to address tag, 2 valid bits, 1 modified bit and 1 replacement bit. The number of bits in the tag field of an address is<br/>
+(A) 11<br/>
+(B) 14<br/>
+(C) 16<br/>
+(D) 27<br/>
+ </strong><br/>
+Answer: (C) </p>
+<p>Explanation: <a href="https://www.geeksforgeeks.org/gate-gate-cs-2012-question-54/" target="_blank">https://www.geeksforgeeks.org/gate-gate-cs-2012-question-54/</a></p>
+<p><strong> 2. Consider the data given in previous question. The size of the cache tag directory is<br/>
+(A) 160 Kbits<br/>
+(B) 136 bits<br/>
+(C) 40 Kbits<br/>
+(D) 32 bits<br/>
+ </strong><br/>
+Answer: (A) </p>
+<p>Explanation: <a href="https://www.geeksforgeeks.org/gate-gate-cs-2012-question-55/" target="_blank">https://www.geeksforgeeks.org/gate-gate-cs-2012-question-55/</a></p>
+<p><strong> 3.An 8KB direct-mapped write-back cache is organized as multiple blocks, each of size 32-bytes. The processor generates 32-bit addresses. The cache controller maintains the tag information for each cache block comprising of the following.<br/>
+1 Valid bit<br/>
+1 Modified bit<br/>
+As many bits as the minimum needed to identify the memory block mapped in the cache. What is the total size of memory needed at the cache controller to store meta-data (tags) for the cache?<br/>
+(A) 4864 bits<br/>
+(B) 6144 bits<br/>
+(C) 6656 bits<br/>
+(D) 5376 bits<br/>
+ </strong><br/>
+Answer: (D)<br/>
+Explanation: <a href="https://www.geeksforgeeks.org/gate-gate-cs-2011-question-43/" target="_blank">https://www.geeksforgeeks.org/gate-gate-cs-2011-question-43/</a></p>
+<p>Article Contributed by <strong>Pooja Taneja and Vaishali Bhatia</strong>. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above.</p>
+<p>&#160;</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ul>
+</div>
+</body>
+</html>

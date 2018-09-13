@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Pipelining | Set 1 (Execution, Stages and Throughput)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>To improve the performance of a CPU we have two options:<br/>
+1) Improve the hardware by introducing faster circuits.<br/>
+2) Arrange the hardware such that more than one operation can be performed at the same time.</p>
+<p>Since, there is a limit on the speed of hardware and the cost of faster circuits is quite high, we have to adopt the 2<sup>nd</sup> option.</p>
+<p><strong>Pipelining :</strong> Pipelining is a process of arrangement of hardware elements of the CPU such that its overall performance is increased. Simultaneous execution of more than one instruction takes place in a pipelined processor.</p>
+<p>Let us see a real life example that works on the concept of pipelined operation. Consider a water bottle packaging plant. Let there be 3 stages that a bottle should pass through, Inserting the bottle(<strong>I</strong>), Filling water in the bottle(<strong>F</strong>), and Sealing the bottle(<strong>S</strong>). Let us consider these stages as stage 1, stage 2 and stage 3 respectively. Let each stage take 1 minute to complete its operation.<br/>
+Now, in a non pipelined operation, a bottle is first inserted in the plant, after 1 minute it is moved to stage 2 where water is filled. Now, in stage 1 nothing is happening. Similarly, when the bottle moves to stage 3, both stage 1 and stage 2 are idle. But in pipelined operation, when the bottle is in stage 2, another bottle can be loaded at stage 1. Similarly, when the bottle is in stage 3, there can be one bottle each in stage 1 and stage 2. So, after each minute, we get a new bottle at the end of stage 3. Hence, the average time taken to manufacture 1 bottle is : </p>
+<p><strong>Without pipelining</strong> = 9/3 minutes = 3m</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre>I F S | | | | | |
+| | | I F S | | |
+| | | | | | I F S (9 minutes)
+</pre>
+<p><strong>With pipelining</strong> = 5/3 minutes = 1.67m </p>
+<pre>I F S | |
+| I F S |
+| | I F S (5 minutes)
+</pre>
+<p>Thus, pipelined operation increases the efficiency of a system.</p>
+<p><strong>Design of a basic pipeline</strong></p>
+<ul>
+<li>In a pipelined processor, a pipeline has two ends, the input end and the output end. Between these ends, there are multiple stages/segments such that output of one stage is connected to input of next stage and each stage performs a specific operation.</li>
+<li>Interface registers are used to hold the intermediate output between two stages. These interface registers are also called latch or buffer. </li>
+<li>All the stages in the pipeline along with the interface registers are controlled by a common clock.</li>
+</ul>
+<p><strong>Execution in a pipelined processor</strong><br/>
+Execution sequence of instructions in a pipelined processor can be visualized using a space-time diagram. For example, consider a processor having 4 stages and let there be 2 instructions to be executed. We can visualize the execution sequence through the following space-time diagrams:</p>
+<p><strong>Non overlapped execution:</strong></p>
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Stage / Cycle</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">1</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">2</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">3</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">4</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">5</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">6</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">7</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">S1</td>
+<td style="text-align:center;">I<sub>1</sub></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">I<sub>2</sub></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">S2</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">I<sub>1</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">I<sub>2</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">S3</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">I<sub>1</sub></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">I<sub>2</sub></td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">S4</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">I<sub>1</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">I<sub>2</sub></td>
+</tr>
+</tbody>
+</table>
+<p>Total time = 8 Cycle</p>
+<p><strong>Overlapped execution:</strong></p>
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Stage / Cycle</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">1</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">2</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">3</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">4</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">S1</td>
+<td style="text-align:center;">I<sub>1</sub></td>
+<td style="text-align:center;">I<sub>2</sub></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">S2</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">I<sub>1</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">I<sub>2</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">S3</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">I<sub>1</sub></td>
+<td style="text-align:center;">I<sub>2</sub></td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="padding:8px;background-color:#4CB96B;text-align:center;">S4</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">I<sub>1</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">I<sub>2</sub></td>
+</tr>
+</tbody>
+</table>
+<p>Total time = 5 Cycle</p>
+<p><strong>Pipeline Stages </strong></p>
+<p>RISC processor has 5 stage instruction pipeline to execute all the instructions in the RISC instruction set. Following are the 5 stages of RISC pipeline with their respective operations:</p>
+<ul>
+<li><strong>Stage 1 (Instruction Fetch)</strong><br/>
+In this stage the CPU reads instructions from the address in the memory whose value is present in the program counter.</li>
+<li><strong>Stage 2 (Instruction Decode)</strong><br/>
+In this stage, instruction is decoded and the register file is accessed to get the values from the registers used in the instruction. </li>
+<li><strong>Stage 3 (Instruction Execute)</strong><br/>
+In this stage, ALU operations are performed.</li>
+<li><strong>Stage 4 (Memory Access)</strong><br/>
+In this stage, memory operands are read and written from/to the memory that is present in the instruction.</li>
+<li><strong>Stage 5 (Write Back)</strong><br/>
+In this stage, computed/fetched value is written back to the register present in the instruction.</li>
+</ul>
+<p><strong>Performance of a pipelined processor</strong><br/>
+Consider a ‘k’ segment pipeline with clock cycle time as ‘Tp’. Let there be ‘n’ tasks to be completed in the pipelined processor. Now, the first instruction is going to take ‘k’ cycles to come out of the pipeline but the other ‘n – 1’ instructions will take only ‘1’ cycle each, i.e, a total of ‘n – 1’ cycles. So, time taken to execute ‘n’ instructions in a pipelined processor:</p>
+<pre>                     ET<sub>pipeline</sub> = k + n – 1 cycles
+                              = (k + n – 1) Tp
+</pre>
+<p>In the same case, for a non-pipelined processor, execution time of ‘n’ instructions will be:</p>
+<pre>                    ET<sub>non-pipeline</sub> = n * k * Tp
+</pre>
+<p>So, speedup (S) of the pipelined processor over non-pipelined processor, when ‘n’ tasks are executed on the same processor is:</p>
+<pre>    S = Performance of pipelined processor /
+        Performance of Non-pipelined processor
+</pre>
+<p>As the performance of a processor is inversely proportional to the execution time, we have, </p>
+<pre>   S = ET<sub>non-pipeline</sub> / ET<sub>pipeline</sub>
+    =&gt; S =  [n * k * Tp] / [(k + n – 1) * Tp]
+       S = [n * k] / [k + n – 1]
+</pre>
+<p>When the number of tasks ‘n’ are significantly larger than k, that is, n &gt;&gt; k</p>
+<pre>    S = n * k / n
+    S = k
+</pre>
+<p>where ‘k’ are the number of stages in the pipeline.</p>
+<p>Also,<strong> Efficiency</strong> = Given speed up / Max speed up = S / S<sub>max</sub><br/>
+We know that, Smax = k</p>
+<p>So, <strong>Efficiency</strong> = S / k</p>
+<p><strong>Throughput</strong> = Number of instructions / Total time to complete the instructions</p>
+<p>So, <strong>Throughput</strong> = n / (k + n – 1) * Tp</p>
+<p>Note: The cycles per instruction (CPI) value of an ideal pipelined processor is 1</p>
+<p>Please see <a href="http://quiz.geeksforgeeks.org/computer-organization-and-architecture-pipelining-set-2-dependencies-and-data-hazard/"><strong>Set 2</strong></a> for Dependencies and Data Hazard and <a href="http://quiz.geeksforgeeks.org/computer-organization-and-architecture-pipelining-set-3-types-and-stalling"><strong>Set 3</strong></a> for Types of pipeline and Stalling.</p>
+<p>Sources :  <a href="http://goo.gl/J9KVNt">goo.gl/J9KVNt</a><br/>
+<a href="https://en.wikipedia.org/wiki/Hazard_(computer_architecture)">https://en.wikipedia.org/wiki/Hazard_(computer_architecture)</a><br/>
+<a href="https://en.wikipedia.org/wiki/Data_dependency">https://en.wikipedia.org/wiki/Data_dependency</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

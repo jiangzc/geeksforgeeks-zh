@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Instruction Formats (Zero, One, Two and Three Address Instruction)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Computer perform task on the basis of instruction provided. A instruction in computer comprises of groups called fields. These field contains different information as for computers every thing is in 0 and 1 so each field has different significance on the basis of which a CPU decide what so perform. The most common fields are:</p>
+<ul>
+<li>Operation field which specifies the operation to be performed like addition.
+</li>
+<li>Address field which contain the location of operand, i.e., register or memory location.
+</li>
+<li>Mode field which specifies how operand is to be founded.
+</li>
+</ul>
+<p>A instruction is of various length depending upon the number of addresses it contain. Generally CPU organization are of three types on the basis of number of address fields:</p>
+<ol>
+<li>Single Accumulator organization
+</li>
+<li>General register organization
+</li>
+<li>Stack organization
+</li>
+</ol>
+<p>In first organization operation is done involving a special register called accumulator. In second on multiple registers are used for the computation purpose. In third organization the work on stack basis operation due to which it does not contain any address field. It is not necessary that only a single organization is is applied a blend of various organization is mostly what we see generally.</p>
+<p>On the basis of number of address instruction are classified as:</p>
+<p>Note that we will use X = (A+B)*(C+D) expression to showcase the procedure.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li><b>Zero Address Instructions –</b>
+<p><img src="../../../imgs/arch/baa5b7e78c5368d6f4123b108449258c.jpg" alt="" width="927" height="475" class="aligncenter size-full wp-image-386816"/></p>
+<p>A stack based computer do not use address field in instruction.To evaluate a expression first it is converted to revere Polish Notation i.e. Post fix Notation.</p>
+<pre>Expression: X = (A+B)*(C+D)
+Postfixed : X = AB+CD+*
+TOP means top of stack
+M[X] is any memory location</pre>
+<table style="width:70%">
+<tbody>
+<tr>
+<td style="text-align:center">PUSH</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">TOP = A</td>
+</tr>
+<tr>
+<td style="text-align:center">PUSH</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">TOP = B</td>
+</tr>
+<tr>
+<td style="text-align:center">ADD</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">TOP = A+B</td>
+</tr>
+<tr>
+<td style="text-align:center">PUSH</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">TOP = C</td>
+</tr>
+<tr>
+<td style="text-align:center">PUSH</td>
+<td style="text-align:center">D</td>
+<td style="text-align:center">TOP = D</td>
+</tr>
+<tr>
+<td style="text-align:center">ADD</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">TOP = C+D</td>
+</tr>
+</tbody>
+<tbody><tr>
+<td style="text-align:center">MUL</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">TOP = (C+D)*(A+B)</td>
+</tr>
+<tr>
+<td style="text-align:center">POP</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">M[X] = TOP</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><b>One Address Instructions –</b><br/>
+This use a implied ACCUMULATOR register for data manipulation.One operand is in accumulator and other is in register or memory location.Implied means that the CPU already know that one operand is in accumulator so there is no need to specify it.<p></p>
+<p><img src="../../../imgs/arch/2c8c41d4224a0709ff92175af13d7a95.jpg" alt="" width="916" height="153" class="aligncenter size-full wp-image-386821"/></p>
+<pre>Expression: X = (A+B)*(C+D)
+AC is accumulator
+M[] is any memory location
+M[T] is temporary location</pre>
+<table style="width:70%">
+<tbody>
+<tr>
+<td style="text-align:center">LOAD</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">AC = M[A]</td>
+</tr>
+<tr>
+<td style="text-align:center">ADD</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">AC = A[C] + M[B]</td>
+</tr>
+<tr>
+<td style="text-align:center">STORE</td>
+<td style="text-align:center">T</td>
+<td style="text-align:center">M[T] = AC</td>
+</tr>
+<tr>
+<td style="text-align:center">LOAD</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">AC = M[C]</td>
+</tr>
+<tr>
+<td style="text-align:center">ADD</td>
+<td style="text-align:center">D</td>
+<td style="text-align:center">AC = AC + M[D]</td>
+</tr>
+<tr>
+<td style="text-align:center">MUL</td>
+<td style="text-align:center">T</td>
+<td style="text-align:center">AC = AC * M[T]</td>
+</tr>
+</tbody>
+<tbody><tr>
+<td style="text-align:center">STORE</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">M[X] = AC</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><b>Two Address Instructions –</b><br/>
+This is common in commercial computers.Here two address can be specified in the instruction.Unlike earlier in one address instruction the result was stored in accumulator here result cab be stored at different location rather than just accumulator, but require more number of bit to represent address. <p></p>
+<p><img src="../../../imgs/arch/99b6492452ac8fece566e39c88a99577.jpg" alt="" width="916" height="153" class="aligncenter size-full wp-image-386846"/><br/>
+Here destination address can also contain operand.</p>
+<pre>Expression: X = (A+B)*(C+D)
+R1, R2 are registers
+M[] is any memory location</pre>
+<table style="width:70%">
+<tbody>
+<tr>
+<td style="text-align:center">MOV</td>
+<td style="text-align:center">R1, A</td>
+<td style="text-align:center">R1 = M[A]</td>
+</tr>
+<tr>
+<td style="text-align:center">ADD</td>
+<td style="text-align:center">R1, B</td>
+<td style="text-align:center">R1 = R1 + M[B]</td>
+</tr>
+<tr>
+<td style="text-align:center">MOV</td>
+<td style="text-align:center">R2, C</td>
+<td style="text-align:center">R2 = C</td>
+</tr>
+<tr>
+<td style="text-align:center">ADD</td>
+<td style="text-align:center">R2, D</td>
+<td style="text-align:center">R2 = R2 + D</td>
+</tr>
+<tr>
+<td style="text-align:center">MUL</td>
+<td style="text-align:center">R1, R2</td>
+<td style="text-align:center">R1 = R1 * R2</td>
+</tr>
+<tr>
+<td style="text-align:center">MOV</td>
+<td style="text-align:center">X, R1</td>
+<td style="text-align:center">M[X] = R1</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><b>Three Address Instructions –</b><br/>
+This has three address field to specify a register or a memory location. Program created are much short in size but number of bits per instruction increase. These instructions make creation of program much easier but it does not mean that program will run much faster because now instruction only contain more information but each micro operation (changing content of register, loading address in address bus etc.) will be performed in one cycle only.<p></p>
+<p><img src="../../../imgs/arch/1af0b8a7bd7cbcdc515851e0b3c78ca1.jpg" alt="" width="916" height="153" class="aligncenter size-full wp-image-386842"/></p>
+<pre>Expression: X = (A+B)*(C+D)
+R1, R2 are registers
+M[] is any memory location</pre>
+<table style="width:70%">
+<tbody>
+<tr>
+<td style="text-align:center">ADD</td>
+<td style="text-align:center">R1, A, B</td>
+<td style="text-align:center">R1 = M[A] + M[B]</td>
+</tr>
+<tr>
+<td style="text-align:center">ADD</td>
+<td style="text-align:center">R2, C, D</td>
+<td style="text-align:center">R2 = M[C] + M[D]</td>
+</tr>
+<tr>
+<td style="text-align:center">MUL</td>
+<td style="text-align:center">X, R1, R2</td>
+<td style="text-align:center">M[X] = R1 * R2</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

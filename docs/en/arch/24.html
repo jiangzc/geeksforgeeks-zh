@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Cache Organization | Set 1 (Introduction)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Cache is close to CPU and faster than main memory. But at the same time is smaller than main memory. The cache organization is about mapping data in memory to a location in cache. </p>
+<p><strong>A Simple Solution:</strong><br/>
+One way to go about this  mapping is to consider last few bits of long memory address to find small cache address, and place them at the found address.  </p>
+<p><strong>Problems With Simple Solution:</strong><br/>
+The problem with this approach is, we loose the information about high order bits and have no way to find out the lower order bits belong to which higher order bits. </p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/cache.jpg"><img src="../../../imgs/arch/0aad2d0d16efff8547a18e7deecca565.jpg" alt="CacheOrg" width="415" height="250" class="alignnone size-full wp-image-18920"/></a></p>
+<p><strong>Solution is Tag:</strong><br/>
+To handle above problem, more information is stored in cache to tell which block of memory is stored in cache.  We store additional information as <strong>Tag</strong><br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/cache-tag.jpg"><img src="../../../imgs/arch/a3d5a371651cff4d82e19a160067835c.jpg" alt="tags" width="440" height="278" class="alignnone size-full wp-image-22822"/></a></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>What is a Cache Block?</strong><br/>
+Since programs have Spatial Locality (Once a location is retrieved, it is highly probable that the nearby locations would be retrieved in near future).  So a cache is organized in the form of blocks. Typical cache block sizes are 32 bytes or 64 bytes.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/cache-tag-3.jpg"><img src="../../../imgs/arch/cbf2a8f901c5ceec7291b6b8796eb71f.jpg" alt="cacheBlock" width="400" height="290" class="alignnone size-full wp-image-22820"/></a></p>
+<p><strong>The above arrangement is Direct Mapped Cache and it has following problem</strong><br/>
+We have discussed above that last few bits of memory addresses are being used to address in cache and remaining bits are stored as tag.  Now imagine that cache is very small and addresses of 2 bits.  Suppose we use the last two bits of main memory address to decide the cache (as shown in below diagram).  So if a program accesses 2, 6, 2, 6, 2, …,  every access would cause a hit as 2 and 6 have to be stored in same location in cache.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/cache-problem.jpg"><img src="../../../imgs/arch/eb9ec78ccace321273545c436da8d368.jpg" alt="blocks" width="475" height="267" class="alignnone size-full wp-image-22825"/></a></p>
+<p><strong>Solution to above problem – Associativity</strong><br/>
+What if we could store data at any place in cache, the above problem won’t be there? That would slow down cache, so we do something in between.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/cache-solution.jpg"><img src="../../../imgs/arch/4ad0b2ba4255e69b0330e79123ea72f8.jpg" alt="cache" width="450" height="200" class="alignnone size-full wp-image-22828"/></a></p>
+<p><strong>Source:</strong><br/>
+<a href="https://www.youtube.com/watch?v=sg4CmZ-p8rU">https://www.youtube.com/watch?v=sg4CmZ-p8rU</a><br/>
+<iframe width="665" height="374" src="https://www.youtube.com/embed/sg4CmZ-p8rU?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe></p>
+<p>We will soon be discussing more details of cache organization.</p>
+<p>This article is contributed <strong>Ankur Gupta</strong>. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

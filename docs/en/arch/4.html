@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Von Neumann architecture</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Historically there have been 2 types of Computers:</p>
+<ol>
+<li><strong>Fixed Program Computers –</strong> Their function is very specific and they couldn’t be programmed, e.g. Calculators.
+</li>
+<li><strong>Stored Program Computers –</strong> These can be programmed to carry out many different tasks, applications are stored on them, hence the name.
+</li>
+</ol>
+<p>The modern computers are based on a stored-program concept introduced by John Von Neumann. In this stored-program concept, programs and data are stored in a separate storage unit called memories and are treated the same. This novel idea meant that a computer built with this architecture would be much easier to reprogram.</p>
+<p>The basic structure is like,</p>
+<p><img src="../../../imgs/arch/3ece0516513b00eb557337031632c629.jpg" width="600" height="450" class="aligncenter size-full"/></p>
+<p>It is also known as <strong>IAS</strong> computer and is having three basic units:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li>The Central Processing Unit (CPU)
+</li>
+<li>The Main Memory Unit
+</li>
+<li>The Input/Output Device
+</li>
+</ol>
+<p>Let’s consider them in details.</p>
+<ul>
+<li><strong>Control Unit –</strong>
+<p>A control unit (CU) handles all processor control signals. It directs all input and output flow, fetches code for instructions and controlling how data moves around the system.</p>
+</li>
+<li><strong>Arithmetic and Logic Unit (ALU) –</strong>
+<p>The arithmetic logic unit is that part of the CPU that handles all the calculations the CPU may need, e.g. Addition, Subtraction, Comparisons. It performs Logical Operations, Bit Shifting Operations, and Arithmetic Operation.</p>
+<p><img src="../../../imgs/arch/3bdbc1f62854b19e4baa363e8ca77463.jpg" width="800" height="500" class="aligncenter size-full"/><br/>
+</p><center><b>Figure –</b> Basic CPU structure, illustrating ALU </center><p></p>
+</li>
+<li><strong>Main Memory Unit (Registers) –</strong>
+<ol>
+<li><strong>Accumulator:</strong> Stores the results of calculations made by ALU.
+</li>
+<li><strong>Program Counter (PC):</strong> Keeps track of the memory location of the next instructions to be dealt with. The PC then passes this next address to Memory Address Register (MAR).
+</li>
+<li><strong>Memory Address Register (MAR):</strong> It stores the memory locations of instructions that need to be fetched from memory or stored into memory.
+</li>
+<li><strong>Memory Data Register (MDR):</strong> It stores instructions fetched from memory or any data that is to be transferred to, and stored in, memory.
+</li>
+<li><strong>Current Instruction Register (CIR):</strong> It stores the most recently fetched instructions while it is waiting to be coded and executed.
+</li>
+<li><strong>Instruction Buffer Register (IBR):</strong> The instruction that is not to be executed immediately is placed in the instruction buffer register IBR.
+</li>
+</ol>
+<p></p>
+</li>
+<li><strong>Input/Output Devices –</strong> Program or data is read into main memory from the <em>input device</em> or secondary storage under the control of CPU input instruction. <em>Output devices</em> are used to output the information from a computer. If some results are evaluated by computer and it is stored in the computer, then with the help of output devices, we can present it to the user.<br/>
+<p></p>
+</li>
+<li><strong>Buses –</strong> Data is transmitted from one part of a computer to another, connecting all major internal components to the CPU and memory, by the means of Buses. Types:
+<ol>
+<li><b>Data Bus:</b> It carries data among the memory unit, the I/O devices, and the processor.
+</li>
+<li><b>Address Bus:</b> It carries the address of data (not the actual data) between memory and processor.
+</li>
+<li><b>Control Bus:</b> It carries control commands from the CPU (and status signals from other devices) in order to control and coordinate all the activities within the computer.
+</li>
+</ol></li>
+</ul>
+<p><strong>Von Neumann bottleneck –</strong><br/>
+Whatever we do to enhance performance, we cannot get away from the fact that instructions can only be done one at a time and can only be carried out sequentially. Both of these factors hold back the competence of the CPU. This is commonly referred to as the ‘Von Neumann bottleneck’. We can provide a Von Neumann processor with more cache, more RAM, or faster components but if original gains are to be made in CPU performance then an influential inspection needs to take place of CPU configuration.</p>
+<p>This architecture is very important and is used in our PCs and even in Super Computers.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

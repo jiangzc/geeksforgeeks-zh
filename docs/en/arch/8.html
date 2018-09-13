@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Machine Instructions</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Machine Instructions are commands or programs written in machine code of a machine (computer) that it can recognize and execute.</p>
+<ul>
+<li>A machine instruction consists of several bytes in memory that tells the processor to perform one machine operation.</li>
+<li>The processor looks at machine instructions in main memory one after another, and performs one machine operation for each machine instruction.</li>
+<li>The collection of machine instructions in main memory is called a <strong>machine language program.</strong></li>
+</ul>
+<p>Machine code or machine language is a set of instructions executed directly by a computer’s central processing unit (CPU). Each instruction performs a very specific task, such as a load, a jump, or an ALU operation on a unit of data in a CPU register or memory. Every program directly executed by a CPU is made up of a series of such instructions.</p>
+<p>The general format of a<strong> machine instruction</strong> is</p>
+<table>
+<tbody>
+<tr>
+<td width="632"><strong>[Label:]&#160;&#160;&#160;&#160;&#160; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Mnemonic&#160;&#160;&#160;&#160;&#160; [Operand, Operand]&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; [; Comments]</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Brackets indicate that a field is optional</li>
+<li>Label is an identifier that is assigned the address of the first byte of the instruction in which it appears. It must be followed by <strong>“:”</strong></li>
+<li>Inclusion of spaces is arbitrary, except that at least one space must be inserted; no space would lead to an ambiguity.</li>
+<li>Comment field begins with a semicolon <strong>“ ; ” </strong></li>
+</ul>
+<p><strong>Example:</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="632"><strong>Here:&#160;&#160;&#160;&#160;&#160; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;MOV&#160;&#160;&#160;&#160;&#160; R5,#25H &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;;load 25H into R5</strong></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center"><strong>Machine instructions used in&#160;8086 microprocessor</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p style="text-align: justify"><strong>1. Data transfer instructions</strong>– move, load exchange, input, output.</p>
+<ul>
+<li style="text-align: justify">MOV :Move byte or word to register or memory .</li>
+<li style="text-align: justify">IN, OUT: Input byte or word from port, output word to port.</li>
+<li style="text-align: justify">LEA: Load effective address</li>
+<li style="text-align: justify">LDS, LES Load pointer using data segment, extra segment .</li>
+<li style="text-align: justify">PUSH, POP: Push word onto stack, pop word off stack.</li>
+<li style="text-align: justify">XCHG: Exchange byte or word.</li>
+<li style="text-align: justify">XLAT: Translate byte using look-up table.</li>
+</ul>
+<p style="text-align: justify"><strong>2. Arithmetic instructions</strong> – add, subtract, increment, decrement, convert byte/word and compare.</p>
+<ul>
+<li style="text-align: justify">ADD, SUB: Add, subtract byte or word</li>
+<li style="text-align: justify">ADC, SBB :Add, subtract byte or word and carry (borrow).</li>
+<li style="text-align: justify">INC, DEC: Increment, decrement byte or word.</li>
+<li style="text-align: justify">NEG: Negate byte or word &#160;&#160;(two’s complement).</li>
+<li style="text-align: justify">CMP: Compare byte or word (subtract without storing).</li>
+<li style="text-align: justify">MUL, DIV: Multiply, divide byte or word (unsigned).</li>
+<li style="text-align: justify">IMUL, IDIV: Integer multiply, divide byte or word (signed)</li>
+<li style="text-align: justify">CBW, CWD: Convert byte to word, word to double word</li>
+<li style="text-align: justify">AAA, AAS, AAM,AAD: ASCII adjust for add, sub, &#160;mul, div .</li>
+<li style="text-align: justify">DAA, DAS: Decimal adjust for addition, subtraction (BCD numbers)</li>
+</ul>
+<p><strong>3. Logic instructions</strong> – AND, OR, exclusive OR, shift/rotate and test</p>
+<ul>
+<li style="text-align: justify">NOT : &#160;&#160;Logical NOT of byte or word (one’s complement)</li>
+<li style="text-align: justify">AND:&#160; Logical AND of byte or word</li>
+<li style="text-align: justify">OR: Logical OR of byte or word.</li>
+<li style="text-align: justify">XOR: Logical exclusive-OR of byte or word</li>
+<li style="text-align: justify">TEST: Test byte or word (AND without storing).</li>
+<li style="text-align: justify">Shift, rotate instruction- SHL, SHR Logical shift left, right byte or word? by 1or CL</li>
+<li style="text-align: justify">SAL, SAR Arithmetic shift left, right byte or word? by 1 or CL</li>
+<li style="text-align: justify">ROL, ROR Rotate left, right byte or word? by 1 or CL .</li>
+<li style="text-align: justify">RCL,&#160; RCR Rotate left, right through carry byte or word? by 1 or CL.</li>
+</ul>
+<ol style="text-align: justify" start="4">
+<li><strong>String manipulation instruction</strong> – load, store, move, compare and scan for byte/word</li>
+</ol>
+<ul>
+<li>MOVS: Move byte or word string</li>
+<li>MOVSB, MOVSW: Move byte, word string.</li>
+<li>CMPS:&#160; Compare byte or word string.</li>
+<li>SCAS S: can byte or word string (comparing to A or AX)</li>
+<li>LODS, STOS:&#160; Load, store byte or word string to AL.</li>
+</ul>
+<p><strong>5. Control transfer instructions</strong> – conditional, unconditional, call subroutine and return from subroutine.</p>
+<ul>
+<li>JMP:Unconditional jump .it includes loop transfer and subroutine and interrupt instructions.</li>
+</ul>
+<p><strong>&#160;6. Loop control instructions-</strong></p>
+<ul>
+<li style="text-align: justify">&#160;LOOP: Loop unconditional, count in CX, short jump to target address.</li>
+<li style="text-align: justify">LOOPE (LOOPZ): Loop if equal (zero), count in CX, short jump to target address.</li>
+<li style="text-align: justify">LOOPNE (LOOPNZ): Loop if not equal (not zero), count in CX, short jump to target address.</li>
+<li style="text-align: justify">JCXZ: Jump if CX equals zero (used to skip code in loop).</li>
+<li style="text-align: justify">Subroutine and Intrrupt instructions-</li>
+<li style="text-align: justify">CALL, RET:&#160; Call, return from procedure (inside or outside current segment).</li>
+<li style="text-align: justify">INT, INTO:&#160; Software interrupt, interrupt if overflow.IRET: Return from interrupt.</li>
+</ul>
+<p><strong>7. Processor control instructions-</strong></p>
+<p style="text-align: justify">Flag manipulation:</p>
+<ul>
+<li style="text-align: justify">STC, CLC, CMC:&#160; Set, clear, complement carry flag.</li>
+<li style="text-align: justify">STD, CLD:&#160; Set, clear direction flag.STI, CLI: Set, clear interrupt enable flag.</li>
+<li>PUSHF, POPF: Push flags onto stack, pop flags off stack.</li>
+</ul>
+<p style="text-align: center"><strong>Sample GATE Question</strong></p>
+<p>Consider the sequence of machine instructions given below:</p>
+<pre>  MUL R5, R0, R1
+  DIV R6, R2, R3
+  ADD R7, R5, R6
+  SUB R8, R7, R4</pre>
+<p>In the above sequence, R0 to R8 are general purpose registers. In the instructions shown, the first register stores the result of the operation performed on the second and the third registers. This sequence of instructions is to be executed in a pipelined instruction processor with the following 4 stages: (1) Instruction Fetch and Decode (IF), (2) Operand Fetch (OF), (3) Perform Operation (PO) and (4) Write back the Result (WB). The IF, OF and WB stages take 1 clock cycle each for any instruction. The PO stage takes 1 clock cycle for ADD or SUB instruction, 3 clock cycles for MUL instruction and 5 clock cycles for DIV instruction. The pipelined processor uses operand forwarding from the PO stage to the OF stage. The number of clock cycles taken for the execution of the above sequence of instructions is ___________<br/>
+<b>(A)</b> 11<br/>
+<b>(B)</b> 12<br/>
+<b>(C)</b> 13<br/>
+<b>(D)</b> 14</p>
+<p>Answer: (C)</p>
+<p>Explanation:</p>
+<pre> 1   2   3   4   5   6   7   8   9   10   11   12   13
+  IF  OF  PO  PO  PO  WB
+      IF  OF          PO  PO  PO  PO  PO   WB
+          IF          OF                   PO   WB
+              IF          OF                    PO   WB</pre>
+<p><br/><br/>
+Article Contributed by Pooja Taneja. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above.</p>
+<p>&#160;</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Different Types of RAM (Random Access Memory )</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>RAM(Random Access Memory) is a part of computer’s Main Memory which is directly accessible by CPU. RAM is used to Read and Write data into it which is accessed by CPU randomly. RAM is volatile in nature, it means if the power goes off, the stored information is lost. RAM is used to store the data that is currently processed by the CPU. Most of the programs and data that are modifiable are stored in RAM. </p>
+<p>Integrated RAM chips are available in two form:</p>
+<ol>
+<li>SRAM(Static RAM)</li>
+<li>DRAM(Dynamic RAM)</li>
+</ol>
+<p>The block diagram of RAM chip is given below.</p>
+<p><img src="../../../imgs/arch/03edb4f0d176b8f0ddc987a384b0daa7.jpg" alt="" width="723" height="280" class="aligncenter size-full wp-image-373336"/></p>
+<p align="center"><strong>SRAM</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>The SRAM memories consist of circuits capable of retaining the stored information as long as the power is applied. That means this type of memory requires constant power. SRAM memories are used to build Cache Memory.</p>
+<p><strong>SRAM Memory Cell:</strong> Static memories(SRAM) are memories that consist of circuits capable of retaining their state as long as power is on. Thus this type of memories is called volatile memories. The below figure shows a cell diagram of SRAM. A latch is formed by two inverters connected as shown in the figure. Two transistors T1 and T2 are used for connecting the latch with two bit lines. The purpose of these transistors is to act as switches that can be opened or closed under the control of the word line, which is controlled by the address decoder. When the word line is at 0-level, the transistors are turned off and the latch remains its information. For example, the cell is at state 1 if the logic value at point A is 1 and at point B is 0. This state is retained as long as the word line is not activated.<br/>
+<img src="../../../imgs/arch/302c032be612703ca76ab38c8906fc7d.jpg" alt="" width="543" height="361" class="aligncenter size-full wp-image-373373"/><br/>
+For <strong>Read operation</strong>, the word line is activated by the address input to the address decoder. The activated word line closes both the transistors (switches) T1 and T2. Then the bit values at points A and B can transmit to their respective bit lines. The sense/write circuit at the end of the bit lines sends the output to the processor.<br/>
+For <strong>Write operation</strong>, the address provided to the decoder activates the word line to close both the switches. Then the bit value that to be written into the cell is provided through the sense/write circuit and the signals in bit lines are then stored in the cell.</p>
+<p align="center"><strong>DRAM</strong></p>
+<p>DRAM stores the binary information in the form of electric charges that applied to capacitors. The stored information on the capacitors tend to lose over a period of time and thus the capacitors must be periodically recharged to retain their usage. The main memory is generally made up of DRAM chips.</p>
+<p><strong>DRAM Memory Cell:</strong> Though SRAM is very fast, but it is expensive because of its every cell requires several transistors. Relatively less expensive RAM is DRAM, due to the use of one transistor and one capacitor in each cell, as shown in the below figure., where C is the capacitor and T is the transistor. Information is stored in a DRAM cell in the form of a charge on a capacitor and this charge needs to be periodically recharged.<br/>
+For storing information in this cell, transistor T is turned on and an appropriate voltage is applied to the bit line. This causes a known amount of charge to be stored in the capacitor. After the transistor is turned off, due to the property of the capacitor, it starts to discharge. Hence, the information stored in the cell can be read correctly only if it is read before the charge on the capacitors drops below some threshold value.<br/>
+<img src="../../../imgs/arch/7fba766013162846b2bc44e09b45ef49.jpg" alt="" width="381" height="346" class="aligncenter size-full wp-image-373387"/></p>
+<p><strong>Types of DRAM</strong></p>
+<p>There are mainly 5 types of DRAM:</p>
+<ol>
+<li>
+<strong>Asynchronous DRAM (ADRAM):</strong> The DRAM described above is the asynchronous type DRAM. The timing of the memory device is controlled asynchronously. A specialized memory controller circuit generates the necessary control signals to control the timing. The CPU must take into account the delay in the response of the memory.
+</li>
+<li>
+<strong>Synchronous DRAM (SDRAM):</strong> These RAM chips’ access speed is directly synchronized with the CPU’s clock. For this, the memory chips remain ready for operation when the CPU expects them to be ready. These memories operate at the CPU-memory bus without imposing wait states. SDRAM is commercially available as modules incorporating multiple SDRAM chips and forming the required capacity for the modules.
+</li>
+<li>
+<strong>Double-Data-Rate SDRAM (DDR SDRAM):</strong> This faster version of SDRAM performs its operations on both edges of the clock signal; whereas a standard SDRAM performs its operations on the rising edge of the clock signal. Since they transfer data on both edges of the clock, the data transfer rate is doubled. To access the data at high rate, the memory cells are organized into two groups. Each group is accessed separately.
+</li>
+<li>
+<strong>Rambus DRAM (RDRAM):</strong> The RDRAM provides a very high data transfer rate over a narrow CPU-memory bus. It uses various speedup mechanisms, like synchronous memory interface, caching inside the DRAM chips and very fast signal timing. The Rambus data bus width is 8 or 9 bits.
+</li>
+<li>
+<strong>Cache DRAM (CDRAM):</strong> This memory is a special type DRAM memory with an on-chip cache memory (SRAM) that acts as a high-speed buffer for the main DRAM.
+</li>
+</ol>
+<p align="center"><strong>Difference between SRAM and DRAM</strong></p>
+<p>Below table lists some of the differences between SRAM and DRAM:<br/>
+<img src="../../../imgs/arch/58a299035560dfc2d8534c38dfb8e4af.jpg" alt="" width="677" height="329" class="aligncenter size-full wp-image-373291"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

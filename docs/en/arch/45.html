@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Program for octal to decimal conversion</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Given an octal number as input, we need to write a program to convert the given octal number into equivalent decimal number.</p>
+<p>Examples:</p>
+<pre>Input : 67
+Output : 55
+
+Input : 512
+Output : 330
+
+Input: 123
+Output: 83
+</pre>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>The idea is to extract the digits of given octal number starting from right most digit and keep a variable dec_value. At the time of extracting digits from the octal number, multiply the digit with the proper base (Power of 8) and add it to the variable dec_value. At the end, the variable dec_value will store the required decimal number.</p>
+<p>For Example:<br/>
+If the octal number is 67.<br/>
+dec_value = 6*(8^1) + 7*(8^0) = 55</p>
+<p>Below diagram explains how to convert octal number ( 123 ) to equivalent decimal value:<br/>
+<img src="../../../imgs/arch/d5cbde4b6232eceaa9f23cb43fa53242.jpg" alt="" width="364" height="449" class="aligncenter size-full wp-image-201354"/></p>
+<p>Below is the implementation of above idea.<br/>
+</p>
+<div class="responsive-tabs">
+<h2 class="tabtitle sigil_not_in_toc">C/C++</h2>
+<div class="tabcontent">
+</div>
+</div>
+<p></p>
+<pre class="brush: cpp; highlight: [5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]; title: ; notranslate" title="">// C++ program to convert octal to decimal
+#include &lt;iostream&gt;
+using namespace std;
+
+// Function to convert octal to decimal
+int octalToDecimal(int n)
+{
+    int num = n;
+    int dec_value = 0;
+
+    // Initializing base value to 1, i.e 8^0
+    int base = 1;
+
+    int temp = num;
+    while (temp) {
+
+        // Extracting last digit
+        int last_digit = temp % 10;
+        temp = temp / 10;
+
+        // Multiplying last digit with appropriate
+        // base value and adding it to dec_value
+        dec_value += last_digit * base;
+
+        base = base * 8;
+    }
+
+    return dec_value;
+}
+
+// Driver program to test above function
+int main()
+{
+    int num = 67;
+
+    cout &lt;&lt; octalToDecimal(num) &lt;&lt; endl;
+}
+</pre>
+
+</div>
+<h2 class="tabtitle sigil_not_in_toc">Java</h2>
+<div class="tabcontent">
+
+<pre class="brush: java; highlight: [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]; title: ; notranslate" title="">// Java program to convert octal to decimal
+import java.io.*;
+
+class GFG {
+
+    // Function to convert octal to decimal
+    static int octalToDecimal(int n)
+    {
+        int num = n;
+        int dec_value = 0;
+
+        // Initializing base value to 1, i.e 8^0
+        int base = 1;
+
+        int temp = num;
+        while (temp &gt; 0) {
+            // Extracting last digit
+            int last_digit = temp % 10;
+            temp = temp / 10;
+
+            // Multiplying last digit with appropriate
+            // base value and adding it to dec_value
+            dec_value += last_digit * base;
+
+            base = base * 8;
+        }
+        return dec_value;
+    }
+
+    // driver program
+    public static void main(String[] args)
+    {
+        int num = 67;
+        System.out.println(octalToDecimal(num));
+    }
+}
+
+// Contributed by Pramod Kumar
+</pre>
+
+</div>
+<h2 class="tabtitle sigil_not_in_toc">C#</h2>
+<div class="tabcontent">
+
+<pre class="brush: csharp; highlight: [7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]; title: ; notranslate" title="">// C# program to convert octal to
+// decimal
+using System;
+
+class GFG {
+    
+    // Function to convert octal
+    // to decimal
+    static int octalToDecimal(int n)
+    {
+        int num = n;
+        int dec_value = 0;
+
+        // Initializing base value 
+        // to 1, i.e 8^0
+        int b_ase = 1;
+
+        int temp = num;
+        while (temp &gt; 0) 
+        {
+            
+            // Extracting last digit
+            int last_digit = temp % 10;
+            temp = temp / 10;
+
+            // Multiplying last digit 
+            // with appropriate base 
+            // value and adding it to 
+            // dec_value
+            dec_value += last_digit
+                              * b_ase;
+
+            b_ase = b_ase * 8;
+        }
+        return dec_value;
+    }
+
+    // driver program
+    public static void Main()
+    {
+        int num = 67;
+        
+        Console.WriteLine(
+                   octalToDecimal(num));
+    }
+}
+
+// This code is contributed by vt_m.
+</pre>
+
+</div>
+<h2 class="tabtitle sigil_not_in_toc">PHP</h2>
+<div class="tabcontent">
+
+<pre class="brush: php; highlight: [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34]; title: ; notranslate" title="">&lt;?php
+// PHP program to convert octal to decimal
+
+// Function to convert
+// octal to decimal
+function octalToDecimal($n)
+{
+    
+    $num = $n;
+    $dec_value = 0;
+
+    // Initializing base value
+    // to 1, i.e 8^0
+    $base = 1;
+
+    $temp = $num;
+    while ($temp)
+    {
+
+        // Extracting last digit
+        $last_digit = $temp % 10;
+        $temp = $temp / 10;
+
+        // Multiplying last digit
+        // with appropriate base
+        // value and adding it 
+        // to dec_value
+        $dec_value += $last_digit * $base;
+
+        $base = $base * 8;
+    }
+
+    return $dec_value;
+}
+
+    // Driver Code
+    $num = 67;
+    echo octalToDecimal($num);
+    
+// This code is contributed by anuj_67
+?&gt;
+</pre>
+<p></p>
+</div>
+</body>
+</html>

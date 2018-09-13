@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Difference between CALL and JUMP instructions</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>CALL</b> instruction is used to call a subroutine. Subroutines are often used to perform tasks that need to be performed frequently. The <b>JMP</b> instruction is used to cause the PLC to skip over rungs. </p>
+<p>The differences Between <strong>CALL</strong> and <strong>JUMP</strong> instructions are:</p>
+<table width="100%">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">SERIAL NO.</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">JUMP</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">CALL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1.</td>
+<td style="text-align:center">Program control is transferred to a memory location which is in the main program</td>
+<td style="text-align:center">Program Control is transferred to a memory location which is not a part of main program</td>
+</tr>
+<tr>
+<td style="text-align:center">2.</td>
+<td style="text-align:center">Immediate Addressing Mode</td>
+<td style="text-align:center">Immediate Addressing Mode + Register Indirect Addressing Mode</td>
+</tr>
+<tr>
+<td style="text-align:center">3.</td>
+<td style="text-align:center">Initialisation of SP(Stack Pointer) is not mandatory</td>
+<td style="text-align:center">Initialisation of SP(Stack Pointer) is mandatory</td>
+</tr>
+<tr>
+<td style="text-align:center">4.</td>
+<td style="text-align:center">Value of Program Counter(PC) is not transferred to stack</td>
+<td style="text-align:center">Value of Program Counter(PC) is transferred to stack</td>
+</tr>
+<tr>
+<td style="text-align:center">5.</td>
+<td style="text-align:center">After JUMP, there is no return instruction</td>
+<td style="text-align:center">After CALL, there is a return instruction</td>
+</tr>
+<tr>
+<td style="text-align:center">6.</td>
+<td style="text-align:center">Value of SP does not changes</td>
+<td style="text-align:center">Value of SP is decremented by 2</td>
+</tr>
+<tr>
+<td style="text-align:center">7.</td>
+<td style="text-align:center">10 T states are required to execute this instruction</td>
+<td style="text-align:center">18 T states are required to execute this instruction</td>
+</tr>
+<tr>
+<td style="text-align:center">8.</td>
+<td style="text-align:center">3 Machine cycles are required to execute this instruction</td>
+<td style="text-align:center">5 Machine cycles are required to execute this instruction</td>
+</tr>
+</tbody>
+</table>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

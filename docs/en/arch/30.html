@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Priority Interrupts | (S/W Polling and Daisy Chaining)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In  <a href="https://www.geeksforgeeks.org/io-interface-interrupt-dma-mode/">I/O Interface (Interrupt and DMA Mode)</a>,  we have discussed concept behind  the Interrupt-initiated I/O.</p>
+<p>To summarize, when I/O devices are ready for I/O transfer, they generate an interrupt request signal to the computer. The  CPU receives this signal, suspends the current instructions it is executing and then moves forward to service that transfer request. But what if multiple devices generate interrupts simultaneously. In that case, we have to have a way to decide which interrupt is to be serviced first. In other words, we have to set a priority among all the devices for systemic interrupt servicing.</p>
+<p>The concept of defining the priority among devices so as to know which one is to be serviced first in case of simultaneous requests is called priority interrupt system. This could be done with either software or hardware methods.</p>
+<h1 id="sigil_toc_id_1">SOFTWARE METHOD – POLLING</h1>
+<p>In this method, all interrupts are serviced by branching to the same service program. This program then checks with each device if it is the one generating the interrupt. The order of checking is determined by the priority that has to be set. The device having the highest priority is checked first and then devices are checked in descending order of priority. If the device is checked to be generating the interrupt, another service program is called which works specifically for that particular device.<br/>
+The structure will look something like this-  </p>
+<pre>if (device[0].flag)
+    device[0].service();
+else if (device[1].flag)
+    device[1].service();
+.
+.
+.
+.
+.
+.
+else
+    //raise error
+</pre>
+<p>The major disadvantage of this method is that it is quite slow. To overcome this, we can use hardware solution, one of which involves connecting the devices in series. This is called Daisy-chaining method.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<h1 id="sigil_toc_id_2">HARDWARE METHOD – DAISY CHAINING</h1>
+<p>The daisy-chaining method involves connecting all the devices that can request an interrupt in a serial manner. This configuration is governed by the priority of the devices. The device with the highest priority is placed first followed by the second highest priority device and so on. The given figure depicts this arrangement. </p>
+<p><img src="../../../imgs/arch/766b0a180a7a3e1da26be23615f78f95.jpg" class="aligncenter"/></p>
+<p><strong>WORKING:</strong><br/>
+There is an interrupt request line which is common to all the devices and goes into the CPU.</p>
+<ul>
+<li>When no interrupts are pending, the line is in HIGH state. But if any of the devices raises an interrupt, it places the interrupt request line in the LOW state.</li>
+<li>The CPU acknowledges this interrupt request from the line and then enables the interrupt acknowledge line in response to the request.</li>
+<li>This signal is received at the PI(Priority in) input of device 1.</li>
+<li>If the device has not requested the interrupt, it passes this signal to the next device through its PO(priority out) output. (PI = 1 &amp; PO = 1)</li>
+<li>
+However, if the device had requested the interrupt, (PI =1 &amp; PO = 0)<p></p>
+<ul type="circle">
+<li>The device consumes the acknowledge signal and block its further use by placing 0 at its PO(priority out) output.</li>
+<li>The device then proceeds to place its interrupt vector address(VAD) into the data bus of CPU.</li>
+<li>The device puts its interrupt request signal in HIGH state to indicate its interrupt has been taken care of.</li>
+</ul>
+<p><strong>NOTE:</strong> VAD is the address of the service routine which services that device.</p>
+</li>
+<li>If a device gets 0 at its PI input, it generates 0 at the PO output to tell other devices that acknowledge signal has been blocked. (PI = 0 &amp; PO = 0)</li>
+</ul>
+<p>Hence, the device having PI = 1 and PO = 0 is the highest priority device that is requesting an interrupt. Therefore, by daisy chain arrangement we have ensured that the highest priority interrupt gets serviced first and have established a hierarchy. The farther a device is from the first device, the lower its priority.</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

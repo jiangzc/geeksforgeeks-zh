@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Basic Computer Instructions</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>The basic computer has 16 bit instruction register (IR) which can denote either memory reference or register reference or input-output instruction.</p>
+<ol>
+<li><strong>Memory Reference –</strong> These instructions refer to memory address as an operand. The other operand is always accumulator. Specifies 12 bit address, 3 bit opcode (other than 111) and 1 bit addressing mode for direct and indirect addressing.
+<p><img src="../../../imgs/arch/90fd0dfcb2d02d2a0c4d5f5e70685abe.jpg" alt="memory reference instruction"/></p>
+<p><b>Example –</b><br/>
+IR register contains = 0001XXXXXXXXXXXX, i.e. ADD after fetching and decoding of instruction we find out that it is a memory reference instruction for ADD operation.</p>
+<pre>Hence, DR &lt;- M[AR]
+AC &lt;- AC+ DR, SC &lt;- 0</pre>
+</li>
+<li><strong>Register Reference –</strong> These instructions perform operations on registers rather than memory addresses. The IR(14-12) is 111 (differentiates it from memory reference) and IR(15) is 0 (differentiates it from input/output instructions). The rest 12 bits specify register operation.
+<p><img src="../../../imgs/arch/9ff9e4df55ba6c1d815f95ed0bb7d719.jpg" alt="register reference instruction"/></p>
+<p><b>Example –</b><br/>
+IR register contains = 0111001000000000, i.e. CMA after fetch and decode cycle we find out that it is a register reference instruction for complement accumulator.</p>
+<pre>Hence, AC &lt;- ~AC</pre>
+</li>
+<li><strong>Input/Output – </strong> These instructions are for communication between computer and outside environment. The IR(14-12) is 111 (differentiates it from memory reference) and IR(15) is 1 (differentiates it from register reference instructions). The rest 12 bits specify I/O operation.
+<p><img src="../../../imgs/arch/b000dd005ab137276d10bed7ffe4d6f0.jpg" alt="i/o instruction"/></p>
+<p><b>Example –</b><br/>
+IR register contains = 1111100000000000, i.e. INP after fetch and decode cycle we find out that it is an input/output instruction for inputing character. Hence, INPUT character from peripheral device.
+</p></li>
+</ol>
+<p>The set of instructions incorporated in16 bit IR register are:</p>
+<ol>
+<li>Arithmetic, logical and shift instructions (and, add, complement, circulate left, right, etc)</li>
+<li>To move information to and from memory (store the accumulator, load the accumulator)</li>
+<li>Program control instructions with status conditions (branch, skip)</li>
+<li>Input output instructions (input character, output character)</li>
+</ol>
+<table width="80%">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Symbol</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center" colspan="2">Hexadecimal Code</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">AND</td>
+<td style="text-align:center">0xxx</td>
+<td style="text-align:center">8xxx</td>
+<td style="text-align:center">And memory word to AC</td>
+</tr>
+<tr>
+<td style="text-align:center">ADD</td>
+<td style="text-align:center">1xxx</td>
+<td style="text-align:center">9xxx</td>
+<td style="text-align:center">Add memory word to AC</td>
+</tr>
+<tr>
+<td style="text-align:center">LDA</td>
+<td style="text-align:center">2xxx</td>
+<td style="text-align:center">Axxx</td>
+<td style="text-align:center">Load memory word to AC</td>
+</tr>
+<tr>
+<td style="text-align:center">STA</td>
+<td style="text-align:center">3xxx</td>
+<td style="text-align:center">Bxxx</td>
+<td style="text-align:center">Store AC content in memory</td>
+</tr>
+<tr>
+<td style="text-align:center">BUN</td>
+<td style="text-align:center">4xxx</td>
+<td style="text-align:center">Cxxx</td>
+<td style="text-align:center">Branch Unconditionally</td>
+</tr>
+<tr>
+<td style="text-align:center">BSA</td>
+<td style="text-align:center">5xxx</td>
+<td style="text-align:center">Dxxx</td>
+<td style="text-align:center">Add memory word to AC</td>
+</tr>
+<tr>
+<td style="text-align:center">ISZ</td>
+<td style="text-align:center">6xxx</td>
+<td style="text-align:center">Exxx</td>
+<td style="text-align:center">Increment and skip if 0</td>
+</tr>
+<tr>
+<td style="text-align:center">CLA</td>
+<td style="text-align:center" colspan="2">7800</td>
+<td style="text-align:center">Clear AC</td>
+</tr>
+<tr>
+<td style="text-align:center">CLE</td>
+<td style="text-align:center" colspan="2">7400</td>
+<td style="text-align:center">Clear E(overflow bit)</td>
+</tr>
+<tr>
+<td style="text-align:center">CMA</td>
+<td style="text-align:center" colspan="2">7200</td>
+<td style="text-align:center">Complement AC</td>
+</tr>
+<tr>
+<td style="text-align:center">CME</td>
+<td style="text-align:center" colspan="2">7100</td>
+<td style="text-align:center">Complement E</td>
+</tr>
+<tr>
+<td style="text-align:center">CIR</td>
+<td style="text-align:center" colspan="2">7080</td>
+<td style="text-align:center">Circulate right AC and E</td>
+</tr>
+<tr>
+<td style="text-align:center">CIL</td>
+<td style="text-align:center" colspan="2">7040</td>
+<td style="text-align:center">Circulate left AC and E</td>
+</tr>
+<tr>
+<td style="text-align:center">INC</td>
+<td style="text-align:center" colspan="2">7020</td>
+<td style="text-align:center">Increment AC</td>
+</tr>
+<tr>
+<td style="text-align:center">SPA</td>
+<td style="text-align:center" colspan="2">7010</td>
+<td style="text-align:center">Skip next instruction if AC&gt;0</td>
+</tr>
+<tr>
+<td style="text-align:center">SNA</td>
+<td style="text-align:center" colspan="2">7008</td>
+<td style="text-align:center">Skip next instruction if AC&lt;0</td>
+</tr>
+<tr>
+<td style="text-align:center">SZA</td>
+<td style="text-align:center" colspan="2">7004</td>
+<td style="text-align:center">Skip next instruction if AC&gt;0</td>
+</tr>
+<tr>
+<td style="text-align:center">SE</td>
+<td style="text-align:center" colspan="2">7002</td>
+<td style="text-align:center">Skip next instruction if E=0</td>
+</tr>
+<tr>
+<td style="text-align:center">HLT</td>
+<td style="text-align:center" colspan="2">7001</td>
+<td style="text-align:center">Halt computer</td>
+</tr>
+<tr>
+<td style="text-align:center">INP</td>
+<td style="text-align:center" colspan="2">F800</td>
+<td style="text-align:center">Input character to AC</td>
+</tr>
+<tr>
+<td style="text-align:center">OUT</td>
+<td style="text-align:center" colspan="2">F400</td>
+<td style="text-align:center">Output character from AC</td>
+</tr>
+<tr>
+<td style="text-align:center">SKI</td>
+<td style="text-align:center" colspan="2">F200</td>
+<td style="text-align:center">Skip on input flag</td>
+</tr>
+<tr>
+<td style="text-align:center">SKO</td>
+<td style="text-align:center" colspan="2">F100</td>
+<td style="text-align:center">Skip on output flag</td>
+</tr>
+<tr>
+<td style="text-align:center">IEN</td>
+<td style="text-align:center" colspan="2">F080</td>
+<td style="text-align:center">Interrupt On</td>
+</tr>
+</tbody>
+</table>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

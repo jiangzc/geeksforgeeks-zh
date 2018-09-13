@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Computer Architecture | Flynn’s taxonomy</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Parallel computing</b> is a computing where the jobs are broken into discrete parts that can be executed concurrently. Each part is further broken down to a series of instructions. Instructions from each part execute simultaneously on different CPUs. Parallel systems deal with the simultaneous use of multiple computer resources that can include a single computer with multiple processors, a number of computers connected by a network to form a parallel processing cluster or a combination of both.<br/>
+Parallel systems are more difficult to program than computers with a single processor because the architecture of parallel computers varies accordingly and the processes of multiple CPUs must be coordinated and synchronized.</p>
+<p>The crux  of parallel processing are CPUs. Based on the number of <b>instruction and data</b> streams that can be processed simultaneously, computing systems are classified into four major categories:</p>
+<p><img src="../../../imgs/arch/3940529b2e08d548d872ba1eed41e4d6.jpg" width="268" height="206" class="aligncenter size-full"/></p>
+<p><b>Flynn’s classification –</b></p>
+<ol>
+<li><strong>Single-instruction, single-data (SISD) systems –</strong><br/>
+An SISD computing system is a uniprocessor machine which is capable of executing a single instruction, operating on a single data stream. In SISD, machine instructions are processed in a sequential manner and computers adopting this model are popularly called sequential computers. Most conventional computers have SISD architecture. All the instructions and data to be processed have to be stored in primary memory. <p></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/arch/44c258087dd21ac1db9afecb8d08ffee.jpg" width="275" height="227" class="aligncenter size-full"/></p>
+<p>The speed of the processing element in the SISD model is limited(dependent) by the rate at which the computer can transfer information internally. Dominant representative SISD systems are IBM PC, workstations.</p></li>
+<li><strong>Single-instruction, multiple-data (SIMD) systems –</strong><br/>
+An  SIMD system is a multiprocessor machine capable of executing the same instruction on all the CPUs but operating on different data streams. Machines based on an SIMD model are well suited to scientific computing since they involve lots of vector and matrix operations.  So that the information can be passed to all the processing elements (PEs) organized data elements of vectors can be divided into multiple sets(N-sets for N PE systems) and each PE can process one data set. <p></p>
+<p><img src="../../../imgs/arch/83346f5fa3a4daaa8f368248eb01ac8b.jpg" width="252" height="222" class="aligncenter size-full"/></p>
+<p>Dominant representative SIMD systems is Cray’s vector processing machine.</p></li>
+<li><strong>Multiple-instruction, single-data (MISD) systems –</strong><br/>
+An MISD computing system is a multiprocessor machine capable of executing different instructions on different PEs but all of them operating on the same dataset .<p></p>
+<p><img src="../../../imgs/arch/dfea9e6d0b443454166821ed2929769b.jpg" width="293" height="225" class="aligncenter size-full"/></p>
+<p>Example   Z = sin(x)+cos(x)+tan(x)<br/>
+The system performs different operations on the same data set. Machines built using the MISD model are not useful in most of the application, a few machines are built, but none of them are available commercially.</p></li>
+<li><strong>Multiple-instruction, multiple-data (MIMD) systems –</strong><br/>
+An MIMD system is a multiprocessor machine which is capable of executing multiple instructions on multiple data sets. Each PE in the MIMD model has separate instruction and data streams; therefore  machines built using this model are capable to any kind of application. Unlike SIMD and MISD machines, PEs in MIMD machines work asynchronously.<p></p>
+<p><img src="../../../imgs/arch/626cf6309a707cec3df51e9aebc30598.jpg" width="369" height="221" class="aligncenter size-full"/></p>
+<p>MIMD machines are broadly categorized into <strong>shared-memory MIMD</strong> and<strong> distributed-memory MIMD</strong> based on the way PEs are coupled to the main memory.</p>
+<p>In the <strong>shared memory MIMD</strong> model (tightly coupled multiprocessor systems), all the PEs are connected to a single global memory and they all have access to it. The communication between PEs in this model takes place through the shared memory, modification of the data stored in the global memory by one PE is visible to all other PEs. Dominant representative shared memory MIMD systems are Silicon Graphics machines and Sun/IBM’s SMP (Symmetric Multi-Processing).<br/>
+ In <strong>Distributed memory MIMD</strong> machines (loosely coupled multiprocessor systems) all PEs have a local memory. The communication between PEs in this model takes place through the interconnection network (the inter process communication channel, or IPC). The network connecting PEs can be configured to tree, mesh or in accordance with the requirement.<br/>
+The shared-memory MIMD architecture is easier to program but is less tolerant to failures and harder to extend with respect to the distributed memory MIMD model. Failures in a shared-memory MIMD affect the entire system, whereas this is not the case of the distributed model, in which each of the PEs can be easily isolated. Moreover, shared memory MIMD architectures are less likely to scale because the addition of more PEs leads to memory contention. This is a situation that does not happen in the case of distributed memory, in which each PE has its own memory. As a result of practical outcomes and user’s requirement , distributed memory MIMD architecture is superior to the other existing models.</p></li>
+</ol>
+<p><b>Reference –</b><br/>
+<a href="https://en.wikipedia.org/wiki/Flynn%27s_taxonomy" rel="noopener" target="_blank">Flynn’s taxonomy</a><br/>
+<a href="https://www.amazon.in/Mastering-Cloud-Computing-Foundations-Applications/dp/0124114547" rel="noopener" target="_blank">Mastering Cloud Computing</a>: Foundations and Applications Programming</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

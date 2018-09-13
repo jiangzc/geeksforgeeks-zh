@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Problem Solving on Instruction Format</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-organization-basic-computer-instructions/" rel="noopener" target="_blank">Basic Computer Instructions</a>, <a href="https://www.geeksforgeeks.org/computer-organization-instruction-formats-zero-one-two-three-address-instruction/" rel="noopener" target="_blank">Instruction Formats</a><br/>
+An instruction format defines the different component of an instruction. The main components of an instruction are opcode (which instruction to be executed) and operands (data on which instruction to be executed).  Here are the different terms related to instruction format:</p>
+<ul>
+<li><b>Instruction set size –</b> It tells the total number of instructions defined in the processor.
+</li>
+<li><b>Opcode size –</b> It is the number of bits occupied by the opcode which is calculated by taking log of instruction set size.
+</li>
+<li><b>Operand size –</b> It is the number of bits occupied by the operand.
+</li>
+<li><b>Instruction size –</b> It is calculated as sum of bits occupied by opcode and operands.
+</li>
+</ul>
+<p>In this article, we will discuss different types of problems based on instruction format which are asked in GATE. For details about different types of instruction formats, you can refer: <a href="https://www.geeksforgeeks.org/computer-organization-instruction-formats-zero-one-two-three-address-instruction/" rel="noopener" target="_blank">Instruction Formats</a></p>
+<p><b>Type 1:</b> Given instruction set size and operands size and their count, find the size of the instruction.<br/>
+In this type of questions, you will be given the size of instruction set, number of operands and their size, you have to find out the size of the instruction.</p>
+<p><b>Que-1.</b> Consider a processor with 64 registers and an instruction set of size twelve. Each instruction has five distinct fields, namely, opcode, two source register identifiers, one destination register identifier, and a twelve-bit immediate value. Each instruction must be stored in memory in a byte-aligned fashion. If a program has 100 instructions, the amount of memory (in bytes) consumed by the program text is ____________.    (GATE 2016)<br/>
+(A) 100<br/>
+(B) 200<br/>
+(C) 400<br/>
+(D) 500</p>
+<p><b>Solution:</b> It can be approached as:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li>The instruction consists of opcode and operands. Given the instruction set of size 12, 4 bits are required for opcode (2^4 = 16).
+</li>
+<li>As there are total 64 registers, 6 bits are required for identifying a register.
+</li>
+<li>As the instruction contains 3 registers (2 source + 1 designation), 3 * 6 = 18 bit are required for register identifiers.
+</li>
+<li>12 bits are required for immediate value as given.
+</li>
+<li>Total bits for an instruction = 4 + 18 + 12 = 34 bits
+</li>
+<li>For 100 instructions, number of bits = 34 * 100 = 3400 bits = 3400/8 bytes = 425 bytes.
+</li>
+<li>As memory must be greater than or equal to 425, correct option is (D).
+</li>
+</ul>
+<p><b>Type 2:</b> Given instruction size, opcode size and size of some operands, find the size and maximum value of remaining operands.<br/>
+In this type of questions, you will be given the size of instruction, size of opcode, number of operands and size of some operands, you have to find out the size or maximum value of remaining operands.</p>
+<p><b>Que-2.</b> A processor has 40 distinct instructions and 24 general purpose registers. A 32-bit instruction word has an opcode, two registers operands and an immediate operand. The number of bits available for the immediate operand field is_______.  (GATE CS 2016)</p>
+<p><b>Solution:</b> It can be approached as:</p>
+<ul>
+<li>As the processor has 40 instructions, number of bits for opcode = 6 (2^6 = 64)
+</li>
+<li>As the processor has 24 register, number of bits for one register = 5 (2^5 = 32)
+</li>
+<li>Total bits occupied by 2 registers and opcode = 6 + 5 + 5 =16.
+</li>
+<li>As instruction size given is 32 bits, remaining bit left for operand = 32-16 = 16 bits.
+</li>
+</ul>
+<p><b>Que-3.</b> A machine has a 32-bit architecture, with 1-word long instructions. It has 64 registers, each of which is 32 bits long. It needs to support 45 instructions, which have an immediate operand in addition to two register operands. Assuming that the immediate operand is an unsigned integer, the maximum value of the immediate operand is ___________.  (GATE CS 2014)</p>
+<p><b>Solution:</b> It can be approached as:</p>
+<ul>
+<li>As machine has 32-bit architecture, therefore, 1 word = 32 bits = instruction size
+</li>
+<li>As the processor has 64 register, number of bits for one register = 6 (2^6 = 64)
+</li>
+<li>As the processor has 45 instructions, number of bits for opcode = 6 (2^6 = 64)
+</li>
+<li>Total bits occupied by 2 registers and opcode = 6 + 6 + 6 =18.
+</li>
+<li>As instruction size given is 32 bits, remaining bit left for immediate operand = 32-18 = 14 bits.
+</li>
+<li>Maximum unsigned value using 14 bits = 2^14 – 1 = 16383 which is the answer.
+</li>
+</ul>
+<p><b>Type 3:</b> Instruction format with different categories of instruction<br/>
+In this type of questions, you will be given different categories of instructions. You have to find maximum possible instructions of a given type. </p>
+<p><b>Que-4.</b> A processor has 16 integer registers (R0, R1, … , R15) and 64 floating point registers (F0, F1, … , F63). It uses a 2 byte instruction format. There are four categories of instructions: Type-1, Type-2, Type-3, and Type 4. Type-1 category consists of four instructions, each with 3 integer register operands (3Rs). Type-2 category consists of eight instructions, each with 2 floating point register operands (2Fs). Type-3 category consists of fourteen instructions, each with one integer register operand and one floating point register operand (1R+1F). Type-4 category consists of N instructions, each with a floating point register operand (1F).</p>
+<p>The maximum value of N is ________.  (GATE-CS-2018)</p>
+<p><b>Solution:</b> It can be approached as:</p>
+<ul>
+<li>As machine has 2 byte = 16 bits instruction format, therefore, possible encodings = 2^16.
+</li>
+<li>As the processor has 16 integer register, number of bits for one integer register = 4 (2^4 = 16)
+</li>
+<li>As the processor has 64 floating point register, number of bits for one floating point register = 6 (2^6 = 64).
+</li>
+<li>For type-1 category having 4 instructions each having 3 integer register operands (4*3 = 12 bits) will consume 4 * 2^12 = 2^14 encodings.
+</li>
+<li>For type-2 category having 8 instructions each having 2 floating point register operands (2*6 = 12 bits) will consume 8 * 2^12 = 2^15 encodings.
+</li>
+<li>For type-3 category having 14 instructions each having 1 integer register and 1 floating point register operands (4 + 6 = 10 bits) will consume 14 * 2^10 = 14336 encodings.
+</li>
+<li>For type-4 category instructions, number of encodings left = 2^16 – 2^14 – 2^15 – 14336 = 2048.
+</li>
+<li>For type-4 category having N instructions each having 1 floating point register operand (6 bits) will consume N* 2^6 = 2048 (calculated  from previous step). Therefore, N = 32.
+</li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

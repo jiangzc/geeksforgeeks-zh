@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Addressing Modes</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p style="text-align: justify"><strong>Addressing Modes</strong>– The term addressing modes refers to the way in which the operand of an instruction is specified. The addressing mode specifies a rule for interpreting or modifying the address field of the instruction before the operand is actually executed.</p>
+<p><strong>Addressing modes for 8086 instructions are divided into two categories:</strong></p>
+<p>1) Addressing modes for data</p>
+<p>2) Addressing modes for branch</p>
+<p style="text-align: justify">The 8086 memory addressing modes provide flexible access to memory, allowing you to easily access variables, arrays, records, pointers, and other complex data types. &#160;The key to good assembly language programming is the proper use of memory addressing modes.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>An assembly language program instruction consists of two parts</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/Addressing_Modes_1.jpg"><img class="aligncenter size-full wp-image-20849" src="../../../imgs/arch/5fc7d94a467979532e79da2dc7937254.jpg" alt="am1" width="574" height="44"/></a><br/>
+The memory address of an operand consists of two components:<strong>&#160;</strong></p>
+<p><strong>IMPORTANT TERMS</strong></p>
+<ul>
+<li><strong>Starting address</strong> of memory segment.</li>
+<li><strong>Effective address or Offset</strong>: An offset is determined by adding any combination of three address elements: <strong>displacement, base and index.</strong>
+<ul>
+<li><strong>Displacement: </strong>It is an 8 bit or 16 bit immediate value given in the instruction.</li>
+<li><strong>Base</strong>: Contents of base register, BX or BP.</li>
+<li><strong>Index</strong>: Content of index register SI or DI.</li>
+</ul>
+</li>
+</ul>
+<p>According to different ways of specifying an operand by 8086 microprocessor, different addressing modes are used by 8086.</p>
+<p><strong>Addressing modes</strong> used by 8086 microprocessor are discussed below:</p>
+<ul>
+<li><strong>Immediate mode</strong>: In immediate addressing the operand is specified in the instruction itself. In this mode the data is 8 bits or 16 bits long and data is the part of instruction.<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/Addressing_Modes_2.jpg"><img class="aligncenter size-full wp-image-20850" src="../../../imgs/arch/9970abb9b0520f9fe0fea139bf665321.jpg" alt="am2" width="188" height="84"/></a><p></p>
+<pre style="text-align: center">Example:&#160; MOV AL, 35H (move the data 35H into AL register)</pre>
+</li>
+<li><strong>Register mode: </strong>In register addressing the operand is placed in one of 8 bit or 16 bit general purpose registers. The data is in the register that is specified by the instruction.<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/Addressing_Modes_3.jpg"><img class="aligncenter size-full wp-image-20851" src="../../../imgs/arch/73538c4b23328ac30df50c8a480368d4.jpg" alt="am3" width="394" height="70"/></a><p></p>
+<pre style="text-align: center">Example:&#160;MOV AX,CX (move the contents of CX register to AX register)</pre>
+</li>
+<li><strong>Register Indirect mode</strong>: In this addressing the operand’s offset is placed in any one of the registers BX,BP,SI,DI as specified in the instruction. The effective address of the data is in the base register or an index register that is specified by the instruction.<a href="https://www.geeksforgeeks.org/wp-content/uploads/Addressing_Modes_4.jpg"><img class="aligncenter size-full wp-image-20852" src="../../../imgs/arch/22d83b239047dc70b076fbe7f2467a1f.jpg" alt="am5" width="566" height="96"/></a><br/>
+The 8086 CPUs let you access memory indirectly through a register using the register indirect addressing modes.<p></p>
+<pre style="text-align: center">MOV AX, [BX](move the contents of memory location s 
+             addressed by the register BX to the register AX)</pre>
+</li>
+<li><strong>Auto-increment mode</strong>: Effective address of the operand is the contents of a register specified in the instruction. After accessing the operand, the contents of this register are automatically incremented to point to the next consecutive memory location.<strong>(R1)+</strong>.Example:
+<pre style="text-align: left">Add R1, (R2)+&#160; // OR</pre>
+<pre style="text-align: left">R1 = R1 +M[R2]
+R2 = R2 + d</pre>
+<p><em>Useful for stepping through arrays in a loop. R2 – start of array</em><em>&#160;d</em> – size of an element</p></li>
+<li><strong>Auto-decrement mode</strong>: Effective address of the operand is the contents of a register specified in the instruction. Before accessing the operand, the contents of this register are automatically decremented to point to the previous consecutive memory location. <em>–</em><strong>(R1)</strong>Example:
+<pre>Add R1,-(R2) &#160;&#160;//OR</pre>
+<pre>R2 = R2-<em>d</em>
+R1 = R1 + M[R2]</pre>
+<p><em>Auto decrement mode is same as&#160; auto increment mode. Both can also be used to implement a stack as push and pop&#160;. Auto increment and Auto decrement modes are useful for implementing “Last-In-First-Out” data structures.</em></p></li>
+<li><strong>Direct Mode</strong>: The operand’s offset is given in the instruction as an 8 bit or 16 bit displacement element. In this addressing mode the 16 bit effective address of the data is the part of the instruction.<a href="https://www.geeksforgeeks.org/wp-content/uploads/Addressing_Modes_5.jpg"><img class="aligncenter size-full wp-image-20853" src="../../../imgs/arch/5828c5ba4568c3104d75b5279610e110.jpg" alt="am6" width="484" height="94"/></a>
+<pre style="text-align: center">Example:ADD AL,[0301] &#160; //add the contents of offset address 0301 to AL</pre>
+</li>
+<li><strong>Base</strong> <strong>addressing</strong>: The operand’s offset is sum of an 8 bit or 16 bit displacement and the contents of the base register BX or BP.BX is used as a base register for data segment ,and BP is used as a base register for stack segment.
+<pre style="text-align: center">Example:MOV AL,[BX+05]</pre>
+<p style="text-align: left">//suppose the register BX contain 0301.The offset will be 0301+05=0306.Content of the memory location 0306 will move to AL.</p>
+</li>
+<li><strong>Indexed addressing mode</strong>: The operand’s offset is the sum of the content of an index register SI or DI and an 8 bit or 16 bit displacement.
+<pre style="text-align: center">Example:MOV AX, [SI +05]</pre>
+</li>
+<li><strong>&#160;Based Indexed Addressing: </strong>The operand’s offset is sum of the content of a base register BX or BP and an index register SI or DI.
+<pre style="text-align: center">Example:&#160;ADD AX, [BX+SI]</pre>
+</li>
+<li><strong>Based Indexed plus displacement addressing mode: </strong>In this mode of addressing the operand’s offset is given by offset=[BX or BP]+[SI or DI]+8 bit or 16 bit displacement.</li>
+<li>
+<pre style="text-align: center">Example:MOV AX, [BX+SI+05]</pre>
+<p><strong>&#160;Branch Related addressing modes:</strong></p>
+<ul>
+<li><strong>Intrasegment Direct</strong>: The effective branch address is sum of 8 or 16 bit displacement and the current contents of IP(Instruction Pointer).It can be used with either conditional or unconditional branching.</li>
+<li><strong>Intrasegment Indirect: </strong>The effective branch address is contents of register or memory location that is accessed using any of the data related addressing mode except immediate mode. It can be used only for unconditional branch instruction.</li>
+<li><strong>Intersegment Direct</strong>: Replaces the content of IP with part of the instruction and the contents of CS with another part of the instruction. This mode is provide a way of branching from one code segment to another.</li>
+<li><strong>Intersegment Indirec</strong>t: Replaces the contents of IP and CS with the contents of two consecutive words in memory that are referenced using any one of the data related addressing mode except immediate and register modes.</li>
+</ul>
+<p style="text-align: center"><strong>Sample GATE Question</strong></p>
+<p>Match each of the high level language statements given on the left hand side with the most natural addressing mode from those listed on the right hand side.</p>
+<pre>1. A[1] = B[J]; &#160; &#160; &#160; &#160; a. Indirect addressing
+2. while [*A++]; &#160; &#160;   &#160;b. Indexed  addressing
+3. int temp = *x; &#160; &#160;   c. Autoincrement</pre>
+<p><strong>(A</strong>) (1, c), (2, b), (3, a)<br/>
+<strong>(B)</strong> (1, a), (2, c), (3, b)<br/>
+<strong>(C)</strong> (1, b), (2, c), (3, a)<br/>
+<strong>(D)</strong> (1, a), (2, b), (3, c)</p>
+<p><strong>Answer:</strong> <strong>(C)</strong></p>
+<p><strong>Explanation:</strong></p>
+<pre>List 1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; List 2
+1) A[1] = B[J];&#160;&#160;&#160;&#160; &#160;b) Index addressing 
+Here indexing is used
+
+2) while [*A++];&#160;&#160;&#160; &#160;c) auto increment
+The memory locations are automatically incremented
+
+3) int temp = *x;&#160;&#160;&#160; a) Indirect addressing
+Here temp is assigned the value of int type stored
+at the address contained in X</pre>
+<p>Hence (C) is correct solution.</p>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>
