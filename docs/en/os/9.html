@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">UEFI(Unified Extensible Firmware Interface) and how is it different from BIOS</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>The Unified Extensible Firmware Interface (UEFI), like BIOS (Basic Input Output System) is a firmware that runs when the computer is booted. It initializes the hardware and loads the operating system into the memory. However, being the more modern solution and overcoming various limitations of BIOS, UEFI is all set to replace the former.</p>
+<p><strong>But what makes BIOS outdated?</strong></p>
+<p>Present in all IBM PC-compatible personal computers, BIOS has been around since the late 1970s. Since then, it has incorporated some major improvements such as addition of a user interface, and advanced power management functions, which allow BIOS to easily configure the PCs and create better power management plans. Yet, it hasn’t advanced as much as the computer hardware and software technology since the 70s.</p>
+<p align="center"><strong>Limitations of BIOS</strong></p>
+<ul>
+<li>BIOS can boot from drives of less than 2 TB. 3+ TB drives are now standard, and a system with a BIOS can’t boot from them.<br/>
+</li>
+<li>BIOS runs in 16-bit processor mode, and has only 1 MB space to execute.<br/>
+</li>
+<li>It can’t initialize multiple hardware devices at once, thus leading to slow booting process.
+</li>
+</ul>
+<p align="center"><strong>Difference between the Booting Process with UEFI and the Booting Process with BIOS</strong></p>
+<p></p>
+<ul><br/>
+<li><strong>Booting Process With BIOS :</strong> When BIOS begins it’s execution, it first goes for the Power-On Self Test (POST), which ensures that the hardware devices are functioning correctly. After that, it checks for the Master Boot Record in the first sector of the selected boot device. From the MBR, the location of the Boot-Loader is retrieved, which, after being loaded by BIOS into the computer’s RAM, loads the operating system into the main memory.<br/>
+</li>
+<li><strong>Booting Process With UEFI :</strong> Unlike BIOS, UEFI doesn’t look for the MBR in the first sector of the Boot Device. It maintains a list of valid boot volumes called EFI Service Partitions. During the POST procedure the UEFI firmware scans all of the bootable storage devices that are connected to the system for a valid GUID Partition Table (GPT), which is an improvement over MBR. Unlike the MBR, GPT doesn’t contain a Boot-Loader. The firmware itself scans the GPT to find an EFI Service Partition to boot from, and directly loads the OS from the right partition. If it fails to find one, it goes back the BIOS-type Booting process called ‘Legacy Boot’.
+</li>
+</ul>
+<p></p>
+<p align="center"><strong>Advantages of UEFI over BIOS</strong></p>
+<p></p>
+<ul><br/>
+<li><strong>Breaking Out Of Size Limitations :</strong> The UEFI firmware can boot from drives of 2.2 TB or larger with the theoretical upper limit being 9.4 zettabytes, which is roughly 3 times the size of the total information present on the Internet. This is due to the fact that GPT uses 64-bit entries in it’s table, thereby dramatically expanding the possible boot-device size.<br/>
+</li>
+<li><strong>Speed and performance : </strong>UEFI can run in 32-bit or 64-bit mode and has more addressable address space than BIOS, which means your boot process is faster.<br/>
+</li>
+<li><strong>More User-Friendly Interface :</strong> Since UEFI can run in 32-bit and 64-bit mode, it provides better UI configuration that has better graphics and also supports mouse cursor.<br/>
+</li>
+<li><strong>Security</strong>: UEFI also provides the feature of Secure Boot. It allows only authentic drivers and services to load at boot time, to make sure that no malware can be loaded at computer startup. It also requires drivers and the Kernel to have digital signature, which makes it an effective tool in countering piracy and boot-sector malware.</li>
+</ul>
+<p></p>
+<p>UEFI doesn’t require a Boot-Loader, and can also operate alongside BIOS, supporting legacy boot, which in turn, makes it compatible with older operating systems. Intel plans to completely replace BIOS with UEFI, for all it’s chipsets, by 2020.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Operating Systems | States of a process</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/gate-notes-operating-system-process-management-introduction/" rel="noopener" target="_blank">Introduction</a>, <a href="https://www.geeksforgeeks.org/gate-notes-operating-system-scheduler/" rel="noopener" target="_blank">Process Scheduler</a><br/>
+States of a process are as following:</p>
+<p><img src="../../../imgs/os/3fa404816d77a60f1117582357d30978.jpg" width="411" height="301" class="aligncenter size-full"/></p>
+<ul>
+<li><b>New (Create) –</b> In this step process is about to create but not yet created, it is the program which is present in secondary memory that will be picked up by OS to create the process.
+</li>
+<li><b>Ready –</b> New -&gt; Ready to run. After creation of process, the process enters the ready state i.e. into the main memory. The process here is ready to run and is waiting to get the CPU time for its execution.
+</li>
+<li><b>Run –</b> The process is running in the main memory.
+</li>
+<li><b>Blocked or wait –</b> Whenever the process requests the I/O it enters the blocked or wait state. It is executed in the main memory and it doesn’t require CPU. Once the I/O operation is completed the process goes to ready state.
+</li>
+<li><b>Terminated or completed –</b> Process is killed as well as PCB is deleted.
+</li>
+<li><b>Suspend ready –</b> Set of process that were initially in ready state but lack of main memory caused them to go to suspend ready, it is a  secondary memory.
+</li>
+<li><b>Suspend wait or suspend blocked –</b> Similar to suspend ready but uses the process which was performing I/O operation and lack of main memory caused them to move to secondary memory.<br/>
+When work is finished it may go to suspend ready.
+</li>
+</ul>
+<p><b>CPU and IO Bound Processes:</b><br/>
+If process is having lots of CPU operation then it is called CPU bound process. Similarly, If process is having lots of IO operation then it is called IO bound process.</p>
+<p><b>Types of schedulers:</b></p>
+<ol>
+<li><b>Long term – performance –</b> Makes decision about how many processes should be made to stay in the ready state this decides the degree of multiprogramming. Once decision is taken it lasts for long time hence called long term scheduler.
+</li>
+<li><b>Short term – Context switching time –</b> Short term scheduler will decide which process to be executed next and then it will call dispatcher. Dispatcher is a software that moves process from ready to run and vice versa. In other words, it is context switching.
+</li>
+<li><b>Medium term – Swapping time –</b> Suspension decision is taken by medium term scheduler. Medium term scheduler is used for swapping that is moving the process from main memory to secondary and vice versa.
+</li>
+</ol>
+<p><b>Multiprogramming –</b> We have many processes ready to run. There are two types of multiprogramming:</p>
+<ol>
+<li><b>Pre-emption –</b> Process is forcefully removed from CPU. Pre-emption is also called as time sharing or multitasking.
+</li>
+<li><b>Non pre-emption –</b> Processes are not removed until they complete the execution.
+</li>
+</ol>
+<p><b>Degree of multiprogramming –</b><br/>
+The number of process that can reside in the ready state at maximum decides the degree of multiprogramming, e.g., if degree of programming = 100 means 100 processes can reside in the ready state at maximum.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

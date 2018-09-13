@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">IPC using Message Queues</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite : <a href="https://www.geeksforgeeks.org/inter-process-communication/">Inter Process Communication</a><br/>
+A message queue is a linked list of messages stored within the kernel and identified by a message queue identifier. A new queue is created or an existing queue opened by <b>msgget()</b>.<br/>
+New messages are added to the end of a queue by <b>msgsnd()</b>. Every message has a positive long integer type field, a non-negative length, and the actual data bytes (corresponding to the length), all of which are specified to msgsnd() when the message is added to a queue. Messages are fetched from a queue by <b>msgrcv()</b>. We don’t have to fetch the messages in a first-in, first-out order. Instead, we can fetch messages based on their type field.</p>
+<p>All processes can exchange information through access to a common system message queue. The sending process places a message (via some (OS) message-passing module) onto a queue which can be read by another process. Each message is given an identification or type so that processes can select the appropriate message. Process must share a common key in order to gain access to the queue in the first place.</p>
+<p><img src="../../../imgs/os/cbfd7c6c62b044a7f65fb7ff4248e6a5.jpg" alt="" width="479" height="441" class="alignnone size-full wp-image-298531"/></p>
+<p>System calls used for message queues:</p>
+<pre><b>ftok()</b>: is use to generate a unique key.
+
+<b>msgget()</b>: either returns the message queue identifier for a newly created message 
+queue or returns the identifiers for a queue which exists with the same key value.
+
+<b>msgsnd()</b>: Data is placed on to a message queue by calling msgsnd().
+
+<b>msgrcv()</b>: messages are retrieved from a queue.
+
+<b>msgctl()</b>: It performs various operations on a queue. Generally it is use to 
+destroy message queue.
+</pre>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>MESSAGE QUEUE FOR WRITER PROCESS</p>
+<pre class="brush: c; title: ; notranslate" title="">// C Program for Message Queue (Writer Process)
+#include &lt;stdio.h&gt;
+#include &lt;sys/ipc.h&gt;
+#include &lt;sys/msg.h&gt;
+
+// structure for message queue
+struct mesg_buffer {
+    long mesg_type;
+    char mesg_text[100];
+} message;
+
+int main()
+{
+    key_t key;
+    int msgid;
+
+    // ftok to generate unique key
+    key = ftok("progfile", 65);
+
+    // msgget creates a message queue
+    // and returns identifier
+    msgid = msgget(key, 0666 | IPC_CREAT);
+    message.mesg_type = 1;
+
+    printf("Write Data : ");
+    gets(message.mesg_text);
+
+    // msgsnd to send message
+    msgsnd(msgid, &amp;message, sizeof(message), 0);
+
+    // display the message
+    printf("Data send is : %s \n", message.mesg_text);
+
+    return 0;
+}
+</pre>
+<p>MESSAGE QUEUE FOR READER PROCESS</p>
+<pre class="brush: c; title: ; notranslate" title="">// C Program for Message Queue (Reader Process)
+#include &lt;stdio.h&gt;
+#include &lt;sys/ipc.h&gt;
+#include &lt;sys/msg.h&gt;
+
+// structure for message queue
+struct mesg_buffer {
+    long mesg_type;
+    char mesg_text[100];
+} message;
+
+int main()
+{
+    key_t key;
+    int msgid;
+
+    // ftok to generate unique key
+    key = ftok("progfile", 65);
+
+    // msgget creates a message queue
+    // and returns identifier
+    msgid = msgget(key, 0666 | IPC_CREAT);
+
+    // msgrcv to receive message
+    msgrcv(msgid, &amp;message, sizeof(message), 1, 0);
+
+    // display the message
+    printf("Data Received is : %s \n", 
+                    message.mesg_text);
+
+    // to destroy the message queue
+    msgctl(msgid, IPC_RMID, NULL);
+
+    return 0;
+}
+</pre>
+<p>Output:<br/>
+<img src="../../../imgs/os/d16bfd174877f34d041c3019ef6298d1.jpg" alt="" width="1272" height="194" class="alignnone size-full wp-image-298516"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

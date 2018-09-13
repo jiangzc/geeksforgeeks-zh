@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Program for Next Fit algorithm in Memory Management</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite: <a href="http://quiz.geeksforgeeks.org/operating-system-memory-management-partition-allocation-method/">Partition allocation methods</a><br/>
+<strong>What is Next Fit ?</strong><br/>
+Next fit is a modified version of <a href="https://www.geeksforgeeks.org/program-first-fit-algorithm-memory-management/">‘first fit’</a>. It begins as first fit to find a free partition but when called next time it starts searching from where it left off, not from the beginning. This policy makes use of a roving pointer. The pointer roves along the memory chain to search for a next fit. This helps in, to avoid the usage of memory always from the head (beginning) of the free block chain. </p>
+<p><strong>What are its advantage over first fit ?</strong></p>
+<ul>
+<li>First fit is a straight and fast algorithm, but tends to cut large portion of free parts into small pieces due to which, processes that needs large portion of memory block would not get anything even if the sum of all small pieces is greater than it required which is so called external fragmentation problem.</li>
+<li>Another problem of first fit is that it tends to allocate memory parts at the begining of the memory, which may leads to more internal fragements at the begining. Next fit tries to address this problem by starting search for the free portion of parts not from the start of the memory, but from where it ends last time.</li>
+<li>Next fit is a very fast searching algorithm and is also comparatively faster than First Fit and Best Fit Memory Management Algorithms.</li>
+</ul>
+<pre><strong>Example:</strong>
+Input :  blockSize[] = {5, 10, 20};
+     processSize[] = {10, 20, 30};
+Output:
+Process No.     Process Size    Block no.
+ 1              10              2
+ 2              20              3
+ 3              30              Not Allocated
+
+</pre>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Algorithm:</strong>    </p>
+<ol>
+<li>Input the number of memory blocks and their sizes and initializes all the blocks as free.</li>
+<li>Input the number of processes and their sizes.</li>
+<li>Start by picking each process and check if it can be assigned to current block, if yes, allocate it the required memory and check for next process but from the block where we left not from starting.</li>
+<li>
+If current block size is smaller then keep checking the further blocks.</li>
+</ol>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/next-fit-algorithm-operating-system.png"><img src="../../../imgs/os/19d03965c06f7189f6c02a3ecbcb1d90.jpg" alt="Next-Fit" width="870" height="521" class="alignnone size-full wp-image-176290"/></a></p>
+<pre class="brush: cpp; title: ; notranslate" title="">// C/C++ program for next fit
+// memory management algorithm
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+// Function to allocate memory to blocks as per Next fit
+// algorithm
+void NextFit(int blockSize[], int m, int processSize[], int n)
+{
+    // Stores block id of the block allocated to a
+    // process
+    int allocation[n], j = 0;
+
+    // Initially no block is assigned to any process
+    memset(allocation, -1, sizeof(allocation));
+
+    // pick each process and find suitable blocks
+    // according to its size ad assign to it
+    for (int i = 0; i &lt; n; i++) {
+
+        // Do not start from beginning
+        while (j &lt; m) {
+
+            if (blockSize[j] &gt;= processSize[i]) {
+
+                // allocate block j to p[i] process
+                allocation[i] = j;
+
+                // Reduce available memory in this block.
+                blockSize[j] -= processSize[i];
+
+                break;
+            }
+
+            // mod m will help in traversing the blocks from
+            // starting block after we reach the end. 
+            j = (j + 1) % m;
+        }
+    }
+
+    cout &lt;&lt; "\nProcess No.\tProcess Size\tBlock no.\n";
+    for (int i = 0; i &lt; n; i++) {
+        cout &lt;&lt; " " &lt;&lt; i + 1 &lt;&lt; "\t\t" &lt;&lt; processSize[i] 
+             &lt;&lt; "\t\t";
+        if (allocation[i] != -1)
+            cout &lt;&lt; allocation[i] + 1;
+        else
+            cout &lt;&lt; "Not Allocated";
+        cout &lt;&lt; endl;
+    }
+}
+
+// Driver program
+int main()
+{
+    int blockSize[] = { 5, 10, 20 };
+    int processSize[] = { 10, 20, 5 };
+    int m = sizeof(blockSize) / sizeof(blockSize[0]);
+    int n = sizeof(processSize) / sizeof(processSize[0]);
+
+    NextFit(blockSize, m, processSize, n);
+
+    return 0;
+}
+</pre>
+<div class="outputDiv">
+<b>Output:</b><p></p>
+<pre>Process No.    Process Size    Block no.
+ 1               10              2
+ 2               20              3
+ 3               5               1
+</pre>
+</div>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

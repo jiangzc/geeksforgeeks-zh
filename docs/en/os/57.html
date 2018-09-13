@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Reader-Writers solution using Monitors</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/process-synchronization-set-1/" rel="noopener" target="_blank">Process Synchronization</a>, <a href="https://www.geeksforgeeks.org/monitors/" rel="noopener" target="_blank">Monitors</a>, <a href="https://www.geeksforgeeks.org/readers-writers-problem-set-1-introduction-and-readers-preference-solution/" rel="noopener" target="_blank">Readers-Writers Problem</a><br/>
+Considering a shared Database our objectives are:</p>
+<ul>
+<li>Readers can access database only when there are no writers.</li>
+<li>Writers can access database only when there are no readers or writers.</li>
+<li>Only one thread can manipulate the state variables at a time.</li>
+</ul>
+<p><strong>Basic structure of a solution –</strong></p>
+<pre><strong>Reader()</strong>
+   Wait until no writers
+   Access database
+   Check out – wake up a waiting writer
+<strong>Writer()</strong>
+   Wait until no active readers or writers
+   Access database
+   Check out – wake up waiting readers or writer
+</pre>
+<p>–Now let’s suppose that a writer is active and a mixture of readers and writers now show up.<br/>
+<strong>Who should get in next?</strong><br/>
+–Or suppose that a writer is waiting and an endless of stream of readers keep showing up.<br/>
+<strong>Would it be fair for them to become active?</strong><br/>
+So we’ll implement a kind of back-and-forth form of fairness:<br/>
+<strong>
+</strong></p>
+<ul><strong>
+<li>Once a reader is waiting, readers will get in next.</li>
+<li>If a writer is waiting, one writer will get in next.</li>
+</strong></ul>
+<strong>
+<p></p></strong><br/>
+<strong><em>Implementation of the solution using monitors:-</em></strong><p></p>
+<ol>
+<li>The methods should be executed with mutual exclusion i.e. At each point in time, at most one thread may be executing any of its methods.</li>
+<li>Monitors also provide a mechanism for threads to temporarily give up exclusive access, in order to wait for some condition to be met, before regaining exclusive access and resuming their task.</li>
+<li>Monitors also have a mechanism for signaling other threads that such conditions have been met.</li>
+<li>So in this implementation only mutual exclusion is not enough. Threads attempting an operation may need to wait until some assertion P holds true.</li>
+<li>While a thread is waiting upon a condition variable, that thread is not considered to occupy the monitor, and so other threads may enter the monitor to change the monitor’s state.</li>
+</ol>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><b>Code –</b></p>
+<div class="noIdeBtnDiv">
+<pre class="brush: c; title: ; notranslate" title="">// STATE VARIABLES
+// Number of active readers; initially = 0
+int NReaders = 0;
+
+// Number of waiting readers; initially = 0
+int WaitingReaders = 0;
+
+// Number of active writers; initially = 0
+int NWriters = 0;
+
+// Number of waiting writers; initially = 0
+int WaitingWriters = 0;
+
+Condition canRead = NULL;
+Condition canWrite = NULL;
+
+Void BeginWrite()
+{
+
+    // A writer can enter if there are no other
+    // active writers and no readers are waiting
+    if (NWriters == 1 || NReaders &gt; 0) {
+
+        ++WaitingWriters;
+        wait(CanWrite);
+        --WaitingWriters;
+    }
+
+    NWriters = 1;
+}
+
+Void EndWrite()
+{
+
+    NWriters = 0;
+
+    // Checks to see if any readers are waiting
+    if (WaitingReaders)
+
+        Signal(CanRead);
+
+    else
+
+        Signal(CanWrite);
+}
+
+Void BeginRead()
+{
+
+    // A reader can enter if there are no writers
+    // active or waiting, so we can have
+    // many readers active all at once
+    if (NWriters == 1 || WaitingWriters &gt; 0) {
+
+        ++WaitingReaders;
+
+        // Otherwise, a reader waits (maybe many do)
+        Wait(CanRead);
+
+        --WaitingReaders;
+    }
+
+    ++NReaders;
+    Signal(CanRead);
+}
+
+Void EndRead()
+{
+
+    // When a reader finishes, if it was the last reader,
+    // it lets a writer in (if any is there).
+    if (--NReaders == 0)
+
+        Signal(CanWrite);
+}
+</pre>
+</div>
+<p><strong><em><u>Understanding the solution:-</u></em></strong></p>
+<ul>
+    <strong>
+<li>It wants to be fair.</li>
+<p></p></strong><p></p>
+<ol>
+<li>If a writer is waiting, readers queue up.</li>
+<li>If a reader (or another writer) is active or waiting, writers queue up.</li>
+<li>This is mostly fair, although once it lets a reader in, it lets ALL waiting readers in all at once, even if some showed up “after” other waiting writers.</li>
+</ol>
+<p>
+<strong></strong><br/>
+    <strong>
+</strong></p>
+<li><strong>The code is “simplified” because we know there can only be one writer at a time.</strong></li>
+<strong>
+<p></p></strong><br/>
+    <strong>
+<li>It also takes advantage of the fact that signal is a no-op if nobody is waiting.</li>
+<p></p></strong><p></p>
+<ol>
+<li>In the “EndWrite” code (it signals CanWrite without checking for waiting writers)</li>
+<li>In the EndRead code (same thing)</li>
+<li>In StartRead (signals CanRead at the end)</li>
+</ol>
+</ul>
+<blockquote><p>With Semaphores we never did have a “fair” solution of this sort. In fact it can be done but the code is quite tricky. Here the straightforward solution works in the desired way! Monitors are less error-prone and also easier to understand.</p>
+</blockquote>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

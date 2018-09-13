@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Dining-Philosophers Solution Using Monitors</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite: <a href="https://www.geeksforgeeks.org/monitors/">Monitor</a>, <a href="https://www.geeksforgeeks.org/process-synchronization-set-1/">Process Synchronization</a></p>
+<p><b>Dining-Philosophers Problem – </b> N philosophers seated around a circular table </p>
+<p><img src="../../../imgs/os/e8fcb3220f9e3e2af4269f9625cabe2c.jpg" alt="" width="300" height="300" class="aligncenter size-medium wp-image-220413"/></p>
+<ul>
+<li> There is one chopstick between each philosopher </li>
+<li> A philosopher must pick up its two nearest chopsticks in order to eat </li>
+<li> A philosopher must pick up first one chopstick, then the second one, not both at once </li>
+</ul>
+<p>We need an algorithm for allocating these limited resources(chopsticks) among several processes(philosophers) such that solution is free from deadlock and free from starvation. </p>
+<p>There exist some algorithm to solve Dining – Philosopher Problem, but they may have deadlock situation. Also, a deadlock-free solution is not necessarily starvation-free. Semaphores can result in deadlock due to programming errors. Monitors alone are not sufficiency to solve this, we need monitors with <em>condition variables</em> </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><b> Monitor-based Solution to Dining Philosophers </b></p>
+<p>We illustrate monitor concepts by presenting a deadlock-free solution to the dining-philosophers problem. Monitor is used to control access to state variables and condition variables. It only tells when to enter and exit the segment. This solution imposes the restriction that a philosopher may pick up her chopsticks only if both of them are available.</p>
+<p>To code this solution, we need to distinguish among three states in which we may find a philosopher. For this purpose, we introduce the following data structure: </p>
+<p><b>THINKING – </b> When philosopher doesn’t want to gain access to either fork.</p>
+<p><b>HUNGRY – </b> When philosopher wants to enter the critical section.</p>
+<p><b>EATING – </b> When philosopher has got both the forks, i.e., he has entered the section.</p>
+<p>Philosopher i can set the variable state[i] = EATING only if her two neighbors are not eating<br/>
+(state[(i+4) % 5] != EATING) and (state[(i+1) % 5] != EATING).</p>
+<div class="noIdeBtnDiv">
+<pre class="brush: cpp; title: ; notranslate" title="">// Dining-Philosophers Solution Using Monitors
+monitor DP
+{
+    status state[5];
+    condition self[5];
+
+    // Pickup chopsticks
+    Pickup(int i)
+    {
+        // indicate that I’m hungry
+        state[i] = hungry;
+
+        // set state to eating in test()
+        // only if my left and right neighbors 
+        // are not eating
+        test(i);
+
+        // if unable to eat, wait to be signaled
+        if (state[i] != eating)
+            self[i].wait;
+    }
+
+    // Put down chopsticks
+    Putdown(int i)
+    {
+
+        // indicate that I’m thinking
+        state[i] = thinking;
+
+        // if right neighbor R=(i+1)%5 is hungry and
+        // both of R’s neighbors are not eating,
+        // set R’s state to eating and wake it up by 
+        // signaling R’s CV
+        test((i + 1) % 5);
+        test((i + 4) % 5);
+    }
+
+    test(int i)
+    {
+
+        if (state[(i + 1) % 5] != eating
+            &amp;&amp; state[(i + 4) % 5] != eating
+            &amp;&amp; state[i] == hungry) {
+
+            // indicate that I’m eating
+            state[i] = eating;
+
+            // signal() has no effect during Pickup(),
+            // but is important to wake up waiting
+            // hungry philosophers during Putdown()
+            self[i].signal();
+        }
+    }
+
+    init()
+    {
+
+        // Execution of Pickup(), Putdown() and test()
+        // are all mutually exclusive,
+        // i.e. only one at a time can be executing
+for
+    i = 0 to 4
+
+        // Verify that this monitor-based solution is
+        // deadlock free and mutually exclusive in that
+        // no 2 neighbors can eat simultaneously
+        state[i] = thinking;
+    }
+} // end of monitor
+</pre>
+</div>
+<p>Above Program is a monitor solution to the dining-philosopher problem.</p>
+<p>We also need to declare</p>
+<pre>condition self[5];</pre>
+<p>This allows philosopher i to delay herself when she is hungry but is unable to obtain the chopsticks she needs. We are now in a position to describe our solution to the dining-philosophers problem. The distribution of the chopsticks is controlled by the monitor Dining Philosophers. Each philosopher, before starting to eat, must invoke the operation pickup(). This act may result in the suspension of the philosopher process. After the successful completion of the operation, the philosopher may eat. Following this, the philosopher invokes the putdown() operation. Thus, philosopher i must invoke the operations pickup() and putdown() in the following sequence:</p>
+<pre>DiningPhilosophers.pickup(i);
+              ...
+              eat
+              ...
+DiningPhilosophers.putdown(i);
+</pre>
+<p>It is easy to show that this solution ensures that <strong>no two neighbors</strong> are eating simultaneously and that no deadlocks will occur. We note, however, that it is possible for a philosopher to starve to death.</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

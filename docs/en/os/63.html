@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Deadlock Detection And Recovery</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In the previous post, we have discussed <a href="http://quiz.geeksforgeeks.org/deadlock-prevention/" target="_blank">Deadlock Prevention and Avoidance</a>. In this post, Deadlock Detection and Recovery technique to handle deadlock is discussed. </p>
+<p><strong>Deadlock Detection</strong></p>
+<p><strong>1.</strong> If resources have single instance:<br/>
+In this case for Deadlock detection we can run an algorithm to check for cycle in the Resource Allocation Graph. Presence of cycle in the graph is the sufficient condition for deadlock.<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/06/deadlock.png"><img src="../../../imgs/os/e1150567b10645ca3665fb44aacdad07.jpg" alt="deadlock" width="300" height="208" class="alignnone size-medium wp-image-17318"/></a> </p>
+<p>In the above diagram, resource 1 and resource 2 have single instances. There is a cycle R1–&gt;P1–&gt;R2–&gt;P2. So Deadlock is Confirmed. </p>
+<p><strong>2.</strong> If there are multiple instances of resources:<br/>
+Detection of cycle is necessary but not sufficient condition for deadlock detection, in this case system may or may not be in deadlock varies according to different situations.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Deadlock Recovery</strong><br/>
+Traditional operating system such as Windows doesn’t deal with deadlock recovery as it is time and space consuming process. Real time operating systems use Deadlock recovery.</p>
+<p><strong>Recovery method</strong></p>
+<p>1. Killing the process.
+</p>
+<pre>     killing all the process involved in deadlock.
+     
+     Killing process one by one. After killing each 
+     process check for deadlock again keep repeating 
+     process till system recover from deadlock.</pre>
+<p></p>
+<p>2. Resource Preemption<br/>
+Resources are preempted from the processes involved in deadlock, preempted resources are allocated to other processes, so that their is a possibility of recovering the system from deadlock. In this case system go into starvation.</p>
+<p>See Quiz on <a href="http://quiz.geeksforgeeks.org/deadlock/" target="_blank">Deadlock</a>.  </p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

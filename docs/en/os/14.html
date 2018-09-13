@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Dual Mode operations in OS</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>An error in one program can adversely effect many processes, it might modify data of another program, or also can effect the operating system. For example, if a process stuck in infinite loop then this infinite loop could effect correct operation of other processes. So to ensure the proper execution of the operating system there are two modes of operation:</p>
+<p><b>User mode –</b><br/>
+When the computer system run user application like creating a text document or using any application program, then the system is in user mode. When the user application requests for a service from the operating system or an interrupt occurs or <a href="https://www.geeksforgeeks.org/operating-system-introduction-system-call/" rel="noopener" target="_blank">system call</a>, then there there will be a transition from user to kernel mode to fulfill the requests.<br/>
+<b>Note:</b> To switch from kernel mode to user mode, mode bit should be 1.</p>
+<p>Given below image describes what happen interrupt occurs:<br/>
+<img src="../../../imgs/os/cf9c0af30b70a9f6c2fc9657c4cce5b2.jpg" width="735" height="300" alt="" class="aligncenter size-full"/></p>
+<p><b>Kernel Mode –</b><br/>
+When system boots then hardware starts in kernel mode and when operating system is loaded then it start user application in user mode. To provide protection to the hardware, we have privileged instructions which execute only in kernel mode. If user attempt to run privileged instruction in user mode then it will treat instruction as illegal and traps to OS. Some of the privileged instructions are:</p>
+<ol>
+<li>Handling Interrupts</li>
+<li>To switch from user mode to kernel mode.</li>
+<li>Input Output management.</li>
+</ol>
+<p><b>Note:</b> To switch from user mode to kernel mode mode bit should be 0.</p>
+<p>Read next – <a href="https://www.geeksforgeeks.org/operating-system-user-level-thread-vs-kernel-level-thread/" rel="noopener" target="_blank">User Level thread Vs Kernel Level thread</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

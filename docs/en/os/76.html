@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Remote Procedure call (RPC)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Remote Procedure Call (RPC)</strong> is a powerful technique for constructing <strong>distributed, client-server based applications</strong>. It is based on extending the conventional local procedure calling, so that the <strong>called procedure need not exist in the same address space as the calling procedure</strong>. The two processes may be on the same system, or they may be on different systems with a network connecting them. </p>
+<p><strong><u> When making a Remote Procedure Call:</u></strong></p>
+<p><img src="../../../imgs/os/ad62e9e24ee8790ce311c3ea5d62aac1.jpg" alt="" width="500" height="353" class="alignnone size-full wp-image-198340"/></p>
+<p><strong>1.</strong> The calling environment is suspended, procedure parameters are transferred across the network to the environment where the procedure is to execute, and the procedure is executed there.</p>
+<p><strong>2.</strong> When the procedure finishes and produces its results, its results are transferred back to the calling environment, where execution resumes as if returning from a regular procedure call.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>NOTE: RPC</strong> is especially well suited for client-server<strong> (e.g. query-response) </strong> interaction in which the flow of control <strong>alternates between the caller and callee</strong>. Conceptually, the client and server do not both execute at the same time. Instead, the thread of execution jumps from the caller to the callee and then back again.</p>
+<p>                 <u><strong>Working of RPC</strong></u></p>
+<p><img src="../../../imgs/os/ba4eb35c6a78dc7e0385f95d38804c54.jpg" alt="" width="500" height="388" class="alignnone size-full wp-image-198375"/></p>
+<p><strong>The following steps take place during a RPC:</strong></p>
+<p><strong>1.</strong> A client invokes a <strong>client stub procedure</strong>, passing parameters in the usual way. The client stub resides within the client’s own address space.</p>
+<p><strong>2.</strong> The client stub <strong>marshalls(pack)</strong> the parameters into a message. Marshalling includes converting the representation of the parameters into a standard format, and copying each parameter into the message.</p>
+<p><strong>3.</strong> The client stub passes the message to the transport layer, which sends it to the remote server machine.</p>
+<p><strong>4.</strong> On the server, the transport layer passes the message to a server stub, which <strong>demarshalls(unpack)</strong> the parameters and calls the desired server routine using the regular procedure call mechanism.</p>
+<p><strong>5.</strong> When the server procedure completes, it returns to the server stub <strong>(e.g., via a normal procedure call return)</strong>, which marshalls the return values into a message. The server stub then hands the message to the transport layer.</p>
+<p><strong>6.</strong> The transport layer sends the result message back to the client transport layer, which hands the message back to the client stub.</p>
+<p><strong>7.</strong> The client stub demarshalls the return parameters and execution returns to the caller.</p>
+<p><u><strong>RPC ISSUES</strong></u></p>
+<ul>
+<li><strong>Issues that must be addressed:</strong></li>
+</ul>
+<p><strong>1. RPC Runtime:</strong> RPC run-time system, is a library of routines and a set of services that handle the network communications that underlie the RPC mechanism. In the course of an RPC call, client-side and server-side run-time systems’ code handle <strong>binding, establish communications over an appropriate protocol, pass call data between the client and server, and handle communications errors.</strong></p>
+<p><strong>2. Stub:</strong> The function of the stub is to <strong>provide transparency to the programmer-written application code</strong>. </p>
+<p><strong>On the client side</strong>, the stub handles the interface between the client’s local procedure call and the run-time system, marshaling and unmarshaling data, invoking the RPC run-time protocol, and if requested, carrying out some of the binding steps. </p>
+<p><strong>On the server side</strong>, the stub provides a similar interface between the run-time system and the local manager procedures that are executed by the server.</p>
+<p><strong>3. Binding: How does the client know who to call, and where the service resides?</strong> </p>
+<p>The most flexible solution is to use dynamic binding and find the server at run time when the RPC is first made. The first time the client stub is invoked, it contacts a name server to determine the transport address at which the server resides.</p>
+<p><strong> Binding consists of two parts:</strong></p>
+<ul>
+<li><u>Naming:</u></li>
+<p>  Remote procedures are named through interfaces. <strong>An interface uniquely identifies a particular service, describing the types and numbers of its arguments</strong>. It is similar in purpose to a type definition in programming languauges.</p>
+<li><u>Locating:</u></li>
+<p> Finding the transport address at which the server actually resides. Once we have the transport address of the service, we can send messages directly to the server.
+</p>
+</ul>
+<p><strong>A Server</strong> having a service to offer exports an interface for it. Exporting an interface registers it with the system so that clients can use it.</p>
+<p><strong>A Client</strong> must import an (exported) interface before communication can begin.</p>
+<p><u><strong>ADVANTAGES</strong></u></p>
+<p><strong>1.</strong> RPC provides <strong>ABSTRACTION</strong>  i.e message-passing nature of network communication is hidden from the user.</p>
+<p><strong>2.</strong> RPC often omits many of the protocol layers to improve performance. Even a small performance improvement is important because a program may invoke RPCs often. </p>
+<p><strong>3.</strong> RPC enables the usage of the applications in the distributed environment, not only in the local environment.</p>
+<p><strong>4.</strong> With RPC code re-writing / re-developing effort is minimized.</p>
+<p><strong>5.</strong> Process-oriented and thread oriented models supported by RPC.</p>
+<p><strong>Refrences:</strong></p>
+<ul>
+<li><a href="https://web.cs.wpi.edu/~cs4514/b98/week8-rpc/week8-rpc.html">https://web.cs.wpi.edu/~cs4514/b98/week8-rpc/week8-rpc.html</a></li>
+<li><a href="https://users.cs.cf.ac.uk/Dave.Marshall/C/node33.html">https://users.cs.cf.ac.uk/Dave.Marshall/C/node33.html</a></li>
+</ul>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

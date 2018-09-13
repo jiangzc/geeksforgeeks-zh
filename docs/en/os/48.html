@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Process Synchronization | Monitors</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Monitor is one of the ways to achieve Process synchronization. Monitor is supported by programming languages to achieve mutual exclusion between processes. For example Java Synchronized methods. Java provides wait() and notify() constructs. <span id="more-142468"></span></p>
+<p>1. It is the collection of condition variables and procedures combined together in a special kind of module or a package.<br/>
+2. The processes running outside the monitor can’t access the internal variable of monitor but can call procedures of the monitor.<br/>
+3. Only one process at a time can execute code inside monitors.</p>
+<p><strong>Syntax of Monitor</strong></p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/06/monitors.png"><img class="alignnone size-medium wp-image-17763" src="../../../imgs/os/0e0186649d7c2fe36699ce40ea4a1137.jpg" alt="monitors" width="300" height="255"/></a></p>
+<p><strong>Condition Variables</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Two different operations are performed on the condition variables of the monitor.</p>
+<pre>Wait.
+signal.</pre>
+<p>let say we have 2 condition variables<br/>
+<strong>condition x, y; //Declaring variable</strong></p>
+<p>&#160;</p>
+<p><strong>Wait operation</strong><br/>
+x.wait() : Process performing wait operation on any condition variable are suspended. The suspended processes are placed in block queue of that condition variable.</p>
+<p><strong>Note:</strong> Each condition variable has its unique block queue.</p>
+<p>&#160;</p>
+<p><strong>Signal operation</strong><br/>
+x.signal(): When a process performs signal operation on condition variable, one of the blocked processes is given chance.</p>
+<pre>If (x block queue empty)
+  // Ignore signal
+else
+  // Resume a process from block queue.</pre>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

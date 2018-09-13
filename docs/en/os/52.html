@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Dekker’s algorithm</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/process-synchronization-set-1/" rel="noopener" target="_blank">Process Synchronization</a>, <a href="https://www.geeksforgeeks.org/inter-process-communication/" rel="noopener" target="_blank">Inter Process Communication</a><br/>
+To obtain such a mutual exclusion, bounded waiting, and progress there have been several algorithms implemented, one of which is Dekker’s Algorithm. To understand the algorithm let’s understand the solution to the critical section problem first.<br/>
+A process is generally represented as :</p>
+<pre>do {
+    //entry section
+        critical section
+    //exit section
+        remainder section
+} while (TRUE);
+</pre>
+<p>The solution to critical section problem must ensure following three conditions: </p>
+<ol>
+<li>Mutual Exclusion</li>
+<li>Progress</li>
+<li>Bounded Waiting</li>
+</ol>
+<p>One of solution for ensuring above all factors is <a href="https://www.geeksforgeeks.org/petersons-algorithm-for-mutual-exclusion-set-1/">Peterson’s solution</a>.</p>
+<p>Another one is <b>Dekker’s Solution</b>. Dekker’s algorithm was the first provably-correct solution to the critical section problem. It allows two threads to share a single-use resource without conflict, using only shared memory for communication. It avoids the strict alternation of a naïve turn-taking algorithm, and was one of the first mutual exclusion algorithms to be invented.</p>
+<p>Although there are many versions of Dekker’s Solution, the final or 5th version is the one that satisfies all of the above conditions and is the most efficient of them all. </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><b>Note –</b> Dekker’s Solution, mentioned here, ensures mutual exclusion between two processes only, it could be extended to more than two processes with the proper use of arrays and variables.</p>
+<p><b>Algorithm –</b> It requires both an array of Boolean values and an integer variable:</p>
+<pre>var flag: array [0..1] of boolean;
+turn: 0..1;
+repeat
+
+        flag[i] := true;
+        while flag[j] do
+                if turn = j then
+                begin
+                        flag[i] := false;
+                        while turn = j do no-op;
+                        flag[i] := true;
+                end;
+
+                critical section
+
+        turn := j;
+        flag[i] := false;
+
+                remainder section
+
+until false;
+</pre>
+<p><strong>First Version of Dekker’s Solution –</strong> The idea is to use common or shared thread number between processes and stop the other process from entering its critical section if the shared thread indicates the former one already running.</p>
+<div class="noIdeBtnDiv">
+<pre class="brush: cpp; title: ; notranslate" title="">Main()
+{
+
+    int thread_number = 1;
+    startThreads();
+}
+
+Thread1()
+{
+    do {
+
+        // entry section
+        // wait until threadnumber is 1
+        while (threadnumber == 2)
+            ;
+
+        // critical section
+
+        // exit section
+        // give access to the other thread
+        threadnumber = 2;
+
+        // remainder section
+
+    } while (completed == false)
+}
+
+Thread2()
+{
+
+    do {
+
+        // entry section
+        // wait until threadnumber is 2
+        while (threadnumber == 1)
+            ;
+
+        // critical section
+
+        // exit section
+        // give access to the other thread
+        threadnumber = 1;
+
+        // remainder section
+
+    } while (completed == false)
+}
+</pre>
+</div>
+<p>The problem arising in the above implementation is lockstep synchronization, i.e each thread depends on the other for its execution. If one of the processes completes, then the second process runs, gives access to the completed one and waits for its turn, however, the former process is already completed and would never run to return the access back to the latter one. Hence, the second process waits infinitely then.</p>
+<p><strong>Second Version of Dekker’s Solution –</strong> To remove lockstep synchronization, it uses two flags to indicate its current status and updates them accordingly at the entry and exit section.</p>
+<div class="noIdeBtnDiv">
+<pre class="brush: cpp; title: ; notranslate" title="">Main()
+{
+
+    // flags to indicate if each thread is in
+    // its critial section or not.
+    boolean thread1 = false;
+    boolean thread2 = false;
+
+    startThreads();
+}
+
+Thread1()
+{
+
+    do {
+
+        // entry section
+        // wait until thread2 is in its critical section
+        while (thread2 == true)
+            ;
+
+        // indicate thread1 entering its critical section
+        thread1 = true;
+
+        // critical section
+
+        // exit section
+        // indicate thread1 exiting its critical section
+        thread1 = false;
+
+        // remainder section
+
+    } while (completed == false)
+}
+
+Thread2()
+{
+
+    do {
+
+        // entry section
+        // wait until thread1 is in its critical section
+        while (thread1 == true)
+            ;
+
+        // indicate thread2 entering its critical section
+        thread2 = true;
+
+        // critical section
+
+        // exit section
+        // indicate thread2 exiting its critical section
+        thread2 = false;
+
+        // remainder section
+
+    } while (completed == false)
+}
+</pre>
+</div>
+<p>The problem arising in the above version is mutual exclusion itself. If threads are preempted (stopped) during flag updation ( i.e during current_thread = true ) then, both the threads enter their critical section once the preempted thread is restarted, also the same can be observed at the start itself, when both the flags are false.</p>
+<p><strong>Third Version of Dekker’s Solution –</strong> To re-ensure mutual exclusion, it sets the flags before entry section itself.</p>
+<div class="noIdeBtnDiv">
+<pre class="brush: cpp; title: ; notranslate" title="">Main()
+{
+
+    // flags to indicate if each thread is in
+    // queue to enter its critical section
+    boolean thread1wantstoenter = false;
+    boolean thread2wantstoenter = false;
+
+    startThreads();
+}
+
+Thread1()
+{
+
+    do {
+
+        thread1wantstoenter = true;
+
+        // entry section
+        // wait until thread2 wants to enter
+        // its critical section
+        while (thread2wantstoenter == true)
+            ;
+
+        // critical section
+
+        // exit section
+        // indicate thread1 has completed
+        // its critical section
+        thread1wantstoenter = false;
+
+        // remainder section
+
+    } while (completed == false)
+}
+
+Thread2()
+{
+
+    do {
+
+        thread2wantstoenter = true;
+
+        // entry section
+        // wait until thread1 wants to enter
+        // its critical section
+        while (thread1wantstoenter == true)
+            ;
+
+        // critical section
+
+        // exit section
+        // indicate thread2 has completed
+        // its critical section
+        thread2wantstoenter = false;
+
+        // remainder section
+
+    } while (completed == false)
+}
+</pre>
+</div>
+<p>The problem with this version is deadlock possibility. Both threads could set their flag as true simultaneously and both will wait infinitely later on.</p>
+<p><strong>Fourth Version of Dekker’s Solution –</strong> Uses small time interval to recheck the condition, eliminates deadlock and ensures mutual exclusion as well.</p>
+<div class="noIdeBtnDiv">
+<pre class="brush: cpp; title: ; notranslate" title="">Main()
+{
+
+    // flags to indicate if each thread is in
+    // queue to enter its critical section
+    boolean thread1wantstoenter = false;
+    boolean thread2wantstoenter = false;
+
+    startThreads();
+}
+
+Thread1()
+{
+
+    do {
+
+        thread1wantstoenter = true;
+
+        while (thread2wantstoenter == true) {
+
+            // gives access to other thread
+            // wait for random amount of time
+            thread1wantstoenter = false;
+
+            thread1wantstoenter = true;
+        }
+
+        // entry section
+        // wait until thread2 wants to enter
+        // its critical section
+
+        // critical section
+
+        // exit section
+        // indicate thread1 has completed
+        // its critical section
+        thread1wantstoenter = false;
+
+        // remainder section
+
+    } while (completed == false)
+}
+
+Thread2()
+{
+
+    do {
+
+        thread2wantstoenter = true;
+
+        while (thread1wantstoenter == true) {
+
+            // gives access to other thread
+            // wait for random amount of time
+            thread2wantstoenter = false;
+
+            thread2wantstoenter = true;
+        }
+
+        // entry section
+        // wait until thread1 wants to enter
+        // its critical section
+
+        // critical section
+
+        // exit section
+        // indicate thread2 has completed
+        // its critical section
+        thread2wantstoenter = false;
+
+        // remainder section
+
+    } while (completed == false)
+}
+</pre>
+</div>
+<p>The problem with this version is the indefinite postponement. Also, random amount of time is erratic depending upon the situation in which the algorithm is being implemented, hence not an acceptable solution in business critical systems.</p>
+<p><strong>Dekker’s Algorithm : Final and completed Solution –</strong> -Idea is to use favoured thread notion to determine entry to the critical section. Favoured thread alternates between the thread providing mutual exclusion and avoiding deadlock, indefinite postponement or lockstep synchronization.</p>
+<div class="noIdeBtnDiv">
+<pre class="brush: cpp; title: ; notranslate" title="">Main()
+{
+
+    // to denote which thread will enter next
+    int favouredthread = 1;
+
+    // flags to indicate if each thread is in
+    // queue to enter its critical section
+    boolean thread1wantstoenter = false;
+    boolean thread2wantstoenter = false;
+
+    startThreads();
+}
+
+Thread1()
+{
+    do {
+
+        thread1wantstoenter = true;
+
+        // entry section
+        // wait until thread2 wants to enter
+        // its critical section
+        while (thread2wantstoenter == true) {
+
+            // if 2nd thread is more favored
+            if (favaouredthread == 2) {
+
+                // gives access to other thread
+                thread1wantstoenter = false;
+
+                // wait until this thread is favored
+                while (favouredthread == 2)
+                    ;
+
+                thread1wantstoenter = true;
+            }
+        }
+
+        // critical section
+
+        // favor the 2nd thread
+        favouredthread = 2;
+
+        // exit section
+        // indicate thread1 has completed
+        // its critical section
+        thread1wantstoenter = false;
+
+        // remainder section
+
+    } while (completed == false)
+}
+
+Thread2()
+{
+
+    do {
+
+        thread2wantstoenter = true;
+
+        // entry section
+        // wait until thread1 wants to enter
+        // its critical section
+        while (thread1wantstoenter == true) {
+
+            // if 1st thread is more favored
+            if (favaouredthread == 1) {
+
+                // gives access to other thread
+                thread2wantstoenter = false;
+
+                // wait until this thread is favored
+                while (favouredthread == 1)
+                    ;
+
+                thread2wantstoenter = true;
+            }
+        }
+
+        // critical section
+
+        // favour the 1st thread
+        favouredthread = 1;
+
+        // exit section
+        // indicate thread2 has completed
+        // its critical section
+        thread2wantstoenter = false;
+
+        // remainder section
+
+    } while (completed == false)
+}
+</pre>
+</div>
+<p>This version guarantees a complete solution to the critical solution problem.</p>
+<p><b>References –</b><br/>
+<a href="http://garryowen.csisdmz.ul.ie/~cs4023/resources/oth9.pdf" rel="noopener" target="_blank">Dekker’s Algorithm -csisdmz.ul.ie</a><br/>
+<a href="https://en.wikipedia.org/wiki/Dekker%27s_algorithm" rel="noopener" target="_blank">Dekker’s algorithm – Wikipedia</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

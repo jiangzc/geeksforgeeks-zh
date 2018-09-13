@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Multi threading models</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Many operating systems support kernel thread and user thread in a combined way. Example of such system is Solaris. Multi threading model are of three types.</p>
+<pre>Many to many model.
+Many to one model.
+one to one model.</pre>
+<p><strong>Many to Many Model</strong></p>
+<p>In this model, we have multiple user threads multiplex to same or lesser number of kernel level threads. Number of kernel level threads are specific to the machine, advantage of this model is if a user thread is blocked we can schedule others user thread to other kernel thread. Thus, System doesn’t block if a particular thread is blocked.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/07/many_to_many1.jpg"><img src="../../../imgs/os/5923db0a6faad5e12f58b32b4328ed37.jpg" alt="many_to_many" width="300" height="200" class="alignnone size-medium wp-image-18011"/></a></p>
+<p><strong>Many to One Model</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>In this model, we have multiple user threads mapped to one kernel thread. In this model when a user thread makes a blocking system call entire process blocks. As we have only one kernel thread and only one user thread can access kernel at a time, so multiple threads are not able access multiprocessor at the same time. </p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/07/many_to_many2.jpg"><img src="../../../imgs/os/cc2f56e6a66bb574ba4cdb75a7c0a63b.jpg" alt="many_to_many" width="300" height="200" class="alignnone size-medium wp-image-18013"/></a></p>
+<p><strong>One to One Model</strong><br/>
+In this model, one to one relationship between kernel and user thread. In this model multiple thread can run on multiple processor. Problem with this model is that creating a user thread requires the corresponding kernel thread.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/07/many_to_many3.jpg"><img src="../../../imgs/os/fb29e993c23460bebffee36f74427669.jpg" alt="many_to_many" width="300" height="200" class="alignnone size-medium wp-image-18014"/></a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

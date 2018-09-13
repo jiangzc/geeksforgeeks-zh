@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Secondary memory – Hard disk drive</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>A hard disk is a memory storage device which looks like this:</p>
+<p><img src="../../../imgs/os/b42f56e53676be3e677ef670cb53aa70.jpg" width="450" height="300" class="aligncenter size-full"/></p>
+<p>The disk is divided into <b>tracks</b>. Each track is further divided into <b>sectors</b>. The point to be noted here is that outer tracks are bigger in size than the inner tracks but they contain the same number of sectors and have equal storage capacity. This is because the storage density is high in sectors of the inner tracks where as the bits are sparsely arranged in sectors of the outer tracks. Some space of every sector is used for formatting. So, the actual capacity of a sector is less than the given capacity. </p>
+<p>Read-Write(R-W) head moves over the rotating hard disk. It is this Read-Write head that performs all the read and write operations on the disk and hence, position of the R-W head is a major concern. To perform a read or write operation on a memory location, we need to place the R-W head over that position. Some important terms must be noted here:</p>
+<ol>
+<li><strong>Seek time –</strong> The time taken by the R-W head to reach the desired track from it’s current position.
+</li>
+<li><strong>Rotational latency –</strong> Time taken by the sector to come under the R-W head.
+</li>
+<li><strong>Data transfer time –</strong> Time taken to transfer the required amount of data. It depends upon the rotational speed.
+</li>
+<li><strong>Controller time –</strong> The processing time taken by the controller.
+</li>
+<li><strong>Average Access time –</strong> seek time + Average Rotational latency + data transfer time + controller time.
+</li>
+</ol>
+<p>In questions, if the seek time and controller time is not mentioned, take them to be zero.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>If the amount of data to be transferred is not given, assume that no data is being transferred. Otherwise, calculate the time taken to transfer the given amount of data.</p>
+<p>The average of rotational latency is taken when the current position of R-W head is not given. Because, the R-W may be already present at the desired position or it might take a whole rotation to get the desired sector under the R-W head. But, if the current position of the R-W head is given then the rotational latency must be calculated.</p>
+<p><strong>Example –</strong><br/>
+Consider a hard disk with:<br/>
+4 surfaces<br/>
+64 tracks/surface<br/>
+128 sectors/track<br/>
+256 bytes/sector</p>
+<ol>
+<li>What is the capacity of the  hard disk?<br/>
+Disk capacity = surfaces * tracks/surface * sectors/track * bytes/sector<br/>
+Disk capacity = 4 * 64 * 128 * 256<br/>
+Disk capacity = 8 MB<p></p>
+</li>
+<li>The disk is rotating at 3600 RPM, what is the data transfer rate?<br/>
+60 sec -&gt; 3600 rotations<br/>
+1 sec -&gt; 60 rotations<br/>
+Data transfer rate = number of rotations per second * track capacity * number of surfaces (since 1 R-W head is used for each surface)<br/>
+Data transfer rate = 60 * 128 * 256 * 4<br/>
+Data transfer rate = 7.5 MB/sec<p></p>
+</li>
+<li>The disk is rotating at 3600 RPM, what is the average access time?<br/>
+Since, seek time, controller time and the amount of data to be transferred is not given, we consider all the three terms as 0.<br/>
+Therefore, Average Access time = Average rotational delay<br/>
+Rotational latency =&gt; 60 sec -&gt; 3600 rotations<br/>
+                       1 sec -&gt;   60 rotations<br/>
+Rotational latency = (1/60) sec = 16.67 msec.<br/>
+Average Rotational latency = (16.67)/2<br/>
+                           = 8.33 msec.<br/>
+Average Access time = 8.33 msec.<p></p>
+</li>
+<li>Another example: <a href="https://www.geeksforgeeks.org/gate-gate-it-2007-question-44/" rel="noopener" target="_blank">GATE IT 2007 | Question 44</a>
+</li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

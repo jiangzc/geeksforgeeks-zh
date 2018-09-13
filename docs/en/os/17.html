@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Process Management | Introduction</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Program vs Process</strong><br/>
+A process is a program in execution. For example, when we write a program in C or C++ and compile it, the compiler creates a binary code. The original code and Binary code, both are programs. When we actually run the binary code, it becomes a process.</p>
+<p><span id="more-142463"></span> A process is an ‘active’ entity as opposed to a program which is considered to be a ‘passive’ entity. A single program can create many processes when run multiple times, for example when we open a .exe or binary file multiple times, many instances begin (many processes are created).</p>
+<p><strong>What does a process look like in Memory?</strong><br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/06/process.png"><img src="../../../imgs/os/19e93d08239ccc4bbbc49176112b08a8.jpg" alt="process" width="212" height="347" class="alignnone size-full wp-image-17196"/></a></p>
+<p><em><strong>Text Section</strong>:</em>A Process is also sometimes known as the Text Section. It also includes the current activity represented by the value of <em><strong>Program Counter</strong></em>.<br/>
+<em><strong>Stack</strong>:</em> Stack contains the temporary data such as function parameters, returns address and local variables.<br/>
+<em><strong>Data Section</strong>:</em> Contains the global variable.<br/>
+<em><strong>Heap Section</strong>:</em> Dynamically allocated memory to process during its run time.<br/>
+Refer <a href="https://www.geeksforgeeks.org/memory-layout-of-c-program/">this </a>for more details of sections.</p>
+<p>&#160;</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Attributes or Characteristics of a Process</strong><br/>
+A process has following Attributes.</p>
+<pre><strong>1. Process Id:</strong>    A unique identifier assigned by operating system
+<strong>2. Process State:</strong> Can be ready, running, .. etc
+<strong>3. CPU registers:</strong> Like Program Counter (CPU registers must be saved and 
+                  restored when a process is swapped out and in of CPU)
+<strong>5. Accounts information:</strong>
+<strong>6. I/O status information:</strong> For example devices allocated to process, 
+                           open files, etc
+<strong>8. CPU scheduling information:</strong> For example Priority (Different processes 
+                               may have different priorities, for example
+                               a short process may be assigned a low priority
+                               in the shortest job first scheduling)</pre>
+<p>All the above attributes of a process are also known as <em><strong>Context of the process</strong></em>.<br/>
+Every Process has its known <a href="http://en.wikipedia.org/wiki/Process_control_block" target="_blank">Program control Block</a>(PCB) i.e each process will have a unique PCB. All the Above Attributes are the part of the PCB.</p>
+<p>&#160;</p>
+<p><strong>States of Process:</strong><br/>
+A process is in one of the following states</p>
+<pre><strong>1. New:</strong> Newly Created Process (or) being created process.
+
+<strong>2. Ready:</strong> After creation Process moves to Ready state, i.e., 
+          process is ready for execution.
+
+<strong>3. Run:</strong> Currently running process in CPU (only one process at
+        a time can be under execution in a single processor).
+
+<strong>4. Wait (or Block):</strong> When process request for I/O request.
+
+<strong>5. Complete (or Terminated):</strong> Process Completed its execution.
+
+<strong>6. Suspended Ready:</strong> When ready queue becomes full, some processes 
+                    are moved to suspend ready state
+
+<strong>7. Suspended Block:</strong> When waiting queue becomes full.</pre>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/06/process-states1.png"><img src="../../../imgs/os/3fa404816d77a60f1117582357d30978.jpg" alt="process-states" width="411" height="301" class="alignnone size-full wp-image-17199"/></a></p>
+<p><strong>Context Switching</strong><br/>
+The process of saving the context of one process and loading the context of other process is known as Context Switching. In simple term, it is like loading and unloading of the process from running state to ready state.</p>
+<p><strong>When does Context switching happen?</strong><br/>
+1. When a high priority process comes to ready state, compared to priority of running process<br/>
+2. Interrupt Occurs<br/>
+3. User and Kernel mode switch: (It is not necessary though)<br/>
+4. Preemptive CPU scheduling used.</p>
+<p><strong>Context Switch vs Mode Switch</strong><br/>
+A mode switch occurs when CPU privilege level is changed, for example when a system call is made or a fault occurs. The kernel works in more privileged mode than a standard user task. If a user process wants to access things which are only accessible to the kernel, a mode switch must occur. The currently executing process need not be changed during a mode switch.<br/>
+A mode switch typically occurs for a process context switch to occur. Only the Kernel can cause a context switch.</p>
+<p><strong>CPU Bound vs I/O Bound Processes:</strong><br/>
+A CPU Bound Process requires more amount of CPU time or spends more time in the running state.<br/>
+I/O Bound Process requires more amount of I/O time and less CPU time. I/O Bound process more time in the waiting state.</p>
+<p>&#160;</p>
+<p><strong>Exercise:</strong><br/>
+<strong>1.</strong> Which of the following need not necessarily be saved on a context switch between processes? (GATE-CS-2000)<br/>
+(A) General purpose registers<br/>
+(B) Translation lookaside buffer<br/>
+(C) Program counter<br/>
+(D) All of the above</p>
+<p><strong>Answer (B)</strong></p>
+<p><strong>Explanation:</strong><br/>
+In a process context switch, the state of the first process must be saved somehow, so that, when the scheduler gets back to the execution of the first process, it can restore this state and continue.The state of the process includes all the registers that the process may be using, especially the program counter, plus any other operating system specific data that may be necessary.A Translation look-aside buffer (TLB) is a CPU cache that memory management hardware uses to improve virtual address translation speed. A TLB has a fixed number of slots that contain page table entries, which map virtual addresses to physical addresses. On a context switch, some TLB entries can become invalid, since the virtual-to-physical mapping is different. The simplest strategy to deal with this is to completely flush the TLB.</p>
+<p><strong>2.</strong> The time taken to switch between user and kernel modes of execution be t1 while the time taken to switch between two processes be t2. Which of the following is TRUE? (GATE-CS-2011)<br/>
+(A) t1 &gt; t2<br/>
+(B) t1 = t2<br/>
+(C) t1 &lt; t2<br/>
+(D) nothing can be said about the relation between t1 and t2.</p>
+<p><strong>Answer: (C)</strong><br/>
+<b>Explanation:</b> Process switching involves mode switch. Context switching can occur only in kernel mode.</p>
+<p><a href="http://quiz.geeksforgeeks.org/operating-systems/process-synchronization/">Quiz on Process Management</a></p>
+<p><strong>References:</strong><br/>
+<a href="http://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/3_Processes.html">http://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/3_Processes.html</a><br/>
+<a href="http://cs.nyu.edu/courses/spring11/G22.2250-001/lectures/lecture-04.html">http://cs.nyu.edu/courses/spring11/G22.2250-001/lectures/lecture-04.html</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">IPC through shared memory</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><a href="https://www.geeksforgeeks.org/inter-process-communication/">Inter Process Communication</a> through shared memory is a concept where two or more process can access the common memory. And communication is done via this shared memory where changes made by one process can be viewed by anther process.</p>
+<p>The problem with pipes, fifo and message queue – is that for two process to exchange information. The information has to go through the kernel.</p>
+<ul>
+<li>Server reads from the input file.</li>
+<li>The server writes this data in a message using either a pipe, fifo or message queue.</li>
+<li>The client reads the data from the IPC channel,again requiring the data to be copied from kernel’s IPC buffer to the client’s buffer.</li>
+<li>Finally the data is copied from the client’s buffer.</li>
+<p> </p>
+<p>A total of four copies of data are required (2 read and 2 write). So, shared memory provides a way by letting two or more processes share a memory segment. With Shared Memory the data is only copied twice – from input file into shared memory and from shared memory to the output file.</p>
+<p>SYSTEM CALLS USED ARE:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<blockquote><p>
+<b>ftok()</b>: is use to generate a unique key.</p>
+<p><b>shmget()</b>:  int shmget(key_t,size_tsize,intshmflg); upon successful completion, shmget() returns an identifier for the shared memory segment.</p>
+<p><b>shmat()</b>: Before you can use a shared memory segment, you have to attach yourself<br/>
+to it using shmat(). void *shmat(int shmid ,void *shmaddr ,int shmflg);<br/>
+shmid is shared memory id. shmaddr specifies specific address to use but we should set<br/>
+it to zero and OS will automatically choose the address.</p>
+<p><b>shmdt()</b>: When you’re done with the shared memory segment, your program should<br/>
+detach itself from it using shmdt(). int shmdt(void *shmaddr);</p>
+<p><b>shmctl()</b>: when you detach from shared memory,it is not destroyed. So, to destroy<br/>
+shmctl() is used.  shmctl(int shmid,IPC_RMID,NULL);
+</p>
+</blockquote>
+<p>SHARED MEMORY FOR WRITER PROCESS</p>
+<pre class="brush: cpp; title: ; notranslate" title="">#include &lt;iostream&gt;
+#include &lt;sys/ipc.h&gt;
+#include &lt;sys/shm.h&gt;
+#include &lt;stdio.h&gt;
+using namespace std;
+
+int main()
+{
+    // ftok to generate unique key
+    key_t key = ftok("shmfile",65);
+
+    // shmget returns an identifier in shmid
+    int shmid = shmget(key,1024,0666|IPC_CREAT);
+
+    // shmat to attach to shared memory
+    char *str = (char*) shmat(shmid,(void*)0,0);
+
+    cout&lt;&lt;"Write Data : ";
+    gets(str);
+
+    printf("Data written in memory: %s\n",str);
+    
+    //detach from shared memory 
+    shmdt(str);
+
+    return 0;
+}
+</pre>
+<p>SHARED MEMORY FOR READER PROCESS</p>
+<pre class="brush: cpp; title: ; notranslate" title="">#include &lt;iostream&gt;
+#include &lt;sys/ipc.h&gt;
+#include &lt;sys/shm.h&gt;
+#include &lt;stdio.h&gt;
+using namespace std;
+
+int main()
+{
+    // ftok to generate unique key
+    key_t key = ftok("shmfile",65);
+
+    // shmget returns an identifier in shmid
+    int shmid = shmget(key,1024,0666|IPC_CREAT);
+
+    // shmat to attach to shared memory
+    char *str = (char*) shmat(shmid,(void*)0,0);
+
+    printf("Data read from memory: %s\n",str);
+    
+    //detach from shared memory 
+    shmdt(str);
+  
+    // destroy the shared memory
+    shmctl(shmid,IPC_RMID,NULL);
+   
+    return 0;
+}
+</pre>
+<p>Output:<br/>
+<img src="../../../imgs/os/08d4cd8c4c3ef403abb5bb2f7b2c4a65.jpg" alt="" width="1229" height="184" class="alignnone size-full wp-image-298590"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</ul>
+</div>
+</body>
+</html>

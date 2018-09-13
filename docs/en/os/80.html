@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Memory Management |Partition Allocation Method</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In operating system, following are four common memory management techniques.<span id="more-142469"></span></p>
+<pre><strong>Single contiguous allocation:</strong>  Simplest allocation method used by MS-DOS.  
+                All memory (except some reserved for OS) is available to 
+                a process.
+
+<strong>Partitioned allocation:</strong> Memory is divided in different blocks
+
+<strong>Paged memory management:</strong> Memory is divided in fixed sized units called 
+                page frames, used in virtual memory environment.
+
+<strong>Segmented memory management:</strong> Memory is divided in different segments (a 
+                segment is logical grouping of process' data or code)
+                In this management, allocated memory does'nt  have to 
+                be contiguous.</pre>
+<p>Most of the operating systems (for example Windows and Linux) use Segmentation with Paging.  A process is divided in segments and individual segments have pages.  </p>
+<p>In <strong>Partition Allocation</strong>, when there are more than one partition freely available to accommodate a process’s request, a partition must be selected.  To choose a particular partition, a partition allocation method is needed. A partition allocation method is considered better if it avoids internal fragmentation.</p>
+<p>Below are the various partition allocation schemes :</p>
+<pre><strong>1. First Fit</strong>: In the first fit, partition is allocated which is first
+    sufficient from the top of Main Memory.
+
+<strong>2. Best Fit </strong> Allocate the process to the partition which is first 
+    smallest sufficient partition among the free available partition.
+
+<strong>3. Worst Fit </strong> Allocate the process to the partition which is largest
+    sufficient among the freely available partitions available in
+    the main memory. 
+
+<strong>4. Next Fit</strong> Next fit is similar to the first fit but it will search
+    for the first sufficient partition from the last allocation point.</pre>
+<p><strong>Is Best-Fit really best?</strong><br/>
+Although, best fit  minimizes the wastage space, it consumes a lot of processor time for searching the block which is close to required size.  Also, Best-fit may perform poorer than other algorithms in some cases.  For example, see below exercise.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>&#160;</p>
+<p><strong>Exercise: </strong>Consider the requests from processes in given order 300K, 25K, 125K and 50K. Let there be two blocks of memory available of size 150K followed by a block size 350K.<br/>
+Which of the following partition allocation schemes can satisfy above requests?<br/>
+A) Best fit but not first fit.<br/>
+B) First fit but not best fit.<br/>
+C) Both First fit &amp; Best fit.<br/>
+D) neither first fit nor best fit.</p>
+<p>Solution: Let us try all options.<br/>
+Best Fit:<br/>
+300K is allocated from block of size 350K.  50 is left in the block.<br/>
+25K is allocated from the remaining 50K block.  25K is left in the block.<br/>
+125K is allocated from 150 K block. 25K is left in this block also.<br/>
+50K can’t be allocated even if there is 25K + 25K space available.</p>
+<p>First Fit:<br/>
+300K request is allocated from 350K block, 50K is left out.<br/>
+25K is be allocated from 150K block, 125K is  left out.<br/>
+Then 125K and 50K are allocated to remaining left out partitions.<br/>
+So, first fit can handle requests.</p>
+<p>So option B is the correct choice.</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

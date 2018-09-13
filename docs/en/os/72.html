@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Process-based and Thread-based Multitasking</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/operarting-system-thread/" rel="noopener" target="_blank">Thread</a>, <a href="https://www.geeksforgeeks.org/operating-system-difference-multitasking-multithreading-multiprocessing/" rel="noopener" target="_blank">Difference between multitasking, multithreading and multiprocessing</a><br/>
+A <strong>multitasking operating system</strong> is an operating system that gives you the perception of 2 or more tasks/jobs/processes running at the same time. It does this by dividing system resources amongst these tasks/jobs/processes and switching between the tasks/jobs/processes while they are executing over and over again. Usually CPU processes only one task at a time but the switching is so fast that it looks like CPU is executing multiple processes at a time. They can support either <b>preemptive</b> multitasking, where the OS doles out time to applications (virtually all modern OSes) or <b>cooperative</b> multitasking, where the OS waits for the program to give back control (Windows 3.x, Mac OS 9 and earlier), leading to hangs and crashes. Also known as <strong>Timesharing</strong>, multitasking is a logical extension of multiprogramming.</p>
+<p><strong>Multitasking programming is of two types –</strong></p>
+<ol>
+<li>Process-based Multitasking </li>
+<li>Thread-based Multitasking.</li>
+</ol>
+<p><strong>Process Based Multitasking Programming –</strong></p>
+<ul>
+<li>In process based multitasking two or more processes and programs can be run concurrently.</li>
+<li>In process based multitasking a process or a program is the smallest unit.</li>
+<li>Program is a bigger unit.</li>
+<li>Process based multitasking requires more overhead.</li>
+<li>Process requires its own address space.</li>
+<li>Process to Process communication is expensive.</li>
+<li>Here, it is unable to gain access over idle time of CPU.</li>
+<li>It is comparatively heavy weight.</li>
+<li>It has slower data rate multi-tasking.</li>
+</ul>
+<p><strong>Example –</strong> We can listen to music and browse internet at the same time. The processes in this example are the music player and browser.</p>
+<p><strong>Thread Based Multitasking Programming –</strong></p>
+<ul>
+<li>In thread based multitasking two or more threads can be run concurrently.</li>
+<li>In thread based multitasking a thread is the smallest unit.</li>
+<li>Thread is a smaller unit.</li>
+<li>Thread based multitasking requires less overhead.</li>
+<li>Threads share same address space.</li>
+<li>Thread to Thread communication is not expensive.</li>
+<li>It allows taking gain access over idle time taken by CPU.</li>
+<li>It is comparatively light weight.</li>
+<li>It has faster data rate multi-tasking.</li>
+</ul>
+<p><strong>Examples –</strong> Using a browser we can navigate through the webpage and at the same time download a file. In this example, navigation is one thread and downloading is another thread. Also in a word-processing application like MS Word, we can type text in one thread and spell checker checks for mistakes in another thread.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

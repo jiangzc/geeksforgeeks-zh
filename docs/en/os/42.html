@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Critical Section</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><a href="http://en.wikipedia.org/wiki/Critical_section" target="_blank"><strong>Critical Section</strong></a><strong>:</strong></p>
+<p>In simple terms a critical section is group of instructions/statements or region of code that need to be executed atomically (<a href="https://www.geeksforgeeks.org/?p=9179" target="_blank">read this post</a> for atomicity), such as accessing a resource (file, input or output port, global data, etc.).<span id="more-9180"></span></p>
+<p>In&#160;concurrent&#160;programming, if one thread tries to change the value of shared data at the same time as another thread tries to read the value (i.e. data race across threads), the result is unpredictable.</p>
+<p>The access to such shared variable (shared memory, shared files, shared port, etc…) to be synchronized. Few programming languages have built in support for synchronization.</p>
+<p>It is critical to understand the importance of race condition while writing kernel mode programming (a device driver, kernel thread, etc.). since the programmer can directly access and modifying kernel data structures.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>A simple solution to critical section can be thought as shown below,</p>
+<pre>acquireLock();
+Process Critical Section
+releaseLock();</pre>
+<p>A thread must acquire a lock prior to executing critical section. The lock can be acquired by only one thread. There are various ways to implement locks in the above&#160;pseudo&#160;code. Let us discuss them in future articles.</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Deadlock Prevention And Avoidance</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Deadlock Characteristics</strong><br/>
+As discussed in the <a href="http://quiz.geeksforgeeks.org/operating-system-process-management-deadlock-introduction/">previous post</a>, deadlock has following characteristics.<span id="more-142267"></span></p>
+<pre>Mutual Exclusion.
+Hold and Wait.
+No preemption.
+Circular wait.</pre>
+<p>&#160;</p>
+<p><strong>Deadlock Prevention</strong></p>
+<p>We can prevent Deadlock by eliminating any of the above four condition.</p>
+<p>&#160;</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Eliminate Mutual Exclusion </strong><br/>
+It is not possible to dis-satisfy the mutual exclusion because some resources, such as the tap drive and printer, are inherently non-shareable.</p>
+<p>&#160;</p>
+<p><strong>Eliminate Hold and wait</strong><br/>
+1. Allocate all required resources to the process before start of its execution, this way hold and wait condition is eliminated but it will lead to low device utilization. for example, if a process requires printer at a later time and we have allocated printer before the start of its execution printer will remained blocked till it has completed its execution.</p>
+<p>2. Process will make new request for resources after releasing the current set of resources. This solution may lead to starvation.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/06/holdnwait.png"><img class="alignnone size-medium wp-image-17733" src="../../../imgs/os/b029689aa5642e2757baa35f6c569df7.jpg" alt="holdnwait" width="300" height="183"/></a></p>
+<p><strong>Eliminate No Preemption</strong><br/>
+Preempt resources from process when resources required by other high priority process.</p>
+<p>&#160;</p>
+<p><strong>Eliminate Circular Wait</strong><br/>
+Each resource will be assigned with a numerical number. A process can request for the resources only in increasing order of numbering.<br/>
+For Example, if P1 process is allocated R5 resources, now next time if P1 ask for R4, R3 lesser than R5 such request will not be granted, only request for resources more than R5 will be granted.</p>
+<p>&#160;</p>
+<p>&#160;</p>
+<p><strong>Deadlock Avoidance</strong></p>
+<p>Deadlock avoidance can be done with Banker’s Algorithm.</p>
+<p><strong>Banker’s Algorithm</strong></p>
+<p>Bankers’s Algorithm is resource allocation and deadlock avoidance algorithm which test all the request made by processes for resources, it check for safe state, if after granting request system remains in the safe state it allows the request and if their is no safe state it don’t allow the request made by the process.</p>
+<p>Inputs to Banker’s Algorithm<br/>
+1. Max need of resources by each process.<br/>
+2. Currently allocated resources by each process.<br/>
+3. Max free available resources in the system.</p>
+<p>Request will only be granted under below condition.<br/>
+1. If request made by process is less than equal to max need to that process.</p>
+<p>2. If request made by process is less than equal to freely availbale resource in the system.</p>
+<p>Example</p>
+<pre>Total resources in system:
+A B C D
+6 5 7 6</pre>
+<pre>Available system resources are:
+A B C D
+3 1 1 2</pre>
+<pre>Processes (currently allocated resources):
+    A B C D
+P1  1 2 2 1
+P2  1 0 3 3
+P3  1 2 1 0</pre>
+<pre>Processes (maximum resources):
+    A B C D
+P1  3 3 2 2
+P2  1 2 3 4
+P3  1 3 5 0</pre>
+<pre>Need = maximum resources - currently allocated resources.
+Processes (need resources):
+    A B C D
+P1  2 1 0 1
+P2  0 2 0 1
+P3  0 1 4 0</pre>
+<p>Following are Gate Previous Year Question<br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2014-set-1-question-41/">http://quiz.geeksforgeeks.org/gate-gate-cs-2014-set-1-question-41/</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2014-set-3-question-41/">http://quiz.geeksforgeeks.org/gate-gate-cs-2014-set-3-question-41/</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2010-question-46/">http://quiz.geeksforgeeks.org/gate-gate-cs-2010-question-46/</a></p>
+<p><strong>References</strong><br/>
+<a href="https://en.wikipedia.org/wiki/Banker's_algorithm" target="_blank">https://en.wikipedia.org/wiki/Banker’s_algorithm</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

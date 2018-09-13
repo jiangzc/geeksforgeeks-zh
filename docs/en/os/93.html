@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Page Replacement Algorithms</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In a operating systems that use paging for memory management, page replacement algorithm are needed to decide which page needed to be replaced when new page comes in. Whenever a new page is referred and not present in memory, page fault occurs and Operating System replaces one of the existing pages with newly needed page.  Different page replacement algorithms suggest different ways to decide which page to replace. The target for all algorithms is to reduce number of page faults.</p>
+<p><strong>Page Fault –</strong> A page fault is a type of interrupt, raised by the hardware when a running program accesses a memory page that is mapped into the virtual address space, but not loaded in physical memory.</p>
+<p><strong>Page Replacement Algorithms :</strong></p>
+<ul>
+<li><strong>First In First Out (FIFO) –</strong><br/>
+This is the simplest page replacement algorithm. In this algorithm, operating system keeps track of all pages in the memory in a queue, oldest page is in the front of the queue. When a page needs to be replaced page in the front of the queue is selected for removal.<p></p>
+<p>For example-1, consider page reference string 1, 3, 0, 3, 5, 6 and 3 page slots.</p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Initially all slots are empty, so when 1, 3, 0 came they are allocated to the empty slots —&gt; <strong>3 Page Faults.</strong><br/>
+when 3 comes, it is already in&#160; memory so —&gt; <strong>0 Page Faults.</strong><br/>
+Then 5 comes, it is not available in&#160; memory so it replaces the oldest page slot i.e 1. —&gt;<strong>1 Page Fault.</strong><br/>
+Finally 6 comes,&#160;it is also not available in memory so it replaces the oldest page slot i.e 3 —&gt;<strong>1 Page Fault.</strong></p>
+<p>Example-2, Let’s have a reference string: a, b, c, d, c, a, d, b, e, b, a, b, c, d and the size of the frame be 4.<br/>
+<img src="../../../imgs/os/6aedaa660f2988a2e7c3588608dfe8ab.jpg" alt="fifo" width="590" height="180" class="aligncenter size-full wp-image-165722"/><br/>
+There are 9 page faults using FIFO algorithm.</p>
+<p><strong>Belady’s anomaly –</strong> Belady’s anomaly proves that it is possible to have more page faults when increasing the number of page frames while using the First in First Out (FIFO) page replacement algorithm.&#160; For example, if we consider reference string 3,&#160;2, 1,&#160;0, 3, 2, 4, 3, 2, 1, 0,&#160;4 and 3 slots, we get 9 total page faults, but if we increase slots to 4, we get 10 page faults. </p></li>
+<li><strong>Optimal Page replacement –</strong><br/>
+In this algorithm, pages are replaced which are not used for the longest duration of time in the future.<p></p>
+<p>Let us consider page reference string 7 0 1 2 0 3 0 4 2 3 0 3 2 and 4 page slots.</p>
+<p>Initially all slots are empty, so when 7 0 1 2 are allocated to the empty slots —&gt;<strong> 4 Page faults</strong><br/>
+0 is already there so —&gt; <strong>0 Page fault.</strong><br/>
+when 3 came it will take the place of 7 because it is not used for the longest duration of time in the future.—&gt;<strong>1 Page fault.</strong><br/>
+0 is already there so —&gt;<strong> 0 Page fault.</strong>.<br/>
+4 will takes place of 1 —&gt;<strong> 1 Page Fault.<br/>
+</strong><br/>
+Now for the further page reference string —&gt;<strong> 0 Page fault</strong> because they are already available in the memory.</p>
+<p>Example-2, Let’s have a reference string: a, b, c, d, c, a, d, b, e, b, a, b, c, d and the size of the frame be 4.<br/>
+<img src="../../../imgs/os/92cb18be9de73139e58083317cd60636.jpg" alt="optimal" width="594" height="185" class="aligncenter size-full wp-image-165724"/><br/>
+There are 6 page faults using optimal algorithm.</p>
+<p>Optimal page replacement is perfect, but not possible in practice as operating system cannot know future requests. The use of Optimal Page replacement is to set up a benchmark so that other replacement algorithms can be analyzed against it.</p></li>
+<p>&#160;</p>
+<li><strong>Least Recently Used –</strong><br/>
+In this algorithm page will be replaced which is least recently used.<p></p>
+<p>Let say the page reference string 7 0 1 2 0 3 0 4 2 3 0 3 2 . Initially we have 4 page slots empty.<br/>
+Initially all slots are empty, so when 7 0 1 2 are allocated to the empty slots —&gt;<strong> 4 Page faults</strong><br/>
+0 is already their so —&gt; <strong>0 Page fault.</strong><br/>
+when 3 came it will take the place of 7 because it is least recently used —&gt;<strong>1 Page fault</strong><br/>
+0 is already in memory so —&gt;<strong> 0 Page fault</strong>.<br/>
+4 will takes place of 1 —&gt;<strong> 1 Page Fault</strong><br/>
+Now for the further page reference string —&gt;<strong> 0 Page fault</strong> because they are already available in the memory.</p>
+<p>Example-2, Let’s have a reference string: a, b, c, d, c, a, d, b, e, b, a, b, c, d and the size of the frame be 4.<br/>
+<img src="../../../imgs/os/d2baee09a34f79e9b81b3a883cc39970.jpg" alt="lru" width="596" height="187" class="aligncenter size-full wp-image-165727"/><br/>
+There are 7 page faults using LRU algorithm.
+</p></li>
+</ul>
+<p><b>GATE CS Corner Questions</b></p>
+<p>Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/operating-systems-memory-management-question-1/" rel="noopener" target="_blank">Memory Management | Question 1</a></li>
+<li><a href="https://www.geeksforgeeks.org/operating-systems-memory-management-question-7/" rel="noopener" target="_blank">Memory Management | Question 10</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-1-question-43/" rel="noopener" target="_blank">GATE CS 2014 (Set-1), Question 65</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2012-question-42/" rel="noopener" target="_blank">GATE CS 2012, Question 40</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2007-question-56/" rel="noopener" target="_blank">GATE CS 2007, Question 56</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2007-question-82/" rel="noopener" target="_blank">GATE CS 2007, Question 82</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2007-question-83/" rel="noopener" target="_blank">GATE CS 2007, Question 83</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-3-question-30/" rel="noopener" target="_blank">GATE CS 2014 (Set-3), Question 65</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2002-question-23/" rel="noopener" target="_blank">GATE CS 2002 Question 23</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2001-question-21/" rel="noopener" target="_blank">GATE CS 2001, Question 21</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2010-question-24/" rel="noopener" target="_blank">GATE CS 2010, Question 24</a></li>
+</ol>
+<p><strong>Reference –</strong><br/>
+<a href="https://en.wikipedia.org/wiki/B%C3%A9l%C3%A1dy%27s_anomaly" rel="noopener" target="_blank">Bélády’s anomaly</a><br/>
+&#160;</p>
+<p>This article has been improved by <a href="https://auth.geeksforgeeks.org/user/RajshreeSrivastava" rel="noopener" target="_blank">RajshreeSrivastava</a>. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Multiple-Processor Scheduling</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In multiple-processor scheduling <b>multiple CPU’s</b> are available and hence <b>Load Sharing</b> becomes possible. However multiple processor scheduling is more <b>complex</b> as compared to single processor scheduling. In multiple processor scheduling there are cases when the processors are identical i.e. HOMOGENEOUS, in terms of their functionality, we can use any processor available to run any process in the queue.</p>
+<h3 class="sigil_not_in_toc">Approaches to Multiple-Processor Scheduling –</h3>
+<p>One approach is when all the scheduling decisions and I/O processing are handled by a single processor which is called the <b>Master Server</b> and the other processors executes only the <b>user code</b>. This is simple and reduces the need of data sharing. This entire scenario is called <b>Asymmetric Multiprocessing</b>.</p>
+<p>A second approach uses <b>Symmetric Multiprocessing</b> where each processor is <b>self scheduling</b>. All processes may be in a common ready queue or each processor may have its own private queue for ready processes. The scheduling proceeds further by having the scheduler for each processor examine the ready queue and select a process to execute.</p>
+<h3 class="sigil_not_in_toc">Processor Affinity –</h3>
+<p>Processor Affinity means a processes has an <b>affinity</b> for the processor on which it is currently running.<br/>
+When a process runs on a specific processor there are certain effects on the cache memory. The data most recently accessed by the process populate the cache for the processor and as a result successive memory access by the process are often satisfied in the cache memory. Now if the process migrates to another processor, the contents of the cache memory must be invalidated for the first processor and the cache for the second processor must be repopulated. Because of the high cost of invalidating and repopulating caches, most of the SMP(symmetric multiprocessing) systems try to avoid migration of processes from one processor to another and try to keep a process running on the same processor. This is known as <b>PROCESSOR AFFINITY</b>.</p>
+<p>There are two types of processor affinity:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li><b>Soft Affinity –</b> When an operating system has a policy of attempting to keep a process running on the same processor but not guaranteeing it will do so, this situation is called soft affinity.</li>
+<li><b>Hard Affinity –</b> Some systems such as Linux also provide some system calls that support Hard Affinity which allows a process to migrate between processors.</li>
+</ol>
+<h3 class="sigil_not_in_toc">Load Balancing –</h3>
+<p>Load Balancing is the <b>phenomena</b> which keeps the <b>workload</b> evenly <b>distributed</b> across all processors in an SMP system. Load balancing is necessary only on systems where each processor has its own private queue of process which are eligible to execute. Load balancing is unnecessary because once a processor becomes idle it immediately extracts a runnable process from the common run queue. On SMP(symmetric multiprocessing), it is important to keep the workload balanced among all processors to fully utilize the benefits of having more than one processor else one or more processor will sit idle while other processors have high workloads along with lists of processors awaiting the CPU.</p>
+<p>There are two general approaches to load balancing :</p>
+<ol>
+<li><b>Push Migration –</b> In push migration a task routinely checks the load on each processor and if it finds an imbalance then it evenly distributes load on each processors by moving the processes from overloaded to idle or less busy processors.</li>
+<li><b>Pull Migration –</b> Pull Migration occurs when an idle processor pulls a waiting task from a busy processor for its execution.</li>
+</ol>
+<h3 class="sigil_not_in_toc">Multicore Processors –</h3>
+<p>In multicore processors <b>multiple processor</b> cores are places on the same physical chip. Each core has a register set to maintain its architectural state and thus appears to the operating system as a separate physical processor. <b>SMP systems</b> that use multicore processors are faster and consume <b>less power</b> than systems in which each processor has its own physical chip.</p>
+<p>However multicore processors may <b>complicate</b> the scheduling problems. When processor accesses memory then it spends a significant amount of time waiting for the data to become available. This situation is called <b>MEMORY STALL</b>. It occurs for various reasons such as cache miss, which is accessing the data that is not in the cache memory. In such cases the processor can spend upto fifty percent of its time waiting for data to become available from the memory. To solve this problem recent hardware designs have implemented multithreaded processor cores in which two or more hardware threads are assigned to each core. Therefore if one thread stalls while waiting for the memory, core can switch to another thread.</p>
+<p>There are two ways to multithread a processor :</p>
+<ol>
+<li><b>Coarse-Grained Multithreading –</b> In coarse grained multithreading a thread executes on a processor until a long latency event such as a memory stall occurs, because of the delay caused by the long latency event, the processor must switch to another thread to begin execution. The cost of switching between threads is high as the instruction pipeline must be terminated before the other thread can begin execution on the processor core. Once this new thread begins execution it begins filling the pipeline with its instructions.</li>
+<li><b>Fine-Grained Multithreading –</b> This multithreading switches between threads at a much finer level mainly at the boundary of an instruction cycle. The architectural design of fine grained systems include logic for thread switching and as a result the cost of switching between threads is small.</li>
+</ol>
+<h3 class="sigil_not_in_toc">Virtualization and Threading –</h3>
+<p>In this type of <b>multiple-processor</b> scheduling even a single CPU system acts like a multiple-processor system. In a system with Virtualization, the virtualization presents one or more virtual CPU’s to each of virtual machines running on the system and then schedules the use of physical CPU’S among the virtual machines. Most virtualized environments have one host operating system and many guest operating systems. The host operating system creates and manages the virtual machines and each virtual machine has a guest operating system installed and applications running within that guest.Each guest operating system may be assigned for specific use cases,applications, and users,including time sharing or even real-time operation. Any guest operating-system scheduling algorithm that assumes a certain amount of progress in a given amount of time will be negatively impacted by the virtualization. In a time sharing operating system that tries to allot 100 milliseconds to each time slice to give users a reasonable response time. A given 100 millisecond time slice may take much more than 100 milliseconds of virtual CPU time. Depending on how busy the system is, the time slice may take a second or more which results in a very poor response time for users logged into that virtual machine. The net effect of such scheduling layering is that individual virtualized operating systems receive only a portion of the available CPU cycles, even though they believe they are receiving all cycles and that they are scheduling all of those cycles.Commonly, the time-of-day clocks in virtual machines are incorrect because timers take no longer to trigger than they would on dedicated CPU’s. </p>
+<p><b>Virtualizations</b> can thus undo the good scheduling-algorithm efforts of the operating systems within virtual machines.  </p>
+<p><b>Reference –</b><br/>
+<a href="https://www.amazon.in/Operating-System-Principles-Silberschatz/dp/8126509627" rel="noopener" target="_blank">Operating System Principles – Galvin</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

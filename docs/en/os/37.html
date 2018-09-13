@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Multilevel Feedback Queue Scheduling</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisite –</b> <a href="https://www.geeksforgeeks.org/gate-notes-operating-system-process-scheduling/" target="_blank">CPU Scheduling</a>, <a href="https://www.geeksforgeeks.org/operating-system-multilevel-queue-scheduling/" target="_blank">Multilevel Queue Scheduling</a><br/>
+This Scheduling is like Multilevel Queue(MLQ) Scheduling but in this process can move between the queues. <b> Multilevel Feedback Queue Scheduling (MLFQ)</b> keep analyzing the behavior (time of execution) of processes and according to which it changes its priority.Now, look at the diagram and explanation below to understand it properly.<br/>
+<img src="../../../imgs/os/8757862b4e3ec9862808f0379f901e49.jpg" alt="" width="300" height="269" class="aligncenter size-medium wp-image-234378"/><br/>
+Now let us suppose that queue 1 and 2 follow round robin with time quantum 4 and 8 respectively and queue 3 follow FCFS.One implementation of MFQS is given below –</p>
+<ol>
+<li>When a process starts executing then it first enters queue 1.</li>
+<li>In queue 1 process executes for 4 unit and if it completes in this 4 unit or it gives CPU for I/O operation in this 4 unit than the priority of this process does not change and if it again comes in the ready queue than it again starts its execution in Queue 1.</li>
+<li>If a process in queue 1 does not complete in 4 unit then its priority gets reduced and it shifted to queue 2.</li>
+<li>Above points 2 and 3 are also true for queue 2 processes but the time quantum is 8 unit.In a general case if a process does not complete in a time quantum than it is shifted to the lower priority queue.</li>
+<li>In the last queue, processes are scheduled in FCFS manner.</li>
+<li>A process in lower priority queue can only execute only when higher priority queues are empty.</li>
+<li>A process running in the lower priority queue is interrupted by a process arriving in the higher priority queue.</li>
+</ol>
+<p>Well, above implementation may differ for example the last queue can also follow Round-robin Scheduling.</p>
+<p><strong>Problems in the above implementation –</strong> A process in the lower priority queue can suffer from starvation due to some short processes taking all the CPU time.<br/>
+<strong>Solution –</strong> A simple solution can be to boost the priority of all the process after regular intervals and place them all in the highest priority queue.</p>
+<p><strong>What is the need of such complex Scheduling?</strong></p>
+<ul>
+<li>Firstly, it is more flexible than the multilevel queue scheduling.</li>
+<li>To optimize turnaround time algorithms like SJF is needed which require the running time of processes to schedule them. But the running time of the process is not known in advance. MFQS runs a process for a time quantum and then it can change its priority(if it is a long process). Thus it learns from past behavior of the process and then predicts its future behavior.This way it tries to run shorter process first thus optimizing turnaround time.</li>
+<li>MFQS also reduces the response time.</li>
+</ul>
+<p><strong>Example –</strong><br/>
+Consider a system which has a CPU bound process, which requires the burst time of 40 seconds.The multilevel Feed Back Queue scheduling algorithm is used and the queue time quantum ‘2’ seconds and in each level it is incremented by ‘5’ seconds.Then how many times the process will be interrupted and on which queue the process will terminate the execution?</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Solution –</strong><br/>
+Process P needs 40 Seconds for total execution.<br/>
+At Queue 1 it is executed for 2 seconds and then interrupted and shifted to queue 2.<br/>
+At Queue 2 it is executed for 7 seconds and then interrupted and shifted to queue 3.<br/>
+At Queue 3 it is executed for 12 seconds and then interrupted and shifted to queue 4.<br/>
+At Queue 4 it is executed for 17 seconds and then interrupted and shifted to queue 5.<br/>
+At Queue 5 it executes for 2 seconds and then it completes.<br/>
+Hence the process is interrupted 4 times and completes on queue 5.</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

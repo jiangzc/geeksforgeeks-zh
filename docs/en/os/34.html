@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Starvation and Aging  in Operating Systems</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Prerequisites : </strong> <a href="https://www.geeksforgeeks.org/program-priority-scheduling-set-1/" target="_blank">Priority Scheduling </a></p>
+<p>We have already discussed about the priority scheduling in <a href="https://www.geeksforgeeks.org/program-priority-scheduling-set-1/" target="_blank">this</a> post. It is one of the most common scheduling algorithms in batch systems. Each process is assigned a priority. Process with the highest priority is to be executed first and so on.</p>
+<p>In this post we will discuss a major problem related to priority scheduling and it’s solution.</p>
+<p><strong>Starvation</strong> or indefinite blocking is phenomenon associated with the Priority scheduling algorithms, in which a process ready to run for CPU can wait indefinitely because of low priority. In heavily loaded computer system, a steady stream of higher-priority processes can prevent a low-priority process from ever getting the CPU.</p>
+<p>There has been rumors that in 1967 Priority Scheduling was used in IBM 7094 at MIT , and  they found a low-priority process that had not been submitted till 1973.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/starvationAndAging.jpg"><img src="../../../imgs/os/29256d672c1e17da76f5bb8983c3e070.jpg" alt="prior" width="1170" height="251" class="alignnone size-full wp-image-164878"/></a></p>
+<p>As we see in the above example process having higher priority than other processes getting CPU earlier. We can think of a scenario in which only one process is having very low-priority (for example 127) and we are giving other process with high-priority, this can lead indefinitely waiting for the process for CPU which is having low-priority, this leads to <strong>Starvation</strong>. Further we have also discuss about the solution of starvation.</p>
+<p><strong>Differences between <a href="https://www.geeksforgeeks.org/operating-system-process-management-deadlock-introduction/" target="_blank">Deadlock</a> and Starvation in OS :</strong></p>
+<ol>
+<li>
+Deadlock occurs when none of the processes in the set is able to move ahead due to occupancy of the required resources by some other process as shown in the figure below, on the other hand Starvation occurs when a process waits for an indefinite period of time to get the resource it requires.
+</li>
+<li>
+Other name of deadlock is <strong>Circular Waiting</strong>. Other name of starvation is <strong>Lived lock</strong>.
+</li>
+<li>
+When deadlock occurs no process can make progress, while in starvation apart from the victim process other processes can progress or proceed.
+</li>
+</ol>
+<p><strong>Solution to Starvation : Aging</strong></p>
+<p>Aging is a technique of gradually increasing the priority of processes that wait in the system for a long time.For example, if priority range from 127(low) to 0(high), we could increase the priority of a waiting process by 1 Every 15 minutes. Eventually even a process with an initial priority of 127 would take no more than 32 hours for priority 127 process to age to a priority-0 process.</p>
+<p><img src="../../../imgs/os/152655c3ecf68da21074d6d9dddd948c.jpg" alt="" width="600" height="400" class="size-medium wp-image-207906"/> </p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

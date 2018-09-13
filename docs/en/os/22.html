@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Measure the time spent in context switch?</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>A <i>Context switch</i> is the time spent between two processes (i.e., bringing a waiting process into execution and sending an executing process into waiting state). This happens in multitasking.The operating system must bring the state information if waiting process into memory and save the state information of the currently running process.</p>
+<p>In order to solve this problem, we would like to record the timestamps of the first and last instruction of the swapping processes.The context switch time is the difference between the two processes.</p>
+<p><strong>Let’s take an example: </strong>Assume there are only two processes, P1 and P2.<br/>
+P1 is executing and P2 is waiting for execution. At some point, the operating system must swap P1 and P2, let’s assume it happens at the nth instruction of P1. If t(x, k) indicates the timestamp in microseconds of the kth instruction of process x, then the context switch would take t(2, 1) – t(1, n).</p>
+<p>Another issue is that swapping is governed by the scheduling algorithm of the operating system and there may be many kernel level threads which are also doing context switches. Other processes could be contending for the CPU or the kernel handling interrupts. The user does not have any control over these extraneous context switches. For instance, if at time t(1, n) the kernel decides to handle an interrupt, then the context switch time would be overstated.</p>
+<p>In order to avoid these obstacles, we must construct an environment such that after P1 executes, the task scheduler immediately selects P2 to run. This may be accomplished by constructing a data channel, such as a pipe between P1 and P2.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>That is, let’s allow P1 to be the initial sender and P2 be the receiver. Initially, P2 is blocked(sleeping) as it awaits the data token. When P1 executes, it delivers the data token over the data channel to P2 and immediately attempts to read the response token. A context switch results and the task scheduler must selects another process to run.Since P2 is now in a ready-to-run state, it is a desirable candidate to be selected by the task scheduler for execution.When P2 runs, the role of P1 and P2 are swapped. P2 is now acting as the sender and P1 as the blocked receiver.</p>
+<p><strong>To summaries –</strong></p>
+<ol>
+<li>P2 blocks awaiting data from P1</li>
+<li>P1 marks the starting time.</li>
+<li>P1 sends token to P2.</li>
+<li>P1 attempts to read a response token from P2. This induces a context switch.</li>
+<li>P2 is scheduled and receives the token.</li>
+<li>P2 sends a response token to P1.</li>
+<li>P2 attempts read a response token from P1. This induces a context switch.</li>
+<li>P1 is scheduled and receives the token.</li>
+<li>P1 marks the end time.</li>
+</ol>
+<p>The key is that the delivery of a data token induces a context switch. Let Td and Tr be the time it takes to deliver and receive a data token, respectively, and let Tc be the amount of time spent in a context switch. At step 2, P1 records the timestamp of the delivery of the token, and at step 9, it records the timestamp of the response. The amount of time elapsed, T, between these events may be expressed by:</p>
+<pre><span style="text-align:center"> T = 2 * (Td + Tc + Tr)</span>
+</pre>
+<p><strong>This formula arises because of the following events:</strong></p>
+<ul>
+<li>P1 sends the token (3)</li>
+<li>CPU context switches (4)</li>
+<li>P2 receives it (5)</li>
+<li>P2 then sends the response token (6)</li>
+<li>CPU context switches (7)</li>
+<li>and finally, P1 receives it (8)</li>
+</ul>
+<p>GATE CS Practice Questions –</p>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2006-question-6/" rel="noopener" target="_blank">GATE-CS-2006 | Question 85</a></li>
+<li><a href="https://www.geeksforgeeks.org/aptitude-gate-cs-1998-question-52/" rel="noopener" target="_blank">GATE CS 1998 | Question 52</a> </li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Allocating kernel memory (buddy system and slab system)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/operating-system-buddy-system-memory-allocation-technique/" rel="noopener" target="_blank">Buddy System</a></p>
+<p>Two strategies for managing free memory that is assigned to kernel processes:</p>
+<h3 class="sigil_not_in_toc">1. Buddy system –</h3>
+<p>Buddy allocation system is an algorithm in which a larger memory block is divided into small parts to satisfy the request. This algorithm is used to give best fit. The two smaller parts of block are of equal size and called as buddies. In the same manner one of the two buddies will further divide into smaller parts until the request is fulfilled. Benefit of this technique is that the two buddies can combine to form the block of larger size according to the memory request.<br/>
+<i>Example –</i> If the request of 25Kb is made then block of size 32Kb is allocated.</p>
+<p><img src="../../../imgs/os/17ec7248aea12a72501e0f520da7244f.jpg" width="800" height="600" alt="" class="aligncenter size-full"/></p>
+<p><b>Four Types of Buddy System –</b></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li>Binary buddy system</li>
+<li>Fibonacci buddy system</li>
+<li>Weighted buddy system</li>
+<li>Tertiary buddy system</li>
+</ol>
+<p><b> Why buddy system?</b><br/>
+If the  partition size and procees size are different then poor match occurs and may use space inefficiently.<br/>
+It is easy to implement and efficient then dynamic allocation.</p>
+<p><b>Binary buddy system –</b><br/>
+The buddy system maintains a list of the free blocks of each size (called a free list), so that it is easy to find ablock of the desired size, if one is available. If no block of the requested size is available, Allocate searches for the first nonempty list for blocks of atleast the size requested. In either case, a block is removed from the free list.</p>
+<p><b>Example –</b> Assume the size of memory segment is initially 256kb and the kernel rquests 25kb of memory. The segment is initially divided into two buddies. Let we call A1 and A2 each 128kb in size. One of these buddies is further divided into two 64kb buddies let say B1 and B2. But the next highest power of 25kb is 32kb so, either B1 or B2 is further divided into two 32kb buddies(C1 and C2) and finally one of these buddies is used to satisfy the 25kb request. A split block can only be merged with its unique buddy block, which then reforms the larger block they were split from.</p>
+<p><b>Fibonacci buddy system –</b><br/>
+This is the system in which blocks are divided into sizes which are fibonacci numbers. It satisfy the following relation:</p>
+<pre>  Z<sub>i</sub> = Z<sub>(i-1)</sub>+Z<sub>(i-2)</sub></pre>
+<p>0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 144, 233, 377, 610. The address calculation for the binary and weighted buddy systems is straight forward, but the original procedure for the Fibonacci buddy system was either limited to a small, fixed number of block sizes or a time consuming computation.</p>
+<p><b>Advantages –</b></p>
+<ul>
+<li>In comparison to other simpler techniques such as dynamic allocation, the buddy memory system has little external fragmentation.</li>
+<li>The buddy memory allocation system is implemented with the use of a binary tree to represent used or unused split memory blocks.</li>
+<li>The buddy system is very fast to allocate or deallocate memory.</li>
+<li>In buddy systems, the cost to allocate and free a block of memory is low compared to that of best-fit or first-fit algorithms. </li>
+<li>Other advantage is coalescing.</li>
+<li>Address calculation is easy.</li>
+</ul>
+<p><b>What is coalescing?</b><br/>
+It is defined as how quickly adjacent buddies can be combined to form larger segments this is known as coalescing.<br/>
+For example, when the kernel releases the C1 unit it was allocated, the system can coalesce C1 and C2 into a 64kb segment. This segment B1 can in turn be coalesced with its buddy B2 to form a 128kb segment. Ultimately we can end up with the original 256kb segment.</p>
+<p><b>Drawback –</b><br/>
+The main drawback in buddy system is internal fragmentation as larger block of memory is acquired then required. For example if a 36 kb request is made then it can only be satisfied by 64 kb segment and reamining memory is wasted.</p>
+<h3 class="sigil_not_in_toc">2. Slab Allocation –</h3>
+<p>A second strategy for allocating kernel memory is known as slab allocation. It eliminates fragmentation caused by allocations and deallocations. This method is  used to retain allocated memory that contains a data object of a certain type for reuse upon subsequent allocations of objects of the same type. In slab allocation  memory chunks suitable to fit data objects of certain type or size are preallocated. Cache does not free the space immediately after use although it keeps track of data which are required frequently so that whenever request is made the data will reach very fast. Two terms required are:</p>
+<ul>
+<li><b>Slab –</b> A slab is made up of one or more physically contiguous pages.  The slab is the actual container of data associated with objects of the specific kind of the containing cache.</li>
+<li><b>Cache –</b> Cache represents a small amount of very fast memory. A cache consists of one or more slabs. There is a single cache for each unique kernel data structure.</li>
+</ul>
+<p><img src="../../../imgs/os/f5f86baa0a3bce65e2e788f1def7aed6.jpg" alt="12" width="583" height="429" class="aligncenter size-full wp-image-184308" srcset="https://www.geeksforgeeks.org/wp-content/uploads/12-3.jpg 583w, https://www.geeksforgeeks.org/wp-content/uploads/12-3-300x221.jpg 300w" sizes="(max-width: 583px) 100vw, 583px"/></p>
+<p><b>Example –</b></p>
+<ul>
+<li>A separate cache for a data structure representing processes descriptors</li>
+<li>Separate cache for file objects</li>
+<li>Separate cache for semaphores etc.</li>
+</ul>
+<p>Each cache is populated with objects that are instantiations of the kernel data structure the cache represents. For example the cache representing semaphores stores instances of semaphore objects, the cache representing process descriptors stores instances of process descriptor objects.</p>
+<p><b> Implementation –</b><br/>
+The slab allocation algorithm uses caches to store kernel objects. When a cache is created a number of objects which are initially marked as free are allocated to the cache. The number of objects in the cache depends on size of the associated slab.<br/>
+<i>Example –</i> A 12 kb slab (made up of three contiguous 4 kb pages) could store six 2 kb objects. Initially all objects in the cache are marked as free. When a new object for a kernel data structure is needed, the allocator can assign any free object from the cache to satisfy the request. The object assigned from the cache is marked as used.</p>
+<p>In linux, a slab may in one of three possible states:</p>
+<ol>
+<li><b>Full –</b> All objects in the slab are marked as used</li>
+<li><b>Empty –</b> All objects in the slab are marked as free</li>
+<li><b>Partial –</b> The slab consists of both</li>
+</ol>
+<p>The slab allocator first attempts to satisfy the request with a free object in a partial slab. If none exists, a free object is assigned from an empty slab. If no empty slabs are available, a new slab is allocated from contiguous physical pages and assigned to a cache.</p>
+<p><b>Benefits of slab allocator –</b></p>
+<ul>
+<li>No memory is wasted due to fragmentation because each unique kernel data structure has an associated cache.</li>
+<li>Memory request can be satisfied quickly. </li>
+<li>The slab allocating scheme is particularly effective for managing when objects are frequently allocated or deallocated. The act of allocating and releasing memory can be a time consuming process. However, objects are created in advance and thus can be quickly allocated from the cache. When the kernel has finished with an object and releases it, it is marked as free and return to its cache, thus making it immediately available for subsequent request from the kernel.</li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

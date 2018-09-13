@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Peterson’s Algorithm (Using processes and shared memory)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/process-synchronization-set-1/">synchronization</a>, <a href="https://www.geeksforgeeks.org/g-fact-70/">Critical Section</a></p>
+<p><!-- Problem Statement --></p>
+<p><b>Problem:</b>The producer consumer problem (or bounded buffer problem) describes two processes, the producer and the consumer, which share a common, fixed-size buffer used as a queue. Producer produce an item and put it into buffer. If buffer is already full then producer will have to wait for an empty block in buffer. Consumer consume an item from buffer. If buffer is already empty then consumer will have to wait for an item in buffer. Implement Peterson’s Algorithm for the two processes using shared memory such that there is mutual exclusion between them. The solution should have free from synchronization problems.</p>
+<p><img src="../../../imgs/os/6800e06290b03569d9b87c14c247d9e2.jpg" alt="Producer-Consumer"/></p>
+<p><b>Peterson’s algorithm –</b></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<div class="noIdeBtnDiv">
+<pre class="brush: c; title: ; notranslate" title="">// code for producer (j)
+
+// producer j is ready
+// to produce an item
+flag[j] = true;
+
+// but consumer (i) can consume an item
+turn = i;
+
+// if consumer is ready to consume an item
+// and if its consumer's turn
+while (flag[i] == true &amp;&amp; turn == i)
+
+    { // then producer will wait }
+
+    // otherwise producer will produce
+    // an item and put it into buffer (critical Section)
+
+    // Now, producer is out of critical section
+    flag[j] = false;
+    // end of code for producer
+
+    //--------------------------------------------------------
+    // code for consumer i
+
+    // consumer i is ready
+    // to consume an item
+    flag[i] = true;
+
+    // but producer (j) can produce an item
+    turn = j;
+
+    // if producer is ready to produce an item
+    // and if its producer's turn
+    while (flag[j] == true &amp;&amp; turn == j)
+
+        { // then consumer will wait }
+
+        // otherwise consumer will consume
+        // an item from buffer (critical Section)
+
+        // Now, consumer is out of critical section
+        flag[i] = false;
+// end of code for consumer
+</pre>
+</div>
+<p><b>Explanation of Peterson’s algorithm –</b></p>
+<p>Peterson’s Algorithm is used to synchronize two processes. It uses two variables, a bool array <b>flag</b> of size 2 and an int variable <b>turn</b> to accomplish it.<br/>
+In the solution i represents the Consumer and j represents the Producer. Initially the flags are false. When a process wants to execute it’s critical section, it sets it’s flag to true and turn as the index of the other process. This means that the process wants to execute but it will allow the other process to run first. The process performs busy waiting  until the other process has finished it’s own critical section.<br/>
+After this the current process enters it’s critical section and adds or removes a random number from the shared buffer. After completing the critical section, it sets it’s own flag to false, indication it does not wish to execute anymore.</p>
+<p>The program runs for a fixed amount of time before exiting. This time can be changed by changing value of the the macro RT.</p>
+<pre class="brush: c; title: ; notranslate" title="">// C program to implement Peterson’s Algorithm
+// for producer-consumer problem.
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;time.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/ipc.h&gt;
+#include &lt;sys/shm.h&gt;
+#include &lt;stdbool.h&gt;
+#define _BSD_SOURCE
+#include &lt;sys/time.h&gt;
+#include &lt;stdio.h&gt;
+
+#define BSIZE 8 // Buffer size
+#define PWT 2 // Producer wait time limit
+#define CWT 10 // Consumer wait time limit
+#define RT 10 // Program run-time in seconds
+
+int shmid1, shmid2, shmid3, shmid4;
+key_t k1 = 5491, k2 = 5812, k3 = 4327, k4 = 3213;
+bool* SHM1;
+int* SHM2;
+int* SHM3;
+
+int myrand(int n) // Returns a random number between 1 and n
+{
+    time_t t;
+    srand((unsigned)time(&amp;t));
+    return (rand() % n + 1);
+}
+
+int main()
+{
+    shmid1 = shmget(k1, sizeof(bool) * 2, IPC_CREAT | 0660); // flag
+    shmid2 = shmget(k2, sizeof(int) * 1, IPC_CREAT | 0660); // turn
+    shmid3 = shmget(k3, sizeof(int) * BSIZE, IPC_CREAT | 0660); // buffer
+    shmid4 = shmget(k4, sizeof(int) * 1, IPC_CREAT | 0660); // time stamp
+
+    if (shmid1 &lt; 0 || shmid2 &lt; 0 || shmid3 &lt; 0 || shmid4 &lt; 0) {
+        perror("Main shmget error: ");
+        exit(1);
+    }
+    SHM3 = (int*)shmat(shmid3, NULL, 0);
+    int ix = 0;
+    while (ix &lt; BSIZE) // Initializing buffer
+        SHM3[ix++] = 0;
+
+    struct timeval t;
+    time_t t1, t2;
+    gettimeofday(&amp;t, NULL);
+    t1 = t.tv_sec;
+
+    int* state = (int*)shmat(shmid4, NULL, 0);
+    *state = 1;
+    int wait_time;
+
+    int i = 0; // Consumer
+    int j = 1; // Producer
+
+    if (fork() == 0) // Producer code
+    {
+        SHM1 = (bool*)shmat(shmid1, NULL, 0);
+        SHM2 = (int*)shmat(shmid2, NULL, 0);
+        SHM3 = (int*)shmat(shmid3, NULL, 0);
+        if (SHM1 == (bool*)-1 || SHM2 == (int*)-1 || SHM3 == (int*)-1) {
+            perror("Producer shmat error: ");
+            exit(1);
+        }
+
+        bool* flag = SHM1;
+        int* turn = SHM2;
+        int* buf = SHM3;
+        int index = 0;
+
+        while (*state == 1) {
+            flag[j] = true;
+            printf("Producer is ready now.\n\n");
+            *turn = i;
+            while (flag[i] == true &amp;&amp; *turn == i)
+                ;
+
+            // Critical Section Begin
+            index = 0;
+            while (index &lt; BSIZE) {
+                if (buf[index] == 0) {
+                    int tempo = myrand(BSIZE * 3);
+                    printf("Job %d has been produced\n", tempo);
+                    buf[index] = tempo;
+                    break;
+                }
+                index++;
+            }
+            if (index == BSIZE)
+                printf("Buffer is full, nothing can be produced!!!\n");
+            printf("Buffer: ");
+            index = 0;
+            while (index &lt; BSIZE)
+                printf("%d ", buf[index++]);
+            printf("\n");
+            // Critical Section End
+
+            flag[j] = false;
+            if (*state == 0)
+                break;
+            wait_time = myrand(PWT);
+            printf("Producer will wait for %d seconds\n\n", wait_time);
+            sleep(wait_time);
+        }
+        exit(0);
+    }
+
+    if (fork() == 0) // Consumer code
+    {
+        SHM1 = (bool*)shmat(shmid1, NULL, 0);
+        SHM2 = (int*)shmat(shmid2, NULL, 0);
+        SHM3 = (int*)shmat(shmid3, NULL, 0);
+        if (SHM1 == (bool*)-1 || SHM2 == (int*)-1 || SHM3 == (int*)-1) {
+            perror("Consumer shmat error:");
+            exit(1);
+        }
+
+        bool* flag = SHM1;
+        int* turn = SHM2;
+        int* buf = SHM3;
+        int index = 0;
+        flag[i] = false;
+        sleep(5);
+        while (*state == 1) {
+            flag[i] = true;
+            printf("Consumer is ready now.\n\n");
+            *turn = j;
+            while (flag[j] == true &amp;&amp; *turn == j)
+                ;
+
+            // Critical Section Begin
+            if (buf[0] != 0) {
+                printf("Job %d has been consumed\n", buf[0]);
+                buf[0] = 0;
+                index = 1;
+                while (index &lt; BSIZE) // Shifting remaining jobs forward
+                {
+                    buf[index - 1] = buf[index];
+                    index++;
+                }
+                buf[index - 1] = 0;
+            } else
+                printf("Buffer is empty, nothing can be consumed!!!\n");
+            printf("Buffer: ");
+            index = 0;
+            while (index &lt; BSIZE)
+                printf("%d ", buf[index++]);
+            printf("\n");
+            // Critical Section End
+
+            flag[i] = false;
+            if (*state == 0)
+                break;
+            wait_time = myrand(CWT);
+            printf("Consumer will sleep for %d seconds\n\n", wait_time);
+            sleep(wait_time);
+        }
+        exit(0);
+    }
+    // Parent process will now for RT seconds before causing child to terminate
+    while (1) {
+        gettimeofday(&amp;t, NULL);
+        t2 = t.tv_sec;
+        if (t2 - t1 &gt; RT) // Program will exit after RT seconds
+        {
+            *state = 0;
+            break;
+        }
+    }
+    // Waiting for both processes to exit
+    wait();
+    wait();
+    printf("The clock ran out.\n");
+    return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>Producer is ready now.
+
+Job 9 has been produced
+Buffer: 9 0 0 0 0 0 0 0 
+Producer will wait for 1 seconds
+
+Producer is ready now.
+
+Job 8 has been produced
+Buffer: 9 8 0 0 0 0 0 0 
+Producer will wait for 2 seconds
+
+Producer is ready now.
+
+Job 13 has been produced
+Buffer: 9 8 13 0 0 0 0 0 
+Producer will wait for 1 seconds
+
+Producer is ready now.
+
+Job 23 has been produced
+Buffer: 9 8 13 23 0 0 0 0 
+Producer will wait for 1 seconds
+
+Consumer is ready now.
+
+Job 9 has been consumed
+Buffer: 8 13 23 0 0 0 0 0 
+Consumer will sleep for 9 seconds
+
+Producer is ready now.
+
+Job 15 has been produced
+Buffer: 8 13 23 15 0 0 0 0 
+Producer will wait for 1 seconds
+
+Producer is ready now.
+
+Job 13 has been produced
+Buffer: 8 13 23 15 13 0 0 0 
+Producer will wait for 1 seconds
+
+Producer is ready now.
+
+Job 11 has been produced
+Buffer: 8 13 23 15 13 11 0 0 
+Producer will wait for 1 seconds
+
+Producer is ready now.
+
+Job 22 has been produced
+Buffer: 8 13 23 15 13 11 22 0 
+Producer will wait for 2 seconds
+
+Producer is ready now.
+
+Job 23 has been produced
+Buffer: 8 13 23 15 13 11 22 23 
+Producer will wait for 1 seconds
+
+The clock ran out.
+</pre>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Shortest Job First scheduling with predicted burst time</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisite –</b> <a href="https://www.geeksforgeeks.org/gate-notes-operating-system-process-scheduling/" target="_blank">CPU Scheduling</a>, <a href="https://www.geeksforgeeks.org/program-shortest-job-first-sjf-scheduling-set-1-non-preemptive/" target="_blank">SJF – Set 1 (Non- preemptive)</a>, <a href="https://www.geeksforgeeks.org/program-shortest-job-first-scheduling-set-2srtf-make-changesdoneplease-review/" target="_blank">Set 2 (Preemptive)</a></p>
+<p><strong>Shortest Job First (SJF) </strong> is an optimal scheduling algorithm as it gives maximum Throughput and minimum average waiting time(WT) and turn around time (TAT) but it is not practically implementable because Burst-Time of a process can’t be predicted in advance.</p>
+<p>We may not know the length of the next CPU burst, but we may be able to predict its value. We expect the next CPU burst will be similar in length to the previous ones. By computing an approximation of the length of the next CPU burst, we can pick the process with the shortest predicted CPU burst.</p>
+<p>There are two methods by which we can predict the burst time of the process :</p>
+<p><strong>1. Static method –</strong> We can predict the Burst-Time by two factors :</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li><strong>Process size –</strong><br/>
+Let say we have Process P<sub>old</sub> having size 200 KB which is already executed and its Burst-time is 20 Units of time, now lets say we have a New Process P<sub>new</sub> having size 201 KB which is yet to be executed.<br/>
+We take Burst-Time of already executed process P<sub>old</sub> which is almost of same size as that of New process as Burst-Time of New Process P<sub>new</sub>.</li>
+<li><strong>Process type –</strong><br/>
+We can predict Burst-Time depending on the Type of Process. Operating System process(like scheduler, dispatcher, segmentation, fragmentation) are faster than User process( Gaming, application softwares ). Burst-Time for any New O.S process can be predicted from any old O.S process of similar type and same for User process.</li>
+<p><strong>Note –</strong> Static method for burst time prediction is not reliable as it is always not predicted correctly.</p>
+<p><strong>2. Dynamic method –</strong> Let t<sub>i</sub> be the actual Burst-Time of i<sup>th</sup> process and Τ<sub>n+1</sub> be the predicted Burst-time for n+1<sup>th</sup> process.</p>
+<ul>
+<li><strong>Simple average –</strong> Given n processes ( P<sub>1</sub>, P<sub>2</sub>… P<sub>n</sub>)
+<pre>Τ<sub>n+1</sub> = 1/n(Σ<sup>i=1 to n</sup> t<sub>i</sub>)</pre>
+</li>
+<li><strong>Exponential average (Aging) –</strong>
+<pre>Τ<sub>n+1</sub> = αt<sub>n</sub> + (1 - α)Τ<sub>n</sub></pre>
+<p>where α = is smoothing factor and 0 &lt;= α &lt;= 1 , </p>
+<p>t<sub>n</sub> = actual burst time of n<sup>th</sup> process,<br/>
+Τ<sub>n</sub> = predicted burst time of n<sup>th</sup> process.</p>
+<p>General term, </p>
+<pre>αt<sub>n</sub> + (1 - α)αt<sub>n-1</sub> + (1 - α)<sup>2</sup>αt<sub>n-2</sub>...+ (1 - α)<sup>j</sup>αt<sub>n-j</sub>...+ (1 - α)<sup>n+1</sup>Τ<sub>0</sub> </pre>
+<p><strong>Τ<sub>0</sub></strong> is a constant or overall system average.
+</p></li>
+</ul>
+<p><strong>Smoothening factor (α) –</strong> It controls the relative weight of recent and past history in our prediction.</p>
+<ul>
+<li>If α = 0, Τ<sup>n+1</sup> = Τ<sup>n</sup> i.e. no change in value of initial predicted burst time.</li>
+<li>If α = 1, Τ<sup>n+1</sup> = t<sup>n</sup> i.e. predicted Burst-Time of new process will always change according to actual &#160;&#160;&#160;&#160;&#160;Burst-time of n<sup>th</sup> process.</li>
+<li>If α = 1/2, recent and past history are equally weighted.</li>
+<p>
+</p>
+</ul>
+<p><b>Example –</b><br/>
+Calculate the exponential averaging with T1 = 10, α = 0.5 and the algorithm is SJF with previous runs as 8, 7, 4, 16.<br/>
+(a) 9<br/>
+(b) 8<br/>
+(c) 7.5<br/>
+(d) None</p>
+<p><b>Explanation :</b><br/>
+Initially T1 = 10 and α = 0.5 and the run times given are 8, 7, 4, 16 as it is shortest job first,<br/>
+So the possible order in which these processes would serve will be 4, 7, 8, 16 since SJF is a non-preemptive technique.<br/>
+So, using formula: T2 = α*t1 + (1-α)T1<br/>
+so we have,<br/>
+T2 = 0.5*4 + 0.5*10 = 7, here t1 = 4 and T1 = 10<br/>
+T3 = 0.5*7 + 0.5*7 = 7, here t1 = 7 and T1 = 7<br/>
+T4 = 0.5*8 + 0.5*7 = 7.5, here t1 = 8 and T1 = 7<br/>
+So the future prediction for 4th process will be T4 = 7.5 which is the option(c).</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ul>
+</div>
+</body>
+</html>

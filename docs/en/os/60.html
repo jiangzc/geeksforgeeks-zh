@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">What’s difference between Priority Inversion and Priority Inheritance ?</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p style="text-align: justify">Both of these concepts come under Priority scheduling in Operating System. But are they same ?</p>
+<p style="text-align: justify">In one line, <em>Priority Inversion</em> is a <strong>problem</strong> while <em>Priority Inheritance</em> is a <strong>solution</strong>. Literally, <em>Priority Inversion</em> means that priority of tasks get inverted and <em>Priority Inheritance</em> means that priority of tasks get inherited. Both of these phenomena happen in priority scheduling. Basically, in <em>Priority Inversion</em>, higher priority task (H) ends up waiting for middle priority task (M) when H&#160;is sharing critical section with lower priority task (L) and L is already in critical section. Effectively, H waiting for M results in inverted priority i.e. Priority Inversion. One of the solution for this problem is <em>Priority Inheritance</em>. In <em>Priority Inheritance</em>, when L is in critical section, L inherits priority of H at the time when H starts pending for critical section. By doing so, M doesn’t interrupt L and H doesn’t wait for M to finish. Please note that inheriting of priority is done temporarily i.e. L goes back to its old priority when L comes out of critical section.</p>
+<p style="text-align: justify">More details on these can be found <a href="https://www.geeksforgeeks.org/priority-inversion-what-the-heck/">here</a>.</p>
+<p style="text-align: justify">&#160;<span style="font-weight: 400">Please do Like/Tweet/G+1 if you find the above useful. Also, please do leave us comment for further clarification or info. We would love to help and learn 🙂</span></p>
+<p style="text-align: justify">
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		</p>
+
+<!-- .entry-meta -->	<p></p>
+</div>
+</body>
+</html>

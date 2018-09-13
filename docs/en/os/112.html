@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Introduction to Linux Shell and Shell Scripting</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>If you are using any major operating system you are indirectly interacting to <strong>shell</strong>. If you are running Ubuntu, Linux Mint or any other Linux distribution, you are interacting to shell every time you use terminal. In this article I will discuss about linux shells and shell scripting so before understanding shell scripting we have to get familiar with following terminologies – </p>
+<ul>
+<li>Kernel</li>
+<li>Shell</li>
+<li>Terminal</li>
+<ul>
+<p align="center"><strong>What is Kernel</strong></p>
+<p>The kernel is a computer program that is the core of a computer’s operating system, with complete control over everything in the system. It manages following resources of the Linux system – </p>
+<ul>
+<li>File management</li>
+<li>Process management</li>
+<li>I/O management</li>
+<li>Memory management</li>
+<li>Device management etc.</li>
+<ul>
+It is often mistaken that <a href="https://en.wikipedia.org/wiki/Linus_Torvalds" target="_blank"><strong>Linus Torvalds</strong></a> has developed Linux OS, but actually he is only responsible for development of Linux kernel.<br/>
+Complete Linux system =  Kernel + <a href="https://en.wikipedia.org/wiki/GNU" target="_blank">GNU</a> system utilities and libraries + other management scripts + installation scripts.<p></p>
+<p align="center"><strong>What is Shell</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>A shell is special user program which provide an interface to user to use operating system services. Shell accept human readable commands from user and convert them into something which kernel can understand. It is a command language interpreter  that execute commands read  from input devices such as keyboards or from files. The shell gets started when the user logs in or start the terminal.<br/>
+</p>
+<div id="attachment_187069" style="width: 310px" class="wp-caption aligncenter"><img src="../../../imgs/os/2370b78ec64909d340cb4a132a9b0d20.jpg" alt="linux shell" width="300" height="291" class="size-medium wp-image-187069"/><p class="wp-caption-text">linux shell</p>
+</div>
+<br/>
+Shell is broadly classified into two categories – <p></p>
+<ul>
+<li>Command Line Shell</li>
+<li>Graphical shell</li>
+</ul>
+<p align="center"><strong>Command Line Shell</strong></p>
+<p>Shell can be accessed by user using a command line interface. A special program called <strong>Terminal</strong> in linux/macOS or <strong>Command Prompt</strong> in Windows OS is provided to type in the human readable commands such as “cat”, “ls” etc. and then it is being execute. The result is then displayed on the terminal to the user. A terminal in Ubuntu 16.4 system looks like this –<br/>
+</p>
+<div id="attachment_187071" style="width: 756px" class="wp-caption aligncenter"><img src="../../../imgs/os/3345342bfdf6744ae40253f6658322ca.jpg" alt="linux command line" width="746" height="452" class="size-full wp-image-187071"/><p class="wp-caption-text">linux command line</p>
+</div>
+<br/>
+In above screenshot <strong>“ls”</strong> command with <strong>“-l”</strong> option is executed. <p></p>
+<p>It will list all the files in current working directory in long listing format.<br/>
+Working with command line shell is bit difficult for the beginners because it’s hard to memorize so many commands. It is very powerful, it allows user to store commands in a file and execute them together. This way any repetitive task can be easily automated. These files are usually called <strong>batch files</strong> in Windows and <strong>Shell</strong> Scripts in Linux/macOS systems. </p>
+<p align="center"><strong>Graphical Shells</strong></p>
+<p>Graphical shells provide means for manipulating programs based on graphical user interface (GUI), by allowing for operations such as opening, closing, moving and resizing windows, as well as switching focus between windows. Window OS or Ubuntu OS can be considered as good example which provide GUI to user for interacting with program. User do not need to type in command for every actions.A typical GUI in Ubuntu system –<br/>
+</p>
+<div id="attachment_187076" style="width: 684px" class="wp-caption aligncenter"><img src="../../../imgs/os/a52086fca507ba05752b0263b34f51e0.jpg" alt="GUI shell" width="674" height="365" class="size-full wp-image-187076"/><p class="wp-caption-text">GUI shell</p>
+</div>
+<p></p>
+<p>There are several shells are available for Linux systems like – </p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)" target="_blank">BASH (Bourne Again SHell)</a> – It is most widely used shell in Linux systems. It is used as default login shell in Linux systems and in macOS. It can also be installed on Windows OS.</li>
+<li><a href="https://en.wikipedia.org/wiki/C_shell" target="_blank">CSH (C SHell)</a> – The C shell’s syntax and usage are very similar to the C programming language.</li>
+<li><a href="https://en.wikipedia.org/wiki/Korn_shell" target="_blank">KSH (Korn SHell)</a> – The Korn Shell also was the base for the POSIX Shell standard specifications etc.
+</li>
+</ul>
+<p>Each shell does the same job but understand different commands and provide different built in functions.</p>
+<p align="center"><strong>Shell Scripting</strong></p>
+<p>Usually shells are interactive that mean, they accept command as input from users and execute them. However some time we want to execute a bunch of commands routinely, so we have type in all commands each time in terminal.<br/>
+As shell can also take commands as input from file we can write these commands in a file and can execute them in shell to avoid this repetitive work. These files are called <strong>Shell Scripts</strong> or <strong>Shell Programs</strong>. Shell scripts are similar to the <strong><a href="https://en.wikipedia.org/wiki/Batch_file" target="_blank">batch file</a></strong> in MS-DOS. Each shell script is saved with <strong>.sh</strong> file extension eg. <strong>myscript.sh</strong></p>
+<p>A shell script have syntax just like any other programming language. If you have any prior experience with any programming language like Python, C/C++ etc. it would be very easy to get started with it.<br/>
+A shell script comprises following elements – </p>
+<ul>
+<li>Shell Keywords – if, else, break etc.</li>
+<li>Shell commands – cd, ls, echo, pwd, touch etc.</li>
+<li>Functions</li>
+<li>Control flow – if..then..else, case and shell loops  etc. </li>
+</ul>
+<p align="center"><strong>Why do we need shell scripts</strong></p>
+<p>There are many reasons to write shell scripts –</p>
+<ul>
+<li>To avoid repetitive work and automation</li>
+<li>System admins use shell scripting for routine backups</li>
+<li>System monitoring</li>
+<li>Adding new functionality to the shell etc.</li>
+</ul>
+<p align="center"><strong>Advantages of shell scripts</strong></p>
+<ul>
+<li>The command and syntax are exactly the same as those directly entered in command line, so programmer do not need to switch to entirely different syntax</li>
+<li>Writing shell scripts are much quicker</li>
+<li>Quick start</li>
+<li>Interactive debugging etc.</li>
+</ul>
+<p align="center"><strong>Disadvantages of shell scripts</strong></p>
+<ul>
+<li>Prone to costly errors, a single mistake can change the command which might be harmful</li>
+<li>Slow execution speed</li>
+<li>Design flaws within the language syntax or implementation</li>
+<li>Not well suited for large and complex task</li>
+<li>Provide minimal data structure unlike other scripting languages. etc</li>
+</ul>
+<p align="center"><strong>Simple demo of shell scripting using Bash Shell</strong></p>
+<p>If you work on terminal, something you  traverse deep down in directories. Then for coming few directories up in path we have to execute command like this as shown below to get to the “python” directory –<br/>
+<img src="../../../imgs/os/04cdbf1b3c6f753c4a47c6b55540eb01.jpg" alt="" width="809" height="435" class="aligncenter size-full wp-image-187218"/></p>
+<p>It is quite frustrating, so why not we can have a utility where we just have to type the name of directory and we can directly jump to that without executing <strong>“cd ../”</strong> command again and again. Save the script as <strong>“jump.sh”</strong></p>
+<pre class="brush: bash; title: ; notranslate" title=""># !/bin/bash
+
+# A simple bash script to move up to desired directory level directly
+
+function jump()
+{
+    # original value of Internal Field Separator
+    OLDIFS=$IFS
+
+    # setting field separator to "/" 
+    IFS=/
+
+    # converting working path into array of directories in path
+    # eg. /my/path/is/like/this
+    # into [, my, path, is, like, this]
+    path_arr=($PWD)
+
+    # setting IFS to original value
+    IFS=$OLDIFS
+
+    local pos=-1
+
+    # ${path_arr[@]} gives all the values in path_arr
+    for dir in "${path_arr[@]}"
+    do
+        # find the number of directories to move up to
+        # reach at target directory 
+        pos=$[$pos+1]
+        if [ "$1" = "$dir" ];then
+
+            # length of the path_arr
+            dir_in_path=${#path_arr[@]}
+
+            #current working directory
+            cwd=$PWD
+            limit=$[$dir_in_path-$pos-1]
+            for ((i=0; i&lt;limit; i++))
+            do
+                cwd=$cwd/..
+            done
+            cd $cwd
+            break
+        fi
+    done
+}
+</pre>
+<p>For now we cannot execute our shell script because it do not have permissions. We have to make it executable by typing following command – </p>
+<pre>$ chmod -x path/to/our/file/jump.sh
+</pre>
+<p>Now to make this available on every terminal session, we have to put this in <strong>“.bashrc”</strong> file.<br/>
+<strong>“.bashrc”</strong> is a shell script that Bash shell runs whenever it is started interactively. The purpose of a .bashrc file is to provide a place where you can set up variables, functions and aliases, define our prompt and define other settings that we want to use whenever we open a new terminal window.<br/>
+Now open terminal and type following command – </p>
+<pre>$ echo “source ~/path/to/our/file/jump.sh”&gt;&gt; ~/.bashrc
+</pre>
+<p>Now open you terminal and try out new “jump” functionality by typing following command-</p>
+<pre>$ jump dir_name
+</pre>
+<p>just like below screenshot –<br/>
+<img src="../../../imgs/os/e8fc342b5a86a8de384ec9a27a48887b.jpg" alt="" width="809" height="435" class="aligncenter size-full wp-image-187104"/></p>
+<p><strong>Resources for learning Bash Scripting</strong></p>
+<ul>
+<li><a href="https://bash.cyberciti.biz/guide/The_bash_shell" target="_blank">https://bash.cyberciti.biz/guide/The_bash_shell</a></li>
+<li><a href="http://tldp.org/LDP/abs/html/" target="_blank">http://tldp.org/LDP/abs/html/</a></li>
+</ul>
+<p><strong>References</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Shell_script" target="_blank">https://en.wikipedia.org/wiki/Shell_script</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Shell_(computing)" target="_blank">https://en.wikipedia.org/wiki/Shell_(computing)</a></li>
+</ul>
+
+<div class="noIdeBtnDiv">
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+<p></p>
+</ul>
+</ul>
+</ul>
+</ul>
+</div>
+</body>
+</html>

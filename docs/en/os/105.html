@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> File Directory | Path Name</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/file-system-operating-systems/" rel="noopener" target="_blank">File Systems</a></p>
+<p><strong>Hierarchical Directory Systems –</strong></p>
+<p>Directory is maintained in the form of a tree.Each user can have as many directories as are needed so, that files can be grouped together in natural way.</p>
+<p>Advantages of this structure:</p>
+<ul>
+<li>Searching is efficient</li>
+<li>Groping capability of files increase</li>
+</ul>
+<p>When the file system is organized as a directory tree, some way is needed for specifying file names.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Two different methods are commonly used:</p>
+<ol>
+<li><strong>Absolute Path name –</strong> In this method, each file is given an <strong>absolute path</strong> name consisting of the path from the root directory to the file. As an example, the path <strong>/usr/ast/mailbox</strong> means that the root directory contains a subdirectory usr, which in turn contains a subdirectory ast, which contains the file mailbox.
+<p>Absolute path names always start at the root directory and are unique.</p>
+<p>In UNIX the components of the path are separated by /. In Windows the separator is \.<br/>
+           <strong>Windows</strong> \usr\ast\mailbox<br/>
+           <strong>UNIX</strong>  /usr\ast\mailbox</p>
+</li>
+<li><strong>Relative Path name –</strong> This is used in conjunction with the concept of the <strong>working directory</strong> (also called the <strong>current directory</strong>).A user can designate one directory as the current working directory, in which case all path names not beginning at the root directory are taken relative to the working directory.
+<p>For <strong>example</strong>, if the current working directory is /usr/ast, then the file whose absolute path is /usr/ast/mailbox can be referenced simply as mailbox.<br/>
+In other words, the UNIX<br/>
+command : <strong> cp /usr/ast/mailbox /usr/ast/mailbox.bak</strong><br/>
+and the command : <strong> cp mailbox mailbox.bak</strong><br/>
+do exactly the same thing if the working directory is /usr/ast.
+</p></li>
+</ol>
+<p><strong> When to use which approach ? </strong><br/>
+Some programs need to access a specific file without regard to what the working directory is. In that case, they should always use absolute path names. For example, a spelling checker might need to read /usr/lib/dictionary to do its work. It should use the full, absolute path name in this case because it does not know what the working directory will be when it is called. The absolute path name will always work, no matter what the working directory is.</p>
+<p>Of course, if the spelling checker needs a large number of files from /usr/lib, an alternative approach is for it to issue a system call to change its working directory to /usr/lib, and then use just dictionary as the first parameter to open. By explicitly changing the working directory, it knows for sure where it is in the directory tree, so it can then use relative paths.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

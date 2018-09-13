@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Banker’s Algorithm : Print all the safe state (or safe sequences)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/operating-system-resource-allocation-graph-rag/" rel="noopener" target="_blank">Resource Allocation Graph (RAG)</a>, <a href="https://www.geeksforgeeks.org/operating-system-bankers-algorithm/" rel="noopener" target="_blank">Banker’s Algorithm</a>, <a href="https://www.geeksforgeeks.org/program-bankers-algorithm-set-1-safety-algorithm/" rel="noopener" target="_blank">Program for Banker’s Algorithm</a><br/>
+Banker’s Algorithm is a resource allocation and deadlock avoidance algorithm. This algorithm test for safety simulating the allocation for predetermined maximum possible amounts of all resources, then makes an “s-state” check to test for possible activities, before deciding whether allocation should be allowed to continue.</p>
+<p>In simple terms, it checks if allocation of any resource will lead to deadlock or not, OR is it safe to allocate a resource to a process and if not then resource is not allocated to that process. Determining a safe sequence(even if there is only 1) will assure that system will not go into deadlock.</p>
+<p>Banker’s algorithm is generally used to find if a safe sequence exist or not. But here we will determine the total number of safe sequences and print all safe sequences.</p>
+<p>The data structure used are: </p>
+<ul>
+<li>Available vector</li>
+<li>Max Matrix</li>
+<li>Allocation Matrix</li>
+<li>Need Matrix</li>
+</ul>
+<p>Example:</p>
+<pre>Input :  
+<img src="../../../imgs/os/e04dba56807f51fd48800238a868e8f0.jpg" alt="" width="464" height="57" class="alignnone size-full wp-image-289749"/> 
+<img src="../../../imgs/os/0327c9b5da99b4f74bdf45681e500e99.jpg" alt="" width="577" height="187" class="alignnone size-full wp-image-288942"/>
+
+Output : Safe sequences are:
+P2--&gt; P4--&gt; P1--&gt; P3
+P2--&gt; P4--&gt; P3--&gt; P1
+P4--&gt; P2--&gt; P1--&gt; P3
+P4--&gt; P2--&gt; P3--&gt; P1
+
+There are total 4 safe-sequences
+</pre>
+<p><b>Explanation –</b><br/>
+Total resources are R1 = 10, R2 = 5, R3 = 7 and allocated resources are R1 = (0+2+3+2 =) 7, R2 = (1+0+0+1 =) 2, R3 = (0+0+2+1 =) 3. Therefore, remaining resources are R1 = (10 – 7 =) 3, R2 = (5 – 2 =) 3, R3 = (7 – 3 =) 4. </p>
+<p>Remaining available = Total resources – allocated resources<br/>
+and<br/>
+Remaining need = max – allocated</p>
+<p><img src="../../../imgs/os/22ae60752f6df56f11d1e7fd2dd6f9c0.jpg" alt="" width="639" height="138" class="aligncenter size-full wp-image-293832"/></p>
+<p>So, we can start from either P2 or P4. We can not satisfy remaining need from available resources of either P1 or P3 in first or second attempt step of Banker’s algorithm. There are only four possible safe sequences. These are :<br/>
+P2–&gt; P4–&gt; P1–&gt; P3<br/>
+P2–&gt; P4–&gt; P3–&gt; P1<br/>
+P4–&gt; P2–&gt; P1–&gt; P3<br/>
+P4–&gt; P2–&gt; P3–&gt; P1</p>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Code –</p>
+<pre class="brush: cpp; title: ; notranslate" title="">// CPP Program to Print all possible safe sequences using banker's algorithm
+#include &lt;iostream&gt;
+#include &lt;string.h&gt;
+#include &lt;vector&gt;
+// total number of process
+#define P 4
+// total number of resources
+#define R 3
+
+// total safe-sequences
+int total = 0;
+
+using namespace std;
+
+// function to check if process
+// can be allocated or not
+bool is_available(int process_id, int allocated[][R],
+                  int max[][R], int need[][R], int available[])
+{
+
+    bool flag = true;
+
+    // check if all the available resources
+    // are less greater than need of process
+    for (int i = 0; i &lt; R; i++) {
+
+        if (need[process_id][i] &gt; available[i])
+            flag = false;
+    }
+
+    return flag;
+}
+
+// Print all the safe-sequences
+void safe_sequence(bool marked[], int allocated[][R], int max[][R],
+                   int need[][R], int available[], vector&lt;int&gt; safe)
+{
+
+    for (int i = 0; i &lt; P; i++) {
+
+        // check if it is not marked
+        // already and can be allocated
+        if (!marked[i] &amp;&amp; is_available(i, allocated, max, need, available)) {
+
+            // mark the process
+            marked[i] = true;
+
+            // increase the available
+            // by deallocating from process i
+            for (int j = 0; j &lt; R; j++)
+                available[j] += allocated[i][j];
+
+            safe.push_back(i);
+            // find safe sequence by taking process i
+            safe_sequence(marked, allocated, max, need, available, safe);
+            safe.pop_back();
+
+            // unmark the process
+            marked[i] = false;
+
+            // decrease the available
+            for (int j = 0; j &lt; R; j++)
+                available[j] -= allocated[i][j];
+        }
+    }
+
+    // if a safe-sequence is found, display it
+    if (safe.size() == P) {
+
+        total++;
+        for (int i = 0; i &lt; P; i++) {
+
+            cout &lt;&lt; "P" &lt;&lt; safe[i] + 1;
+            if (i != (P - 1))
+                cout &lt;&lt; "--&gt; ";
+        }
+
+        cout &lt;&lt; endl;
+    }
+}
+
+// Driver Code
+int main()
+{
+
+    // allocated matrix of size P*R
+    int allocated[P][R] = { { 0, 1, 0 },
+                            { 2, 0, 0 },
+                            { 3, 0, 2 },
+                            { 2, 1, 1 } };
+
+    // max matrix of size P*R
+    int max[P][R] = { { 7, 5, 3 },
+                      { 3, 2, 2 },
+                      { 9, 0, 2 },
+                      { 2, 2, 2 } };
+
+    // Initial total resources
+    int resources[R] = { 10, 5, 7 };
+
+    // available vector of size R
+    int available[R];
+
+    for (int i = 0; i &lt; R; i++) {
+
+        int sum = 0;
+        for (int j = 0; j &lt; P; j++)
+            sum += allocated[j][i];
+
+        available[i] = resources[i] - sum;
+    }
+
+    // safe vector for displaying a safe-sequence
+    vector&lt;int&gt; safe;
+
+    // marked of size P for marking allocated process
+    bool marked[P];
+    memset(marked, false, sizeof(marked));
+
+    // need matrix of size P*R
+    int need[P][R];
+    for (int i = 0; i &lt; P; i++)
+        for (int j = 0; j &lt; R; j++)
+            need[i][j] = max[i][j] - allocated[i][j];
+
+    cout &lt;&lt; "Safe sequences are:" &lt;&lt; endl;
+    safe_sequence(marked, allocated, max, need, available, safe);
+
+    cout &lt;&lt; "\nThere are total " &lt;&lt; total &lt;&lt; " safe-sequences" &lt;&lt; endl;
+    return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>Safe sequences are:
+P2--&gt; P4--&gt; P1--&gt; P3
+P2--&gt; P4--&gt; P3--&gt; P1
+P4--&gt; P2--&gt; P1--&gt; P3
+P4--&gt; P2--&gt; P3--&gt; P1
+
+There are total 4 safe-sequences
+</pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

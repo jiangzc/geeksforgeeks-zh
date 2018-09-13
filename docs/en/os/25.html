@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Program for FCFS Scheduling | Set 2 (Processes with different arrival times)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>We have already discussed <a href="https://www.geeksforgeeks.org/program-fcfs-scheduling-set-1/">FCFS Scheduling of processes with same arrival time</a>. In this post, scenario when processes have different arrival times are discussed. Given n processes with their burst times and arrival times, the task is to find average waiting time and average turn around time using FCFS scheduling algorithm.<br/>
+FIFO simply queues processes in the order they arrive in the ready queue. Here, the process that comes first will be executed first and next process will start only after the previous gets fully executed.</p>
+<ol>
+<li>Completion Time:    Time at which process completes its execution.</li>
+<li>Turn Around Time:   Time Difference between completion time and arrival time.  Turn Around Time = Completion Time – Arrival Time </li>
+<li>Waiting Time(W.T): Time Difference between turn around time and burst time.<br/>
+     Waiting Time = Turn Around Time – Burst Time</li>
+</ol>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/os1.png"><img src="../../../imgs/os/012bc75fb169c0f5da122a60d7ead003.jpg" alt="ff2_" width="1217" height="341" class="alignnone size-full wp-image-164867"/></a><br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/ghant-chart.png"><img src="../../../imgs/os/ca246ce6d07306865c6aa32d785040f2.jpg" alt="ff23_" width="1292" height="196" class="alignnone size-full wp-image-164866"/></a></p>
+<pre>Process     Wait Time : Service Time - Arrival Time
+   P0                        0 - 0   = 0
+   P1                        5 - 1   = 4
+   P2                        8 - 2   = 6
+   P3                        16 - 3  = 13
+
+Average Wait Time: (0 + 4 + 6 + 13) / 4 = 5.75
+</pre>
+<p><strong>Service Time :</strong> Service time means amount of time after which a process can start  execution. It is  summation of burst time of previous processes (Processes that came before)</p>
+<p><strong>Changes in code as compare to <a href="https://www.geeksforgeeks.org/program-fcfs-scheduling-set-1/">code of FCFS with same arrival time</a>:</strong><br/>
+To find waiting time: Time taken by all processes before the current process to be started (i.e. burst time of all previous processes) – arrival time of current process<br/>
+<strong>wait_time[i] = (bt[0] + bt[1] +…… bt[i-1] ) – arrival_time[i]</strong></p>
+<p><b>Implementation:</b></p>
+<pre>1- Input the processes along with their burst time(bt)
+   and arrival time(at)
+2- Find waiting time for all other processes i.e. for
+   a given process  i:
+       wt[i] = (bt[0] + bt[1] +...... bt[i-1]) - at[i] 
+3- Now find <strong>turn around time </strong>
+          = waiting_time + burst_time for all processes
+4- <strong>Average waiting time</strong> = 
+                    total_waiting_time / no_of_processes
+5- <strong>Average turn around time</strong> = 
+                 total_turn_around_time / no_of_processes
+</pre>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre class="brush: cpp; title: ; notranslate" title="">// C++ program for implementation of FCFS
+// scheduling with different arrival time
+#include&lt;iostream&gt;
+using namespace std;
+
+// Function to find the waiting time for all
+// processes
+void findWaitingTime(int processes[], int n, int bt[],
+                                   int wt[], int at[])
+{
+    int service_time[n];
+    service_time[0] = 0;
+    wt[0] = 0;
+
+    // calculating waiting time
+    for (int i = 1; i &lt; n ; i++)
+    {
+        // Add burst time of previous processes
+        service_time[i] = service_time[i-1] + bt[i-1];
+
+        // Find waiting time for current process =
+        // sum - at[i]
+        wt[i] = service_time[i] - at[i];
+
+        // If waiting time for a process is in negative
+        // that means it is already in the ready queue
+        // before CPU becomes idle so its waiting time is 0
+        if (wt[i] &lt; 0)
+            wt[i] = 0;
+    }
+}
+
+// Function to calculate turn around time
+void findTurnAroundTime(int processes[], int n, int bt[],
+                                      int wt[], int tat[])
+{
+    // Calculating turnaround time by adding bt[i] + wt[i]
+    for (int i = 0; i &lt; n ; i++)
+        tat[i] = bt[i] + wt[i];
+}
+
+// Function to calculate average waiting and turn-around
+// times.
+void findavgTime(int processes[], int n, int bt[], int at[])
+{
+    int wt[n], tat[n];
+
+    // Function to find waiting time of all processes
+    findWaitingTime(processes, n, bt, wt, at);
+
+    // Function to find turn around time for all processes
+    findTurnAroundTime(processes, n, bt, wt, tat);
+
+    // Display processes along with all details
+    cout &lt;&lt; "Processes " &lt;&lt; " Burst Time " &lt;&lt; " Arrival Time "
+         &lt;&lt; " Waiting Time " &lt;&lt; " Turn-Around Time "
+         &lt;&lt; " Completion Time \n";
+    int total_wt = 0, total_tat = 0;
+    for (int i = 0 ; i &lt; n ; i++)
+    {
+        total_wt = total_wt + wt[i];
+        total_tat = total_tat + tat[i];
+        int compl_time = tat[i] + at[i];
+        cout &lt;&lt; " " &lt;&lt; i+1 &lt;&lt; "\t\t" &lt;&lt; bt[i] &lt;&lt; "\t\t"
+             &lt;&lt; at[i] &lt;&lt; "\t\t" &lt;&lt; wt[i] &lt;&lt; "\t\t "
+             &lt;&lt; tat[i]  &lt;&lt;  "\t\t " &lt;&lt; compl_time &lt;&lt; endl;
+    }
+
+    cout &lt;&lt; "Average waiting time = "
+         &lt;&lt; (float)total_wt / (float)n;
+    cout &lt;&lt; "\nAverage turn around time = "
+         &lt;&lt; (float)total_tat / (float)n;
+}
+
+// Driver code
+int main()
+{
+    // Process id's
+    int processes[] = {1, 2, 3};
+    int n = sizeof processes / sizeof processes[0];
+
+    // Burst time of all processes
+    int burst_time[] = {5, 9, 6};
+
+    // Arrival time of all processes
+    int arrival_time[] = {0, 3, 6};
+
+    findavgTime(processes, n, burst_time, arrival_time);
+
+    return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>Processes  Burst Time  Arrival Time  Waiting Time  Turn-Around Time  Completion Time 
+ 1        5        0        0         5         5
+ 2        9        3        2         11         14
+ 3        6        6        8         14         20
+Average waiting time = 3.33333
+Average turn around time = 10
+</pre>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

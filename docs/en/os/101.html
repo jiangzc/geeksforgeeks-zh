@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Tracing memory usage in Linux</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Often it’s necessary to trace memory usage of the system in order to determine the program that consumes all CPU resources or the program that is responsible to slowing down the activities of the CPU. Tracing memory usage also becomes necessary to determine the load on the server. Parsing the usage data enables the servers to be able to balance the load and serve the user’s request without slowing down the system.</p>
+<ol>
+<li><strong>free </strong> Displays the amount of memory which is currently available and used by the system(both physical and swapped). free command gathers this data by parsing /proc/meminfo. By default, the amount of memory is display in kilobytes.
+<p align="center"><strong>free command in UNIX</strong></p>
+<p>    <a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Screenshot-from-2017-06-03-11-16-35-e1496478387353.png"><img src="../../../imgs/os/a148f712b0d816a6b3b62252b4f8ac01.jpg"/></a></p>
+<pre><strong>watch -n 5 free -m</strong> watch command is used to execute a program periodically.</pre>
+<p>    <a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Screenshot-from-2017-06-03-11-46-53-e1496478442792.png"><img src="../../../imgs/os/32ab8f5ef2f7da3a561f268c65f4510b.jpg"/></a></p>
+<p>    According to the image above, there is a total of 2000 MB of RAM and 1196 MB of swap space allotted to Linux system. Out of this 2000 MB of RAM, 834 MB is currently used where as 590 MB is free. Similarly for swap space, out of 1196 MB, 0 MB is use and 1196 MB is free currently in the system.</p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+</li>
+<li><strong>vmstat</strong>  vmstat command is used to display virtual memory statistics of the system. This command reports data about the memory, paging, disk and CPU activities, etc. The first use of this command returns the data averages since the last reboot. Further uses returns the data based on sampling periods of length delays.
+<p>    <a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Screenshot-from-2017-06-03-11-21-16-e1496478359885.png"><img src="../../../imgs/os/960671086cb6d2e072e4b79628668308.jpg"/></a></p>
+<pre><strong>vmstat -d</strong> Reports disk statistics</pre>
+<p>    <a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Screenshot-from-2017-06-03-11-21-50.png"><img src="../../../imgs/os/4ca5164f28893b3bd6864558f7f4e0a0.jpg"/></a></p>
+<pre><strong>vmstat -s </strong>Displays the amount of memory used and available</pre>
+<p>    <a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Screenshot-from-2017-06-03-11-22-54-e1496478489876.png"><img src="../../../imgs/os/bc526710f139d7603e9d591399db8760.jpg"/></a></p>
+</li>
+<li><strong>top</strong>  top command displays all the currently running process in the system. This command displays the list of processes and thread currently being handled by the kernel. top command can also be used to monitor the total amount of memory usage.
+<p>    <a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Screenshot-from-2017-06-03-11-31-08.png"><img src="../../../imgs/os/f6c0f285768ea0a55b873721cf775837.jpg"/></a></p>
+<pre><strong> top -H</strong> Threads-mode operation
+    Displays individual thread that are currently in the system. Without this command 
+option, a summation of all thread in each process is displayed.</pre>
+<p>    <a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Screenshot-from-2017-06-03-11-34-39.png"><img src="../../../imgs/os/a02e52408e70df515ea8b965224a4037.jpg"/></a></p>
+</li>
+<li><strong>/proc/meminfo</strong>  This file contains all the data about the memory usage. It provides the current memory usage details rather than old stored values.
+<p>    <a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Screenshot-from-2017-06-03-11-42-25-e1496478415564.png"><img src="../../../imgs/os/dba675622b0f95c888e241678f8cb7f6.jpg"/></a></p>
+</li>
+<li><strong>htop </strong> htop is an interactive process viewer. This command is similar to top command except that it allows to scroll vertically and horizontally to allows users to view all processes running on the system, along with their full command line as well as viewing them as a process tree, selecting multiple processes and acting on them all at once.
+<p align="center"><strong>working of htop command in UNIX:</strong></p>
+<p><a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Screenshot-from-2017-06-03-13-48-49.png"><img src="../../../imgs/os/6a122c136573f309e16dd2665c6c259f.jpg"/></a></p>
+</li>
+</ol>
+<p><strong>Reference:</strong></p>
+<ul>
+<li><strong><a href="http://manpages.ubuntu.com/">Ubuntu Manual</a></strong></li>
+</ul>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

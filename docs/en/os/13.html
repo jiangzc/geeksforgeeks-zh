@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Introduction of System Call</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In computing, a <b>system call</b> is the programmatic way in which a computer program requests a service from the kernel of the operating system it is executed on. A system call is a way for programs to <b>interact with the operating system</b>. A computer program makes a system call when it makes a request to the operating system’s kernel. System call <b>provides</b> the services of the operating system to the user programs via Application Program Interface(API). It provides an interface between a process and operating system to allow user-level processes to request services of the operating system. System calls are the only entry points into the kernel system. All programs needing resources must use system calls.</p>
+<p><strong>Services Provided by System Calls :</strong></p>
+<ol>
+<li> Process creation and management</li>
+<li> Main memory management</li>
+<li> File Access, Directory and File system management</li>
+<li> Device handling(I/O)</li>
+<li> Protection</li>
+<li> Networking, etc.</li>
+
+<p><strong>Types of System Calls :</strong> There are 5 different categories of system calls –</p>
+<ol>
+<li><strong>Process control:</strong> end, abort, create, terminate, allocate and free memory.</li>
+<li> <strong>File management:</strong> create, open, close, delete, read file etc.</li>
+<li> Device management</li>
+<li> Information maintenance</li>
+<li> Communication</li>
+</ol>
+<p><strong>Examples of Windows and Unix System Calls – </strong></p>
+<pre><font size="4">
+</font><table>
+<tbody><tr>
+<th></th>
+<th>Windows</th>
+<th>Unix</th>
+</tr>
+<tr>
+<td>
+Process Control</td>
+<td>CreateProcess()
+ExitProcess()
+WaitForSingleObject()</td>
+<td>fork()
+exit()
+wait()</td>
+</tr>
+<tr>
+<td>
+
+File Manipulation</td>
+<td>CreateFile()
+ReadFile()
+WriteFile()
+CloseHandle()</td>
+<td>open()
+read()
+write()
+close()</td>
+</tr>
+<tr>
+<td>
+Device Manipulation</td>
+<td>SetConsoleMode()
+ReadConsole()
+WriteConsole()</td>
+<td>ioctl()
+read()
+write()</td>
+</tr>
+<tr>
+<td>
+Information Maintenance</td>
+<td>GetCurrentProcessID()
+SetTimer()
+Sleeo()</td>
+<td>getpid()
+alarm()
+sleep()</td>
+</tr>
+<tr>
+<td>
+Communication</td>
+<td>CreatePipe()
+CreateFileMapping()
+MapViewOfFile()</td>
+<td>pipe()
+shmget()
+mmap()</td>
+</tr>
+<tr>
+<td>
+Protection</td>
+<td>SetFileSecurity()
+InitlializeSecurityDescriptor()
+SetSecurityDescriptorGroup()</td>
+<td>chmod()
+umask()
+chown()</td>
+</tr>
+
+</tbody>
+</table>
+
+</pre>
+<p><strong>Reference –</strong><a href="http://www.cs.columbia.edu/~jae/4118/L02-intro2-osc-ch2.pdf" rel="noopener" target="_blank">http://www.cs.columbia.edu/~jae/4118/L02-intro2-osc-ch2.pdf</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</ol>
+</div>
+</body>
+</html>

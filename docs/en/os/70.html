@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Thread</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>What is a Thread?</strong><br/>
+A thread is a path of execution within a process. Also, a process can contain multiple threads. <span id="more-142470"></span><br/>
+<strong>Why Multithreading?</strong><br/>
+Thread is also known as lightweight process. The idea is achieve parallelism by dividing a process into multiple threads. For example, in a browser, multiple tabs can be different threads. MS word uses multiple threads, one thread to format the text, other thread to process inputs etc. More advantages of multithreading are discussed below<br/>
+<strong>Process vs Thread?</strong><br/>
+The typical difference is that threads within the same process run in a shared memory space, while processes run in separate memory spaces.<br/>
+Threads are not independent of one other like processes as a result threads shares with other threads their code section, data section and OS resources like open files and signals. But, like process, a thread has its own program counter (PC), a register set, and a stack space.<br/>
+<em><strong>Advantages of Thread over Process</strong></em><br/>
+<em>1. Responsiveness: </em> If the process is divided into multiple threads, if one thread completed its execution, then its output can be immediately responded.</p>
+<p><em>2. Faster context switch: </em>Context switch time between threads is less compared to process context switch. Process context switch is more overhead for CPU.</p>
+<p><em>3. Effective Utilization of Multiprocessor system: </em> If we have multiple threads in a single process, then we can schedule multiple threads on multiple processor. This will make process execution faster.</p>
+<p><em>4. Resource sharing: </em> Resources like code, data and file can be shared among all threads within a process.<br/>
+Note : stack and registers can’t be shared among the threads. Each thread have its own stack and registers.</p>
+<p><em>5. Communication: </em>Communication between multiple thread is easier as thread shares common address space. while in process we have to follow some specific communication technique for communication between two process.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><em>6. Enhanced Throughput of the system: </em> If process is divided into multiple threads and each thread function is considered as one job, then the number of jobs completed per unit time is increased. Thus, increasing the throughput of the system.<br/>
+<strong>Types of Thread</strong><br/>
+There are two types of thread.<br/>
+User Level Thread<br/>
+Kernel Level Thread.<br/>
+Refer <a href="http://quiz.geeksforgeeks.org/operating-system-user-level-thread-vs-kernel-level-thread/" target="_blank">User Thread vs Kernel Thread</a> for more details.</p>
+<p>Below are Previous Year Gate Questions on Threads:<br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2011-question-16/">http://quiz.geeksforgeeks.org/gate-gate-cs-2011-question-16/</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2007-question-17/">http://quiz.geeksforgeeks.org/gate-gate-cs-2007-question-17/</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2014-set-1-question-30/">http://quiz.geeksforgeeks.org/gate-gate-cs-2014-set-1-question-30/</a></p>
+<p><strong>References:</strong><br/>
+<a href="http://qa.geeksforgeeks.org/42/process-vs-threads?show=42#q42">Process Vs Thread</a><br/>
+<a href="https://www.geeksforgeeks.org/multithreading-c-2/">Multithreading in C</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

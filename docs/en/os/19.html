@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Process Table and Process Control Block (PCB)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>While creating a process the operating system performs several operations. To identify these process, it must identify each process, hence it assigns a process identification number (PID) to each process. As the operating system supports multi-programming, it needs to keep track of the all the processes. For this task, the process control block (PCB) is used to track the process’s execution status. Each block of memory contains information about the process state, program counter, stack pointer, status of opened files, scheduling algorithms, etc. All these information is required and must be saved when the process is switched from one state to another. When the process made transitions from one state to another, the operating system must update information in the process’s PCB.</p>
+<p>A process control block (PCB) contains information about the process, i.e. registers, quantum, priority, etc. The process table is an array of PCB’s, that means logically contains a PCB for all of the current processes in the system.</p>
+<p><img src="../../../imgs/os/57d9149decf4ab398a22f17ed61976ea.jpg" alt="" width="244" height="243" class="aligncenter size-full wp-image-270470"/></p>
+<ul>
+<li><b>Pointer –</b> It is a stack pointer which is required to be saved when the process is switched from one state to another to retain the current position of the process.</li>
+<li><b>Process state –</b> It stores the respective state of the process.</li>
+<li><b>Process number –</b> Every process is assigned with a unique id is known as processed which stores the process identifier.</li>
+<li><b>Program counter –</b> It stores the counter which contains the address of the next instruction that is to be executed for the process.</li>
+<li><b>Register –</b> These are the CPU registers which includes: accumulator, base, registers and general purpose registers.</li>
+<li><b>Memory limits –</b> This field contains the information about memory management system used by operating system. This may include the page tables, segment tables etc.</li>
+<li><b>Open files list –</b> This information includes the list of files opened for a process.</li>
+</ul>
+<p><b>Miscellaneous accounting and status data –</b> This field includes the information about the amount of CPU used, time constraints, jobs or process number, etc.<br/>
+The process control block stores the register content also known as execution content of the processor when it was blocked from running. This execution content architecture enables operating system to restore a process’s execution context when the process returns to the running state. When the process made transitions from one state to another, the operating system update its information in the process’s PCB. Operating system maintains pointers to each process’s PCB in a process table so that it can access the PCB quickly.</p>
+<p><img src="../../../imgs/os/f16170b1354fa9012932fb889171cdc7.jpg" alt="" width="512" height="273" class="aligncenter size-full wp-image-270471"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><div>
+
+</div>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

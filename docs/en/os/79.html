@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Buddy System – Memory allocation technique</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/operating-system-memory-management-partition-allocation-method/" rel="noopener" target="_blank">Partition Allocation Methods</a><br/>
+<b>Static partition</b> schemes suffer from the <b>limitation</b> of having the fixed number of active processes and the usage of space may also not be optimal. The <b>buddy system</b> is a memory allocation and management algorithm that manages memory in <b>power of two increments</b>. Assume the memory size is 2U, suppose a size of S is required.</p>
+<ul>
+<li><strong>If 2<sup>U-1</sup>&lt;S&lt;=2<sup>U</sup>:</strong> Allocate the whole block</li>
+<li><strong>Else:</strong> Recursively divide the block equally and test the condition at each time, when it satisfies, alloacate the block and get out the loop.</li>
+</ul>
+<p>System also keep the record of all the unallocated blocks each and can merge these different size blocks to make one big chunk.<br/>
+<strong>Advantage –</strong></p>
+<ul>
+<li>Easy to implement a buddy system</li>
+<li>Allocates block of correct size</li>
+<li>It is easy to merge adjacent holes</li>
+<li>Fast to allocate memory and de-allocating memory</li>
+</ul>
+<p><strong>Disadvantage –</strong></p>
+<ul>
+<li>It requires all allocation unit to be powers of two</li>
+<li>It leads to  internal fragmentation</li>
+</ul>
+<p><strong>Example –</strong><br/>
+Consider a system having buddy system with physical address space 128 KB.Calculate the size of partition for 18 KB process.<br/>
+<strong>Solution –</strong></p>
+<p><img src="../../../imgs/os/f78d29332b2074dd66ebad5c8ac0f3fa.jpg" alt="" width="651" height="460" class="aligncenter size-full wp-image-284309"/><br/>
+So, size of partition for 18 KB process = 32 KB. It divides by 2, till possible to get minimum block to fit 18 KB. </p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

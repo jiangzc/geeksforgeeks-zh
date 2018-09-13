@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Program for Page Replacement Algorithms | Set 1 ( LRU)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite: <a href="https://www.geeksforgeeks.org/operating-system-page-replacement-algorithm/">Page Replacement Algorithms</a></p>
+<p>In operating systems that use paging for memory management, page replacement algorithm are needed to decide which page needed to be replaced when new page comes in. Whenever a new page is referred and not present in memory, page fault occurs and Operating System replaces one of the existing pages with newly needed page.  Different page replacement algorithms suggest different ways to decide which page to replace. The target for all algorithms is to reduce number of page faults.</p>
+<p>In <strong>L</strong>east <strong>R</strong>ecently <strong>U</strong>sed (LRU) algorithm is a Greedy algorithm where the page to be replaced is least recently used. The idea is based on locality of reference, the least recently used page is not likely </p>
+<p>Let say the page reference string 7 0 1 2 0 3 0 4 2 3 0 3 2 . Initially we have 4 page slots empty.<br/>
+Initially all slots are empty, so when 7 0 1 2 are allocated to the empty slots —&gt;<strong> 4 Page faults</strong><br/>
+0 is already their so —&gt; <strong>0 Page fault.</strong><br/>
+when 3 came it will take the place of 7 because it is least recently used —&gt;<strong>1 Page fault</strong><br/>
+0 is already in memory so —&gt;<strong> 0 Page fault</strong>.<br/>
+4 will takes place of 1 —&gt;<strong> 1 Page Fault</strong><br/>
+Now for the further page reference string —&gt;<strong> 0 Page fault</strong> because they are already available in the memory.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/LRU-page-replacement.png"><img src="../../../imgs/os/c079451c9d30759a7bc67bb93e099797.jpg" alt="LRU" width="468" height="231" class="alignnone size-full wp-image-148815"/></a></p>
+<p><em><strong>Given memory capacity (as number of pages it can hold) and a string representing pages to be referred, write a function to find number of page faults.</strong></em></p>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc">
+                                                <a href="https://practice.geeksforgeeks.org/problems/page-faults-in-lru/0">Recommended: Please solve it on “<b><i><u>PRACTICE</u></i></b> ” first, before moving on to the solution.</a><br/>
+                                            </h2>
+<p></p>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre>Let <strong>capacity</strong> be the number of pages that
+memory can hold.  Let <strong>set</strong> be the current
+set of pages in memory.
+
+1- Start traversing the pages.
+ i) <strong>If set holds less pages than capacity.</strong>
+   a) Insert page into the set one by one until 
+      the size  of <strong>set</strong> reaches <strong>capacity</strong> or all
+      page requests are processed.
+   b) Simultaneously maintain the recent occurred
+      index of each page in a map called <strong>indexes</strong>.
+   c) Increment page fault
+ ii) <strong>Else</strong> 
+   <strong>If</strong> current page is present in <strong>set</strong>, do nothing.
+   <strong>Else</strong> 
+     a) Find the page in the set that was least 
+     recently used. We find it using index array.
+     We basically need to replace the page with
+     minimum index.
+     b) Replace the found page with current page.
+     c) Increment page faults.
+     d) Update index of current page.
+
+2. Return page faults.
+</pre>
+<p>Below is implementation of above steps.</p>
+<div class="responsive-tabs">
+<h2 class="tabtitle sigil_not_in_toc">C++</h2>
+<div class="tabcontent">
+
+<pre class="brush: cpp; highlight: [5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76]; title: ; notranslate" title="">//C++ implementation of above algorithm
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+// Function to find page faults using indexes
+int pageFaults(int pages[], int n, int capacity)
+{
+    // To represent set of current pages. We use
+    // an unordered_set so that we quickly check
+    // if a page is present in set or not
+    unordered_set&lt;int&gt; s;
+
+    // To store least recently used indexes
+    // of pages.
+    unordered_map&lt;int, int&gt; indexes;
+
+    // Start from initial page
+    int page_faults = 0;
+    for (int i=0; i&lt;n; i++)
+    {
+        // Check if the set can hold more pages
+        if (s.size() &lt; capacity)
+        {
+            // Insert it into set if not present
+            // already which represents page fault
+            if (s.find(pages[i])==s.end())
+            {
+                s.insert(pages[i]);
+
+                // increment page fault
+                page_faults++;
+            }
+
+            // Store the recently used index of
+            // each page
+            indexes[pages[i]] = i;
+        }
+
+        // If the set is full then need to perform lru
+        // i.e. remove the least recently used page
+        // and insert the current page
+        else
+        {
+            // Check if current page is not already
+            // present in the set
+            if (s.find(pages[i]) == s.end())
+            {
+                // Find the least recently used pages
+                // that is present in the set
+                int lru = INT_MAX, val;
+                for (auto it=s.begin(); it!=s.end(); it++)
+                {
+                    if (indexes[*it] &lt; lru)
+                    {
+                        lru = indexes[*it];
+                        val = *it;
+                    }
+                }
+
+                // Remove the indexes page
+                s.erase(val);
+
+                // insert the current page
+                s.insert(pages[i]);
+
+                // Increment page faults
+                page_faults++;
+            }
+
+            // Update the current page index
+            indexes[pages[i]] = i;
+        }
+    }
+
+    return page_faults;
+}
+
+// Driver code
+int main()
+{
+    int pages[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2};
+    int n = sizeof(pages)/sizeof(pages[0]);
+    int capacity = 4;
+    cout &lt;&lt; pageFaults(pages, n, capacity);
+    return 0;
+}
+</pre>
+
+</div>
+<h2 class="tabtitle sigil_not_in_toc">Java</h2>
+<div class="tabcontent">
+
+<pre class="brush: java; highlight: [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83]; title: ; notranslate" title="">// Java implementation of above algorithm
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+
+class Test
+{
+    // Method to find page faults using indexes
+    static int pageFaults(int pages[], int n, int capacity)
+    {
+        // To represent set of current pages. We use
+        // an unordered_set so that we quickly check
+        // if a page is present in set or not
+        HashSet&lt;Integer&gt; s = new HashSet&lt;&gt;(capacity);
+     
+        // To store least recently used indexes
+        // of pages.
+        HashMap&lt;Integer, Integer&gt; indexes = new HashMap&lt;&gt;();
+     
+        // Start from initial page
+        int page_faults = 0;
+        for (int i=0; i&lt;n; i++)
+        {
+            // Check if the set can hold more pages
+            if (s.size() &lt; capacity)
+            {
+                // Insert it into set if not present
+                // already which represents page fault
+                if (!s.contains(pages[i]))
+                {
+                    s.add(pages[i]);
+     
+                    // increment page fault
+                    page_faults++;
+                }
+     
+                // Store the recently used index of
+                // each page
+                indexes.put(pages[i], i);
+            }
+     
+            // If the set is full then need to perform lru
+            // i.e. remove the least recently used page
+            // and insert the current page
+            else
+            {
+                // Check if current page is not already
+                // present in the set
+                if (!s.contains(pages[i]))
+                {
+                    // Find the least recently used pages
+                    // that is present in the set
+                    int lru = Integer.MAX_VALUE, val=Integer.MIN_VALUE;
+                    
+                    Iterator&lt;Integer&gt; itr = s.iterator();
+                    
+                    while (itr.hasNext()) {
+                        int temp = itr.next();
+                        if (indexes.get(temp) &lt; lru)
+                        {
+                            lru = indexes.get(temp);
+                            val = temp;
+                        }
+                    }
+                
+                    // Remove the indexes page
+                    s.remove(val);
+     
+                    // insert the current page
+                    s.add(pages[i]);
+     
+                    // Increment page faults
+                    page_faults++;
+                }
+     
+                // Update the current page index
+                indexes.put(pages[i], i);
+            }
+        }
+     
+        return page_faults;
+    }
+    
+    // Driver method
+    public static void main(String args[])
+    {
+        int pages[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2};
+       
+        int capacity = 4;
+        
+        System.out.println(pageFaults(pages, pages.length, capacity));
+    }
+}
+// This code is contributed by Gaurav Miglani
+</pre>
+<p></p>
+</div>
+</div>
+<br/>
+Output:<p></p>
+<pre>6
+</pre>
+<p>Note : We can also find the number of page hits. Just have to maintain a separate count.<br/>
+If the current page is already in the memory then that must be count as Page-hit.</p>
+<p>We will discuss other Page-replacement Algorithms in further sets.</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

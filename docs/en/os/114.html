@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">mindepth and maxdepth in Linux find() command for limiting search to a specific directory.</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>How to limit search a specified directory in linux?</strong><br/>
+There is a command in linux to search for files in a directory hierarchy known as <strong><em>‘find’</em></strong>. It searches the directory tree rooted at each given starting-point by evaluating the given expression from left to right, according to the rules of precedence, until the outcome is known (the left hand side is false for and operations, true for or), at which point find moves on to the next file name.  If no starting-point is specified, `.’ is assumed.<br/>
+The find command by default travels down the entire directory tree recursively, which is time and resource consuming. However the depth of directory traversal can be specified(which are <em>mindepth</em> and <em>maxdepth</em>).</p>
+<p><strong>What are mindepth and maxdepth levels?</strong>
+</p>
+<ul>
+<li><strong>maxdepth levels</strong> : Descend at most levels (a non-negative integer) levels of          directories below the starting-points. <em>-maxdepth 0</em> means only apply the tests and actions to the starting-points themselves.</li>
+<li><strong>mindepth levels</strong> : Do not apply any tests or actions at levels less than levels            (a non-negative integer).  -mindepth 1 means process all files except the starting-points.</li>
+</ul>
+<p></p>
+<p><strong>Given below some examples to illustrate how depth of the directory travesal can be specified using <em>mindepth</em> and <em>maxdepth</em></strong></p>
+<ul>
+<li>Find the passwd file under all sub-directories starting from root directory.
+<pre><strong>find / -name passwd</strong></pre>
+<pre><a href="https://www.geeksforgeeks.org/wp-content/uploads/step1-1.png"><img src="../../../imgs/os/3ffe3826b004d2e17ddb1cb0a7d4cf97.jpg" alt="step1-1" width="736" height="416" class="alignnone size-full wp-image-147401" srcset="https://www.geeksforgeeks.org/wp-content/uploads/step1-1.png 736w, https://www.geeksforgeeks.org/wp-content/uploads/step1-1-300x170.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/step1-1-660x373.png 660w" sizes="(max-width: 736px) 100vw, 736px"/></a></pre>
+</li>
+<li>Find the passwd file under root and one level down. (i.e root — level 1, and one sub-directory — level 2)
+<pre><strong>find / -maxdepth 2 -name passwd</strong></pre>
+<pre><img src="../../../imgs/os/62591ffacf1ce3965b0a7af8a7c0820c.jpg" alt="" width="734" height="442" class="alignnone size-medium wp-image-184228"/></pre>
+</li>
+<li>Find the passwd file under root and two levels down. (i.e root — level 1, and two sub-directories — level 2 and 3 )
+<pre><strong>find / -maxdepth 3 -name passwd</strong></pre>
+<pre><img src="../../../imgs/os/63794d4ac8c41ae4dbec0f5a18364ab5.jpg" alt="" width="736" height="441" class="alignnone size-medium wp-image-184229"/></pre>
+</li>
+<li>Find the password file between sub-directory level 2 and 4.
+<pre><strong>find / -mindepth 3 -maxdepth 5 -name passwd</strong></pre>
+<pre><img src="../../../imgs/os/b9b50aa4002841bc20f6da08e1f7b9ed.jpg" alt="" width="822" height="436" class="alignnone size-medium wp-image-184230"/></pre>
+</li>
+</ul>
+<p><strong>There are two other ways to limit search a directory in linux :</strong>
+</p>
+<ol>
+    <strong>
+<li>grep</li></strong> Grep searches the named input FILEs (or standard input if no files are named, or the file name – is given) for lines containing a match to the given PATTERN.By default, grep prints the matching lines.
+<p><strong>Examples of grep :</strong></p>
+<pre><strong>You can search the current directory with grep as follows:</strong>
+
+<img src="../../../imgs/os/eb31dc54fd748aeeacef8a3db8482afc.jpg" alt="" width="736" height="439" class="alignnone size-medium wp-image-185330"/>
+
+<strong>To check whether a directory exists or not</strong>
+<img src="../../../imgs/os/8cae0da09c7b7a1fd5bafa3dac040dd3.jpg" alt="" width="735" height="436" class="alignnone size-medium wp-image-185331"/>
+
+<strong>Find the directory under root directory.</strong>
+<img src="../../../imgs/os/fdd8b52f17589284dc7dc73918134f35.jpg" alt="" width="737" height="473" class="alignnone size-medium wp-image-185332"/>
+
+<strong>Find the directory under root and one levels down.</strong>
+<img src="../../../imgs/os/6b38b275c2f43bde417cf925d48c6e42.jpg" alt="" width="740" height="473" class="alignnone size-medium wp-image-185333"/>
+
+<img src="../../../imgs/os/3a2b59c8d6f29c1f6fcb4f7f55180fe1.jpg" alt="" width="735" height="472" class="alignnone size-medium wp-image-185334"/>
+
+<img src="../../../imgs/os/efae9567acf12aa6a2f63fe0b6b5f72f.jpg" alt="" width="736" height="473" class="alignnone size-medium wp-image-185335"/>
+</pre>
+<p>    <strong>
+</strong></p>
+<li><strong>ack</strong></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Ack is designed as a replacement for 99% of the uses of grep. Ack searches the named input FILEs (or standard input if no files are named, or the file name – is given) for lines containing a match to the given PATTERN . By default, ack prints the matching lines.<br/>
+Ack can also list files that would be searched, without actually searching them, to let you take advantage of ack’s file-type filtering capabilities. Ack does not have a max-depth option
+<p></p>
+<p><strong>Examples of ack :</strong></p>
+<pre><strong>To check a particular directory under the root</strong>
+<img src="../../../imgs/os/e055937a4e230938622038eee4717bc4.jpg" alt="" width="735" height="435" class="alignnone size-medium wp-image-185326"/>
+
+<img src="../../../imgs/os/ce8d1ae0003e8a5bc68d17cb32e11d23.jpg" alt="" width="734" height="436" class="alignnone size-medium wp-image-185327"/>
+
+<img src="../../../imgs/os/170b36dc3b0aec0f317a8e0ac217f0a7.jpg" alt="" width="733" height="437" class="alignnone size-medium wp-image-185328"/>
+
+<img src="../../../imgs/os/f6e7ab73ad9b77d1cc65d2d74cea9bfa.jpg" alt="" width="731" height="441" class="alignnone size-medium wp-image-185329"/>
+</pre>
+<p>Reference : <a href="http://man7.org/linux/man-pages/man1/find.1.html" target="_blank">Linux manual page</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ol>
+<p></p>
+</div>
+</body>
+</html>

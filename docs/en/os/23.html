@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Difference between dispatcher and scheduler</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Schedulers</b> are special system software which handle process scheduling in various ways. Their main task is to select the jobs to be submitted into the system and to decide which process to run. There are <a href="https://www.geeksforgeeks.org/gate-notes-operating-system-scheduler/" rel="noopener" target="_blank">three types of Scheduler</a>:</p>
+<ol>
+<li><b>Long term (job) scheduler –</b> Due to smaller size of main memory initially all program are stored in secondary memory. When they are stored or loaded in main memory they are called process. This is decision of long term scheduler that how many process will stay in ready queue. Hence, in simple words long term scheduler decides degree of multi-programming of system.
+</li>
+<p></p>
+<li><b>Medium term scheduler –</b> Most often, a running process needs I/O operation which doesn’t requires CPU. Hence during execution of a process when a I/O operation is required then operating system sends that process from running queue to blocked queue. When a process completes its I/O operation then it should again shifted to ready queue. ALL these decisions are taken by medium term scheduler. Medium-term scheduling is a part of <b>swapping</b>.
+</li>
+<p></p>
+<li><b>Short term (CPU) scheduler –</b> When there are lots of processes in main memory initially all are present in ready queue. Among all of the process a single process is to be selected for execution. This decision is handled by short term scheduler.
+<p>Lets have a look on the figure given below. It may make more clear view for you.</p>
+<p><img src="../../../imgs/os/d07f48e281a621987db6fa2f241eda67.jpg" alt="" width="726" height="448" class="aligncenter size-full wp-image-409403"/></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><b>Dispatcher –</b><br/>
+Dispatcher is a special program which comes into play after scheduler. When scheduler completed its job of selecting a process, then after it is the dispatcher which takes that process to the desired state/queue. The dispatcher is the module that gives control of the CPU to the process selected by the short-term scheduler. This function involves the following:</p>
+<ul>
+<li>Switching context
+</li>
+<li>Switching to user mode
+</li>
+<li>Jumping to proper location in user program to restart that program
+</li>
+</ul>
+<p></p>
+<p><b>Difference between the Scheduler and Dispatcher –</b><br/>
+Consider a situation, where various process residing in ready queue and waiting for execution. But CPU can’t execute all the process of ready queue simultaneously, operating system have to choose a particular process on the basis of scheduling algorithm used. So, this procedure of selecting a process among various process is done by <b>scheduler</b>. Now here the task of scheduler completed. Now <b>dispatcher</b> comes into picture as scheduler have decide a process for execution, it is dispatcher who takes that process from ready queue to the running status, or you can say that providing CPU to that process is the task of dispatcher.</p>
+<p><b>Example –</b><br/>
+There are 4 process in ready queue, i.e., P1, P2, P3, P4; They all are arrived at t0, t1, t2, t3 respectively. First in First out scheduling algorithm is used. So, scheduler decided that first of all P1 has came, so this is to be executed first. Now dispatcher takes P1 to the running state. </p>
+<p><img src="../../../imgs/os/cbbf8951ea407aad377c6105f38f4325.jpg" alt="" width="581" height="142" class="aligncenter size-full wp-image-409417"/></p>
+<table width="100%">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Properties</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">DISPATCHER</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">SCHEDULER</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:LEFT;">Definition:</td>
+<td style="text-align:LEFT;">Dispatcher is a module that gives control of CPU to the process selected by short term scheduler</td>
+<td style="text-align:LEFT;">Scheduler is something which selects a process among various processes</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183, 223, 182, 0.4);text-align:LEFT;">Types:</td>
+<td style="background-color:rgba(183, 223, 182, 0.4);text-align:LEFT;">There are no diifrent types in dispatcher.It is just a code segment.</td>
+<td style="background-color:rgba(183, 223, 182, 0.4);text-align:LEFT;">There are 3 types of scheduler i.e. Long-term, Short-term, Medium-term</td>
+</tr>
+<tr>
+</tr>
+<tr>
+<td style="text-align:LEFT;">Dependency:</td>
+<td style="text-align:LEFT;">Working of dispatcher is dependednt on scheduler.Means dispatcher have to wait untill scheduler selects a process.</td>
+<td style="text-align:LEFT;">Scheduler works idependently.It works immediately when needed</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183, 223, 182, 0.4);text-align:LEFT;">Algorithm:</td>
+<td style="background-color:rgba(183, 223, 182, 0.4);text-align:LEFT;">Dispatcher has no specific algorithm for its implementation</td>
+<td style="background-color:rgba(183, 223, 182, 0.4);text-align:LEFT;">Scheduler works on various algorithm  such as FCFS, SJF, RR etc. </td>
+</tr>
+<tr>
+<td style="text-align:LEFT;">Time Taken:</td>
+<td style="text-align:LEFT;">The time taken by dispatcher is called dispatch latency.</td>
+<td style="text-align:LEFT;">TIme taken by scheduler is usually negligible.Hence we neglect it.</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183, 223, 182, 0.4);text-align:LEFT;">Functions:</td>
+<td style="background-color:rgba(183, 223, 182, 0.4);text-align:LEFT;">Dispatcher is also responsible for:Context Switching, Switch to user mode, Jumping to proper location when process again restarted</td>
+<td style="background-color:rgba(183, 223, 182, 0.4);text-align:LEFT;">The only work of scheduler is selection of processes.</td>
+</tr>
+</tbody>
+</table>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/><hr/>
+					
+		<!-- .entry-meta -->
+	</li>
+</ol>
+</div>
+</body>
+</html>

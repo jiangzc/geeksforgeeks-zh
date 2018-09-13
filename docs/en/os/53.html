@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Bakery Algorithm</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/g-fact-70/" rel="noopener" target="_blank">Critical Section</a>, <a href="https://www.geeksforgeeks.org/process-synchronization-set-1/" rel="noopener" target="_blank">Process Synchronization</a>, <a href="https://www.geeksforgeeks.org/inter-process-communication/" rel="noopener" target="_blank">Inter Process Communication</a></p>
+<p>The <b>Bakery algorithm</b> is one of the simplest known solutions to the mutual exclusion problem for the general case of N process. Bakery Algorithm is a critical section solution for <strong>N</strong> processes. The algorithm preserves the first come first serve property.</p>
+<ul>
+<li>Before entering its critical section, the process receives a number. Holder of the smallest number enters the critical section.</li>
+<li> If processes Pi and Pj receive the same number,
+<pre>if i &lt; j 
+Pi is served first; 
+else 
+Pj is served first.</pre>
+</li>
+<li>The numbering scheme always generates numbers in increasing order of enumeration; i.e., 1, 2, 3, 3, 3, 3, 4, 5, …</li>
+</ul>
+<p><b>Notation –</b>  lexicographical order (ticket #, process id #) – Firstly the ticket number is compared. If same then the process ID is compared next, i.e.-</p>
+<pre>– (a, b) &lt; (c, d) if a &lt; c or if a = c and b &lt; d
+– max(a [0], . . ., a [n-1]) is a number, k, such that k &gt;= a[i]  for i = 0, . . ., n - 1</pre>
+<p>Shared data – choosing is an array [0..n – 1] of boolean values; &amp; number is an array [0..n – 1] of integer values. Both are initialized to <strong>False &amp; Zero</strong> respectively.</p>
+<p><strong>Algorithm Pseudocode –</strong></p>
+<pre>repeat
+    choosing[i] := true;
+    number[i] := max(number[0], number[1], ..., number[n - 1])+1;
+    choosing[i] := false;
+    for j := 0 to n - 1
+        do begin
+            while choosing[j] do no-op;
+            while number[j] != 0
+                and (number[j], j) &lt; (number[i], i) do no-op;
+        end;
+
+        critical section
+    
+    number[i] := 0;
+    
+        remainder section
+
+until false;
+</pre>
+<p><strong>Explanation –</strong><br/>
+Firstly the process sets its “choosing” variable to be TRUE indicating its intent to enter critical section. Then it gets assigned the highest ticket number corresponding to other processes. Then the “choosing” variable is set to FALSE indicating that it now has a new ticket number. This is in-fact the most important and confusing part of the algorithm.</p>
+<p>It is actually a small critical section in itself ! The very purpose of the first three lines is that if a process is modifying its TICKET value then at that time some other process should not be allowed to check its old ticket value which is now obsolete. This is why inside the for loop before checking ticket value we first make sure that all other processes have the “choosing” variable as FALSE. </p>
+<p>After that we proceed to check the ticket values of processes where process with least ticket number/process id gets inside the critical section. The exit section just resets the ticket value to zero.</p>
+<p><b>Code –</b> Here’s the C code implementation of the Bakery Algorithm. Run the following in a <b>UNIX environment</b> –</p>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<div class="noIdeBtnDiv">
+<pre class="brush: c; title: ; notranslate" title="">// Importing the thread library
+#include "pthread.h"
+
+#include "stdio.h"
+
+// Importing POSIX Operating System API library
+#include "unistd.h"
+
+#include "string.h"
+
+// This is a memory barrier instruction.
+// Causes compiler to enforce an ordering
+// constraint on memory operations.
+// This means that operations issued prior
+// to the barrier will be performed
+// before operations issued after the barrier.
+#define MEMBAR __sync_synchronize()
+#define THREAD_COUNT 8
+
+volatile int tickets[THREAD_COUNT];
+volatile int choosing[THREAD_COUNT];
+
+// VOLATILE used to prevent the compiler
+// from applying any optimizations.
+volatile int resource;
+
+void lock(int thread)
+{
+
+    // Before getting the ticket number
+    //"choosing" variable is set to be true
+    choosing[thread] = 1;
+
+    MEMBAR;
+    // Memory barrier applied
+
+    int max_ticket = 0;
+
+    // Finding Maximum ticket value among current threads
+    for (int i = 0; i &lt; THREAD_COUNT; ++i) {
+
+        int ticket = tickets[i];
+        max_ticket = ticket &gt; max_ticket ? ticket : max_ticket;
+    }
+
+    // Allotting a new ticket value as MAXIMUM + 1
+    tickets[thread] = max_ticket + 1;
+
+    MEMBAR;
+    choosing[thread] = 0;
+    MEMBAR;
+
+    // The ENTRY Section starts from here
+    for (int other = 0; other &lt; THREAD_COUNT; ++other) {
+
+        // Applying the bakery algorithm conditions
+        while (choosing[other]) {
+        }
+
+        MEMBAR;
+
+        while (tickets[other] != 0 &amp;&amp; (tickets[other]
+                                           &lt; tickets[thread]
+                                       || (tickets[other]
+                                               == tickets[thread]
+                                           &amp;&amp; other &lt; thread))) {
+        }
+    }
+}
+
+// EXIT Section
+void unlock(int thread)
+{
+
+    MEMBAR;
+    tickets[thread] = 0;
+}
+
+// The CRITICAL Section
+void use_resource(int thread)
+{
+
+    if (resource != 0) {
+        printf("Resource was acquired by %d, but is still in-use by %d!\n",
+               thread, resource);
+    }
+
+    resource = thread;
+    printf("%d using resource...\n", thread);
+
+    MEMBAR;
+    sleep(2);
+    resource = 0;
+}
+
+// A simplified function to show the implementation
+void* thread_body(void* arg)
+{
+
+    long thread = (long)arg;
+    lock(thread);
+    use_resource(thread);
+    unlock(thread);
+    return NULL;
+}
+
+int main(int argc, char** argv)
+{
+
+    memset((void*)tickets, 0, sizeof(tickets));
+    memset((void*)choosing, 0, sizeof(choosing));
+    resource = 0;
+
+    // Declaring the thread variables
+    pthread_t threads[THREAD_COUNT];
+
+    for (int i = 0; i &lt; THREAD_COUNT; ++i) {
+
+        // Creating a new thread with the function
+        //"thread_body" as its thread routine
+        pthread_create(&amp;threads[i], NULL, &amp;thread_body, (void*)((long)i));
+    }
+
+    for (int i = 0; i &lt; THREAD_COUNT; ++i) {
+
+        // Reaping the resources used by
+        // all threads once their task is completed !
+        pthread_join(threads[i], NULL);
+    }
+
+    return 0;
+}
+</pre>
+</div>
+<p>Output:<br/>
+<img src="../../../imgs/os/64d500d24baa820a70e448273d511c54.jpg" alt="Output"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

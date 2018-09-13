@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Lock variable synchronization mechanism</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisites –</b> <a href="https://www.geeksforgeeks.org/process-synchronization-set-1/" target="_blank"> Process Synchronization</a></p>
+<p>A lock variable provides the simplest synchronization mechanism for processes. Some noteworthy points regarding Lock Variables are-</p>
+<ol>
+<li>Its a <b>software mechanism</b> implemented in user mode, i.e. no support required from the Operating System.</li>
+<li>Its a busy waiting solution (keeps the CPU busy even when its technically waiting).</li>
+<li>It can be used for more than two processes.</li>
+</ol>
+<p>When Lock = 0 implies critical section is vacant (initial value ) and Lock = 1 implies critical section occupied.</p>
+<p>The pseudocode looks something like this –</p>
+<pre>Entry section - while(lock != 0);
+                Lock = 1;
+//critical section
+Exit section - Lock = 0;
+</pre>
+<p>A more formal approach to the Lock Variable method for process synchronization can be seen in the following code snippet :</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<div class="noIdeBtnDiv">
+<pre class="brush: c; title: ; notranslate" title="">char buffer[SIZE];
+int count = 0,
+    start = 0,
+    end = 0;
+struct lock l;
+
+// initialize lock variable
+lock_init(&amp;l);
+
+void put(char c)
+{
+
+    // entry section
+    lock_acquire(&amp;l);
+
+    // critical section begins
+    while (count == SIZE) {
+
+        lock_release(&amp;l);
+        lock_acquire(&amp;l);
+    }
+
+    count++;
+    buffer[start] = c;
+    start++;
+
+    if (start == SIZE) {
+
+        start = 0;
+    }
+
+    // critical section ends
+    // exit section
+    lock_release(&amp;l);
+}
+
+char get()
+{
+
+    char c;
+
+    // entry section
+    lock_acquire(&amp;l);
+
+    // critical section begins
+    while (count == 0) {
+
+        lock_release(&amp;l);
+        lock_acquire(&amp;l);
+    }
+
+    count--;
+    c = buffer[end];
+    end++;
+
+    if (end == SIZE) {
+
+        end = 0;
+    }
+
+    // critical section ends
+    // exit section
+    lock_release(&amp;l);
+
+    return c;
+}
+</pre>
+</div>
+<p>Here we can see a classic implementation of the reader-writer’s problem. The buffer here is the shared memory and many processes are either trying to read or write a character to it. To prevent any ambiguity of data we restrict concurrent access by using a lock variable. We have also applied a constraint on the number of readers/writers that can have access.</p>
+<p>Now every Synchronization mechanism is judged on the basis of three primary parameters :</p>
+<ol>
+<li>Mutual Exclusion.</li>
+<li>Progress.</li>
+<li>Bounded Waiting.</li>
+</ol>
+<p>Of which mutual exclusion is the most <strong>important</strong> of all parameters. The Lock Variable doesn’t provide mutual exclusion in some cases. This fact can be best verified by writing its pseudo-code in the form of an assembly language code as given below.</p>
+<pre>1. Load Lock, R0 ; (Store the value of Lock in Register R0.)
+2. CMP R0, #0 ; (Compare the value of register R0 with 0.)
+3. JNZ Step 1 ; (Jump to step 1 if value of R0 is not 0.)
+4. Store #1, Lock ; (Set new value of Lock as 1.)
+Enter critical section
+5. Store #0, Lock ; (Set the value of lock as 0 again.)
+</pre>
+<p>Now let’s suppose that processes P1 and P2 are competing for Critical Section and their sequence of execution be as follows (initial alue of Lock = 0) –</p>
+<ol>
+<li>P1 executes statement 1 and gets pre-empted.</li>
+<li>P2 executes statement 1, 2, 3, 4 and enters Critical Section and gets pre-empted.</li>
+<li>P1 executes statement 2, 3, 4 and also enters Critical Section.</li>
+</ol>
+<p>Here initially the R0 of process P1 stores lock value as 0 but fails to update the lock value as 1. So when P2 executes it also finds the LOCK value as 0 and enters Critical Section by setting LOCK value as 1. But the real problem arises when P1 executes again it doesn’t check the updated value of Lock. It only checks the previous value stored in R0 which was 0 and it enters critical section.</p>
+<p>This is only one possible sequence of execution among many others. Some may even provide mutual exclusion but we cannot dwell on that. According to murphy’s law “<strong>Anything that can go wrong will go wrong</strong>“. So like all easy things the Lock Variable Synchronization method comes with its fair share of Demerits but its a good starting point for us to develop better Synchronization Algorithms to take care of the problems that we face here. </p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Semaphores in operating system</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite: <a href="https://www.geeksforgeeks.org/process-synchronization-set-1/">process-synchronization</a>, <a href="https://www.geeksforgeeks.org/mutex-vs-semaphore/">Mutex vs Semaphore</a></p>
+<p>Semaphore is a simply a variable. This variable is used to solve critical section problem and to achieve process synchronization in the multi processing environment.<br/>
+The two most common kinds of semaphores are counting semaphores and binary semaphores. Counting semaphore can take non-negative integer values and Binary semaphore can take the value 0 &amp; 1. only. </p>
+<p>Now let us see how it do so.</p>
+<p>First look at two operations which can be used to access and change the value of semaphore variable.</p>
+<p><img src="../../../imgs/os/ddedeeb8f25725b7d594494cb6a24d88.jpg" alt="P-and-V-operation-in-OS" width="316" height="271" class="aligncenter size-full wp-image-157196"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Some point regarding P and V operation</strong></p>
+<ol>
+<li>P operation is also called wait, sleep or down operation and V operation is also called signal, wake-up or up operation.</li>
+<li>Both operations are atomic and semaphore(s) is always initialized to one.</li>
+<li>A critical section is surrounded by both operations to implement process synchronization.See below image.critical section of Process P is in between P and V operation.</li>
+</ol>
+<p><img src="../../../imgs/os/ac227258c5390c9e7b049c3d02b8dea8.jpg" alt="" width="233" height="209" class="aligncenter size-full wp-image-220407"/></p>
+<p>Now, let us see how it implements mutual exclusion. Let there be two processes P1 and P2 and a semaphore s is initialized as 1. Now if suppose P1 enters in its critical section then the value of semaphore s becomes 0. Now if P2 wants to enter its critical section then it will wait until s &gt; 0, this can only happen when P1 finishes its critical section and calls V operation on semaphore s. This way mutual exclusion is achieved. Look at the below image for details.</p>
+<p><img src="../../../imgs/os/564acb611e28803af436419962a5969f.jpg" alt="" width="238" height="380" class="aligncenter size-medium wp-image-220486"/></p>
+<p>The description above is for binary semaphore which can take only two values 0 and 1. There is one other type of semaphore called counting semaphore which can take values greater than one.</p>
+<p>Now suppose there is a resource whose number of instance is 4. Now we initialize S = 4 and rest is same as for binary semaphore. Whenever process wants that resource it calls  P or wait function and when it is done it calls V or signal function. If value of S becomes zero than a process has to wait until S becomes positive. For example, Suppose there are 4 process P1, P2, P3, P4 and they all call wait operation on S(initialized with 4). If another process P5 wants the resource then it should wait until one of the four process calls signal function and value of semaphore becomes positive.</p>
+<p><strong>Problem in this implementation of semaphore </strong></p>
+<p>Whenever any process waits then it continuously checks for semaphore value (look at this line while (s==0); in P operation) and waste CPU cycle. To avoid this another implementation is provided below.</p>
+<div class="noIdeBtnDiv">
+<pre class="brush: cpp; title: ; notranslate" title="">P(Semaphore s)
+{
+    s = s - 1;
+    if (s &lt; 0) {
+
+        // add process to queue
+        block();
+    }
+}
+
+V(Semaphore s)
+{
+    s = s + 1;
+    if (s &gt;= 0) {
+
+        // remove process p from queue
+        wakeup(p);
+    }
+}
+</pre>
+</div>
+<p>In this implementation whenever process waits it is added to a waiting queue of processes associated with that semaphore. This is done through system call block() on that process. When a process is completed it calls signal function and one process in the queue is resumed. It uses wakeup() system call.</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">File Systems</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>A file is a collection of related information that is recorded on secondary storage. Or file is a collection of logically related entities. From user’s perspective a file is the smallest allotment of logical secondary storage.<br/>
+</p>
+<center><br/>
+<table style="table-layout:fixed; width:50% !important;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Attributes</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Types</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Operations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">Name</td>
+<td style="text-align:center;">Doc</td>
+<td style="text-align:center;">Create</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Type</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Exe</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Open</td>
+</tr>
+<tr>
+<td style="text-align:center;">Size</td>
+<td style="text-align:center;">Jpg</td>
+<td style="text-align:center;">Read</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Creation Data</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Xis</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Write</td>
+</tr>
+<tr>
+<td style="text-align:center;">Author</td>
+<td style="text-align:center;">C</td>
+<td style="text-align:center;">Append</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Last Modified</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Java</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Truncate</td>
+</tr>
+<tr>
+<td style="text-align:center;">protection</td>
+<td style="text-align:center;">class</td>
+<td style="text-align:center;">Delete</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Close</td>
+</tr>
+</tbody>
+</table>
+<p></p></center>
+<p></p>
+<p>
+</p>
+<center><br/>
+<table style="table-layout:fixed; width:50% !important;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">File type</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Usual extension</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">Executable</td>
+<td style="text-align:center;">exe, com, bin</td>
+<td style="text-align:center;">Read to run machine language program</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Object</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">obj, o</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Compiled, machine language not linked</td>
+</tr>
+<tr>
+<td style="text-align:center;">Source Code</td>
+<td style="text-align:center;">C, java, pas, asm, a</td>
+<td style="text-align:center;">Source code in various languages</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Batch</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">bat, sh</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Commands to the command interpreter</td>
+</tr>
+<tr>
+<td style="text-align:center;">Text</td>
+<td style="text-align:center;">txt, doc</td>
+<td style="text-align:center;">Textual data, documents</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Word Processor</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">wp, tex, rrf, doc</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Various word processor formats</td>
+</tr>
+<tr>
+<td style="text-align:center;">Archive</td>
+<td style="text-align:center;">arc, zip, tar</td>
+<td style="text-align:center;">Related files grouped into one compressed file</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">Multimedia</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">mpeg, mov, rm</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">For containing audio/video information</td>
+</tr>
+</tbody>
+</table>
+<p></p></center>
+<br/>
+<br/>
+<strong>FILE DIRECTORIES:</strong><br/>
+Collection of files is a file directory. The directory contains information about the files, including attributes, location and ownership. Much of this information, especially that is concerned with storage, is managed by the operating system. The directory is itself a file, accessible by various file management routines.<br/>
+<br/>
+<strong>Information contained in a device directory are:</strong><p></p>
+<ul>
+<li>Name</li>
+<li>Type</li>
+<li>Address</li>
+<li>Current length</li>
+<li>Maximum length</li>
+<li>Date last accessed</li>
+<li>Date last updated</li>
+<li>Owner id</li>
+<li>Protection information</li>
+</ul>
+<p><strong>Operation performed on directory are:</strong></p>
+<ul>
+<li>Search for a file</li>
+<li>Create a file</li>
+<li>Delete a file</li>
+<li>List a directory</li>
+<li>Rename a file</li>
+<li>Traverse the file system</li>
+</ul>
+<p>
+<strong>Advantages of maintaining directories are:</strong></p>
+<ul>
+<li><strong>Efficiency:</strong> A file can be located more quickly.</li>
+<li><strong>Naming:</strong> It becomes convenient for users as two users can have same name for different files or may have different name for same file.</li>
+<li><strong>Grouping:</strong> Logical grouping of files can be done by properties e.g. all java programs, all games etc.</li>
+</ul>
+<p>
+<strong>SINGLE-LEVEL DIRECTORY</strong><br/>
+In this a single directory is maintained for all the users.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li><strong>Naming problem:</strong> Users cannot have same name for two files.</li>
+<li><strong>Grouping problem:</strong> Users cannot group files according to their need.</li>
+</ul>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/directory.jpg"><img src="../../../imgs/os/503647ddd966e6592b2d826fe51afd0d.jpg" alt="file_sys_5" width="762" height="233" class="alignnone size-full wp-image-30972"/></a><br/>
+<br/>
+<strong>TWO-LEVEL DIRECTORY</strong><br/>
+In this separate directories for each user is maintained.</p>
+<ul>
+<li>Path name:Due to two levels there is a path name for every file to locate that file.</li>
+<li>Now,we can have same file name for different user.</li>
+<li>Searching is efficient in this method.</li>
+</ul>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/directory-user-level.jpg"><img src="../../../imgs/os/9984cde915adbf4c5394fdf54708bb42.jpg" alt="file_sys_6" width="698" height="308" class="alignnone size-full wp-image-30976"/></a><br/>
+<br/>
+<strong>TREE-STRUCTURED DIRECTORY :</strong><br/>
+Directory is maintained in the form of a tree. Searching is efficient and also there is grouping capability. We have absolute or relative path name for a file.<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/directory-tree-format.jpg"><img src="../../../imgs/os/10a9200d36a8455b9b401ad882e5a221.jpg" alt="file_sys_7" width="683" height="519" class="alignnone size-full wp-image-30978"/></a><br/>
+<br/>
+<strong>FILE ALLOCATION METHODS</strong><br/>
+ <strong>1. Continuous Allocation:</strong> A single continuous set of blocks is allocated to a file at the time of file creation. Thus, this is a pre-allocation strategy, using variable size portions. The file allocation table needs just a single entry for each file, showing the starting block and the length of the file. This method is best from the point of view of the individual sequential file. Multiple blocks can be read in at a time to improve I/O performance for sequential processing. It is also easy to retrieve a single block. For example, if a file starts at block b, and the ith block of the file is wanted, its location on secondary storage is simply b+i-1.<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/directory-file-allocation.jpg"><img src="../../../imgs/os/3c62287ea8ef59ad9bd658e0a7731e5b.jpg" alt="file_sys_8" width="300" height="100" class="alignnone size-full wp-image-30982"/></a><br/>
+<br/>
+<strong>Disadvantage</strong></p>
+<ul>
+<li>External fragmentation will occur, making it difficult to find contiguous blocks of space of sufficient length. Compaction algorithm will be necessary to free up additional space on disk.</li>
+<li>Also, with pre-allocation, it is necessary to declare the size of the file at the time of creation.</li>
+</ul>
+<p><strong>2. Linked Allocation(Non-contiguous allocation) :</strong> Allocation is on an individual block basis. Each block contains a pointer to the next block in the chain. Again the file table needs just a single entry for each file, showing the starting block and the length of the file. Although pre-allocation is possible, it is more common simply to allocate blocks as needed. Any free block can be added to the chain. The blocks need not be continuous. Increase in file size is always possible if free disk block is available. There is no external fragmentation because only one block at a time is needed but there can be internal fragmentation but it exists only in the last disk block of file.<br/>
+<br/>
+<strong>Disadvantage:</strong></p>
+<ul>
+<li>Internal fragmentation exists in last disk block of file.</li>
+<li>There is an overhead of maintaining the pointer in every disk block.</li>
+<li>If the pointer of any disk block is lost, the file will be truncated.</li>
+<li>It supports only the sequencial access of files.</li>
+</ul>
+<p>
+<strong>3. Indexed Allocation:</strong><br/>
+It addresses many of the problems of contiguous and chained allocation. In this case, the file allocation table contains a separate one-level index for each file: The index has one entry for each block allocated to the file. Allocation may be on the basis of fixed-size blocks or variable-sized blocks. Allocation by blocks eliminates external fragmentation, whereas allocation by variable-size blocks improves locality. This allocation technique supports both sequential and direct access to the file and thus is the most popular form of file allocation.<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/directory-indexing.jpg"><img src="../../../imgs/os/f1cec1e9ea764b4e2a741358e8003d6c.jpg" alt="file_sys_9" width="300" height="100" class="alignnone size-full wp-image-30998"/></a><br/>
+</p>
+<p align="center"><strong>Disk Free Space Management</strong></p>
+<p>Just as the space that is allocated to files must be managed ,so the space that is not currently allocated to any file must be managed. To perform any of the file allocation techniques,it is necessary to know what blocks on the disk are available. Thus we need a disk allocation table in addition to a file allocation table.The following are the approaches used for free space management.</p>
+<ol>
+<li><strong>Bit Tables</strong> : This method uses a vector containing one bit for each block on the disk. Each entry for a 0 corresponds to a free block and each 1 corresponds to a block in use.<br/>
+For example: 00011010111100110001<p></p>
+<p>In this vector every bit correspond to a particular vector and 0 implies that, that particular block is free and 1 implies that the block is already occupied. A bit table has the advantage that it is relatively easy to find one or a contiguous group of free blocks. Thus, a bit table works well with any of the file allocation methods. Another advantage is that it is as small as possible.</p></li>
+<li><strong>Free Block List</strong> : In this method, each block is assigned a number sequentially and the list of the numbers of all free blocks is maintained in a reserved block of the disk.</li>
+</ol>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/directory-table.jpg"><img src="../../../imgs/os/6ca74b2f6cf5df7faa91a88cbefafd17.jpg" alt="file_sys_10" width="346" height="467" class="alignnone size-full wp-image-31004"/></a></p>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

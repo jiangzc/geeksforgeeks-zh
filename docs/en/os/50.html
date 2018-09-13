@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Peterson’s Algorithm for Mutual Exclusion | Set 2 (CPU Cycles and Memory Fence)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Problem:</strong> Given 2 process i and j, you need to write a program that can guarantee mutual exclusion between the two without any additional hardware support.</p>
+<p>We strongly recommend to refer below basic solution discussed in previous article.<br/>
+<a href="https://www.geeksforgeeks.org/petersons-algorithm-for-mutual-exclusion-set-1/" target="_blank">Peterson’s Algorithm for Mutual Exclusion | Set 1</a></p>
+<p>We would be resolving 2 issues in the previous algorithm.</p>
+<h4 class="sigil_not_in_toc"> Wastage of CPU clock cycles </h4>
+<p>In layman terms, when a thread was waiting for its turn, it ended in a long while loop which tested the condition millions of times per second thus doing unnecessary computation. There is a better way to wait, and it is known as <i>“yield”</i>.</p>
+<p>To understand what it does, we need to dig deep into how the Process scheduler works in Linux. The idea mentioned here is a simplified version of the scheduler, the actual implementation has lots of complications.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Consider the following example,<br/>
+There are three processes, P1, P2 and P3. Process P3 is such that it has a while loop similar to the one in our code, doing not so useful computation, and it exists from the loop only when P2 finishes its execution. The scheduler puts all of them in a round robin queue. Now, say the clock speed of processor is 1000000/sec, and it allocates 100 clocks to each process in each iteration. Then, first P1 will be run for 100 clocks (0.0001 seconds), then P2(0.0001 seconds) followed by P3(0.0001 seconds), now since there are no more processes, this cycle repeats untill P2 ends and then followed by P3’s execution and eventually its termination.</p>
+<p>This is a complete waste of the 100 CPU clock cycles. To avoid this, we mutually give up the CPU time slice, i.e. yield, which essentially ends this time slice and the scheduler picks up the next process to run. Now, we test our condition once, then we give up the CPU. Considering our test takes 25 clock cycles, we save 75% of our computation in a time slice. To put this graphically,</p>
+<p><img src="../../../imgs/os/f9c7f8222c679eca7a430db7d9c32ade.jpg" alt="" class="aligncenter size-medium wp-image-178095" srcset="https://www.geeksforgeeks.org/wp-content/uploads/peterson.png 772w, https://www.geeksforgeeks.org/wp-content/uploads/peterson-300x160.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/peterson-768x410.png 768w, https://www.geeksforgeeks.org/wp-content/uploads/peterson-660x352.png 660w" sizes="(max-width: 772px) 100vw, 772px"/></p>
+<p>Considering the processor clock speed as 1MHz this is a lot of saving!.<br/>
+Different distributions provide different function to achieve this functionality. Linux provides <b>sched_yield()</b>.</p>
+<pre class="brush: c; title: ; notranslate" title="">void lock(int self)
+{
+    flag[self] = 1;
+    turn = 1-self;
+
+    while (flag[1-self] == 1 &amp;&amp;
+           turn == 1-self)
+ 
+        // Only change is the addition of
+        // sched_yield() call
+        sched_yield();
+}
+</pre>
+<h4 class="sigil_not_in_toc"> Memory fence.</h4>
+<p>The code in earlier tutorial might have worked on most systems, but is was not 100% correct. The logic was perfect, but most modern CPUs employ performance optimizations that can result in out-of-order execution. This reordering of memory operations (loads and stores) normally goes unnoticed within a single thread of execution, but can cause unpredictable behaviour in concurrent programs.</p>
+<p>Consider this example,</p>
+<pre class="brush: c; title: ; notranslate" title=""> while (f == 0);
+ 
+ // Memory fence required here
+ print x;
+</pre>
+<p>In the above example, the compiler considers the 2 statements as independent of each other and thus tries to increase the code efficiency by re-ordering them, which can lead to problems for concurrent programs. To avoid this we place a memory fence to give hint to the compiler about the possible relationship between the statements across the barrier.</p>
+<p>So the order of statements, </p>
+<blockquote><p>
+flag[self] = 1;<br/>
+turn = 1-self;<br/>
+while (turn condition check)<br/>
+    yield();
+</p>
+</blockquote>
+<p>has to be exactly the same in order for the lock to work, otherwise it will end up in a deadlock condition.</p>
+<p>To ensure this, compilers provide a instruction that prevent ordering of statements across this barrier. In case of gcc, its <b>__sync_synchronize()</b>.</p>
+<p>So the modified code becomes,<br/>
+<strong>Full Implementation in C:</strong></p>
+<pre class="brush: c; title: ; notranslate" title="">// Filename: peterson_yieldlock_memoryfence.c
+// Use below command to compile:
+// gcc -pthread peterson_yieldlock_memoryfence.c -o peterson_yieldlock_memoryfence
+
+#include&lt;stdio.h&gt;
+#include&lt;pthread.h&gt;
+#include "mythreads.h"
+
+int flag[2];
+int turn;
+const int MAX = 1e9;
+int ans = 0;
+
+void lock_init()
+{
+    // Initialize lock by reseting the desire of
+    // both the threads to acquire the locks.
+    // And, giving turn to one of them.
+    flag[0] = flag[1] = 0;
+
+    turn = 0;
+}
+
+// Executed before entering critical section
+void lock(int self)
+{
+    // Set flag[self] = 1 saying you want
+    // to acquire lock
+    flag[self]=1;
+
+    // But, first give the other thread the
+    // chance to acquire lock
+    turn = 1-self;
+
+    // Memory fence to prevent the reordering
+    // of instructions beyond this barrier.
+    __sync_synchronize();
+
+    // Wait untill the other thread looses the
+    // desire to acquire  lock or it is your
+    // turn to get the lock.
+    while (flag[1-self]==1 &amp;&amp; turn==1-self)
+
+        // Yield to avoid wastage of resources.
+        sched_yield();
+}
+
+// Executed after leaving critical section
+void unlock(int self)
+{
+    // You do not desire to acquire lock in future.
+    // This will allow the other thread to acquire
+    // the lock.
+    flag[self]=0;
+}
+
+// A Sample function run by two threads created
+// in main()
+void* func(void *s)
+{
+    int i = 0;
+    int self = (int *)s;
+    printf("Thread Entered: %d\n",self);
+    lock(self);
+
+    // Critical section (Only one thread
+    // can enter here at a time)
+    for (i=0; i&lt;MAX; i++)
+        ans++;
+
+    unlock(self);
+}
+
+// Driver code
+int main()
+{    
+    pthread_t p1, p2;
+
+    // Initialize the lock 
+    lock_init();
+
+    // Create two threads (both run func)
+    Pthread_create(&amp;p1, NULL, func, (void*)0);
+    Pthread_create(&amp;p2, NULL, func, (void*)1);
+
+    // Wait for the threads to end.
+    Pthread_join(p1, NULL);
+    Pthread_join(p2, NULL);
+
+    printf("Actual Count: %d | Expected Count:"
+           " %d\n",ans,MAX*2);
+
+    return 0;
+}
+
+
+</pre>
+<pre class="brush: c; title: ; notranslate" title="">// mythread.h (A wrapper header file with assert
+// statements)
+#ifndef __MYTHREADS_h__
+#define __MYTHREADS_h__
+
+#include &lt;pthread.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;sched.h&gt;
+
+void Pthread_mutex_lock(pthread_mutex_t *m)
+{
+    int rc = pthread_mutex_lock(m);
+    assert(rc == 0);
+}
+                                                                                
+void Pthread_mutex_unlock(pthread_mutex_t *m)
+{
+    int rc = pthread_mutex_unlock(m);
+    assert(rc == 0);
+}
+                                                                                
+void Pthread_create(pthread_t *thread, const pthread_attr_t *attr,     
+           void *(*start_routine)(void*), void *arg)
+{
+    int rc = pthread_create(thread, attr, start_routine, arg);
+    assert(rc == 0);
+}
+
+void Pthread_join(pthread_t thread, void **value_ptr)
+{
+    int rc = pthread_join(thread, value_ptr);
+    assert(rc == 0);
+}
+
+#endif // __MYTHREADS_h__
+</pre>
+<p>Output:</p>
+<pre>Thread Entered: 1
+Thread Entered: 0
+Actual Count: 2000000000 | Expected Count: 2000000000
+</pre>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

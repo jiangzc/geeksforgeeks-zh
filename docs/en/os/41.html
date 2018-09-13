@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Process Synchronization | Introduction</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>On the basis of synchronization, processes are categorized as one of the following two types:</p>
+<ul>
+<li><strong>Independent Process</strong> : Execution of one process does not affects the execution of other processes.</li>
+<li><strong>Cooperative Process</strong> : Execution of one process affects the execution of other processes.</li>
+</ul>
+<p>Process synchronization problem arises in the case of Cooperative process also because resources are shared in Cooperative processes.<br/>
+&#160;<br/>
+<strong>Critical Section Problem</strong></p>
+<p>Critical section is a code segment that can be accessed by only one process at a time. Critical section contains shared variables which need to be synchronized to maintain consistency of data variables.<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/06/critical-section-problem.png"><img src="../../../imgs/os/6dca901b061b40294807609cda8c2154.jpg" alt="critical section problem" width="345" height="386" class="aligncenter size-full wp-image-24619"/></a></p>
+<p>In the entry section, the process requests for entry in the <strong>Critical Section.</strong><br/>
+&#160;<br/>
+Any solution to the critical section problem must satisfy three requirements:</p>
+<ul>
+<li><strong>Mutual Exclusion</strong> : If a process is executing in its critical section, then no other process is allowed to execute in the critical section.</li>
+<li><strong>Progress</strong> : If no process is in the critical section, then no other process from outside can block it from entering the critical section.</li>
+<li><strong>Bounded Waiting</strong> :  A bound must exist on the number of times that other processes are allowed to enter their critical sections after a process has made a request to enter its critical section and before that request is granted.</li>
+</ul>
+<p>&#160;<br/>
+<strong>Peterson’s Solution</strong><br/>
+Peterson’s Solution is a classical software based solution to the critical section problem.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>In Peterson’s solution, we have two shared variables:</p>
+<ul>
+<li>boolean flag[i] :Initialized to FALSE, initially no one is interested in entering the critical section</li>
+<li>int turn : The process whose turn is to enter the critical section.</li>
+</ul>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/06/peterson.png"><img src="../../../imgs/os/01e4ba0c04ccab3176275dba0245ceb2.jpg" alt="peterson" width="492" height="478" class="aligncenter size-full wp-image-24623"/></a><br/>
+&#160;<br/>
+Peterson’s Solution preserves all three conditions :</p>
+<ul>
+<li>Mutual Exclusion is assured as only one process can access the critical section at any time.</li>
+<li>Progress is also assured, as a process outside the critical section does not blocks other processes from entering the critical section.</li>
+<li>Bounded Waiting is preserved as every process gets a fair chance.</li>
+<p>&#160;<br/>
+Disadvantages of Peterson’s Solution</p>
+<ul>
+<li>It involves Busy waiting</li>
+<li>It is limited to 2 processes.</li>
+</ul>
+<p>&#160;</p>
+<p><strong>TestAndSet</strong><br/>
+TestAndSet is a hardware solution to the synchronization problem. In TestAndSet, we have a shared lock variable which can take either of the two values, 0 or 1.</p>
+<pre>0 Unlock
+1 Lock
+</pre>
+<p>Before entering into the critical section, a process inquires about the lock. If it is locked, it keeps on waiting till it become free and if it is not locked, it takes the lock and executes the  critical section.</p>
+<p>In TestAndSet, Mutual exclusion and progress are preserved but bounded waiting cannot be preserved.<br/>
+&#160;<br/>
+<strong>Question :</strong> The enter_CS() and leave_CS() functions to implement critical section of a process are realized using test-and-set instruction as follows:</p>
+<pre>void enter_CS(X)
+{
+  while test-and-set(X) ;
+}
+
+void leave_CS(X)
+{
+  X = 0;
+}
+</pre>
+<p>In the above solution, X is a memory location associated with the CS and is initialized to 0. Now, consider the following statements:<br/>
+I. The above solution to CS problem is deadlock-free<br/>
+II. The solution is starvation free.<br/>
+III. The processes enter CS in FIFO order.<br/>
+IV. More than one process can enter CS at the same time.<br/>
+&#160;<br/>
+Which of the above statements is TRUE?<br/>
+(A) I<br/>
+(B) II and III<br/>
+(C) II and IV<br/>
+(D) IV</p>
+<p><a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2009-question-33/" target="_blank">Click here for the Solution</a>.<br/>
+&#160;<br/>
+<strong>Semaphores</strong></p>
+<p>A Semaphore is an integer variable, which can be accessed only through two operations <em>wait()</em> and <em>signal()</em>.<br/>
+There are two types of semaphores : Binary Semaphores and Counting Semaphores</p>
+<ul>
+<li>Binary Semaphores : They can only be either 0 or 1. They are also known as mutex locks, as the locks can provide mutual exclusion. All the processes can share the same mutex semaphore that is initialized to 1. Then, a process has to wait until the lock becomes 0. Then, the process can make the mutex semaphore 1 and start its critical section. When it completes its critical section, it can reset the value of mutex semaphore to 0 and some other process can enter its critical section.</li>
+<li>Counting Semaphores : They can have any value and are not restricted over a certain domain. They can be used to control access a resource that has a limitation on the number of simultaneous accesses. The semaphore can be initialized to the number of instances of the resource. Whenever a process wants to use that resource, it checks if the number of remaining instances is more than zero, i.e., the process has an instance available. Then, the process can enter its critical section thereby decreasing the value of the counting semaphore by 1. After the process is over with the use of the instance of the resource, it can leave the critical section thereby adding 1 to the number of available instances of the resource.</li>
+</ul>
+<p>&#160;</p>
+<p><strong>References</strong><br/>
+www.csee.wvu.edu/~jdmooney/classes/cs550/notes/tech/mutex/Peterson.html<br/>
+<a href="http://iit.qau.edu.pk/books/OS_8th_Edition.pdf">http://iit.qau.edu.pk/books/OS_8th_Edition.pdf</a><br/>
+&#160;<br/>
+Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Program for Shortest Job First (or SJF) scheduling | Set 1 (Non- preemptive)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Shortest job first (SJF) or shortest job next, is a scheduling policy that selects the waiting process with the smallest execution time to execute next. SJN is a non-preemptive algorithm. </p>
+<ul>
+<li>Shortest Job first has the advantage of having minimum average waiting time among all scheduling algorithms.</li>
+<li>It is a Greedy Algorithm. </li>
+<li>It may cause starvation if shorter processes keep coming. This problem can be solved using the concept of aging.</li>
+<li>It is practically infeasible as Operating System may not know burst time and therefore may not sort them.  While it is not possible to predict execution time, several methods can be used to estimate the execution time for a job, such as a weighted average of previous execution times. SJF can be used in specialized environments where accurate estimates of running time are available.</li>
+</ul>
+<p><strong>Algorithm:</strong></p>
+<pre>1- Sort all the processes in increasing order 
+   according to burst time.
+2- Then simply, apply <a href="https://www.geeksforgeeks.org/program-fcfs-scheduling-set-1/">FCFS</a>.
+</pre>
+<p><img src="../../../imgs/os/7ad3d6e7a935896a5d2246074fa1a07d.jpg" alt=""/></p>
+<p><strong>How to compute below times in Round Robin using a program?</strong></p>
+<ol>
+<li>Completion Time:    Time at which process completes its execution.</li>
+<li>Turn Around Time:   Time Difference between completion time and arrival time.  Turn Around Time = Completion Time – Arrival Time </li>
+<li>Waiting Time(W.T): Time Difference between turn around time and burst time.<br/>
+     Waiting Time = Turn Around Time – Burst Time</li>
+</ol>
+<p><em><strong>In this post, we have assumed arrival times as 0, so turn around and completion times are same.</strong></em></p>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre class="brush: cpp; highlight: [41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71]; title: ; notranslate" title="">// C++ program to implement Shortest Job first
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+struct Process
+{
+   int pid; // Process ID
+   int bt;  // Burst Time
+};
+
+// This function is used for sorting all
+// processes in increasing order of burst
+// time
+bool comparison(Process a, Process b)
+{
+     return (a.bt &lt; b.bt);
+}
+
+// Function to find the waiting time for all
+// processes
+void findWaitingTime(Process proc[], int n, int wt[])
+{
+    // waiting time for first process is 0
+    wt[0] = 0;
+
+    // calculating waiting time
+    for (int i = 1; i &lt; n ; i++ )
+        wt[i] = proc[i-1].bt + wt[i-1] ;
+}
+
+// Function to calculate turn around time
+void findTurnAroundTime(Process proc[], int n,
+                        int wt[], int tat[])
+{
+    // calculating turnaround time by adding
+    // bt[i] + wt[i]
+    for (int i = 0; i &lt; n ; i++)
+        tat[i] = proc[i].bt + wt[i];
+}
+
+//Function to calculate average time
+void findavgTime(Process proc[], int n)
+{
+    int wt[n], tat[n], total_wt = 0, total_tat = 0;
+
+    // Function to find waiting time of all processes
+    findWaitingTime(proc, n, wt);
+
+    // Function to find turn around time for all processes
+    findTurnAroundTime(proc, n, wt, tat);
+
+    // Display processes along with all details
+    cout &lt;&lt; "\nProcesses "&lt;&lt; " Burst time "
+         &lt;&lt; " Waiting time " &lt;&lt; " Turn around time\n";
+
+    // Calculate total waiting time and total turn
+    // around time
+    for (int i = 0; i &lt; n; i++)
+    {
+        total_wt = total_wt + wt[i];
+        total_tat = total_tat + tat[i];
+        cout &lt;&lt; " " &lt;&lt; proc[i].pid &lt;&lt; "\t\t"
+             &lt;&lt; proc[i].bt &lt;&lt; "\t " &lt;&lt; wt[i]
+             &lt;&lt; "\t\t " &lt;&lt; tat[i] &lt;&lt;endl;
+    }
+
+    cout &lt;&lt; "Average waiting time = "
+         &lt;&lt; (float)total_wt / (float)n;
+    cout &lt;&lt; "\nAverage turn around time = "
+         &lt;&lt; (float)total_tat / (float)n;
+}
+
+// Driver code
+int main()
+{
+    Process proc[] = {{1, 6}, {2, 8}, {3, 7}, {4, 3}};
+    int n = sizeof proc / sizeof proc[0];
+
+    // Sorting processes by burst time.
+    sort(proc, proc + n, comparison);
+
+    cout &lt;&lt; "Order in which process gets executed\n";
+    for (int i = 0 ; i &lt; n; i++)
+        cout &lt;&lt; proc[i].pid &lt;&lt;" ";
+
+    findavgTime(proc, n);
+    return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>Order in which process gets executed
+4 1 3 2 
+Processes  Burst time  Waiting time  Turn around time
+ 4        3     0         3
+ 1        6     3         9
+ 3        7     9         16
+ 2        8     16         24
+Average waiting time = 7
+Average turn around time = 13
+</pre>
+<p>In Set-2 we will discuss the preemptive version of SJF i.e. Shortest Remaining Time First</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

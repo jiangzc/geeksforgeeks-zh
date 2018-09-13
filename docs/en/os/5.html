@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Difference between multitasking, multithreading and multiprocessing</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<ol>
+<li><b>Multiprogramming –</b> A computer running more than one program at a time (like running Excel and Firefox simultaneously).</li>
+<li><b>Multiprocessing –</b> A computer using more than one CPU at a time.</li>
+<li><b>Multitasking –</b> Tasks sharing a common resource (like 1 CPU).</li>
+<li><b>Multithreading</b> is an extension of multitasking.</li>
+</ol>
+<h3 class="sigil_not_in_toc"><strong>1. Multi programming –</strong></h3>
+<p>In a modern computing system, there are usually several concurrent application processes which want to execute. Now it is the responsibility of the Operating System to manage all the processes effectively and efficiently.<br/>
+One of the most important aspects of an Operating System is to multi program.<br/>
+In a computer system, there are multiple processes waiting to be executed, i.e. they are waiting when the CPU will be allocated to them and they begin their execution. These processes are also known as jobs. Now the main memory is too small to accommodate all of these processes or jobs into it. Thus, these processes are initially kept in an area called job pool. This job pool consists of all those processes awaiting allocation of main memory and CPU.<br/>
+CPU selects one job out of all these waiting jobs, brings it from the job pool to main memory and starts executing it. The processor executes one job until it is interrupted by some external factor or it goes for an I/O task.</p>
+<p><strong>Non-multi programmed system’s working –</strong></p>
+<ul>
+<li>In a non multi programmed system, As soon as one job leaves the CPU and goes for some other task (say I/O ), the CPU becomes idle. The CPU keeps waiting and waiting until this job (which was executing earlier) comes back and resumes its execution with the CPU. So CPU remains free for all this while.</li>
+<li>Now it has a drawback that the CPU remains idle for a very long period of time. Also, other jobs which are waiting to be executed might not get a chance to execute because the CPU is still allocated to the earlier job.<br/>
+This poses a very serious problem that even though other jobs are ready to execute, CPU is not allocated to them as the CPU is allocated to a job which is not even utilizing it (as it is busy in I/O tasks).</li>
+<li>It cannot happen that one job is using the CPU for say 1 hour while the others have been waiting in the queue for 5 hours. To avoid situations like this and come up with efficient utilization of CPU, the concept of multi programming came up.</li>
+</ul>
+<p>The main idea of multi programming is to maximize the CPU time.<br/>
+<strong>Multi programmed system’s working –</strong></p>
+<ul>
+<li>In a multi-programmed system, as soon as one job goes for an I/O task, the Operating System interrupts that job, chooses another job from the job pool (waiting queue), gives CPU to this new job and starts its execution. The previous job keeps doing its I/O operation while this new job does CPU bound tasks. Now say the second job also goes for an I/O task, the CPU chooses a third job and starts executing it. As soon as a job completes its I/O operation and comes back for CPU tasks, the CPU is allocated to it.</li>
+<li>In this way, no CPU time is wasted by the system waiting for the I/O task to be completed.<br/>
+Therefore, the ultimate goal of multi programming is to keep the CPU busy as long as there are processes ready to execute. This way, multiple programs can be executed on a single processor by executing a part of a program at one time, a part of another program after this, then a part of another program and so on, hence executing multiple programs. Hence, the CPU never remains idle.</li>
+</ul>
+<p>In the image below, program A runs for some time and then goes to waiting state. In the mean time program B begins its execution. So the CPU does not waste its resources and gives program B an opportunity to run.</p>
+<p><img src="../../../imgs/os/112852cafcfd03c30842d658d2544e88.jpg" width="1360" height="573" class="aligncenter size-full"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<h3 class="sigil_not_in_toc"><strong>2. Multiprocessing –</strong></h3>
+<p>In a uni-processor system, only one process executes at a time.<br/>
+Multiprocessing is the use of two or more CPUs (processors) within a single Computer system. The term also refers to the ability of a system to support more than one processor within a single computer system. Now since there are multiple processors available, multiple processes can be executed at a time. These multi processors share the computer bus, sometimes the clock, memory and peripheral devices also.</p>
+<p><strong>Multi processing system’s working –</strong></p>
+<ul>
+<li>With the help of multiprocessing, many processes can be executed simultaneously. Say processes P1, P2, P3 and P4 are waiting for execution. Now in a single processor system, firstly one process will execute, then the other, then the other and so on.</li>
+<li>But with multiprocessing, each process can be assigned to a different processor for its execution. If its a dual-core processor (2 processors), two processes can be executed simultaneously and thus will be two times faster, similarly a quad core processor will be four times as fast as a single processor. </li>
+</ul>
+<p><strong>Why use multi processing –</strong></p>
+<ul>
+<li>The main advantage of multiprocessor system is to get more work done in a shorter period of time. These types of systems are used when very high speed is required to process a large volume of data. Multi processing  systems can save money in comparison to single processor systems because the processors can share peripherals and power supplies.</li>
+<li>It also provides increased reliability in the sense that if one processor fails, the work does not halt, it only slows down. e.g. if we have 10 processors and 1 fails, then the work does not halt, rather the remaining 9 processors can share the work of the 10th processor.  Thus the whole system runs only 10 percent slower, rather than failing altogether.</li>
+</ul>
+<p><img src="../../../imgs/os/903460a0ef32b2dfc82f750aa16288e6.jpg" width="1360" height="573" class="aligncenter size-full"/></p>
+<p>Multiprocessing refers to the hardware (i.e., the CPU units) rather than the software (i.e., running processes). If the underlying hardware provides more than one processor then that is multiprocessing.</p>
+<p><strong>Difference between Multi programming and Multi processing –</strong></p>
+<ul>
+<li>A System can be both multi programmed by having multiple programs running at the same time and multiprocessing by having more than one physical processor.  The difference between multiprocessing and multi programming is that Multiprocessing is basically executing multiple processes at the same time on multiple processors, whereas multi programming is keeping several programs in main memory and executing them concurrently using a single CPU only.</li>
+<li>Multiprocessing occurs by means of parallel processing whereas Multi programming occurs by switching from one process to other (phenomenon called as context switching).</li>
+</ul>
+<h3 class="sigil_not_in_toc"><strong>3. Multitasking –</strong></h3>
+<p>As the name itself suggests, multi tasking refers to execution of multiple tasks (say processes, programs, threads etc.) at a time. In the modern operating systems, we are able to play MP3 music, edit documents in Microsoft Word, surf the Google Chrome all simultaneously, this is accomplished by means of multi tasking.</p>
+<p>Multitasking is a logical extension of multi programming. The major way in which multitasking differs from multi programming is that multi programming works on the concept of context switching whereas multitasking is solely based on time sharing systems.</p>
+<p><strong>Multi tasking system’s working –</strong></p>
+<ul>
+<li>In a time sharing system, each process is assigned some specific quantum of time for which a process is meant to execute. Say there are 4 processes P1, P2, P3, P4 ready to execute. So each of them are assigned some time quantum for which they will execute e.g time quantum of 5 nanoseconds (5 ns). As one process begins execution (say P2), it executes for that quantum of time (5 ns). After 5 ns the CPU starts the execution of the other process (say P3) for the specified quantum of time.</li>
+<li>Thus the CPU makes the processes to share time slices between them and execute accordingly. As soon as time quantum of one process expires, another process begins its execution. </li>
+<li>Here also basically a context switch is occurring but it is occurring so fast that the user is able to interact with each program separately while it is running. This way, the user is given the illusion that multiple processes/ tasks are executing simultaneously. But actually only one process/ task is executing at a particular instant of time. In multitasking, time sharing is best manifested because each running process takes only a fair quantum of the CPU time.</li>
+</ul>
+<p>In a more general sense, multitasking refers to having multiple programs, processes, tasks, threads running at the same time. This term is used in modern operating systems when multiple tasks share a common processing resource (e.g., CPU and Memory).</p>
+<p><img src="../../../imgs/os/dbe20742554e485a6dac9f0f7b2fe953.jpg" width="1360" height="600" class="aligncenter size-full"/></p>
+<ul>
+<li>As depicted in the above image, At any time the CPU is executing only one task while other tasks are waiting for their turn. The illusion of parallelism is achieved when the CPU is reassigned to another task. i.e all the three tasks A, B and C are appearing to occur simultaneously because of time sharing. </li>
+<li>So for multitasking to take place, firstly there should be multiprogramming i.e. presence of multiple programs ready for execution. And secondly the concept of time sharing.</li>
+</ul>
+<h3 class="sigil_not_in_toc"><strong>4. Multi threading –</strong></h3>
+<p>A thread is a basic unit of CPU utilization. Multi threading is an execution model that allows a single process to have multiple code segments (i.e., threads) running concurrently within the “context” of that process.<br/>
+e.g. VLC media player, where one thread is used for opening the VLC media player, one thread for playing a particular song and another thread for adding new songs to the playlist.</p>
+<p>Multi threading is the ability of a process to manage its use by more than one user at a time and to manage multiple requests by the same user without having to have multiple copies of the program.</p>
+<p><strong>Multi threading system’s working –</strong></p>
+<p><strong>Example 1 –</strong></p>
+<ul>
+<li>Say there is a web server which processes client requests. Now if it executes as a single threaded process, then it will not be able to process multiple requests at a time. Firstly one client will make its request and finish its execution and only then, the server will be able to process another client request. This is really costly, time consuming and tiring task. To avoid this, multi threading can be made use of.</li>
+<li>Now, whenever a new client request comes in, the web server simply creates a new thread for processing this request and resumes its execution to hear more client requests. So the web server has the task of listening to new client requests and creating threads for each individual request. Each newly created thread processes one client request, thus reducing the burden on web server.</li>
+</ul>
+<p><strong>Example 2 –</strong></p>
+<ul>
+<li>We can think of threads as child processes that share the parent process resources but execute independently. Now take the case of a GUI. Say we are performing a calculation on the GUI (which is taking very long time to finish). Now we can not interact with the rest of the GUI until this command finishes its execution. To be able to interact with the rest of the GUI, this command of calculation should be assigned to a separate thread. So at this point of time, 2 threads will be executing i.e. one for calculation, and one for the rest of the GUI. Hence here in a single process, we used multiple threads for multiple functionality.</li>
+</ul>
+<p>The image below completely describes the VLC player example:</p>
+<p><img src="../../../imgs/os/a5f4f28bf7343e4ae4574fd2701108de.jpg" width="1360" height="600" class="aligncenter size-full"/></p>
+<p><strong>Advantages of Multi threading –</strong></p>
+<ul>
+<li>Benefits of Multi threading include increased responsiveness. Since there are multiple threads in a program, so if one thread is taking too long to execute or if it gets blocked, the rest of the threads keep executing without any problem. Thus the whole program remains responsive to the user by means of remaining threads.</li>
+<li>Another advantage of multi threading is that it is less costly. Creating brand new processes and allocating resources is a time consuming task, but since threads share resources of the parent process, creating threads and switching between them is comparatively easy. Hence multi threading is the need of modern Operating Systems.</li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

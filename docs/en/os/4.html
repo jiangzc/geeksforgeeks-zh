@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Real time systems</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Real time system means that the system is subjected to real time, i.e., response should be guaranteed within a specified timing constraint or system should meet the specified deadline. For example: flight control system, real time monitors etc. </p>
+<p>Types of real time systems based on timing constraints:</p>
+<ol>
+<li><b>Hard real time system –</b><br/>
+This type of sytem can never miss its deadline. Missing the deadline may have disastrous consequences.The usefulness of result produced by a hard real time system decreases abruptly and may become negative if tardiness increases. Tardiness means how late a real time system completes its task with respect to its deadline. Example: Flight controller system.<p></p>
+</li>
+<li><b>Soft real time system –</b><br/>
+This type of system can miss its deadline occasionally with some acceptably low probability. Missing the deadline have no disastrous consequences. The usefulness of result produced by a soft real time system decreases gradually with increase in tardiness. Example: Telephone switches.
+</li>
+</ol>
+<p><b>Reference model of real time system:</b> Our reference model is characterized by three elements:</p>
+<ol>
+<li><b>A workload model:</b> It specifies the application supported by system.
+</li>
+<li><b>A resource model:</b> It specifies the resources available to the application.
+</li>
+<li><b>Algorithms:</b> It specifies how the application system will use resources.
+</li>
+</ol>
+<p>Terms related to real time system:</p>
+<ul>
+<li><b>Job –</b> A job is a small piece of work that can be assigned to a processor and may or may not require resources.
+</li>
+<li><b>Task –</b> A set of related jobs that jointly provide some system functionality.
+</li>
+<li><b>Release time of a job –</b> It is the time at which job becomes ready for execution.
+</li>
+<li><b>Execution time of a job –</b> It is the time taken by  job to finish its execution.
+</li>
+<li><b>Deadline of a job –</b> It is the time by which a job should finish its execution. Deadline is of two types: absolute deadline and relative deadline.
+</li>
+<li><b>Response time of a job –</b> It is the length of time from release time of a job to the instant when it finishes.
+</li>
+<li>Maximum allowable response time of a job is called its relative deadline.
+</li>
+<li>Absolute deadline of a job is equal to its relative deadline plus its release time.
+</li>
+<li>Processors are also known as active resources. They are essential for execution of a job. A job must have one or more processors in order to execute and proceed towards completion. Example: computer, transmission links.
+</li>
+<li>Resources are also known as passive resources. A job may or may not require a resource during its execution. Example: memory, mutex
+</li>
+<li>Two resources are identical if they can be used interchangeably else they are heterogeneous.
+</li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

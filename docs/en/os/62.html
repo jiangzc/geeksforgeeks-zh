@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Process Management | Deadlock Introduction</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>A process in operating systems uses different resources and uses resources in following way.<br/>
+1) Requests a resource<br/>
+2) Use the resource<span id="more-142466"></span><br/>
+2) Releases the resource</p>
+<p><br/><br/>
+<em><strong>Deadlock </strong></em>is a situation where a set of processes are blocked because each process is holding a resource and waiting for another resource acquired by some other process.<br/>
+Consider an example when two trains are coming toward each other on same track and there is only one track, none of the trains can move once they are in front of each other. Similar situation occurs in operating systems when there are two or more processes hold some resources and wait for resources held by other(s). For example, in the below diagram, Process 1 is holding Resource 1 and waiting for resource 2 which is acquired by process 2, and process 2 is waiting for resource 1.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/06/deadlock.png"><img class="alignnone size-full wp-image-17318" src="../../../imgs/os/bb2b556c3f87ccad6ad2351d37d675d2.jpg" alt="deadlock" width="400" height="320"/></a></p>
+<p><br/><br/>
+<strong>Deadlock can arise if following four conditions hold simultaneously (Necessary Conditions) </strong><br/>
+<em><strong>Mutual Exclusion:</strong></em> One or more than one resource are non-sharable (Only one process can use at a time)<br/>
+<em><strong>Hold and Wait:</strong> </em>A process is holding at least one resource and waiting for resources.<br/>
+<em><strong>No Preemption:</strong></em> A resource cannot be taken from a process unless the process releases the resource.<br/>
+<em><strong>Circular Wait:</strong></em> A set of processes are waiting for each other in circular form.</p>
+<p><br/><br/>
+<strong>Methods for handling deadlock</strong><br/>
+There are three ways to handle deadlock<br/>
+1) Deadlock prevention or avoidance: The idea is to not let the system into deadlock state.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>2) Deadlock detection and recovery: Let deadlock occur, then do preemption to handle it once occurred.</p>
+<p>3) Ignore the problem all together: If deadlock is very rare, then let it happen and reboot the system. This is the approach that both Windows and UNIX take.</p>
+<p><br/><br/>
+<strong>Exercise:</strong><br/>
+<strong>&#160; 1)</strong> Suppose n processes, P1, …. Pn share m identical resource units, which can be reserved and released one at a time. The maximum resource requirement of process Pi is Si, where Si &gt; 0. Which one of the following is a sufficient condition for ensuring that deadlock does not occur? (GATE CS 2005)</p>
+<p><img class="alignnone" src="../../../imgs/os/583af49b80c3e79149b38255006cc8e7.jpg" alt="" width="560" height="78"/><br/>
+<b>(A)</b> A<br/>
+<b>(B)</b> B<br/>
+<b>(C)</b> C<br/>
+<b>(D)</b> D</p>
+<p>For solution, see Question 4 of <a href="https://www.geeksforgeeks.org/operating-systems-set-16/" target="_blank">https://www.geeksforgeeks.org/operating-systems-set-16/</a></p>
+<p><br/></p>
+<p>See <a href="http://quiz.geeksforgeeks.org/deadlock/">QUIZ ON DEADLOCK</a> for more questions.</p>
+<p><br/><br/>
+<strong>References:</strong><br/>
+<a href="http://www2.latech.edu/~box/os/ch07.pdf">http://www2.latech.edu/~box/os/ch07.pdf</a><br/>
+<a href="http://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/7_Deadlocks.html">http://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/7_Deadlocks.html</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Working with Shared Libraries | Set 2</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>We have covered basic information about shared libraries in the <a href="https://www.geeksforgeeks.org/working-with-shared-libraries-set-1/" target="_blank">previous post</a>. In the current article we will learn how to create shared libraries on Linux.<span id="more-119330"></span></p>
+<p>Prior to that we need to understand how a program is loaded into memory, various (basic) steps involved in the process.</p>
+<p>Let us see a typical “Hello World” program in C. Simple Hello World program screen image is given below.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/Hello-World.png"><img class="aligncenter size-medium wp-image-119828" alt="Hello World" src="../../../imgs/os/a9983f44b192ec70bead453985cd293d.jpg" width="300" height="119" srcset="https://www.geeksforgeeks.org/wp-content/uploads/Hello-World-300x119.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/Hello-World.png 744w" sizes="(max-width: 300px) 100vw, 300px"/></a></p>
+<p>We were compiling our code using the command “<strong>gcc -o sample shared.c</strong>” When we compile our code, the compiler won’t resolve implementation of the function <strong>printf()</strong>. It only verifies the syntactical checking. The tool chain leaves a stub in our application which will be filled by dynamic linker. Since printf is standard function the compiler implicitly invoking its shared library. More details down.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>We are using <em>ldd</em> to list dependencies of our program binary image. In the screen image, we can see our sample program depends on three binary files namely, <em>linux-vdso.so.1</em>, <em>libc.so.6</em> and <em>/lib64/ld-linux-x86-64.so.2</em>.</p>
+<p>The file VDSO is fast implementation of system call interface and some other stuff, it is not our focus (on some older systems you may see different file name in liue of *.vsdo.*). Ignore this file.&#160;We have interest in the other two files.</p>
+<p>The file <strong>libc.so.6</strong> is C implementation of various standard functions. It is the file where we see <em>printf</em> definition needed for our <em>Hello World</em>. It is the shared library needed to be loaded into memory to run our Hello World program.</p>
+<p>The third file /lib64/ld-linux-x86-64.so.2 is infact an executable that runs when an application is invoked.&#160;When we invoke the program on bash terminal, typically the bash forks itself and replaces its address space with image of program to run (so called fork-exec pair). The kernel verifies whether the libc.so.6 resides in the memory. If not, it will load the file into memory and does the relocation of libc.so.6 symbols. It then invokes the dynamic linker (/lib64/ld-linux-x86-64.so.2) to resolve unresolved symbols of application code (printf in the present case). Then the control transfers to our program <em>main</em>. (I have intensionally omitted many details in the process, our focus is to understand basic details).</p>
+<p><strong>Creating our own shared library:</strong></p>
+<p>Let us work with simple shared library on Linux. Create a file <strong>library.c</strong> with the following content.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/library.png"><img class="aligncenter size-medium wp-image-119830" alt="library" src="../../../imgs/os/b3abac03a03ba31966e7238be3772b6b.jpg" width="300" height="164" srcset="https://www.geeksforgeeks.org/wp-content/uploads/library-300x164.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/library.png 835w" sizes="(max-width: 300px) 100vw, 300px"/></a></p>
+<p>The file library.c defines a function <em><strong>signum</strong></em> which will be used by our application code. Compile the file library.c file using the following command.</p>
+<p><strong>gcc -shared -fPIC -o liblibrary.so library.c</strong></p>
+<p>The flag <em>-shared</em> instructs the compiler that we are building a shared library. The flag <em>-fPIC</em> is to generate position independent code (ignore for now). The command generates a shared library <em>liblibrary.so</em> in the current working directory. We have our shared object file (shared library name in Linux) ready to use.</p>
+<p>Create another file <strong>application.c</strong> with the following content.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/application.png"><img class="aligncenter size-medium wp-image-119831" alt="application" src="../../../imgs/os/b83c4178c4ce80eec9d5ef1ae683ce64.jpg" width="300" height="125" srcset="https://www.geeksforgeeks.org/wp-content/uploads/application-300x125.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/application.png 659w" sizes="(max-width: 300px) 100vw, 300px"/></a></p>
+<p>In the file <strong>application.c</strong> we are invoking the function signum which was defined in a shared library. Compile the application.c file using the following command.</p>
+<p><strong>gcc application.c -L /home/geetanjali/coding/ -llibrary -o sample</strong></p>
+<p>The flag <em>-llibrary</em> instructs the compiler to look for symbol definitions that are not available in the current code (signum function in our case). The option <em>-L</em> is hint to the compiler to look in the directory followed by the option for any shared libraries (during link time only). The command generates an executable named as “<strong>sample</strong>“.</p>
+<p>If you invoke the executable, the dynamic linker will not be able to find the required shared library. By default it won’t look into current working directory. You have to explicitly instruct the tool chain to provide proper paths. The dynamic linker searches standard paths available in the&#160;LD_LIBRARY_PATH and also searches in system cache (for details explore the command <strong><em>ldconfig</em></strong>). We have to add our working directory to the&#160;LD_LIBRARY_PATH environment variable. The following command does the same.</p>
+<p><strong>export LD_LIBRARY_PATH=/home/geetanjali/coding/:$LD_LIBRARY_PATH</strong></p>
+<p>You can now invoke our executable as shown.</p>
+<p><strong>./sample</strong></p>
+<p>Sample output on my system is shown below.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/output.png"><img class="aligncenter size-medium wp-image-119832" alt="output" src="../../../imgs/os/abc3cab754ee6b456869c0664161cf39.jpg" width="300" height="28" srcset="https://www.geeksforgeeks.org/wp-content/uploads/output-300x28.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/output.png 933w" sizes="(max-width: 300px) 100vw, 300px"/></a></p>
+<p><strong>Note:</strong> <em>The path&#160;<strong>/home/geetanjali/coding/</strong> is working directory path on my machine. You need to use your working directory path where ever it is being used in the above commands.</em></p>
+<p>Stay tuned, we haven’t even explored 1/3rd of shared library concepts. More advanced concepts in the later articles.</p>
+<p><strong>Exercise:</strong></p>
+<p>It is workbook like article. You won’t gain much unless you practice and do some research.</p>
+<p>1. Create similar example and write your won function in the shared library. Invoke the function in another application.</p>
+<p>2. Is (Are) there any other tool(s) which can list dependent libraries?</p>
+<p>3. What is position independent code (PIC)?</p>
+<p>4. What is system cache in the current context? How does the directory&#160;/etc/ld.so.conf.d/* related in the current context?</p>
+<p>—&#160;<strong><a href="http://www.linkedin.com/in/ramanawithu" target="_blank">Venki</a></strong>. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

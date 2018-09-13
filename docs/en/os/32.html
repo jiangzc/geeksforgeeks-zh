@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Program for Priority Scheduling | Set 1</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Priority scheduling is a non-preemptive algorithm and one of the most common scheduling algorithms in batch systems. Each process is assigned a priority. Process with the highest priority is to be executed first and so on.<br/>
+Processes with the same priority are executed on first come first served basis. Priority can be decided based on memory requirements, time requirements or any other resource requirement.</p>
+<p><strong>Implementation :</strong></p>
+<pre>1- First input the processes with their burst time 
+   and priority.
+2- Sort the processes, burst time and priority
+   according to the priority.
+3- Now simply apply <a href="https://www.geeksforgeeks.org/program-fcfs-scheduling-set-1/">FCFS</a> algorithm.
+</pre>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/PRIORITYsCHEDULING.jpg"><img src="../../../imgs/os/6b02720af52b8e512ccefbacc3b47ce3.jpg" alt="prior" width="370" height="251" class="alignnone size-full wp-image-164878"/></a></p>
+<p>Note: A major problem with priority scheduling is indefinite blocking or starvation. A solution to the problem of indefinite blockage of the low-priority process is aging. Aging is a technique of gradually increasing the priority of processes that wait in the system for a long period of time.</p>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre class="brush: cpp; highlight: [74,75,76,77,78,79,80,81,82,83,84]; title: ; notranslate" title="">// C++ program for implementation of FCFS
+// scheduling
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+struct Process
+{
+    int pid;  // Process ID
+    int bt;   // CPU Burst time required
+    int priority; // Priority of this process
+};
+
+// Function to sort the Process acc. to priority
+bool comparison(Process a, Process b)
+{
+    return (a.priority &gt; b.priority);
+}
+
+// Function to find the waiting time for all
+// processes
+void findWaitingTime(Process proc[], int n,
+                     int wt[])
+{
+    // waiting time for first process is 0
+    wt[0] = 0;
+
+    // calculating waiting time
+    for (int  i = 1; i &lt; n ; i++ )
+        wt[i] =  proc[i-1].bt + wt[i-1] ;
+}
+
+// Function to calculate turn around time
+void findTurnAroundTime( Process proc[], int n,
+                         int wt[], int tat[])
+{
+    // calculating turnaround time by adding
+    // bt[i] + wt[i]
+    for (int  i = 0; i &lt; n ; i++)
+        tat[i] = proc[i].bt + wt[i];
+}
+
+//Function to calculate average time
+void findavgTime(Process proc[], int n)
+{
+    int wt[n], tat[n], total_wt = 0, total_tat = 0;
+
+    //Function to find waiting time of all processes
+    findWaitingTime(proc, n, wt);
+
+    //Function to find turn around time for all processes
+    findTurnAroundTime(proc, n, wt, tat);
+
+    //Display processes along with all details
+    cout &lt;&lt; "\nProcesses  "&lt;&lt; " Burst time  "
+         &lt;&lt; " Waiting time  " &lt;&lt; " Turn around time\n";
+
+    // Calculate total waiting time and total turn
+    // around time
+    for (int  i=0; i&lt;n; i++)
+    {
+        total_wt = total_wt + wt[i];
+        total_tat = total_tat + tat[i];
+        cout &lt;&lt; "   " &lt;&lt; proc[i].pid &lt;&lt; "\t\t"
+             &lt;&lt; proc[i].bt &lt;&lt; "\t    " &lt;&lt; wt[i]
+             &lt;&lt; "\t\t  " &lt;&lt; tat[i] &lt;&lt;endl;
+    }
+
+    cout &lt;&lt; "\nAverage waiting time = "
+         &lt;&lt; (float)total_wt / (float)n;
+    cout &lt;&lt; "\nAverage turn around time = "
+         &lt;&lt; (float)total_tat / (float)n;
+}
+
+void priorityScheduling(Process proc[], int n)
+{
+    // Sort processes by priority
+    sort(proc, proc + n, comparison);
+
+    cout&lt;&lt; "Order in which processes gets executed \n";
+    for (int  i = 0 ; i &lt;  n; i++)
+        cout &lt;&lt; proc[i].pid &lt;&lt;" " ;
+
+    findavgTime(proc, n);
+}
+
+// Driver code
+int main()
+{
+    Process proc[] = {{1, 10, 2}, {2, 5, 0}, {3, 8, 1}};
+    int n = sizeof proc / sizeof proc[0];
+    priorityScheduling(proc, n);
+    return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>Order in which processes gets executed 
+1 3 2 
+Processes  Burst time  Waiting time  Turn around time
+ 1        10     0         10
+ 3        8     10         18
+ 2        5     18         23
+
+Average waiting time = 9.33333
+Average turn around time = 17
+</pre>
+<p>In this post, the processes with arrival time 0 are discussed.  In next set, we will be considering different arrival times to evaluate waiting times.</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

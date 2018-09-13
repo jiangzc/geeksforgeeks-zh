@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Page Table Entries</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Prerequisite –</strong> <a href="https://www.geeksforgeeks.org/operating-system-paging/"> Paging</a></p>
+<p>Page table has page table entries where each page table entry stores a frame number and optional status (like protection) bits. Many of status bits used in the virtual memory system. The most <b>important</b> thing in PTE is <b>frame Number</b>.</p>
+<p><strong>Page table entry has the following information –</strong></p>
+<p><img src="../../../imgs/os/babcc209d337345f7564ce52264a00a3.jpg" alt="" width="994" height="388" class="aligncenter size-full wp-image-249663"/></p>
+<ol>
+<li><strong>Frame Number –</strong> It gives the frame number in which the current page you are looking for is present. The number of bits required depends on the number of frames.
+<pre>Number of bits for frame = Size of physical memory/frame size
+</pre>
+</li>
+<li><strong>Present/Absent bit –</strong> Present or absent bit says whether a particular page you are looking for is present or absent. In case if it is not present, that is called Page Fault. It is set to 0 if the corresponding page is not in memory. Used to control page fault by the operating system to support virtual memory. Sometimes this bit is also known as <b>valid/invalid</b> bits.</li>
+<li><strong>Protection bit –</strong> Protection bit says that what kind of protection you want on that page. So, these bit for the protection of the page frame (read, write etc).</li>
+<li><strong>Referenced bit –</strong> Referenced bit will say whether this page has been referred in the last clock cycle or not. It is set to 1 by hardware when the page is accessed.</li>
+<li><strong>Caching enabled/disabled –</strong> Some times we need the fresh data. Let us say the user is typing some information from the keyboard and your program should run according to the input given by the user. In that case, the information will come into the main memory. Therefore main memory contains the latest information which is typed by the user. Now if you try to put that page in the cache, that cache will show the old information. So whenever freshness is required, we don’t want to go for caching or many levels of the memory.The information present in the closest level to the CPU and the information present in the closest level to the user might be different. So we want the information has to be consistency, which means whatever information user has given, CPU should be able to see it as first as possible. That is the reason we want to disable caching. So, this bit <b>enables or disable</b> caching of the page.</li>
+<li><strong>Modified bit –</strong> Modified bit says whether the page has been modified or not. Modified means sometimes you might try to write something on to the page. If a page is modified, then whenever you should replace that page with some other page, then the modified information should be kept on the hard disk or it has to be written back or it has to be saved back. It is set to 1 by hardware on write-access to page which is used to avoid writing when swapped out. Sometimes this modified bit is also called as the <b>Dirty bit</b>.</li>
+<p><br/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>GATE CS Corner Questions</strong></p>
+<p>Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2001-question-46/" target="_blank">GATE CS 2001, Question 46</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2004-question-66/" target="_blank">GATE CS 2004, Question 66</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2015-set-1-question-22/" target="_blank">GATE CS 2015 (Set 1), Question 65</a></li>
+</ol>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ol>
+</div>
+</body>
+</html>

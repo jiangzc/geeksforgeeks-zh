@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Operating System  | Resource Allocation Graph (RAG)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>As <a href="https://www.geeksforgeeks.org/operating-system-bankers-algorithm/" target="_blank">Banker’s algorithm</a> using some kind of table like allocation, request, available all that thing to understand what is the state of the system. Similarly, if you want to understand the state of the system instead of using those table, actually tables are very easy to represent and understand it, but then still you could even represent the same information in the graph. That graph is called <b>Resource Allocation Graph (RAG)</b>.</p>
+<p>So, resource allocation graph is explained to us what is the state of the system in terms of <b>processes and resources</b>. Like how many resources are available, how many are allocated and what is the request of each process. Everything can be represented in terms of the diagram. One of the advantages of having a diagram is, sometimes it is possible to see a deadlock directly by using RAG, but then you might not be able to know that by looking at the table. But the tables are better if the system contains lots of process and resource and Graph is better if the system contains less number of process and resource.<br/>
+      We know that any graph contains vertices and edges. So RAG also contains vertices and edges. In RAG vertices are two type –</p>
+<p><strong>1. Process vertex –</strong> Every process will be represented as a process vertex.Generally, the process will be represented with a circle.<br/>
+<strong>2. Resource vertex –</strong> Every resource will be represented as a resource vertex. It is also two type –</p>
+<ul>
+<li><strong>Single instance type resource –</strong> It represents as a box, inside the box, there will be one dot.So the number of dots indicate how many instances are present of each resource type.</li>
+<li><strong>Multi-resource instance type resource –</strong> It also represents as a box, inside the box, there will be many dots present.</li>
+</ul>
+<p><img src="../../../imgs/os/b689d0f075c7bc0350d6048544bfb0d9.jpg" alt="" class="aligncenter size-medium wp-image-242764"/></p>
+<p>Now coming to the edges of RAG.There are two types of edges in RAG –</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>1. Assign Edge – </strong> If you already assign a resource to a process then it is called Assign edge.<br/>
+<strong>2. Request Edge – </strong> It means in future the process might want some resource to complete the execution, that is called request edge.</p>
+<p><img src="../../../imgs/os/01e30b291bb1b259bb5b1bc422b1118b.jpg" alt="" class="aligncenter size-medium wp-image-242764"/></p>
+<p>So, if a process is using a resource, an arrow is drawn from the resource node to the process node. If a process is requesting a resource, an arrow is drawn from the process node to the resource node.
+
+</p>
+<p><strong>Example 1 (Single instances RAG) –</strong></p>
+<p><img src="../../../imgs/os/f9e40d447479266b9ca91597503ad7d9.jpg" alt="" class="aligncenter size-medium wp-image-242764"/></p>
+<p>If there is a cycle in the Resource Allocation Graph and each resource in the cycle provides only one instance, then the processes will be in deadlock. For example, if process P1 holds resource R1, process P2 holds resource R2 and process P1 is waiting for R2 and process P2 is waiting for R1, then process P1 and process P2 will be in deadlock.</p>
+<p><img src="../../../imgs/os/105041b36ed398b0a7935639c278dee0.jpg" alt="" class="aligncenter size-medium wp-image-242764"/></p>
+<p>Here’s another example, that shows Processes P1 and P2 acquiring resources R1 and R2 while process P3 is waiting to acquire both resources. In this example, there is no deadlock because there is no circular dependency.<br/>
+      So cycle in single-instance resource type is the sufficient condition for deadlock.
+</p>
+<p><strong>Example 2 (Multi-instances RAG) –</strong></p>
+<p><img src="../../../imgs/os/883fe4628280fc27b034cb0c181f03e1.jpg" alt="" class="aligncenter size-medium wp-image-242764"/></p>
+<p>From the above example, it is not possible to say the RAG is in a safe state or in an unsafe state.So to see the state of this RAG, let’s construct the allocation matrix and request matrix.</p>
+<p><img src="../../../imgs/os/b3d01ea63f3a4c5dbcd8a1b0964d8d70.jpg" alt="" class="aligncenter size-medium wp-image-242764"/></p>
+<ul>
+<li>The total number of processes are three; P1, P2 &amp; P3 and the total number of resources are two; R1 &amp; R2.</li>
+<p><strong>Allocation matrix –</strong></p>
+<li>For constructing the allocation matrix, just go to the resources and see to which process it is allocated.</li>
+<li>R1 is allocated to P1, therefore write 1 in allocation matrix and similarly, R2 is allocated to P2 as well as P3 and for the remaining element just write 0.</li>
+<p><strong>Request matrix –</strong></p>
+<li>In order to find out the request matrix, you have to go to the process and see the outgoing edges.</li>
+<li>P1 is requesting resource R2, so write 1 in the matrix and similarly, P2 requesting R1 and for the remaining element write 0.</li>
+<p>So now available resource is = (0, 0).</p>
+<p><strong>Checking deadlock (safe or not) –</strong></p>
+<p><img src="../../../imgs/os/59d169644d4c3ab4ec677dec05625257.jpg" alt="hgh-1" width="1026" height="352" class="alignnone size-full wp-image-161020" srcset="https://www.geeksforgeeks.org/wp-content/uploads/hgh-1.jpg 1026w, https://www.geeksforgeeks.org/wp-content/uploads/hgh-1-300x103.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/hgh-1-768x263.jpg 768w, https://www.geeksforgeeks.org/wp-content/uploads/hgh-1-1024x351.jpg 1024w, https://www.geeksforgeeks.org/wp-content/uploads/hgh-1-660x226.jpg 660w" sizes="(max-width: 1026px) 100vw, 1026px"/></p>
+<p>So, there is no deadlock in this RAG.Even though there is a cycle, still there is no deadlock.Therefore in multi-instance resource cycle is not sufficient condition for deadlock.</p>
+<p><img src="../../../imgs/os/9975ee4bdc3da86b0502fcf8e78918bb.jpg" alt="" class="aligncenter size-medium wp-image-242764"/></p>
+<p>Above example is the same as the previous example except that, the process P3 requesting for resource R1.<br/>
+So the table becomes as shown in below.</p>
+<p><img src="../../../imgs/os/a31439dc97b744581fd7029be28dbfa7.jpg" alt="" class="aligncenter size-medium wp-image-242764"/></p>
+<p>So,the Available resource is = (0, 0), but requirement are (0, 1), (1, 0) and (1, 0).So you can’t fulfill any one requirement.Therefore, it is in deadlock.</p>
+<p>       Therefore, every cycle in a multi-instance resource type graph is not a deadlock, if there has to be a deadlock, there has to be a cycle.So, in case of RAG with multi-instance resource type, the cycle is a necessary condition for deadlock, but not sufficient.
+</p>
+</ul>
+<p> <br/></p>
+<p><b>GATE CS Corner Questions</b><br/>
+Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2009-question-30/" target="_blank">GATE CS 2009, Question 60</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-1-question-41/" target="_blank">GATE CS 2014 (Set 1), Question 65</a></li>
+</ol>
+<p><strong>Reference –</strong><br/>
+A. Silberschatz, P. Galvin, G. Gagne, “<a href="https://www.amazon.com/Operating-System-Concepts-Abraham-Silberschatz/dp/0470128720" target="_blank">Operating Systems Concepts (8th Edition)</a>”, Wiley India Pvt. Ltd.</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

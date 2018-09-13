@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Lottery Process Scheduling</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisite –</b> <a href="https://www.geeksforgeeks.org/gate-notes-operating-system-process-scheduling/">CPU Scheduling</a>, <a href="https://www.geeksforgeeks.org/gate-notes-operating-system-process-management-introduction/">Process Management</a><br/>
+<b>Lottery Scheduling</b> is type of process scheduling, somewhat different from other Scheduling. Processes are scheduled in a random manner. Lottery scheduling can be <b>preemptive or non-preemptive</b>. It also solves the problem of starvation. Giving each process at least one lottery ticket guarantees that it has non-zero probability of being selected at each scheduling operation.</p>
+<p>In this scheduling every process have some tickets and scheduler picks a random ticket and process having that ticket is the winner and it is executed for a time slice and then another ticket is picked by the scheduler. These tickets represent the share of processes. A process having a higher number of tickets give it more chance to get chosen for execution.</p>
+<p><b>Example –</b> If we have two processes A and B having 60 and 40 tickets respectively out of total 100 tickets. CPU share of A is 60% and that of B is 40%.These shares are calculated probabilistically and not deterministically. </p>
+<p><b>Explanation –</b></p>
+<ol>
+<li>We have two processes A and B. A has 60 tickets (ticket number 1 to 60) and B have 40 tickets (ticket no. 61 to 100).</li>
+<li>Scheduler picks a random number from 1 to 100. If the picked no. is from 1 to 60 then A is executed otherwise B is executed.</li>
+<li>An example of 10 tickets picked by Scheduler may look like this –
+<pre>Ticket number -  73 82 23 45 32 87 49 39 12 09.
+Resulting Schedule -  B  B  A  A  A  B  A  A  A  A.
+</pre>
+</li>
+<li>A is executed 7 times and B is executed 3 times. As you can see that A takes 70% of CPU and B takes 30% which is not the same as what we need as we need A to have 60% of CPU and B should have 40% of CPU.This happens because shares are calculated probabilistically but in a long run(i.e when no. of tickets picked is more than 100 or 1000) we can achieve a share percentage of approx. 60 and 40 for A and B respectively.</li>
+</ol>
+<p><strong>Ways to manipulate tickets –</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li><strong>Ticket Currency –</strong><br/>
+Scheduler give a certain number of tickets to different users in a currency and users can give it to there processes in a different currency. E.g. Two users A and B are given 100 and 200 tickets respectively. User A is running two process and give 500 tickets to each in A’s own currency. B is running 1 procees and gives it all 20 tickets in B’s currency. Now at the time of scheduling tickets of each process are converted into global currency i.e A’s process will have 50 tickets each and B’s process will have 200 tickets and scheduling is done on this basis.</li>
+<li><strong>Transfer Tickets –</strong><br/>
+A process can pass its tickets to another process.</li>
+<li><strong>Ticket inflation –</strong><br/>
+With this technique a process can temporarily raise or lower the number of tickets it own.</li>
+</ul>
+<p><b>References –</b><br/>
+<a href="https://en.wikipedia.org/wiki/Lottery_scheduling" target="_blank">Lottery scheduling – Wikipedia</a><br/>
+<a href="https://people.eecs.berkeley.edu/~brewer/cs262/Lec-scheduling.pdf" target="_blank">eecs.berkeley.edu</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

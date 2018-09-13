@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Last Minute Notes – Operating Systems</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>See Last Minute Notes on all subjects <a href="http://quiz.geeksforgeeks.org/lmns/">here</a>.</p>
+<div style="font-size: 15px">Operating Systems: It is the interface between the user and the computer hardware.<br/>
+<br/><strong>Type’s of OS:</strong><p></p>
+<ul>
+<li><strong>Batch OS:</strong> A set of similar jobs are stored in the main memory for execution. A job gets assigned to the CPU, only when the execution of the previous job completes.</li>
+<li><strong>Multiprogramming OS:</strong> The main memory consists of jobs waiting for CPU time. The OS selects one of the processes and assigns it the CPU time. Whenever the executing process needs to wait for any other operation (like I/O), the OS selects another process from the job queue and assigns it the CPU. This way, the CPU is never kept idle and the user gets the flavor of getting multiple tasks done at once.</li>
+<li><strong>Multitasking OS:</strong> Multitasking OS combines the benefits of Multiprogramming OS and CPU scheduling to perform quick switches between jobs. The switch is so quick that the user can interact with each program as it runs</li>
+<li><strong>Time Sharing OS:</strong> Time sharing systems require interaction with the user to instruct the OS to perform various tasks. The OS responds with an output. The instructions are usually given through an input device like the keyboard.</li>
+<li><strong>Real Time OS :</strong> Real Time OS are usually built for dedicated systems to accomplish a specific set of tasks within deadlines.</li>
+</ul>
+<p><strong>Threads</strong><br/>
+A thread is a light weight process and forms a basic unit of CPU utilization. A process can perform more<br/>
+than one task at the same time by including multiple threads.</p>
+<ul>
+<ul>
+<li>A thread has its own program counter, register set, and stack</li>
+<li>A thread shares with other threads of the same process the code section, the data section, files and signals.</li>
+</ul>
+</ul>
+<p>A new thread, or a child process of a given process, can be introduced by using the fork() system call. A process with n fork() system calls generates 2<sup>n</sup> – 1 child processes.<br/>
+There are two types of threads:</p>
+<ul>
+<ul>
+<ul>
+<li>User threads</li>
+<li>Kernel threads</li>
+</ul>
+</ul>
+</ul>
+<p>Example : Java thread, POSIX threads.Example : Window Solaris.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>&#160;</p>
+<table style="font-size: 15px">
+<tbody>
+<tr>
+<th style="font-size: 15px"><strong>User level thread</strong></th>
+<th style="font-size: 15px"><strong>Kernel level thread</strong></th>
+</tr>
+<tr>
+<td>User thread are implemented by users.</td>
+<td>kernel threads are implemented by OS.</td>
+</tr>
+<tr>
+<td>OS doesn’t recognized user level threads.</td>
+<td>Kernel threads are recognized by OS.</td>
+</tr>
+<tr>
+<td>Implementation of User threads is easy.</td>
+<td>Implementation of Kernel thread is complicated.</td>
+</tr>
+<tr>
+<td>Context switch time is less.</td>
+<td>Context switch time is more.</td>
+</tr>
+<tr>
+<td>Context switch requires no hardware support.</td>
+<td>Hardware support is needed.</td>
+</tr>
+<tr>
+<td>If one user level thread perform blocking operation then entire process will be blocked.</td>
+<td>If one kernel thread perform blocking operation then another thread can continue execution.</td>
+</tr>
+</tbody>
+</table>
+<p>&#160;<br/>
+<strong>Process:</strong><br/>
+A process is a program under execution. The value of program counter (PC) indicates the address of the current instruction of the process being executed. Each process is represented by a Process Control Block (PCB).</p>
+<p>&#160;<br/>
+<strong>Process Scheduling:</strong><br/>
+Below are different time with respect to a process.</p>
+<pre><strong>Arrival Time: </strong>      Time at which the process arrives in the ready queue.
+<strong>Completion Time:</strong>    Time at which process completes its execution.<span id="more-142477"></span>
+<strong>Burst Time: </strong>        Time required by a process for CPU execution.
+<strong>Turn Around Time: </strong>  Time Difference between completion time and arrival time.          
+     Turn Around Time = Completion Time - Arrival Time
+
+<strong>Waiting Time(W.T):</strong> Time Difference between turn around time and burst time.
+     Waiting Time = Turn Around Time - Burst Time</pre>
+<p>&#160;</p>
+<p><strong>Why do we need scheduling?</strong><br/>
+A typical process involves both I/O time and CPU time. In a uniprogramming system like MS-DOS, time spent waiting for I/O is wasted and CPU is free during this time. In multiprogramming systems, one process can use CPU while another is waiting for I/O. This is possible only with process scheduling.</p>
+<p>&#160;</p>
+<p><strong>Objectives of Process Scheduling Algorithm</strong></p>
+<pre>Max CPU utilization [Keep CPU as busy as possible]
+Fair allocation of CPU.
+Max throughput [Number of processes that complete their execution per time unit]
+Min turnaround time [Time taken by a process to finish execution]
+Min waiting time [Time a process waits in ready queue]
+Min response time [Time when a process produces first response]</pre>
+<p>&#160;</p>
+<p><strong>Different Scheduling Algorithms</strong><br/>
+<em><strong>First Come First Serve (FCFS):</strong></em> Simplest scheduling algorithm that schedules according to arrival times of processes.</p>
+<p><em><strong>Shortest Job First(SJF):</strong></em> Process which have the shortest burst time are scheduled first.</p>
+<p><em><strong>Shortest Remaining Time First(SRTF):</strong></em> It is preemptive mode of SJF algorithm in which jobs are schedule according to shortest remaining time.</p>
+<p><em><strong>Round Robin Scheduling:</strong></em> Each process is assigned a fixed time in cyclic way.</p>
+<p><em><strong>Priority Based scheduling (Non Preemptive):</strong></em> In this scheduling, processes are scheduled according to their priorities, i.e., highest priority process is schedule first. If priorities of two processes match, then schedule according to arrival time.</p>
+<p><em><strong>Highest Response Ratio Next (HRRN)</strong></em> In this scheduling, processes with highest response ratio is scheduled. This algorithm avoids starvation.</p>
+<pre>Response Ratio = (Waiting Time + Burst time) / Burst time</pre>
+<p><em><strong>Multilevel Queue Scheduling:</strong> </em>According to the priority of process, processes are placed in the different queues. Generally high priority process are placed in the top level queue. Only after completion of processes from top level queue, lower level queued processes are scheduled.</p>
+<p><em><strong>Multi level Feedback Queue Scheduling: </strong></em> It allows the process to move in between queues. The idea is to separate processes according to the characteristics of their CPU bursts. If a process uses too much CPU time, it is moved to a lower-priority queue.</p>
+<p>&#160;</p>
+<p><strong>Some useful facts about Scheduling Algorithms:</strong><br/>
+<strong>1)</strong> FCFS can cause long waiting times, especially when the first job takes too much CPU time.</p>
+<p><strong>2)</strong> Both SJF and Shortest Remaining time first algorithms may cause starvation. Consider a situation when long process is there in ready queue and shorter processes keep coming.</p>
+<p><strong>3) </strong>If time quantum for Round Robin scheduling is very large, then it behaves same as FCFS scheduling.</p>
+<p><strong>4)</strong> SJF is optimal in terms of average waiting time for a given set of processes. SJF gives minimum average waiting time, but problems with SJF is how to know/predict time of next job.<br/>
+<br/>
+&#160;<br/>
+</p>
+<p><b>The Critical Section Problem</b><br/>
+Critical Section: The portion of the code in the program where shared variables are accessed and/or updated.</p>
+<p>Remainder Section: The remaining portion of the program excluding the Critical Section.</p>
+<p>Race around Condition: The final output of the code depends on the order in which the variables are accessed. This is termed as the race around condition.</p>
+<p>A solution for the critical section problem must satisfy the following three conditions:</p>
+<ol>
+<li><strong>Mutual Exclusion: </strong>If a process Pi is executing in its critical section, then no other process is allowed to enter into the critical section. </li>
+<li><strong>Progress:</strong> If no process is executing in the critical section, then the decision of a process to enter a critical section cannot be made by any other process that is executing in its remainder section. The selection of the process cannot be postponed indefinitely. </li>
+<li><strong>Bounded Waiting:</strong> There exists a bound on the number of times other processes can enter into the critical section after a process has made request to access the critical section and before the requested is granted.</li>
+</ol>
+<p>&#160;<br/>
+<strong>Synchronization Tools</strong><br/>
+<strong>Semaphores: </strong>A semaphore is an integer variable that is accessed only through two atomic operations, wait () and signal (). An atomic operation is executed in a single CPU time slice without any pre-emption.</p>
+<p>Semaphores are of two types:
+</p>
+<ol>
+<li>
+<strong>Counting Semaphore: </strong>A counting semaphore is an integer variable whose value can range over an unrestricted domain.</li>
+<li><strong>Mutex: </strong>Binary Semaphores are called Mutex. These can have only two values, 0 or 1. The operations wait () and signal () operate on these in a similar fashion.</li>
+<ol>
+<p>&#160;<br/>
+<strong>Deadlock</strong><br/>
+A situation where a set of processes are blocked because each process is holding a resource and waiting for another resource acquired by some other process.</p>
+<p><strong>Deadlock can arise if following four conditions hold simultaneously (Necessary Conditions) </strong><br/>
+<em><strong>Mutual Exclusion:</strong></em> One or more than one resource are non-sharable (Only one process can use at a time)<br/>
+<em><strong>Hold and Wait:</strong> </em>A process is holding at least one resource and waiting for resources.<br/>
+<em><strong>No Preemption:</strong></em> A resource cannot be taken from a process unless the process releases the resource.<br/>
+<em><strong>Circular Wait:</strong></em> A set of processes are waiting for each other in circular form.</p>
+<p>&#160;<br/>
+<strong>Methods for handling deadlock</strong><br/>
+There are three ways to handle deadlock<br/>
+1) Deadlock prevention or avoidance: The idea is to not let the system into deadlock state.</p>
+<p>2) Deadlock detection and recovery: Let deadlock occur, then do preemption to handle it once occurred.</p>
+<p>3) Ignore the problem all together: If deadlock is very rare, then let it happen and reboot the system. This is the approach that both Windows and UNIX take.</p>
+<p><strong>Banker’s Algorithm:</strong><br/>
+This algorithm handles multiple instances of the same resource. </p>
+<p>Example: The table of the system at a given instant:</p>
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Process</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Max</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Allocation</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Available</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Need-Max-Allocation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"><b>A &#160;&#160; B &#160;&#160;C</b></td>
+<td style="text-align:center;"><b>A &#160;&#160; B &#160;&#160;C</b></td>
+<td style="text-align:center;"><b>A &#160;&#160; B &#160;&#160;C</b></td>
+<td style="text-align:center;"><b>A &#160;&#160; B &#160;&#160;C</b></td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">P<sub>0</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">0 &#160;&#160; 0 &#160;&#160;1</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">0 &#160;&#160; 0 &#160;&#160;1</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">0 &#160;&#160; 0 &#160;&#160;0</td>
+</tr>
+<tr>
+<td style="text-align:center;">P<sub>1</sub></td>
+<td style="text-align:center;">1 &#160;&#160; 7 &#160;&#160;5</td>
+<td style="text-align:center;">1 &#160;&#160; 0 &#160;&#160;0</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">0 &#160;&#160; 7 &#160;&#160;5</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">P<sub>2</sub></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">2 &#160;&#160; 3 &#160;&#160;5</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">1 &#160;&#160; 3 &#160;&#160;5</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">1 &#160;&#160; 0 &#160;&#160;0</td>
+</tr>
+<tr>
+<td style="text-align:center;">P<sub>3</sub></td>
+<td style="text-align:center;">0 &#160;&#160; 6 &#160;&#160;5</td>
+<td style="text-align:center;">0 &#160;&#160; 6 &#160;&#160;3</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">0 &#160;&#160; 0 &#160;&#160;2</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"><b>Total = </b></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"><b>2 &#160;&#160; 9 &#160;&#160;9</b></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"><b>1 &#160;&#160; 5 &#160;&#160;2</b></td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Memory Management:</strong></p>
+<p>These techniques allow the memory to be shared among multiple processes.</p>
+<p>Overlays: The memory should contain only those instructions and data that are required at a given time.</p>
+<p>Swapping: In a multiprogramming program, the instructions that have used the time slice are swapped out from the memory.<br/>
+<br/>&#160;</p>
+<p><strong>Memory Management Techniques:</strong></p>
+<p><strong>1: Single Partition Allocation Schemes:</strong> The memory is divided into two parts. One part is kept for use by the OS and the other for use by the users.</p>
+<p><strong>2: Multiple Partition Schemes: </strong><br/>
+Fixed Partition: The memory is divided into fixed size partitions.<br/>
+Variable Partition: The memory is divided into variable sized partitions.</p>
+<p>Variable partition allocation schemes:<br/>
+First Fit: The arriving process is allotted the first hole of memory in which it fits completely.<br/>
+Best Fit: The arriving process is allotted the hole of memory in which it fits the best by leaving the minimum memory empty.<br/>
+Worst Fit: The arriving process is allotted the hole of memory in which it leaves the maximum gap. Note: Best fit does necessarily give the best results for memory allocation.<br/>
+<br/>&#160;</p>
+<p><strong>1. Paging: </strong>The physical memory is divided into equal sized frames. The main memory is divided into fixed size pages. The size of a physical memory frame is equal to the size of a virtual memory frame. </p>
+<p><strong>2. Segmentation:</strong> Segmentation is implemented to give users view of memory. The logical address space is a collection of segments. Segmentation can be implemented with or without the use of paging.<br/>
+<br/>&#160;<br/>
+<strong>Page Fault</strong><br/>
+A page fault is a type of interrupt, raised by the hardware when a running program accesses a memory page that is mapped into the virtual address space, but not loaded in physical memory.</p>
+<p>&#160;</p>
+<p><strong>Page Replacement Algorithms</strong></p>
+<p><strong>First In First Out</strong><br/>
+This is the simplest page replacement algorithm. In this algorithm, operating system keeps track of all pages in the memory in a queue, oldest page is in the front of the queue. When a page needs to be replaced page in the front of the queue is selected for removal.</p>
+<p>For example, consider page reference string 1, 3, 0, 3, 5, 6 and 3 page slots.</p>
+<p>Initially all slots are empty, so when 1, 3, 0 came they are allocated to the empty slots —&gt; <strong>3 Page Faults.</strong><br/>
+when 3 comes, it is already in&#160; memory so —&gt; <strong>0 Page Faults.</strong><br/>
+Then 5 comes, it is not available in&#160; memory so it replaces the oldest page slot i.e 1. —&gt;<strong>1 Page Fault.</strong><br/>
+Finally 6 comes,&#160;it is also not available in memory so it replaces the oldest page slot i.e 3 —&gt;<strong>1 Page Fault.</strong></p>
+<p>&#160;</p>
+<p><strong>Belady’s anomaly</strong><br/>
+Belady’s anomaly proves that it is possible to have more page faults when increasing the number of page frames while using the First in First Out (FIFO) page replacement algorithm.&#160; For example, if we consider reference string &#160;&#160;&#160;&#160; 3 &#160;&#160; &#160;2 &#160;&#160; &#160;1 &#160;&#160; &#160;0 &#160;&#160; &#160;3 &#160;&#160; &#160;2 &#160;&#160; &#160;4 &#160;&#160; &#160;3 &#160;&#160; &#160;2 &#160;&#160; &#160;1 &#160;&#160; &#160;0 &#160;&#160; &#160;4 and 3 slots, we get 9 total page faults, but if we increase slots to 4, we get 10 page faults.</p>
+<p>&#160;</p>
+<p><strong>Optimal Page replacement</strong><br/>
+In this algorithm, pages are replaced which are not used for the longest duration of time in the future.</p>
+<p>Let us consider page reference string 7 0 1 2 0 3 0 4 2 3 0 3 2 and 4 page slots.</p>
+<p>Initially all slots are empty, so when 7 0 1 2 are allocated to the empty slots —&gt;<strong> 4 Page faults</strong><br/>
+0 is already there so —&gt; <strong>0 Page fault.</strong><br/>
+when 3 came it will take the place of 7 because it is not used for the longest duration of time in the future.—&gt;<strong>1 Page fault.</strong><br/>
+0 is already there so —&gt;<strong> 0 Page fault.</strong>.<br/>
+4 will takes place of 1 —&gt;<strong> 1 Page Fault.<br/>
+</strong><br/>
+Now for the further page reference string —&gt;<strong> 0 Page fault</strong> because they are already available in the memory.</p>
+<p>Optimal page replacement is perfect, but not possible in practice as operating system cannot know future requests. The use of Optimal Page replacement is to set up a benchmark so that other replacement algorithms can be analyzed against it.</p>
+<p>&#160;</p>
+<p><strong>Least Recently Used</strong><br/>
+In this algorithm page will be replaced which is least recently used.</p>
+<p>Let say the page reference string 7 0 1 2 0 3 0 4 2 3 0 3 2 . Initially we have 4 page slots empty.<br/>
+Initially all slots are empty, so when 7 0 1 2 are allocated to the empty slots —&gt;<strong> 4 Page faults</strong><br/>
+0 is already their so —&gt; <strong>0 Page fault.</strong><br/>
+when 3 came it will take the place of 7 because it is least recently used —&gt;<strong>1 Page fault</strong><br/>
+0 is already in memory so —&gt;<strong> 0 Page fault</strong>.<br/>
+4 will takes place of 1 —&gt;<strong> 1 Page Fault</strong><br/>
+Now for the further page reference string —&gt;<strong> 0 Page fault</strong> because they are already available in the memory.</p>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ol>
+</ol>
+<p></p>
+</div>
+</div>
+</body>
+</html>

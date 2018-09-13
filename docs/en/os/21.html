@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Process Management | CPU Scheduling</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Scheduling of processes/work is done to finish the work on time.</p>
+<p>Below are different time with respect to a process.</p>
+<pre><strong>Arrival Time: </strong>      Time at which the process arrives in the ready queue.
+<strong>Completion Time:</strong>    Time at which process completes its execution.<span id="more-142464"></span>
+<strong>Burst Time: </strong>        Time required by a process for CPU execution.
+<strong>Turn Around Time: </strong>  Time Difference between completion time and arrival time.          
+     Turn Around Time = Completion Time - Arrival Time
+
+<strong>Waiting Time(W.T):</strong> Time Difference between turn around time and burst time.
+     Waiting Time = Turn Around Time - Burst Time</pre>
+<p>&#160;</p>
+<p><strong>Why do we need scheduling?</strong><br/>
+A typical process involves both I/O time and CPU time. In a uniprogramming system like MS-DOS, time spent waiting for I/O is wasted and CPU is free during this time. In multiprogramming systems, one process can use CPU while another is waiting for I/O. This is possible only with process scheduling.</p>
+<p>&#160;</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Objectives of Process Scheduling Algorithm</strong></p>
+<pre>Max CPU utilization [Keep CPU as busy as possible]
+Fair allocation of CPU.
+Max throughput [Number of processes that complete their execution per time unit]
+Min turnaround time [Time taken by a process to finish execution]
+Min waiting time [Time a process waits in ready queue]
+Min response time [Time when a process produces first response]</pre>
+<p>&#160;</p>
+<h2 class="sigil_not_in_toc"><strong>Different Scheduling Algorithms</strong></h2>
+<p><em><strong>First Come First Serve (FCFS):</strong></em> Simplest scheduling algorithm that schedules according to arrival times of processes.</p>
+<p><em><strong>Shortest Job First(SJF):</strong></em> Process which have the shortest burst time are scheduled first.</p>
+<p><em><strong>Shortest Remaining Time First(SRTF):</strong></em> It is preemptive mode of SJF algorithm in which jobs are schedule according to shortest remaining time.</p>
+<p><em><strong>Round Robin Scheduling:</strong></em> Each process is assigned a fixed time in cyclic way.</p>
+<p><em><strong>Priority Based scheduling (Non Preemptive):</strong></em> In this scheduling, processes are scheduled according to their priorities, i.e., highest priority process is schedule first. If priorities of two processes match, then schedule according to arrival time.</p>
+<p><em><strong>Highest Response Ratio Next (HRRN)</strong></em> In this scheduling, processes with highest response ratio is scheduled. This algorithm avoids starvation.</p>
+<pre>Response Ratio = (Waiting Time + Burst time) / Burst time</pre>
+<p><em><strong>Multilevel Queue Scheduling:</strong> </em>According to the priority of process, processes are placed in the different queues. Generally high priority process are placed in the top level queue. Only after completion of processes from top level queue, lower level queued processes are scheduled.</p>
+<p><em><strong>Multi level Feedback Queue Scheduling: </strong></em> It allows the process to move in between queues. The idea is to separate processes according to the characteristics of their CPU bursts. If a process uses too much CPU time, it is moved to a lower-priority queue.</p>
+<p>&#160;</p>
+<p><strong>Some useful facts about Scheduling Algorithms:</strong><br/>
+<strong>1)</strong> FCFS can cause long waiting times, especially when the first job takes too much CPU time.</p>
+<p><strong>2)</strong> Both SJF and Shortest Remaining time first algorithms may cause starvation. Consider a situation when long process is there in ready queue and shorter processes keep coming.</p>
+<p><strong>3) </strong>If time quantum for Round Robin scheduling is very large, then it behaves same as FCFS scheduling.</p>
+<p><strong>4)</strong> SJF is optimal in terms of average waiting time for a given set of processes,i.e., average waiting time is minimum with this scheduling, but problems is, how to know/predict time of next job.</p>
+<p>&#160;</p>
+<p><strong>Exercise:</strong><br/>
+<strong>1.</strong> Consider a system which require 40 time units of burst time.The Multilevel feedback queue scheduling is used and time quantum is 2 unit for top queue and is incremented by 5 unit at each level, then in what queue the process will terminate the execution?</p>
+<p>&#160;<br/>
+<strong>2.</strong> Which of the following is false about SJF?<br/>
+S1: It causes minimum average waiting time<br/>
+S2: It can cause starvation<br/>
+(A) Only S1<br/>
+(B) Only S2<br/>
+(C) Both S1 and S2<br/>
+(D) Neither S1 nor S2<br/>
+Answer (D)<br/>
+S1 is true SJF will always give minimum average waiting time.<br/>
+S2 is true SJF can cause starvation .</p>
+<p>&#160;<br/>
+<strong>3.</strong> Consider the following table of arrival time and burst time for three processes P0, P1 and P2. (GATE-CS-2011)</p>
+<pre>Process   Arrival time   Burst Time
+P0            0 ms          9 ms
+P1            1 ms          4 ms
+P2            2 ms          9 ms</pre>
+<p>The pre-emptive shortest job first scheduling algorithm is used. Scheduling is carried out only at arrival or completion of processes. What is the average waiting time for the three processes?<br/>
+(A) 5.0 ms<br/>
+(B) 4.33 ms<br/>
+(C) 6.33<br/>
+(D) 7.33<br/>
+Solution :<br/>
+Answer: – (A)<br/>
+Process P0 is allocated processor at 0 ms as there is no other process in ready queue. P0 is preempted after 1 ms as P1 arrives at 1 ms and burst time for P1 is less than remaining time of P0. P1 runs for 4ms. P2 arrived at 2 ms but P1 continued as burst time of P2 is longer than P1. After P1 completes, P0 is scheduled again as the remaining time for P0 is less than the burst time of P2.<br/>
+P0 waits for 4 ms, P1 waits for 0 ms and P2 waits for 11 ms. So average waiting time is (0+4+11)/3 = 5.</p>
+<p>&#160;<br/>
+<strong>4.</strong> Consider the following set of processes, with the arrival times and the CPU-burst times given in milliseconds (GATE-CS-2004)</p>
+<pre>  Process   Arrival Time    Burst Time
+    P1          0              5
+    P2          1              3
+    P3          2              3
+    P4          4              1</pre>
+<p>What is the average turnaround time for these processes with the preemptive shortest remaining processing time first (SRPT) algorithm ?<br/>
+(A) 5.50<br/>
+(B) 5.75<br/>
+(C) 6.00<br/>
+(D) 6.25<br/>
+Answer (A)<br/>
+Solution:<br/>
+The following is Gantt Chart of execution</p>
+<table>
+<tbody>
+<tr>
+<td width="37">P1</td>
+<td width="96">P2</td>
+<td width="42">P4</td>
+<td width="84">P3</td>
+<td width="133">P1</td>
+</tr>
+<tr>
+<td width="37">1</td>
+<td width="96">4</td>
+<td width="42">5</td>
+<td width="84">8</td>
+<td width="133">12</td>
+</tr>
+</tbody>
+</table>
+<p>Turn Around Time = Completion Time – Arrival Time<br/>
+Avg Turn Around Time&#160; =&#160; (12 + 3 + 6+&#160; 1)/4 = 5.50</p>
+<p>&#160;<br/>
+<strong>5. </strong>An operating system uses Shortest Remaining Time first (SRT) process scheduling algorithm. Consider the arrival times and execution times for the following processes:</p>
+<pre>Process  Execution time  Arrival time
+P1             20            0
+P2             25            15
+P3             10            30
+P4             15            45</pre>
+<p>What is the total waiting time for process P2?<br/>
+(A) 5<br/>
+(B) 15<br/>
+(C) 40<br/>
+(D) 55<br/>
+Answer (B)<br/>
+At time 0, P1 is the only process, P1 runs for 15 time units.<br/>
+At time 15, P2 arrives, but P1 has the shortest remaining time. So P1 continues for 5 more time units.<br/>
+At time 20, P2 is the only process. So it runs for 10 time units<br/>
+At time 30, P3 is the shortest remaining time process. So it runs for 10 time units<br/>
+At time 40, P2 runs as it is the only process. P2 runs for 5 time units.<br/>
+At time 45, P3 arrives, but P2 has the shortest remaining time. So P2 continues for 10 more time units.<br/>
+P2 completes its ececution at time 55</p>
+<pre>Total waiting time for P2 = Complition time - (Arrival time + Execution time)
+                          = 55 - (15 + 25)
+                          = 15</pre>
+<div id="video">
+<iframe width="665" height="374" src="https://www.youtube.com/embed/wO2O3WY5uYc?feature=oembed" frameborder="0" allowfullscreen=""></iframe>
+</div>
+<p>Please refer <a href="http://quiz.geeksforgeeks.org/cpu-scheduling/">Quiz on CPU Scheduling</a> for more questions.</p>
+<p>&#160;</p>
+<p><strong>References:</strong><br/>
+<a href="http://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/5_CPU_Scheduling.html">http://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/5_CPU_Scheduling.html</a></p>
+<p><a href="http://codex.cs.yale.edu/avi/os-book/OS8/os8c/slide-dir/PDF-dir/ch5.pdf">http://codex.cs.yale.edu/avi/os-book/OS8/os8c/slide-dir/PDF-dir/ch5.pdf</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

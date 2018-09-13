@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Page Fault Handling</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>
+A page fault occurs when a program attempts to access data or code that is in its address space, but is not currently located in the system RAM. So when page fault occurs then following sequence of events happens :</p>
+<p><img src="../../../imgs/os/726c96f231863d81be302bbb80051815.jpg" alt="" class="aligncenter size-medium wp-image-248596"/></p>
+<ul>
+<li>The computer hardware traps to the kernel and program counter (PC) is saved on the stack. Current instruction state information is saved in CPU registers.</li>
+<li>An assembly program is started to save the general registers and other volatile information to keep the OS from destroying it.</li>
+<li>Operating system finds that a page fault has occurred and tries to find out which virtual page is needed. Some times hardware register contains this required information. If not, the operating system must retrieve PC, fetch instruction and find out what it was doing when the fault occurred.</li>
+<li>Once virtual address caused page fault is known, system checks to see if address is valid and checks if there is no protection access problem.</li>
+<li>If the virtual address is valid, the system checks to see if a page frame is free. If no frames are free, the page replacement algorithm is run to remove a page.</li>
+<li>If frame selected is dirty, page is scheduled for transfer to disk, context switch takes place, fault process is suspended and another process is made to run until disk transfer is completed.</li>
+<li>As soon as page frame is clean, operating system looks up disk address where needed page is, schedules disk operation to bring it in.</li>
+<li>When disk interrupt indicates page has arrived, page tables are updated to reflect its position, and frame marked as being in normal state.</li>
+<li>Faulting instruction is backed up to state it had when it began and PC is reset. Faulting is scheduled, operating system returns to routine that called it.</li>
+<li>Assembly Routine reloads register and other state information, returns to user space to continue execution.</li>
+</ul>
+<p><b>References –</b><br/>
+<a href="http://cs.uttyler.edu/Faculty/Rainwater/COSC3355/Animations/pagefaultsteps.htm" target="_blank">cs.uttyler.edu</a><br/>
+<a href="https://professormerwyn.wordpress.com/2015/10/16/steps-for-handling-page-fault/" target="_blank">professormerwyn.wordpress.com</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

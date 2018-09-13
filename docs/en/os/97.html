@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Static and Dynamic Libraries | Set 1</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>When a C program is compiled, the compiler generates object code. After generating the object code, the compiler also invokes linker. One of the main tasks for linker is to make code of library functions (eg printf(), scanf(), sqrt(), ..etc) available to your program. <span id="more-115799"></span>A linker can accomplish this task in two ways, by copying the code of library function to your object code, or by making some arrangements so that the complete code of library functions is not copied, but made available at run-time. </p>
+<p><strong>Static Linking and Static Libraries</strong> is the result of the linker making copy of all used library functions to the executable file.  Static Linking creates larger binary files, and need more space on disk and main memory. Examples of static libraries (libraries which are statically linked) are, <strong><em>.a</em></strong> files in Linux and <strong><em>.lib </em></strong>files in Windows. </p>
+<p><strong>Steps to create a static library</strong> Let us create and use a Static Library in UNIX or UNIX like OS.<br/>
+<strong>1.</strong> Create a C file that contains functions in your library.</p>
+<pre class="brush: c; title: ; notranslate" title="">/* Filename: lib_mylib.c */
+#include &lt;stdio.h&gt;
+void fun(void)
+{
+  printf("fun() called from a static library");
+}
+</pre>
+<p>We have created only one file for simplicity.  We can also create multiple files in a library.</p>
+<p><strong>2.</strong> Create a header file for the library</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre class="brush: c; title: ; notranslate" title="">/* Filename: lib_mylib.h */
+void fun(void);
+</pre>
+<p><strong>3. </strong>Compile library files. </p>
+<pre> gcc -c lib_mylib.c -o lib_mylib.o </pre>
+<p><strong>4. </strong> Create static library. This step is to bundle multiple object files in one static library (see <a href="http://en.wikipedia.org/wiki/Ar_(Unix)">ar </a>for details).  The output of this step is static library.</p>
+<pre> ar rcs lib_mylib.a lib_mylib.o </pre>
+<p><strong>5. </strong>Now our static library is ready to use. At this point we could just copy lib_hello_static.a somewhere else to use it.  For demo purposes, let us keep the library in the current directory.  </p>
+<p><strong>Let us create a driver program that uses above created static library</strong>.<br/>
+<strong>1.</strong> Create a C file with main function</p>
+<pre class="brush: c; title: ; notranslate" title="">/* filename: driver.c  */
+#include "lib_mylib.h"
+void main() 
+{
+  fun();
+}
+</pre>
+<p><strong>2.</strong> Compile the driver program. </p>
+<pre>gcc -c driver.c -o driver.o</pre>
+<p><strong>3.</strong> Link the compiled driver program to the static library. Note that -L<strong>.</strong> is used to tell that the static library is in current folder (See <a href="http://gcc.gnu.org/onlinedocs/gcc/Link-Options.html" target="_blank">this </a>for details of -L and -l options). </p>
+<pre>gcc -o driver driver.o -L. -l_mylib</pre>
+<p><strong>4.</strong> Run the driver program </p>
+<pre>./driver 
+fun() called from a static library</pre>
+<p>Following are some important points about static libraries.<br/>
+<strong>1.</strong> For a static library, the actual code is extracted from the library by the linker and used to build the final executable at the point you compile/build your application.</p>
+<p><strong>2. </strong>Each process gets its own copy of the code and data. Where as in case of dynamic libraries it is only code shared, data is specific to each process. For static libraries memory footprints are larger. For example, if all the window system tools were statically linked, several tens of megabytes of RAM would be wasted for a typical user, and the user would be slowed down by a lot of paging.</p>
+<p><strong>3.</strong> Since library code is connected at compile time, the final executable has no dependencies on the the library at run time i.e. no additional run-time loading costs, it means that you don’t need to carry along a copy of the library that is being used and you have everything under your control and there is no dependency.</p>
+<p><strong>4. </strong>In static libraries, once everything is bundled into your application, you don’t have to worry that the client will have the right library (and version) available on their system.</p>
+<p><strong>5.</strong> One drawback of static libraries is, for any change(up-gradation) in the static libraries, you have to recompile the main program every time. </p>
+<p><strong>6.</strong> One major advantage of static libraries being preferred even now “is speed”. There will be no dynamic querying of symbols in static libraries. Many production line software use static libraries even today.</p>
+<p><br/><br/>
+<strong>Dynamic linking and Dynamic Libraries</strong> Dynamic Linking doesn’t require the code to be copied, it is done by just placing name of the library in the binary file. The actual linking happens when the program is run, when both the binary file and the library are in memory.  Examples of Dynamic libraries (libraries which are linked at run-time) are, <strong><em>.so</em></strong> in Linux and <strong><em>.dll</em></strong> in Windows.</p>
+<p>We will soon be covering more points on Dynamic Libraries and steps to create them.</p>
+<p>This article is compiled by <strong>Abhijit Saha </strong>and reviewed by GeeksforGeeks team. Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

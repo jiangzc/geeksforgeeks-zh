@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Virtual Memory | Questions</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Advantages</strong></p>
+<ul>
+<li>Large virtual memory.</li>
+<li>More efficient use of memory.</li>
+<li>Unconstrained multiprogramming. There is no limit on degree of multiprogramming.</li>
+</ul>
+<p><strong>Disadvantages</strong></p>
+<ul>
+<li>Number of tables and amount of processor overhead for handling page interrupts are greater than in the case of the simple paged management techniques.</li>
+<li>Due to lack of an explicit constraint on a job’s address space size.</li>
+</ul>
+<p><strong>A way to control Thrashing </strong></p>
+<p>Set the lower and upper bounds of page fault rate for each process. Using the above step, establish ‘acceptable’ page fault rate.</p>
+<ul>
+<li>If actual rate is lower than lower bound, decrease the number of frames</li>
+<li>If actual rate is larger than upper bound, increase the number of frames.</li>
+</ul>
+<p><strong>Q1.</strong> Virtual memory is <br/>
+<strong>(a)</strong> Large secondary memory<br/>
+<strong>(b)</strong> Large main memory<br/>
+<strong>(c)</strong> Illusion of large main memory<br/>
+<strong>(d)</strong> None of the above<br/>
+<br/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Answer: (c) </strong><br/>
+Explanation: Virtual memory is illusion of large main memory.</p>
+<p><br/><br/>
+<strong>Q2.</strong> Thrashing occurs when<br/>
+<strong>(a)</strong>When a page fault occurs<br/>
+<strong>(b)</strong> Processes on system frequently access pages not memory<br/>
+<strong>(c)</strong> Processes on system are in running state<br/>
+<strong>(d)</strong> Processes on system are in waiting state<br/><br/><br/>
+<strong>Answer: (b) </strong><br/>
+<strong>Explanation:</strong> Thrashing occurs when processes on system require more memory than it has. If processes do not have “enough” pages, the page fault rate is very high. This leads to:<br/>
+– low CPU utilization<br/>
+– operating system spends most of its time swapping to disk<br/>
+The above situation is called thrashing<br/>
+<br/><br/></p>
+<p><strong>Q3.</strong> A computer system supports 32-bit virtual addresses as well as 32-bit physical addresses. Since the virtual address space is of the same size as the physical address space, the operating system designers decide to get rid of the virtual memory entirely. Which one of the following is true?  <br/>
+<strong>(a)</strong> Efficient implementation of multi-user support is no longer possible<br/>
+<strong>(b)</strong> The processor cache organization can be made more efficient now<br/>
+<strong>(c)</strong>  Hardware support for memory management is no longer needed<br/>
+<strong>(d)</strong>  CPU scheduling can be made more efficient now<br/><br/><br/>
+<strong>Answer: (c)</strong><br/>
+<strong>Explanation: </strong>For supporting virtual memory, special hardware support is needed from Memory Management Unit. Since operating system designers decide to get rid of the virtual memory entirely, hardware support for memory management is no longer needed.</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

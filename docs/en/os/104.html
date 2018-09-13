@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Unix File System</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Unix file system is a logical method of <b>organizing and storing</b> large amount of information in a way which makes it easy manage. The file is the smallest unit in which information is stored. The Unix file system has several important features. All data in Unix is organized into files.All files are organized into directories. These directories are organized into a tree-like structure called the file system.<br/>
+Files in Unix System organized in multi-level hierarchy structure called a directory tree. At the very top of the file system is a directory called “root” which is represented by a “/”. All other files are “descendants” of root.</p>
+<p><img src="../../../imgs/os/23d0c5287568dd13bf3b464b0a6706f2.jpg" alt="" class="aligncenter size-medium wp-image-177503" srcset="https://www.geeksforgeeks.org/wp-content/uploads/unix.png 791w, https://www.geeksforgeeks.org/wp-content/uploads/unix-300x165.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/unix-768x421.png 768w, https://www.geeksforgeeks.org/wp-content/uploads/unix-660x362.png 660w" sizes="(max-width: 791px) 100vw, 791px"/></p>
+<p><strong>Directories or Files and their description –</strong></p>
+<ul>
+<li><strong>/ : </strong>    The slash / character alone denotes the root of the filesystem tree.</li>
+<li><strong>/bin : </strong>Stands for “binaries” and contains certain fundamental utilities, such as ls or cp, which are generally needed by all users.</li>
+<li><strong>/boot : </strong>Contains all the files that are required for successful booting process.</li>
+<li><strong>/dev : </strong>Stands for “devices”. Contains file representations of peripheral devices and pseudo-devices.</li>
+<li><strong>/etc : </strong>Contains system-wide configuration files and system databases. Originally also contained “dangerous maintenance utilities” such as init,but these have typically been moved to /sbin or elsewhere.</li>
+<li><strong>/home : </strong>Contains the home directories for the users. </li>
+<li><strong>/lib : </strong>Contains system libraries, and some critical files such as kernel modules or device drivers.</li>
+<li><strong>/media : </strong>Default mount point for removable devices, such as USB sticks, media players, etc.</li>
+<li><strong>/mnt : </strong>Stands for “mount”. Contains filesystem mount points. These are used, for example, if the system uses multiple hard disks or hard disk partitions. It is also often used for remote (network) filesystems, CD-ROM/DVD drives, and so on.</li>
+<li><strong>/proc : </strong>procfs virtual filesystem showing information about processes as files.</li>
+<li><strong>/root : </strong>The home directory for the superuser “root” – that is, the system administrator. This account’s home directory is usually on the initial filesystem, and hence not in /home (which may be a mount point for another filesystem) in case specific maintenance needs to be performed, during which other filesystems are not available. Such a case could occur, for example, if a hard disk drive suffers physical failures and cannot be properly mounted.</li>
+<li><strong>/tmp : </strong>A place for temporary files. Many systems clear this directory upon startup; it might have tmpfs mounted atop it, in which case its contents do not survive a reboot, or it might be explicitly cleared by a startup script at boot time.</li>
+<li><strong>/usr : </strong>Originally the directory holding user home directories,its use has changed. It now holds executables, libraries, and shared resources that are not system critical, like the X Window System, KDE, Perl, etc. However, on some Unix systems, some user accounts may still have a home directory that is a direct subdirectory of /usr, such as the default as in Minix. (on modern systems, these user accounts are often related to server or system use, and not directly used by a person).</li>
+<li><strong>/usr/bin : </strong>This directory stores all binary programs distributed with the operating system not residing in /bin, /sbin or (rarely) /etc.</li>
+<li><strong>/usr/include : </strong>Stores the development headers used throughout the system. Header files are mostly used by the <strong>#include </strong>directive in C/C++ programming language.</li>
+<li><strong>/usr/lib : </strong>Stores the required libraries and data files for programs stored within /usr or elsewhere.</li>
+<li><strong>/var : </strong>A short for “variable.” A place for files that may change often – especially in size, for example e-mail sent to users on the system, or process-ID lock files.</li>
+<li><strong>/var/log : </strong>Contains system log files.</li>
+<li><strong>/var/mail : </strong>The place where all the incoming mails are stored. Users (other than root) can access their own mail only. Often, this directory is a symbolic link to /var/spool/mail.</li>
+<li><strong>/var/spool : </strong>Spool directory. Contains print jobs, mail spools and other queued tasks.</li>
+<li><strong>/var/tmp : </strong>A place for temporary files which should be preserved between system reboots.</li>
+</ul>
+<p><b>Types of Unix files –</b> The UNIX files system contains several different types of files : </p>
+<p><img src="../../../imgs/os/4d554324b30fec1cb29159f429ed7c96.jpg" alt="" class="aligncenter size-medium wp-image-180252" srcset="https://www.geeksforgeeks.org/wp-content/uploads/unix-file-system.png 425w, https://www.geeksforgeeks.org/wp-content/uploads/unix-file-system-300x232.png 300w" sizes="(max-width: 425px) 100vw, 425px"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>1. Ordinary files – </strong> An ordinary file is a file on the system that contains data, text, or program instructions.</p>
+<ul>
+<li>Used to store your information, such as some text you have written or an image you have drawn. This is the type of file that you usually work with.</li>
+<li>Always located within/under a directory file.</li>
+<li>Do not contain other files.</li>
+<li>In long-format output of ls -l, this type of file is specified by the “-” symbol.</li>
+</ul>
+<p><strong>2. Directories – </strong> Directories store both special and ordinary files. For users familiar with Windows or Mac OS, UNIX directories are equivalent to folders. A directory file contains an entry for every file and subdirectory that it houses. If you have 10 files in a directory, there will be 10 entries in the directory. Each entry has two components.<br/>
+(1) The Filename<br/>
+(2) A unique identification number for the file or directory (called the inode number)</p>
+<li>Branching points in the hierarchical tree.</li>
+<li>Used to organize groups of files.</li>
+<li>May contain ordinary files, special files or other directories.</li>
+<li>Never contain “real” information which you would work with (such as text). Basically, just used for organizing files. </li>
+<li>All files are descendants of the root directory, ( named / ) located at the top of the tree. </li>
+<p>In long-format output of ls –l , this type of file is specified by the “d” symbol.</p>
+<p><strong>3. Special Files – </strong> Used to represent a real physical device such as a printer, tape drive or terminal, used for Input/Ouput (I/O) operations. <b>Device or special files</b> are used for device Input/Output(I/O) on UNIX and Linux systems. They appear in a file system just like an ordinary file or a directory.<br/>
+On UNIX systems there are two flavors of special files for each device, character special files and block special files :</p>
+<ul>
+<li>When a character special file is used for device Input/Output(I/O), data is transferred one character at a time. This type of access is called raw device access.</li>
+<li>When a block special file is used for device Input/Output(I/O), data is transferred in large fixed-size blocks. This type of access is called block device access.</li>
+</ul>
+<p>For terminal devices, it’s one character at a time. For disk devices though, raw access means reading or writing in whole chunks of data – blocks, which are native to your disk.</p>
+<ul>
+<li>In long-format output of ls -l, character special files are marked by the “c” symbol.</li>
+<li>In long-format output of ls -l, block special files are marked by the “b” symbol.</li>
+</ul>
+<p><strong>4. Pipes – </strong>  UNIX allows you to link commands together using a pipe. The pipe acts a temporary file which only exists to hold data from one command until it is read by another.A Unix pipe provides a one-way flow of data.The output or result of the first command sequence is used as the input to the second command sequence. To make a pipe, put a vertical bar (|) on the command line between two commands.For example: <strong>who | wc -l </strong></p>
+<p>In long-format output of ls –l , named pipes are marked by the “p” symbol.</p>
+<p><strong>5. Sockets – </strong> A Unix socket (or Inter-process communication socket) is a special file which allows for advanced inter-process communication. A Unix Socket is used in a client-server application framework. In essence, it is a stream of data, very similar to network stream (and network sockets), but all the transactions are local to the filesystem.</p>
+<p>In long-format output of ls -l, Unix sockets are marked by “s” symbol.</p>
+<p><strong>6. Symbolic Link – </strong> Symbolic link is  used for referencing some other file of the file system.Symbolic link is also known as Soft link. It contains a text form of the path to the file it references. To an end user, symbolic link will appear to have its own name, but when you try reading or writing data to this file, it will instead reference these operations to the file it points to. If we delete the soft link itself , the data file would still be there.If we delete the source file or move it to a different location, symbolic file will not function properly. </p>
+<p>In long-format output of ls –l , Symbolic link are marked by the “l” symbol (that’s a lower case L). </p>
+<p><strong>Reference –</strong></p>
+<p><a href="http://www.mheducation.co.in/9780070635463-india-unix-concepts-and-applications" target="_blank">UNIX – Concepts and Applications</a> | Sumitabha Das |Tata McGraw Hill |4th Edition</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

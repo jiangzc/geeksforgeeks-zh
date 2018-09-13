@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Highest Response Ratio Next (HRRN) Scheduling</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisite –</b> <a href="https://www.geeksforgeeks.org/gate-notes-operating-system-process-scheduling/" target="_blank">CPU Scheduling</a><br/>
+Given n processes with their Arrival times and Burst times, the task is to find average waiting time and average turn around time using HRRN scheduling algorithm.<br/>
+The name itself states that we need to find the response ratio of all available processes and select the one with the highest Response Ratio. A process once selected will run till completion.</p>
+<p><strong>Criteria – Response Ratio</strong><br/>
+<strong> Mode – Non-Preemptive</strong></p>
+<pre> Response Ratio = (W + S)/S</pre>
+<p>Here, <strong>W</strong> is the waiting time of the process so far and <strong>S</strong> is the Burst time of the process.</p>
+<p><br/><br/>
+<strong>Performance of HRRN –</strong></p>
+<ol>
+<li>Shorter Processes are favoured.</li>
+<li>Aging without service increases ratio, longer jobs can get past shorter jobs.</li>
+</ol>
+<p><img src="../../../imgs/os/f99483fc1acc3118342c5a9b0818ffa3.jpg" alt="HRRN Scheduling Example."/><br/>
+<strong>Gantt Chart –</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/os/b4d5cac30c51afa82cbd27a48a2da241.jpg" alt="HRRN Scheduling Example Soolution"/></p>
+<p><strong>Explanation –</strong></p>
+<ul>
+<li>At t = 0 we have only one process available, so A gets scheduled.</li>
+<li>Similarly at t = 3 we have only one process available, so B gets scheduled.</li>
+<li>Now at t = 9 we have 3 processes available, C, D and E. Since, C, D and E were available after 4, 6 and 8 units respectively. Therefore, waiting time for C, D and E are (9 – 4 =)5, (9 – 6 =)3, and (9 – 8 =)1 unit respectively.</li>
+<li>Using the formula given above we calculate the Response Ratios of C, D and E respectively as 2.25, 1.6 and 1.5.</li>
+<li>Clearly C has the highest Response Ratio and so it gets scheduled</li>
+<li>Next at t = 13 we have 2 jobs available D and E.</li>
+<li>Response Ratios of D and E are 2.4 and 3.5 respectively.</li>
+<li>So process E is selected next and process D is selected last.</li>
+</ul>
+<p><strong>Implementation of HRRN Scheduling –</strong></p>
+<ol>
+<li>Input the number of processes, their arrival times and burst times.</li>
+<li>Sort them according to their arrival times.</li>
+<li>At any given time calculate the response ratios and select the appropriate process to be scheduled.</li>
+<li>Calculate the turn around time as completion time – arrival time.</li>
+<li>Calculate the waiting time as turn around time – burst time.</li>
+<li>Turn around time divided by the burst time gives the normalized turn around time.</li>
+<li>Sum up the waiting and turn around times of all processes and divide by the number of processes to get the average waiting and turn around time.</li>
+</ol>
+<h3 class="sigil_not_in_toc">Code –</h3>
+<pre class="brush: c; title: ; notranslate" title="">#include &lt;stdio.h&gt;
+
+// Defining process details
+struct process {
+    char name;
+    int at, bt, ct, wt, tt;
+    int completed;
+    float ntt;
+} p[10];
+
+int n;
+
+// Sorting Processes by Arrival Time
+void sortByArrival()
+{
+    struct process temp;
+    int i, j;
+
+    // Selection Sort applied
+    for (i = 0; i &lt; n - 1; i++) {
+        for (j = i + 1; j &lt; n; j++) {
+
+            // Check for lesser arrival time
+            if (p[i].at &gt; p[j].at) {
+
+                // Swap earlier process to front
+                temp = p[i];
+                p[i] = p[j];
+                p[j] = temp;
+            }
+        }
+    }
+}
+
+void main()
+{
+    int i, j, t, sum_bt = 0;
+    char c;
+    float avgwt = 0, avgtt = 0;
+    n = 5;
+
+    // predefined arrival times
+    int arriv[] = { 0, 2, 4, 6, 8 };
+
+    // predefined burst times
+    int burst[] = { 3, 6, 4, 5, 2 };
+
+    // Initializing the structure variables
+    for (i = 0, c = 'A'; i &lt; n; i++, c++) {
+        p[i].name = c;
+        p[i].at = arriv[i];
+        p[i].bt = burst[i];
+
+        // Variable for Completion status
+        // Pending = 0
+        // Completed = 1
+        p[i].completed = 0;
+
+        // Variable for sum of all Burst Times
+        sum_bt += p[i].bt;
+    }
+
+    // Sorting the structure by arrival times
+    sortByArrival();
+    printf("\nName\tArrival Time\tBurst Time\tWaiting Time");
+    printf("\tTurnAround Time\t Normalized TT");
+    for (t = p[0].at; t &lt; sum_bt;) {
+
+        // Set lower limit to response ratio
+        float hrr = -9999;
+
+        // Response Ratio Variable
+        float temp;
+
+        // Variable to store next processs selected
+        int loc;
+        for (i = 0; i &lt; n; i++) {
+
+            // Checking if process has arrived and is Incomplete
+            if (p[i].at &lt;= t &amp;&amp; p[i].completed != 1) {
+
+                // Calculating Response Ratio
+                temp = (p[i].bt + (t - p[i].at)) / p[i].bt;
+
+                // Checking for Highest Response Ratio
+                if (hrr &lt; temp) {
+
+                    // Storing Response Ratio
+                    hrr = temp;
+
+                    // Storing Location
+                    loc = i;
+                }
+            }
+        }
+
+        // Updating time value
+        t += p[loc].bt;
+
+        // Calculation of waiting time
+        p[loc].wt = t - p[loc].at - p[loc].bt;
+
+        // Calculation of Turn Around Time
+        p[loc].tt = t - p[loc].at;
+
+        // Sum Turn Around Time for average
+        avgtt += p[loc].tt;
+
+        // Calculation of Normalized Turn Around Time
+        p[loc].ntt = ((float)p[loc].tt / p[loc].bt);
+
+        // Updating Completion Status
+        p[loc].completed = 1;
+
+        // Sum Waiting Time for average
+        avgwt += p[loc].wt;
+        printf("\n%c\t\t%d\t\t", p[loc].name, p[loc].at);
+        printf("%d\t\t%d\t\t", p[loc].bt, p[loc].wt);
+        printf("%d\t\t%f", p[loc].tt, p[loc].ntt);
+    }
+    printf("\nAverage waiting time:%f\n", avgwt / n);
+    printf("Average Turn Around time:%f\n", avgtt / n);
+}
+</pre>
+<p><b>Output –</b></p>
+<pre>Name    Arrival Time    Burst Time    Waiting Time    TurnAround Time     Normalized TT
+A        0        3        0        3        1.000000
+B        2        6        1        7        1.166667
+C        4        4        5        9        2.250000
+E        8        2        5        7        3.500000
+D        6        5        9        14        2.800000
+Average waiting time:4.000000
+Average Turn Around time:8.000000
+
+</pre>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

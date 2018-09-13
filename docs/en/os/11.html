@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Microkernel</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Kernel</strong> is the core part of an operating system which manages system resources. It also acts like a bridge between application and hardware of the computer. It is one of the first programs loaded on start-up (after the Bootloader).</p>
+<p><img src="../../../imgs/os/d8bc81b00c5afbaf482ceb7a764493fa.jpg" width="245" height="193" alt="" class="aligncenter size-full"/></p>
+<p><strong><u>Kernel mode and User mode of CPU operation</u></strong><br/>
+(Thanks <b>Sulbha Sharma</b> for contributing this section)</p>
+<p>The CPU can execute certain instruction only when it is in the kernel mode. These instruction are called privilege instruction. They allow implementation of special operation whose execution by the user program could interface with the functioning of operating system or activity of another user program. For example, instruction for managing memory protection.</p>
+<ul>
+<li>The operating system puts the CPU in kernel mode when it is executing in the kernel so, that kernel can execute some special operation.</li>
+<li>The operating system puts the CPU in user mode when a user program is in execution so, that user program cannot interface with the operating system program.</li>
+<li>User-level instruction does not require special privilege. Example are ADD,PUSH,etc.</li>
+</ul>
+<p><img src="../../../imgs/os/603ae90c83d9b01e104474eb1ac70c0f.jpg" alt="Transistion from user to kernel mode"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>The concept of modes can be extended beyond two, requiring more than a single mode bit CPUs that support virtualization use one of these extra bits to indicate when the virtual machine manager, VMM, is in control of the system. The VMM has more privileges than ordinary user programs, but not so many as the full kernel.</p>
+<p>System calls are typically implemented in the form of software interrupts, which causes the hardware’s interrupt handler to transfer control over to an appropriate interrupt handler, which is part of the operating system, switching the mode bit to kernel mode in the process. The interrupt handler checks exactly which interrupt was generated, checks additional parameters ( generally passed through registers ) if appropriate, and then calls the appropriate kernel service routine to handle the service requested by the system call.</p>
+<p>User programs’ attempts to execute illegal instructions ( privileged or non-existent instructions ), or to access forbidden memory areas, also generate software interrupts, which are trapped by the interrupt handler and control is transferred to the OS, which issues an appropriate error message, possibly dumps data to a log ( core ) file for later analysis, and then terminates the offending program.</p>
+<p><strong>What is Microkernel?</strong><br/>
+Microkernel is one of the classification of the kernel. Being a kernel it manages all system resources. But in a microkernel, the <strong>user services</strong> and <strong>kernel services</strong> are implemented in different address space. The user services are kept in <strong>user address space</strong>, and kernel services are kept under <strong>kernel address space</strong>, thus also reduces the size of kernel and size of operating system as well.</p>
+<p><img src="../../../imgs/os/c5a15b6c93cc21609e1f994afe11217b.jpg" width="414" height="381" alt="" class="aligncenter size-full"/></p>
+<p>It provides minimal services of process and memory management. The communication between client program/application and services running in user address space is established through message passing, reducing the speed of execution microkernel. The Operating System <strong>remains unaffected</strong> as user services and kernel services are isolated so if any user service fails it does not affect kernel service. Thus it adds to one of the advantages in a microkernel. It is easily <strong>extendable</strong> i.e. if any new services are to be added they are added to user address space and hence requires no modification in kernel space. It is also portable, secure and reliable.</p>
+<p><strong>Microkernel Architecture –</strong><br/>
+Since kernel is the core part of the operating system, so it is meant for handling the most important services only. Thus in this architecture only the most important services are inside kernel and rest of the OS services are present inside system application program. Thus users are able to interact with those not-so important services within the system application. And the microkernel is solely responsible for the most important services of operating system they are named as follows:</p>
+<ul>
+<li>Inter process-Communication</li>
+<li>Memory Management</li>
+<li>CPU-Scheduling</li>
+</ul>
+<p><strong>Advantages of Microkernel –</strong></p>
+<ul>
+<li>The architecture of this kernel is small and isolated hence it can function better.</li>
+<li>Expansion of the system is easier, it is simply added in the system application without disturbing the kernel. </li>
+</ul>
+<p><strong>Eclipse IDE</strong> is a good example of Microkernel Architecture.</p>
+<p>Read next – <a href="https://www.geeksforgeeks.org/operating-system-monolithic-kernel-key-differences-microkernel/" rel="noopener" target="_blank">Monolithic Kernel and key differences from Microkernel</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

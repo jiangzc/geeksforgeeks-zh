@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Selfish Round Robin Scheduling</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/program-round-robin-scheduling-set-1/" rel="noopener" target="_blank">Program for Round Robin scheduling</a></p>
+<p>In the traditional Round Robin scheduling algorithm all processes were treated equally for processing. The objective of the <strong>Selfish Round Robin</strong> is to give better service to processes that have been executing for a while than to newcomers. Its a more logical and superior implementation compared to the normal Round Robin algorithm.<br/>
+<strong></strong><br/>
+<strong>Implimentation :-</strong></p>
+<ul>
+<li>Processes in the ready list are partitioned into two lists: NEW and ACCEPTED.</li>
+<li>The New processes wait while Accepted processes are serviced by the Round Robin.</li>
+<li>Priority of a new process increases at rate ‘a’ while the priority of an accepted process increases at rate ‘b’.</li>
+<li>When the priority of a new process reaches the priority of an accepted process, that new process becomes accepted.</li>
+<li>If all accepted processes finish, the highest priority new process is accepted.</li>
+</ul>
+<p>Let’s trace out the general working of this algorithm :-</p>
+<p><strong>STEP 1 : </strong>Assume that initially there are no ready processes, when the first one, A, arrives. It has priority 0 to begin with. Since there are no other accepted processes, A is accepted immediately.<br/>
+<strong>STEP 2 : </strong>After a while another process, B, arrives. As long as b / a &lt; 1, B’s priority will eventually catch up to A’s, so it is accepted; now both A and B have the same priority.<br/>
+<strong>STEP 3 : </strong>All accepted processes share a common priority (which rises at rate b ); that makes this policy easy to implement i.e any new process’s priority is bound to get accepted at some point. So no process has to experience starvation.<br/>
+<strong>STEP 4 : </strong>Even if b / a &gt; 1, A will eventually finish, and then B can be accepted.</p>
+<pre><strong>Adjusting the parameters a and b :</strong> 
+          -&gt; If b / a &gt;= 1, a new process is not accepted 
+                 until all the accepted processes have finished, so SRR becomes FCFS. 
+          -&gt; If b / a = 0, all processes are accepted immediately, so SRR becomes RR. 
+          -&gt; If 0 &lt; b / a &lt; 1, accepted processes are selfish, but not completely.
+</pre>
+<p><strong>Example on Selfish Round Robin –</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/os/b14bef81d45bdd8bcdb7456031dcc3f1.jpg" alt="1" width="473" height="120" class="aligncenter size-full wp-image-183837" srcset="https://www.geeksforgeeks.org/wp-content/uploads/1-10.jpg 473w, https://www.geeksforgeeks.org/wp-content/uploads/1-10-300x76.jpg 300w" sizes="(max-width: 473px) 100vw, 473px"/><br/>
+<strong>Solution (where a = 2 and b = 1) – </strong></p>
+<p><img src="../../../imgs/os/17974340a3142ef04e9b52dd00bcf45a.jpg" alt="2" width="581" height="232" class="aligncenter size-full wp-image-183838" srcset="https://www.geeksforgeeks.org/wp-content/uploads/2-12.png 581w, https://www.geeksforgeeks.org/wp-content/uploads/2-12-300x120.png 300w" sizes="(max-width: 581px) 100vw, 581px"/></p>
+<p><strong>Explanation –</strong></p>
+<p>Process A gets accepted as soon as it comes at time t = 0. So its priority is increased only by ‘b’ i.e ‘1’ after each second. B enters at time t = 1 and goes to the waiting queue. So its priority gets increased by ‘a’ i.e. ‘2’ at time t = 2. At this point priority of A = priority of B = 2. </p>
+<p>So now both process A &amp; B are in the accepted queue and are executed in a round robin fashion. At time t = 3 process C enters the waiting queue. At time t = 6 the priority of process C catches up to the priority of process B and then they start executing in a Round Robin manner. When B finishes execution at time t = 10, D is automatically promoted to the accepted queue. </p>
+<p>Similarly  when D finishes execution at time t = 15, E is automatically promoted to the accepted queue.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Disk Scheduling Algorithms</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Disk scheduling </strong>is is done by operating systems to schedule I/O requests arriving for disk. Disk scheduling is also known as I/O scheduling.</p>
+<p>Disk scheduling is important because:</p>
+<ul>
+<li>Multiple I/O requests may arrive by different processes and only one I/O request can be served at a time by disk controller. Thus other I/O requests need to wait in waiting queue and need to be scheduled.</li>
+<li>Two or more request may be far from each other so can result in greater disk arm movement.</li>
+<li>Hard drives are one of the slowest parts of computer system and thus need to be accessed in an efficient manner.</li>
+</ul>
+<p>There are many Disk Scheduling Algorithms but before discussing them let’s have a quick look at some of the important terms:</p>
+<ul>
+<li><strong><u>Seek Time</u></strong><strong>:</strong>Seek time is the time taken to locate the disk arm to a specified track where the data is to be read or write. So the disk scheduling algorithm that gives minimum average seek time is better.</li>
+<li><strong><u>Rotational Latency:</u></strong> Rotational Latency is the time taken by the desired sector of disk to rotate into a position so that it can access the read/write heads. So the disk scheduling algorithm that gives minimum rotational latency is better.</li>
+<li><strong><u>Transfer Time:</u></strong> Transfer time is the time to transfer the data. It depends on the rotating speed of the disk and number of bytes to be transferred.</li>
+<li><strong><u>Disk Access Time:</u></strong> Disk Access Time is:</li>
+</ul>
+<pre>             
+      Disk Access Time = Seek Time + 
+                         Rotational Latency + 
+                         Transfer Time</pre>
+<p style="text-align: left"><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/disc-scheduling-algorithms.png"><img class="aligncenter size-full wp-image-19567" src="../../../imgs/os/73c92d727572859d391e17d4779ff827.jpg" alt="os1" width="702" height="207"/></a></p>
+<ul>
+<li style="text-align: left"><strong><u>Disk Response Time: </u></strong>Response Time is the average of time spent by a request waiting to perform its I/O operation. <em>Average Response time </em>is the response time of the all requests. <em>Variance Response Time </em>is measure of how individual request are serviced with respect to average response time. So the disk scheduling algorithm that gives minimum variance response time is better.</li>
+</ul>
+<p><strong><u>Disk Scheduling Algorithms</u></strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li><strong><u>FCFS: </u></strong>FCFS is the simplest of all the Disk Scheduling Algorithms. In FCFS, the requests are addressed in the order they arrive in the disk queue.</li>
+</ol>
+<p>Advantages:</p>
+<ul>
+<li>Every request gets a fair chance</li>
+<li>No indefinite postponement</li>
+</ul>
+<p>Disadvantages:</p>
+<ul>
+<li>Does not try to optimize seek time</li>
+<li>May not provide the best possible service</li>
+</ul>
+<ol start="2">
+<li><strong><u>SSTF:</u></strong> In SSTF (Shortest Seek Time First), requests having shortest seek time are executed first. So, the seek time of every request is calculated in advance in queue and then they are scheduled according to their calculated seek time. As a result, the request near the disk arm will get executed first. SSTF is certainly an improvement over FCFS as it decreases the average response time and increases the throughput of system.</li>
+</ol>
+<p>Advantages:</p>
+<ul>
+<li>Average Response Time decreases</li>
+<li>Throughput increases</li>
+</ul>
+<p>Disadvantages:</p>
+<ul>
+<li>Overhead to calculate seek time in advance</li>
+<li>Can cause Starvation for a request if it has higher seek time as compared to incoming requests</li>
+<li>High variance of response time as SSTF favours only some requests</li>
+</ul>
+<ol start="3">
+<li><strong><u>SCAN: </u></strong>In SCAN algorithm the disk arm moves into a particular direction and services the requests coming in its path and after reaching the end of disk, it reverses its direction and again services the request arriving in its path. So, this algorithm works like an elevator and hence also known as <strong>elevator algorithm. </strong>As a result, the requests at the midrange are serviced more and those arriving behind the disk arm will have to wait.</li>
+</ol>
+<p>Advantages:</p>
+<ul>
+<li>High throughput</li>
+<li>Low variance of response time</li>
+<li>Average response time</li>
+</ul>
+<p>Disadvantages:</p>
+<ul>
+<li>Long waiting time for requests for locations just visited by disk arm</li>
+</ul>
+<ol start="4">
+<li><strong><u>CSCAN</u></strong>: In SCAN algorithm, the disk arm again scans the path that has been scanned, after reversing its direction. So, it may be possible that too many requests are waiting at the other end or there may be zero or few requests pending at the scanned area.</li>
+</ol>
+<p>These situations are avoided in <em>CSAN </em>algorithm in which the disk arm instead of reversing its direction goes to the other end of the disk and starts servicing the requests from there. So, the disk arm moves in a circular fashion and this algorithm is also similar to SCAN algorithm and hence it is known as C-SCAN (Circular SCAN).</p>
+<p>Advantages:</p>
+<ul>
+<li>Provides more uniform wait time compared to SCAN</li>
+</ul>
+<ol start="5">
+<li><strong><u>LOOK:</u></strong> It is similar to the SCAN disk scheduling algorithm except the difference that the disk arm in spite of going to the end of the disk goes only to the last request to be serviced in front of the head and then reverses its direction from there only. Thus it prevents the extra delay which occurred due to unnecessary traversal to the end of the disk.</li>
+</ol>
+<ol start="6">
+<li><strong><u>CLOOK:</u></strong> As LOOK is similar to SCAN algorithm, in similar way, CLOOK is similar to CSCAN disk scheduling algorithm. In CLOOK, the disk arm inspite of going to the end goes only to the last request to be serviced in front of the head and then from there goes to the other end’s last request. Thus, it also prevents the extra delay which occurred due to unnecessary traversal to the end of the disk.</li>
+</ol>
+<p>Each algorithm is unique in its own way.Overall Performance depends on number and type of requests.</p>
+<p>Exercise</p>
+<p><strong>1)</strong> Suppose a disk has 201 cylinders, numbered from 0 to 200. At some time the disk arm is at cylinder 100, and there is a queue of disk access requests for cylinders 30, 85, 90, 100, 105, 110, 135 and 145. If Shortest-Seek Time First (SSTF) is being used for scheduling the disk access, the request for cylinder 90 is serviced after servicing ____________ number of requests. (GATE CS 2014<br/>
+(A) 1<br/>
+(B) 2<br/>
+(C) 3<br/>
+(D) 4<br/>
+See <a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2014-set-1-question-29/">this</a> for solution.</p>
+<p><strong>2)</strong> Consider an operating system capable of loading and executing a single sequential user process at a time. The disk head scheduling algorithm used is First Come First Served (FCFS). If FCFS is replaced by Shortest Seek Time First (SSTF), claimed by the vendor to give 50% better benchmark results, what is the expected improvement in the I/O performance of user programs? (GATE CS 2004)<br/>
+(A) 50%<br/>
+(B) 40%<br/>
+(C) 25%<br/>
+(D) 0%<br/>
+See <a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2004-question-12/">this</a> for solution.</p>
+<p><strong>3) </strong> Suppose the following disk request sequence (track numbers) for a disk with 100 tracks is given: 45, 20, 90, 10, 50, 60, 80, 25, 70. Assume that the initial position of the R/W head is on track 50. The additional distance that will be traversed by the R/W head when the Shortest Seek Time First (SSTF) algorithm is used compared to the SCAN (Elevator) algorithm (assuming that SCAN algorithm moves towards 100 when it starts execution) is _________ tracks<br/>
+(A) 8<br/>
+(B) 9<br/>
+(C) 10<br/>
+(D) 11<br/>
+See <a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2015-set-1-question-40/">this</a> for solution.</p>
+<p><strong>4)</strong> Consider a typical disk that rotates at 15000 rotations per minute (RPM) and has a transfer rate of 50 × 10^6 bytes/sec. If the average seek time of the disk is twice the average rotational delay and the controller’s transfer time is 10 times the disk transfer time, the average time (in milliseconds) to read or write a 512 byte sector of the disk is _____________<br/>
+See <a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2015-set-2-question-59/">this</a> for solution.</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

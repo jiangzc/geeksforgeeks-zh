@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Program for Optimal Page Replacement Algorithm</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite: <a href="https://www.geeksforgeeks.org/operating-system-page-replacement-algorithm/">Page Replacement Algorithms</a></p>
+<p>In operating systems, whenever a new page is referred and not present in memory, page fault occurs and Operating System replaces one of the existing pages with newly needed page. Different page replacement algorithms suggest different ways to decide which page to replace. The target for all algorithms is to reduce number of page faults.<br/>
+In this algorithm, OS replaces the page that will not be used for the longest period of time in future.</p>
+<p>Examples :</p>
+<pre>Input : Number of frames, fn = 3
+        Reference String, pg[] = {7, 0, 1, 2,
+               0, 3, 0, 4, 2, 3, 0, 3, 2, 1,
+               2, 0, 1, 7, 0, 1};
+Output : No. of hits = 11 
+         No. of misses = 9
+
+Input : Number of frames, fn = 4 
+        Reference String, pg[] = {7, 0, 1, 2, 
+                  0, 3, 0, 4, 2, 3, 0, 3, 2};
+Output : No. of hits = 7
+         No. of misses = 6
+</pre>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>The idea is simple, for every reference we do following :     </p>
+<ol>
+<li>If referred page is already present, increment hit count.</li>
+<li>If not present, find if a page that is never referenced in future. If such a page exists, replace this page with new page. If no such page exists, find a page that is referenced farthest in future. Replace this page with new page.</li>
+</ol>
+<p><img src="../../../imgs/os/5fd2e31a05d8ddddd9b72a4c70b21280.jpg" alt="" class="alignnone size-full wp-image-258327"/></p>
+<pre class="brush: cpp; title: ; notranslate" title="">// CPP program to demonstrate optimal page
+// replacement algorithm.
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+// Function to check whether a page exists
+// in a frame or not
+bool search(int key, vector&lt;int&gt;&amp; fr)
+{
+    for (int i = 0; i &lt; fr.size(); i++)
+        if (fr[i] == key)
+            return true;
+    return false;
+}
+
+// Function to find the frame that will not be used
+// recently in future after given index in pg[0..pn-1]
+int predict(int pg[], vector&lt;int&gt;&amp; fr, int pn, int index)
+{
+    // Store the index of pages which are going
+    // to be used recently in future
+    int res = -1, farthest = index;
+    for (int i = 0; i &lt; fr.size(); i++) {
+        int j;
+        for (j = index; j &lt; pn; j++) {
+            if (fr[i] == pg[j]) {
+                if (j &gt; farthest) {
+                    farthest = j;
+                    res = i;
+                }
+                break;
+            }
+        }
+
+        // If a page is never referenced in future,
+        // return it.
+        if (j == pn)
+            return i;
+    }
+
+    // If all of the frames were not in future,
+    // return any of them, we return 0. Otherwise
+    // we return res.
+    return (res == -1) ? 0 : res;
+}
+
+void optimalPage(int pg[], int pn, int fn)
+{
+    // Create an array for given number of
+    // frames and initialize it as empty.
+    vector&lt;int&gt; fr;
+
+    // Traverse through page reference array
+    // and check for miss and hit.
+    int hit = 0;
+    for (int i = 0; i &lt; pn; i++) {
+
+        // Page found in a frame : HIT
+        if (search(pg[i], fr)) {
+            hit++;
+            continue;
+        }
+
+        // Page not found in a frame : MISS
+
+        // If there is space available in frames.
+        if (fr.size() &lt; fn)
+            fr.push_back(pg[i]);
+
+        // Find the page to be replaced.
+        else {
+            int j = predict(pg, fr, pn, i + 1);
+            fr[j] = pg[i];
+        }
+    }
+    cout &lt;&lt; "No. of hits = " &lt;&lt; hit &lt;&lt; endl;
+    cout &lt;&lt; "No. of misses = " &lt;&lt; pn - hit &lt;&lt; endl;
+}
+
+// Driver Function
+int main()
+{
+    int pg[] = { 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2 };
+    int pn = sizeof(pg) / sizeof(pg[0]);
+    int fn = 4;
+    optimalPage(pg, pn, fn);
+    return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>No. of hits = 7
+No. of misses = 6</pre>
+<ul>
+<li>The above implementation can optimized using hashing. We can use an <a href="https://www.geeksforgeeks.org/unorderd_set-stl-uses/">unordered_set</a> in place of vector so that search operation can be done in O(1) time.</li>
+<li>Note that optimal page replacement algorithm is not practical as we cannot predict future. However it is used as a reference for other page replacement algorithms. </li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

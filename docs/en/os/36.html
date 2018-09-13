@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title"> Multilevel Queue Scheduling</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite : <a href="https://www.geeksforgeeks.org/gate-notes-operating-system-process-scheduling/" target="_blank">CPU Scheduling</a><br/>
+It may happen that processes in the ready queue can be divided into different classes where each class has its own scheduling needs. For example, a common division is a <b>foreground (interactive)</b> process and <b>background (batch)</b> processes.These two classes have different scheduling needs. For this kind of situation Multilevel Queue Scheduling is used.Now, let us see how it works.</p>
+<p><b>Ready Queue</b> is divided into separate queues for each class of processes. For example, let us take three different types of process System processes, Interactive processes and Batch Processes. All three process have there own queue. Now,look at the below figure.</p>
+<p><img src="../../../imgs/os/1d84a97e16bb83a16cc7c03faca88e8f.jpg" alt="" width="300" height="217" class="aligncenter size-medium wp-image-227027"/></p>
+<p>All three different type of processes have there own queue. Each queue have its own Scheduling algorithm. For example, queue 1 and queue 2 uses <b>Round Robin</b> while queue 3 can use <b>FCFS</b> to schedule there processes.   </p>
+<p><strong>Scheduling among the queues :</strong> What will happen if all the queues have some processes? Which process should get the cpu? To determine this Scheduling among the queues is necessary. There are two ways to do so –</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li><strong>Fixed priority preemptive scheduling method –</strong> Each queue has absolute priority over lower priority queue. Let us consider following priority order <strong>queue 1 &gt; queue 2 &gt; queue 3</strong>.According to this algorithm no process in the batch queue(queue 3) can run unless queue 1 and 2 are empty. If any batch process (queue 3) is running and any system (queue 1) or Interactive process(queue 2) entered the ready queue the batch process is preempted.</li>
+<li><strong>Time slicing</strong> – In this method each queue gets certain portion of CPU time and can use it to schedule its own processes.For instance, queue 1 takes 50 percent of CPU time queue 2 takes 30 percent and queue 3 gets 20 percent of CPU time.</li>
+</ol>
+<p><strong>Example Problem :</strong><br/>
+Consider below table of four processes under Multilevel queue scheduling.Queue number denotes the queue of the process.</p>
+<p><img src="../../../imgs/os/bce5908f507b1d1de8b3e7e16d381ec3.jpg" alt="" class="alignnone wp-image-232985"/></p>
+<p>Priority of queue 1 is greater than queue 2. queue 1 uses Round Robin (Time Quantum = 2) and queue 2 uses FCFS.</p>
+<p>Below is the <b>gantt chart</b> of the problem :</p>
+<p><img src="../../../imgs/os/28d9dbf7439b9908a34e240a00846b2e.jpg" alt="" class="alignnone  wp-image-232986"/></p>
+<p>At starting both queues have process so process in queue 1 (P1, P2) runs first (because of higher priority) in the round robin fashion and completes after 7 units then process in queue 2 (P3) starts running (as there is no process in queue 1) but while it is running P4 comes in queue 1 and interrupts P3 and start running for 5 second and after its completion P3 takes the CPU and completes its execution.</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>
