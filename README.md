@@ -27,6 +27,7 @@
 +   [计算理论](docs/zh/comp-theory)
 +   [编译](docs/zh/compiler)
 +   [数字逻辑](docs/zh/digital-logic)
++   [组成原理](docs/zh/arch)
 
 ## 贡献指南
 
