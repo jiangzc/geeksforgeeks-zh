@@ -1,0 +1,152 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/os/50.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5F7C;&#x5F97;&#x68EE;&#x7684;&#x4E92;&#x65A5;&#x7B97;&#x6CD5;|</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BBE;&#x7F6E;2&#xFF08;CPU&#x5468;&#x671F;&#x548C;&#x5185;&#x5B58;&#x6805;&#x680F;&#xFF09;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x95EE;&#x9898;&#xFF1A;</strong>&#x7ED9;&#x5B9A;2&#x4E2A;&#x8FDB;&#x7A0B;i&#x548C;j&#xFF0C;&#x60A8;&#x9700;&#x8981;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#xFF0C;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x4E24;&#x8005;&#x4E4B;&#x95F4;&#x7684;&#x4E92;&#x65A5;&#xFF0C;&#x800C;&#x65E0;&#x9700;&#x4EFB;&#x4F55;&#x989D;&#x5916;&#x7684;&#x786C;&#x4EF6;&#x652F;&#x6301;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;&#x60A8;&#x53C2;&#x8003;&#x524D;&#x9762;&#x6587;&#x7AE0;&#x4E2D;&#x8BA8;&#x8BBA;&#x7684;&#x4EE5;&#x4E0B;&#x57FA;&#x672C;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="https://www.geeksforgeeks.org/petersons-algorithm-for-mutual-exclusion-set-1/" target="_blank">&#x5F7C;&#x5F97;&#x68EE;&#x7684;&#x4E92;&#x65A5;&#x7B97;&#x6CD5;|</a></span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="https://www.geeksforgeeks.org/petersons-algorithm-for-mutual-exclusion-set-1/" target="_blank">&#x8BBE;&#x7F6E;1</a></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x5C06;&#x5728;&#x4E4B;&#x524D;&#x7684;&#x7B97;&#x6CD5;&#x4E2D;&#x89E3;&#x51B3;2&#x4E2A;&#x95EE;&#x9898;&#x3002;</span> </p><h4 class="sigil_not_in_toc"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> CPU&#x65F6;&#x949F;&#x5468;&#x671F;&#x7684;&#x6D6A;&#x8D39;</span> </h4><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x901A;&#x4FD7;&#x5730;&#x8BF4;&#xFF0C;&#x5F53;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5728;&#x7B49;&#x5F85;&#x8F6E;&#x5230;&#x5B83;&#x65F6;&#xFF0C;&#x5B83;&#x4EE5;&#x4E00;&#x4E2A;&#x957F;&#x65F6;&#x95F4;&#x7684;&#x5FAA;&#x73AF;&#x7ED3;&#x675F;&#xFF0C;&#x8BE5;&#x5FAA;&#x73AF;&#x6BCF;&#x79D2;&#x6D4B;&#x8BD5;&#x6570;&#x767E;&#x4E07;&#x6B21;&#xFF0C;&#x4ECE;&#x800C;&#x8FDB;&#x884C;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x8BA1;&#x7B97;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6709;&#x4E00;&#x79CD;&#x66F4;&#x597D;&#x7684;&#x7B49;&#x5F85;&#x65B9;&#x5F0F;&#xFF0C;&#x5B83;&#x88AB;&#x79F0;&#x4E3A;<i>&#x201C;&#x6536;&#x76CA;&#x7387;&#x201D;</i> &#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8981;&#x4E86;&#x89E3;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x6DF1;&#x5165;&#x4E86;&#x89E3;Process&#x8C03;&#x5EA6;&#x7A0B;&#x5E8F;&#x5728;Linux&#x4E2D;&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x91CC;&#x63D0;&#x5230;&#x7684;&#x60F3;&#x6CD5;&#x662F;&#x8C03;&#x5EA6;&#x7A0B;&#x5E8F;&#x7684;&#x7B80;&#x5316;&#x7248;&#x672C;&#xFF0C;&#x5B9E;&#x9645;&#x5B9E;&#x73B0;&#x6709;&#x5F88;&#x591A;&#x590D;&#x6742;&#x6027;&#x3002;</span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8003;&#x8651;&#x4EE5;&#x4E0B;&#x793A;&#x4F8B;&#xFF0C;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6709;&#x4E09;&#x4E2A;&#x8FC7;&#x7A0B;&#xFF0C;P1&#xFF0C;P2&#x548C;P3&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FDB;&#x7A0B;P3&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF0C;&#x5B83;&#x6709;&#x4E00;&#x4E2A;&#x7C7B;&#x4F3C;&#x4E8E;&#x6211;&#x4EEC;&#x4EE3;&#x7801;&#x4E2D;&#x7684;while&#x5FAA;&#x73AF;&#xFF0C;&#x6CA1;&#x6709;&#x90A3;&#x4E48;&#x6709;&#x7528;&#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x5E76;&#x4E14;&#x5B83;&#x53EA;&#x5728;P2&#x5B8C;&#x6210;&#x6267;&#x884C;&#x65F6;&#x624D;&#x4ECE;&#x5FAA;&#x73AF;&#x4E2D;&#x5B58;&#x5728;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8C03;&#x5EA6;&#x7A0B;&#x5E8F;&#x5C06;&#x6240;&#x6709;&#x8FD9;&#x4E9B;&#x90FD;&#x653E;&#x5728;&#x5FAA;&#x73AF;&#x961F;&#x5217;&#x4E2D;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x73B0;&#x5728;&#xFF0C;&#x5047;&#x8BBE;&#x5904;&#x7406;&#x5668;&#x7684;&#x65F6;&#x949F;&#x901F;&#x5EA6;&#x4E3A;1000000 /&#x79D2;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x6BCF;&#x6B21;&#x8FED;&#x4EE3;&#x4E2D;&#x4E3A;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x5206;&#x914D;100&#x4E2A;&#x65F6;&#x949F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7136;&#x540E;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;P1&#x5C06;&#x8FD0;&#x884C;100&#x4E2A;&#x65F6;&#x949F;&#xFF08;0.0001&#x79D2;&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x662F;P2&#xFF08;0.0001&#x79D2;&#xFF09;&#xFF0C;&#x63A5;&#x7740;&#x662F;P3&#xFF08;0.0001&#x79D2;&#xFF09;&#xFF0C;&#x73B0;&#x5728;&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x66F4;&#x591A;&#x7684;&#x8FDB;&#x7A0B;&#xFF0C;&#x8FD9;&#x4E2A;&#x5FAA;&#x73AF;&#x91CD;&#x590D;&#x76F4;&#x5230;P2&#x7ED3;&#x675F;&#xFF0C;&#x7136;&#x540E;&#x662F;P3&#x7684;&#x6267;&#x884C;&#xFF0C;&#x6700;&#x7EC8;&#x7EC8;&#x6B62;&#x4E86;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x5B8C;&#x5168;&#x6D6A;&#x8D39;&#x4E86;100&#x4E2A;CPU&#x65F6;&#x949F;&#x5468;&#x671F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x6211;&#x4EEC;&#x76F8;&#x4E92;&#x653E;&#x5F03;CPU&#x65F6;&#x95F4;&#x7247;&#xFF0C;&#x5373;yield&#xFF0C;&#x5B83;&#x57FA;&#x672C;&#x4E0A;&#x7ED3;&#x675F;&#x4E86;&#x8FD9;&#x4E2A;&#x65F6;&#x95F4;&#x7247;&#xFF0C;&#x5E76;&#x4E14;&#x8C03;&#x5EA6;&#x7A0B;&#x5E8F;&#x9009;&#x62E9;&#x4E86;&#x4E0B;&#x4E00;&#x4E2A;&#x8981;&#x8FD0;&#x884C;&#x7684;&#x8FDB;&#x7A0B;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x73B0;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x6D4B;&#x8BD5;&#x4E00;&#x6B21;&#x6761;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x653E;&#x5F03;CPU&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8003;&#x8651;&#x5230;&#x6211;&#x4EEC;&#x7684;&#x6D4B;&#x8BD5;&#x9700;&#x8981;25&#x4E2A;&#x65F6;&#x949F;&#x5468;&#x671F;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x65F6;&#x95F4;&#x7247;&#x4E2D;&#x8282;&#x7701;&#x4E86;75&#xFF05;&#x7684;&#x8BA1;&#x7B97;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7528;&#x56FE;&#x5F62;&#x8868;&#x793A;&#xFF0C;</span> </p><p><img src="../../../imgs/os/f9c7f8222c679eca7a430db7d9c32ade.jpg" alt="" class="aligncenter size-medium wp-image-178095" srcset="https://www.geeksforgeeks.org/wp-content/uploads/peterson.png 772w, https://www.geeksforgeeks.org/wp-content/uploads/peterson-300x160.png 300w, https://www.geeksforgeeks.org/wp-content/uploads/peterson-768x410.png 768w, https://www.geeksforgeeks.org/wp-content/uploads/peterson-660x352.png 660w" sizes="(max-width: 772px) 100vw, 772px"></p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8003;&#x8651;&#x5230;&#x5904;&#x7406;&#x5668;&#x65F6;&#x949F;&#x901F;&#x5EA6;&#x4E3A;1MHz&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x5927;&#x7684;&#x8282;&#x7701;&#xFF01;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E0D;&#x540C;&#x7684;&#x53D1;&#x884C;&#x7248;&#x63D0;&#x4F9B;&#x4E86;&#x4E0D;&#x540C;&#x7684;&#x529F;&#x80FD;&#x6765;&#x5B9E;&#x73B0;&#x6B64;&#x529F;&#x80FD;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> Linux&#x63D0;&#x4F9B;&#x4E86;<b>sched_yield&#xFF08;&#xFF09;</b> &#x3002;</span> </p>
+<pre class="brush: c; title: ; notranslate" title="">void lock(int self)
+{
+    flag[self] = 1;
+    turn = 1-self;
+
+    while (flag[1-self] == 1 &amp;&amp;
+           turn == 1-self)
+ 
+        // Only change is the addition of
+        // sched_yield() call
+        sched_yield();
+}
+</pre><h4 class="sigil_not_in_toc"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BB0;&#x5FC6;&#x56F4;&#x680F;&#x3002;</span> </h4><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x65E9;&#x671F;&#x6559;&#x7A0B;&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#x53EF;&#x80FD;&#x9002;&#x7528;&#x4E8E;&#x5927;&#x591A;&#x6570;&#x7CFB;&#x7EDF;&#xFF0C;&#x4F46;&#x5E76;&#x975E;100&#xFF05;&#x6B63;&#x786E;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x903B;&#x8F91;&#x662F;&#x5B8C;&#x7F8E;&#x7684;&#xFF0C;&#x4F46;&#x5927;&#x591A;&#x6570;&#x73B0;&#x4EE3;CPU&#x91C7;&#x7528;&#x6027;&#x80FD;&#x4F18;&#x5316;&#xFF0C;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x65E0;&#x5E8F;&#x6267;&#x884C;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x79CD;&#x5185;&#x5B58;&#x64CD;&#x4F5C;&#xFF08;&#x52A0;&#x8F7D;&#x548C;&#x5B58;&#x50A8;&#xFF09;&#x7684;&#x91CD;&#x65B0;&#x6392;&#x5E8F;&#x901A;&#x5E38;&#x5728;&#x5355;&#x4E2A;&#x6267;&#x884C;&#x7EBF;&#x7A0B;&#x4E2D;&#x4E0D;&#x88AB;&#x6CE8;&#x610F;&#xFF0C;&#x4F46;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x5E76;&#x53D1;&#x7A0B;&#x5E8F;&#x4E2D;&#x7684;&#x4E0D;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x884C;&#x4E3A;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8003;&#x8651;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;</span> </p><pre class="brush: c; title: ; notranslate" title=""> while (f == 0);
+ 
+ // Memory fence required here
+ print x;
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x5C06;&#x8FD9;&#x4E24;&#x4E2A;&#x8BED;&#x53E5;&#x89C6;&#x4E3A;&#x5F7C;&#x6B64;&#x72EC;&#x7ACB;&#xFF0C;&#x56E0;&#x6B64;&#x5C1D;&#x8BD5;&#x901A;&#x8FC7;&#x91CD;&#x65B0;&#x6392;&#x5E8F;&#x6765;&#x63D0;&#x9AD8;&#x4EE3;&#x7801;&#x6548;&#x7387;&#xFF0C;&#x8FD9;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x5E76;&#x53D1;&#x7A0B;&#x5E8F;&#x51FA;&#x73B0;&#x95EE;&#x9898;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x6211;&#x4EEC;&#x653E;&#x7F6E;&#x4E00;&#x4E2A;&#x5185;&#x5B58;&#x6805;&#x680F;&#xFF0C;&#x4EE5;&#x4FBF;&#x5411;&#x7F16;&#x8BD1;&#x5668;&#x63D0;&#x4F9B;&#x5173;&#x4E8E;&#x8DE8;&#x8D8A;&#x5C4F;&#x969C;&#x7684;&#x8BED;&#x53E5;&#x4E4B;&#x95F4;&#x53EF;&#x80FD;&#x7684;&#x5173;&#x7CFB;&#x7684;&#x63D0;&#x793A;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6240;&#x4EE5;&#x9648;&#x8FF0;&#x7684;&#x987A;&#x5E8F;&#xFF0C;</span> </p><blockquote><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> flag [self] = 1;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F6C;=&#x81EA;&#x6211;;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x800C;&#xFF08;&#x8F6C;&#x52A8;&#x6761;&#x4EF6;&#x68C0;&#x67E5;&#xFF09;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4EA7;&#x91CF;&#xFF08;&#xFF09;;</span> </p></blockquote><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5FC5;&#x987B;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#x624D;&#x80FD;&#x4F7F;&#x9501;&#x5DE5;&#x4F5C;&#xFF0C;&#x5426;&#x5219;&#x5B83;&#x5C06;&#x6700;&#x7EC8;&#x5904;&#x4E8E;&#x6B7B;&#x9501;&#x72B6;&#x6001;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E3A;&#x4E86;&#x786E;&#x4FDD;&#x8FD9;&#x4E00;&#x70B9;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x6761;&#x6307;&#x4EE4;&#x6765;&#x963B;&#x6B62;&#x8DE8;&#x8D8A;&#x6B64;&#x969C;&#x788D;&#x7684;&#x8BED;&#x53E5;&#x6392;&#x5E8F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;gcc&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5B83;&#x7684;<b>__sync_synchronize&#xFF08;&#xFF09;</b> &#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6240;&#x4EE5;&#x4FEE;&#x6539;&#x540E;&#x7684;&#x4EE3;&#x7801;&#x6210;&#x4E86;&#xFF0C;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x5728;C&#x4E2D;&#x5B8C;&#x5168;&#x5B9E;&#x73B0;&#xFF1A;</strong></span> </p><pre class="brush: c; title: ; notranslate" title="">// Filename: peterson_yieldlock_memoryfence.c
+// Use below command to compile:
+// gcc -pthread peterson_yieldlock_memoryfence.c -o peterson_yieldlock_memoryfence
+
+#include&lt;stdio.h&gt;
+#include&lt;pthread.h&gt;
+#include &quot;mythreads.h&quot;
+
+int flag[2];
+int turn;
+const int MAX = 1e9;
+int ans = 0;
+
+void lock_init()
+{
+    // Initialize lock by reseting the desire of
+    // both the threads to acquire the locks.
+    // And, giving turn to one of them.
+    flag[0] = flag[1] = 0;
+
+    turn = 0;
+}
+
+// Executed before entering critical section
+void lock(int self)
+{
+    // Set flag[self] = 1 saying you want
+    // to acquire lock
+    flag[self]=1;
+
+    // But, first give the other thread the
+    // chance to acquire lock
+    turn = 1-self;
+
+    // Memory fence to prevent the reordering
+    // of instructions beyond this barrier.
+    __sync_synchronize();
+
+    // Wait untill the other thread looses the
+    // desire to acquire  lock or it is your
+    // turn to get the lock.
+    while (flag[1-self]==1 &amp;&amp; turn==1-self)
+
+        // Yield to avoid wastage of resources.
+        sched_yield();
+}
+
+// Executed after leaving critical section
+void unlock(int self)
+{
+    // You do not desire to acquire lock in future.
+    // This will allow the other thread to acquire
+    // the lock.
+    flag[self]=0;
+}
+
+// A Sample function run by two threads created
+// in main()
+void* func(void *s)
+{
+    int i = 0;
+    int self = (int *)s;
+    printf(&quot;Thread Entered: %d\n&quot;,self);
+    lock(self);
+
+    // Critical section (Only one thread
+    // can enter here at a time)
+    for (i=0; i&lt;MAX; i++)
+        ans++;
+
+    unlock(self);
+}
+
+// Driver code
+int main()
+{    
+    pthread_t p1, p2;
+
+    // Initialize the lock 
+    lock_init();
+
+    // Create two threads (both run func)
+    Pthread_create(&amp;p1, NULL, func, (void*)0);
+    Pthread_create(&amp;p2, NULL, func, (void*)1);
+
+    // Wait for the threads to end.
+    Pthread_join(p1, NULL);
+    Pthread_join(p2, NULL);
+
+    printf(&quot;Actual Count: %d | Expected Count:&quot;
+           &quot; %d\n&quot;,ans,MAX*2);
+
+    return 0;
+}
+
+
+</pre><pre class="brush: c; title: ; notranslate" title="">// mythread.h (A wrapper header file with assert
+// statements)
+#ifndef __MYTHREADS_h__
+#define __MYTHREADS_h__
+
+#include &lt;pthread.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;sched.h&gt;
+
+void Pthread_mutex_lock(pthread_mutex_t *m)
+{
+    int rc = pthread_mutex_lock(m);
+    assert(rc == 0);
+}
+                                                                                
+void Pthread_mutex_unlock(pthread_mutex_t *m)
+{
+    int rc = pthread_mutex_unlock(m);
+    assert(rc == 0);
+}
+                                                                                
+void Pthread_create(pthread_t *thread, const pthread_attr_t *attr,     
+           void *(*start_routine)(void*), void *arg)
+{
+    int rc = pthread_create(thread, attr, start_routine, arg);
+    assert(rc == 0);
+}
+
+void Pthread_join(pthread_t thread, void **value_ptr)
+{
+    int rc = pthread_join(thread, value_ptr);
+    assert(rc == 0);
+}
+
+#endif // __MYTHREADS_h__
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F93;&#x51FA;&#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">Thread Entered: 1</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Thread Entered: 0</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Actual Count: 2000000000 |</span> <span class="pre-span" style="direction: ltr; text-align: left">Expected Count: 2000000000</span>
+</pre><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><!-- .entry-meta --></div></body></html>

@@ -1,0 +1,133 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/os/54.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F7F;&#x7528;&#x4FE1;&#x53F7;&#x91CF;&#x7684;&#x9910;&#x996E;&#x54F2;&#x5B66;&#x5BB6;&#x95EE;&#x9898;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x5148;&#x51B3;&#x6761;&#x4EF6; -</b> <a href="https://www.geeksforgeeks.org/dining-philosophers-solution-using-monitors/" target="_blank">&#x4F7F;&#x7528;&#x76D1;&#x89C6;&#x5668;&#x7684;</a> <a href="https://www.geeksforgeeks.org/process-synchronization-set-1/" target="_blank">&#x8FDB;&#x7A0B;&#x540C;&#x6B65;</a> &#xFF0C; <a href="https://www.geeksforgeeks.org/semaphores-operating-system/" target="_blank">&#x4FE1;&#x53F7;&#x91CF;</a> &#xFF0C; <a href="https://www.geeksforgeeks.org/dining-philosophers-solution-using-monitors/" target="_blank">&#x9910;&#x996E; - &#x54F2;&#x5B66;&#x5BB6;&#x89E3;&#x51B3;&#x65B9;&#x6848;</a></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x9910;&#x996E;&#x54F2;&#x5B66;&#x5BB6;&#x95EE;&#x9898; -</strong>&#x9910;&#x996E;&#x54F2;&#x5B66;&#x5BB6;&#x95EE;&#x9898;&#x6307;&#x51FA;&#xFF0C;K&#x54F2;&#x5B66;&#x5BB6;&#x5750;&#x5728;&#x5706;&#x684C;&#x65C1;&#xFF0C;&#x6BCF;&#x5BF9;&#x54F2;&#x5B66;&#x5BB6;&#x4E4B;&#x95F4;&#x7528;&#x4E00;&#x6839;&#x7B77;&#x5B50;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6BCF;&#x4E2A;&#x54F2;&#x5B66;&#x5BB6;&#x4E4B;&#x95F4;&#x90FD;&#x6709;&#x4E00;&#x6839;&#x7B77;&#x5B50;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E00;&#x4E2A;&#x54F2;&#x5B66;&#x5BB6;&#x53EF;&#x4EE5;&#x5403;&#xFF0C;&#x5982;&#x679C;&#x4ED6;&#x53EF;&#x4EE5;&#x62FE;&#x53D6;&#x4ED6;&#x65C1;&#x8FB9;&#x7684;&#x4E24;&#x6839;&#x7B77;&#x5B50;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E00;&#x6839;&#x7B77;&#x5B50;&#x53EF;&#x7531;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x76F8;&#x90BB;&#x7684;&#x8FFD;&#x968F;&#x8005;&#x62FE;&#x53D6;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x540C;&#x65F6;&#x62FE;&#x53D6;&#x3002;</span> </p><p><img src="../../../imgs/os/d982ad8497b6c1583020b217266f19d2.jpg" class="aligncenter size-full"></p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x996E;&#x98DF;&#x54F2;&#x5B66;&#x5BB6;&#x7684;&#x4FE1;&#x53F7;&#x91CF;&#x89E3;&#x51B3;&#x65B9;&#x6848; - </strong></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6BCF;&#x4E2A;&#x54F2;&#x5B66;&#x5BB6;&#x90FD;&#x7528;&#x4EE5;&#x4E0B;&#x4F2A;&#x4EE3;&#x7801;&#x8868;&#x793A;&#xFF1A;</span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><pre> <span class="pre-span" style="direction: ltr; text-align: left">process P[i]</span>
+ <span class="pre-span" style="direction: ltr; text-align: left">while true do</span>
+   <span class="pre-span" style="direction: ltr; text-align: left">{ THINK;</span>
+      <span class="pre-span" style="direction: ltr; text-align: left">PICKUP(CHOPSTICK[i], CHOPSTICK[i+1 mod 5]);</span>
+      <span class="pre-span" style="direction: ltr; text-align: left">EAT;</span>
+      <span class="pre-span" style="direction: ltr; text-align: left">PUTDOWN(CHOPSTICK[i], CHOPSTICK[i+1 mod 5])</span>
+   <span class="pre-span" style="direction: ltr; text-align: left">}</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x54F2;&#x5B66;&#x5BB6;&#x6709;&#x4E09;&#x79CD;&#x72B6;&#x6001;&#xFF1A; <b>&#x601D;&#x8003;&#xFF0C;&#x9965;&#x997F;&#x548C;&#x5403;&#x7231;</b> &#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x91CC;&#x6709;&#x4E24;&#x4E2A;&#x4FE1;&#x53F7;&#x91CF;&#xFF1A;Mutex&#x548C;&#x54F2;&#x5B66;&#x5BB6;&#x7684;&#x4FE1;&#x53F7;&#x91CF;&#x6570;&#x7EC4;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F7F;&#x7528;&#x4E92;&#x65A5;&#x9501;&#x4F7F;&#x5F97;&#x6CA1;&#x6709;&#x4E24;&#x4E2A;&#x54F2;&#x5B66;&#x5BB6;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x8BBF;&#x95EE;&#x62FE;&#x53D6;&#x6216;&#x653E;&#x4E0B;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BE5;&#x6570;&#x7EC4;&#x7528;&#x4E8E;&#x63A7;&#x5236;&#x6BCF;&#x4E2A;&#x54F2;&#x5B66;&#x5BB6;&#x7684;&#x884C;&#x4E3A;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F46;&#x662F;&#xFF0C;&#x4FE1;&#x53F7;&#x91CF;&#x53EF;&#x80FD;&#x4F1A;&#x56E0;&#x7F16;&#x7A0B;&#x9519;&#x8BEF;&#x800C;&#x5BFC;&#x81F4;&#x6B7B;&#x9501;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x4EE3;&#x7801; - </b></span> </p><div class="noIdeBtnDiv">
+<pre class="brush: c; title: ; notranslate" title="">#include &lt;pthread.h&gt;
+#include &lt;semaphore.h&gt;
+#include &lt;stdio.h&gt;
+
+#define N 5
+#define THINKING 2
+#define HUNGRY 1
+#define EATING 0
+#define LEFT (phnum + 4) % N
+#define RIGHT (phnum + 1) % N
+
+int state[N];
+int phil[N] = { 0, 1, 2, 3, 4 };
+
+sem_t mutex;
+sem_t S[N];
+
+void test(int phnum)
+{
+    if (state[phnum] == HUNGRY
+        &amp;&amp; state[LEFT] != EATING
+        &amp;&amp; state[RIGHT] != EATING) {
+        // state that eating
+        state[phnum] = EATING;
+
+        sleep(2);
+
+        printf(&quot;Philosopher %d takes fork %d and %d\n&quot;,
+                      phnum + 1, LEFT + 1, phnum + 1);
+
+        printf(&quot;Philosopher %d is Eating\n&quot;, phnum + 1);
+
+        // sem_post(&amp;S[phnum]) has no effect
+        // during takefork
+        // used to wake up hungry philosophers
+        // during putfork
+        sem_post(&amp;S[phnum]);
+    }
+}
+
+// take up chopsticks
+void take_fork(int phnum)
+{
+
+    sem_wait(&amp;mutex);
+
+    // state that hungry
+    state[phnum] = HUNGRY;
+
+    printf(&quot;Philosopher %d is Hungry\n&quot;, phnum + 1);
+
+    // eat if neighbours are not eating
+    test(phnum);
+
+    sem_post(&amp;mutex);
+
+    // if unable to eat wait to be signalled
+    sem_wait(&amp;S[phnum]);
+
+    sleep(1);
+}
+
+// put down chopsticks
+void put_fork(int phnum)
+{
+
+    sem_wait(&amp;mutex);
+
+    // state that thinking
+    state[phnum] = THINKING;
+
+    printf(&quot;Philosopher %d putting fork %d and %d down\n&quot;,
+           phnum + 1, LEFT + 1, phnum + 1);
+    printf(&quot;Philosopher %d is thinking\n&quot;, phnum + 1);
+
+    test(LEFT);
+    test(RIGHT);
+
+    sem_post(&amp;mutex);
+}
+
+void* philospher(void* num)
+{
+
+    while (1) {
+
+        int* i = num;
+
+        sleep(1);
+
+        take_fork(*i);
+
+        sleep(0);
+
+        put_fork(*i);
+    }
+}
+
+int main()
+{
+
+    int i;
+    pthread_t thread_id[N];
+
+    // initialize the semaphores
+    sem_init(&amp;mutex, 0, 1);
+
+    for (i = 0; i &lt; N; i++)
+
+        sem_init(&amp;S[i], 0, 0);
+
+    for (i = 0; i &lt; N; i++) {
+
+        // create philosopher processes
+        pthread_create(&amp;thread_id[i], NULL,
+                       philospher, &amp;phil[i]);
+
+        printf(&quot;Philosopher %d is thinking\n&quot;, i + 1);
+    }
+
+    for (i = 0; i &lt; N; i++)
+
+        pthread_join(thread_id[i], NULL);
+}
+</pre></div><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x6CE8; -</b>&#x4EE5;&#x4E0B;&#x7A0B;&#x5E8F;&#x53EA;&#x80FD;&#x4F7F;&#x7528;&#x5E26;&#x6709;&#x4FE1;&#x53F7;&#x91CF;&#x548C;pthread&#x5E93;&#x7684;C&#x7F16;&#x8BD1;&#x5668;&#x8FDB;&#x884C;&#x7F16;&#x8BD1;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x53C2;&#x8003;&#x6587;&#x732E; - </b></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="http://cs.gordon.edu/courses/cs322/lectures/transparencies/dining_phil.html" target="_blank">&#x9910;&#x996E;&#x54F2;&#x5B66;&#x5BB6;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848; -  cs.gordon.edu</a></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="https://www.cs.indiana.edu/classes/p415-sjoh/hw/project/dining-philosophers/index.htm" target="_blank">&#x9910;&#x996E;&#x54F2;&#x5B66;&#x5BB6;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848; -  cs.indiana.edu</a></span> </p><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><hr><hr><!-- .entry-meta --></div></body></html>

@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/os/45.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F7F;&#x7528;&#x6D88;&#x606F;&#x961F;&#x5217;&#x7684;IPC</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5148;&#x51B3;&#x6761;&#x4EF6;&#xFF1A; <a href="https://www.geeksforgeeks.org/inter-process-communication/">&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;</a></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6D88;&#x606F;&#x961F;&#x5217;&#x662F;&#x5B58;&#x50A8;&#x5728;&#x5185;&#x6838;&#x4E2D;&#x5E76;&#x7531;&#x6D88;&#x606F;&#x961F;&#x5217;&#x6807;&#x8BC6;&#x7B26;&#x6807;&#x8BC6;&#x7684;&#x6D88;&#x606F;&#x7684;&#x94FE;&#x63A5;&#x5217;&#x8868;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x521B;&#x5EFA;&#x65B0;&#x961F;&#x5217;&#x6216;&#x7531;<b>msgget&#xFF08;&#xFF09;</b>&#x6253;&#x5F00;&#x73B0;&#x6709;&#x961F;&#x5217;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>msgsnd&#xFF08;&#xFF09;</b>&#x5C06;&#x65B0;&#x6D88;&#x606F;&#x6DFB;&#x52A0;&#x5230;&#x961F;&#x5217;&#x672B;&#x5C3E;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6BCF;&#x6761;&#x6D88;&#x606F;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x6B63;&#x957F;&#x6574;&#x6570;&#x7C7B;&#x578B;&#x5B57;&#x6BB5;&#xFF0C;&#x4E00;&#x4E2A;&#x975E;&#x8D1F;&#x957F;&#x5EA6;&#x548C;&#x5B9E;&#x9645;&#x6570;&#x636E;&#x5B57;&#x8282;&#xFF08;&#x5BF9;&#x5E94;&#x4E8E;&#x957F;&#x5EA6;&#xFF09;&#xFF0C;&#x5F53;&#x6D88;&#x606F;&#x6DFB;&#x52A0;&#x5230;&#x961F;&#x5217;&#x65F6;&#xFF0C;&#x6240;&#x6709;&#x8FD9;&#x4E9B;&#x90FD;&#x6307;&#x5B9A;&#x7ED9;msgsnd&#xFF08;&#xFF09;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>msgrcv&#xFF08;&#xFF09;</b>&#x4ECE;&#x961F;&#x5217;&#x4E2D;&#x83B7;&#x53D6;&#x6D88;&#x606F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x4E0D;&#x5FC5;&#x4EE5;&#x5148;&#x8FDB;&#x5148;&#x51FA;&#x7684;&#x987A;&#x5E8F;&#x83B7;&#x53D6;&#x6D88;&#x606F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x76F8;&#x53CD;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x5176;&#x7C7B;&#x578B;&#x5B57;&#x6BB5;&#x83B7;&#x53D6;&#x6D88;&#x606F;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6240;&#x6709;&#x8FDB;&#x7A0B;&#x90FD;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BBF;&#x95EE;&#x516C;&#x5171;&#x7CFB;&#x7EDF;&#x6D88;&#x606F;&#x961F;&#x5217;&#x6765;&#x4EA4;&#x6362;&#x4FE1;&#x606F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x53D1;&#x9001;&#x8FC7;&#x7A0B;&#x5C06;&#x6D88;&#x606F;&#xFF08;&#x901A;&#x8FC7;&#x4E00;&#x4E9B;&#xFF08;OS&#xFF09;&#x6D88;&#x606F;&#x4F20;&#x9012;&#x6A21;&#x5757;&#xFF09;&#x653E;&#x5230;&#x4E00;&#x4E2A;&#x961F;&#x5217;&#x4E0A;&#xFF0C;&#x8BE5;&#x961F;&#x5217;&#x53EF;&#x4EE5;&#x88AB;&#x53E6;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x8BFB;&#x53D6;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6BCF;&#x6761;&#x6D88;&#x606F;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x6807;&#x8BC6;&#x6216;&#x7C7B;&#x578B;&#xFF0C;&#x4EE5;&#x4FBF;&#x8FDB;&#x7A0B;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x9002;&#x5F53;&#x7684;&#x6D88;&#x606F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FDB;&#x7A0B;&#x5FC5;&#x987B;&#x5171;&#x4EAB;&#x4E00;&#x4E2A;&#x516C;&#x5171;&#x5BC6;&#x94A5;&#x624D;&#x80FD;&#x9996;&#x5148;&#x83B7;&#x5F97;&#x5BF9;&#x961F;&#x5217;&#x7684;&#x8BBF;&#x95EE;&#x6743;&#x9650;&#x3002;</span> </p><p><img src="../../../imgs/os/cbfd7c6c62b044a7f65fb7ff4248e6a5.jpg" alt="" width="479" height="441" class="alignnone size-full wp-image-298531"></p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7528;&#x4E8E;&#x6D88;&#x606F;&#x961F;&#x5217;&#x7684;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left"><b>ftok()</b> : is use to generate a unique key.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left"><b>msgget()</b> : either returns the message queue identifier for a newly created message</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">queue or returns the identifiers for a queue which exists with the same key value.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left"><b>msgsnd()</b> : Data is placed on to a message queue by calling msgsnd().</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left"><b>msgrcv()</b> : messages are retrieved from a queue.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left"><b>msgctl()</b> : It performs various operations on a queue.</span> <span class="pre-span" style="direction: ltr; text-align: left">Generally it is use to</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">destroy message queue.</span>
+</pre><p><!-- To show strongly recommend and practice link    --></p><div id="practiceLinkDiv"><h2 class="sigil_not_in_toc"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="https://ide.geeksforgeeks.org/">&#x5EFA;&#x8BAE;&#xFF1A;&#x5728;&#x7EE7;&#x7EED;&#x4F7F;&#x7528;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E4B;&#x524D;&#xFF0C;&#x8BF7;&#x5148;&#x5728;<b><i><u>{IDE}</u></i></b>&#x4E0A;&#x5C1D;&#x8BD5;&#x60A8;&#x7684;&#x65B9;&#x6CD5;&#x3002;</a></span> </h2></div><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5199;&#x4F5C;&#x8FC7;&#x7A0B;&#x7684;&#x6D88;&#x606F;&#x961F;&#x5217;</span> </p>
+<pre class="brush: c; title: ; notranslate" title="">// C Program for Message Queue (Writer Process)
+#include &lt;stdio.h&gt;
+#include &lt;sys/ipc.h&gt;
+#include &lt;sys/msg.h&gt;
+
+// structure for message queue
+struct mesg_buffer {
+    long mesg_type;
+    char mesg_text[100];
+} message;
+
+int main()
+{
+    key_t key;
+    int msgid;
+
+    // ftok to generate unique key
+    key = ftok(&quot;progfile&quot;, 65);
+
+    // msgget creates a message queue
+    // and returns identifier
+    msgid = msgget(key, 0666 | IPC_CREAT);
+    message.mesg_type = 1;
+
+    printf(&quot;Write Data : &quot;);
+    gets(message.mesg_text);
+
+    // msgsnd to send message
+    msgsnd(msgid, &amp;message, sizeof(message), 0);
+
+    // display the message
+    printf(&quot;Data send is : %s \n&quot;, message.mesg_text);
+
+    return 0;
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x9605;&#x8BFB;&#x8FC7;&#x7A0B;&#x7684;&#x6D88;&#x606F;&#x961F;&#x5217;</span> </p><pre class="brush: c; title: ; notranslate" title="">// C Program for Message Queue (Reader Process)
+#include &lt;stdio.h&gt;
+#include &lt;sys/ipc.h&gt;
+#include &lt;sys/msg.h&gt;
+
+// structure for message queue
+struct mesg_buffer {
+    long mesg_type;
+    char mesg_text[100];
+} message;
+
+int main()
+{
+    key_t key;
+    int msgid;
+
+    // ftok to generate unique key
+    key = ftok(&quot;progfile&quot;, 65);
+
+    // msgget creates a message queue
+    // and returns identifier
+    msgid = msgget(key, 0666 | IPC_CREAT);
+
+    // msgrcv to receive message
+    msgrcv(msgid, &amp;message, sizeof(message), 1, 0);
+
+    // display the message
+    printf(&quot;Data Received is : %s \n&quot;, 
+                    message.mesg_text);
+
+    // to destroy the message queue
+    msgctl(msgid, IPC_RMID, NULL);
+
+    return 0;
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F93;&#x51FA;&#xFF1A;</span> <br><img src="../../../imgs/os/d16bfd174877f34d041c3019ef6298d1.jpg" alt="" width="1272" height="194" class="alignnone size-full wp-image-298516"></p><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><hr><hr><!-- .entry-meta --></div></body></html>

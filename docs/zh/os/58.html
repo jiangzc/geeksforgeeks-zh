@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/os/58.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x9501;&#x5B9A;&#x53D8;&#x91CF;&#x540C;&#x6B65;&#x673A;&#x5236;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x5148;&#x51B3;&#x6761;&#x4EF6; -</b> <a href="https://www.geeksforgeeks.org/process-synchronization-set-1/" target="_blank">&#x8FDB;&#x7A0B;&#x540C;&#x6B65;</a></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x9501;&#x53D8;&#x91CF;&#x4E3A;&#x8FDB;&#x7A0B;&#x63D0;&#x4F9B;&#x6700;&#x7B80;&#x5355;&#x7684;&#x540C;&#x6B65;&#x673A;&#x5236;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5173;&#x4E8E;&#x9501;&#x5B9A;&#x53D8;&#x91CF;&#x7684;&#x4E00;&#x4E9B;&#x503C;&#x5F97;&#x6CE8;&#x610F;&#x7684;&#x8981;&#x70B9;&#x662F; - </span> </p><ol><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B83;&#x662F;&#x4E00;&#x79CD;&#x5728;&#x7528;&#x6237;&#x6A21;&#x5F0F;&#x4E0B;&#x5B9E;&#x73B0;&#x7684;<b>&#x8F6F;&#x4EF6;&#x673A;&#x5236;</b> &#xFF0C;&#x5373;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0D;&#x9700;&#x8981;&#x652F;&#x6301;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x5FD9;&#x788C;&#x7684;&#x7B49;&#x5F85;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF08;&#x5373;&#x4F7F;&#x5728;&#x6280;&#x672F;&#x4E0A;&#x7B49;&#x5F85;&#x65F6;&#x4E5F;&#x80FD;&#x4FDD;&#x6301;CPU&#x5FD9;&#xFF09;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B83;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x4E24;&#x4E2A;&#x4EE5;&#x4E0A;&#x7684;&#x8FC7;&#x7A0B;&#x3002;</span> </li></ol><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5F53;Lock = 0&#x8868;&#x793A;&#x4E34;&#x754C;&#x533A;&#x6BB5;&#x4E3A;&#x7A7A;&#xFF08;&#x521D;&#x59CB;&#x503C;&#xFF09;&#xFF0C;Lock = 1&#x8868;&#x793A;&#x4E34;&#x754C;&#x533A;&#x6BB5;&#x5360;&#x7528;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F2A;&#x4EE3;&#x7801;&#x770B;&#x8D77;&#x6765;&#x50CF;&#x8FD9;&#x6837; - </span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">Entry section - while(lock != 0);</span>
+                <span class="pre-span" style="direction: ltr; text-align: left">Lock = 1;</span>
+<span class="pre-span" style="direction: ltr; text-align: left">//critical section</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Exit section - Lock = 0;</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x66F4;&#x6B63;&#x5F0F;&#x7684;&#x7528;&#x4E8E;&#x8FDB;&#x7A0B;&#x540C;&#x6B65;&#x7684;Lock Variable&#x65B9;&#x6CD5;&#xFF1A;</span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><div class="noIdeBtnDiv">
+<pre class="brush: c; title: ; notranslate" title="">char buffer[SIZE];
+int count = 0,
+    start = 0,
+    end = 0;
+struct lock l;
+
+// initialize lock variable
+lock_init(&amp;l);
+
+void put(char c)
+{
+
+    // entry section
+    lock_acquire(&amp;l);
+
+    // critical section begins
+    while (count == SIZE) {
+
+        lock_release(&amp;l);
+        lock_acquire(&amp;l);
+    }
+
+    count++;
+    buffer[start] = c;
+    start++;
+
+    if (start == SIZE) {
+
+        start = 0;
+    }
+
+    // critical section ends
+    // exit section
+    lock_release(&amp;l);
+}
+
+char get()
+{
+
+    char c;
+
+    // entry section
+    lock_acquire(&amp;l);
+
+    // critical section begins
+    while (count == 0) {
+
+        lock_release(&amp;l);
+        lock_acquire(&amp;l);
+    }
+
+    count--;
+    c = buffer[end];
+    end++;
+
+    if (end == SIZE) {
+
+        end = 0;
+    }
+
+    // critical section ends
+    // exit section
+    lock_release(&amp;l);
+
+    return c;
+}
+</pre></div><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8BFB;&#x8005; - &#x4F5C;&#x8005;&#x95EE;&#x9898;&#x7684;&#x7ECF;&#x5178;&#x5B9E;&#x73B0;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x91CC;&#x7684;&#x7F13;&#x51B2;&#x533A;&#x662F;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#xFF0C;&#x8BB8;&#x591A;&#x8FDB;&#x7A0B;&#x6B63;&#x5728;&#x5C1D;&#x8BD5;&#x8BFB;&#x53D6;&#x6216;&#x5199;&#x5165;&#x5B57;&#x7B26;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x6570;&#x636E;&#x7684;&#x4EFB;&#x4F55;&#x6B67;&#x4E49;&#xFF0C;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x4F7F;&#x7528;&#x9501;&#x5B9A;&#x53D8;&#x91CF;&#x6765;&#x9650;&#x5236;&#x5E76;&#x53D1;&#x8BBF;&#x95EE;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x8FD8;&#x5BF9;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x7684;&#x8BFB;&#x8005;/&#x4F5C;&#x8005;&#x6570;&#x91CF;&#x8FDB;&#x884C;&#x4E86;&#x7EA6;&#x675F;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x73B0;&#x5728;&#xFF0C;&#x6BCF;&#x4E2A;&#x540C;&#x6B65;&#x673A;&#x5236;&#x90FD;&#x57FA;&#x4E8E;&#x4E09;&#x4E2A;&#x4E3B;&#x8981;&#x53C2;&#x6570;&#x6765;&#x5224;&#x65AD;&#xFF1A;</span> </p><ol><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x76F8;&#x4E92;&#x6392;&#x65A5;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FDB;&#x5C55;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6709;&#x754C;&#x7B49;&#x5F85;&#x3002;</span> </li></ol><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5176;&#x4E2D;&#x4E92;&#x65A5;&#x662F;&#x6240;&#x6709;&#x53C2;&#x6570;&#x4E2D;&#x6700;<strong>&#x91CD;&#x8981;</strong>&#x7684;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x67D0;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x9501;&#x5B9A;&#x53D8;&#x91CF;&#x4E0D;&#x63D0;&#x4F9B;&#x4E92;&#x65A5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x9762;&#x7ED9;&#x51FA;&#x7684;&#x6C47;&#x7F16;&#x8BED;&#x8A00;&#x4EE3;&#x7801;&#x7684;&#x5F62;&#x5F0F;&#x7F16;&#x5199;&#x5176;&#x4F2A;&#x4EE3;&#x7801;&#xFF0C;&#x53EF;&#x4EE5;&#x6700;&#x597D;&#x5730;&#x9A8C;&#x8BC1;&#x8FD9;&#x4E00;&#x4E8B;&#x5B9E;&#x3002;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">1. Load Lock, R0 ;</span> <span class="pre-span" style="direction: ltr; text-align: left">(Store the value of Lock in Register R0.)</span>
+<span class="pre-span" style="direction: ltr; text-align: left">2. CMP R0, #0 ;</span> <span class="pre-span" style="direction: ltr; text-align: left">(Compare the value of register R0 with 0.)</span>
+<span class="pre-span" style="direction: ltr; text-align: left">3. JNZ Step 1 ;</span> <span class="pre-span" style="direction: ltr; text-align: left">(Jump to step 1 if value of R0 is not 0.)</span>
+<span class="pre-span" style="direction: ltr; text-align: left">4. Store #1, Lock ;</span> <span class="pre-span" style="direction: ltr; text-align: left">(Set new value of Lock as 1.)</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Enter critical section</span>
+<span class="pre-span" style="direction: ltr; text-align: left">5. Store #0, Lock ;</span> <span class="pre-span" style="direction: ltr; text-align: left">(Set the value of lock as 0 again.)</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x73B0;&#x5728;&#x8BA9;&#x6211;&#x4EEC;&#x5047;&#x8BBE;&#x8FDB;&#x7A0B;P1&#x548C;P2&#x7ADE;&#x4E89;&#x4E34;&#x754C;&#x533A;&#xFF0C;&#x5B83;&#x4EEC;&#x7684;&#x6267;&#x884C;&#x987A;&#x5E8F;&#x5982;&#x4E0B;&#xFF08;Lock&#x7684;&#x521D;&#x59CB;&#x503C;= 0&#xFF09; - </span> </p><ol><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> P1&#x6267;&#x884C;&#x8BED;&#x53E5;1&#x5E76;&#x88AB;&#x62A2;&#x5360;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> P2&#x6267;&#x884C;&#x8BED;&#x53E5;1,2,3,4&#x5E76;&#x8FDB;&#x5165;Critical Section&#x5E76;&#x88AB;&#x62A2;&#x5360;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> P1&#x6267;&#x884C;&#x8BED;&#x53E5;2,3,4&#x5E76;&#x8FDB;&#x5165;&#x4E34;&#x754C;&#x533A;&#x3002;</span> </li></ol><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x91CC;&#x6700;&#x521D;&#x8FDB;&#x7A0B;P1&#x7684;R0&#x5C06;&#x9501;&#x5B9A;&#x503C;&#x5B58;&#x50A8;&#x4E3A;0&#x4F46;&#x662F;&#x672A;&#x80FD;&#x5C06;&#x9501;&#x5B9A;&#x503C;&#x66F4;&#x65B0;&#x4E3A;1.&#x56E0;&#x6B64;&#xFF0C;&#x5F53;P2&#x6267;&#x884C;&#x65F6;&#xFF0C;&#x5B83;&#x8FD8;&#x5C06;LOCK&#x503C;&#x8BBE;&#x7F6E;&#x4E3A;0&#x5E76;&#x901A;&#x8FC7;&#x5C06;LOCK&#x503C;&#x8BBE;&#x7F6E;&#x4E3A;1&#x8FDB;&#x5165;&#x4E34;&#x754C;&#x533A;&#x3002;&#x4F46;&#x662F;&#x771F;&#x6B63;&#x7684;&#x95EE;&#x9898;&#x51FA;&#x73B0;&#x4E86;&#x5F53;P1&#x518D;&#x6B21;&#x6267;&#x884C;&#x65F6;&#xFF0C;&#x5B83;&#x4E0D;&#x4F1A;&#x68C0;&#x67E5;Lock&#x7684;&#x66F4;&#x65B0;&#x503C;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B83;&#x53EA;&#x68C0;&#x67E5;&#x5B58;&#x50A8;&#x5728;R0&#x4E2D;&#x7684;&#x524D;&#x4E00;&#x4E2A;&#x503C;&#x4E3A;0&#x5E76;&#x8FDB;&#x5165;&#x4E34;&#x754C;&#x533A;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x53EA;&#x662F;&#x8BB8;&#x591A;&#x5176;&#x4ED6;&#x53EF;&#x80FD;&#x7684;&#x6267;&#x884C;&#x987A;&#x5E8F;&#x4E4B;&#x4E00;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6709;&#x4E9B;&#x751A;&#x81F3;&#x53EF;&#x80FD;&#x63D0;&#x4F9B;&#x76F8;&#x4E92;&#x6392;&#x65A5;&#xFF0C;&#x4F46;&#x6211;&#x4EEC;&#x4E0D;&#x80FD;&#x7EA0;&#x7F20;&#x4E8E;&#x6B64;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6839;&#x636E;&#x58A8;&#x83F2;&#x5B9A;&#x5F8B;&#xFF0C;&#x201C; <strong>&#x4EFB;&#x4F55;&#x53EF;&#x80FD;&#x51FA;&#x9519;&#x7684;&#x4E1C;&#x897F;&#x90FD;&#x4F1A;&#x51FA;&#x95EE;&#x9898;</strong> &#x201D;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x56E0;&#x6B64;&#xFF0C;&#x50CF;&#x6240;&#x6709;&#x7B80;&#x5355;&#x7684;&#x4E8B;&#x60C5;&#x4E00;&#x6837;&#xFF0C;&#x9501;&#x53D8;&#x91CF;&#x540C;&#x6B65;&#x65B9;&#x6CD5;&#x4E0E;Demerits&#x7684;&#x516C;&#x5E73;&#x4EFD;&#x989D;&#x4E00;&#x8D77;&#x63D0;&#x4F9B;&#xFF0C;&#x4F46;&#x5B83;&#x662F;&#x6211;&#x4EEC;&#x5F00;&#x53D1;&#x66F4;&#x597D;&#x7684;&#x540C;&#x6B65;&#x7B97;&#x6CD5;&#x4EE5;&#x89E3;&#x51B3;&#x6211;&#x4EEC;&#x5728;&#x8FD9;&#x91CC;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x7684;&#x826F;&#x597D;&#x8D77;&#x70B9;&#x3002;</span> </p><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><!-- .entry-meta --></div></body></html>

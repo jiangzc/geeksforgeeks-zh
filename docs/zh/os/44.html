@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/os/44.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> IPC&#x901A;&#x8FC7;&#x5171;&#x4EAB;&#x5185;&#x5B58;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x901A;&#x8FC7;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x8FDB;&#x884C;<a href="https://www.geeksforgeeks.org/inter-process-communication/">&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;</a>&#x662F;&#x4E00;&#x4E2A;&#x6982;&#x5FF5;&#xFF0C;&#x5176;&#x4E2D;&#x4E24;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x8FDB;&#x7A0B;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x516C;&#x5171;&#x5185;&#x5B58;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5E76;&#x4E14;&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x5B8C;&#x6210;&#x901A;&#x4FE1;&#xFF0C;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x6240;&#x505A;&#x7684;&#x66F4;&#x6539;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x53E6;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x67E5;&#x770B;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7BA1;&#x9053;&#xFF0C;fifo&#x548C;&#x6D88;&#x606F;&#x961F;&#x5217;&#x7684;&#x95EE;&#x9898;&#x662F;&#x4E24;&#x4E2A;&#x8FDB;&#x7A0B;&#x4EA4;&#x6362;&#x4FE1;&#x606F;&#x7684;&#x95EE;&#x9898;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4FE1;&#x606F;&#x5FC5;&#x987B;&#x901A;&#x8FC7;&#x5185;&#x6838;&#x3002;</span> </p><ul><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x670D;&#x52A1;&#x5668;&#x4ECE;&#x8F93;&#x5165;&#x6587;&#x4EF6;&#x4E2D;&#x8BFB;&#x53D6;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x670D;&#x52A1;&#x5668;&#x4F7F;&#x7528;&#x7BA1;&#x9053;&#xFF0C;fifo&#x6216;&#x6D88;&#x606F;&#x961F;&#x5217;&#x5C06;&#x6B64;&#x6570;&#x636E;&#x5199;&#x5165;&#x6D88;&#x606F;&#x4E2D;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5BA2;&#x6237;&#x7AEF;&#x4ECE;IPC&#x901A;&#x9053;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x518D;&#x6B21;&#x8981;&#x6C42;&#x5C06;&#x6570;&#x636E;&#x4ECE;&#x5185;&#x6838;&#x7684;IPC&#x7F13;&#x51B2;&#x533A;&#x590D;&#x5236;&#x5230;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x7F13;&#x51B2;&#x533A;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6700;&#x540E;&#xFF0C;&#x6570;&#x636E;&#x4ECE;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x7F13;&#x51B2;&#x533A;&#x4E2D;&#x590D;&#x5236;&#x3002;</span> </li><p></p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x603B;&#x5171;&#x9700;&#x8981;&#x56DB;&#x4EFD;&#x6570;&#x636E;&#xFF08;2&#x6B21;&#x8BFB;&#x53D6;&#x548C;2&#x6B21;&#x5199;&#x5165;&#xFF09;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x56E0;&#x6B64;&#xFF0C;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x901A;&#x8FC7;&#x8BA9;&#x4E24;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x8FDB;&#x7A0B;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x6BB5;&#x6765;&#x63D0;&#x4F9B;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F7F;&#x7528;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x65F6;&#xFF0C;&#x6570;&#x636E;&#x4EC5;&#x88AB;&#x590D;&#x5236;&#x4E24;&#x6B21; - &#x4ECE;&#x8F93;&#x5165;&#x6587;&#x4EF6;&#x5230;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#xFF0C;&#x4ECE;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x5230;&#x8F93;&#x51FA;&#x6587;&#x4EF6;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x4F7F;&#x7528;&#x7684;&#x662F;&#xFF1A;</span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><blockquote><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>ftok&#xFF08;&#xFF09;</b> &#xFF1A;&#x7528;&#x4E8E;&#x751F;&#x6210;&#x552F;&#x4E00;&#x952E;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>shmget&#xFF08;&#xFF09;</b> &#xFF1A;int shmget&#xFF08;key_t&#xFF0C;size_tsize&#xFF0C;intshmflg&#xFF09;;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6210;&#x529F;&#x5B8C;&#x6210;&#x540E;&#xFF0C;shmget&#xFF08;&#xFF09;&#x8FD4;&#x56DE;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x6BB5;&#x7684;&#x6807;&#x8BC6;&#x7B26;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>shmat&#xFF08;&#xFF09;</b> &#xFF1A;&#x5728;&#x4F7F;&#x7528;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x6BB5;&#x4E4B;&#x524D;&#xFF0C;&#x5FC5;&#x987B;&#x81EA;&#x5DF1;&#x9644;&#x52A0;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F7F;&#x7528;shmat&#xFF08;&#xFF09;&#x6765;&#x5B9E;&#x73B0;&#x5B83;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> void * shmat&#xFF08;int shmid&#xFF0C;void * shmaddr&#xFF0C;int shmflg&#xFF09;;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> shmid&#x662F;&#x5171;&#x4EAB;&#x5185;&#x5B58;id&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> shmaddr&#x6307;&#x5B9A;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x7279;&#x5B9A;&#x5730;&#x5740;&#xFF0C;&#x4F46;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x8BBE;&#x7F6E;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B83;&#x4E3A;&#x96F6;&#xFF0C;OS&#x5C06;&#x81EA;&#x52A8;&#x9009;&#x62E9;&#x5730;&#x5740;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>shmdt&#xFF08;&#xFF09;</b> &#xFF1A;&#x5F53;&#x4F60;&#x5B8C;&#x6210;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x6BB5;&#x65F6;&#xFF0C;&#x4F60;&#x7684;&#x7A0B;&#x5E8F;&#x5E94;&#x8BE5;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F7F;&#x7528;shmdt&#xFF08;&#xFF09;&#x4ECE;&#x4E2D;&#x5206;&#x79BB;&#x51FA;&#x6765;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> int shmdt&#xFF08;void * shmaddr&#xFF09;;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>shmctl&#xFF08;&#xFF09;</b> &#xFF1A;&#x5F53;&#x4F60;&#x4ECE;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x4E2D;&#x5206;&#x79BB;&#x65F6;&#xFF0C;&#x5B83;&#x4E0D;&#x4F1A;&#x88AB;&#x7834;&#x574F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6240;&#x4EE5;&#xFF0C;&#x8981;&#x6BC1;&#x706D;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F7F;&#x7528;shmctl&#xFF08;&#xFF09;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> shmctl&#xFF08;int shmid&#xFF0C;IPC_RMID&#xFF0C;NULL&#xFF09;;</span> </p></blockquote><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5171;&#x4EAB;&#x8BB0;&#x5FC6;&#x7F16;&#x5199;&#x8FC7;&#x7A0B;</span> </p>
+<pre class="brush: cpp; title: ; notranslate" title="">#include &lt;iostream&gt;
+#include &lt;sys/ipc.h&gt;
+#include &lt;sys/shm.h&gt;
+#include &lt;stdio.h&gt;
+using namespace std;
+
+int main()
+{
+    // ftok to generate unique key
+    key_t key = ftok(&quot;shmfile&quot;,65);
+
+    // shmget returns an identifier in shmid
+    int shmid = shmget(key,1024,0666|IPC_CREAT);
+
+    // shmat to attach to shared memory
+    char *str = (char*) shmat(shmid,(void*)0,0);
+
+    cout&lt;&lt;&quot;Write Data : &quot;;
+    gets(str);
+
+    printf(&quot;Data written in memory: %s\n&quot;,str);
+    
+    //detach from shared memory 
+    shmdt(str);
+
+    return 0;
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5171;&#x4EAB;&#x5B58;&#x50A8;&#x5668;&#x7528;&#x4E8E;&#x8BFB;&#x53D6;&#x5668;&#x5904;&#x7406;</span> </p><pre class="brush: cpp; title: ; notranslate" title="">#include &lt;iostream&gt;
+#include &lt;sys/ipc.h&gt;
+#include &lt;sys/shm.h&gt;
+#include &lt;stdio.h&gt;
+using namespace std;
+
+int main()
+{
+    // ftok to generate unique key
+    key_t key = ftok(&quot;shmfile&quot;,65);
+
+    // shmget returns an identifier in shmid
+    int shmid = shmget(key,1024,0666|IPC_CREAT);
+
+    // shmat to attach to shared memory
+    char *str = (char*) shmat(shmid,(void*)0,0);
+
+    printf(&quot;Data read from memory: %s\n&quot;,str);
+    
+    //detach from shared memory 
+    shmdt(str);
+  
+    // destroy the shared memory
+    shmctl(shmid,IPC_RMID,NULL);
+   
+    return 0;
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F93;&#x51FA;&#xFF1A;</span> <br><img src="../../../imgs/os/08d4cd8c4c3ef403abb5bb2f7b2c4a65.jpg" alt="" width="1229" height="184" class="alignnone size-full wp-image-298590"></p><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><hr><hr><!-- .entry-meta --></ul></div></body></html>

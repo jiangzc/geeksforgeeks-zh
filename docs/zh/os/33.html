@@ -1,0 +1,177 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/os/33.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5177;&#x6709;&#x4E0D;&#x540C;&#x5230;&#x8FBE;&#x65F6;&#x95F4;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x8C03;&#x5EA6; - &#x8BBE;&#x7F6E;2</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x5148;&#x51B3;&#x6761;&#x4EF6; -</b> <a href="https://www.geeksforgeeks.org/program-priority-scheduling-set-1/" target="_blank">&#x4F18;&#x5148;&#x7EA7;&#x8C03;&#x5EA6;&#x7A0B;&#x5E8F; - &#x8BBE;&#x7F6E;1</a></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F18;&#x5148;&#x7EA7;&#x8C03;&#x5EA6;&#x662F;&#x4E00;&#x79CD;&#x975E;&#x62A2;&#x5360;&#x5F0F;&#x7B97;&#x6CD5;&#xFF0C;&#x662F;&#x6279;&#x5904;&#x7406;&#x7CFB;&#x7EDF;&#x4E2D;&#x6700;&#x5E38;&#x7528;&#x7684;&#x8C03;&#x5EA6;&#x7B97;&#x6CD5;&#x4E4B;&#x4E00;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x8FDB;&#x7A0B;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7684;&#x5230;&#x8FBE;&#x65F6;&#x95F4;&#xFF0C;&#x5219;&#x4E3A;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x5206;&#x914D;&#x9996;&#x6B21;&#x5230;&#x8FBE;&#x65F6;&#x95F4;&#xFF08;&#x9996;&#x5148;&#x5230;&#x8FBE;&#x65F6;&#x95F4;&#x8F83;&#x77ED;&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x4E0E;&#x4F18;&#x5148;&#x7EA7;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF08;&#x6700;&#x9AD8;&#x8FDB;&#x7A0B;&#x4F18;&#x5148;&#xFF09;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6B64;&#x5916;&#xFF0C;&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x8FDB;&#x7A0B;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#xFF0C;&#x5219;&#x4E0E;&#x8FDB;&#x7A0B;&#x53F7;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF08;&#x9996;&#x5148;&#x51CF;&#x5C11;&#x8FDB;&#x7A0B;&#x53F7;&#xFF09;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x6267;&#x884C;&#x6240;&#x6709;&#x8FC7;&#x7A0B;&#x65F6;&#x91CD;&#x590D;&#x6B64;&#x8FC7;&#x7A0B;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x5B9E;&#x65BD; - </b></span> </p><ol><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x9996;&#x5148;&#x8F93;&#x5165;&#x8FDB;&#x7A0B;&#x7684;&#x5230;&#x8FBE;&#x65F6;&#x95F4;&#xFF0C;&#x7A81;&#x53D1;&#x65F6;&#x95F4;&#x548C;&#x4F18;&#x5148;&#x7EA7;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x8FDB;&#x7A0B;&#x5230;&#x8FBE;&#x65F6;&#x95F4;&#x76F8;&#x540C;&#xFF0C;&#x5219;&#x6839;&#x636E;&#x5230;&#x8FBE;&#x65F6;&#x95F4;&#x5BF9;&#x8FDB;&#x7A0B;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#xFF0C;&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x8FDB;&#x7A0B;&#x4F18;&#x5148;&#x7EA7;&#x76F8;&#x540C;&#x5219;&#x6309;&#x8FDB;&#x7A0B;&#x4F18;&#x5148;&#x7EA7;&#x6392;&#x5E8F;&#xFF0C;&#x7136;&#x540E;&#x6839;&#x636E;&#x8FDB;&#x7A0B;&#x53F7;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x73B0;&#x5728;&#x53EA;&#x9700;&#x5E94;&#x7528;FCFS&#x7B97;&#x6CD5;&#x3002;</span> </li></ol><p><img src="../../../imgs/os/bd10947692504610311947f7f0830341.jpg" alt="" width="506" height="149" class="aligncenter size-full wp-image-253729"><br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x7518;&#x7279;&#x56FE; -</strong></span> <br><img src="../../../imgs/os/ebbcc4ee6e47352b57c1f43214c0d135.jpg" alt="" width="452" height="95" class="aligncenter size-full wp-image-253730"></p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x4F8B;&#x5B50; -</b></span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left"><b>Input :</b></span>
+<span class="pre-span" style="direction: ltr; text-align: left">process no-&gt; 1 2 3 4 5</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">arrival time-&gt; 0 1 3 2 4</span>
+<span class="pre-span" style="direction: ltr; text-align: left">burst time-&gt; 3 6 1 2 4</span>
+<span class="pre-span" style="direction: ltr; text-align: left">priority-&gt; 3 4 9 7 8</span>
+<span class="pre-span" style="direction: ltr; text-align: left"><b>Output :</b></span>
+<span class="pre-span" style="direction: ltr; text-align: left">Process_no Start_time Complete_time Trun_Around_Time Wating_Time</span>
+<span class="pre-span" style="direction: ltr; text-align: left">1 0 3 3 0</span>
+<span class="pre-span" style="direction: ltr; text-align: left">2 3 9 8 2</span>
+<span class="pre-span" style="direction: ltr; text-align: left">4 9 11 9 7</span>
+<span class="pre-span" style="direction: ltr; text-align: left">3 11 12 9 8</span>
+<span class="pre-span" style="direction: ltr; text-align: left">5 12 16 12 8</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Average Wating Time is : 5.0</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Average Trun Around time is : 8.2</span>
+
+</pre><p><!-- To show strongly recommend and practice link    --></p><div id="practiceLinkDiv"><h2 class="sigil_not_in_toc"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="https://ide.geeksforgeeks.org/">&#x5EFA;&#x8BAE;&#xFF1A;&#x5728;&#x7EE7;&#x7EED;&#x4F7F;&#x7528;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E4B;&#x524D;&#xFF0C;&#x8BF7;&#x5148;&#x5728;<b><i><u>{IDE}</u></i></b>&#x4E0A;&#x5C1D;&#x8BD5;&#x60A8;&#x7684;&#x65B9;&#x6CD5;&#x3002;</a></span> </h2></div><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x4EE3;&#x7801; - </b></span> </p>
+<pre class="brush: java; title: ; notranslate" title="">// Write Java code here
+import java.util.*;
+
+/// Data Structure
+class Process {
+    int at, bt, pri, pno;
+    Process(int pno, int at, int bt, int pri)
+    {
+        this.pno = pno;
+        this.pri = pri;
+        this.at = at;
+        this.bt = bt;
+    }
+}
+
+/// Gantt chart structure
+class GChart {
+    // process number, start time, complete time,
+    // turn around time, waiting time
+    int pno, stime, ctime, wtime, ttime;
+}
+
+// user define comparative method (first arrival first serve,
+// if arrival time same then heigh priority first)
+class MyComparator implements Comparator {
+
+    public int compare(Object o1, Object o2)
+    {
+
+        Process p1 = (Process)o1;
+        Process p2 = (Process)o2;
+        if (p1.at &lt; p2.at)
+            return (-1);
+
+        else if (p1.at == p2.at &amp;&amp; p1.pri &gt; p2.pri)
+            return (-1);
+
+        else
+            return (1);
+    }
+}
+
+
+// class to find Gantt chart
+class FindGantChart {
+    void findGc(LinkedList queue)
+    {
+
+        // initial time = 0
+        int time = 0;
+
+        // priority Queue sort data according
+        // to arrival time or priority (ready queue)
+        TreeSet prique = new TreeSet(new MyComparator());
+
+        // link list for store processes data
+        LinkedList result = new LinkedList();
+
+        // process in ready queue from new state queue
+        while (queue.size() &gt; 0)
+            prique.add((Process)queue.removeFirst());
+
+        Iterator it = prique.iterator();
+
+        // time set to according to first process
+        time = ((Process)prique.first()).at;
+
+        // scheduling process
+        while (it.hasNext()) {
+
+            // dispatcher dispatch the
+            // process ready to running state
+            Process obj = (Process)it.next();
+
+            GChart gc1 = new GChart();
+            gc1.pno = obj.pno;
+            gc1.stime = time;
+            time += obj.bt;
+            gc1.ctime = time;
+            gc1.ttime = gc1.ctime - obj.at;
+            gc1.wtime = gc1.ttime - obj.bt;
+
+            /// store the exxtreted process
+            result.add(gc1);
+        }
+
+        // create object of output class and call method
+        new ResultOutput(result);
+    }
+}
+
+
+class ResultOutput {
+
+    ResultOutput(LinkedList result)
+    {
+
+        double wavg = 0, tavg = 0;
+        int totalprocess = result.size();
+        System.out.println(&quot;Process_no\tStart_time\t&quot;+
+        &quot;Complete_time\tTrun_Around_Time\tWating_Time&quot;);
+
+        // dispalay the process details
+        while (result.size() &gt; 0) {
+
+            GChart obj = (GChart)result.poll();
+            wavg += obj.wtime;
+            tavg += obj.ttime;
+            System.out.println(obj.pno + &quot;\t\t&quot; +
+            obj.stime + &quot;\t\t&quot; + obj.ctime + &quot;\t\t&quot; +
+            obj.ttime + &quot;\t\t\t&quot; + obj.wtime);
+        }
+
+        // display the average waiting time
+        //and average turn around time
+        System.out.println(&quot;Average Wating Time is : &quot;
+        + (wavg / totalprocess));
+
+        System.out.println(&quot;Average Trun Around time is : &quot;
+         + (tavg / totalprocess));
+    }
+}
+
+
+// Driver code
+class Priority_Preemption {
+
+    public static void main(String args[])
+    {
+
+        // link list for store the
+        // process with details (new state)
+        LinkedList queue = new LinkedList();
+
+        int arrivaltime[] = { 1, 2, 3, 4, 5 };
+        int bursttime[] = { 3, 5, 1, 7, 4 };
+        int priority[] = { 3, 4, 1, 7, 8 };
+
+        for (int i = 0; i &lt; 5; i++)
+
+            // insert in new state(queue)
+            queue.addLast(new Process(i + 1, arrivaltime[i], 
+            bursttime[i], priority[i]));
+
+        FindGantChart obj = new FindGantChart();
+        obj.findGc(queue);
+
+    }
+
+}
+
+
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x8F93;&#x51FA; - </b></span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">Process_no Start_time Complete_time Trun_Around_Time Wating_Time</span>
+<span class="pre-span" style="direction: ltr; text-align: left">1 1 4 3 0</span>
+<span class="pre-span" style="direction: ltr; text-align: left">2 4 9 7 2</span>
+<span class="pre-span" style="direction: ltr; text-align: left">3 9 10 7 6</span>
+<span class="pre-span" style="direction: ltr; text-align: left">4 10 17 13 6</span>
+<span class="pre-span" style="direction: ltr; text-align: left">5 17 21 16 12</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Average Wating Time is : 5.2</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Average Trun Around time is : 9.2</span>
+</pre><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><!-- .entry-meta --></div></body></html>

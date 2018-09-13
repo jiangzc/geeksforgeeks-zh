@@ -1,0 +1,287 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/os/51.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5F7C;&#x5F97;&#x68EE;&#x7684;&#x7B97;&#x6CD5;&#xFF08;&#x4F7F;&#x7528;&#x8FDB;&#x7A0B;&#x548C;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#xFF09;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5148;&#x51B3;&#x6761;&#x4EF6; - <a href="https://www.geeksforgeeks.org/process-synchronization-set-1/">&#x540C;&#x6B65;</a> &#xFF0C; <a href="https://www.geeksforgeeks.org/g-fact-70/">&#x5173;&#x952E;&#x90E8;&#x5206;</a></span> </p><p><!-- Problem Statement --></p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x95EE;&#x9898;&#xFF1A;</b>&#x751F;&#x4EA7;&#x8005;&#x6D88;&#x8D39;&#x8005;&#x95EE;&#x9898;&#xFF08;&#x6216;&#x6709;&#x754C;&#x7F13;&#x51B2;&#x95EE;&#x9898;&#xFF09;&#x63CF;&#x8FF0;&#x4E86;&#x4E24;&#x4E2A;&#x8FDB;&#x7A0B;&#xFF0C;&#x5373;&#x751F;&#x4EA7;&#x8005;&#x548C;&#x4F7F;&#x7528;&#x8005;&#xFF0C;&#x5B83;&#x4EEC;&#x5171;&#x4EAB;&#x4E00;&#x4E2A;&#x7528;&#x4F5C;&#x961F;&#x5217;&#x7684;&#x901A;&#x7528;&#x56FA;&#x5B9A;&#x5927;&#x5C0F;&#x7F13;&#x51B2;&#x533A;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5236;&#x4F5C;&#x4EBA;&#x5236;&#x4F5C;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#x5E76;&#x5C06;&#x5176;&#x653E;&#x5165;&#x7F13;&#x51B2;&#x533A;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x7F13;&#x51B2;&#x533A;&#x5DF2;&#x6EE1;&#xFF0C;&#x5219;&#x751F;&#x4EA7;&#x8005;&#x5FC5;&#x987B;&#x7B49;&#x5F85;&#x7F13;&#x51B2;&#x533A;&#x4E2D;&#x7684;&#x7A7A;&#x5757;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6D88;&#x8D39;&#x8005;&#x4ECE;&#x7F13;&#x51B2;&#x533A;&#x6D88;&#x8017;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x7F13;&#x51B2;&#x533A;&#x5DF2;&#x7ECF;&#x4E3A;&#x7A7A;&#xFF0C;&#x90A3;&#x4E48;&#x6D88;&#x8D39;&#x8005;&#x5C06;&#x4E0D;&#x5F97;&#x4E0D;&#x7B49;&#x5F85;&#x7F13;&#x51B2;&#x533A;&#x4E2D;&#x7684;&#x9879;&#x76EE;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F7F;&#x7528;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x4E3A;&#x4E24;&#x4E2A;&#x8FDB;&#x7A0B;&#x5B9E;&#x73B0;Peterson&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x4F7F;&#x5F97;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x5B58;&#x5728;&#x4E92;&#x65A5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x5E94;&#x8BE5;&#x6CA1;&#x6709;&#x540C;&#x6B65;&#x95EE;&#x9898;&#x3002;</span> </p><p><img src="../../../imgs/os/6800e06290b03569d9b87c14c247d9e2.jpg" alt="&#x751F;&#x4EA7;&#x8005; - &#x6D88;&#x8D39;&#x8005;"></p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x5F7C;&#x5F97;&#x68EE;&#x7684;&#x7B97;&#x6CD5; - </b></span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><div class="noIdeBtnDiv">
+<pre class="brush: c; title: ; notranslate" title="">// code for producer (j)
+
+// producer j is ready
+// to produce an item
+flag[j] = true;
+
+// but consumer (i) can consume an item
+turn = i;
+
+// if consumer is ready to consume an item
+// and if its consumer&apos;s turn
+while (flag[i] == true &amp;&amp; turn == i)
+
+    { // then producer will wait }
+
+    // otherwise producer will produce
+    // an item and put it into buffer (critical Section)
+
+    // Now, producer is out of critical section
+    flag[j] = false;
+    // end of code for producer
+
+    //--------------------------------------------------------
+    // code for consumer i
+
+    // consumer i is ready
+    // to consume an item
+    flag[i] = true;
+
+    // but producer (j) can produce an item
+    turn = j;
+
+    // if producer is ready to produce an item
+    // and if its producer&apos;s turn
+    while (flag[j] == true &amp;&amp; turn == j)
+
+        { // then consumer will wait }
+
+        // otherwise consumer will consume
+        // an item from buffer (critical Section)
+
+        // Now, consumer is out of critical section
+        flag[i] = false;
+// end of code for consumer
+</pre></div><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x5F7C;&#x5F97;&#x68EE;&#x7B97;&#x6CD5;&#x7684;&#x89E3;&#x91CA; - </b></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> Peterson&#x7684;&#x7B97;&#x6CD5;&#x7528;&#x4E8E;&#x540C;&#x6B65;&#x4E24;&#x4E2A;&#x8FDB;&#x7A0B;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B83;&#x4F7F;&#x7528;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#xFF0C;&#x4E00;&#x4E2A;&#x5927;&#x5C0F;&#x4E3A;2&#x7684;bool&#x6570;&#x7EC4;<b>&#x6807;&#x5FD7;</b>&#x548C;&#x4E00;&#x4E2A;int&#x53D8;&#x91CF;&#x6765;&#x5B8C;&#x6210;&#x5B83;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E2D;&#xFF0C;&#x6211;&#x4EE3;&#x8868;&#x6D88;&#x8D39;&#x8005;&#xFF0C;j&#x4EE3;&#x8868;&#x751F;&#x4EA7;&#x8005;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6700;&#x521D;&#x6807;&#x5FD7;&#x662F;&#x9519;&#x8BEF;&#x7684;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5F53;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x60F3;&#x8981;&#x6267;&#x884C;&#x5B83;&#x7684;&#x5173;&#x952E;&#x90E8;&#x5206;&#x65F6;&#xFF0C;&#x5B83;&#x5C06;&#x5176;&#x6807;&#x5FD7;&#x8BBE;&#x7F6E;&#x4E3A;true&#x5E76;&#x8F6C;&#x4E3A;&#x53E6;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x7D22;&#x5F15;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x610F;&#x5473;&#x7740;&#x8BE5;&#x8FDB;&#x7A0B;&#x60F3;&#x8981;&#x6267;&#x884C;&#xFF0C;&#x4F46;&#x5B83;&#x5C06;&#x5141;&#x8BB8;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x9996;&#x5148;&#x8FD0;&#x884C;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BE5;&#x8FDB;&#x7A0B;&#x6267;&#x884C;&#x7E41;&#x5FD9;&#x7B49;&#x5F85;&#xFF0C;&#x76F4;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x5B8C;&#x6210;&#x5B83;&#x81EA;&#x5DF1;&#x7684;&#x5173;&#x952E;&#x90E8;&#x5206;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x6B64;&#x4E4B;&#x540E;&#xFF0C;&#x5F53;&#x524D;&#x8FDB;&#x7A0B;&#x8FDB;&#x5165;&#x5176;&#x5173;&#x952E;&#x90E8;&#x5206;&#xFF0C;&#x5E76;&#x4ECE;&#x5171;&#x4EAB;&#x7F13;&#x51B2;&#x533A;&#x4E2D;&#x6DFB;&#x52A0;&#x6216;&#x5220;&#x9664;&#x968F;&#x673A;&#x6570;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B8C;&#x6210;&#x5173;&#x952E;&#x90E8;&#x5206;&#x540E;&#xFF0C;&#x5B83;&#x5C06;&#x81EA;&#x5DF1;&#x7684;&#x6807;&#x5FD7;&#x8BBE;&#x7F6E;&#x4E3A;false&#xFF0C;&#x8868;&#x793A;&#x5B83;&#x4E0D;&#x518D;&#x5E0C;&#x671B;&#x6267;&#x884C;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BE5;&#x7A0B;&#x5E8F;&#x5728;&#x9000;&#x51FA;&#x524D;&#x8FD0;&#x884C;&#x4E00;&#x6BB5;&#x56FA;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6539;&#x53D8;&#x5B8F;RT&#x7684;&#x503C;&#x6765;&#x6539;&#x53D8;&#x8BE5;&#x65F6;&#x95F4;&#x3002;</span> </p><pre class="brush: c; title: ; notranslate" title="">// C program to implement Peterson&#x2019;s Algorithm
+// for producer-consumer problem.
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;time.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/ipc.h&gt;
+#include &lt;sys/shm.h&gt;
+#include &lt;stdbool.h&gt;
+#define _BSD_SOURCE
+#include &lt;sys/time.h&gt;
+#include &lt;stdio.h&gt;
+
+#define BSIZE 8 // Buffer size
+#define PWT 2 // Producer wait time limit
+#define CWT 10 // Consumer wait time limit
+#define RT 10 // Program run-time in seconds
+
+int shmid1, shmid2, shmid3, shmid4;
+key_t k1 = 5491, k2 = 5812, k3 = 4327, k4 = 3213;
+bool* SHM1;
+int* SHM2;
+int* SHM3;
+
+int myrand(int n) // Returns a random number between 1 and n
+{
+    time_t t;
+    srand((unsigned)time(&amp;t));
+    return (rand() % n + 1);
+}
+
+int main()
+{
+    shmid1 = shmget(k1, sizeof(bool) * 2, IPC_CREAT | 0660); // flag
+    shmid2 = shmget(k2, sizeof(int) * 1, IPC_CREAT | 0660); // turn
+    shmid3 = shmget(k3, sizeof(int) * BSIZE, IPC_CREAT | 0660); // buffer
+    shmid4 = shmget(k4, sizeof(int) * 1, IPC_CREAT | 0660); // time stamp
+
+    if (shmid1 &lt; 0 || shmid2 &lt; 0 || shmid3 &lt; 0 || shmid4 &lt; 0) {
+        perror(&quot;Main shmget error: &quot;);
+        exit(1);
+    }
+    SHM3 = (int*)shmat(shmid3, NULL, 0);
+    int ix = 0;
+    while (ix &lt; BSIZE) // Initializing buffer
+        SHM3[ix++] = 0;
+
+    struct timeval t;
+    time_t t1, t2;
+    gettimeofday(&amp;t, NULL);
+    t1 = t.tv_sec;
+
+    int* state = (int*)shmat(shmid4, NULL, 0);
+    *state = 1;
+    int wait_time;
+
+    int i = 0; // Consumer
+    int j = 1; // Producer
+
+    if (fork() == 0) // Producer code
+    {
+        SHM1 = (bool*)shmat(shmid1, NULL, 0);
+        SHM2 = (int*)shmat(shmid2, NULL, 0);
+        SHM3 = (int*)shmat(shmid3, NULL, 0);
+        if (SHM1 == (bool*)-1 || SHM2 == (int*)-1 || SHM3 == (int*)-1) {
+            perror(&quot;Producer shmat error: &quot;);
+            exit(1);
+        }
+
+        bool* flag = SHM1;
+        int* turn = SHM2;
+        int* buf = SHM3;
+        int index = 0;
+
+        while (*state == 1) {
+            flag[j] = true;
+            printf(&quot;Producer is ready now.\n\n&quot;);
+            *turn = i;
+            while (flag[i] == true &amp;&amp; *turn == i)
+                ;
+
+            // Critical Section Begin
+            index = 0;
+            while (index &lt; BSIZE) {
+                if (buf[index] == 0) {
+                    int tempo = myrand(BSIZE * 3);
+                    printf(&quot;Job %d has been produced\n&quot;, tempo);
+                    buf[index] = tempo;
+                    break;
+                }
+                index++;
+            }
+            if (index == BSIZE)
+                printf(&quot;Buffer is full, nothing can be produced!!!\n&quot;);
+            printf(&quot;Buffer: &quot;);
+            index = 0;
+            while (index &lt; BSIZE)
+                printf(&quot;%d &quot;, buf[index++]);
+            printf(&quot;\n&quot;);
+            // Critical Section End
+
+            flag[j] = false;
+            if (*state == 0)
+                break;
+            wait_time = myrand(PWT);
+            printf(&quot;Producer will wait for %d seconds\n\n&quot;, wait_time);
+            sleep(wait_time);
+        }
+        exit(0);
+    }
+
+    if (fork() == 0) // Consumer code
+    {
+        SHM1 = (bool*)shmat(shmid1, NULL, 0);
+        SHM2 = (int*)shmat(shmid2, NULL, 0);
+        SHM3 = (int*)shmat(shmid3, NULL, 0);
+        if (SHM1 == (bool*)-1 || SHM2 == (int*)-1 || SHM3 == (int*)-1) {
+            perror(&quot;Consumer shmat error:&quot;);
+            exit(1);
+        }
+
+        bool* flag = SHM1;
+        int* turn = SHM2;
+        int* buf = SHM3;
+        int index = 0;
+        flag[i] = false;
+        sleep(5);
+        while (*state == 1) {
+            flag[i] = true;
+            printf(&quot;Consumer is ready now.\n\n&quot;);
+            *turn = j;
+            while (flag[j] == true &amp;&amp; *turn == j)
+                ;
+
+            // Critical Section Begin
+            if (buf[0] != 0) {
+                printf(&quot;Job %d has been consumed\n&quot;, buf[0]);
+                buf[0] = 0;
+                index = 1;
+                while (index &lt; BSIZE) // Shifting remaining jobs forward
+                {
+                    buf[index - 1] = buf[index];
+                    index++;
+                }
+                buf[index - 1] = 0;
+            } else
+                printf(&quot;Buffer is empty, nothing can be consumed!!!\n&quot;);
+            printf(&quot;Buffer: &quot;);
+            index = 0;
+            while (index &lt; BSIZE)
+                printf(&quot;%d &quot;, buf[index++]);
+            printf(&quot;\n&quot;);
+            // Critical Section End
+
+            flag[i] = false;
+            if (*state == 0)
+                break;
+            wait_time = myrand(CWT);
+            printf(&quot;Consumer will sleep for %d seconds\n\n&quot;, wait_time);
+            sleep(wait_time);
+        }
+        exit(0);
+    }
+    // Parent process will now for RT seconds before causing child to terminate
+    while (1) {
+        gettimeofday(&amp;t, NULL);
+        t2 = t.tv_sec;
+        if (t2 - t1 &gt; RT) // Program will exit after RT seconds
+        {
+            *state = 0;
+            break;
+        }
+    }
+    // Waiting for both processes to exit
+    wait();
+    wait();
+    printf(&quot;The clock ran out.\n&quot;);
+    return 0;
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F93;&#x51FA;&#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">Producer is ready now.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Job 9 has been produced</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Buffer: 9 0 0 0 0 0 0 0</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Producer will wait for 1 seconds</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Producer is ready now.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Job 8 has been produced</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Buffer: 9 8 0 0 0 0 0 0</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Producer will wait for 2 seconds</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Producer is ready now.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Job 13 has been produced</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Buffer: 9 8 13 0 0 0 0 0</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Producer will wait for 1 seconds</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Producer is ready now.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Job 23 has been produced</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Buffer: 9 8 13 23 0 0 0 0</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Producer will wait for 1 seconds</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Consumer is ready now.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Job 9 has been consumed</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Buffer: 8 13 23 0 0 0 0 0</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Consumer will sleep for 9 seconds</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Producer is ready now.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Job 15 has been produced</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Buffer: 8 13 23 15 0 0 0 0</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Producer will wait for 1 seconds</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Producer is ready now.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Job 13 has been produced</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Buffer: 8 13 23 15 13 0 0 0</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Producer will wait for 1 seconds</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Producer is ready now.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Job 11 has been produced</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Buffer: 8 13 23 15 13 11 0 0</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Producer will wait for 1 seconds</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Producer is ready now.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Job 22 has been produced</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Buffer: 8 13 23 15 13 11 22 0</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Producer will wait for 2 seconds</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Producer is ready now.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Job 23 has been produced</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Buffer: 8 13 23 15 13 11 22 23</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Producer will wait for 1 seconds</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">The clock ran out.</span>
+</pre><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><!-- .entry-meta --></div></body></html>

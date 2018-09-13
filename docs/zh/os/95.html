@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/os/95.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6700;&#x4F18;&#x9875;&#x9762;&#x66FF;&#x6362;&#x7B97;&#x6CD5;&#x7A0B;&#x5E8F;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5148;&#x51B3;&#x6761;&#x4EF6;&#xFF1A; <a href="https://www.geeksforgeeks.org/operating-system-page-replacement-algorithm/">&#x9875;&#x9762;&#x66FF;&#x6362;&#x7B97;&#x6CD5;</a></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x6BCF;&#x5F53;&#x5F15;&#x7528;&#x65B0;&#x9875;&#x9762;&#x800C;&#x4E0D;&#x5B58;&#x5728;&#x4E8E;&#x5185;&#x5B58;&#x4E2D;&#x65F6;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x9875;&#x9762;&#x9519;&#x8BEF;&#xFF0C;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4F1A;&#x7528;&#x65B0;&#x9700;&#x8981;&#x7684;&#x9875;&#x9762;&#x66FF;&#x6362;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x73B0;&#x6709;&#x9875;&#x9762;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E0D;&#x540C;&#x7684;&#x9875;&#x9762;&#x66FF;&#x6362;&#x7B97;&#x6CD5;&#x63D0;&#x51FA;&#x4E86;&#x51B3;&#x5B9A;&#x66FF;&#x6362;&#x54EA;&#x4E2A;&#x9875;&#x9762;&#x7684;&#x4E0D;&#x540C;&#x65B9;&#x6CD5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6240;&#x6709;&#x7B97;&#x6CD5;&#x7684;&#x76EE;&#x6807;&#x662F;&#x51CF;&#x5C11;&#x9875;&#x9762;&#x9519;&#x8BEF;&#x7684;&#x6570;&#x91CF;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x6B64;&#x7B97;&#x6CD5;&#x4E2D;&#xFF0C;OS&#x5C06;&#x66FF;&#x6362;&#x5C06;&#x6765;&#x672A;&#x4F7F;&#x7528;&#x6700;&#x957F;&#x65F6;&#x95F4;&#x7684;&#x9875;&#x9762;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F8B;&#x5B50; &#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">Input : Number of frames, fn = 3</span>
+        <span class="pre-span" style="direction: ltr; text-align: left">Reference String, pg[] = {7, 0, 1, 2,</span>
+               <span class="pre-span" style="direction: ltr; text-align: left">0, 3, 0, 4, 2, 3, 0, 3, 2, 1,</span>
+               <span class="pre-span" style="direction: ltr; text-align: left">2, 0, 1, 7, 0, 1};</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Output : No. of hits = 11</span> 
+         <span class="pre-span" style="direction: ltr; text-align: left">No. of misses = 9</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Input : Number of frames, fn = 4</span> 
+        <span class="pre-span" style="direction: ltr; text-align: left">Reference String, pg[] = {7, 0, 1, 2,</span> 
+                  <span class="pre-span" style="direction: ltr; text-align: left">0, 3, 0, 4, 2, 3, 0, 3, 2};</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Output : No. of hits = 7</span>
+         <span class="pre-span" style="direction: ltr; text-align: left">No. of misses = 6</span>
+</pre><p><!-- To show strongly recommend and practice link    --></p><div id="practiceLinkDiv"><h2 class="sigil_not_in_toc"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="https://ide.geeksforgeeks.org/">&#x5EFA;&#x8BAE;&#xFF1A;&#x5728;&#x7EE7;&#x7EED;&#x4F7F;&#x7528;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E4B;&#x524D;&#xFF0C;&#x8BF7;&#x5148;&#x5728;<b><i><u>{IDE}</u></i></b>&#x4E0A;&#x5C1D;&#x8BD5;&#x60A8;&#x7684;&#x65B9;&#x6CD5;&#x3002;</a></span> </h2></div><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x4E2A;&#x60F3;&#x6CD5;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x5BF9;&#x4E8E;&#x6211;&#x4EEC;&#x505A;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x53C2;&#x8003;&#xFF1A;</span> </p><ol><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x5F15;&#x7528;&#x9875;&#x9762;&#xFF0C;&#x5219;&#x589E;&#x52A0;&#x547D;&#x4E2D;&#x8BA1;&#x6570;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x8BF7;&#x67E5;&#x627E;&#x4EE5;&#x540E;&#x4ECE;&#x672A;&#x5F15;&#x7528;&#x7684;&#x9875;&#x9762;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x5B58;&#x5728;&#x6B64;&#x7C7B;&#x9875;&#x9762;&#xFF0C;&#x8BF7;&#x5C06;&#x6B64;&#x9875;&#x9762;&#x66FF;&#x6362;&#x4E3A;&#x65B0;&#x9875;&#x9762;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#x6B64;&#x7C7B;&#x9875;&#x9762;&#xFF0C;&#x8BF7;&#x67E5;&#x627E;&#x5C06;&#x6765;&#x6700;&#x8FDC;&#x5F15;&#x7528;&#x7684;&#x9875;&#x9762;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7528;&#x65B0;&#x9875;&#x9762;&#x66FF;&#x6362;&#x6B64;&#x9875;&#x9762;&#x3002;</span> </li></ol><p><img src="../../../imgs/os/5fd2e31a05d8ddddd9b72a4c70b21280.jpg" alt="" class="alignnone size-full wp-image-258327"></p>
+<pre class="brush: cpp; title: ; notranslate" title="">// CPP program to demonstrate optimal page
+// replacement algorithm.
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+// Function to check whether a page exists
+// in a frame or not
+bool search(int key, vector&lt;int&gt;&amp; fr)
+{
+    for (int i = 0; i &lt; fr.size(); i++)
+        if (fr[i] == key)
+            return true;
+    return false;
+}
+
+// Function to find the frame that will not be used
+// recently in future after given index in pg[0..pn-1]
+int predict(int pg[], vector&lt;int&gt;&amp; fr, int pn, int index)
+{
+    // Store the index of pages which are going
+    // to be used recently in future
+    int res = -1, farthest = index;
+    for (int i = 0; i &lt; fr.size(); i++) {
+        int j;
+        for (j = index; j &lt; pn; j++) {
+            if (fr[i] == pg[j]) {
+                if (j &gt; farthest) {
+                    farthest = j;
+                    res = i;
+                }
+                break;
+            }
+        }
+
+        // If a page is never referenced in future,
+        // return it.
+        if (j == pn)
+            return i;
+    }
+
+    // If all of the frames were not in future,
+    // return any of them, we return 0. Otherwise
+    // we return res.
+    return (res == -1) ? 0 : res;
+}
+
+void optimalPage(int pg[], int pn, int fn)
+{
+    // Create an array for given number of
+    // frames and initialize it as empty.
+    vector&lt;int&gt; fr;
+
+    // Traverse through page reference array
+    // and check for miss and hit.
+    int hit = 0;
+    for (int i = 0; i &lt; pn; i++) {
+
+        // Page found in a frame : HIT
+        if (search(pg[i], fr)) {
+            hit++;
+            continue;
+        }
+
+        // Page not found in a frame : MISS
+
+        // If there is space available in frames.
+        if (fr.size() &lt; fn)
+            fr.push_back(pg[i]);
+
+        // Find the page to be replaced.
+        else {
+            int j = predict(pg, fr, pn, i + 1);
+            fr[j] = pg[i];
+        }
+    }
+    cout &lt;&lt; &quot;No. of hits = &quot; &lt;&lt; hit &lt;&lt; endl;
+    cout &lt;&lt; &quot;No. of misses = &quot; &lt;&lt; pn - hit &lt;&lt; endl;
+}
+
+// Driver Function
+int main()
+{
+    int pg[] = { 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2 };
+    int pn = sizeof(pg) / sizeof(pg[0]);
+    int fn = 4;
+    optimalPage(pg, pn, fn);
+    return 0;
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F93;&#x51FA;&#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">No. of hits = 7</span>
+<span class="pre-span" style="direction: ltr; text-align: left">No. of misses = 6</span> </pre><ul><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6563;&#x5217;&#x6765;&#x4F18;&#x5316;&#x4E0A;&#x8FF0;&#x5B9E;&#x73B0;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<a href="https://www.geeksforgeeks.org/unorderd_set-stl-uses/">unordered_set</a>&#x4EE3;&#x66FF;&#x5411;&#x91CF;&#xFF0C;&#x4EE5;&#x4FBF;&#x53EF;&#x4EE5;&#x5728;O&#xFF08;1&#xFF09;&#x65F6;&#x95F4;&#x5185;&#x5B8C;&#x6210;&#x641C;&#x7D22;&#x64CD;&#x4F5C;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x6700;&#x4F73;&#x9875;&#x9762;&#x66FF;&#x6362;&#x7B97;&#x6CD5;&#x4E0D;&#x5B9E;&#x7528;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x65E0;&#x6CD5;&#x9884;&#x6D4B;&#x672A;&#x6765;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F46;&#x662F;&#xFF0C;&#x5B83;&#x7528;&#x4F5C;&#x5176;&#x4ED6;&#x9875;&#x9762;&#x66FF;&#x6362;&#x7B97;&#x6CD5;&#x7684;&#x53C2;&#x8003;&#x3002;</span> </li></ul><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><hr><hr><!-- .entry-meta --></div></body></html>

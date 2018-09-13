@@ -1,0 +1,124 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/os/49.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5F7C;&#x5F97;&#x68EE;&#x7684;&#x4E92;&#x65A5;&#x7B97;&#x6CD5;|</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BBE;&#x7F6E;1&#xFF08;&#x57FA;&#x672C;C&#x5B9E;&#x73B0;&#xFF09;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x95EE;&#x9898;&#xFF1A;</strong>&#x7ED9;&#x5B9A;2&#x4E2A;&#x8FDB;&#x7A0B;i&#x548C;j&#xFF0C;&#x60A8;&#x9700;&#x8981;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#xFF0C;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x4E24;&#x8005;&#x4E4B;&#x95F4;&#x7684;&#x4E92;&#x65A5;&#xFF0C;&#x800C;&#x65E0;&#x9700;&#x4EFB;&#x4F55;&#x989D;&#x5916;&#x7684;&#x786C;&#x4EF6;&#x652F;&#x6301;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;</strong>&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x79CD;&#x65B9;&#x6CD5;&#x6765;&#x89E3;&#x51B3;&#x6B64;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x5927;&#x591A;&#x6570;&#x65B9;&#x6CD5;&#x90FD;&#x9700;&#x8981;&#x989D;&#x5916;&#x7684;&#x786C;&#x4EF6;&#x652F;&#x6301;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6700;&#x7B80;&#x5355;&#x548C;&#x6700;&#x6D41;&#x884C;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x4F7F;&#x7528;Peterson&#x7B97;&#x6CD5;&#x8FDB;&#x884C;&#x4E92;&#x65A5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B83;&#x662F;&#x7531;&#x5F7C;&#x5F97;&#x68EE;&#x5728;1981&#x5E74;&#x5F00;&#x53D1;&#x7684;&#xFF0C;&#x867D;&#x7136;&#x6700;&#x521D;&#x7684;&#x5DE5;&#x4F5C;&#x662F;&#x7531;Theodorus Jozef Dekker&#x5728;1960&#x5E74;&#x63D0;&#x51FA;<b>Dekker&#x7684;&#x7B97;&#x6CD5;</b> &#xFF0C;&#x540E;&#x6765;&#x7531;&#x5F7C;&#x5F97;&#x68EE;&#x63D0;&#x70BC;&#x5E76;&#x4E14;&#x540E;&#x6765;&#x88AB;&#x79F0;&#x4E3A;<b>&#x5F7C;&#x5F97;&#x68EE;&#x7684;&#x7B97;&#x6CD5;</b> &#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x57FA;&#x672C;&#x4E0A;&#xFF0C;Peterson&#x7684;&#x7B97;&#x6CD5;&#x901A;&#x8FC7;&#x4EC5;&#x4F7F;&#x7528;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x6765;&#x63D0;&#x4F9B;&#x6709;&#x4FDD;&#x8BC1;&#x7684;&#x4E92;&#x65A5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B83;&#x5728;&#x7B97;&#x6CD5;&#x4E2D;&#x4F7F;&#x7528;&#x4E86;&#x4E24;&#x4E2A;&#x60F3;&#x6CD5;&#xFF0C;</span> </p><ol><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x613F;&#x610F;&#x83B7;&#x5F97;&#x9501;&#x5B9A;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F6C;&#x5411;&#x83B7;&#x53D6;&#x9501;&#x5B9A;&#x3002;</span> </li></ol><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5148;&#x51B3;&#x6761;&#x4EF6;&#xFF1A; <a href="https://www.geeksforgeeks.org/multithreading-c-2/">C&#x4E2D;&#x7684;&#x591A;&#x7EBF;&#x7A0B;</a></span> </p><h4 class="sigil_not_in_toc"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BF4;&#x660E;&#xFF1A;</span> </h4><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x4E2A;&#x60F3;&#x6CD5;&#x662F;&#xFF0C;&#x9996;&#x5148;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x8868;&#x8FBE;&#x5B83;&#x60F3;&#x8981;&#x83B7;&#x53D6;&#x9501;&#x5E76;&#x8BBE;&#x7F6E;<b>flag [self] = 1</b>&#x7136;&#x540E;&#x7ED9;&#x53E6;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x83B7;&#x5F97;&#x9501;&#x7684;&#x673A;&#x4F1A;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x5E0C;&#x671B;&#x83B7;&#x5F97;&#x9501;&#x5B9A;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x83B7;&#x5F97;&#x9501;&#x5B9A;&#x7136;&#x540E;&#x5C06;&#x673A;&#x4F1A;&#x4F20;&#x9012;&#x7ED9;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x5B83;&#x4E0D;&#x60F3;&#x83B7;&#x5F97;&#x9501;&#x5B9A;&#xFF0C;&#x5219;while&#x5FAA;&#x73AF;&#x4E2D;&#x65AD;&#x5E76;&#x4E14;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x83B7;&#x5F97;&#x673A;&#x4F1A;&#x3002;</span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x7528;C&#x8BED;&#x8A00;&#x5B9E;&#x73B0;</strong></span> </p>
+<pre class="brush: c; title: ; notranslate" title="">// Filename: peterson_spinlock.c
+// Use below command to compile:
+// gcc -pthread peterson_spinlock.c -o peterson_spinlock
+
+#include &lt;stdio.h&gt;
+#include &lt;pthread.h&gt;
+#include&quot;mythreads.h&quot;
+
+int flag[2];
+int turn;
+const int MAX = 1e9;
+int ans = 0;
+
+void lock_init()
+{
+    // Initialize lock by reseting the desire of
+    // both the threads to acquire the locks.
+    // And, giving turn to one of them.
+    flag[0] = flag[1] = 0;
+    turn = 0;
+}
+
+// Executed before entering critical section
+void lock(int self)
+{
+    // Set flag[self] = 1 saying you want to acquire lock
+    flag[self] = 1;
+
+    // But, first give the other thread the chance to
+    // acquire lock
+    turn = 1-self;
+
+    // Wait until the other thread looses the desire
+    // to acquire lock or it is your turn to get the lock.
+    while (flag[1-self]==1 &amp;&amp; turn==1-self) ;
+}
+
+// Executed after leaving critical section
+void unlock(int self)
+{
+    // You do not desire to acquire lock in future.
+    // This will allow the other thread to acquire
+    // the lock.
+    flag[self] = 0;
+}
+
+// A Sample function run by two threads created 
+// in main()
+void* func(void *s)
+{
+    int i = 0;
+    int self = (int *)s;
+    printf(&quot;Thread Entered: %d\n&quot;, self);
+
+    lock(self);
+
+    // Critical section (Only one thread
+    // can enter here at a time)
+    for (i=0; i&lt;MAX; i++)
+        ans++;
+
+    unlock(self);
+}
+
+// Driver code
+int main()
+{
+    // Initialized the lock then fork 2 threads
+    pthread_t p1, p2;
+    lock_init();
+
+    // Create two threads (both run func) 
+    pthread_create(&amp;p1, NULL, func, (void*)0);
+    pthread_create(&amp;p2, NULL, func, (void*)1);
+
+    // Wait for the threads to end.
+    pthread_join(p1, NULL);
+    pthread_join(p2, NULL);
+
+    printf(&quot;Actual Count: %d | Expected Count: %d\n&quot;,
+                                        ans, MAX*2);
+
+    return 0;
+}
+</pre><pre class="brush: c; title: ; notranslate" title="">// mythread.h (A wrapper header file with assert
+// statements)
+#ifndef __MYTHREADS_h__
+#define __MYTHREADS_h__
+
+#include &lt;pthread.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;sched.h&gt;
+
+void Pthread_mutex_lock(pthread_mutex_t *m)
+{
+    int rc = pthread_mutex_lock(m);
+    assert(rc == 0);
+}
+                                                                                
+void Pthread_mutex_unlock(pthread_mutex_t *m)
+{
+    int rc = pthread_mutex_unlock(m);
+    assert(rc == 0);
+}
+                                                                                
+void Pthread_create(pthread_t *thread, const pthread_attr_t *attr, 	
+	       void *(*start_routine)(void*), void *arg)
+{
+    int rc = pthread_create(thread, attr, start_routine, arg);
+    assert(rc == 0);
+}
+
+void Pthread_join(pthread_t thread, void **value_ptr)
+{
+    int rc = pthread_join(thread, value_ptr);
+    assert(rc == 0);
+}
+
+#endif // __MYTHREADS_h__
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F93;&#x51FA;&#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">Thread Entered: 1</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Thread Entered: 0</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Actual Count: 2000000000 |</span> <span class="pre-span" style="direction: ltr; text-align: left">Expected Count: 2000000000</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4EA7;&#x751F;&#x7684;&#x8F93;&#x51FA;&#x4E3A;2 * 10 <sup>9</sup> &#xFF0C;&#x5176;&#x4E2D;10 <sup>9</sup>&#x7531;&#x4E24;&#x4E2A;&#x7EBF;&#x7A0B;&#x9012;&#x589E;&#x3002;</span> </p><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><!-- .entry-meta --></div></body></html>

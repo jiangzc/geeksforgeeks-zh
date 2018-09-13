@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/os/55.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> Dining-Philosophers&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4F7F;&#x7528;&#x76D1;&#x89C6;&#x5668;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5148;&#x51B3;&#x6761;&#x4EF6;&#xFF1A; <a href="https://www.geeksforgeeks.org/monitors/">&#x76D1;&#x63A7;</a> &#xFF0C; <a href="https://www.geeksforgeeks.org/process-synchronization-set-1/">&#x8FDB;&#x7A0B;&#x540C;&#x6B65;</a></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x9910;&#x996E; - &#x54F2;&#x5B66;&#x5BB6;&#x95EE;&#x9898; -</b> N&#x4E2A;&#x54F2;&#x5B66;&#x5BB6;&#x5750;&#x5728;&#x5706;&#x684C;&#x65C1;</span> </p><p><img src="../../../imgs/os/e8fcb3220f9e3e2af4269f9625cabe2c.jpg" alt="" width="300" height="300" class="aligncenter size-medium wp-image-220413"></p><ul><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6BCF;&#x4E2A;&#x54F2;&#x5B66;&#x5BB6;&#x4E4B;&#x95F4;&#x90FD;&#x6709;&#x4E00;&#x6839;&#x7B77;&#x5B50;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E00;&#x4E2A;&#x54F2;&#x5B66;&#x5BB6;&#x5FC5;&#x987B;&#x62FF;&#x8D77;&#x5B83;&#x6700;&#x8FD1;&#x7684;&#x4E24;&#x6839;&#x7B77;&#x5B50;&#x624D;&#x80FD;&#x5403;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x54F2;&#x5B66;&#x5BB6;&#x5FC5;&#x987B;&#x62FF;&#x8D77;&#x7B2C;&#x4E00;&#x6839;&#x7B77;&#x5B50;&#xFF0C;&#x7136;&#x540E;&#x62FF;&#x8D77;&#x7B2C;&#x4E8C;&#x6839;&#x7B77;&#x5B50;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x540C;&#x65F6;&#x62FF;&#x8D77;&#x4E24;&#x6839;&#x7B77;&#x5B50;</span> </li></ul><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4E00;&#x79CD;&#x7B97;&#x6CD5;&#x6765;&#x5728;&#x51E0;&#x4E2A;&#x8FDB;&#x7A0B;&#xFF08;&#x54F2;&#x5B66;&#x5BB6;&#xFF09;&#x4E4B;&#x95F4;&#x5206;&#x914D;&#x8FD9;&#x4E9B;&#x6709;&#x9650;&#x7684;&#x8D44;&#x6E90;&#xFF08;&#x7B77;&#x5B50;&#xFF09;&#xFF0C;&#x8FD9;&#x6837;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x5C31;&#x53EF;&#x4EE5;&#x6446;&#x8131;&#x6B7B;&#x9501;&#x5E76;&#x514D;&#x4E8E;&#x9965;&#x997F;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B58;&#x5728;&#x4E00;&#x4E9B;&#x89E3;&#x51B3;&#x9910;&#x996E;&#x95EE;&#x9898;&#x7684;&#x7B97;&#x6CD5; - &#x54F2;&#x5B66;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x5B83;&#x4EEC;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x6B7B;&#x9501;&#x60C5;&#x51B5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6B64;&#x5916;&#xFF0C;&#x65E0;&#x6B7B;&#x9501;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E0D;&#x4E00;&#x5B9A;&#x662F;&#x65E0;&#x9965;&#x997F;&#x7684;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7531;&#x4E8E;&#x7F16;&#x7A0B;&#x9519;&#x8BEF;&#xFF0C;&#x4FE1;&#x53F7;&#x91CF;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x6B7B;&#x9501;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5355;&#x72EC;&#x76D1;&#x89C6;&#x5668;&#x5E76;&#x4E0D;&#x8DB3;&#x4EE5;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5177;&#x6709;<em>&#x6761;&#x4EF6;&#x53D8;&#x91CF;&#x7684;</em>&#x76D1;&#x89C6;&#x5668;</span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x57FA;&#x4E8E;&#x76D1;&#x63A7;&#x7684;&#x996E;&#x98DF;&#x54F2;&#x5B66;&#x5BB6;&#x89E3;&#x51B3;&#x65B9;&#x6848;</b></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x4E3A;&#x9910;&#x996E;&#x54F2;&#x5B66;&#x5BB6;&#x95EE;&#x9898;&#x63D0;&#x4F9B;&#x65E0;&#x6B7B;&#x9501;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x6765;&#x8BF4;&#x660E;&#x76D1;&#x63A7;&#x6982;&#x5FF5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> Monitor&#x7528;&#x4E8E;&#x63A7;&#x5236;&#x5BF9;&#x72B6;&#x6001;&#x53D8;&#x91CF;&#x548C;&#x6761;&#x4EF6;&#x53D8;&#x91CF;&#x7684;&#x8BBF;&#x95EE;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B83;&#x53EA;&#x544A;&#x8BC9;&#x4F55;&#x65F6;&#x8FDB;&#x5165;&#x548C;&#x9000;&#x51FA;&#x8BE5;&#x6BB5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x4E2A;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x5F3A;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;&#x9650;&#x5236;&#xFF0C;&#x5373;&#x54F2;&#x5B66;&#x5BB6;&#x53EA;&#x6709;&#x5728;&#x4E24;&#x8005;&#x90FD;&#x53EF;&#x7528;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x624D;&#x80FD;&#x62FF;&#x8D77;&#x5979;&#x7684;&#x7B77;&#x5B50;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E3A;&#x4E86;&#x7F16;&#x7801;&#x8FD9;&#x4E2A;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x533A;&#x5206;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x627E;&#x5230;&#x54F2;&#x5B66;&#x5BB6;&#x7684;&#x4E09;&#x79CD;&#x72B6;&#x6001;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E3A;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x5F15;&#x5165;&#x4E86;&#x4EE5;&#x4E0B;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x601D;&#x8003; -</b>&#x5F53;&#x54F2;&#x5B66;&#x5BB6;&#x4E0D;&#x60F3;&#x83B7;&#x5F97;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x5206;&#x53C9;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x9965;&#x997F; -</b>&#x5F53;&#x54F2;&#x5B66;&#x5BB6;&#x60F3;&#x8981;&#x8FDB;&#x5165;&#x4E34;&#x754C;&#x533A;&#x65F6;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x5403; -</b>&#x5F53;&#x54F2;&#x5B66;&#x5BB6;&#x5F97;&#x5230;&#x4E24;&#x4E2A;&#x53C9;&#x5B50;&#x65F6;&#xFF0C;&#x5373;&#x4ED6;&#x5DF2;&#x8FDB;&#x5165;&#x8BE5;&#x90E8;&#x5206;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x54F2;&#x5B66;&#x5BB6;&#x6211;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x53D8;&#x91CF;&#x72B6;&#x6001;[i] = EATING&#x53EA;&#x6709;&#x5728;&#x5979;&#x7684;&#x4E24;&#x4E2A;&#x90BB;&#x5C45;&#x4E0D;&#x5403;&#x4E1C;&#x897F;&#x65F6;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#xFF08;&#x72B6;&#x6001;[&#xFF08;i + 4&#xFF09;&#xFF05;5]&#xFF01;= EATING&#xFF09;&#x548C;&#xFF08;&#x72B6;&#x6001;[&#xFF08;i + 1&#xFF09;&#xFF05;5]&#xFF01;= EATING&#xFF09;&#x3002;</span> </p><div class="noIdeBtnDiv">
+<pre class="brush: cpp; title: ; notranslate" title="">// Dining-Philosophers Solution Using Monitors
+monitor DP
+{
+    status state[5];
+    condition self[5];
+
+    // Pickup chopsticks
+    Pickup(int i)
+    {
+        // indicate that I&#x2019;m hungry
+        state[i] = hungry;
+
+        // set state to eating in test()
+        // only if my left and right neighbors 
+        // are not eating
+        test(i);
+
+        // if unable to eat, wait to be signaled
+        if (state[i] != eating)
+            self[i].wait;
+    }
+
+    // Put down chopsticks
+    Putdown(int i)
+    {
+
+        // indicate that I&#x2019;m thinking
+        state[i] = thinking;
+
+        // if right neighbor R=(i+1)%5 is hungry and
+        // both of R&#x2019;s neighbors are not eating,
+        // set R&#x2019;s state to eating and wake it up by 
+        // signaling R&#x2019;s CV
+        test((i + 1) % 5);
+        test((i + 4) % 5);
+    }
+
+    test(int i)
+    {
+
+        if (state[(i + 1) % 5] != eating
+            &amp;&amp; state[(i + 4) % 5] != eating
+            &amp;&amp; state[i] == hungry) {
+
+            // indicate that I&#x2019;m eating
+            state[i] = eating;
+
+            // signal() has no effect during Pickup(),
+            // but is important to wake up waiting
+            // hungry philosophers during Putdown()
+            self[i].signal();
+        }
+    }
+
+    init()
+    {
+
+        // Execution of Pickup(), Putdown() and test()
+        // are all mutually exclusive,
+        // i.e. only one at a time can be executing
+for
+    i = 0 to 4
+
+        // Verify that this monitor-based solution is
+        // deadlock free and mutually exclusive in that
+        // no 2 neighbors can eat simultaneously
+        state[i] = thinking;
+    }
+} // end of monitor
+</pre></div><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4EE5;&#x4E0A;&#x7A0B;&#x5E8F;&#x662F;&#x9910;&#x996E;&#x54F2;&#x5B66;&#x5BB6;&#x95EE;&#x9898;&#x7684;&#x76D1;&#x63A7;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x7533;&#x62A5;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">condition self[5];</span> </pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x8BA9;&#x54F2;&#x5B66;&#x5BB6;&#x4EEC;&#x5728;&#x5979;&#x997F;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x63A8;&#x8FDF;&#x81EA;&#x5DF1;&#xFF0C;&#x4F46;&#x5374;&#x65E0;&#x6CD5;&#x83B7;&#x5F97;&#x5979;&#x6240;&#x9700;&#x8981;&#x7684;&#x7B77;&#x5B50;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x80FD;&#x591F;&#x63CF;&#x8FF0;&#x6211;&#x4EEC;&#x5BF9;&#x9910;&#x996E;&#x54F2;&#x5B66;&#x5BB6;&#x95EE;&#x9898;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7B77;&#x5B50;&#x7684;&#x5206;&#x5E03;&#x7531;&#x996E;&#x98DF;&#x54F2;&#x5B66;&#x5BB6;&#x76D1;&#x63A7;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x5F00;&#x59CB;&#x5403;&#x996D;&#x4E4B;&#x524D;&#xFF0C;&#x6BCF;&#x4E2A;&#x54F2;&#x5B66;&#x5BB6;&#x90FD;&#x5FC5;&#x987B;&#x8C03;&#x7528;&#x64CD;&#x4F5C;pickup&#xFF08;&#xFF09;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x4E00;&#x884C;&#x4E3A;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x54F2;&#x5B66;&#x5BB6;&#x8FDB;&#x7A0B;&#x7684;&#x4E2D;&#x6B62;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6210;&#x529F;&#x5B8C;&#x6210;&#x624B;&#x672F;&#x540E;&#xFF0C;&#x54F2;&#x5B66;&#x5BB6;&#x53EF;&#x80FD;&#x4F1A;&#x5403;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x6B64;&#x4E4B;&#x540E;&#xFF0C;&#x54F2;&#x5B66;&#x5BB6;&#x8C03;&#x7528;putdown&#xFF08;&#xFF09;&#x64CD;&#x4F5C;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x56E0;&#x6B64;&#xFF0C;&#x54F2;&#x5B66;&#x5BB6;&#x5FC5;&#x987B;&#x6309;&#x4EE5;&#x4E0B;&#x987A;&#x5E8F;&#x8C03;&#x7528;&#x64CD;&#x4F5C;pickup&#xFF08;&#xFF09;&#x548C;putdown&#xFF08;&#xFF09;&#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">DiningPhilosophers.pickup(i);</span>
+              <span class="pre-span" style="direction: ltr; text-align: left">...</span>
+              <span class="pre-span" style="direction: ltr; text-align: left">eat</span>
+              <span class="pre-span" style="direction: ltr; text-align: left">...</span>
+<span class="pre-span" style="direction: ltr; text-align: left">DiningPhilosophers.putdown(i);</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5F88;&#x5BB9;&#x6613;&#x8BC1;&#x660E;&#x8FD9;&#x4E2A;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x786E;&#x4FDD;<strong>&#x6CA1;&#x6709;&#x4E24;&#x4E2A;&#x90BB;&#x5C45;</strong>&#x540C;&#x65F6;&#x8FDB;&#x98DF;&#x5E76;&#x4E14;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;&#x6B7B;&#x9501;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7136;&#x800C;&#xFF0C;&#x6211;&#x4EEC;&#x6CE8;&#x610F;&#x5230;&#xFF0C;&#x54F2;&#x5B66;&#x5BB6;&#x6709;&#x53EF;&#x80FD;&#x997F;&#x6B7B;&#x3002;</span> </p><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><!-- .entry-meta --></div></body></html>

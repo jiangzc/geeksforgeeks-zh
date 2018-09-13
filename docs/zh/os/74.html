@@ -1,0 +1,105 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/os/74.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x50F5;&#x5C38;&#x8FDB;&#x7A0B;&#x53CA;&#x5176;&#x9884;&#x9632;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5148;&#x51B3;&#x6761;&#x4EF6;&#xFF1A; <a href="http://geeksquiz.com/fork-system-call/">C</a> &#xFF0C; <a href="https://www.geeksforgeeks.org/zombie-and-orphan-processes-in-c/">Zombie Process&#x4E2D;&#x7684;</a> <a href="http://geeksquiz.com/fork-system-call/">fork&#xFF08;&#xFF09;</a></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x50F5;&#x5C38;&#x72B6;&#x6001;</strong> &#xFF1A;&#x4F7F;&#x7528;fork&#xFF08;&#xFF09;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x5728;UNIX&#x4E2D;&#x521B;&#x5EFA;&#x8FDB;&#x7A0B;&#x65F6;&#xFF0C;&#x5C06;&#x590D;&#x5236;&#x7236;&#x8FDB;&#x7A0B;&#x7684;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x7236;&#x8FDB;&#x7A0B;&#x8C03;&#x7528;wait&#xFF08;&#xFF09;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#xFF0C;&#x5219;&#x7236;&#x8FDB;&#x7A0B;&#x7684;&#x6267;&#x884C;&#x5C06;&#x6682;&#x505C;&#xFF0C;&#x76F4;&#x5230;&#x5B50;&#x8FDB;&#x7A0B;&#x7EC8;&#x6B62;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x5B50;&#x8282;&#x70B9;&#x7EC8;&#x6B62;&#x65F6;&#xFF0C;&#x751F;&#x6210;&apos;SIGCHLD&apos;&#x4FE1;&#x53F7;&#xFF0C;&#x8BE5;&#x4FE1;&#x53F7;&#x7531;&#x5185;&#x6838;&#x4F20;&#x9012;&#x7ED9;&#x7236;&#x8282;&#x70B9;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7236;&#x6BCD;&#x5728;&#x6536;&#x5230;&apos;SIGCHLD&apos;&#x65F6;&#x4F1A;&#x4ECE;&#x8FDB;&#x7A0B;&#x8868;&#x4E2D;&#x83B7;&#x53D6;&#x5B50;&#x8FDB;&#x7A0B;&#x7684;&#x72B6;&#x6001;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5373;&#x4F7F;&#x5B69;&#x5B50;&#x88AB;&#x7EC8;&#x6B62;&#xFF0C;&#x8FC7;&#x7A0B;&#x8868;&#x4E2D;&#x4E5F;&#x6709;&#x4E00;&#x4E2A;&#x6761;&#x76EE;&#x5BF9;&#x5E94;&#x4E8E;&#x5B58;&#x50A8;&#x72B6;&#x6001;&#x7684;&#x5B69;&#x5B50;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5F53;&#x7236;&#x7EA7;&#x6536;&#x96C6;&#x72B6;&#x6001;&#x65F6;&#xFF0C;&#x5C06;&#x5220;&#x9664;&#x6B64;&#x6761;&#x76EE;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x56E0;&#x6B64;&#xFF0C;&#x5B50;&#x7CFB;&#x7EDF;&#x8FDB;&#x7A0B;&#x7684;&#x6240;&#x6709;&#x75D5;&#x8FF9;&#x90FD;&#x5C06;&#x4ECE;&#x7CFB;&#x7EDF;&#x4E2D;&#x5220;&#x9664;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x7236;&#x6BCD;&#x51B3;&#x5B9A;&#x4E0D;&#x7B49;&#x5F85;&#x5B69;&#x5B50;&#x7684;&#x7EC8;&#x6B62;&#x5E76;&#x4E14;&#x5B83;&#x6267;&#x884C;&#x5176;&#x540E;&#x7EED;&#x4EFB;&#x52A1;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x5B69;&#x5B50;&#x7EC8;&#x6B62;&#x65F6;&#xFF0C;&#x4E0D;&#x4F1A;&#x8BFB;&#x53D6;&#x9000;&#x51FA;&#x72B6;&#x6001;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x56E0;&#x6B64;&#xFF0C;&#x5373;&#x4F7F;&#x5728;&#x5B69;&#x5B50;&#x7EC8;&#x6B62;&#x4E4B;&#x540E;&#xFF0C;&#x5728;&#x6D41;&#x7A0B;&#x8868;&#x4E2D;&#x4ECD;&#x7136;&#x5B58;&#x5728;&#x6761;&#x76EE;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B50;&#x8FDB;&#x7A0B;&#x7684;&#x8FD9;&#x79CD;&#x72B6;&#x6001;&#x79F0;&#x4E3A;&#x50F5;&#x5C38;&#x72B6;&#x6001;&#x3002;</span> </p>
+<pre class="brush: c; title: ; notranslate" title="">// A C program to demonstrate working of
+// fork() and process table entries.
+#include&lt;stdio.h&gt;
+#include&lt;unistd.h&gt;
+#include&lt;sys/wait.h&gt;
+#include&lt;sys/types.h&gt;
+
+int main()
+{
+    int i;
+    int pid = fork();
+
+    if (pid == 0)
+    {
+        for (i=0; i&lt;20; i++)
+            printf(&quot;I am Child\n&quot;);
+    }
+    else
+    {
+        printf(&quot;I am Parent\n&quot;);
+        while(1);
+    }
+}
+</pre><pre> <span class="pre-span" style="direction: ltr; text-align: left"><strong>Output :</strong></span> 
+<a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/zombie1_1.png"><img src="../../../imgs/os/798a5b369facd0d223c5b95cbf7bba53.jpg" alt="zombie1_1" width="300" height="169" class="alignnone size-medium wp-image-169570"></a>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Now check the process table using the following command in the terminal</span>
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>$ ps -eaf</strong></span>
+<a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/zombie1_2.png"><img src="../../../imgs/os/b12491135ee2f2251f2fc2062e93ade5.jpg" alt="zombie1_2" width="300" height="169" class="alignnone size-medium wp-image-169571"></a>
+<span class="pre-span" style="direction: ltr; text-align: left">Here the entry <strong>[a.out] defunct</strong> shows the zombie process.</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x4E3A;&#x4EC0;&#x4E48;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x963B;&#x6B62;Zombie&#x8FDB;&#x7A0B;&#x7684;&#x521B;&#x5EFA;&#xFF1F;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6BCF;&#x4E2A;&#x7CFB;&#x7EDF;&#x6709;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x8868;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FDB;&#x7A0B;&#x8868;&#x7684;&#x5927;&#x5C0F;&#x662F;&#x6709;&#x9650;&#x7684;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x679C;&#x751F;&#x6210;&#x4E86;&#x592A;&#x591A;&#x7684;&#x50F5;&#x5C38;&#x8FDB;&#x7A0B;&#xFF0C;&#x5219;&#x8FDB;&#x7A0B;&#x8868;&#x5C06;&#x5DF2;&#x6EE1;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x7CFB;&#x7EDF;&#x5C06;&#x65E0;&#x6CD5;&#x751F;&#x6210;&#x4EFB;&#x4F55;&#x65B0;&#x8FDB;&#x7A0B;&#xFF0C;&#x7CFB;&#x7EDF;&#x5C06;&#x9677;&#x5165;&#x505C;&#x987F;&#x72B6;&#x6001;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x56E0;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x963B;&#x6B62;&#x50F5;&#x5C38;&#x8FDB;&#x7A0B;&#x7684;&#x521B;&#x5EFA;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x53EF;&#x4EE5;&#x9632;&#x6B62;&#x521B;&#x5EFA;&#x50F5;&#x5C38;&#x7684;&#x4E0D;&#x540C;&#x65B9;&#x5F0F;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>1.&#x4F7F;&#x7528;wait&#xFF08;&#xFF09;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#xFF1A;</strong>&#x5F53;&#x7236;&#x8FDB;&#x7A0B;&#x8C03;&#x7528;wait&#xFF08;&#xFF09;&#x65F6;&#xFF0C;&#x5728;&#x521B;&#x5EFA;&#x5B50;&#x8FDB;&#x7A0B;&#x540E;&#xFF0C;&#x5B83;&#x8868;&#x793A;&#x7B49;&#x5F85;&#x5B50;&#x8FDB;&#x7A0B;&#x5B8C;&#x6210;&#xFF0C;&#x5B83;&#x5C06;&#x83B7;&#x5F97;&#x5B50;&#x8FDB;&#x7A0B;&#x7684;&#x9000;&#x51FA;&#x72B6;&#x6001;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7236;&#x8FDB;&#x7A0B;&#x88AB;&#x6302;&#x8D77;&#xFF08;&#x5728;&#x7B49;&#x5F85;&#x961F;&#x5217;&#x4E2D;&#x7B49;&#x5F85;&#xFF09;&#xFF0C;&#x76F4;&#x5230;&#x5B50;&#x8FDB;&#x7A0B;&#x7EC8;&#x6B62;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5FC5;&#x987B;&#x8981;&#x7406;&#x89E3;&#x7684;&#x662F;&#xFF0C;&#x5728;&#x6B64;&#x671F;&#x95F4;&#xFF0C;&#x7236;&#x8FDB;&#x7A0B;&#x4E0D;&#x4F1A;&#x7B49;&#x5F85;&#x4EFB;&#x4F55;&#x4E8B;&#x60C5;&#x3002;</span> </p><pre class="brush: cpp; title: ; notranslate" title="">// A C program to demonstrate working of
+// fork()/wait() and Zombie processes
+#include&lt;stdio.h&gt;
+#include&lt;unistd.h&gt;
+#include&lt;sys/wait.h&gt;
+#include&lt;sys/types.h&gt;
+
+int main()
+{
+    int i;
+    int pid = fork();
+    if (pid==0)
+    {
+        for (i=0; i&lt;20; i++)
+            printf(&quot;I am Child\n&quot;);
+    }
+    else
+    {
+        wait(NULL);
+        printf(&quot;I am Parent\n&quot;);
+        while(1);
+    }
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>2.&#x5FFD;&#x7565;SIGCHLD&#x4FE1;&#x53F7;&#xFF1A;</strong>&#x5F53;&#x5B50;&#x8282;&#x70B9;&#x7EC8;&#x6B62;&#x65F6;&#xFF0C;&#x76F8;&#x5E94;&#x7684;SIGCHLD&#x4FE1;&#x53F7;&#x88AB;&#x4F20;&#x9012;&#x7ED9;&#x7236;&#x8282;&#x70B9;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x8C03;&#x7528;&apos;signal&#xFF08;SIGCHLD&#xFF0C;SIG_IGN&#xFF09;&apos;&#xFF0C;&#x5219;&#x7CFB;&#x7EDF;&#x5FFD;&#x7565;SIGCHLD&#x4FE1;&#x53F7;&#xFF0C;&#x5E76;&#x4E14;&#x5B50;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;&#x8868;&#x4ECE;&#x8FDB;&#x7A0B;&#x8868;&#x4E2D;&#x5220;&#x9664;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x56E0;&#x6B64;&#xFF0C;&#x6CA1;&#x6709;&#x521B;&#x5EFA;&#x50F5;&#x5C38;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F46;&#x662F;&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7236;&#x6BCD;&#x65E0;&#x6CD5;&#x77E5;&#x9053;&#x5B69;&#x5B50;&#x7684;&#x9000;&#x51FA;&#x72B6;&#x6001;&#x3002;</span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><pre class="brush: cpp; title: ; notranslate" title="">// A C program to demonstrate ignoring 
+// SIGCHLD signal to prevent Zombie processes
+#include&lt;stdio.h&gt;
+#include&lt;unistd.h&gt;
+#include&lt;sys/wait.h&gt;
+#include&lt;sys/types.h&gt;
+
+int main()
+{
+    int i;
+    int pid = fork();
+    if (pid == 0)
+        for (i=0; i&lt;20; i++)
+            printf(&quot;I am Child\n&quot;);
+    else
+    {
+        signal(SIGCHLD,SIG_IGN);
+        printf(&quot;I am Parent\n&quot;);
+        while(1);
+    }
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>3.&#x901A;&#x8FC7;&#x4F7F;&#x7528;&#x4FE1;&#x53F7;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#xFF1A;</strong>&#x7236;&#x8FDB;&#x7A0B;&#x4E3A;SIGCHLD&#x4FE1;&#x53F7;&#x5B89;&#x88C5;&#x4FE1;&#x53F7;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4FE1;&#x53F7;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x5728;&#x5176;&#x4E2D;&#x8C03;&#x7528;wait&#xFF08;&#xFF09;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x6B64;&#x671F;&#x95F4;&#xFF0C;&#x5F53;&#x5B50;&#x8282;&#x70B9;&#x7EC8;&#x6B62;&#x65F6;&#xFF0C;SIGCHLD&#x5C06;&#x88AB;&#x4F20;&#x9001;&#x7ED9;&#x7236;&#x8282;&#x70B9;&#x3002;&#x5728;&#x6536;&#x5230;SIGCHLD&#x540E;&#xFF0C;&#x76F8;&#x5E94;&#x7684;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x88AB;&#x6FC0;&#x6D3B;&#xFF0C;&#x540E;&#x8005;&#x53C8;&#x8C03;&#x7528;wait&#xFF08;&#xFF09;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x56E0;&#x6B64;&#xFF0C;&#x7236;&#x7EA7;&#x51E0;&#x4E4E;&#x7ACB;&#x5373;&#x6536;&#x96C6;&#x9000;&#x51FA;&#x72B6;&#x6001;&#xFF0C;&#x5E76;&#x6E05;&#x9664;&#x8FDB;&#x7A0B;&#x8868;&#x4E2D;&#x7684;&#x5B50;&#x6761;&#x76EE;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x56E0;&#x6B64;&#xFF0C;&#x6CA1;&#x6709;&#x521B;&#x5EFA;&#x50F5;&#x5C38;&#x3002;</span> </p><pre class="brush: cpp; title: ; notranslate" title="">// A C program to demonstrate handling of
+// SIGCHLD signal to prevent Zombie processes.
+#include&lt;stdio.h&gt;
+#include&lt;unistd.h&gt;
+#include&lt;sys/wait.h&gt;
+#include&lt;sys/types.h&gt;
+
+void func(int signum)
+{
+    wait(NULL);
+}
+
+int main()
+{
+    int i;
+    int pid = fork();
+    if (pid == 0)
+        for (i=0; i&lt;20; i++)
+            printf(&quot;I am Child\n&quot;);
+    else
+    {
+        signal(SIGCHLD, func);
+        printf(&quot;I am Parent\n&quot;);
+        while(1);
+    }
+}
+</pre><pre> <span class="pre-span" style="direction: ltr; text-align: left"><strong>Output :</strong></span>
+<a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/zom_final.png"><img src="../../../imgs/os/e69273e642d541fe3e355a5476157d9c.jpg" alt="zom_final" width="300" height="169" class="alignnone size-medium wp-image-169576"></a>
+<span class="pre-span" style="direction: ltr; text-align: left">Here no any <strong>[a.out] defunct</strong> ie no any Zombie process is created.</span>
+</pre><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><!-- .entry-meta --></div></body></html>
