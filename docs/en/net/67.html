@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Distance vector routing v/s Link state routing</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-classification-routing-algorithms/" rel="noopener" target="_blank">Classification of Routing Algorithms</a></p>
+<p><b><a href="https://www.geeksforgeeks.org/computer-network-routing-protocols-set-1-distance-vector-routing/" rel="noopener" target="_blank">Distance Vector Routing</a> –</b></p>
+<ul>
+<li>It is a dynamic routing algorithm in which each router computes distance between itself and each possible destination i.e. its immediate neighbors.</li>
+<li>The router share its knowledge about the whole network to its neighbors and accordingly updates table based on its neighbors.</li>
+<li>The sharing of information with the neighbors takes place at regular intervals.</li>
+<li>It makes use of <strong>Bellman Ford Algorithm</strong> for making routing tables.</li>
+<li><strong>Problems – </strong>Count to infinity problem which can be solved by splitting horizon.<br/>
+                   <strong>  – </strong>Good news spread fast and bad news spread slowly.<br/>
+                   <strong>  – </strong>Persistent looping problem i.e. loop will be there forever.</li>
+</ul>
+<p><b><a href="https://practice.geeksforgeeks.org/problems/what-is-link-state-routing-protocol" rel="noopener" target="_blank">Link State Routing</a> –</b> </p>
+<ul>
+<li>It is a dynamic routing algorithm in which each router shares knowledge of its neighbors with every other router in the network.</li>
+<li>A router sends its information about its neighbors only to all the routers through flooding.</li>
+<li>Information sharing takes place only whenever there is a change.</li>
+<li>It makes use of <strong>Dijkastra’s Algorithm</strong> for making routing tables.</li>
+<li><strong>Problems – </strong>Heavy traffic due to flooding of packets.<br/>
+                   <strong>  – </strong>Flooding can result in infinite looping which can be solved by using <strong>Time to leave (TTL)</strong> field.   <p></p>
+<p><i>Comparison between Distance Vector Routing and Link State Routing:</i></p>
+<p><img src="../../../imgs/net/2871785fb3953915444a9cbb99c190cd.jpg" alt="" width="721" height="570" class="aligncenter size-full wp-image-402119"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/><hr/>
+					
+		<!-- .entry-meta -->
+	</li>
+</ul>
+</div>
+</body>
+</html>

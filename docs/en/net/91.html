@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">TCP Connection Establishment</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-tcp-3-way-handshake-process/" rel="noopener" target="_blank">TCP 3-Way Handshake Process</a><br/>
+TCP is a connection oriented protocol and every connection oriented protocol needs to establish connection in order to reserve resources at both the communicating ends.</p>
+<p><b>Connection Establishment –</b></p>
+<ol>
+<li>Sender starts the process with following:
+<ul>
+<li><strong>Sequence number (Seq=521):</strong> contains the random initial sequence number which generated at sender side.
+</li>
+<li><strong>Syn flag (Syn=1):</strong> request receiver to synchronize its sequence number with the above provided sequence number.</li>
+<li><strong>Maximum segment size (MSS=1460 B):</strong> sender tells its maximum segment size, so that receiver sends datagram which won’t require any fragmentation. MSS field is present inside <strong>Option</strong> field in TCP header.
+</li>
+<li><strong>Window size (window=14600 B):</strong> sender tells about his buffer capacity in which he has to store messages from receiver.
+</li>
+</ul>
+</li>
+<p>&#160;</p>
+<li>TCP is a full duplex protocol so both sender and receiver require a window for receiving messages from one another.
+<ul>
+<li><strong>Sequence number (Seq=2000):</strong> contains the random initial sequence number which generated at receiver side.</li>
+<li><strong>Syn flag (Syn=1):</strong> request sender to synchronize its sequence number with the above provided sequence number.</li>
+<li><strong>Maximum segment size (MSS=500 B):</strong> sender tells its maximum segment size, so that receiver sends datagram which won’t require any fragmentation. MSS field is present inside <strong>Option</strong> field in TCP header.<br/>
+  Since MSS<sub>receiver</sub> &lt; MSS<sub>sender</sub>, both parties agree for minimum MSS i.e., 500 B to avoid fragmentation of packets at both ends.<p></p>
+<pre>Therefore, receiver can send maximum of 14600/500 = 29 packets.
+This is the receiver's sending window size.</pre>
+</li>
+<li><strong>Window size (window=10000 B):</strong> receiver tells about his buffer capacity in which he has to store messages from sender.
+<pre>Therefore, sender can send a maximum of 10000/500 = 20 packets.
+This is the sender's sending window size.</pre>
+</li>
+<li><strong>Acknoledgement Number (Ack no.=522):</strong> Since sequence number 521 is received by receiver so, it makes a request of next sequence number with Ack no.=522 which is the next packet expected by receiver since Syn flag consumes 1 sequence no.</li>
+<li><strong>ACK flag (ACk=1):</strong> tells that acknowledgement number field contains the next sequence expected by receiver.
+</li>
+</ul>
+</li>
+<p>&#160;</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<li>Sender makes the final reply for connection establishment in following way:
+<ul>
+<li><strong>Sequence number (Seq=522):</strong> since sequence number = 521 in 1<sup>st</sup> step and SYN flag consumes one sequence number hence, next sequence number will be 522. </li>
+<li><strong>Acknowledgement Number (Ack no.=2001):</strong> since sender is acknowledging SYN=1 packet from the receiver with sequence number 2000 so, the next sequence number expected is 2001.</li>
+<li><strong>ACK flag (ACK=1):</strong> tells that acknowledgement number field contains the next sequence expected by sender.
+</li>
+</ul>
+</li>
+</ol>
+<p>&#160;</p>
+<p><img src="../../../imgs/net/aaad20098d8ae34642363404080c4a01.jpg" alt="" width="1141" height="863" class="aligncenter size-full wp-image-418052"/></p>
+<p>&#160;<br/>
+Since the connection establishment phase of TCP makes use of 3 packets, it is also known as <a href="https://www.geeksforgeeks.org/computer-network-tcp-3-way-handshake-process/" rel="noopener" target="_blank">3-way Handshaking</a> <strong>(SYN, SYN + ACK, ACK).</strong></p>
+<ul>
+<li><b>GATE question –</b> <a href="https://www.geeksforgeeks.org/gate-gate-it-2008-question-67/" rel="noopener" target="_blank">GATE IT 2008 | Question 67</a>
+</li>
+</ul>
+<p>Related next article – <a href="https://www.geeksforgeeks.org/computer-network-tcp-connection-termination/" rel="noopener" target="_blank">TCP Connection Termination</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

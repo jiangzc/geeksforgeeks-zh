@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Difference between Unicast, Broadcast and Multicast</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>The <strong>cast</strong> term here signifies some data(stream of packets) is being transmitted to the recipient(s) from client(s) side over the communication channel that help them to communicate. Let’s see some of the “cast” concepts that are prevailing in the computer networks field.</p>
+<h3 class="sigil_not_in_toc">1. Unicast –</h3>
+<p>This type of information transfer is useful when there is a participation of single sender and single recipient. So, in short you can term it as a one-to-one transmission. For example, a device having IP address 10.1.2.0 in a network wants to send the traffic stream(data packets) to the device with IP address 20.12.4.2 in the other network,then unicast comes into picture. This is the most common form of data transfer over the networks.</p>
+<p><img src="../../../imgs/net/313f06a20cf39cfab126bbc11144fe43.jpg" alt="" width="480" height="280" class="aligncenter size-medium wp-image-239569"/></p>
+<h3 class="sigil_not_in_toc">2. Broadcast –</h3>
+<p>Broadcasting transfer (one-to-all) techniques can be classified into two types :</p>
+<ul>
+<li><strong>Limited Broadcasting –</strong><br/>
+Suppose you have to send stream of packets to all the devices over the network that you reside, this broadcasting comes handy. For this to achieve,it will append 255.255.255.255 (all the 32 bits of IP address set to 1) called as <strong>Limited Broadcast Address</strong> in the destination address of the datagram (packet) header which is reserved for information tranfer to all the recipients from a single client (sender) over the network.<p></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/net/a294fe530ac9092a426cb1f2c2a34ef4.jpg" alt="" width="280" height="130" class="aligncenter size-medium wp-image-239569"/></p>
+</li>
+<li><strong>Direct Broadcasting –</strong><br/>
+This is useful when a device in one network wants to transfer packet stream to all the devices over the other network.This is achieved by translating all the Host ID part bits of the destination address to 1,referred as <strong>Direct Broadcast Address</strong> in the datagram header for information transfer.<p></p>
+<p><img src="../../../imgs/net/21032ba89cc5dcf841cc1c4a2b544436.jpg" alt="" width="500" height="300" class="aligncenter size-medium wp-image-239569"/></p>
+</li>
+</ul>
+<p>This mode is mainly utilized by television networks for video and audio distribution.<br/>
+One important protocol of this class in Computer Networks is <a href="https://www.geeksforgeeks.org/computer-network-arp-works/" style="text-align:center"> Address Resolution Protocol (ARP)</a>  that is used for resolving IP address into physical address which is necessary for underlying communication.</p>
+<h3 class="sigil_not_in_toc">3. Multicast –</h3>
+<p>In multicasting, one/more senders and one/more recipients participate in data transfer traffic. In this method traffic recline between the boundaries of unicast (one-to-one) and broadcast (one-to-all). Multicast lets server’s direct single copies of data streams that are then simulated and routed to hosts that request it. IP multicast requires support of some other protocols like <strong>IGMP (Internet Group Management Protocol), Multicast routing</strong> for its working. Also in Classful IP addressing <strong>Class D</strong> is reserved for multicast groups.</p>
+<p><b>Questions Corner –</b></p>
+<p>Practicing the following questions will help you test your knowledge. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/computer-networks-ip-addressing-question-3/" target="_blank">Direct Broadcast Address </a></li>
+<li><a href="https://www.geeksforgeeks.org/computer-networks-ip-addressing-question-4/">Direct Broadcast Address </a></li>
+<li><a href="https://www.geeksforgeeks.org/computer-networks-ip-addressing-question-5/">Direct Broadcast Address </a></li>
+</ol>
+<p><b>References –</b></p>
+<p><a href="https://serverfault.com/questions/279482/what-is-the-difference-between-unicast-anycast-broadcast-and-multicast-traffic" target="_blank">Difference between Unicast, Broadcast and Multicast</a><br/>
+<a href="http://www.erg.abdn.ac.uk/users/gorry/course/intro-pages/uni-b-mcast.html" target="_blank">erg.abdn.ac.uk</a><br/>
+<a href="http://www.rfwireless-world.com/Terminology/Unicast-vs-Multicast-vs-Broadcast-transmission-types.html" target="_blank">Difference between Unicast, Multicast, Broadcast</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

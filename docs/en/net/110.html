@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">DNS Spoofing or  DNS Cache poisoning</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/dns-domain-name-server/" rel="noopener" target="_blank">Domain Name Server</a><br/>
+Before Discussing DNS Spoofing, First, discuss what is DNS.</p>
+<p><strong>A Domain Name System (DNS)</strong> converts a human-readable name (such as www.geeksforgeeks.org) to Numeric IP-address. The DNS system response one or more IP-address by which your computer connects to a website (such as geeksforgeeks.org) by using one of the IP-address.</p>
+<p>There is not only one DNS server. There are series of DNS server used to resolve the domain name. DNS uses cache to work efficiently so that it can quickly refer to DNS lookups it’s already performed rather than performing a DNS lookup over and over again.<br/>
+Although DNS caching increase the speed for domain name resolution process But the major change in the domain then it takes a day to reflect worldwide.</p>
+<p><b>DNS Spoofing</b> means getting a wrong entry or IP-address of the requested site from DNS server. Attackers find out the flaws in DNS system and take control and will redirect to a malicious website.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/DNS_Spoofing.png"><img src="../../../imgs/net/3c398c5012ea5afd8041de054d83b35c.jpg" alt="" width="524" height="284" class="aligncenter size-full wp-image-299175"/></a><br/>
+<br/>
+<b>In above image –</b></p>
+<ol>
+<li>Request to Real Website: User hit a request for paticular website it goes to DNS server to resolve the ip-address of that website.</li>
+<li>Inject Fake DNS entry: Hackers already take control over the DNS server by detecting the flaws and now they add false entry in DNS server.</li>
+<li>Resolve to Fake Website: Since fake entry in DNS server redirect user to wrong website.</li>
+</ol>
+<p>
+<strong>To Prevent From DNS Spoofing –</strong><br/>
+DNS Security Extensions (DNSSEC) is used to add an additional layer of security in DNS resolution process to prevent security threats such as DNS Spoofing or DNS cache poisoning.<br/>
+DNSSEC protects against such attacks by digitally ‘signing’ data so you can be assured it is valid.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

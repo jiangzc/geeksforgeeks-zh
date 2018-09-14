@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Root Bridge Election in Spanning Tree Protocol</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Redundant links are used to provide back up path when one link goes down but Redundant link can sometime cause switching loops. The main purpose of Spanning Tree Protocol (STP) is to ensure that you do not create loops when you have redundant paths in your network. </p>
+<p><b>Spanning Tree Protocol (STP) –</b><br/>
+As IEEE STP is used to make a loop free network by monitoring the network to track all the links and shut down the redundant ones. These are some important terms related to Spanning Tree Protocol:</p>
+<ul>
+<li><strong>Bridge Priority Data Unit (BPDU) –</strong> It contains the Bridge I’d, Sender’s Bridge I’d, Cost to the Root Bridge, Timer values on Root Bridge.  All switches exchange BPDU in order to elect root bridge. The switch with the lowest Bridge I’d will become the root bridge. </li>
+<li><strong>Bridge I’d –</strong> It is a 8-byte field which is a combination of bridge priority (2 bytes) and Base Mac address (6 bytes) of a device. If there is a tie on bridge priority then the Base Mac address is considered. </li>
+<li><strong>Bridge Priority –</strong> It is priority,  which is assigned to every switch, 32768 by default. </li>
+<li><strong>Root Bridge – </strong> The root bridge is the bridge with lowest Bridge I’d. All the decisions like which ports are the root ports (the port with best path to the root bridge) are made from the perspective of root bridge. </li>
+<li><strong>Path cost –</strong> A switch may encounter one or more switch in the path to the root bridge. All the paths are analysed and the path with the lowest cost will be selected.<br/>
+<table style="width:50%">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Speed</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Link Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">10 Mbps</td>
+<td style="text-align:center;">100</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">100 Mbps</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">19</td>
+</tr>
+<tr>
+<td style="text-align:center;">1 Gbps</td>
+<td style="text-align:center;">4</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">10 Gbps</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">2</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<p><strong>Designated port – </strong> The port which sends best BPDU i.e ports on the root bridge will be in forwarding state.<br/>
+<strong>Root port – </strong> The port which receives the best BPDU on non root bridge. Criteria for selecting root port:</p>
+<ol>
+<li> Lowest path cost to reach root bridge</li>
+<li> Lowest sender Bridge I’d </li>
+<li> Lowest sender port I’d </li>
+</ol>
+<p>(Port priority + Port number) – Port priority is by default 128 and port number is the switch interface number. </p>
+<p><b>Election procedure –</b><br/>
+All the switches in the network declare themselves root bridge and start exchanging their own BPDU. The BPDU with the lowest bridge I’d will be considered as superior. Now the switch receiving the superior BPDU make changes in its own BPDU and carry forward to its neighbours. It changes the value of root Bridge I’d with its superior BPDU bridge I’d. This process goes on until all the switches are satisfied with which bridge have the lowest bridge I’d and hence that switch will be declared as root bridge. </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Now according to the criteria, the root ports will be selected and then the port left will be in blocking mode. </p>
+<p><b>Example –</b></p>
+<p><img src="../../../imgs/net/7e3b50340f595c7392f541cbb8f55c60.jpg" width="773" height="322" class="aligncenter size-full"/></p>
+<p>Here is a small topology with three switches switch A (mac address-0000.0ACA7.A603), switch B(0030.F222.2794) and switch C(000A.41D5.7937) with all having default priority (32768).</p>
+<p><strong>Root Bridge election –</strong><br/>
+As all the switches have default priority therefore there is a tie on the basis of priority. Now, the switch with the lowest Mac address will become a root bridge. Here, switch A will become the root bridge as it has the lowest Mac address. Therefore, the ports of switch A will be in forwarding state i.e designated port.</p>
+<p><img src="../../../imgs/net/86ab349a665effa602c5e1954ec1aefc.jpg" width="773" height="357" class="aligncenter size-full"/></p>
+<p><strong>Root Ports Election –</strong><br/>
+The root ports are selected on non root bridges, i.e. switch B and switch C. Now, for instance if switch C choose the path through switch B then the cost will be (4+4=8) but if it chooses the directly connected path to switch A then the cost will be 4 therefore both switch B and switch C will choose the ports connected to switch A as their root ports. </p>
+<p>Now, the only thing left between is to find which port will be in forwarding mode and blocking mode respectively. Now as the link between switch B and switch C as the same cost to the root bridge therefore the switch with lowest bridge I’d will be in forwarding mode therefore switch C port will be in forwarding mode and switch B port will be in block mode.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

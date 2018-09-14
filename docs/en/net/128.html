@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">RSA Algorithm in Cryptography</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>RSA algorithm is asymmetric cryptography algorithm. Asymmetric actually means that it works on two different keys i.e. <strong>Public Key</strong> and <strong>Private Key.</strong> As the name describes that the Public Key is given to everyone and Private key is kept private.</p>
+<p><strong>An example of asymmetric cryptography : </strong></p>
+<ol>
+<li> A client (for example browser) sends its public key to the server and requests for some data.</li>
+<li>The server encrypts the data using client’s public key and sends the encrypted data. </li>
+<li>Client receives this data and decrypts it. </li>
+</ol>
+<p>Since this is asymmetric, nobody else except browser can decrypt the data even if a third party has public key of browser.</p>
+<p><strong>The idea!</strong> The idea of RSA is based on the fact that it is difficult to factorize a large integer. The public key consists of two numbers where one number is multiplication of two large prime numbers. And private key is also derived from the same two prime numbers. So if somebody can factorize the large number, the private key is compromised. Therefore encryption strength totally lies on the key size and if we double or triple the key size, the strength of encryption increases exponentially. RSA keys can be typically 1024 or 2048 bits long, but experts believe that 1024 bit keys could be broken in the near future. But till now it seems to be an infeasible task.</p>
+<p><strong>Let us learn the mechanism behind RSA algorithm : </strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<strong>&gt;&gt; Generating Public Key : </strong><p></p>
+<pre><li>Select two prime no's. Suppose <strong>P = 53 and Q = 59</strong>.
+Now First part of the Public key  : <strong>n = P*Q = 3127</strong>.</li>
+<li> We also need a small exponent say <strong>e</strong> : 
+But e Must be <ul>
+<li>An integer.</li>
+<li>Not be a factor of n.</li>
+<li><strong>1 &lt; e &lt; <a href="https://www.geeksforgeeks.org/eulers-totient-function/">Φ(n)</a></strong> [Φ(n) is discussed below], 
+Let us now consider it to be equal to 3.</li>
+</ul></li>
+    <li>Our Public Key is made of n and e</li></pre>
+<p><strong>&gt;&gt; Generating Private Key : </strong></p>
+<pre><li>We need to calculate Φ(n) :
+Such that <strong>Φ(n) = (P-1)(Q-1)</strong>     
+      so,  Φ(n) = 3016</li>
+    <li>Now calculate Private Key, <strong>d</strong> : 
+<strong>d = (k*Φ(n) + 1) / e</strong> for some integer k
+For k = 2, value of d is 2011.</li></pre>
+<p>Now we are ready with our  – Public Key ( n = 3127 and e = 3) and Private Key(d  = 2011)</p>
+<p>Now we will encrypt <strong>“HI”</strong> : </p>
+<pre><li>Convert letters to numbers : H  = 8 and I = 9</li>
+    <li>Thus <strong>Encrypted Data c = 89<sup>e</sup> mod n</strong>. 
+Thus our Encrypted Data comes out to be 1394</li>
+
+Now we will decrypt <strong>1394</strong> : 
+    <li><strong>Decrypted Data = c<sup>d</sup> mod n</strong>. 
+Thus our Encrypted Data comes out to be 89</li>
+<strong>8 = H and I = 9 i.e. "HI".</strong></pre>
+<p><strong>Below is C implementation of RSA algorithm for small values:</strong></p>
+<pre class="brush: c; title: ; notranslate" title="">// C program for RSA asymmetric cryptographic
+// algorithm. For demonstration values are
+// relatively small compared to practical
+// application
+#include&lt;stdio.h&gt;
+#include&lt;math.h&gt;
+
+// Returns gcd of a and b
+int gcd(int a, int h)
+{
+    int temp;
+    while (1)
+    {
+        temp = a%h;
+        if (temp == 0)
+          return h;
+        a = h;
+        h = temp;
+    }
+}
+
+// Code to demonstrate RSA algorithm
+int main()
+{
+    // Two random prime numbers
+    double p = 3;
+    double q = 7;
+
+    // First part of public key:
+    double n = p*q;
+
+    // Finding other part of public key.
+    // e stands for encrypt
+    double e = 2;
+    double phi = (p-1)*(q-1);
+    while (e &lt; phi)
+    {
+        // e must be co-prime to phi and
+        // smaller than phi.
+        if (gcd(e, phi)==1)
+            break;
+        else
+            e++;
+    }
+
+    // Private key (d stands for decrypt)
+    // choosing d such that it satisfies
+    // d*e = 1 + k * totient
+    int k = 2;  // A constant value
+    double d = (1 + (k*phi))/e;
+
+    // Message to be encrypted
+    double msg = 20;
+
+    printf("Message data = %lf", msg);
+
+    // Encryption c = (msg ^ e) % n
+    double c = pow(msg, e);
+    c = fmod(c, n);
+    printf("\nEncrypted data = %lf", c);
+
+    // Decryption m = (c ^ d) % n
+    double m = pow(c, d);
+    m = fmod(m, n);
+    printf("\nOriginal Message Sent = %lf", m);
+
+    return 0;
+}
+// This code is contributed by Akash Sharan.
+</pre>
+<p>Output :
+</p>
+<pre>Message data = 12.000000
+Encrypted data = 3.000000
+Original Message Sent = 12.000000
+</pre>
+<p></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ul>
+</div>
+</body>
+</html>

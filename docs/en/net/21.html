@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Packet Switching and Delays</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Packet switching</b> is a method of transferring the data to a network in form of packets. In order to transfer the file fast and efficient manner over the network and minimize the transmission latency, the data is broken into small pieces of variable length, called <b>Packet</b>. At the destination, all these small-parts (packets) has to be reassembled, belonging to the same file. A packet composes of payload and various control information. No pre-setup or reservation of resources are needed. </p>
+<p>Packet Switching uses <b>Store and Forward</b> technique while switching the packets; while forwarding the packet each hop first store that packet then forward. This technique is very beneficial because packets may get discarded at any hop due to some reason. More than one path is possible between a pair of source and destination. Each packet contains Source and destination address using which they independently travel through the network. In other words, packets belonging to the same file may or may not travel through the same path. If there is congestion at some path, packets are allowed to choose different path possible over existing network.</p>
+<p>Packet-Switched networks were designed to overcome the <i>weaknesses</i> of Circuit-Switched networks,  since circuit-switched networks were not very effective for small messages. </p>
+<p><strong>Advantage of Packet Switching over Circuit Switching : </strong></p>
+<ul>
+<li>More efficient in terms of bandwidth, since the concept of reserving circuit is not there.</li>
+<li>Minimal transmission latency.</li>
+<li>More reliable as destination can detect the missing packet.</li>
+<li>More fault tolerant because packets may follow different path in case any link is down, Unlike Circuit Switching.</li>
+<li>Cost effective and comparatively cheaper to implement.</li>
+</ul>
+<p><strong>Disadvantage of Packet Switching over Circuit Switching : </strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li> Packet Switching don’t give packets in order, whereas Circuit Switching provides ordered delivery of packets because all the packets follow the same path.</li>
+<li>Since the packets are unordered, we need to provide sequence numbers to each packet.</li>
+<li>Complexity is more at each node because of the facility to follow multiple path.</li>
+<li>Transmission delay is more because of rerouting.</li>
+<li>Packet Switching is beneficial only for small messages, but for bursty data (large messages) Circuit Switching is better. </li>
+</ul>
+<p><strong>Modes of Packet Switching : </strong></p>
+<ol>
+<li> <b>Connection-oriented Packet Switching (Virtual Circuit) :-</b>    Before starting the transmission, it establishes a logical path  or virtual connection using signalling protocol, between sender and receiver and all packets belongs to this flow will follow this predefined route. Virtual Circuit ID is provided by switches/routers to uniquely identify this virtual connection. Data is divided into small units and all these small units are appended with help of sequence number. Overall, three phases takes place here- Setup, data transfer and tear down phase.<br/>
+<img src="../../../imgs/net/c49cefc07a1274cd0c5616bf50a79ed2.jpg" alt="" width="300" height="136" class="alignnone size-medium wp-image-232457"/><img src="../../../imgs/net/bf67f01460be933dbcc94d42abf0c318.jpg" alt="" width="289" height="300" class="alignnone size-medium wp-image-232460"/><br/>
+ All address information is only transferred during setup phase. Once the route to destination is discovered, entry is added to switching table of each intermediate node. During data transfer, packet header (local header) may contain information such as length, timestamp, sequence number etc.<br/>
+Connection-oriented switching is very useful in switched WAN. Some popular protocols which uses Virtual Circuit Switching approach are X.25, Frame-Relay, ATM and MPLS(Multi Protocol Label Switching). </li>
+<p><br/></p>
+<li><b>Connectionless Packet Switching (Datagram) :-</b>  Unlike Connection-oriented packet switching, In Connectionless Packet Switching each packet contains all necessary addressing information such as source address, destination address and port numbers etc. In Datagram Packet Switching, each packet is treated independently. Packets belongs to one flow may take different routes because routing decisions are made dynamically, so the packets arrived to destination might be out of order. It has no connection setup and tear down phase, like Virtual Circuits.<br/>
+Packet delivery is not guaranteed in connectionless packet switching, so the reliable delivery must be provided by end systems using additional protocols.<br/>
+<img src="../../../imgs/net/3f1d011b25cb85ae47a4a32b44bd38df.jpg" alt="" width="450" height="243" class="alignnone size-full wp-image-232486"/><p></p>
+<pre>A---R1---R2---B
+
+A is the sender (start)
+R1,R2 are two router that store and forward data
+B is receiver(destination)
+</pre>
+<p>To send packet from A to B there are delays since this is a Store and Forward network.</p>
+<h3 class="sigil_not_in_toc">Delays in Packet switching :</h3>
+<ol>
+<li>Transmission Delay</li>
+<li>Propagation Delay</li>
+<li>Queuing Delay</li>
+<li>Processing Delay</li>
+</ol>
+<p><br/><br/>
+<strong>Transmission Delay :</strong><br/>
+Time taken to put a packet onto link. In other words, it is simply time required to put data bits on the wire/communication medium. It depends on length of packet and bandwidth of network.</p>
+<pre>Transmission Delay = Data size / bandwidth = (L/B) second</pre>
+<p><strong>Propagation delay :</strong><br/>
+Time taken by the first bit to travel from sender to receiver end of the link. In other words, it is simply the time required for bits to reach destination from start point. Factors on which Propagation delay depends are Distance and propagation speed. </p>
+<pre>Propagation delay = distance/transmission speed = d/s</pre>
+<p><strong>Queuing Delay :</strong><br/>
+Queuing delay is the time a job waits in a queue until it can be executed. It depends on congestion. It the time difference between when packet arrived Destination and when the packet data was processed or executed. It may be caused by mainly three reasons i.e. originating switches, intermediate switches or call receiver servicing switches.<br/>
+<img src="../../../imgs/net/ca669b7adff96d02230ddd12a2642464.jpg"/></p>
+<pre>Average Queuing delay = (N-1)L/(2*R)
+where N = no. of packets
+      L=size of packet
+      R=bandwidth
+</pre>
+<p><strong>Processing Delay :</strong><br/>
+Processing delay is the time it takes routers to process the packet header. Processing of packets help in detecting bit-level errors that occur during transmission of packet to destination. Processing delays in high-speed routers are typically on the order of microseconds or less.<br/>
+In simple words, it is just the time taken to process packets.</p>
+<pre><strong>Total time</strong> <em>or</em> <strong>End-to-End time </strong> 
+= Transmission delay + Propagation delay+ Queuing delay
+                                  + Processing delay
+
+</pre>
+<p><b><em>For M hops and N packets – </em></b></p>
+<pre><strong>Total delay</strong> 
+= M*(Transmission delay + propagation delay)+
+                (M-1)*(Processing delay + Queuing delay) + 
+                (N-1)*(Transmission delay)
+</pre>
+<p><b><em>For N connecting link in the circuit – </em></b><br/>
+Transmission delay = N*L/R<br/>
+Propagation delay = N*(d/s)<br/>
+<br/><br/>
+<br/></p>
+<p><b>Question : </b>How much time will it take to send a packet of size L bits from A to B in given setup if Bandwidth is R bps, propagation speed is t meter/sec and distance b/w any two points is d meters (ignore processing and queuing delay) ? </p>
+<pre>A---R1---R2---B
+</pre>
+<p><b>Ans:</b><br/>
+N = no. of links = no. of hops = no. of routers +1 = 3<br/>
+File size = L <em>bits</em><br/>
+Bandwidth = R <em>bps</em><br/>
+Propagation speed = t <em>meter/sec</em><br/>
+Distance = d <em>meters</em><br/>
+Transmission delay = (N*L)/R = (3*L)/R <em>sec</em><br/>
+Propagation delay = N*(d/t) = (3*d)/t <em>sec</em><br/>
+Total time = 3*(L/R + d/t) <em>sec</em>
+</p>
+<p><br/><br/>
+<br/><br/>
+<b>THIS QUESTION EXPLAINS FORMULA :-</b><br/>
+In a Packet switch network having Hops= 4, transfer 10 packets from A to B given packet size is L bits. Bandwidth to transfer data is R Mbps and speed of propagation is S meter/sec. Assume processing delay= P seconds and distance between two point is D meters. Find total time required for 10 packets to reach A from B. </p>
+<pre>A---R1---R2---R3---B
+</pre>
+<p><b>Explanation : </b><br/>
+No. of hops= No. of links = M= 4<br/>
+Here we send 10 packets, also since there is no acknowledgement of packet received required we perform parallel processing. When the 1st packet reaches R2, the second packet reaches R1.</p>
+<pre>Formulas used-
+R is in Mbps so convert to bps by multiplying 10^6.
+Bandwidth=R*(10^6) bps
+Packet size =L bits
+Transmission delay= Packet size/Bandwidth =L/( R*(10^6) )
+Propagation Delay = Distance / Speed = D /S
+Processing delay is in seconds no change</pre>
+<p>Delay can also be calculated as :  Delay for 1st packet to reach + delay for (N-1) packets<br/>
+Delay for 1st packet = M*(Propagation delay + Transmission delay) + (M-1)*(Processing delay + Queuing delay)<br/>
+Delay for N-1 remaining packets = (N-1)*(Transmission delay)</p>
+<p>So finally applying the formula and putting the values we get-<br/>
+Total delay = 4*( L/(R*(10^6) + D/S) + (4-1)*(P + 0) + (10-1)*( L/(R*(10^6) )</p>
+<p><br/><br/>
+<br/></p>
+<p>Reference:<br/>
+<a href="https://en.wikipedia.org/wiki/Packet_switching#Connectionless_and_connection-oriented_modes">Wikipedia, </a><a href="https://www.rfc-editor.org/ien/ien17.pdf">RFC</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		<!-- .entry-meta -->
+	</li>
+</ol>
+</div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Netstat command in Linux</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Netstat command displays various network related information such as network connections, routing tables, interface statistics, masquerade connections, multicast memberships etc.,</p>
+<p><strong>Examples of some practical netstat command : </strong></p>
+<ol>
+<li><strong>-a -all</strong> : Show both listening and non-listening sockets. With the –interfaces     option, show interfaces that are not up
+<pre><strong># netstat -a | more : </strong>To show both listening and 
+non-listening sockets.</pre>
+<p><img src="../../../imgs/net/c25da9016b5da47e431cbc2b2dee8aea.jpg" alt="" width="737" height="438" class="alignnone size-medium wp-image-185238"/><br/>
+<img src="../../../imgs/net/609abdee4603cc69917fd07cbeb87c7e.jpg" alt="" width="730" height="426" class="alignnone size-medium wp-image-185239"/>
+</p></li>
+<li><strong>List all tcp ports.</strong>
+<pre><strong># netstat -at : </strong>To list all tcp ports.
+</pre>
+<p><img src="../../../imgs/net/79788738cd8e68d2c0ae322d36cd0cec.jpg" alt="" width="735" height="436" class="alignnone size-medium wp-image-185240"/>
+</p></li>
+<li><strong>List all udp ports.</strong>
+<pre><strong># netstat -au : </strong>To list all udp ports.
+</pre>
+<p><img src="../../../imgs/net/6338b5d291e88a5008a36a255934f202.jpg" alt="" width="736" height="439" class="alignnone size-medium wp-image-185241"/>
+</p></li>
+<li><strong>List only listening ports.</strong>
+<pre><strong># netstat -l : </strong>To list only the listening ports.
+</pre>
+<p><img src="../../../imgs/net/f1aa3aa517f0d11cb373b666655a11d9.jpg" alt="" width="736" height="436" class="alignnone size-medium wp-image-185242"/>
+</p></li>
+<li><strong>List only listening TCP ports.</strong>
+<pre><strong># netstat -lt : </strong>To list only the listening tcp ports.
+</pre>
+<p><img src="../../../imgs/net/68622abaae3eb6eea2801383d2ac51d4.jpg" alt="" width="730" height="435" class="alignnone size-large wp-image-185243"/>
+</p></li>
+<li><strong>List only listening UDP ports.</strong>
+<pre><strong># netstat -lu : </strong>To list only the listening udp ports.
+</pre>
+<p><img src="../../../imgs/net/a5dd4fe7653f2c3662cdfa40288862a1.jpg" alt="" width="733" height="439" class="alignnone size-medium wp-image-185244"/>
+</p></li>
+<li><strong>List only the listening UNIX ports</strong>
+<pre><strong># netstat -lx : </strong>To list only the listening UNIX ports.
+</pre>
+<p><img src="../../../imgs/net/5a3a3163b39b7f8965ff93cb8bc62b2f.jpg" alt="" width="735" height="440" class="alignnone size-medium wp-image-185250"/>
+</p></li>
+<li><strong>List the statistics for all ports.</strong>
+<pre><strong># netstat -s : </strong>To list the statistics for all ports.
+</pre>
+<p><img src="../../../imgs/net/7b17a24995702f2b20ae6e52f22e311e.jpg" alt="" width="657" height="554" class="alignnone size-medium wp-image-185245"/>
+</p></li>
+<li><strong>List the statistics for TCP (or) UDP ports.</strong>
+<pre><strong># netstat -st(TCP) : </strong>To list the statistics for TCP ports.
+</pre>
+<p><img src="../../../imgs/net/aba156ff7459db942625b16cd4ba0a99.jpg" alt="" width="676" height="597" class="alignnone size-medium wp-image-185251"/></p>
+<pre><strong># netstat -su(UDP) : </strong>List the statistics for UDP ports.
+</pre>
+<p><img src="../../../imgs/net/7257c793d7f3c737f8b2a129bb048194.jpg" alt="" width="679" height="527" class="alignnone size-medium wp-image-185252"/>
+</p></li>
+<li><strong>Display PID and program names in the output.</strong>
+<pre><strong># netstat -pt : </strong>To display the PID and program names.
+</pre>
+<p><img src="../../../imgs/net/53ae69bdebb2170c27c1af415e9ba7a3.jpg" alt="" width="735" height="438" class="alignnone size-medium wp-image-185253"/>
+</p></li>
+<li><strong>Print the netstat information continuously.</strong>
+<p>netstat will print information continuously every few seconds.</p>
+<pre><strong># netstat -c : </strong>To print the netstat information continuously.
+</pre>
+<p><img src="../../../imgs/net/9cc37709dfddee5961831323940c4027.jpg" alt="" width="735" height="438" class="alignnone size-medium wp-image-185247"/>
+</p></li>
+<li><strong>The non-supportive address families in the system.</strong>
+<pre><strong># netstat --verbose : </strong>To get the non-supportive
+address families in the system.
+</pre>
+<p><img src="../../../imgs/net/d16e5bcd8dd9802492934adba0caddec.jpg" alt="" width="735" height="435" class="alignnone size-medium wp-image-185254"/></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre><strong>At the end, we have something like this : </strong>
+</pre>
+<p><img src="../../../imgs/net/05e818ab112f4582491149e13447b04f.jpg" alt="" width="733" height="438" class="alignnone size-medium wp-image-185255"/>
+</p></li>
+<li><strong>The kernel routing information.</strong>
+<pre><strong># netstat -r : </strong>To get the kernel routing information.
+</pre>
+<p><img src="../../../imgs/net/8cbdca915e5f2840ee4388fd2ff9da77.jpg" alt="" width="732" height="439" class="alignnone size-medium wp-image-185256"/>
+</p></li>
+<li><strong>The port on which a program is running.</strong>
+<pre><strong># netstat -ap | grep ssh : </strong>To get the port
+on which a program is running.
+</pre>
+<p><img src="../../../imgs/net/a2e3b89593a63ba985baa420dff2fcd5.jpg" alt="" width="734" height="437" class="alignnone size-medium wp-image-185272"/>
+</p></li>
+<li><strong>Which process is using a particular port:</strong>
+<pre><strong># netstat -an | grep ':80' : </strong>To get the process
+which is using the given port.
+</pre>
+<p><img src="../../../imgs/net/50d80720d71a60a3293ea06fe86b98b7.jpg" alt="" width="731" height="438" class="alignnone size-medium wp-image-185258"/>
+</p></li>
+<li><strong>List of network interfaces.</strong>
+<pre><strong># netstat -i : </strong>To get the list of network interfaces.
+</pre>
+<p><img src="../../../imgs/net/0b54a982c4408b6b5941ce7730fbd487.jpg" alt="" width="735" height="436" class="alignnone size-medium wp-image-185259"/></p>
+<pre><strong>Display extended information on the interfaces 
+(similar to ifconfig) using netstat -ie:</strong>
+
+<strong># netstat -ie : </strong>To display extended information 
+on the interfaces
+</pre>
+<p><img src="../../../imgs/net/bb43e8098f2acc0676508b629b85f431.jpg" alt="" width="732" height="523" class="alignnone size-medium wp-image-185260"/>
+</p></li>
+<p><strong><br/>
+Reference : </strong><br/>
+<a href="http://man7.org/linux/man-pages/man8/netstat.8.html" target="_blank">Linux Manual page for netstat</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ol>
+</div>
+</body>
+</html>

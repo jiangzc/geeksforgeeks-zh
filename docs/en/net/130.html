@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Weak RSA decryption with Chinese-remainder theorem</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite : <a href="https://www.geeksforgeeks.org/rsa-algorithm-cryptography/">RSA Algorithm</a></p>
+<p><strong>Why RSA decryption is slow ? </strong><br/>
+RSA decryption is slower than encryption because while doing decryption, private key parameter ” d ” is necessarily large. Moreover the parameters – ” p and q ” are two very large Prime Numbers.</p>
+<p>Given integers c, e, p and q, find m such that <strong>c = pow(m, e) mod (p * q)</strong> (RSA decryption for weak integers).</p>
+<blockquote><p>
+<b>Basics :</b>
+</p>
+<ul>
+<li>RSA is a public key encryption system used for secure transmission of messages.</li>
+<li>RSA involves four steps typically :<br/>
+    (1) Key generation<br/>
+    (2) Key distribution<br/>
+    (3) Encryption<br/>
+    (4) Decryption</li>
+<li>Message <strong>Encryption</strong> is done with a “Public Key”. </li>
+<li>Message <strong>Decryption</strong> is done with a “Private Key” – parameters (p, q, d) generated along with Public Key.</li>
+<li>The private key is known only to the user, and the public key can be made known to anyone who wishes to send an encrypted message to the person with the corresponding private key.</li>
+<li>A public key which is depicted by two parameters n (modulus) and e (exponent). The modulus is a product of two very large prime numbers (p and q as shown below). Decryption of this message would require the user to factorize n into two prime factors(the main reason, RSA is secure), and then find the modular inverse of e, wherein the difficult task lies.</li>
+<li>A text message is first converted to the respective decimal value, which is the parameter ‘m’ which we are finding below. We now encrypt this message by doing  <strong>c = pow(m, e) mod (p * q)</strong>, where c is the encrypted text.</li>
+</ul>
+<p></p>
+</blockquote>
+<p>In this code, we exploit weak modulus and exponent values to try and crack the encryption by generating the private key by finding the values of p, q and d. In these examples, we will try to find d given p and q. </p>
+<p><strong>NOTE :</strong><br/>
+Here, in this example we are using small values of <strong>p</strong> and <strong>q</strong> but in actual we use very large values of <strong>p</strong> and <strong>q</strong> to make our RSA system secure. </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Examples :</strong></p>
+<pre><strong>Input :</strong> 
+c = 1614
+e = 65537
+p = 53
+q = 31
+
+<strong>Output :</strong>
+1372
+
+<strong>Explanation :</strong>
+We calculate <strong>c = pow(m, e)mod(p * q)</strong>. 
+Insert m = 1372. 
+On calculating, we get c = 1614.
+
+<strong>Input : </strong>
+c = 3893595
+e = 101
+p = 3191
+q = 3203
+
+<strong>Output :</strong>
+6574839
+
+<strong>Explanation :</strong>
+As shown above, if we calculate pow(m, e)mod(p * q)
+with m = 6574839, we get c = 3893595
+</pre>
+<blockquote>
+<p>Normally, we can find the value of m by following these steps:</p>
+<p>(1) Calculate the modular inverse of e.<br/>
+We can make use of the following equation, <strong>d = e^(-1)(mod lambda(n))</strong>,<br/>
+where lambda is the <strong>Carmichael Totient function</strong>.<br/>
+<strong>Read</strong>: <a href="https://en.wikipedia.org/wiki/Carmichael_function">Carmichael function</a></p>
+<p>(2) Calculate <strong>m = pow(c, d)mod(p * q)</strong></p>
+<p>(3) We can perform this calculation faster by using the Chinese Remainder Theorem,<br/>
+as defined below in the function<br/>
+Further reading on Chinese Remainder Theorem can be done at<br/>
+<a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)">RSA (cryptosystem)</a>
+</p>
+</blockquote>
+<p>Below is the Python implementation of this approach :</p>
+<pre class="brush: python; title: ; notranslate" title=""># Function to find the gcd of two 
+# integers using Euclidean algorithm
+def gcd(p, q):
+    
+    if q == 0:
+        return p
+        
+    return gcd(q, p % q)
+
+# Function to find the
+# lcm of two integers 
+def lcm(p, q):
+    return p * q / gcd(p, q)
+
+# Function implementing extended
+# euclidean algorithm
+def egcd(e, phi):
+    
+    if e == 0:
+        return (phi, 0, 1)
+    else:
+        g, y, x = egcd(phi % e, e)
+        return (g, x - (phi // e) * y, y)
+
+# Function to compute the modular inverse
+def modinv(e, phi):
+    
+    g, x, y = egcd(e, phi)
+    return x % phi
+
+
+# Implementation of the Chinese Remainder Theorem
+def chineseremaindertheorem(dq, dp, p, q, c):
+    
+    # Message part 1
+    m1 = pow(c, dp, p)
+    
+    # Message part 2
+    m2 = pow(c, dq, q)
+    
+    qinv = modinv(q, p)
+    h = (qinv * (m1 - m2)) % p
+    m = m2 + h * q
+    return m
+
+# Driver Code
+p = 9817
+q = 9907
+e = 65537
+c = 36076319
+d = modinv(e, lcm(p - 1, q - 1))
+
+"""
+pow(a, b, c) calculates a raised to power b 
+modulus c, at a much faster rate than pow(a, b) % c
+Furthermore, we use Chinese Remainder Theorem as it
+splits the equation such that we have to calculate two
+values whose equations have smaller moduli and exponent  
+value, thereby reducing computing time.
+"""
+
+dq = pow(d, 1, q - 1)
+dp = pow(d, 1, p - 1)
+print chineseremaindertheorem(dq, dp, p, q, c)
+</pre>
+<p><strong>Output :</strong></p>
+<pre>41892906
+</pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><div>
+
+</div>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

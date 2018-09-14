@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Standard Access-list</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-access-lists-acl/" rel="noopener" target="_blank">Access-lists (ACL)</a><br/>
+Access-list (ACL) is a set of rules defined for controlling the network traffic and reducing network attacks. ACLs are used to filter traffic based on the set of rules defined  for the incoming or out going of the network. </p>
+<p><b>Standard Access-list –</b><br/>
+These are the Access-list which are made using the source IP address only. These ACLs permit or deny the entire protocol suite. They don’t distinguish between the IP traffic such as TCP, UDP, Https etc. By using numbers 1-99 or 1300-1999, router will understand it as a standard ACL and the specified address as source IP address. </p>
+<p><strong>Features –</strong></p>
+<ol>
+<li>Standard Access-list is generally applied close to destination (but not always).
+</li>
+<li>In standard access-list, whole network or sub-network is denied.
+</li>
+<li>Standard access-list uses the range 1-99 and extended range 1300-1999.
+</li>
+<li>Standard access-list is implemented using source IP address only.
+</li>
+<li>If numbered with standard Access-list is used then remember rules can’t be deleted. If one of the rule is deleted then the whole access-list will be deleted.
+</li>
+<li>If named with standard Access-list is used then you have the flexibility to delete a rule from access-list.
+</li>
+</ol>
+<p><strong>Note –</strong> Standard Access-list are less used as compared to extended access-list as the entire IP protocol suite will be allowed or denied for the traffic as it can’t distinguish between the different IP protocol traffic. </p>
+<p><b>Configuration –</b></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/net/956328795d8479df1a40eced9a7790cc.jpg" width="652" height="386" class="aligncenter size-full"/></p>
+<p>Here is a small topology in which there are 3 departments namely sales, finance and marketing. Sales department having network 172.16.40.0/24, Finance department having network 172.16.50.0/24 and marketing department having network 172.16.60.0/24. Now, want to deny connection from sales department to finance department and allow others to reach that network. </p>
+<p>Now, first configuring numbered standard access – list for denying any IP connection from sales to finance department.</p>
+<pre><b>R1#</b> config terminal
+<b>R1(config)#</b> access-list 10 deny 172.16.40.0 0.0.0.255</pre>
+<p>Here, like extended access-list, you cannot specify the particular IP traffic to be permitted or denied. Also, note that wildcard mask has been used (0.0.0.255 which means Subnet mask 255.255.255.0). 10 is used from the number standard access-list range. </p>
+<pre><b>R1(config)#</b> access-list 110 permit ip any any</pre>
+<p>Now, as you already know there is an implicit deny at the end of every access-list which means that if the traffic doesn’t match any of the rule of access-list then the traffic will be dropped.<br/>
+By specifying any means that source having any ip address traffic will reach finance department except the traffic which it matches the above rules that you have made.</p>
+<p>Now, you have to apply the access-list on the interface of the router:</p>
+<pre><b>R1(config)#</b> int fa0/1
+<b>R1(config-if)#</b> ip access-group 10 out</pre>
+<p>As you remember that the standard access-list is generally applied to the destination and here also if you apply access-list close to destination, it will satisfy our need, therefore, outbound to interface  fa0/1 has been applied. </p>
+<p><b>Named standard Access-list example –</b></p>
+<p><img src="../../../imgs/net/956328795d8479df1a40eced9a7790cc.jpg" width="652" height="386" class="aligncenter size-full"/></p>
+<p>Now, considering the same topology, you will make a named standard access-list. </p>
+<pre><b>R1(config)#</b> ip access-list standard  blockacl</pre>
+<p>By using this command you have made an access-list named blockacl. </p>
+<pre><b>R1(config-std-nacl)#</b> deny 172.16.40.0 0.0.0.255 
+<b>R1(config-std-nacl)#</b> permit  any</pre>
+<p>And then the same configuration you have done in numbered access-list. </p>
+<pre><b>R1(config)#</b> int fa0/1
+<b>R1(config-if)#</b> ip access-group blockacl out</pre>
+<p><b>Standard access-list for Telnet example –</b><br/>
+As you know, you cannot specify a particular IP traffic to be denied in standard access-list but telnet connection can be permitted or denied using standard access-list by applying access list on line vty lines. </p>
+<p><img src="../../../imgs/net/a4c02f559694eb407ff3b8f4aee56643.jpg" width="652" height="386" class="aligncenter size-full"/></p>
+<p>Here, in the given figure, you want to deny telnet to Finance department from any network. Configuring for the same:</p>
+<pre><b>R1(config)#</b> access-list 10 deny any
+<b>R1(config)#</b> line vty 0 4
+<b>R1(config-line)#</b> access-class 10 out </pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

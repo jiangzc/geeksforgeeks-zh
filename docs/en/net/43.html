@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Program to remotely Power On a PC over the internet using the Wake-on-LAN protocol.</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><a href="https://en.wikipedia.org/wiki/Wake-on-LAN">Wake-on-LAN (WoL) </a>is an Ethernet or token ring computer networking standard that allows a computer to be turned on or awakened by a network message.</p>
+<ul>
+<li>The message is usually sent to the target computer by a program executed on a device connected to the same local area network, such as a smartphone.</li>
+<li>It is also possible to initiate the message from another network by using subnet directed broadcasts or a WOL gateway service.</li>
+<li> Equivalent terms include wake on WAN, remote wake-up, power on by LAN, power up by LAN, resume by LAN, resume on LAN and wake up on LAN.</li>
+</ul>
+<p><strong>Principle of operation</strong></p>
+<ul>
+<li>Wake-on-LAN (“WOL”) is implemented using a specially designed packet called a magic packet, which is sent to all computers in a network, among them the computer to be awakened.</li>
+<li> The magic packet contains the MAC address of the destination computer, an identifying number built into each network interface card (“NIC”) or other ethernet device in a computer, that enables it to be uniquely recognized and addressed on a network.</li>
+<li> Powered-down or turned off computers capable of Wake-on-LAN will contain network devices able to “listen” to incoming packets in low-power mode while the system is powered down.</li>
+<li> If a magic packet is received that is directed to the device’s MAC address, the NIC signals the computer’s power supply or motherboard to initiate system wake-up, much in the same way as pressing the power button would do.</li>
+<li>The magic packet is sent on the data link layer (layer 2 in the OSI model) and when sent, is broadcast to all attached devices on a given network, using the network broadcast address; the IP-address (layer 3 in the OSI model) is not used.</li>
+</ul>
+<p>In order for Wake-on-LAN to work, parts of the network interface need to stay on. This consumes a small amount of standby power, much less than normal operating power. Disabling wake-on-LAN when not needed, can therefore very slightly reduce power consumption on computers that are switched off but still plugged into a power socket.</p>
+<p><strong>Magic Packet Structure</strong><br/>
+The magic packet is a broadcast frame containing anywhere within its payload 6 bytes of all 255 (FF FF FF FF FF FF in hexadecimal), followed by sixteen repetitions of the target computer’s 48-bit MAC address, for a total of 102 bytes.<br/>
+Since the magic packet is only scanned for the string above, and not actually parsed by a full protocol stack, it may be sent as any network- and transport-layer protocol, although it is typically sent as a UDP datagram to port 0, 7 or 9, or directly over Ethernet as EtherType 0x0842.</p>
+<p><strong>A standard magic packet has the following basic limitations:</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li>Requires destination computer MAC address (also may require a SecureOn password).</li>
+<li>Does not provide a delivery confirmation.</li>
+<li>May not work outside of the local network.</li>
+<li>Requires hardware support of Wake-On-LAN on destination computer.</li>
+<li>Most 802.11 wireless interfaces do not maintain a link in low power states and cannot receive a magic packet.</li>
+</ol>
+<p>The Wake-on-LAN implementation is designed to be very simple and to be quickly processed by the circuitry present on the network interface card with minimal power requirement. Because Wake-on-LAN operates below the IP protocol layer the MAC address is required and makes IP addresses and DNS names meaningless.</p>
+<pre class="brush: cpp; title: ; notranslate" title="">// C program to remotely Power On a PC over the
+// internet using the Wake-on-LAN protocol.
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;arpa/inet.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/types.h&gt;
+
+int main()
+{
+    int i;
+    unsigned char toSend[102],mac[6];
+    struct sockaddr_in udpClient, udpServer;
+    int broadcast = 1 ;
+
+    // UDP Socket creation
+    int udpSocket = socket(AF_INET, SOCK_DGRAM, 0);
+
+    // Manipulating the Socket
+    if (setsockopt(udpSocket, SOL_SOCKET, SO_BROADCAST,
+                  &amp;broadcast, sizeof broadcast) == -1)
+    {
+        perror("setsockopt (SO_BROADCAST)");
+        exit(EXIT_FAILURE);
+    }
+    udpClient.sin_family = AF_INET;
+    udpClient.sin_addr.s_addr = INADDR_ANY;
+    udpClient.sin_port = 0;
+
+    //Binding the socket
+    bind(udpSocket, (struct sockaddr*)&amp;udpClient, sizeof(udpClient));
+
+    for (i=0; i&lt;6; i++)
+        toSend[i] = 0xFF;
+
+    // Let the MAC Address be ab:cd:ef:gh:ij:kl
+    mac[0] = 0xab;  // 1st octet of the MAC Address
+    mac[1] = 0xcd;  // 2nd octet of the MAC Address
+    mac[2] = 0xef;  // 3rd octet of the MAC Address
+    mac[3] = 0xgh;  // 4th octet of the MAC Address
+    mac[4] = 0xij;  // 5th octet of the MAC Address
+    mac[5] = 0xkl;  // 6th octet of the MAC Address
+
+    for (i=1; i&lt;=16; i++)
+        memcpy(&amp;toSend[i*6], &amp;mac, 6*sizeof(unsigned char));
+
+    udpServer.sin_family = AF_INET;
+
+    // Braodcast address
+    udpServer.sin_addr.s_addr = inet_addr("10.89.255.255");
+    udpServer.sin_port = htons(9);
+
+    sendto(udpSocket, &amp;toSend, sizeof(unsigned char) * 102, 0,
+             (struct sockaddr*)&amp;udpServer, sizeof(udpServer));
+    return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>This program will power on the switched-off PC
+whose MAC Address is used in this program (the 
+PC and the Host computer must be connected over
+LAN). 
+</pre>
+<p><!-- To show list of companies where this problem is asked. Please remove if doesn't fit.    --></p>
+
+<p><strong>Reference :</strong><br/>
+<a href="https://en.wikipedia.org/wiki/Wake-on-LAN">https://en.wikipedia.org/wiki/Wake-on-LAN</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

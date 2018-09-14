@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Caesar Cipher</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p style="text-align: justify">The Caesar Cipher technique is one of the earliest and simplest method of encryption technique. It’s simply a type of substitution cipher, i.e., each letter of a given text is replaced by a letter some fixed number of positions down the alphabet. For example with a shift of 1, A would be replaced by B, B would become C, and so on. The method is apparently named after Julius Caesar, who apparently used it to communicate with his officials.<br/>
+Thus to cipher a given text we need an integer value, known as shift which indicates the number of position each letter of the text has been moved down.<br/>
+The encryption can be represented using&#160;modular arithmetic by first transforming the letters into numbers, according to the scheme, A = 0, B = 1,…, Z = 25. Encryption of a letter&#160;by a shift&#160;n&#160;can be described mathematically as.</p>
+<p style="text-align: center">
+<img src="../../../imgs/net/77303a55caeae55e977a604689a83320.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="E_n(x)=(x+n)mod\ 26" title="Rendered by QuickLaTeX.com" height="27" width="270" style="vertical-align: -7px;"/><br/>
+(Encryption Phase with shift n)</p>
+<p style="text-align: center">
+<img src="../../../imgs/net/257bf4786964266dc8726160612bd194.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="D_n(x)=(x-n)mod\ 26" title="Rendered by QuickLaTeX.com" height="27" width="272" style="vertical-align: -7px;"/><br/>
+(Decryption Phase with shift n)</p>
+<p><img class="aligncenter size-full wp-image-138078" src="../../../imgs/net/0415d2b8944d65608073df4040c1726c.jpg" alt="Caesar Cipher 3" width="339" height="149"/></p>
+<p><strong>Examples :</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre><strong>Text</strong> : ABCDEFGHIJKLMNOPQRSTUVWXYZ
+<strong>Shift</strong>: 23
+<strong>Cipher</strong>: XYZABCDEFGHIJKLMNOPQRSTUVW
+
+<strong>Text</strong> : ATTACKATONCE
+<strong>Shift</strong>: 4
+<strong>Cipher</strong>: EXXEGOEXSRGI
+</pre>
+<p><strong>Algorithm for Caesar Cipher:</strong><br/>
+<strong>Input:</strong></p>
+<ol>
+<li>A String of lower case letters, called Text.</li>
+<li>An Integer between 0-25 denoting the required shift.</li>
+</ol>
+<p><strong>Procedure:</strong></p>
+<ul>
+<li>Traverse the given text one character at a time .</li>
+<li>For each character, transform the given character as per the rule, depending on whether we’re encrypting or decrypting the text.</li>
+<li>Return the new string generated.</li>
+</ul>
+<p>Program that receives a Text (string) and Shift value( integer) and returns the encrypted text.<br/>
+</p>
+<div class="responsive-tabs">
+<h2 class="tabtitle sigil_not_in_toc">C++</h2>
+<div class="tabcontent">
+</div>
+</div>
+<p></p>
+<pre class="brush: cpp; title: ; notranslate" title="">// A C++ program to illustrate Caesar Cipher Technique
+#include &lt;iostream&gt;
+using namespace std;
+
+// This function receives text and shift and
+// returns the encrypted text
+string encrypt(string text, int s)
+{
+    string result = "";
+
+    // traverse text
+    for (int i=0;i&lt;text.length();i++)
+    {
+        // apply transformation to each character
+        // Encrypt Uppercase letters
+        if (isupper(text[i]))
+            result += char(int(text[i]+s-65)%26 +65);
+
+    // Encrypt Lowercase letters
+    else
+        result += char(int(text[i]+s-97)%26 +97);
+    }
+
+    // Return the resulting string
+    return result;
+}
+
+// Driver program to test the above function
+int main()
+{
+    string text="ATTACKATONCE";
+    int s = 4;
+    cout &lt;&lt; "Text : " &lt;&lt; text;
+    cout &lt;&lt; "\nShift: " &lt;&lt; s;
+    cout &lt;&lt; "\nCipher: " &lt;&lt; encrypt(text, s);
+    return 0;
+}
+</pre>
+
+</div>
+<h2 class="tabtitle sigil_not_in_toc">Java</h2>
+<div class="tabcontent">
+
+<pre class="brush: java; title: ; notranslate" title="">//A Java Program to illustrate Caesar Cipher Technique
+class CaesarCipher
+{
+    // Encrypts text using a shift od s
+    public static StringBuffer encrypt(String text, int s)
+    {
+        StringBuffer result= new StringBuffer();
+
+        for (int i=0; i&lt;text.length(); i++)
+        {
+            if (Character.isUpperCase(text.charAt(i)))
+            {
+                char ch = (char)(((int)text.charAt(i) +
+                                  s - 65) % 26 + 65);
+                result.append(ch);
+            }
+            else
+            {
+                char ch = (char)(((int)text.charAt(i) +
+                                  s - 97) % 26 + 97);
+                result.append(ch);
+            }
+        }
+        return result;
+    }
+
+    // Driver code
+    public static void main(String[] args)
+    {
+        String text = "ATTACKATONCE";
+        int s = 4;
+        System.out.println("Text  : " + text);
+        System.out.println("Shift : " + s);
+        System.out.println("Cipher: " + encrypt(text, s));
+    }
+}
+</pre>
+
+</div>
+<h2 class="tabtitle sigil_not_in_toc">Python</h2>
+<div class="tabcontent">
+
+<pre class="brush: python; title: ; notranslate" title="">#A python program to illustrate Caesar Cipher Technique
+def encrypt(text,s):
+    result = ""
+
+    # traverse text
+    for i in range(len(text)):
+        char = text[i]
+
+        # Encrypt uppercase characters
+        if (char.isupper()):
+            result += chr((ord(char) + s-65) % 26 + 65)
+
+        # Encrypt lowercase characters
+        else:
+            result += chr((ord(char) + s - 97) % 26 + 97)
+
+    return result
+
+#check the above function
+text = "ATTACKATONCE"
+s = 4
+print "Text  : " + text
+print "Shift : " + str(s)
+print "Cipher: " + encrypt(text,s)
+</pre>
+<p></p>
+</div>
+</body>
+</html>

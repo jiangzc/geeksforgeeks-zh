@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">TCP Connection Termination</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In <a href="https://www.geeksforgeeks.org/computer-network-tcp-3-way-handshake-process/" target="_blank">TCP 3-way Handshake Process</a> we studied that how connection establish between client and server in Transmission Control Protocol (TCP) using <strong>SYN</strong> bit segments. In this article we will study about how TCP close connection between Client and Server. Here we will also need to send bit segments to server which <strong>FIN</strong> bit is set to 1.</p>
+<p><img src="../../../imgs/net/16edade1da8edbed1da33e4caa7e3792.jpg" alt="11" class="aligncenter size-full wp-image-161725"/></p>
+<p>How mechanism works In TCP :</p>
+<ol>
+<li><strong>Step 1 (FIN From Client) –</strong> Suppose that the client application decides it wants to close the connection. (Note that the server could also choose to close the connection). This causes the client send a TCP segment with the <strong>FIN</strong> bit set to <strong>1</strong> to server and to enter the <strong>FIN_WAIT_1</strong> state. While in the <strong>FIN_WAIT_1</strong> state, the client waits for a TCP segment from the server with an acknowledgment (ACK).</li>
+<li><strong>Step 2 (ACK From Server) –</strong> When Server received FIN bit segment from Sender (Client), Server Immediately send acknowledgement (ACK) segment to the Sender (Client).</li>
+<li><strong> Step 3 (Client waiting) –</strong>  While in the <strong>FIN_WAIT_1</strong> state, the client waits for a TCP segment from the server with an acknowledgment. When it receives this segment, the client enters the <strong>FIN_WAIT_2</strong> state. While in the <strong>FIN_WAIT_2</strong> state, the client waits for another segment from the server with the FIN bit set to 1.</li>
+<li><strong>Step 4 (FIN from Server) –</strong> Server sends FIN bit segment to the Sender(Client) after some time when Server send the ACK segment (because of some closing process in the Server).</li>
+<li><strong>Step 5 (ACK from Client) –</strong> When Client receive FIN bit segment from the Server, the client acknowledges the server’s segment and enters the <strong>TIME_WAIT</strong> state. The <strong>TIME_WAIT</strong> state lets the  client resend the final acknowledgment in case the <strong>ACK</strong> is lost.The time spent by client in the <strong>TIME_WAIT</strong> state is depend on their implementation, but their typical values are 30 seconds, 1 minute, and 2 minutes. After the wait, the connection formally closes and all resources on the client side (including port numbers and buffer data) are released.</li>
+</ol>
+<p>In the below Figures illustrates the series of states visited by the server-side and also Client-side, assuming the client begins connection tear-down.In these two state-transition figures, we have only shown how a TCP connection is normally established and shut-down. </p>
+<p>TCP states visited by ClientSide –<br/>
+<img src="../../../imgs/net/0a15decbec9e2c949cd340d143c094b5.jpg" alt="" class="aligncenter size-medium wp-image-246101"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>TCP states visited by ServerSide –<br/>
+<img src="../../../imgs/net/055b1cb52fbf6898ee0aac1c1c25c5dc.jpg" alt="" class="aligncenter size-medium wp-image-246103"/></p>
+<p>Here we have not described what happens in certain scenarios like when both sides of a connection want to initiate or shut down at the same time. If you are interested in learning about more this and other advanced issues concerning TCP, you are encouraged to see Stevens’comprehensive book.</p>
+<p><b>GATE Question –</b><br/>
+Consider a TCP client and a TCP server running on two different machines. After completing data transfer, the TCP client calls <b>close</b> to terminate the connection and a FIN segment is sent to the TCP server. Server-side TCP responds by sending an ACK which is received by the client-side TCP. As per the TCP connection state diagram(RFC 793), in which state does the client side TCP connection wait for the FIN from the server-side TCP?<br/>
+(A) LAST-ACK<br/>
+(B) TIME-WAIT<br/>
+(C) FIN-WAIT-1<br/>
+(D) FIN-WAIT-2</p>
+<p><b>Explanation :</b> (D)<br/>
+<a href="https://www.geeksforgeeks.org/gate-gate-cs-2017-set-1-question-12/" target="_blank">GATE CS 2017 (Set 1), Question 12</a></p>
+<p><strong>References –</strong><br/>
+<a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol#Connection_termination" target="_blank">TCP Connection Termination – Wikipedia</a><br/>
+ <a href="http://www.bau.edu.jo/UserPortal/UserProfile/PostsAttach/10617_1870_1.pdf" target="_blank">http://www.bau.edu.jo/UserPortal/UserProfile/PostsAttach/10617_1870_1.pdf</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

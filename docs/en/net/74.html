@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Open shortest path first (OSPF) router roles and configuration</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-open-shortest-path-first-ospf-protocol-states/" rel="noopener" target="_blank">Open shortest path first (OSPF)</a><br/>
+Open shortest path first (OSPF) is a link-state routing protocol which is used to find the best path between the source and the destination router using its own SPF algorithm. </p>
+<p><b>Open shortest path first (OSPF) router roles –</b><br/>
+An area is a group  of contiguous network and routers. Routers belonging to same area shares a common topology table and area I’d. The area I’d is associated with router’s interface as a router can belong to more than one area. There are some roles of router in OSPF:</p>
+<p><img src="../../../imgs/net/c3da55b0e0ecfdbe8934ae46cbf9d7c2.jpg" width="765" height="391" class="aligncenter size-full"/></p>
+<ol>
+<li><strong>Backbone router –</strong> The area 0 is known as backbone area and the routers in area 0 are known as backbone routers. If the routers exists partially in the area 0then also it is a backbone router.
+</li>
+<li><strong>Internal router –</strong> An internal router is a router which have all of its interfaces in a single area.
+</li>
+<li><strong>Area Boundary Router (ABR) –</strong> The router  which connects backbone area  with another area  is called Area Boundary Router. It belongs to more than one area. The ABRs therefore maintain multiple link-state databases that describe both the backbone topology and the topology of the other areas.
+</li>
+<li><strong>4.Area Summary Border Router (ASBR) –</strong> When an OSPF router is connected to a different protocol like EIGRP, or Border Gateway Protocol, or any other routing protocol then it is known as AS. The router which connects two different AS (in which one of the interface is operating OSPF) is known as Area Summary Border Router. These routers perform redistribution. ASBRs run both OSPF and another routing protocol, such as RIP or BGP. ASBRs advertise the exchanged external routing information throughout their AS.
+</li>
+</ol>
+<p><strong>Note –</strong> A router can be backbone router and Area Boundary Router at the same time i.e a router can perform more than one role at a time. </p>
+<p><b>Configuration –</b></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/net/193e2405248a4c793688a05f044f8663.jpg" width="750" height="296" class="aligncenter size-full"/></p>
+<p>There is a small topology in which there are 3 routers namely R1, R2, R3 are connected. R1 is connected to networks 10.255.255.80/30 (interface fa0/1), 192.168.10.48/29 (interface fa0/0) and 10.255.255.8/30 (interface gi0/0)<br/>
+<strong>Note –</strong> In the figure, IP addresses are written with their respected interfaces but as have to advertise networks therefore, you have to write network I’d. R2 is connected to networks 192.168.10.64/29 (interface fa0/0), 10.255.255.80/30 (interface fa0/1). R3 is connected to networks 10.255.255.8/30 (int fa0/1), 192.168.10.16/29 (int fa0/0).</p>
+<p>Now, configuring OSPF for R1. </p>
+<pre>R1(config)#router ospf 1
+R1(config-router)#network 192.168.10.48 0.0.0.7 area 1
+R1(config-router)#network 10.255.255.80 0.0.0.3 area 1
+R1(config-router)#network 10.255.255.8 0.0.0.3 area 1</pre>
+<p>Here, 1 is the OSPF instance or process I’d. It can be same or different (doesn’t matter). You have use wildcard mask here and area used is 1.<br/>
+Now, configuring R2</p>
+<pre>R2(config)#router ospf 1
+R2(config-router)#network 192.168.10.64 0.0.0.7 area 1
+R2(config-router)#network 10.255.255.80 0.0.0.3 area 1</pre>
+<p>Similarly, for R3</p>
+<pre>R3(config)#router ospf 1
+R3(config-router)#network 192.168.10.16 0.0.0.7 area 1
+R3(config-router)#network 10.255.255.8 0.0.0.3 area 1</pre>
+<p>You can check the configuration by typing command</p>
+<pre>R3#show ip protocols </pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

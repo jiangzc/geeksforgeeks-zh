@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">TCP Timers</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>TCP uses several timers to ensure that excessive delays are not encountered during communications. Several of these timers are elegant, handling problems that are not immediately obvious at first analysis. Each of the timers used by TCP is examined in the following sections, which reveal its role in ensuring data is properly sent from one connection to another.</p>
+<p><b>TCP implementation uses four timers –</b> </p>
+<ol>
+<li><b>Retransmission Timer –</b> To retransmit lost segments, TCP uses retransmission timeout (RTO). When TCP sends a segment the timer starts and stops when the acknowledgment is received. If the timer expires timeout occurs and the segment is retransmitted. RTO (retransmission timeout is for 1 RTT) to calculate retransmission timeout we first need to calculate the RTT(round trip time).<br/>
+<b>RTT three types –</b><p></p>
+<ul>
+<li><b> Measured RTT(RTTm) –</b> The measured round-trip time for a segment is the time required for the segment to reach the destination and be acknowledged, although the acknowledgment may include other segments. </li>
+<li><b>Smoothed RTT(RTTs) –</b> It is the weighted average of RTTm. RTTm is likely to change and its fluctuation is so high that a single measurement cannot be used to calculate RTO.
+<pre>Initially -&gt; No value
+After the first measurement -&gt; RTTs=RTTm
+After each measurement -&gt; RTTs= (1-t)*RTTs + t*RTTm
+Note: t=1/8 (default if not given)
+</pre>
+</li>
+<li><b>Deviated RTT(RTTd) –</b> Most implementation do not use RTTs alone so RTT deviated is also calculated to find out RTO.
+<pre>Initially -&gt; No value
+After the first measurement -&gt; RTTd=RTTm/2
+After each measurement -&gt; RTTd= (1-k)*RTTd + k*(RTTm-RTTs)
+Note: k=1/4 (default if not given)
+</pre>
+</li>
+</ul>
+<p><b>Retransmission Timeout : RTO calculation –</b> The value of RTO is based on the smoothed round-trip time and its deviation. Most implementations use the following formula to calculate the RTO:</p>
+<pre>Initial value -&gt; Original (given in question)
+After any measurement -&gt; RTO=RTTs + 4*RTTd
+</pre>
+<p>#NOTE: At every retransmission the value of RTO doubles. ( RTO(new) = RTO(before retransmission) *2 ) this is explained in <a> Karn’s Algorithm</a></p></li>
+<li><b>Persistent Timer –</b> To deal with a zero-window-size deadlock situation, TCP uses a persistence timer.When the sending TCP receives an acknowledgment with a window size of zero, it starts a persistence timer. When the persistence timer goes off, the sending TCP sends a special segment called a probe. This segment contains only 1 byte of new data. It has a sequence number, but its sequence number is never acknowledged; it is even ignored in calculating the sequence number for the rest of the data. The probe causes the receiving TCP to resend the acknowledgment which was lost.</li>
+<li><b>Keep Alive Timer –</b> A keepalive timer is used to prevent a long idle connection between two TCPs. If a client opens a TCP connection to a server transfers some data and becomes silent the client will crash. In this case, the connection remains open forever. So a keepalive timer is used. Each time the server hears from a client, it resets this timer. The time-out is usually 2 hours. If the server does not hear from the client after 2 hours, it sends a probe segment.If there is no response after 10 probes, each of which is 75 s apart, it assumes that the client is down and terminates the connection.</li>
+<li><b>Time Wait Timer –</b> This timer is used during <a href="https://www.geeksforgeeks.org/computer-network-tcp-connection-termination/">tcp connection termination</a>. The timer starts after sending the last Ack for 2nd FIN and closing the connection.</li>
+</ol>
+<p><b>Reference –</b><br/>
+<a href="https://learningnetwork.cisco.com/thread/47664" target="_blank">TCP Timers – Cisco</a><br/>
+<a href="http://www.ques10.com/p/9848/explain-tcp-timers-1/" target="_blank">TCP Timers – Que10</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

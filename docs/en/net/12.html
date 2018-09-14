@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">LAN Technologies | ETHERNET</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Local Area Network (LAN) is a data communication network connecting various terminals or computers within a building or limited geographical area.The connection among the devices could wired or wireless. Ethernet, Token Ring and Wireless LAN using IEEE 802.11 are examples of standard LAN technologies.</p>
+<p><strong>Ethernet :-</strong><br/>
+Ethernet is most widely used LAN Technology, which is defined under IEEE standards 802.3. The reason behind its wide usability is Ethernet is easy to understand, implement, maintain and allows low cost network implementation. Also, Ethernet offers flexibility in terms of topologies which are allowed. Ethernet operates in two layers of OSI model, Physical Layer and Data Link Layer. For Ethernet the protocol data unit is Frame, since we mainly deal with DLL. In order to handle collision, the Access control mechanism used in Ethernet is CSMA/CD.<br/>
+Manchester Encoding Technique is used in Ethernet.<br/>
+<img src="../../../imgs/net/baa5df56a8c97467780a34a50a72bcd3.jpg" alt="" width="771" height="365" class="alignnone size-full wp-image-228696"/><br/>
+Since we are talking about IEEE 802.3 standard Ethernet therefore, 0 is expressed by a high-to-low transition, a 1 by low-to-high transition. In both Manchester Encoding and Differential Manchester Encoding Buad rate is double of bit rate.</p>
+<pre> Baud rate = 2* Bit rate </pre>
+<p>Ethernet LANs consist of network nodes and interconnecting media or link. The network nodes can be of two types:<br/>
+<strong>Data Terminal Equipment (DTE):-</strong> Generally, DTEs are the end devices that convert the user information into signals or reconvert the received signals. DTEs devices are : personal computers, workstations, file servers or print servers also referred to as end stations. These devices are either the source or the destination of data frames. The data terminal equipment may be a single piece of equipment or multiple pieces of equipment that are interconnected and perform all the required functions to allow the user to communicate. A user can interacts to DTE or DTE may be user.</p>
+<p><strong>Data Communication Equipment (DCE):-</strong> DCEs are the intermediate network devices that receive and forward frames across the network. They may be either standalone devices such as repeaters, network switches, routers or may be communications interface units such as interface cards and modems. The DCE performs functions such as signal conversion, coding and may be a part of the DTE or intermediate equipment.</p>
+<p>Currently, these data rates are defined for operation over optical fibers and twisted-pair cables:<br/>
+<strong>i) Fast Ethernet</strong><br/>
+Fast Ethernet refers to an Ethernet network that can transfer data at a rate of 100 Mbit/s.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>ii) Gigabit Ethernet</strong><br/>
+Gigabit Ethernet delivers a data rate of 1,000 Mbit/s (1 Gbit/s).</p>
+<p><strong>iii) 10 Gigabit Ethernet</strong><br/>
+10 Gigabit Ethernet is the recent generation and delivers a data rate of 10 Gbit/s (10,000 Mbit/s). It is generally used for backbones in high-end applications requiring high data rates.</p>
+<p><strong>ALOHA</strong><br/>
+The Aloha protocol was designed as part of a project at the University of Hawaii. It provided data transmission between computers on several of the Hawaiian Islands involving packet radio networks. Aloha is a multiple access protocol at the data link layer and proposes how multiple terminals access the medium without interference or collision.</p>
+<p>There are two different versions of ALOHA:<br/>
+<strong>1. Pure Aloha</strong><br/>
+Pure Aloha is an un-slotted, decentralized, and simple to implement protocol. In pure ALOHA, the stations simply transmit frames whenever they want data to send. It does not check whether channel is busy or not before transmitting. In case, two or more stations transmit simultaneously, collision occurs and frames are destroyed. Whenever any station transmits a frame, it expects the acknowledgement from the receiver. If it is not received within specified time, the station assumes that the frame or acknowledgement has been destroyed. Then, the station waits for a random amount of time and sends the frame again. This randomness helps in avoiding more collisions. This scheme works well in small networks where the load is not much. But in largely loaded networks, this scheme fails poorly. This led to the development of Slotted Aloha.<br/>
+To assure pure aloha: Its throughput and rate of transmission of frame to be predicted.<br/>
+For that to make some assumption:<br/>
+i) All the frames should be the same length.<br/>
+ii) Stations can not generate frame while transmitting or trying to transmit frame.<br/>
+iii)The population of stations attempts to transmit (both new frames and old frames that collided) according to a Poisson distribution.<br/>
+<img src="../../../imgs/net/6abdc031eab8c80e76e24cbeee0ac31d.jpg" alt="" width="500" height="500" class="size-medium wp-image-228826"/></p>
+<pre> Vulnerable Time = 2 * Tt </pre>
+<p><strong>Efficiency of Pure ALOHA:</strong></p>
+<pre><strong>S</strong>pure= G * e^-2G 
+<em>where G is number of stations wants to transmit in Tt slot. </em>
+
+<strong>Maximum Efficiency:</strong>
+Maximum Efficiency will be obtained when G=1/2
+
+(<strong>S</strong>pure)<em>max</em> = 1/2 * e^-1
+           = 0.184 
+
+<em>Which means, in Pure ALOHA, only about 18.4% of the time is used for successful transmissions.</em></pre>
+<p><strong>2. Slotted Aloha</strong><br/>
+This is quite similar to Pure Aloha, differing only in the way transmissions take place. Instead of transmitting right at demand time, the sender waits for some time. In slotted ALOHA, the time of the shared channel is divided into discrete intervals called <em>Slots</em>. The stations are eligible to send a frame only at the beginning of the slot and only one frame per slot is sent. If any station is not able to place the frame onto the channel at the beginning of the slot, it has to wait until the beginning of the next time slot. There is still a possibility of collision if two stations try to send at the beginning of the same time slot. But still the number of collisions that can possibly take place is reduced by a large margin and the performance becomes much well compared to Pure Aloha.</p>
+<p><img src="../../../imgs/net/66af4aba3b3cc7313d7922cf7e9d92ed.jpg" alt="" width="857" height="281" class="alignnone size-full wp-image-228859"/></p>
+<p>Collision is possible for only the current slot. Therefore, Vulnerable Time is Tt.</p>
+<p><strong>Efficiency of Slotted ALOHA:</strong></p>
+<pre> <strong>S</strong><em>slotted</em> = G * e^-G
+
+<strong>Maximum Efficiency:</strong>
+(<strong>S</strong>slotted)<em>max</em> = 1 * e^-1 
+              = 1/e = 0.368 
+Maximum Efficiency, in Slotted ALOHA, is 36.8%.</pre>
+<p><br/><br/>
+<br/><br/>
+Image Reference: <a href="https://en.wikipedia.org/wiki/Manchester_code#/media/File:Manchester_encoding_both_conventions.svg">Wikipedia </a>,<a href="https://www.lkn.ei.tum.de/mmprog/mac/protocols/collision/aloha2.htm">Technical University of Munich</a></p>
+<p>References:<br/>
+https://www.cisco.com/c/en/us/tech/lan-switching/ethernet/index.html<br/>
+https://en.wikipedia.org/wiki/Ethernet</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

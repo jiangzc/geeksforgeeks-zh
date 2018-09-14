@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Probabilistic shortest path routing algorithm for optical networks</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Data transfer operations is a crucial aspect in case of networking and routing. So efficient data transfer operations is a must need, with minimum hardware cost (Optical Cables, WDM Network components, Decoders, Multiplexers) and also in the minimum time possible. Thus, the need is to propose an algorithm that finds the shortest path between two nodes (source node and destination node). </p>
+<p>Let’s see a completely new algorithm unlike Dijkstra’s Shortest Path or any other algorithm for finding Shortest Path.</p>
+<p>Given a graph and two nodes (source node and destination node), find the shortest path between them.<br/>
+<img src="../../../imgs/net/99b6501155143b994b8993c8669aa4ae.jpg" alt="" width="335" height="248" class="aligncenter size-full wp-image-413482"/></p>
+<p>Let’s Calculate the distance ratio for each link :</p>
+<blockquote><p>Distance of link AB [denoted by <code>d(AB)</code>] = 10<br/>
+Distance of link AC [denoted by <code>d(AC)</code>] = 12</p>
+<p>For link <strong>AB</strong>, Distance Ratio of AB = d(AB) / (d(AB) + d(AC))<br/>
+For link <strong>AC</strong>, Distance Ratio of AC = d(AC) / (d(AB) + d(AC))</p>
+</blockquote>
+<p><strong>Algorithm :</strong></p>
+<pre>Given a graph and two nodes -
+
+1. Find all the paths connecting the two nodes.
+2. For each path calculate probability = (Distance Ratio). 
+3. After looping over all such paths, find the path for
+   which the probability turns out to be minimum.</pre>
+<p>Examples :</p>
+<pre><strong>Input :</strong> <img src="../../../imgs/net/9a3d14b4b9f743ee62dd9510337978b7.jpg" alt="" width="448" height="296" class="aligncenter size-full wp-image-413490"/>
+
+<strong>Output : </strong>Shortest Path is [A -&gt; B]
+
+
+<strong>Explanation :</strong>
+All possible paths are
+P1 = [A-&gt;B]
+P2 = [A-&gt;C-&gt;B]
+P3 = [A-&gt;D-&gt;B] 
+
+total distance D = d(P1) + d(P2) + d(P3) 
+                 = (3) + (2 + 5) + (4 + 3)
+                 = 17
+
+distance ratio for P1 = d(P1) / D = 3/17
+distance ratio for P2 = d(P2) / D = 7/17
+distance ratio for P3 = d(P3) / D = 7/17
+
+So the shortest path is  P1 = [A-&gt;B]
+
+<br/>
+
+<strong>Input : </strong><img src="../../../imgs/net/221cbc68e055ceef70d84938183154ae.jpg" alt="" width="448" height="322" class="aligncenter size-full wp-image-413497"/>
+
+<strong>Output :</strong> Shortest Path is [A -&gt; B]</pre>
+<p>&#160;</p>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Let’s illustrate the algorithm with a 7-node network and find out the Probabilistic shortest path between <code>node 1</code> and <code>node 5</code>.</p>
+<p><img src="../../../imgs/net/62c588616cf050f55cc9c607f5c307bc.jpg" alt="" width="437" height="343" class="aligncenter size-full wp-image-413504"/></p>
+<p>Below is the implementation :</p>
+<pre class="brush: python3; highlight: [90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130]; title: ; notranslate" title=""># Python program to find Probabilistic
+# shortest path routing algorithm for
+# optical networks
+
+# importing random module
+import random
+
+# Number of nodes
+NODES = 7 
+
+# very small invalid 
+# when no link exists
+INVALID = 0.001  
+
+
+distance_links = [[INVALID for i in range(NODES)]
+                           for j in range(NODES)]
+# distance of each link                           
+distance_links[0][1] = 7
+distance_links[1][0] = 7
+distance_links[1][2] = 8
+distance_links[2][1] = 8
+distance_links[0][2] = 9
+distance_links[2][0] = 9
+distance_links[3][0] = 9
+distance_links[0][3] = 9
+distance_links[4][3] = 4
+distance_links[3][4] = 4
+distance_links[5][4] = 6
+distance_links[4][5] = 6
+distance_links[5][2] = 4
+distance_links[2][5] = 4
+distance_links[4][6] = 8
+distance_links[6][4] = 8
+distance_links[0][6] = 5
+distance_links[6][0] = 5
+
+
+
+# Finds next node from current node
+def next_node(s): 
+    nxt = []
+    
+    for i in range(NODES):
+        if(distance_links[s][i] != INVALID):
+            nxt.append(i)
+    return nxt
+
+# Find simple paths for each
+def find_simple_paths(start, end):
+    visited = set()
+    visited.add(start)
+
+    nodestack = list()
+    indexstack = list()
+    current = start
+    i = 0
+
+    while True:
+        
+        # get a list of the neighbors
+        # of the current node
+        neighbors = next_node(current)
+
+        # Find the next unvisited neighbor
+        # of this node, if any
+        while i &lt; len(neighbors) and neighbors[i] in visited: 
+            i += 1
+
+        if i &gt;= len(neighbors):
+            visited.remove(current)
+            
+            if len(nodestack) &lt; 1: 
+                break
+                
+            current = nodestack.pop()
+            i = indexstack.pop()
+            
+        elif neighbors[i] == end:
+            yield nodestack + [current, end]
+            i += 1
+            
+        else:
+            nodestack.append(current)
+            indexstack.append(i + 1)
+            visited.add(neighbors[i])
+            current = neighbors[i]
+            i = 0
+
+# Find the shortest path
+def solution(sour, dest):
+
+    block = 0
+    l = []
+    for path in find_simple_paths(sour, dest): 
+        l.append(path)     
+
+    k = 0
+    for i in range(len(l)):
+        su = 0
+        for j in range(1, len(l[i])):
+            su += (distance_links[l[i][j-1]]
+                                 [l[i][j]])
+        k += su
+        
+    # print k 
+    dist_prob = []
+    probability = []
+
+    for i in range(len(l)):
+        s, su = 0, 0
+    
+        for j in range(1, len(l[i])):     
+                
+            su += (distance_links[l[i][j-1]]
+                                 [l[i][j]])
+                                 
+        dist_prob.append(su/(1.0 * k))
+        
+    
+    for m in range(len(dist_prob)):
+        z = (dist_prob[m])
+        probability.append(z)
+
+    for i in range(len(probability)):
+        if(probability[i] == min(probability)):
+
+            z = l[i]
+            print("Shortest Path is", end = " ")
+            print(z)
+            
+# Driver Code
+if __name__ == '__main__' :
+    source, dest = 1, 5
+    
+    # Calling the solution function
+    solution(source, dest) 
+
+</pre>
+<p>Output :</p>
+<pre>Shortest Path is [1, 2, 5]</pre>
+<p>&#160;<br/>
+<strong>Advantage over common Shortest Path Algorithms :</strong><br/>
+Most of the shortest path algorithms are greedy algorithms. So its based on the fact that an optimal solution leads to a globally optimal solution. In most of the cases, due to greedy property, it may not always lead to an optimal solution. But using this algorithm, one can always guarantee an optimal solution and hence the accuracy is 100%.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

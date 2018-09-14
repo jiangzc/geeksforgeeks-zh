@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Program to determine class, Network and Host ID of an IPv4 address</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Given a valid IPv4 address in the form of string and it follows <a href="https://www.geeksforgeeks.org/ip-addressing-introduction-and-classful-addressing/">Class Full</a> addressing. The task is to determine class of given IPv4 address as well as separate Network and Host ID part from it.</p>
+<p><strong>Examples:</strong></p>
+<pre><strong>Input : </strong>1.4.5.5
+<strong>Output :</strong>
+Given IP address belongs to Class A
+Network ID is 1
+Host ID is 4.5.5
+
+<strong>Input : </strong>130.45.151.154
+<strong>Output :</strong>
+Given IP address belongs to Class B
+Network ID is 130.45
+Host ID is 151.154
+</pre>
+<p align="center"><strong>Approach</strong></p>
+<ol>
+<li><b>For determining the class:</b> The idea is to check first octet of IP address. As we know, for class <b>A</b> first octet will range from <b>1 – 126</b>, for class <b>B</b> first octet will range from <b>128 – 191</b>, for class <b>C</b> first octet will range from <b>192- 223</b>, for class <b>D</b> first octet will range from <b>224 – 239</b>, for class <b>E</b> first octet will range from <b>240 – 255</b>.
+</li>
+<li><b>For determining the Network and Host ID:</b> We know that <a href="https://www.iplocation.net/subnet-mask">Subnet Mask</a> for Class <b>A</b> is <b>8</b>, for Class <b>B</b> is <b>16</b> and for Class <b>C</b> is <b>24</b> whereas Class <b>D</b> and <b>E</b> is not divided into Network and Host ID.
+<p>For 2nd Example, first octet is 130. So, it belongs to Class <b>B</b>. Class B has subnet mask of 16. So, first 16 bit or first two octet is Network ID part and rest is Host ID part.<br/>
+Hence, Network ID is <b>130.45</b> and Host ID is <b>151.154</b></p></li>
+</ol>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre class="brush: c; title: ; notranslate" title="">// C program to determine class, Network
+// and Host ID of an IPv4 address
+#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+
+// Function to find out the Class
+char findClass(char str[])
+{
+    // storing first octet in arr[] variable
+    char arr[4];
+    int i = 0;
+    while (str[i] != '.')
+    {
+        arr[i] = str[i];
+        i++;
+    }
+    i--;
+
+    // converting str[] variable into number for
+    // comparison
+    int ip = 0, j = 1;
+    while (i &gt;= 0)
+    {
+        ip = ip + (str[i] - '0') * j;
+        j = j * 10;
+        i--;
+    }
+
+    // Class A
+    if (ip &gt;=1 &amp;&amp; ip &lt;= 126)
+        return 'A';
+
+    // Class B
+    else if (ip &gt;= 128 &amp;&amp; ip &lt;= 191)
+        return 'B';
+
+    // Class C
+    else if (ip &gt;= 192 &amp;&amp; ip &lt;= 223)
+        return 'C';
+
+    // Class D
+    else if (ip &gt;= 224 &amp;&amp; ip &lt;= 239)
+        return 'D';
+
+    // Class E
+    else
+        return 'E';
+}
+
+// Function to separate Network ID as well as
+// Host ID and print them
+void separate(char str[], char ipClass)
+{
+    // Initializing network and host array to NULL
+    char network[12], host[12];
+    for (int k = 0; k &lt; 12; k++)
+        network[k] = host[k] = '\0';
+
+    // for class A, only first octet is Network ID
+    // and rest are Host ID
+    if (ipClass == 'A')
+    {
+        int i = 0, j = 0;
+        while (str[j] != '.')
+            network[i++] = str[j++];
+        i = 0;
+        j++;
+        while (str[j] != '\0')
+            host[i++] = str[j++];
+        printf("Network ID is %s\n", network);
+        printf("Host ID is %s\n", host);
+    }
+
+    // for class B, first two octet are Network ID
+    // and rest are Host ID
+    else if (ipClass == 'B')
+    {
+        int i = 0, j = 0, dotCount = 0;
+
+        // storing in network[] up to 2nd dot
+        // dotCount keeps track of number of
+        // dots or octets passed
+        while (dotCount &lt; 2)
+        {
+            network[i++] = str[j++];
+            if (str[j] == '.')
+                dotCount++;
+        }
+        i = 0;
+        j++;
+
+        while (str[j] != '\0')
+            host[i++] = str[j++];
+
+        printf("Network ID is %s\n", network);
+        printf("Host ID is %s\n", host);
+    }
+
+    // for class C, first three octet are Network ID
+    // and rest are Host ID
+    else if (ipClass == 'C')
+    {
+        int i = 0, j = 0, dotCount = 0;
+
+        // storing in network[] up to 3rd dot
+        // dotCount keeps track of number of
+        // dots or octets passed
+        while (dotCount &lt; 3)
+        {
+            network[i++] = str[j++];
+            if (str[j] == '.')
+                dotCount++;
+        }
+
+        i = 0;
+        j++;
+
+        while (str[j] != '\0')
+            host[i++] = str[j++];
+
+        printf("Network ID is %s\n", network);
+        printf("Host ID is %s\n", host);
+    }
+
+    // Class D and E are not divided in Network
+    // and Host ID
+    else
+        printf("In this Class, IP address is not"
+           " divided into Network and Host ID\n");
+}
+
+// Driver function is to test above function
+int main()
+{
+    char str[] = "192.226.12.11";
+    char ipClass = findClass(str);
+    printf("Given IP address belongs to Class %c\n",
+                                           ipClass);
+    separate(str, ipClass);
+    return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>Given IP address belongs to Class C
+Network ID is 192.226.12
+Host ID is 11
+<!-- Your Output -->
+</pre>
+<p><!-- To show list of companies where this problem is asked. Please remove if doesn't fit.    --></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

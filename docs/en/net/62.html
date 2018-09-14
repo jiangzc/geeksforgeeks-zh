@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">(Route Poisoning and Count to infinity problem)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>The main issue with <strong>D</strong>istance Vector <strong>R</strong>outing (DVR) protocols is Routing Loops, since <a href="https://www.geeksforgeeks.org/dynamic-programming-set-23-bellman-ford-algorithm/">Bellman-Ford Algorithm</a> cannot prevent loops. This routing loop in DVR network causes Count to Infinity Problem. Routing loops usually occur when any interface goes down or two-routers send updates at the same time.</p>
+<p><strong>Counting to infinity problem: </strong><br/>
+<img src="../../../imgs/net/8514b09740fd5ad2d69d835662539fc6.jpg" alt="" width="415" height="121" class="aligncenter size-full wp-image-245647"/></p>
+<p>So in this example, the Bellman-Ford algorithm will converge for each router, they will have entries for each other. B will know that it can get to C at a cost of 1, and A will know that it can get to C via B at a cost of 2.</p>
+<p><img src="../../../imgs/net/3171c9f5b45d43f3b7240a8695430a96.jpg" alt="" width="434" height="136" class="aligncenter size-full wp-image-245650"/><br/>
+If the link between B and C is disconnected, then B will know that it can no longer get to C via that link and will remove it from it’s table. Before it can send any updates it’s possible that it will receive an update from A which will be advertising that it can get to C at a cost of 2. B can get to A at a cost of 1, so it will update a route to C via A at a cost of 3. A will then receive updates from B later and update its cost to 4. They will then go on feeding each other bad information toward infinity which is called as <strong>Count to Infinity problem</strong>.</p>
+<h3 class="sigil_not_in_toc">Solution for Count to Infinity problem:- </h3>
+<p><strong>Route Poisoning: </strong><br/>
+When a route fails, distance vector protocols spread the <em>bad news</em> about a route failure by poisoning the route. Route poisoning refers to the practice of advertising a route, but with a special metric value called Infinity. Routers consider routes advertised with an infinite metric to have failed. Each distance vector routing protocol uses the concept of an actual metric value that represents infinity. RIP defines infinity as 16. The main disadvantage of poison reverse is that it can significantly increase the size of routing announcements in certain fairly common network topologies.<br/>
+<img src="../../../imgs/net/09b8e399bb7b56b659f9944b12390dd8.jpg" alt="" width="532" height="156" class="aligncenter size-full wp-image-245657"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Split horizon: </strong><br/>
+If the link between B and C goes down, and B had received a route from A , B could end up using that route via A. A would send the packet right back to B, creating a loop. But according to Split horizon Rule, Node A does not advertise its route for C (namely A to B to C) back to B. On the surface, this seems redundant since B will never route via node A because the route costs more than the direct route from B to C.<br/>
+Consider the following network topology showing Split horizon-<br/>
+<img src="../../../imgs/net/5f58254b5795ea99bb9f362e10236b49.jpg" alt="" width="536" height="128" class="aligncenter size-full wp-image-245666"/></p>
+<p><br/></p>
+<ul>
+<li>In addition to these, we can also use split horizon with route poisoning where above both technique will be used combinely to achieve efficiency and less increase the size of routing announcements. </li>
+<li>Split horizon with Poison reverse technique is used by Routing Information Protocol (RIP) to reduce routing loops. Additionally, <strong>Holddown timers</strong> can be used to avoid the formation of loops. Holddown timer immediately starts when the router is informed that attached link is down. Till this time, router ignores all updates of down route unless it receives an update from the router of that downed link. During the timer, If the down link is reachable again, routing table can be updated.</li>
+</ul>
+<p><br/></p>
+<p><strong>References:</strong><br/>
+<a href="https://en.wikipedia.org/wiki/Distance-vector_routing_protocol#Count-to-infinity_problem" target="_blank">https://en.wikipedia.org/wiki/Distance-vector_routing_protocol#Count-to-infinity_problem</a><br/>
+<a href="https://en.wikipedia.org/wiki/Route_poisoning" target="_blank">https://en.wikipedia.org/wiki/Route_poisoning</a><br/>
+<a href="https://en.wikipedia.org/wiki/Split_horizon_route_advertisement">https://en.wikipedia.org/wiki/Split_horizon_route_advertisement</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

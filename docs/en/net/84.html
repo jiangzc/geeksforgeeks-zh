@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Computer Networks | Traceroute</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Consider a situation when you are not able to access a website and can access other websites.  You would want to know if this is a problem with your network, some intermediate network or with web server. How do you figure out?</p>
+<p>You can use Traceroute.  </p>
+<p><strong>What is traceroute?</strong><br/>
+Traceroute is a widely used command line utility available in almost all operating systems.  It shows you the complete route to a destination address. It also shows the time taken (or delays) between intermediate routers. Isn’t it great?  Below is an example on Windows operating System.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/computer-network-traceroute-2.png"><img src="../../../imgs/net/9a4a4cf7e3a728b4e396853633a3067f.jpg" alt="tracert" width="500" height="225" class="alignnone size-full wp-image-18752"/></a></p>
+<p><strong>What does above output mean?</strong><br/>
+The first column is serial number for intermediate routers.  In above output,  three packets are sent to every hop to get good estimate of delays for every router.  The three columns show time taken by three different packets. The last column is IP/Name of intermediate routers.<br/>
+The output shows three delay for first hop, followed by delays for second hop and so on.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>What is command in Linux and other Operating Systems?</strong><br/>
+In Windows, as shown above, command name is “tracert”, but in Linux, Unix and Apple MAC OS, command is “traceroute”.</p>
+<p><strong>How does traceroute work?</strong><br/>
+As shown in below diagram, there are intermediate routers between source and destination.<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/computer-network-traceroute.png"><img src="../../../imgs/net/c5ea9b3716da4e19da39efb5c686880f.jpg" alt="tracert" width="467" height="460" class="alignnone size-full wp-image-18753"/></a></p>
+<p>It sends many packets toward the destination.</p>
+<p>The first set of packets (3 packets in above example) are sent in a way that they are dropped by first intermediate hop and a control message is received from first intermediate node to get the time estimation for first hop.  </p>
+<p>The second set of packets (3 packets in above example) are sent in a way that they are dropped by second intermediate hop and a control message is received from second intermediate node to get the time estimation for first hop.</p>
+<p><strong>How does traceroute make sure that a packet is dropped at i’th hop?</strong><br/>
+It uses TTL field for this purpose.  TTL is set as 1 for first packet(s), then 2 and so on until destination is reached.</p>
+<p><strong>How is total time estimated?</strong><br/>
+When a packet is dropped, the router sends an ICMP Time Exceeded message back to the source. That is how source figures out total time.</p>
+<p>Traceroute is a widely used command line utility in networks.</p>
+<p><strong><br/>
+References:</strong><br/>
+<a href="https://www.youtube.com/watch?v=wTncuOHQbMw&amp;index=5&amp;list=PLkHsKoi6eZnzJl1qTzmvBwTxrSJW4D2Jj">https://www.youtube.com/watch?v=wTncuOHQbMw&amp;index=5&amp;list=PLkHsKoi6eZnzJl1qTzmvBwTxrSJW4D2Jj</a></p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

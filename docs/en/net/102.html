@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Leaky bucket algorithm</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In the network layer, before the network can make Quality of service guarantees, it must know what traffic is being guaranteed. One of the main causes of congestion is that traffic is often bursty. </p>
+<p>To understand this concept first we have to know little about traffic shaping. <strong>Traffic Shaping</strong> is a mechanism to control the amount and the rate of the traffic sent to the network. Approach of congestion management is called Traffic shaping. Traffic shaping helps to regulate rate of data transmission and reduces congestion.</p>
+<p>There are 2 types of traffic shaping algorithms:</p>
+<ol>
+<li>Leaky Bucket</li>
+<li>Token Bucket</li>
+</ol>
+<p>Suppose we have a bucket in which we are pouring water in a random order but we have to get water in a fixed rate, for this we will make a hole at the bottom of the bucket. It will ensure that water coming out is in a some fixed rate, and also if bucket will full we will stop pouring in it.</p>
+<p>The input rate can vary, but the output rate remains constant. Similarly, in networking, a technique called leaky bucket can smooth out bursty traffic. Bursty chunks are stored in the bucket and sent out at an average rate.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/net/edcc584e5d1b0698f1e81f8b58dfcaeb.jpg" width="573" height="402" alt="" class="aligncenter size-full"/></p>
+<p>In the figure, we assume that the network has committed a bandwidth of 3 Mbps for a host. The use of the leaky bucket shapes the input traffic to make it conform to this commitment. In Figure the host sends a burst of data at a rate of 12 Mbps for 2 s, for a total of 24 Mbits of data. The host is silent for 5 s and then sends data at a rate of 2 Mbps for 3 s, for a total of 6 Mbits of data. In all, the host has sent 30 Mbits of data in 10 s. The leaky bucket smooths the traffic by sending out data at a rate of 3 Mbps during the same 10 s. </p>
+<p>Without the leaky bucket, the beginning burst may have hurt the network by consuming more bandwidth than is set aside for this host. We can also see that the leaky bucket may prevent congestion.<br/>
+<br/>
+A simple leaky bucket algorithm can be implemented using FIFO queue. A FIFO queue holds the packets. If the traffic consists of fixed-size packets (e.g., cells in ATM networks), the process removes a fixed number of packets from the queue at each tick of the clock. If the traffic consists of variable-length packets, the fixed output rate must be based on the number of bytes or bits.<br/>
+<br/>
+The following is an algorithm for variable-length packets:</p>
+<ol>
+<li>Initialize a counter to n at the tick of the clock.</li>
+<li>If n is greater than the size of the packet, send the packet and decrement the counter by the packet size. Repeat this step until n is smaller than the packet size.</li>
+<li>Reset the counter and go to step 1.</li>
+</ol>
+<p><strong>Example –</strong> Let n=1000<br/>
+Packet=<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/leak-bucket-1.png"><img src="../../../imgs/net/c7e4cd04fb4459b57e95bae10b9912a7.jpg" alt="leaky_algorithm_2" width="300" height="150" class="alignnone size-full wp-image-31979"/></a><br/>
+Since n&gt; front of Queue i.e. n&gt;200<br/>
+Therefore, n=1000-200=800<br/>
+Packet size of 200 is sent to the network.<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/leak-bucket-2.png"><img src="../../../imgs/net/807fd0b730dd6385f4f50939553dc35e.jpg" alt="leaky_algorithm_2" width="300" height="150" class="alignnone size-full wp-image-31979"/></a><br/>
+Now Again n&gt;front of the queue i.e.  n &gt; 400<br/>
+Therefore, n=800-400=400<br/>
+Packet size of 400 is sent to the network.<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/leak-bucket-3.png"><img src="../../../imgs/net/741e6315443768ecc89615e10137d7d0.jpg" alt="leaky_algorithm_2" width="300" height="150" class="alignnone size-full wp-image-31979"/></a><br/>
+Since n&lt; front of queue
+Therefore, the procedure is stop.
+Initialize n=1000 on another tick of clock. 
+This procedure is repeated until all the packets are sent to the network.
+</p>
+<p><b>Difference between Leaky and Token buckets –</b></p>
+<p></p>
+<center> </center>
+<p></p>
+<table style="width:80%">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Leaky Bucket</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Token Bucket </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>When the host has to send a packet , packet is thrown in bucket.</td>
+<td>In this leaky bucket holds tokens generated at regular intervals of time.</td>
+</tr>
+<tr>
+<td style="text-align:center">Bucket leaks at constant rate</td>
+<td style="text-align:center">Bucket has maximum capacity.</td>
+</tr>
+<tr>
+<td style="text-align:center">Bursty traffic is converted into uniform traffic by leaky bucket.</td>
+<td style="text-align:center">If there is a ready packet , a token is removed from Bucket and packet is send.</td>
+</tr>
+<tr>
+<td style="text-align:center">In practice bucket is a finite queue outputs at finite rate</td>
+<td style="text-align:center">If there is a no token in bucket, packet can not be send.</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p><b>Some advantage of token Bucket over leaky bucket –</b></p>
+<ul>
+<li>If bucket is full in token Bucket , token are discard not packets. While in leaky bucket, packets are discarded. </li>
+<li>Token Bucket can send Large bursts can faster rate while leaky bucket always sends packets at constant rate.</li>
+</ul>
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

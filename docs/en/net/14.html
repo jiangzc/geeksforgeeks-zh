@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Framing In Data Link Layer</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Framing is a point-to-point connection between two computers or devices consists of a wire in which data is transmitted as a stream of bits. However, these bits must be framed into discernible blocks of information. Framing is a function of the data link layer. It provides a way for a sender to transmit a set of bits that are meaningful to the receiver. Ethernet, token ring, frame relay, and other data link layer technologies have their own frame structures. Frames have headers that contain information such as error-checking codes.</p>
+<p><img src="../../../imgs/net/a373da508d35f890d93ea55f3ab13537.jpg" alt="1" width="351" height="271" class="aligncenter size-full wp-image-185298" srcset="https://www.geeksforgeeks.org/wp-content/uploads/1-30.png 351w, https://www.geeksforgeeks.org/wp-content/uploads/1-30-300x232.png 300w" sizes="(max-width: 351px) 100vw, 351px"/></p>
+<p>At data link layer, it extracts message from sender and provide it to receiver by providing sender’s and receiver’s address. The advantage of using frames is that data is broken up into recoverable chunks that can easily be checked for corruption.<br/>
+</p>
+<p><strong>Problems in Framing –</strong></p>
+<ul>
+<li><strong>Detecting start of the frame: </strong> When a frame is transmitted, every station must be able to detect it. Station detect frames by looking out for special sequence of bits that marks the beginning of the frame i.e. SFD (Starting Frame Delimeter).</li>
+<li><b>How do station detect a frame: </b> Every station listen to link for SFD pattern through a sequential circuit. If SFD is detected, sequential circuit alerts station. Station checks destination address to accept or reject frame. </li>
+<li><strong>Detecting end of frame: </strong> When to stop reading the frame.</li>
+</ul>
+<p></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><b>Types of framing –</b> There are two types of framing:</p>
+<p><strong>1. Fixed size –</strong> The frame is of fixed size and there is no need to provide boundaries to the frame, length of the frame itself acts as delimiter.</p>
+<ul>
+<li><strong>Drawback: </strong>It suffers from internal fragmentation if data size is less than frame size</li>
+<li><strong>Solution: </strong>Padding</li>
+</ul>
+<p><strong>2. Variable size –</strong> In this there is need to define end of frame as well as beginning of next frame to distinguish. This can be done in two ways:</p>
+<ol>
+<li><strong>Length field –</strong> We can introduce a length field in the frame to indicate the length of the frame. Used in <b>Ethernet(802.3)</b>. The problem with this is that sometimes the length field might get corrupted.</li>
+<li><strong>End Delimeter (ED) –</strong> We can introduce an ED(pattern) to indicate the end of the frame. Used in <b>Token Ring</b>. The problem with this is that ED can occur in the data. This can be solved by:<br/>
+<br/>
+<strong>1. Character/Byte Stuffing: </strong> Used when frames consist of character. If data contains ED then, byte is stuffed into data to diffentiate it from ED. <p></p>
+<p>Let ED = “$” –&gt; if data contains ‘$’ anywhere, it can be escaped using ‘\O’ character.<br/>
+             –&gt; if data contains ‘\O$’ then, use ‘\O\O\O$'($ is escaped using \O and \O is escaped using \O).</p>
+<p><img src="../../../imgs/net/9666ba89ca23c4f6a6d31e531eb99793.jpg" alt="2" width="651" height="422" class="aligncenter size-full wp-image-185299" srcset="https://www.geeksforgeeks.org/wp-content/uploads/2-14.png 651w, https://www.geeksforgeeks.org/wp-content/uploads/2-14-300x194.png 300w" sizes="(max-width: 651px) 100vw, 651px"/></p>
+<p><strong>Disadvantage –</strong> It is very costly and obsolete method.</p>
+<p><strong>2. Bit Stuffing: </strong>Let ED = 01111 and if data = 01111<br/>
+ <b>–&gt;</b> Sender stuffs a bit to break the pattern i.e. here appends a 0 in data = 0111<strong>0</strong>1.<br/>
+ <b>–&gt;</b> Receiver receives the frame.<br/>
+ <b>–&gt;</b> If data contains <u>0111</u>01, receiver removes the 0 and reads the data.</p>
+<p><img src="../../../imgs/net/8b854b196c922a055826ce66e4fcd990.jpg" alt="3" width="466" height="371" class="aligncenter size-full wp-image-185300" srcset="https://www.geeksforgeeks.org/wp-content/uploads/3-12.png 466w, https://www.geeksforgeeks.org/wp-content/uploads/3-12-300x239.png 300w" sizes="(max-width: 466px) 100vw, 466px"/></p>
+<p><b>Examples –</b></p>
+<ul>
+<li>If Data –&gt; 011100011110 and ED –&gt; 01111 then, find data after bit stuffing ?
+<p>–&gt; 0111<strong>0</strong>000111<strong>0</strong>10
+</p></li>
+<li>If Data –&gt; 110001001 and ED –&gt; 1000 then, find data after bit stuffing ?
+<p>–&gt; 1100<b>1</b>0100<b>1</b>1
+</p></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-3-question-34/" rel="noopener" target="_blank">Gate CS 2014</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2004-question-80/" rel="noopener" target="_blank">Gate IT 2004</a></li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/><hr/>
+					
+		<!-- .entry-meta -->
+	</li>
+</ol>
+</div>
+</body>
+</html>

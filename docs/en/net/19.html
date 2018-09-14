@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Difference between Byte stuffing and Bit stuffing</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Data link layer is responsible for something called Framing, which is the division of stream of bits from network layer into manageable units (called frames). Each frame consists of sender’s address and a destination address.The destination address defines where the packet is to go and the sender’s address helps the recipient acknowledge the receipt. </p>
+<p>Frames could be of fixed size or variable size. In fixed-size framing, there is no need for defining the boundaries of the frames as the size itself can be used to define the end of the frame and the beginning of the next frame. But, in variable-size framing, we need a way to define the end of the frame and the beginning of the next frame.</p>
+<p>To separate one frame from the next, an 8-bit (or 1-byte) flag is added at the beginning and the end of a frame. But the problem with that is, any pattern used for the flag could also be part of the information. So, there are two ways to overcome this problem:</p>
+<ol>
+<li>Using Byte stuffing (or character stuffing)</li>
+<li>Using Bit stuffing</li>
+</ol>
+<p><strong>Byte stuffing –</strong><br/>
+A byte (usually escape character(ESC)), which has a predefined bit pattern is added to the data section of the frame when there is a character with the same pattern as the flag. Whenever the receiver encounters the ESC character, it removes from the data section and treats the next character as data, not a flag.</p>
+<p>But problem arises when text contains one or more escape characters followed by a flag. To solve this problem, the escape characters that are part of the text are marked by another escape character i.e., if the escape character is part of the text,an extra one is added to show that the second one is part of the text.<br/>
+Example:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/net/828cb36d1bab7d7f6e4c69275cf2fd52.jpg" width="634" height="266" class="aligncenter size-full"/></p>
+<p><strong>Note –</strong> Point-to-Point Protocol (PPP) is a byte-oriented protocol.</p>
+<p><strong>Bit stuffing –</strong><br/>
+Mostly flag is a special 8-bit pattern “01111110” used to define the beginning and the end of the frame.<br/>
+Problem with the flag is same as that was in case of byte stuffing. So, in this protocol what we do is, if we encounter 0 and five consecutive 1 bits,an extra 0 is added after these bits. This extra stuffed bit is removed from the data by the receiver. </p>
+<p>The extra bit is added after one 0 followed by five 1 bits regardless of the value of the next bit. Also, as sender side always knows which sequence is data and which is flag it will only add this extra bit in the data sequence not in the flag sequence.<br/>
+Example:</p>
+<p><img src="../../../imgs/net/4356c570454dc3e1fcd910bbae3d86f3.jpg" width="566" height="259" class="aligncenter size-full"/></p>
+<p><strong>Note –</strong> High-Level Data Link Control(HDLC) is a bit-oriented protocol.</p>
+<p><strong>Reference –</strong><br/>
+<a href="https://www.amazon.in/COMMUNICATIONS-NETWORKING-UPDATE-Behrouz-Forouzan/dp/0070499357?tag=googinhydr18418-21&amp;tag=googinkenshoo-21&amp;ascsubtag=f648c41b-4e1c-497e-9a52-031912e87d54" rel="noopener" target="_blank">Data Communications and Networking</a> By Behrouz A. Forouzan (Book).</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

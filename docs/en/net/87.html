@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">How ARP works?</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Most of the computer programs/applications use <b>logical address (IP address)</b> to send/receive messages, however the actual communication happens over the <b>physical address (MAC address)</b> i.e from layer 2 of OSI model. So our mission is to get the destination MAC address which helps in communicating with other devices. This is where ARP comes into picture, its functionality is to translate IP address to physical address.<br/>
+The acronym ARP stands for <b>Address Resolution Protocol</b> which is one of the most important protocol of the Data Link Layer. Let’s look at how ARP works.</p>
+<p>             Imagine a device wants to communicate with the other over the internet. What ARP does? Is it broadcast a packet to all the devices of the source network.<br/>
+The devices of the network peel the header of the data link layer from the <b>protocol data unit (PDU)</b> called frame and transfers the packet to the network layer (layer 3 of OSI) where the network ID of the packet is validated with the destination IP’s network ID of the packet and if it’s equal then it responds to the source with the MAC address of the destination,else the packet reaches the gateway of the network and broadcasts packet to the devices it is connected with and validates their network ID</p>
+<p>The above process continues till the second last network device in the path to reach the destination where it gets validated and ARP in turn responds with the destination MAC address.</p>
+<p>             The important terms associated with ARP are :</p>
+<ol>
+<li><strong>ARP Cache:</strong>   After resolving MAC address, the ARP sends it to the source where it stores in a table for future reference. The subsequent communications can use the MAC address from the table</li>
+<li><strong>ARP Cache Timeout:</strong> It indicates the time for which the MAC address in the ARP cache can reside</li>
+<li><strong>ARP request:</strong> This is nothing but broadcasting a packet over the network to validate whether we came across destination MAC address or not</li>
+<li><strong>ARP response:</strong>  It is the MAC address response that the source receives from the destination which aids in further communication of the data</li>
+</ol>
+<p><strong>Test Yourself :</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/net/3f9cc896b53d8a319cb1bca2e86771e3.jpg" alt="" width="600" height="152" class="alignnone size-full wp-image-233071"/><br/>
+Connect two PC, say A and B with cross cable. Now you can see the working of ARP by typing these commands:</p>
+<pre>1. <strong>A</strong> &gt; arp -a
+</pre>
+<p>There will be no entry in table because they never communicated with each other.<br/>
+<img src="../../../imgs/net/a71a63e649717963502c5a8d12b67383.jpg" alt="" width="533" height="123" class="alignnone size-full wp-image-233081"/></p>
+<pre>2. <strong>A</strong> &gt; ping 192.168.1.2
+
+IP address of destination is 192.168.1.2
+Reply comes from destination but one packet is lost because of ARP processing.
+</pre>
+<p><img src="../../../imgs/net/4c23e86131b6e2e918662e02f9469500.jpg" alt="" width="508" height="193" class="alignnone size-full wp-image-233093"/><br/>
+Now, entries of ARP table can be seen by typing the command.<br/>
+This is how ARP table looks like:<br/>
+<img src="../../../imgs/net/74058121a48881ca227c085e65397b96.jpg" alt="" width="649" height="162" class="alignnone size-full wp-image-233109"/></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

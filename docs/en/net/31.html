@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Virtual LAN (VLAN)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><i>Virtual LAN (VLAN)</i> is a concept in which we can divide the devices logically on layer 2 (data link layer). Generally, layer 3 devices divides broadcast domain but broadcast domain can be divided by switches using the concept of VLAN. </p>
+<p>A broadcast domain is a network segment in which if a device broadcast a packet then all the devices in the same broadcast domain will receive it. The devices in the same broadcast domain will receive all the broadcast packet but it is limited to switches only as routers don’t forward out the broadcast packet.To forward out the packets to different VLAN (from one VLAN to another)  or broadcast domain, inter Vlan routing is needed. Through VLAN, different small size sub networks are created which are comparatively easy to handle. </p>
+<p><b>VLAN ranges –</b></p>
+<ul>
+<li><strong>VLAN 0, 4095:</strong>These are reserved VLAN  which cannot be seen or used. </li>
+<li><strong>VLAN 1:</strong>It is the default VLAN of switches. By default, all switch ports are in VLAN. This VLAN can’t be deleted or edit but can be used. </li>
+<li><strong>VLAN 2-1001:</strong> This is a normal VLAN  range. We can create, edit and delete these VLAN.</li>
+<li><strong>VLAN 1001-1005:</strong> These are CISCO defaults for fddi and token rings. These VLAN  can’t be deleted. </li>
+<li><strong>Vlan 1006-4094:</strong> This is the extended range of Vlan. </li>
+</ul>
+<p><b>Configuration –</b><br/>
+We can simply create VLANs by simply assigning the vlan-id and Vlan name. </p>
+<pre>#switch1(config)#vlan 2
+#switch1(config-vlan)#vlan accounts</pre>
+<p>Here, 2 is the Vlan I’d and accounts is the Vlan name. Now, we assign Vlan to the switch ports.e.g-</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre>Switch(config)#int fa0/0
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access Vlan 2</pre>
+<p>Also, switchport range can be assigned to required vlans. </p>
+<pre>Switch(config)#int range fa0/0-2
+Switch(config-if)#switchport mode access
+Switch(config-if) #switchport access Vlan 2</pre>
+<p>By this, switchport fa0/0, fa0/1, fa0-2 will be assigned Vlan 2.<br/>
+<b>Example –</b></p>
+<p><img src="../../../imgs/net/e2fe6238171c95de094ed9b5b244f467.jpg" alt="52555" width="453" height="296" class="aligncenter size-full wp-image-189973" srcset="https://www.geeksforgeeks.org/wp-content/uploads/52555.png 453w, https://www.geeksforgeeks.org/wp-content/uploads/52555-300x196.png 300w" sizes="(max-width: 453px) 100vw, 453px"/></p>
+<p>Assigning IP address 192.168.1.1/24, 192.168.1.2/24 and 192.168.2.1/24 to the PC’s. Now, we will create Vlan 2 and 3 on switch. </p>
+<pre>Switch(config)#vlan 2
+Switch(config)#vlan 3</pre>
+<p>We have made VLANs but the most important part is to assign switch ports to the VLANs . </p>
+<pre>Switch(config)#int fa0/0
+Switch(config-if)#switchport mode access
+Switch(config-if) #switchport access Vlan 2
+
+Switch(config)#int fa0/1
+Switch(config-if)#switchport mode access
+Switch(config-if) #switchport access Vlan 3
+
+Switch(config)#int fa0/2
+Switch(config-if)#switchport mode access
+Switch(config-if) #switchport access Vlan 2 </pre>
+<p>As seen, we have assigned Vlan 2 to fa0/0, fa0/2 and Vlan 3 to fa0/1.</p>
+<p><b>Advantages –</b></p>
+<ul>
+<li><strong>performance –</strong>The network traffic is full of broadcast and multicast. VLAN reduces the need to send such traffic to unnecessary destination.e.g-If the traffic is intended for 2 users but as 10 devices are present in the same broadcast domain therefore all will receive the traffic i.e wastage of bandwidth but if we make VLANs, then the broadcast or mulicast packet will go to the intended users only. </li>
+<li><strong>formation of virtual groups –</strong> As there are different departments in every organisation namely sales, finance etc., VLANs can be very useful in order to group the devices logically according to their departments. </li>
+<li><strong>security –</strong> In the same network,  sensitive data can be broadcast which can be accessed by the outsider but by creating VLAN, we can control broadcast domains, set up firewalls, restrict access. Also, VLANs  can be used to inform the network manager of an intrusion. Hence, VLANs greatly enhance network security. </li>
+<li><strong>Flexibility –</strong> VLAN provide flexibility to add, remove the number of host we want. </li>
+<li><strong>Cost reduction – </strong> VLANs can be used to create broadcast domains which eliminate the need for expensive routers.</li>
+<li>By using Vlan, the number of small size  broadcast domain can be increased which are easy to handle as compared to a bigger broadcast domain.</li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">EIGRP Configuration</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-eigrp-fundamentals/" rel="noopener" target="_blank">EIGRP fundamentals</a><br/>
+Enhanced Interior Gateway Routing Protocol (EIGRP) is a <b>dynamic routing network layer Protocol</b> which works on the protocol number 88. EIGRP supports classless routing,  VLSM, route summarization, load balacing and many other useful features. It is a Cisco proprietary protocol, so all routers in a network that is running EIGRP must be Cisco routers but now EIGRP is moving towards becoming an open standard protocol. </p>
+<p>EIGRP exchange messages for communication between the routers operating EIGRP. </p>
+<p><b>Configuration –</b></p>
+<p><img src="../../../imgs/net/2708276d5d1d6d8cbc5de83c19726f44.jpg" width="751" height="314" class="aligncenter size-full"/></p>
+<p>There is small topology in which there are 3 routers (on which user will configure EIGRP) namely <i>GfGNoida, GfGDelhi, GfGBangalore</i>. As seen, GfGBangalore router has to advertise the networks 10.10.10.0/24, 10.10.11.0/24, 172.16.10.0/30, 172.16.10.4/30.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Therefore now configuring EIGRP for router GfGBangalore. </p>
+<pre>GfGB(config)#router eigrp 1
+GfGB(config-router)#network 10.10.10.0
+GfGB(config-router)#network 10.10.11.0
+GfGB(config-router)#network 172.16.10.0
+GfGB(config-router)#network 172.16.10.4 </pre>
+<p>Here, first created an EIGRP instance by <strong>router eigrp 1</strong>command where 1 is the autonomous system number. Now, for configuring EIGRP for GfGDelhi router, the network to be advertised are 10.10.40.0/24, 10.10.50.0/24 and 172.16.10.4/30</p>
+<pre>GfGDelhi(config)#router eigrp 1
+GfGDelhi(config-router)#network 172.16.10.4 
+GfGDelhi(config-router)#network 10.10.50.0
+GfGDelhi(config-router)#network 10.10.40.0 </pre>
+<p>Now, similarly configuring EIGRP for GfGNoida, the networks to be advertised are 10.10.20.0/24, 10.10.30.0/24, 172.16.10.0/30</p>
+<pre>GfGN(config)#router eigrp 1
+GfGN(config-router)#network 172.16.10.0
+GfGN(config-router)#network 10.10.20.0
+GfGN(config-router)#network 10.10.30.0 </pre>
+<p>This is a simple configuration in which user has to write the network I’d of the network to be advertised with network command. </p>
+<p><b>Troubleshooting –</b><br/>
+As configured EIGRP, user should see problems occurring in forming neighbourship between EIGRP operating routers. The neighbourship will not be formed if:</p>
+<ul>
+<li>the interface is configured as passive
+</li>
+<li>the k values doesn’t match
+</li>
+<li>the autonomous system number is different
+</li>
+<li>EIGRP authentication is misconfigured
+</li>
+<li>interface between devices are down
+</li>
+</ul>
+<p>If in case, adjacency is up but the router doesn’t receive the network updates then these can be the following reasons:</p>
+<ul>
+<li>proper networks are not advertised
+</li>
+<li>ACL is applied on the interface
+</li>
+<li>auto summary command causes summarization of networks which are not needed
+</li>
+</ul>
+<p>Now, observing all these things in our configured scenario, see that:</p>
+<ol>
+<li>the autonomous system is same on all routers (as configured 1).
+<p><img src="../../../imgs/net/6f04f510a4e43a54274fb6c3b01122e9.jpg" width="590" height="336" class="aligncenter size-full"/></p>
+</li>
+<li>the default K values are used (10100) as shown in the above figure.
+</li>
+<li>no authentication is applied.
+</li>
+<li>the interfaces are up.
+</li>
+<li>Also, no ACL has been applied.
+</li>
+</ol>
+<p>The problem occurring in this scenario is network updates are being summarized. Why? </p>
+<p><img src="../../../imgs/net/64d29092e19a46afe8b9106c9bb8f0bb.jpg" width="603" height="251" class="aligncenter size-full"/></p>
+<p>Because auto-summary has been enabled. This is the most common problem occurs during configuration of EIGRP. By default the auto-summary command is enabled in EIGRP, therefore here the routes are summarized. Therefore the situation looks like the below image:</p>
+<p><img src="../../../imgs/net/9bd08473e7f029100274a986f566f242.jpg" width="739" height="367" class="aligncenter size-full"/></p>
+<p>Therfore, user have to disable the auto-summary command on all routers. </p>
+<pre>GfGB(config-router)#no auto-summary </pre>
+<p>Similarly, on routers GfGDelhi and GfGN, no auto-summary commands will be configured. </p>
+<p><img src="../../../imgs/net/dcbf810f61528a9e87da143534d74a48.jpg" width="565" height="310" class="aligncenter size-full"/></p>
+<p>Now, user can see that all the correct routes are exchanged (not the summarized routes).</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

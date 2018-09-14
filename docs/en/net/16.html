@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Multiple Access Protocols</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>The Data Link Layer is responsible for transmission of data between two nodes. Its main functions are-</p>
+<ul>
+<li>Data Link Control</li>
+<li>Multiple Access Control</li>
+</ul>
+<p><img src="../../../imgs/net/60cc510fcf72f97fed9f6e565bf586ae.jpg" alt="" width="366" height="113" class="aligncenter size-full wp-image-377139"/></p>
+<p><strong>Data Link control –</strong><br/>
+The data link control is responsible for reliable transmission of message over transmission channel by using techniques like framing, error control and flow control. For Data link control refer to – <a href="https://www.geeksforgeeks.org/stop-and-wait-arq/" rel="noopener" target="_blank">Stop and Wait ARQ</a></p>
+<p><strong>Multiple Access Control –</strong><br/>
+If there is a dedicated link between the sender and the receiver then data link control layer is sufficient, however if there is no dedicated link present then multiple stations can access the channel simultaneously. Hence multiple access protocols are required to decrease collision and avoid crosstalk. For example, in a classroom full of students, when a teacher asks a question and all the students (or stations) start answering simultaneously (send data at same time) then a lot of chaos is created( data overlap or data lost) then it is the job of the teacher (multiple access protocols) to manage the students and make them answer one at a time.</p>
+<p>Thus, protocols are required for sharing data on non dedicated channels. Multiple access protocols can be subdivided further as –</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/net/7a61f64766639fd3de6892e0ea15782a.jpg" alt="" width="791" height="395" class="aligncenter size-full wp-image-377143"/></p>
+<p><strong>1. Random Access Protocol:</strong> In this, all stations have same superiority that is no station has more priority than another station. Any station can send data depending on medium’s state( idle or busy). It has two features:</p>
+<ol>
+<li>There is no fixed time for sending data</li>
+<li>There is no fixed sequence of stations sending data</li>
+</ol>
+<p>The Random access protocols are further subdivided as:</p>
+<p> <strong>(a) ALOHA –</strong> It was designed for wireless LAN but is also applicable for shared medium. In this, multiple stations can transmit data at the same time and can hence lead to collision and data being garbled.</p>
+<ul>
+<li><strong>Pure Aloha:</strong><br/>
+When a station sends data it waits for an acknowledgement. If the acknowledgement doesn’t come within the allotted time then the station waits for a random amount of time called back-off time (Tb) and re-sends the data. Since different stations wait for different amount of time, the probability of further collision decreases. <p></p>
+<pre>Vulnerable Time = 2* Frame transmission time
+Throughput =  G exp{-2*G}
+Maximum throughput = 0.184 for G=0.5</pre>
+</li>
+<li><strong>Slotted Aloha:</strong><br/>
+It is similar to pure aloha, except that we divide time into slots and sending of data is allowed only at the beginning of these slots. If a station misses out the allowed time, it must wait for the next slot. This reduces the probability of collision.<p></p>
+<pre>Vulnerable Time =  Frame transmission time
+Throughput =  G exp{-*G}
+Maximum throughput = 0.368 for G=1</pre>
+</li>
+</ul>
+<p>For more information on ALOHA refer – <a href="https://www.geeksforgeeks.org/local-area-network-lan-technologies/" rel="noopener" target="_blank">LAN Technologies</a></p>
+<p>   <strong>(b) CSMA –</strong> Carrier Sense Multiple Access ensures fewer collisions as the station is required to first sense the medium (for idle or busy) before transmitting data. If it is idle then it sends data, otherwise it waits till the channel becomes idle. However there is still chance of collision in CSMA due to propagation delay. For example, if station A wants to send data, it will first sense the medium.If it finds the channel idle, it will start sending data. However, by the time the first bit of data is transmitted (delayed due to propagation delay) from station A, if station B requests to send data and senses the medium it will also find it idle and will also send data. This will result in collision of data from station A and B.</p>
+<p>CSMA access modes- </p>
+<ul>
+<li><strong> 1-persistent: </strong> The node senses the channel, if idle it sends the data, otherwise it continuously keeps on checking the medium for being idle and transmits unconditionally(with 1 probability) as soon as the channel gets idle.</li>
+<li><strong> Non-Persistent:</strong> The node senses the channel, if idle it sends the data, otherwise it checks the medium after a random amount of time (not continuously) and transmits when found idle.
+</li>
+<li><strong> P-persistent: </strong> The node senses the medium, if idle it sends the data with p probability. If the data is not transmitted ((1-p) probability) then it waits for some time and checks the medium again, now if it is found idle then it send with p probability. This repeat continues until the frame is sent. It is used in Wifi and packet radio systems.
+</li>
+<li><strong> O-persistent:</strong> Superiority of nodes is decided beforehand and transmission occurs in that order. If the medium is idle, node waits for its time slot to send data.
+</li>
+</ul>
+<p><strong>(c) CSMA/CD – </strong> Carrier sense multiple access with collision detection. Stations can terminate transmission of data if collision is detected. For more details refer – <a href="https://www.geeksforgeeks.org/computer-network-efficiency-csmacd/" rel="noopener" target="_blank">Efficiency of CSMA/CD</a></p>
+<p><strong>(d) CSMA/CA – </strong> Carrier sense multiple access with collision avoidance. The process of collisions detection involves sender receiving acknowledgement signals. If there is just one signal(its own) then the data is successfully sent but if there are two signals(its own and the one with which it has collided) then it means a collision has occurred. To distinguish between these two cases, collision must have a lot of impact on received signal. However it is not so in wired networks, so CSMA/CA is used in this case.</p>
+<p>CSMA/CA avoids collision by:</p>
+<ol>
+<li><b>Interframe space –</b> Station waits for medium to become idle and if found idle it does not immediately send data (to avoid collision due to propagation delay) rather it waits for a period of time called Interframe space or IFS. After this time it again checks the medium for being idle. The IFS duration depends on the priority of station.</li>
+<li><b>Contention Window –</b> It is the amount of time divided into slots. If the sender is ready to send data, it chooses a random number of slots as wait time which doubles every time medium is not found idle. If the medium is found busy it does not restart the entire process, rather it restarts the timer when the channel is found idle again.</li>
+<li><b>Acknowledgement –</b> The sender re-transmits the data if acknowledgement is not received before time-out.</li>
+</ol>
+<p><strong>2. Controlled Access:</strong><br/>
+In this, the data is sent by that station which is approved by all other stations. For further details refer – <a href="https://www.geeksforgeeks.org/computer-network-controlled-access-protocols/" rel="noopener" target="_blank">Controlled Access Protocols</a></p>
+<p><strong>3. Channelization:</strong><br/>
+In this, the available bandwidth of the link is shared in time, frequency and code to multiple stations to access channel simultaneously.</p>
+<ul>
+<li><strong>Frequency Division Multiple Access (FDMA) – </strong> The available bandwidth is divided into equal bands so that each station can be allocated its own band. Guard bands are also added so that no to bands overlap to avoid crosstalk and noise.
+</li>
+<li><strong>Time Division Multiple Access (TDMA) – </strong> In this, the bandwidth is shared between multiple stations. To avoid collision time is divided into slots and stations are allotted these slots to transmit data. However there is a overhead of synchronization as each station needs to know its time slot. This is resolved by adding synchronization bits to each slot. Another issue with TDMA is propagation delay which is resolved by addition of guard bands.<br/>
+For more details refer – <a href="https://www.geeksforgeeks.org/computer-network-circuit-switching/" rel="noopener" target="_blank">Circuit Switching</a>
+</li>
+<li><strong>Code Division Multiple Access (CDMA) – </strong> One channel carries all transmissions simultaneously. There is neither division of bandwidth nor division of time. For example, if there are many people in a room all speaking at the same time, then also perfect reception of data is possible if only two person speak the same language. Similarly data from different stations can be transmitted simultaneously in different code languages.</li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

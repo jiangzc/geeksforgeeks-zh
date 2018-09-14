@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Collision Avoidance in wireless networks</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>We take a close look at so called WiFi which is also known as  IEEE standard 802.11</p>
+<p><img src="../../../imgs/net/89ba5d66c7480163370ea587224127f9.jpg" width="531" height="195" class="aligncenter size-full"/></p>
+<p>Consider the situation depicted in figure, where each of four nodes is able to send and receive signals that reach just the nodes to its immediate left and right.<br/>
+For example, B can exchange frames with A and C but it cannot reach D, while C can reach B and D but not A. (A and D’s reach is not shown in the figure.) Suppose both A and C want to communicate with B and so they each send it a frame. A and C are unaware of each other since their signals do not carry that far. These two frames collide with each other at B, but unlike an Ethernet, neither A nor C is aware of this collision. A and C are said to be hidden nodes with respect to each other.</p>
+<p>A related problem, called the exposed node problem, occurs under the following circumstances. Suppose B is sending to A in Figure. Node C is aware of this communication because it hears B’s transmission. It would be a mistake for C to conclude that it cannot transmit to anyone just because it can hear B’s transmission.<br/>
+For example, suppose C wants to transmit to node D. This is not a problem since C’s transmission to D will not interfere with A’s ability to receive from B.</p>
+<p>We address these problems by a algorithm known as Multiple access with Collision  Avoidance (MACA). Sender and receiver exchange frames with each other before transmitting data.This informs all nearby nodes that a transmission is about to begin. Sender transmits <b>Request to Send (RTS)</b> frame to receiver .  The receiver then replies with <b>clear to send (CTS)</b> frame back to the sender. Any node that receives CTS frame knows that it is close to receiver therefore cannot transmit a frame. Any node that receives RTS frame but not the CTS frame knows that is not close to receiver to interfere with it, So it is free to transmit data.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><b>Reference –</b><br/>
+<a href="https://en.wikipedia.org/wiki/Multiple_Access_with_Collision_Avoidance_for_Wireless" target="_blank">Wikipedia</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

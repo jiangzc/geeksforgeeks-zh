@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Open shortest path first (OSPF) protocol fundamentals</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Open shortest path first (OSPF) is a <b>link-state routing protocol</b> which is used to find the best path between the source and the destination router using its own shortest path first (SPF) algorithm. A link-state routing protocol is a protocol which uses the concept of triggered updates, i.e., if there is a change observed in the learned routing table then the updates are triggered only, not like the distance-vector routing protocol where the routing table are exchanged at a period of time. </p>
+<p>Open shortest path first (OSPF) is developed by Internet Engineering Task Force (IETF) as one of the Interior Gateway Protocol (IGP), i.e., the protocol which aims at moving the packet within a large autonomous system or routing domain. It is a <b>network layer protocol</b> which works on the protocol number 89 and uses AD value 110. OSPF uses multicast address 224.0.0.5 for normal communication and 224.0.0.6 for update to designated router(DR)/Backup Designated Router (BDR).</p>
+<p><b>Criteria –</b><br/>
+To form neighbourship in OSPF, there is a criteria for both the routers:</p>
+<ol>
+<li>It should be present in same area
+</li>
+<li>Router I’d must be unique
+</li>
+<li>Subnet mask should be same
+</li>
+<li>Hello and dead timer should be same
+</li>
+<li>Stub flag must match
+</li>
+<li>Authentication must match
+</li>
+</ol>
+<p>OSPF supports NULL, plain text, MD5 authentication.</p>
+<p><strong>Note –</strong> Both the routers (neighbors) should have same type of authentication enabled. e.g- if one neighbor has MD5 authentication enabled then other should also have MD5 authentication enabled. </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><b>OSPF messages –</b><br/>
+OSPF uses certain messages for the communication between the routers operating OSPF. </p>
+<ul>
+<li><strong>Hello message –</strong> These are keep alive messages used for neighbor discovery /recovery. These are exchanged in every 10 seconds. This include following information : Router I’d, Hello/dead interval, Area I’d, Router priority, DR and BDR IP address, authentication data.
+</li>
+<li><strong>Database Description (DBD) –</strong> It is the OSPF routes of the router. This contains topology of an AS or an area (routing domain).
+</li>
+<li><strong>Link state request (LSR) –</strong> When a router receive DBD, it compares it with its own DBD. If the DBD received has some more updates than its own DBD then LSR is being sent to its neighbor.
+</li>
+<li><strong>Link state update (LSU) –</strong> When a router receives LSR, it responds with LSU message containing the details requested.
+</li>
+<li><strong>Link state acknowledgement –</strong> This provides reliability to the link state exchange process. It is sent as the acknowledgement of LSU.
+</li>
+<li><strong>Link state advertisement (LSA) –</strong> It is an OSPF data packet that contains link-state routing information, shared only with the routers to which adjacency has been formed.
+</li>
+</ul>
+<p><strong>Note –</strong> Link State Advertisement and Link State Acknowledgement both are different messages. </p>
+<p><b>Timers –</b></p>
+<ul>
+<li><strong>Hello timer –</strong> The interval in which OSPF router sends a hello message on an interface. It is 10 seconds by default.
+</li>
+<li><strong>Dead timer –</strong> The interval in which the neighbor will be declared dead if it is not able to send the hello packet . It is 40 seconds by default.It is usually 4 times the hello interval but can be configured manually according to need.
+</li>
+</ul>
+<p><b>OSPF supports/provides/advantages –</b></p>
+<ul>
+<li>Both IPv4 and IPv6 routed protocols
+</li>
+<li>Load balancing with equal cost routes for same destination
+</li>
+<li>VLSM and route summarization
+</li>
+<li>Unlimited hop counts
+</li>
+<li>Trigger updates for fast convergence
+</li>
+<li>A loop free topology using SPF algorithm
+</li>
+<li>Run on most routers
+</li>
+<li>Classless protocol
+</li>
+</ul>
+<p>There are some disadvantages of OSPF like, it requires extra CPU process to run SPF algorithm, requires more RAM to store adjacency topology and more complex to setup and hard to troubleshoot.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

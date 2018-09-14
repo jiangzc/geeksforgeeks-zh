@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">DNS (Domain Name Server) | NetWorking.</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>DNS is a host name to IP address translation service. DNS is a distributed database implemented in a hierarchy of name servers. It is an application layer protocol for message exchange between clients and servers.</p>
+<p><strong>Requirement</strong></p>
+<p>Every host is identified by the IP address but remembering numbers is very difficult for the people and also the IP addresses are not static therefore a mapping is required to change the domain name to IP address. So DNS is used to convert the domain name of the websites to their numerical IP address.</p>
+<p><strong>Domain :</strong><br/>
+There are various kinds of DOMAIN :</p>
+<ol>
+<li>Generic domain : .com(commercial) .edu(educational) .mil(military) .org(non profit organization) .net(similar to commercial) all these are generic domain.</li>
+<li>Country domain .in (india) .us .uk</li>
+<li>Inverse domain if we want to know what is the domain name of the website. Ip to domain name mapping.So DNS can provide both the mapping for example to find the ip addresses of geeksforgeeks.org then we have to type nslookup www.geeksforgeeks.org.</li>
+</ol>
+<p><strong>Organization of Domain</strong><br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2017/02/DNS.png"><img src="../../../imgs/net/eb4cd36170976cc647ab4710d7a4f8ad.jpg" alt="DNS" width="658" height="331" class="alignnone size-full wp-image-30617"/></a><br/>
+It is Very difficult to find out the ip address associated to a website because there are millions of websites and with all those websites we should be able to generate the ip address immediately,<br/>
+there should not be a lot of delay for that to happen organization of database is very important.<br/>
+<strong>DSN record</strong> – Domain name, ip address what is the validity?? what is the time to live ?? and all the information related to that domain name. These records are stored in tree like structure.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Namespace</strong> – Set of possible names, flat or hierarchical . Naming system maintains a collection of bindings of names to values – given a name, a resolution mechanism returns the corresponding value –</p>
+<p><strong>Name server</strong> – It is an implementation of the resolution mechanism.. DNS (Domain Name System) = Name service in Internet – Zone is an administrative unit, domain is a subtree.<br/>
+<br/>
+<strong>Name to Address Resolution</strong><br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2017/02/DNS_2.png"><img src="../../../imgs/net/daac6221055850c4cd6ee115579a5059.jpg" alt="DNS_2" width="665" height="261" class="alignnone size-full wp-image-30621"/></a><br/>
+The host request the DNS name server to resolve the domain name. And the name server returns the IP address corresponding to that domain name to the host so that the host can future connect to that IP address.<br/>
+<br/>
+<strong>Hierarchy of Name Servers</strong><br/>
+<strong>Root name servers </strong>– It is contacted by name servers that can not resolve the name. It contacts authoritative name server if name mapping is not known. It then gets the mapping and return the IP address to the host.</p>
+<p><strong>Top level server</strong> – It is responsible for com, org, edu etc and all top level country domains like uk, fr, ca, in etc. They have info about authoritative domain servers and know names and IP addresses of each authoritative name server for the second level domains.</p>
+<p><strong>Authoritative name servers</strong> This is organization’s DNS server, providing authoritative hostName to IP mapping for organization servers. It can be maintained by organization or service provider. In order to reach cse.dtu.in we have to ask the root DNS server, then it will point out to the top level domain server and then to authoritative domain name server which actually contains the IP address. So the authoritative domain server will return the associative ip address.</p>
+<p><br/></p>
+<p align="center"><strong>Domain Name Server</strong></p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2017/02/DNS_3.png"><img src="../../../imgs/net/0067d2812ba45a8a47e2f7358b96e155.jpg" alt="DNS_3" width="728" height="466" class="alignnone size-full wp-image-30632"/></a><br/>
+The client machine sends a request to the local name server, which , if root does not find the address in its database, sends a request to the root name server , which in turn, will route the query to an intermediate or authoritative name server. The root name server can also contain some hostName to IP address mappings . The intermediate name server always knows who the authoritative name server is. So finally the IP address is returned to the local name server which in turn returns the IP address to the host.</p>
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

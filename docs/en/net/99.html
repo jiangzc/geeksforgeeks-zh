@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Computer Networks | Congestion Control</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<div>What is <b>congestion</b>?</div>
+<div>A state occurring in network layer when the message traffic is so heavy that it slows down network response time.</div>
+<div></div>
+<div><b>Effects</b> of Congestion</div>
+<div>
+<ul>
+<li>As delay increases, performance decreases.</li>
+<li>If delay increases, retransmission occurs, making situation worse.</li>
+</ul>
+</div>
+<div></div>
+<div><b>Congestion control algorithms</b></div>
+<div>
+<ul>
+<li><b>Leaky Bucket Algorithm</b></li>
+</ul>
+</div>
+<div>Let us consider an example to understand</div>
+<div></div>
+<div>Imagine a bucket with a small hole in the bottom.No matter at what rate water enters the bucket, the outflow is at constant rate.When the bucket is full with water additional water entering spills over the sides and is lost.</div>
+<div><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/leaky.jpg"><img class=" size-full wp-image-22338 aligncenter" src="../../../imgs/net/ecb4ca6b740ea98304ff36db519428c1.jpg" alt="Leaky Bucket" width="346" height="239"/></a></div>
+<div>Similarly, each network interface contains a leaky bucket and the following <b>steps</b> are involved in leaky bucket algorithm:</div>
+<div>
+<ol>
+<li>&#160;When host wants to send packet, packet is thrown into the bucket.</li>
+<li>&#160;The bucket leaks at a constant rate, meaning the network interface transmits packets at a constant rate.</li>
+<li>&#160;Bursty traffic is converted to a uniform traffic by the leaky bucket.</li>
+<li>In practice the bucket is a finite queue that outputs at a finite rate.</li>
+</ol>
+</div>
+<div>
+<ul>
+<li><b>Token bucket Algorithm</b></li>
+</ul>
+</div>
+<div></div>
+<div><b>Need</b> of token bucket Algorithm:-</div>
+<div></div>
+<div>The leaky bucket algorithm enforces output pattern at the average rate, no matter how bursty the traffic is. So in order to deal with the bursty traffic we need a flexible algorithm so that the data is not lost. One such algorithm is token bucket algorithm.</div>
+<div></div>
+<div><b>Steps</b> of this algorithm can be described as follows:</div>
+<div></div>
+<div>
+<ol>
+<li>In regular intervals tokens are thrown into the bucket. ƒ</li>
+<li>The bucket has a maximum capacity. ƒ</li>
+<li>If there is a ready packet, a token is removed from the bucket, and the packet is send.</li>
+<li>If there is no token in the bucket, the packet cannot be send.</li>
+</ol>
+</div>
+<div></div>
+<div>Let’s understand with an example,</div>
+<div></div>
+<div>In figure (A) we see a bucket holding three tokens, with five packets waiting to be transmitted.For a packet to be transmitted, it must capture and destroy one token. In figure (B) We see that three of the five packets have gotten through, but the other two are stuck waiting for more tokens to be generated.</div>
+<div></div>
+<div>
+<div>Let’s understand with an example,</div>
+<div></div>
+<div><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/leakybuk.jpg"><img class=" size-full wp-image-22339 aligncenter" src="../../../imgs/net/9eea01fbb3c5f524eb5e9c6f5d932869.jpg" alt="image0031" width="369" height="230"/></a></div>
+<div>Link to question on leaky bucket algorithm: <a href="https://www.geeksforgeeks.org/computer-networks-set-8/" target="_blank">https://www.geeksforgeeks.org/computer-networks-set-8/</a></div>
+</div>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

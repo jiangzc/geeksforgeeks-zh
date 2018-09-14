@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Maximum data rate (channel capacity) for noiseless and noisy channels</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Data rate governs the speed of data transmission. A very important consideration in data communication is how fast we can send data, in bits per second, over a channel. Data rate depends upon 3 factors:</p>
+<ul>
+<li>The bandwidth available</li>
+<li>Number of levels in digital signal</li>
+<li>The quality of the channel – level of noise</li>
+</ul>
+<p>Two theoretical formulas were developed to calculate the data rate : one by Nyquist for a noiseless channel, another by Shannon for a noisy channel.</p>
+<ol>
+<li><strong>Noiseless Channel : Nyquist Bit Rate –</strong><br/>
+For a noiseless channel, the Nyquist bit rate formula defines the theoretical maximum bit rate<p></p>
+<pre>BitRate = 2 * Bandwidth * log2(L)</pre>
+<p>In the above equation, bandwidth is the bandwidth of the channel, L is the number of signal levels used to represent data, and BitRate is the bit rate in bits per second.<br/>
+Bandwidth is a fixed quantity, so it cannot be changed. Hence, the data rate is directly proportional to the number of signal levels.<br/>
+<strong>Note –</strong>Increasing the levels of a signal may reduce the reliability of the system.</p>
+<p><b>Examples:</b></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Input1 :</strong> Consider a noiseless channel with a bandwidth of 3000 Hz transmitting a signal with two signal levels. What can be the maximum bit rate?<br/>
+<strong>Output1 :</strong> BitRate = 2 * 3000 * log2(2) = 6000bps</p>
+<p><strong>Input2 :</strong> We need to send 265 kbps over a noiseless channel with a bandwidth of 20 kHz. How many signal levels do we need?<br/>
+<strong>Output2 :</strong> 265000 = 2 * 20000 * log2(L)<br/>
+           log2(L) = 6.625<br/>
+           L = 2^6.625 = 98.7 levels    </p>
+</li>
+<li><strong>Noisy Channel : Shannon Capacity –</strong><br/>
+In reality, we cannot have a noiseless channel; the channel is always noisy. Shannon capacity is<br/>
+used, to determine the theoretical highest data rate for a noisy channel:<p></p>
+<pre>Capacity = bandwidth * log2(1 + SNR)</pre>
+<p>In the above equation, bandwidth is the bandwidth of the channel, SNR is the signal-to-noise ratio, and capacity is the capacity of the channel in bits per second.<br/>
+Bandwidth is a fixed quantity, so it cannot be changed. Hence, the channel capacity is directly proportional to the power of the signal, as SNR = Power of signal / power of noise.<br/>
+The signal-to-noise ratio (S/N) is usually expressed in decibels (dB) given by the formula:</p>
+<pre>10 * log10(S/N)</pre>
+<p>so for example a signal-to-noise ratio of 1000 is commonly expressed as:</p>
+<pre>10 * log10(1000) = 30 dB. </pre>
+<p><b>Examples:</b></p>
+<p><strong>Input1 :</strong> A telephone line normally has a bandwidth of 3000 Hz (300 to 3300 Hz) assigned for data communication. The SNR is usually 3162. What will be the capacity for this channel?<br/>
+<strong>Output1 :</strong> C = 3000 * log2(1 + SNR) = 3000 * 11.62 = 34860 bps</p>
+<p><strong>Input2 :</strong> The SNR is often given in decibels. Assume that SNR(dB) is 36 and the channel bandwidth is 2 MHz. Calculate the theoretical channel capacity.<br/>
+<strong>Output2 :</strong> SNR(dB) = 10*log10(SNR)<br/>
+SNR = 10^(SNR(dB)/10)<br/>
+SNR = 10^3.6 = 3981</p>
+<p>Hence, C = 2 * 10^6 * log2(3982) = 24 MHz
+</p></li>
+</ol>
+<p><strong>Reference:</strong><br/>
+<a href="https://www.amazon.in/Data-Communications-Networking-Forouzan/dp/1259064751" rel="noopener" target="_blank">Data Communications and Networking – Book</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

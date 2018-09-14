@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">User Datagram Protocol (UDP)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>User Datagram Protocol (UDP)</b> is a Transport Layer protocol. UDP is a part of Internet Protocol suite, referred as UDP/IP suite. Unlike TCP, it is <b>unreliable and connectionless protocol.</b> So, there is no need to establish connection prior to data transfer. </p>
+<p>Though Transmission Control Protocol (TCP) is the dominant transport layer protocol used with most of Internet services; provides assured delivery, reliability and much more but all these services cost us with additional overhead and latency. Here, UDP comes into picture. For the realtime services like computer gaming, voice or video communication, live conferences; we need UDP. Since high performance is needed, UDP permits packets to be dropped instead of processing delayed packets. There is no error checking in UDP, so it also save bandwidth.<br/>
+User Datagram Protocol (UDP) is more efficient in terms of both latency and bandwidth. </p>
+<p><strong>UDP Header –</strong></p>
+<p>UDP header is <b>8-bytes</b> fixed and simple header, while for TCP it may vary from 20 bytes to 60 bytes. First 8 Bytes contains all necessary header information and remaining part consist of data. UDP port number fields are each 16 bits long, therefore range for port numbers defined from 0 to 65535; port number 0 is reserved. Port numbers help to distinguish different user requests or process.</p>
+<p><img src="../../../imgs/net/6f8dba967c4af99d8188afb287b8b2cb.jpg" alt="" width="300" height="202" class="alignnone size-medium wp-image-234161"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li><strong>Source Port :</strong> Source Port is 2 Byte long field used to identify port number of source.</li>
+<li><strong>Destination Port :</strong> It is 2 Byte long field, used to identify the port of destined packet.</li>
+<li><strong>Length :</strong> Length is the length of UDP including header and the data. It is 16-bits field.</li>
+<li><strong>Checksum :</strong> Checksum is 2 Bytes long field. It is the 16-bit one’s complement of the one’s complement sum of the UDP header, pseudo header of information from the IP header and the data, padded with zero octets at the end (if necessary) to make a multiple of two octets.</li>
+</ol>
+<p><b>Notes –</b> Unlike TCP, Checksum calculation is not mandatory in UDP. No Error control or flow control is provided by UDP. Hence UDP depends on IP and ICMP for error reporting.</p>
+<p><strong>Applications of UDP:</strong></p>
+<ul>
+<li>Used for simple request response communication when size of data is less and hence there is lesser concern about flow and error control.</li>
+<li>It is suitable protocol for multicasting as UDP supports packet switching.</li>
+<li>UDP is used for some routing update protocols like RIP(Routing Information Protocol).</li>
+<li>Normally used for real time applications which can not tolerate uneven delays between sections of a received message.</li>
+<li>Following implementations uses UDP as a transport layer protocol:
+<ul>
+<li>NTP (Network Time Protocol)</li>
+<li>DNS (Domain Name Service)</li>
+<li>BOOTP, DHCP.</li>
+<li>NNP (Network News Protocol)</li>
+<li>Quote of the day protocol</li>
+<li>TFTP, RTSP, RIP, OSPF.</li>
+</ul>
+</li>
+<li>Application layer can do some of the tasks through UDP-
+<ul>
+<li>Trace Route</li>
+<li>Record Route</li>
+<li>Time stamp</li>
+</ul>
+</li>
+<li>UDP takes datagram from Network Layer, attach its header and send it to the user. So, it works fast.</li>
+<li>Actually UDP is null protocol if you remove checksum field.</li>
+<p><b>GATE CS Corner Questions</b><br/>
+Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2013-question-12/" target="_blank">GATE CS 2013, Question 12</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2012-question-22-2/" target="_blank">GATE CS 2012, Question 65</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2007-question-20/">GATE CS 2007, Question 20</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2005-question-23/">GATE CS 2005, Question 23</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2008-question-66/">GATE IT 2008, Question 66</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2015-mock-test-question-5/" target="_blank">GATE Mock 2015, Question 5</a></li>
+</ol>
+<p><b>References –</b></p>
+<p><a href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml" target="_blank">Port Number Regisrty by IANA.</a><br/>
+<a href="https://en.wikipedia.org/wiki/User_Datagram_Protocol" target="_blank">User Datagram Protocol</a><br/>
+<a href="https://tools.ietf.org/html/rfc768" target="_blank">tools.ietf.org</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ul>
+</div>
+</body>
+</html>

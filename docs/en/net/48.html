@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">IP Addressing | Introduction and Classful Addressing</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>IP address is an address having information about how to reach a specific host, especially outside the LAN. An IP address is a 32 bit unique address having an address space of 2<sup>32</sup>. <span id="more-142724"></span><br/>
+Generally, there are two notations in which IP address is written, dotted decimal notation and hexadecimal notation.</p>
+<p>Dotted Decimal Notation<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/IP_addressing_1.jpg"><img class="alignnone wp-image-17987 size-full" src="../../../imgs/net/3342201bfcafd4285b12a857e139d1f2.jpg" alt="dotteddn" width="848" height="182"/></a></p>
+<p>&#160;</p>
+<p>Hexadecimal Notation<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/IP_addressing_2.jpg"><img class="alignnone wp-image-17988 size-full" src="../../../imgs/net/ee0a92f127ddcb98babc918baa61263a.jpg" alt="hexadn" width="848" height="182"/></a></p>
+<p>Some points to be noted about dotted decimal notation :<br/>
+1. The value of any segment (byte) is between 0 and 255 (both included).<br/>
+2. There are no zeroes preceding the value in any segment (054 is wrong, 54 is correct).</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>&#160;</p>
+<p><strong>Classful Addressing</strong><br/>
+The 32 bit IP address is divided into five sub-classes. These are:</p>
+<ul>
+<li>Class A</li>
+<li>Class B</li>
+<li>Class C</li>
+<li>Class D</li>
+<li>Class E</li>
+</ul>
+<p>Each of these classes has a valid range of IP addresses. Classes D and E are reserved for multicast and experimental purposes respectively. The order of bits in the first octet determine the classes of IP address.<br/>
+IPv4 address is divided into two parts:</p>
+<ul>
+<li><strong>Network ID</strong></li>
+<li><strong>Host ID</strong></li>
+</ul>
+<p>The class of IP address is used to determine the bits used for network ID and host ID and the number of total networks and hosts possible in that particular class. Each ISP or network administrator assigns IP address to each device that is connected to its network.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/IP_addressing_3.jpg"><img class="alignnone size-full wp-image-18026" src="../../../imgs/net/ae136d2757b051e1376ce3f450d030d0.jpg" alt="netidhostid" width="1066" height="407"/></a></p>
+<p><strong>Note: </strong> IP addresses are globally managed by Internet Assigned Numbers Authority(IANA) and regional Internet registries(RIR).</p>
+<p><strong>Note: </strong> While finding the total number of host IP addresses, 2 IP addresses are not counted and are therefore, decreased from the total count because the first IP address of any network is the network number and whereas the last IP address is reserved for broadcast IP.</p>
+<p align="center"><strong>Class A:</strong></p>
+<p>IP address belonging to class A are assigned to the networks that contain a large number of hosts. </p>
+<ul>
+<li>The network ID is 8 bits long.</li>
+<li>The host ID is 24 bits long.</li>
+</ul>
+<p>The higher order bits of the first octet in class A is always set to 0. The remaining 7 bits in first octet are used to determine network ID. The 24 bits of host ID are used to determine the host in any network. The default sub-net mask for class A is 255.x.x.x. Therefore, class A has a total of:</p>
+<ul>
+<li>2^7 – 2 = 126 network ID</li>
+<li>2^24 – 2 = 16,777,214 host ID</li>
+</ul>
+<p>IP addresses belonging to class A ranges from 1.x.x.x – 126.x.x.x<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/IP_addressing_4.jpg"><img src="../../../imgs/net/c963cbd9165c6136be98836077cdbf90.jpg"/></a></p>
+<p align="center"><strong>Class B:</strong></p>
+<p>IP address belonging to class B are assigned to the networks that ranges from medium-sized to large-sized networks. </p>
+<ul>
+<li>The network ID is 16 bits long.</li>
+<li>The host ID is 16 bits long.</li>
+</ul>
+<p>The higher order bits of the first octet of IP addresses of class B are always set to 10. The remaining 14 bits are used to determine network ID. The 16 bits of host ID is used to determine the host in any network. The default sub-net mask for class B is 255.255.x.x. Class B has a total of:</p>
+<ul>
+<li>2^14 = 16384 network address</li>
+<li>2^16 – 2 = 65534 host address</li>
+<ul>
+IP addresses belonging to class B ranges from 128.0.x.x – 191.255.x.x.<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/IP_addressing_5.jpg"><img src="../../../imgs/net/6bf2f53eb9f4384e39f43fb807afe925.jpg"/></a><p></p>
+<p align="center"><strong>Class C:</strong></p>
+<p>IP address belonging to class C are assigned to small-sized networks. </p>
+<ul>
+<li>The network ID is 24 bits long.</li>
+<li>The host ID is 8 bits long.</li>
+</ul>
+<p>The higher order bits of the first octet of IP addresses of class C are always set to 110. The remaining 21 bits are used to determine network ID. The 8 bits of host ID is used to determine the host in any network. The default sub-net mask for class C is 255.255.255.x. Class C has a total of:</p>
+<ul>
+<li>2^21 = 2097152 network address</li>
+<li>2^8 – 2 = 254 host address</li>
+</ul>
+<p>IP addresses belonging to class C ranges from 192.0.0.x – 223.255.255.x.<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/IP_addressing_6.jpg"><img src="../../../imgs/net/57f7288594a14b0070cd36df80d2fd65.jpg"/></a></p>
+<p align="center"><strong>Class D:</strong></p>
+<p>IP address belonging to class D are reserved for multi-casting. The higher order bits of the first octet of IP addresses belonging to class D are always set to 1110. The remaining bits are for the address that interested hosts recognize.</p>
+<p>Class D does not posses any sub-net mask. IP addresses belonging to class D ranges from 224.0.0.0 – 239.255.255.255.<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/IP_addressing_7.jpg"><img src="../../../imgs/net/1ff9be096893f288cb9a9e859cfb7fcc.jpg"/></a></p>
+<p align="center"><strong>Class E:</strong></p>
+<p>IP addresses belonging to class E are reserved for experimental and research purposes. IP addresses of class E ranges from 240.0.0.0 – 255.255.255.254. This class doesn’t have any sub-net mask. The higher order bits of  first octet of class E are always set to 1111.<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/IP_addressing_8.jpg"><img src="../../../imgs/net/4f7ab00433540def3d6bb8ade31b91ad.jpg"/></a></p>
+<p align="center"><strong>Range of special IP addresses:</strong></p>
+<p><strong>169.254.0.0 – 169.254.0.16</strong> : Link local addresses<br/>
+<strong>127.0.0.0 – 127.0.0.8</strong> : Loop-back addresses<br/>
+<strong>0.0.0.0 – 0.0.0.8</strong> : used to communicate within the current network.</p>
+<p align="center"><strong>Rules for assigning Host ID:</strong></p>
+<p>Host ID’s are used to identify a host within a network. The host ID are assigned based on the following rules:</p>
+<ul>
+<li>Within any network, the host ID must be unique to that network.</li>
+<li>Host ID in which all bits are set to 0 cannot be assigned because this host ID is used to represent the network ID of the IP address.</li>
+<li>Host ID in which all bits are set to 1 cannot be assigned because this host ID is reserved as a broadcast address to send packets to all the hosts present on that particular network.</li>
+</ul>
+<p align="center"><strong>Rules for assigning Network ID:</strong></p>
+<p>Hosts that are located on the same physical network are identified by the network ID, as all host on the same physical network are assigned the same network ID. The network ID is assigned based on the following rules:</p>
+<ul>
+<li>The network ID cannot start with 127 because 127 belongs to class A address and is reserved for internal loop-back functions.</li>
+<li>All bits of network ID set to 1 are reserved for use as an IP broadcast address and therefore, cannot be used.</li>
+<li>All bits of network ID set to 0 are used to denote a specific host on the local network and are not routed and therefore, aren’t used.</li>
+</ul>
+<p align="center"><strong>Summary of Classful addressing :</strong></p>
+<p style="text-align: justify"><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/07/nethostdata.jpg"><img class="alignnone size-full wp-image-18027" src="../../../imgs/net/ea7fe3ae004fac896751aed9b9649707.jpg" alt="nethostdata" width="1312" height="514"/></a></p>
+<p><strong>Problems with Classful Addressing:</strong></p>
+<p style="text-align: justify">The problem with this classful addressing method is that millions of class A address are wasted, many of the class B address are wasted, whereas, number of addresses available in class C is so small that it cannot cater the needs of organizations. Class D addresses are used for multicast routing, and are therefore available as a single block only. Class E addresses are reserved.</p>
+<p>Since there are these problems, Classful networking was replaced by Classless Inter-Domain Routing (CIDR) in 1993.  We will be discussing Classless addressing in next post.</p>
+<p><strong>References:</strong><br/>
+<a href="https://en.wikipedia.org/wiki/Classful_network">https://en.wikipedia.org/wiki/Classful_network</a><br/>
+<a href="https://technet.microsoft.com/en-us/library/cc940018.aspx">TechNet – Microsoft</a><br/>
+<a href="https://en.wikipedia.org/wiki/Classful_network">Classful network – Wikipedia</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ul>
+</ul>
+</div>
+</body>
+</html>

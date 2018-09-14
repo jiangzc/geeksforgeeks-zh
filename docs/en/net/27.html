@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Collision Detection in CSMA/CD</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>CSMA/CD (Carrier Sense Multiple Access/ Collision Detection) is a media-access control method widely used in Ethernet technology/LANs.<br/>
+Consider a scenario where there are ‘n’ stations on a link and all are waiting to transfer data through that channel. In this case all ‘n’ stations would want to access the link/channel to transfer their own data.Problem arises when more than one station transmits the data at the moment. In this case, there will be collisions in the data from different stations. </p>
+<p>CSMA/CD is one such technique where different stations that follow this protocol agree on some terms and collision detection measures for effective transmission. This protocol decides which station will transmit when so that data reaches the destination without corruption.</p>
+<p><strong>How CSMA/CD works? </strong></p>
+<ul>
+<li><b>Step 1:</b> Check if the sender is ready for transmitting data packets.</li>
+<li><b>Step 2:</b> Check if the transmission link is idle?<br/>
+         Sender has to keep on checking if the transmission link/medium is idle. For this it continously senses transmissions from other nodes. Sender sends dummy data on the link.If it does not receive any collision signal, this means the link is idle at the moment.If it senses that the carrier is free and there are no collisions, it sends the data. Otherwise it refrains from sending data.</li>
+<li><b>Step 3:</b> Transmit the data &amp; check for collisions.<br/>
+         Sender transmits its data on the link. CSMA/CD does not use ‘acknowledgement’ system. It checks for the successful and unsuccessful transmissions through collision signals. During transmission, if collision signal is received by the node, transmission is stopped. The station then transmits a jam signal onto the link and waits for random time interval before it resends the frame. After some random time, it again attempts to transfer the data and repeats above process.</li>
+<li><b>Step 4:</b> If no collision was detected in propagation, the sender completes its frame transmission and resets the counters.</li>
+</ul>
+<p><strong>How a station knows if its data collides? </strong></p>
+<p><img src="../../../imgs/net/570e9723d20e9836435a8a58387e4de7.jpg" width="1123" height="428" alt="" class="aligncenter size-full"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Consider the above situation. Two stations, A &amp; B.<br/>
+Propagation Time: Tp = 1 hr ( Signal takes 1 hr to go from A to B)</p>
+<pre>At time t=0, A transmits its data.
+        t= 30 mins : Collision occurs.
+</pre>
+<p>            After collision occurs, a collision signal is generated and sent to both A &amp; B to inform the stations about collision. Since the collision happened midway, the collision signal also takes 30 minutes to reach A &amp; B.</p>
+<pre>Therefore, t=1 hr: A &amp; B receive collision signals.
+</pre>
+<p>This collision signal is received by all the stations on that link. Then,</p>
+<p><strong>How to ensure that its our station’s data that collided? </strong></p>
+<p>For this, Transmission time (Tt) &gt; Propagation Time (Tp)   [Rough bound]<br/>
+This is because, we want that before we transmit the last bit of our data from our station, we should atleast be sure that some of the bits have already reached to the destination. This ensures that the link is not busy and collisions will not occur.<br/>
+But, above is a loose bound. We have not taken the time taken by collision signal to travel back to us. For this consider the worst case scenario.<br/>
+Consider the above system again.</p>
+<p><img src="../../../imgs/net/9cd468412a59add8ed23a0c25d6f02bb.jpg" width="1123" height="428" alt="" class="aligncenter size-full"/></p>
+<pre>At time t=0, A transmits its data.
+        t= 59:59 mins : Collision occurs
+</pre>
+<p>This collision occurs just before the data reaches B. Now the collision signal takes 59:59 minutes again to reach A. Hence, A receives the collision information approximately after 2 hours, that is, after 2 * Tp.</p>
+<pre>Hence, to ensure tighter bound, to detect the collision completely,
+  Tt &gt; &gt;= 2 * Tp  
+</pre>
+<p>This is the maximum collision time that a system can take to detect if the collision was of its own data.</p>
+<p><strong> What should be the minimum length of packet to be transmitted? </strong><br/>
+Transmission Time = Tt = Length of the packet/ Bandwidth of the link<br/>
+                       [Number of bits transmitted by sender per second]<br/>
+Substituting above, we get,<br/>
+Length of the packet/ Bandwidth of the link&gt;= 2 * Tp </p>
+<pre>Length of the packet &gt;= 2 * Tp * Bandwidth of the link
+</pre>
+<p>Padding helps in the cases where we do not have such long packets. We can pad extra characters to the end of our data to satisfy the above condition.</p>
+<p>Read next – <a href="https://www.geeksforgeeks.org/computer-network-efficiency-csmacd/" rel="noopener" target="_blank">Efficiency of CSMA/CD</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

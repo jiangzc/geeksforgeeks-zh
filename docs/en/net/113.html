@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">HTTP Non-Persistent &amp; Persistent Connection | Set 1</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>The Hypertext Transfer Protocol (HTTP) is an application-level protocol that uses TCP as an underlying transport and typically runs on port 80. HTTP is a stateless protocol i.e. server maintains no information about past client requests.</p>
+<p><b> HTTP Connections</b></p>
+<ol>
+<li>Non-Persistent</li>
+<li>Persistent</li>
+</ol>
+<p>Before starting with persistent and non-persistent HTTP connection lets know what is a RTT.</p>
+<p><strong>RTT</strong>-&gt; Time for a small packet to travel from client to server and back.</p>
+<pre>RTT= 2*propagation time</pre>
+<p>1. For an connection Persistent or Non-persistent it is sure that to initiate TCP connection one RTT is used.<br/>
+2. One RTT is used for HTTP request and first few bytes to HTTP response to return.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>So in order to know total file transmission time-&gt;</p>
+<pre> total = 2RTT+transmit time</pre>
+<p><b>Difference between Persistent &amp; Non-Persistent connection.</b><br/>
+<img src="../../../imgs/net/e61cf7db6734f36cb5b0f94c39f34ed9.jpg"/></p>
+<p><b>Non-Persistent Connection</b></p>
+<ol>
+<li>Without parallel connection</li>
+<li>With parallel connection</li>
+</ol>
+<p><b>Without parallel connection Non-Persistent</b><br/>
+Each objection takes two RTT (assuming no window limit) one for TCP connection and other for HTTP image/text file.</p>
+<p><b>With parallel connection Non-Persistent</b><br/>
+<img src="../../../imgs/net/3bd69486931c731e387f2d12c55cd07b.jpg"/></p>
+<p><b>Persistent connection</b></p>
+<ol>
+<li>Non-Pipelined</li>
+<li>Pipelined</li>
+</ol>
+<p><img src="../../../imgs/net/2a0772ab2bf829d0c62ee17165cddd5a.jpg"/></p>
+<p>In <strong>Non-pipeline connection</strong> we first establish connection which takes two RTT then we send all the objects images/text files which takes 1 RTT each (TCP for each object is not required).</p>
+<p>In <strong>Pipelined connection</strong> 2RTT for connection establishment and then 1RTT(assuming no window limit) for all the objects i.e. images/text.</p>
+<p><strong>Advantages of persistent connections :</strong><br/>
+1)  Lower CPU and memory usage because there are less number of connections.<br/>
+2)  Allows HTTP pipelining of requests and responses.<br/>
+3)  Reduced network congestion (fewer TCP connections).<br/>
+4)    Reduced latency in subsequent requests (no handshaking).<br/>
+5)    Errors can be reported without the penalty of closing the TCP connection.</p>
+<p><strong>Disadvantages of persistent connections :</strong><br/>
+Resources may be be kept occupied even when not needed and may not be available to others.</p>
+<p>Most of the modern browsers like Chrome, Firefox and Internet Explorer use persistent connections.</p>
+<p><strong>Reference : </strong><a href="https://en.wikipedia.org/wiki/HTTP_persistent_connection">https://en.wikipedia.org/wiki/HTTP_persistent_connection</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

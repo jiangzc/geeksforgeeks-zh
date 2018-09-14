@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Socket Programming in Java</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p style="text-align: justify">This article describes a&#160;very basic one-way Client and Server setup where a Client connects, sends messages to server and the server shows them using socket connection.&#160;There’s a lot of low-level stuff that needs to happen for these things to work but the Java API networking package (java.net) takes care of all of that, making network programming very easy for programmers.</p>
+<p style="text-align: center"><b>Client Side Programming</b></p>
+<p><strong>Establish&#160;a Socket Connection</strong></p>
+<p style="text-align: justify">To connect to other machine we need a socket connection. A socket connection means the two machines have information about each other’s network location (IP Address) and TCP port.The java.net.Socket class represents a Socket. To open a socket:</p>
+<pre style="text-align: center">Socket socket = new Socket(“127.0.0.1”, 5000)</pre>
+<ul>
+<li style="text-align: justify">First argument –&#160;<strong>IP address of Server</strong>. ( 127.0.0.1 &#160;is the IP address of localhost, where code will run on single stand-alone machine).</li>
+<li style="text-align: justify">Second argument –&#160;<strong>TCP Port</strong>. (Just a number representing which application to run on a server. For example, HTTP runs on port 80. Port number&#160;can be from 0 to 65535)</li>
+</ul>
+<p><strong>Communication</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p style="text-align: justify">To communicate over a socket connection, streams are used to both input and output the data.</p>
+<p style="text-align: justify"><strong>Closing the connection</strong></p>
+<p style="text-align: justify">The socket connection is closed explicitly once the message to server is sent.</p>
+<p><em>In the program, Client keeps reading input from user and sends to the server until “Over” is typed.</em></p>
+<p><strong>Java Implementation</strong></p>
+<pre class="brush: java; title: ; notranslate" title="">// A Java program for a Client
+import java.net.*;
+import java.io.*;
+
+public class Client
+{
+    // initialize socket and input output streams
+    private Socket socket            = null;
+    private DataInputStream  input   = null;
+    private DataOutputStream out     = null;
+
+    // constructor to put ip address and port
+    public Client(String address, int port)
+    {
+        // establish a connection
+        try
+        {
+            socket = new Socket(address, port);
+            System.out.println("Connected");
+
+            // takes input from terminal
+            input  = new DataInputStream(System.in);
+
+            // sends output to the socket
+            out    = new DataOutputStream(socket.getOutputStream());
+        }
+        catch(UnknownHostException u)
+        {
+            System.out.println(u);
+        }
+        catch(IOException i)
+        {
+            System.out.println(i);
+        }
+
+        // string to read message from input
+        String line = "";
+
+        // keep reading until "Over" is input
+        while (!line.equals("Over"))
+        {
+            try
+            {
+                line = input.readLine();
+                out.writeUTF(line);
+            }
+            catch(IOException i)
+            {
+                System.out.println(i);
+            }
+        }
+
+        // close the connection
+        try
+        {
+            input.close();
+            out.close();
+            socket.close();
+        }
+        catch(IOException i)
+        {
+            System.out.println(i);
+        }
+    }
+
+    public static void main(String args[])
+    {
+        Client client = new Client("127.0.0.1", 5000);
+    }
+}
+</pre>
+<p style="text-align: center"><strong>Server Programming</strong></p>
+<p style="text-align: left"><strong>Establish&#160;a Socket Connection</strong></p>
+<p>To&#160;write a server application two sockets are needed.</p>
+<ul>
+<li>A ServerSocket which waits for the client requests (when a client makes a new Socket())</li>
+<li>A plain old Socket socket to use for communication with the client.</li>
+</ul>
+<p><strong>Communication</strong></p>
+<p>getOutputStream() method is used to send the output through the socket.</p>
+<p><strong>Close the Connection</strong></p>
+<p style="text-align: justify">After finishing,&#160;&#160;it is important to close the connection by closing the socket as well as input/output streams.</p>
+<pre class="brush: java; title: ; notranslate" title="">// A Java program for a Server
+import java.net.*;
+import java.io.*;
+
+public class Server
+{
+    //initialize socket and input stream
+    private Socket          socket   = null;
+    private ServerSocket    server   = null;
+    private DataInputStream in       =  null;
+
+    // constructor with port
+    public Server(int port)
+    {
+        // starts server and waits for a connection
+        try
+        {
+            server = new ServerSocket(port);
+            System.out.println("Server started");
+
+            System.out.println("Waiting for a client ...");
+
+            socket = server.accept();
+            System.out.println("Client accepted");
+
+            // takes input from the client socket
+            in = new DataInputStream(
+                new BufferedInputStream(socket.getInputStream()));
+
+            String line = "";
+
+            // reads message from client until "Over" is sent
+            while (!line.equals("Over"))
+            {
+                try
+                {
+                    line = in.readUTF();
+                    System.out.println(line);
+
+                }
+                catch(IOException i)
+                {
+                    System.out.println(i);
+                }
+            }
+            System.out.println("Closing connection");
+
+            // close connection
+            socket.close();
+            in.close();
+        }
+        catch(IOException i)
+        {
+            System.out.println(i);
+        }
+    }
+
+    public static void main(String args[])
+    {
+        Server server = new Server(5000);
+    }
+}
+</pre>
+<p><strong>Important Points</strong></p>
+<ul>
+<li style="text-align: justify">Server application makes a ServerSocket on a specific port which is 5000. This starts our Server listening for client requests coming in for port 5000.</li>
+<li style="text-align: justify">Then Server makes a new Socket to communicate with the client.</li>
+</ul>
+<pre style="text-align: center">socket = server.accept()</pre>
+<ul>
+<li style="text-align: justify">The accept() method blocks(just sits there) until a client connects to the server.</li>
+<li style="text-align: justify">Then we take input from the socket using getInputStream() method. Our Server keeps receiving messages until the Client sends “Over”.</li>
+<li style="text-align: justify">After we’re done we close the connection by closing the socket and the input stream.</li>
+<li style="text-align: justify">To run the Client and Server application on your machine, compile both of them. Then first run the server application and then run the Client application.</li>
+</ul>
+<p><strong>To run on Terminal or Command Prompt</strong></p>
+<p>Open two windows one for Server and another for Client</p>
+<p>1. First run the Server application as ,</p>
+<pre>$ java Server</pre>
+<p>Server started<br/>
+Waiting for a client …</p>
+<p>2. Then run the Client application on another terminal as,</p>
+<pre>$ java Client</pre>
+<p>It will show – Connected and the server accepts the client and shows,</p>
+<p>Client accepted</p>
+<p>3. Then you can start typing messages in the Client window. Here is a sample input to the Client</p>
+<pre>Hello
+I made my first socket connection
+Over
+</pre>
+<p>Which the Server simultaneously receives and shows,</p>
+<pre>Hello
+I made my first socket connection
+Over
+Closing connection
+</pre>
+<p style="text-align: justify">Notice that sending “Over” closes the connection between the Client and the Server just like said before.</p>
+<p style="text-align: justify"><strong>If you’re using Eclipse or likes of such-</strong></p>
+<ol>
+<li style="text-align: justify">&#160;Compile both of them on two different terminals or tabs</li>
+<li style="text-align: justify">&#160;Run the Server program first</li>
+<li style="text-align: justify">&#160;Then run the Client program</li>
+<li style="text-align: justify">&#160;Type messages in the Client Window which will be received and showed by the Server Window simultaneously.</li>
+<li style="text-align: justify">&#160;Type Over to end.</li>
+</ol>
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

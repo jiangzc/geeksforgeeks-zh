@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Inter-Switch Link (ISL) and IEEE 802.1Q</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>VLANs are used to divide broadcast domain at layer 2. By default, all the switch ports are in VLAN 1. Configuration of VLANs other than VLAN 1 then to carry traffic of these VLANs, user has to make a switch port trunk which is connected to another switch. If the frame is forwarded out to an access link then it is considered that the frame belongs to the VLAN which is configured on that switch port. But if the frame is forwarded out to a trunk link then how did the other device know that the traffic belongs to which VLAN? There comes the concept of VLAN identification methods. </p>
+<p><b>VLAN Identification methods –</b><br/>
+If the frame is forwarded out to a trunk link then a header or tag is added to the frame header which specifies the VLAN to which the frame belongs. The frame is encapsulated at the sender’s switch and removed at the receiver’s switch and then forwarded out to the ports which belongs to that VLAN (according to the processing of switch). </p>
+<p>There are 2 VLAN identification methods:</p>
+<ol>
+<li><b>Inter-Switch Link (ISL) –</b><br/>
+This is a VLAN identification method in which VLAN information is explicitly tagged onto Ethernet frame. ISL is proprietary to CISCO switches. ISL functions at layer 2 by encapsulating a data frame with a new header and by performing a new cyclic redundancy check (CRC).<p></p>
+<p>In ISL, the original frame is encapsulated and an additional header is added before the frame is carried over a trunk link. At the receiving end, the header is removed and the frame is forwarded to the assigned VLAN. </p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>ISL supports upto 1000 vlans. The concept of native VLAN is not important for ISL as all frames including the ones for native VLAN are tagged.</p>
+<p><img src="../../../imgs/net/77909bc9f435a61ea67c471b43229849.jpg" width="569" height="122" alt="" class="aligncenter size-full"/></p>
+<p>The ISL frame encapsulation is of 30 bytes, 26 byte header and a 4 byte FCS (frame check sequence) are inserted. Hence a total of 30 Bytes of overhead. Therefore, it is less preferred. Even Cisco advice to use 802.1Q.</p>
+<p><b>Configuration (ISL): </b></p>
+<pre>Switch(config)#interface Fa0/1
+Switch(config-if)#switchport trunk encapsulation isl
+Switch(config-if)#switchport mode trunk</pre>
+</li>
+<li><b>802.1Q –</b><br/>
+It is IEEE standard method of frame tagging. If user wants to trunk between a Cisco switch link and a different brand switch link, then have to use 802.1Q encapsulation for the trunk to work. <p></p>
+<p>In 802.1Q, the trunking device inserts a 4-byte tag into the original frame and recomputes the frame check sequence (FCS) before the device sends the frame over the trunk link. At the receiving end, the tag is removed and the frame is forwarded to the assigned VLAN. </p>
+<p><img src="../../../imgs/net/b6666f13281279c742e5fc8a6ac4cdf5.jpg" width="791" height="144" alt="" class="aligncenter size-full"/></p>
+<p><img src="../../../imgs/net/ace2ca3d12f77023c5dabe4a3b21dbeb.jpg" width="888" height="234" alt="" class="aligncenter size-full"/></p>
+<p>Out of 4 bytes, there is a 12 bit VLAN that matters the most. This field tells about the VLAN number to which the frame belongs. The VLAN can vary from 1 to 4094, i.e supported for 4094 VLANs as VLAN 0 4095 are reserved VLANs. 802.1Q supports the concept of native Vlan, i.e the traffic will go untagged for this Vlan. </p>
+<p><strong>Note –</strong> Inter-Switch Link (ISL) and 802.1Q are used to provide inter-switch VLAN communication. The ISL or 802.1Q frame tagging is removed if a frame is forwarded out to an access-link. </p>
+<p><b>Configuration (802.1Q) :</b></p>
+<pre>Switch(config)#interface Fa 0/1
+Switch(config-if)#switchport trunk encapsulation 802.1q
+Switch(config-if)#switchport mode trunk</pre>
+</li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

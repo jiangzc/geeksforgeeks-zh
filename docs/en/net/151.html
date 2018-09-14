@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Program to calculate the Round Trip Time (RTT)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Round trip time(RTT)</strong> is the length of time it takes for a signal to be sent plus the length of time it takes for an acknowledgement of that signal to be received. This time therefore consists of the propagation times  between the two point of signal.<br/>
+On the Internet, an end user can determine the RTT to and from an IP(Internet Protocol) address by pinging that address. The result depends on various factors :-</p>
+<ul>
+<li> The data rate transfer of the source’s internet connection.</li>
+<li> The nature of transmission medium. </li>
+<li> The physical distance between source and destination.</li>
+<li> The number of nodes between source and destination.</li>
+<li> The amount of traffic on the LAN(Local Area Network) to which end user is connected.</li>
+<li> The number of other requests being handled by intermediate nodes and the remote server.</li>
+<li> The speed with which intermediate node and the remote server function.</li>
+<li> The presence of Interference in the circuit.</li>
+</ul>
+<p>Examples:</p>
+<pre>Input : www.geeksforgeeks.org
+Output : Time in seconds : 0.212174892426
+
+Input : www.cricbuzz.com
+Output : Time in seconds : 0.55425786972
+</pre>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre class="brush: python; title: ; notranslate" title=""># Python program to calculate RTT
+
+import time
+import requests
+
+# Function to calculate the RTT
+def RTT(url):
+
+    # time when the signal is sent
+    t1 = time.time()
+
+    r = requests.get(url)
+
+    # time when acknowledgement of signal 
+    # is received
+    t2 = time.time()
+
+    # total time taken
+    tim = str(t2-t1)
+
+    print("Time in seconds :" + tim)
+
+# driver program 
+# url address
+url = "http://www.google.com"
+RTT(url)
+
+</pre>
+<p>Output:</p>
+<pre>  Time in seconds :0.0579478740692
+<!-- Your Output -->
+</pre>
+<p><!-- To show list of companies where this problem is asked. Please remove if doesn't fit.    --></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

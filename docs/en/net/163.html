@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Types of Server Virtualization</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Server Virtualization</b> is the partitioning of a physical server into number of small virtual servers, each running its own operating system. These operating systems are known as guest operating systems. These are running on another operating system known as host operating system. Each guest running in this manner is unaware of any other guests running on the same host. Different virtualization techniques are employed to achieve this transparency.</p>
+<p><b>Types of Server virtualization :</b></p>
+<ol>
+<li><strong>Hypervisor –</strong>
+<p>A Hypervisor or VMM(virtual machine monitor) is a layer that exits between the operating system and hardware. It provides the necessary services and features for the smooth running of multiple operating systems.</p>
+<p>It identifies traps, responds to privileged CPU instructions and handles queuing, dispatching and returning the hardware requests. A host operating system also runs on top of the hypervisor to administer and manage the virtaul machines.</p></li>
+<li><strong>Para Virtualization –</strong>
+<p>It is based on Hypervisor. Much of the emulation and trapping overhead in software implemented virtualisation is handled in this model. The guest operating system is modified and recompiled before installation into the virtual machine.<br/>
+Due to the modification in the Guest operating system, performance is enhanced as the modified guest operating system communicates directly with the hypervisor and emulation overhead is removed.<br/>
+Example : Xen primarily uses Para virtualisation, where a customised Linux environment is used to supportb the administrative environment known as domain 0.</p>
+<p><img src="../../../imgs/net/482788b43e452d071396418807cfa9dd.jpg" alt="" width="300" height="233" class="aligncenter size-medium wp-image-263239"/></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong><em>Advantages:</em></strong></p>
+<ul>
+<li>Easier</li>
+<li>Enhanced Performance</li>
+<li>No emulation overhead</li>
+</ul>
+<p><strong><em>Limitations:</em></strong></p>
+<ul>
+<li>Requires modification to guest operating system</li>
+</ul>
+</li>
+<li><strong>Full Virtualization –</strong>
+<p>It is very much similar to Para virtualisation. It can emulate the underlying hardware when necessary. The hypervisor traps the machine operations used by the operating system to perform I/O or modify the system status. After trapping, these operations are emulated in software and the status codes are returned very much consistent with what the real hardware would deliver. This is why unmodified operating system is able to run on top of the hypervisor.<br/>
+Example : VMWare ESX server uses this method. A customised Linux version known as Service Console is used as the administrative operating system. It is not as fast as Para virtualisation.</p>
+<p><img src="../../../imgs/net/3f01c6f1132a49c1785d19541bfd1095.jpg" alt="" width="300" height="232" class="aligncenter size-medium wp-image-263238"/></p>
+<p><strong><em>Advantages:</em></strong></p>
+<ul>
+<li>No modification to Guest operating system required.</li>
+</ul>
+<p><strong><em>Limitations:</em></strong></p>
+<ul>
+<li>Complex</li>
+<li>Slower due to emulation</li>
+<li>Installation of new device driver difficult.</li>
+</ul>
+</li>
+<li><strong>Hardware Assisted Virtualization –</strong>
+<p>It is similar to Full Virtualisation and Para virtualisation in terms of operation except that it requires hardware support. Much of the hypervisor overhead due to trapping and emulating I/O operations and status instructions executed within a guest OS is dealt by relying on the hardware extensions of the x86 architecture.</p>
+<p>Unmodified OS can be run as the hardware support for virtualisation would be used to handle hardware access requests, privileged and protected operations and to communicate with the virtual machine.<br/>
+Examples : AMD – V Pacifica and Intel VT Vanderpool provides hardware support for virtualisation.</p>
+<p><strong><em>Advantages:</em></strong></p>
+<ul>
+<li>No modification to guest operating system required.</li>
+<li>Very less hypervisor overhead</li>
+</ul>
+<p><strong><em>Limitations:</em></strong></p>
+<ul>
+<li>Hardware support Required</li>
+</ul>
+</li>
+<li><strong>Kernel level Virtualization –</strong>
+<p>Instead of using a hypervisor, it runs a separate version of the Linux kernel and sees the associated virtual machine as a user – space process on the physical host. This makes it easy to run multiple virtual machines on a  single host. A device driver is used for communication between the main Linux kernel and the virtual machine.<br/>
+Processor support is required for virtualisation( Intel VT or AMD – v). A slightly modified QEMU process is used as the display and execution containers for the virtual machines. In many ways, kernel level virtualization is a specialised form of server virtualization.</p>
+<p>Examples: User – Mode Linux( UML ) and Kernel Virtual Machine( KVM )</p>
+<p><img src="../../../imgs/net/d2f9931d397a20762f7266c2670ea741.jpg" alt="" width="300" height="233" class="aligncenter size-medium wp-image-263498"/></p>
+<p><strong><em>Advantages:</em></strong></p>
+<ul>
+<li>No special administrative software required.</li>
+<li>Very less overhead</li>
+</ul>
+<p><strong><em>Limitations:</em></strong></p>
+<ul>
+<li>Hardware Support Required</li>
+</ul>
+</li>
+<li><strong>System Level or OS Virtualization –</strong>
+<p>Runs multiple but logically distinct environments on a single instance of operating system kernel. Also called shared kernel approach as all virtual machines share a common kernel of host operating system. Based on change root concept “chroot”.<br/>
+chroot  starts during boot up. The kernel uses root filesystems to load drivers and perform other early stage system initialisation tasks. It then switches to another root filesystem using chroot command to mount an on -disk file system as its final root filesystem, and continue system initialization and configuration within that file system.<br/>
+The chroot mechanism of system level virtualisation is an extension of this concept. It enables the system to start virtual servers with their own set of processes which execute relative to their own filesystem root directories.<br/>
+The main difference between system level and server virtualisation is wether different operating systems can be run on different virtual systems. If all virtual servers must share the same copy of operating system it is system level virtualisation and if different servers can have different operating systems ( including different versions of a single operating system) it is server virtualisation.</p>
+<p>Examples: FreeVPS, Linux Vserver and OpenVZ are some examples. </p>
+<p><img src="../../../imgs/net/1b94d75dc23c7e8e0ff3d71550e7fb6e.jpg" alt="" width="300" height="210" class="aligncenter size-medium wp-image-263499"/></p>
+<p><strong><em>Advantages: </em></strong></p>
+<ul>
+<li>Significantly light weight than complete machines(including a kernel)</li>
+<li>Can host many more virtual servers</li>
+<li>Enhanced Security and isolation</li>
+</ul>
+<p><strong><em>Limitations:</em></strong></p>
+<ul>
+<li>Kernel or driver problem can take down all virtual servers.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Reference:</strong><br/>
+<a href="http://www.geeks-hub.com/types-of-server-virtualization/" target="_blank">Types of Server Virtualisation</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">File Transfer Protocol (FTP)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite : <a href="https://www.geeksforgeeks.org/protocols-application-layer/" target="_blank">Protocols in Application Layer</a></p>
+<p>File Transfer Protocol(FTP) is an application layer protocol which moves files between local and remote file systems. It runs on the top of TCP, like HTTP. To transfer a file, 2 TCP connections are used by FTP in parallel: control connection and data connection.</p>
+<p><img src="../../../imgs/net/f556fcc2a9d2650f336cdbac855ef7ea.jpg" alt="" width="700" height="600" class="alignnone size-medium wp-image-232544"/></p>
+<p><strong>What is control connection?</strong><br/>
+For sending control information like user identification, password, commands to change the remote directory, commands to retrieve and store files etc., FTP makes use of control connection. Control connection is initiated on port number 21.</p>
+<p><strong>What is data connection?</strong><br/>
+For sending the actual file, FTP makes use of data connection. Data connection is initiated on port number 20.<br/>
+FTP sends the control information out-of-band as it uses a separate control connection. Some protocols send their request and response header lines and the data in the same TCP connection. For this reason, they are said to send their control information in-band. HTTP and SMTP are such examples.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>FTP Session :</strong><br/>
+When a FTP session is started between a client and a server, the client initiates a control TCP connection with the server side. The client sends the control information over this. When the server receives this, it initiates a data connection to the client side. Only one file can be sent over one data connection. But the control connection remains active throughout the user session. As we know HTTP is stateless i.e. it does not have to keep track of any user state. But FTP needs to maintain a state about its user throughout the session.</p>
+<p><strong>Data Structures :</strong> FTP allows three types of data structures :</p>
+<ol>
+<li><b>File Structure –</b> In file-structure there is no internal structure and the file is considered to be a continuous sequence of data bytes.</li>
+<li><b>Record Structure –</b> In record-structure the file is made up of sequential records.</li>
+<li><b>Page Structure –</b> In page-structure the file is made up of independent indexed pages.</li>
+</ol>
+<p><strong>FTP Commands –</strong> Some of the FTP commands are :</p>
+<p><em>USER</em> – This command sends the user identification to the server.<br/>
+<em>PASS</em> – This command sends the user password to the server.<br/>
+<em>CWD</em> – This command allows the user to work with a different directory or dataset for file storage or retrieval without altering his login or accounting information.<br/>
+<em>RMD</em> – This command causes the directory specified in the path-name to be removed as a directory.<br/>
+<em>MKD</em> – This command causes the directory specified in the path name to be created as a directory.<br/>
+<em>PWD</em> – This command causes the name of the current working directory to be returned in the reply.<br/>
+<em>RETR</em> – This command causes the remote host to initiate a data connection and to send the requested file over the data connection.<br/>
+<em>STOR</em> – This command causes to store a file into the current directory of the remote host.<br/>
+<em>LIST</em> – Sends a request to display the list of all the files present in the directory.<br/>
+<em>ABOR</em> – This command tells the server to abort the previous FTP service command and any associated transfer of data.<br/>
+<em>QUIT</em> – This command terminates a USER and if file transfer is not in progress, the server closes the control connection.</p>
+<p><strong>FTP Replies –</strong> Some of the FTP replies are :</p>
+<p>200 Command okay.<br/>
+530 Not logged in.<br/>
+331 User name okay, need password.<br/>
+225 Data connection open; no transfer in progress.<br/>
+221 Service closing control connection.<br/>
+551 Requested action aborted: page type unknown.<br/>
+502 Command not implemented.<br/>
+503 Bad sequence of commands.<br/>
+504 Command not implemented for that parameter.</p>
+<p><strong>Anonymous FTP :</strong><br/>
+Anonymous FTP is enabled on some sites whose files are available for public access. A user can access these files without having any username or password. Instead, username is set to anonymous and password to guest by default. Here, the user access is very limited. For example, the user can be allowed to copy the files but not to navigate through directories.</p>
+<p>Reference : https://en.wikipedia.org/wiki/File_Transfer_Protocol</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

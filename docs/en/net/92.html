@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">TCP 3-Way Handshake Process</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>This could also be seen as a way of how TCP connection is established. Before getting into the details, let us look at some basics. TCP stands for <strong>Transmission Control Protocol</strong> which indicates that it does something to control the transmission of the data in a reliable way.</p>
+<p>The process of communication between devices over the internet happens according to the current <strong>TCP/IP</strong> suite model(stripped out version of OSI reference model). The Application layer is a top pile of stack of TCP/IP model from where network referenced application like web browser on the client side establish connection with the server. From the application layer,the information is transferred to the transport layer where our topic comes into picture. The two important protocols of this layer are – TCP, <strong>UDP(User Datagram Protocol)</strong> out of which TCP is prevalent(since it provides reliability for the connection established). However you can find application of UDP in querying the DNS server to get the binary equivalent of the Domain Name used for the website.</p>
+<p><img src="../../../imgs/net/03985e7e6ce36a0cc40e3c8e77847421.jpg" alt="" width="492" height="221" class="aligncenter size-medium wp-image-238886"/></p>
+<p>TCP provides reliable communication with something called <strong>Positive Acknowledgement with Re-transmission(PAR)</strong>. The Protocol Data Unit(PDU) of the transport layer is called segment. Now a device using PAR resend the data unit until it receives an acknowledgement. If the data unit received at the  receiver’s end is damaged(It checks the data with checksum functionality of the transport layer that is used for Error Detection), then receiver discards the segment. So the sender has to resend the data unit for which positive acknowledgement is not received. You can realize from above mechanism that three segments are exchanged between sender(client) and receiver(server) for a reliable TCP connection to get established. Let us delve how this mechanism works :</p>
+<p><img src="../../../imgs/net/827f7d942165a125667c512bcdc0062c.jpg" alt="" width="461" height="366" class="aligncenter size-full wp-image-238940"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li><strong>Step 1 (SYN) : </strong>In the first step, client wants to establish a connection with server, so it sends a segment with SYN(Synchronize Sequence Number) which informs server that client is likely to start communication and with what sequence number it starts segments with</li>
+<li><strong>Step 2 (SYN + ACK): </strong>Server responds to the client request with SYN-ACK signal bits set. Acknowledgement(ACK) signifies the response of segment it received and SYN signifies with what sequence number it is likely to start the segments with</li>
+<li><strong>Step 3 (ACK) : </strong>In the final part client acknowledges the response of server and they both establish a reliable connection with which they will start eh actual data transfer</li>
+<p>The steps 1, 2 establish the connection parameter (sequence number) for one direction and it is acknowledged. The steps 2, 3 establish the connection parameter (sequence number) for the other direction and it is acknowledged. With these, a full-duplex communication is established.</p>
+<p><b>Note –</b> Initial sequence numbers are randomly selected while establishing connections between client and server.</p>
+<p><strong>References- </strong></p>
+<p><a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol#Connection_establishment" target="_blank">Connection establishment – Wikipedia</a><br/>
+<a href="http://www.inetdaemon.com/tutorials/internet/tcp/3-way_handshake.shtml">TCP 3-Way Handshake</a><br/>
+<a href="http://www.tcpipguide.com/free/t_TCPConnectionEstablishmentProcessTheThreeWayHandsh-3.htm">TCP 3-Way Handshake – TCPIPguide</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ul>
+</div>
+</body>
+</html>

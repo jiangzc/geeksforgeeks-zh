@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Router on a stick | Introduction and Configuration</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/access-trunk-ports/" rel="noopener" target="_blank">Access and trunk ports</a><br/>
+Switches divide broadcast domain through VLAN (Virtual LAN). VLAN  is a partitioned broadcast domain from a single broadcast domain. Switch doesn’t forward packets across different VLANs by itself. If we want to make these virtual LANs communicate with each other, a concept of <strong>Inter VLAN Routing</strong> is used. </p>
+<p><b>Inter VLAN Routing :</b></p>
+<p>Inter VLAN routing is a process in which we make different virtual LANs to communicate with each other irrespective of where the VLANs are present (on same switch or different switch). Inter VLAN Routing can be achieved through a layer-3 device i.e. Router or layer-3 Switch. When the Inter VLAN Routing is done through Router the it is known as <strong>Router on a stick</strong>.<br/>
+&#160;<br/>
+<b>Router On a Stick :</b></p>
+<p>The Router’s interface is divided into sub-interfaces, which acts as a default gateway to their respective VLANs.
+</p>
+<p>
+&#160;</p>
+<p><b>Configuration :</b></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/net/3ae99daa307ccc2d0067e8924bbde64e.jpg" alt="" class="aligncenter size-medium wp-image-318173"/></p>
+<p>Here is a topology in which there is a router and a switch and some end hosts. 2 different VLANs have been created on the switch. The router’s interface is divided into 2 sub-interfaces (as there are 2 different VLANs) which will acts as a default gateway to their respective VLANs. Then router will perform Inter VLAN Routing and the VLANs will be communicate with each other. </p>
+<blockquote><p>
+First we will assign IP address to the host PC1 as 192.168.1.10/24, Server 192.168.1.20/24 and the other host PC2 will have IP address 192.168.2.10/24 manually.</p>
+<p>Now, we will make sub-interface of fa0/0 as fa0/0.1 and fa0/0.2 and assign IP address as 192.168.1.1/24 and 192.168.2.1/24 respectively  on router’s ports.
+</p>
+</blockquote>
+<pre><b>r1#</b> int fa0/0.1
+<b>r1#</b> encapsulation dot1q 2
+<b>r1#</b> ip address 192.168.1.1  255.255.255.0
+<b>r1#</b> int fa0/0.2
+<b>r1#</b> encapsulation dot1q 3
+<b>r1#</b> ip address 192.168.2.1 255.255.255.0</pre>
+<p><b>NOTE :</b> Here encapsulation type <strong>dot1q </strong>is used for frame tagging between the 2 different VLAN. When the switch forwards packet of one VLAN to another, it inserts a VLAN into the Ethernet header. </p>
+<p>Now, we will make 2 different VLANs on switch namely VLAN 2 and VLAN 3 giving names <em>HR_dept</em> and <em>sales_dept</em>. </p>
+<pre><b>Switch#</b> vlan 2
+<b>Switch#</b> name HR_dept
+<b>Switch#</b> vlan 3
+<b>Switch#</b> name sales_dept</pre>
+<pre><b>Switch#</b> int range fa0/1-2
+<b>Switch#</b> switchport mode access
+<b>Switch#</b> switchport access vlan 2
+<b>Switch#</b> int fa0/3
+<b>Switch#</b> switchport mode access
+<b>Switch#</b> switchport access vlan 3</pre>
+<p>Here, we have assigned VLAN 2 to the specific switch ports fa0/1, fa0/2 and vlan 3 to fa0/3 respectively.</p>
+<p><strong>NOTE :</strong> <em>int range fa0/1-2</em> command is used as there are more than one host present in a single VLAN.<br/>
+&#160;<br/>
+Now to check reachability of PC2 from PC1, we will try to PING PC2 from PC1.<br/>
+<img src="../../../imgs/net/b256aa07f07ae4eead14980ff68630cb.jpg" alt="" class="aligncenter size-medium wp-image-318176"/></p>
+<p><img src="../../../imgs/net/b54f1b132a456459b268005d2f43bd2b.jpg" alt="" class="aligncenter size-medium wp-image-318170"/></p>
+<p><img src="../../../imgs/net/264d53eb550c21e4560322d7165a7cdb.jpg" alt="" class="aligncenter size-medium wp-image-318179"/></p>
+<p><img src="../../../imgs/net/e515f1ebd6927fa10ce3ae1eed72df80.jpg" alt="" class="aligncenter size-medium wp-image-318180"/><br/>
+<img src="../../../imgs/net/f6372ef5ef7449a827fa5a4989f395d9.jpg" alt="" class="aligncenter size-medium wp-image-318181"/></p>
+<p>From the above figures, we see that the packet is delivered to the router by the switch, because now the broadcast domain have been divided by the different VLANs present on the switch therefore, the packet will be delivered to the default gateway (as PC2 is present on different network) and then to the destination.  </p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

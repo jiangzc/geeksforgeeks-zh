@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">TCP Congestion Control</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisites –</b> <a href="https://www.geeksforgeeks.org/computer-networks-congestion-control/">Basic Congestion control knowledge</a></p>
+<p>TCP uses a congestion window and a congestion policy that avoid congestion.Previously, we assumed that only receiver can dictate the sender’s window size. We ignored another entity here, the network. If the network cannot deliver the data as fast as it is created by the sender, it must tell the sender to slow down. In other words, in addition to the receiver, the network is a second entity that determines the size of the sender’s window.</p>
+<p><b>Congestion policy in TCP –</b></p>
+<ol>
+<li>Slow Start Phase: starts slowly increment is exponential to threshold</li>
+<li>Congestion Avoidance Phase: After reaching the threshold increment is by 1</li>
+<li>Congestion Detection Phase: Sender goes back to Slow start phase or Congestion avoidance phase.</li>
+</ol>
+<p><b>Slow Start Phase : exponential increment –</b> In this phase after every RTT the congestion window size increments exponentially.</p>
+<pre>Initially cwnd = 1
+After 1 RTT, cwnd = 2^(1) = 2
+2 RTT, cwnd = 2^(2) = 4
+3 RTT, cwnd = 2^(3) = 8
+</pre>
+<p><b>Congestion Avoidance Phase : additive increment –</b> This phase starts after the threshold value also denoted as <em>ssthresh</em>. The size of <em>cwnd</em>(congestion window) increases additive. After each RTT cwnd = cwnd + 1.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre>Initially cwnd = i
+After 1 RTT, cwnd = i+1
+2 RTT, cwnd = i+2
+3 RTT, cwnd = i+3
+</pre>
+<p><b>Congestion Detection Phase : multiplicative decrement –</b> If congestion occurs, the congestion window size is decreased. The only way a sender can guess that congestion has occurred is the need to retransmit a segment. Retransmission is needed to recover a missing packet which is assumed to have been dropped by a router due to congestion. Retransmission can occur in one of two cases: when the RTO timer times out or when three duplicate ACKs are received. </p>
+<ul>
+<li><b>Case 1 : Retransmission due to Timeout –</b> In this case congestion possibility is high.
+<p>(a) ssthresh is reduced to half of the current window size.<br/>
+(b) set cwnd = 1<br/>
+(c) start with slow start phase again.
+</p></li>
+<li><b>Case 2 : Retransmission due to 3 Acknowledgement Duplicates –</b> In this case congestion possibility is less.
+<p>(a) ssthresh value reduces to half of the current window size.<br/>
+(b) set cwnd= ssthresh<br/>
+(c) start with congestion avoidance phase
+</p></li>
+
+<p><b>Example –</b> Assume a TCP protocol experiencing the behavior of slow start. At 5th transmission round with a threshold (ssthresh) value of 32 goes into congestion avoidance phase and continues till 10th transmission. At 10th transmission round, 3 duplicate ACKs are received by the receiver and enter into additive increase mode. Timeout occurs at 16th transmission round. Plot the transmission round (time) vs congestion window size of TCP segments.</p>
+<p><img src="../../../imgs/net/2b29fa4689083dd546af44648ac8f7f4.jpg"/></p>
+<p><b>GATE CS Corner Questions –</b></p>
+<p>Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2008-question-56/" target="_blank">GATE CS 2008, Question 56</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2012-question-45/" target="_blank">GATE CS 2012, Question 65</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-1-question-37/" target="_blank">GATE CS 2014 (Set 1), Question 65</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2005-question-73/" target="_blank">GATE IT 2005, Question 73</a></li>
+</ol>
+<p><br/></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ul>
+</div>
+</body>
+</html>

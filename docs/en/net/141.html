@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">C Program to find IP Address, Subnet Mask &amp; Default Gateway</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p align="center"><strong>Terminology</strong></p>
+<p><strong><a href="https://www.geeksforgeeks.org/ip-addressing-classless-addressing/" target="_blank">IP Address</a> : </strong>An IP address, short for Internet Protocol address, is an identifying number for a piece of network hardware. Having an IP address allows a device to communicate with other devices over an IP-based network like the internet.</p>
+<p><strong>Subnet mask: </strong>A subnet mask is a 32-bit number used to differentiate the network component of an IP address by dividing the IP address into a network address and host address.Subnet masks are used to design subnetworks, or subnets, that connect local networks and determine what subnet an IP address belongs to.</p>
+<p><strong>Default Gateway: </strong>A default gateway serves as an access point or IP router that a networked computer uses to send information to a computer in another network or the Internet.Default simply means that this gateway is used by default, unless an application specifies another gateway.A default gateway allows computers on a network to communicate with computers on another network. Without it, the network is isolated from the outside.</p>
+<p align="center"><strong>Using system command</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>To get the IP Address, Subnet Mask and Default Gateway, we execute ipconfig command in the cmd.Here, we will make use of system() from &lt; stdlib.h &gt; to perform a system operation with the help of a C program:</p>
+<pre class="brush: c; title: ; notranslate" title="">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+  system("c:\\windows\\system32\\ipconfig");
+  return 0;
+}
+</pre>
+<p align="center"><strong>Using execl command</strong></p>
+<p>This displays the IPv4 address, Subnet Mask and the Default Gateway.The same operation can also be performed with the execl() function.To execute the later, we code:</p>
+<pre class="brush: c; title: ; notranslate" title="">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+
+int main()
+{
+  execl("c:\\windows\\system32\\ipconfig", "ipconfig", 0);
+  return 0;
+}
+</pre>
+<p><strong>Output: </strong><br/>
+<img src="../../../imgs/net/c5e0b5f3bd816929bf57bfe8619abfbe.jpg" alt="" width="665" height="553" class="alignnone size-large wp-image-199991"/></p>
+<p><!-- I tried various color combinations, but this combination seems starker and bright.--></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

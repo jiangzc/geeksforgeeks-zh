@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Basics of Computer Networking</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Open system:</strong><br/>
+A system which is connected to the network and is ready for communication.</p>
+<p><strong>Closed system:</strong><br/>
+A system which is not connected to the network and can’t be communicated with.</p>
+<p><strong>Computer Network: </strong><br/>
+It is the interconnection of multiple devices, generally termed as Hosts connected using multiple paths for the purpose of sending/receiving data or media.<br/>
+There are also multiple devices or mediums which helps in the communication between two different devices which are known as <strong>Network devices</strong>. Ex: Router, Switch, Hub, Bridge.<br/>
+<img src="../../../imgs/net/97cd16e8ed244339a0c60de9d5386183.jpg" alt="Computer-Networking-Diagram" width="300" height="229" class="aligncenter size-full wp-image-207858"/></p>
+<p>The layout pattern using which devices are interconnected is called as network topology. Such as Bus, Star, Mesh, Ring, Daisy chain.<br/>
+<img src="../../../imgs/net/506cecb6b6185803143aad51ed11aaff.jpg" alt="Network-Topology-Diagram" width="311" height="162" class="aligncenter size-full wp-image-207849"/></p>
+<p><strong>OSI:</strong><br/>
+OSI stands for <strong>Open Systems Interconnection</strong>. It is a reference model that specifies standards for communications protocols and also the functionalities of each layer.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Protocol: </strong><br/>
+Protocol is the set of rules or algorthims which define the way how two entities can  communicate across the network and there exists different protocol defined at each layer of OSI model. Few of such protocols are TCP, IP, UDP, ARP, DHCP, FTP and so on.</p>
+<p><u><strong>UNIQUE IDENTIFIERS OF NETWORK</strong></u><br/>
+<strong>Host name:</strong><br/>
+ Each device in the network is associated with a unique device name known as Hostname.<br/>
+Type “hostname” in the command prompt and press ‘Enter’, this displays the hostname of your machine.<br/>
+<img src="../../../imgs/net/508c459b9f41514bb73dc17b356b57df.jpg" alt="" width="548" height="299" class="aligncenter size-full wp-image-207862"/></p>
+<p><strong>IP Address (Internet Protocol address):</strong><br/>
+ Also know as Logical Address, is the network address of the system across the network.<br/>
+To identify each device in the world-wide web, Internet Assigned Numbers Authority (IANA) assigns IPV4 (Version 4) address as unique identifier for each device on the Internet.<br/>
+Length of the IP address is : 32-bits. (Hence we have 2<sup>32</sup> ip addresses available.)<br/>
+<em>Type “ipconfig” in the command prompt and press ‘Enter’, this gives us the IP address of the device.</em></p>
+<p><strong>MAC Address (Media Access Control address): </strong><br/>
+Also known as physical address, is the unique identifier of each host and is associated with the NIC (Network Interface Card).<br/>
+MAC address is assigned to the NIC at the time of manufacturing.<br/>
+Length of the MAC address is : 12-digit/ 6 bytes/ 48 bits<br/>
+<em>Type “ipconfig/all” in the command prompt and press ‘Enter’, this gives us the MAC address.</em></p>
+<p><strong>Port:  </strong><br/>
+Port can be referred as logical channel through which data can be sent/received to an application. Any host may have multiple applications running, and each of this application is identified using the port number on which they are running on.<br/>
+Port number is a 16-bit integer, hence we have 2<sup>16</sup> ports available which are categorized as shown below:</p>
+<table border="1">
+<tbody><tr>
+<th>Port Types</th>
+<th>Range</th>
+</tr>
+<tr>
+<td><font color="black">Well known Ports</font></td>
+<td><font color="black">0 – 1023</font></td>
+</tr>
+<tr>
+<td><font color="black">Registered Ports</font></td>
+<td><font color="black">1024 – 49151</font></td>
+</tr>
+<tr>
+<td><font color="black">Ephemeral Ports</font></td>
+<td><font color="black">49152 – 65535</font></td>
+</tr>
+</tbody>
+</table>
+<p>Number of ports: 65,536<br/>
+Range: 0 – 65535<br/>
+<em>Type “<strong>netstat -a</strong>” in the command prompt and press ‘Enter’, this lists all the ports being used.</em><br/>
+<img src="../../../imgs/net/3134ce4ff06d93bc0c8aeb7936bc6f47.jpg" alt="" width="601" height="285" class="aligncenter size-full wp-image-207867"/></p>
+<p><strong>Socket:</strong><br/>
+The unique combination of IP address and Port number together are termed as Socket.</p>
+<p><u><strong>Few more concepts</strong></u><br/>
+<strong>DNS Server:</strong><br/>
+DNS stands for <strong>Domain Name system</strong>.<br/>
+DNS is basically a server which translate web addresses or URL (ex: www.google.com) into their corresponding IP addresses. We don’t have to remember all the IP addresses of each and every website.<br/>
+The command ‘<strong>nslookup</strong>’ gives you the IP address of the domain you are looking for. This also provides the information of our DNS Server.<br/>
+<img src="../../../imgs/net/701864faa243e3cdd2bdd5ea7c58af8d.jpg" alt="" width="632" height="343" class="aligncenter size-full wp-image-207868"/></p>
+<p><strong>ARP:</strong><br/>
+ARP stands for <strong>Address Resolution Protocol</strong>.<br/>
+It is used to convert the IP address to its corresponding Physical Address(i.e.MAC Address).<br/>
+ARP is used by the Data Link Layer to identify the MAC address of the Receiver’s machine.<br/>
+<strong>RARP:</strong><br/>
+RARP stands for <strong>Reverse Address Resolution Protocol</strong>.<br/>
+As the name suggest, it provides the IP address of the a device given physical address as input. But RARP has become obsolete since the time DHCP has come into picture.</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

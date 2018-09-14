@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Sliding Window protocols Summary With Questions</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisites –</b>  <a href="https://www.geeksforgeeks.org/stop-and-wait-arq/">Stop &amp; Wait</a>, <a href="https://www.geeksforgeeks.org/sliding-window-protocol-set-2-receiver-side/">Go Back N</a>, <a href="https://www.geeksforgeeks.org/sliding-window-protocol-set-3-selective-repeat/" target="_blank">Selective Repeat</a></p>
+<h3 class="sigil_not_in_toc">Summary of all the protocols –</h3>
+<p> Before starting with the questions a quick recap for all the protocols.</p>
+<p><b>Stop and wait –</b></p>
+<ol>
+<li>Sender window size (Ws) = 1</li>
+<li>Receiver window size (Wr) = 1</li>
+<li>Sequence Number &gt;= 1 + 1</li>
+<li>Uses independent acknowledgement</li>
+<li>Discards out of order packets</li>
+<li>Packet Loss → Retransmit packet after time out</li>
+<li>Acknowledgement loss → Resends packet after time out</li>
+<li>Efficiency = 1/(1+2a) where a = Tp/Tt</li>
+</ol>
+<p><b>Go Back N –</b></p>
+<ol>
+<li>Sender window size Ws = N</li>
+<li>Receiver window size Wr = 1</li>
+<li>Sequence number &gt;= N + 1</li>
+<li>Can use both cumulative or independent acknowledgement depends on acknowledge timer</li>
+<li>Discards out of order packets</li>
+<li>Packet Loss → Track back N size from the last packet within the window limit to the lost packet and retransmit them</li>
+<li>Acknowledgement loss → If not received before timeout the entire window N size is resend</li>
+<li>Efficiency = N/(1+2a) where a = Tp/Tt</li>
+</ol>
+<p><b>Selective Repeat –</b></p>
+<ol>
+<li>Sender window size Ws = N</li>
+<li>Receiver window size Wr = N</li>
+<li>Sequence Number &gt;= N + N</li>
+<li>Uses only independent acknowledgement</li>
+<li>Can Accept out of order packets</li>
+<li>Packet Loss → Resend only the lost packet after timeout</li>
+<li>Acknowledgement loss → Resend if not receive before timeout</li>
+<li>Efficiency = N/(1+2a) where a = Tp/Tt</li>
+</ol>
+<h3 class="sigil_not_in_toc">Practice Questions –</h3>
+<ul>
+<li><b>Example-1. </b> In Stop and wait protocol every 4th packet is lost and we need to send total 10 packets so how many transmission it took to send all the packets ?</li>
+<li><b>Explanation –</b>
+<pre>1 2 3 4 5 6 7 8 9 10 (Initially)
+      ^
+1 2 3 4 4 5 6 7 8 9 10 (Packet no. 4 retransmitted) 
+              ^
+1 2 3 4 4 5 6 7 7 8 9 10 (Packet no. 10 retransmitted)
+                       ^
+1 2 3 4 4 5 6 7 7 8 9 10 10 (Result)
+</pre>
+<p>So, we retransmitted packet noumber 4, 7, 10<br/>
+Total count = 13</p></li>
+<li><b>Example-2. </b> In S&amp;W protocol if Error probability is p and no. of packets to send is ‘n’.How many packets we have to send ?</li>
+<li><b>Explanation –</b><br/>
+Total retransmissions<br/>
+= n+ n*p+ n*p^(2) + n*p^(3) + n*p^(4) + …<br/>
+= n(1 + p + p^2 + p^3 + p^4 + …)<br/>
+= n*(1/1-p)     using infinite GP formula</li>
+<li><b>Example-3. </b>  In GBN sender Window size = 10 and Tp = 49.5ms &amp; Tt = 1ms. What is the Efficiency of the protocol and Throughput given Bandwidth=1000 bps ?</li>
+<li><b>Explanation –</b><br/>
+Efficiency = N/(1+2a), N =  10 (given), a = Tp/Tt = 49.5<br/>
+Efficiency = 10/(1+2*49.5) = 10/100 = 0.1 or 10%<br/>
+Throughput = Efficiency * Bandwidth<br/>
+           = 0.1*1000 = 100</li>
+<li><b>Example-4. </b> In GB3 if every 5th packet is lost &amp; we need to send 10 packets so how many retransmissions are required ?</li>
+<li><b>Explanation –</b>
+<pre>1 2 3 4 5 6 7  | 8 9 10 
+        ^   $            (packet no. 5 lost)
+1 2 3 4 5 6 7 5 6 7 8 9 | 10
+              *   ^   $       
+1 2 3 4 5 6 7 5 6 7 8 9 7 8 9 10
+                        *   ^  $
+1 2 3 4 5 6 7 5 6 7 8 9 7 8 9 10 9 10 (count starts from * till ^)
+(from ^ to $ retranmission is done)
+</pre>
+<p><b>Note –</b> From Last packet is window size to lost pocket we resend the entire window.<br/>
+Total no. of transmissions = 18</p></li>
+<li><b>Example-5. </b> In SR Ws= 5 and we are sending 10 packets where every 5th packet is lost find number of retransmissions ?</li>
+<li><b>Explanation –</b>
+<pre>1 2 3 4 5 6 7 8 9 10
+        ^
+1 2 3 4 5 5 6 7 8 9 10
+                  ^
+1 2 3 4 5 6 7 8 9 9 10
+</pre>
+<p>We see here there is no role of Window size in SR only the lost packet is resent.<br/>
+Total transmissions = 12</p></li>
+<li><b>Example-6. </b> If there is K bits sequence no. define require sender window size and receiver window size for S&amp;W, GBN &amp; SR?
+<p><b>Explanation –</b><br/>
+Given, K bits, For S&amp;W Ws = 1 and Wr= 1<br/>
+For GBN, Ws = 2^(K)-1 and Wr = 1<br/>
+For SR, Ws = 2^(K-1) and Wr = 2^(K-1)</p></li>
+
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ul>
+</div>
+</body>
+</html>

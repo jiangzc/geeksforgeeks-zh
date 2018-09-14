@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Explicitly assigning port number to client in Socket</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><!-- Problem Statement --><br/>
+Prerequisite: <a href="https://www.geeksforgeeks.org/socket-programming-cc/">Socket programming in C/C++</a>.</p>
+<p>In socket programming, when server and client are connected then client is provided any random port number by operating system to run and generally, we don’t care about it, But in some cases, there may be a firewall on the client side that only allows outgoing connections on certain port numbers. So, it is highly probable that the port number provided to client by operating system may have been blocked by client firewall. In that case, we need to <strong>explicitly or forcefully assign any port number to the client </strong>on which it can operate.</p>
+<p>Some protocol like <b><a href="https://en.wikipedia.org/wiki/Network_File_System">NFS</a></b> protocol requires client program to run on only certain port number and so in this case, client need to forcefully assigned that port number only as it runs on <a href="https://serverfault.com/questions/377170/which-ports-do-i-need-to-open-in-the-firewall-to-use-nfs">port number</a> either on 111 or on 2049. This can be done using bind() system call with specifying particular port number in client side socket.</p>
+<p>Below is the implementation Server and Client program where client will be forcefully get assigned a port number.</p>
+<p><!-- To show strongly recommend and practice link    --></p>
+<div id="practiceLinkDiv">
+<h2 class="sigil_not_in_toc"><a href="https://ide.geeksforgeeks.org/">Recommended: Please try your approach on <b><i><u>{IDE}</u></i></b> first, before moving on to the solution.</a></h2>
+</div>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p align="center"><strong>Server Side Program</strong></p>
+<pre class="brush: c; title: ; notranslate" title="">// C program to demonstrate 
+// socket programming in finding ip address 
+// and port number of connected client
+// on Server Side
+#include&lt;stdio.h&gt;
+#include&lt;sys/types.h&gt;
+#include&lt;sys/socket.h&gt;
+#include&lt;sys/un.h&gt;
+#include&lt;string.h&gt;
+#include&lt;netdb.h&gt;
+#include&lt;netinet/in.h&gt;
+#include&lt;arpa/inet.h&gt;
+#include&lt;string.h&gt;
+
+int main()
+{
+	// Two buffers for message communication
+	char buffer1[256], buffer2[256];
+	int server = socket(AF_INET, SOCK_STREAM, 0);
+	if (server &lt; 0)
+		printf("Error in server creating\n");
+	else
+		printf("Server Created\n");
+		
+	struct sockaddr_in my_addr, peer_addr;
+	my_addr.sin_family = AF_INET;
+	my_addr.sin_addr.s_addr = INADDR_ANY;
+	
+	// This ip address will change according to the machine
+	my_addr.sin_addr.s_addr = inet_addr("10.32.40.213");
+	
+	my_addr.sin_port = htons(12000);
+
+	if (bind(server, (struct sockaddr*) &amp;my_addr, sizeof(my_addr)) == 0)
+		printf("Binded Correctly\n");
+	else
+		printf("Unable to bind\n");
+		
+	if (listen(server, 3) == 0)
+		printf("Listening ...\n");
+	else
+		printf("Unable to listen\n");
+	
+	socklen_t addr_size;
+	addr_size = sizeof(struct sockaddr_in);
+	
+	// Ip character array will store the ip address of client
+	char *ip;
+	
+	// while loop is iterated infinitely to 
+	// accept infinite connection one by one
+	while (1)
+	{
+		int acc = accept(server, (struct sockaddr*) &amp;peer_addr, &amp;addr_size);
+		printf("Connection Established\n");
+		char ip[INET_ADDRSTRLEN];
+		inet_ntop(AF_INET, &amp;(peer_addr.sin_addr), ip, INET_ADDRSTRLEN);
+	
+		// "ntohs(peer_addr.sin_port)" function is 
+		// for finding port number of client
+		printf("connection established with IP : %s and PORT : %d\n", 
+		                                    ip, ntohs(peer_addr.sin_port));
+
+		recv(acc, buffer2, 256, 0);
+		printf("Client : %s\n", buffer2);
+		strcpy(buffer1, "Hello");
+		send(acc, buffer1, 256, 0);
+	} 
+	return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>Server Created
+Binded Correctly
+Listening ...
+Connection Established
+connection established with IP : 10.32.40.213 and PORT : 12010
+Client : Hello
+<!-- Your Output -->
+</pre>
+<p align="center"><strong>Client Side Program</strong></p>
+<pre class="brush: cpp; title: ; notranslate" title="">// C program to demonstrate socket programming
+// as well as explicitly assigning a port number
+// on Client Side
+#include&lt;stdio.h&gt;
+#include&lt;sys/types.h&gt;
+#include&lt;sys/socket.h&gt;
+#include&lt;sys/un.h&gt;
+#include&lt;string.h&gt;
+#include&lt;netdb.h&gt;
+#include&lt;netinet/in.h&gt;
+#include&lt;arpa/inet.h&gt;
+#include&lt;stdlib.h&gt;
+
+int main()
+{
+	// Two buffer are for message communication
+	char buffer1[256], buffer2[256];
+	struct sockaddr_in my_addr, my_addr1;
+	int client = socket(AF_INET, SOCK_STREAM, 0);
+	if (client &lt; 0)
+	printf("Error in client creating\n");
+	else
+		printf("Client Created\n");
+		
+	my_addr.sin_family = AF_INET;
+	my_addr.sin_addr.s_addr = INADDR_ANY;
+	my_addr.sin_port = htons(12000);
+	
+	// This ip address will change according to the machine
+	my_addr.sin_addr.s_addr = inet_addr("10.32.40.213");
+
+	// Explicitly assigning port number 12010 by 
+	// binding client with that port 
+	my_addr1.sin_family = AF_INET;
+	my_addr1.sin_addr.s_addr = INADDR_ANY;
+	my_addr1.sin_port = htons(12010);
+	
+	// This ip address will change according to the machine
+	my_addr1.sin_addr.s_addr = inet_addr("10.32.40.213");
+	if (bind(client, (struct sockaddr*) &amp;my_addr1, sizeof(struct sockaddr_in)) == 0)
+		printf("Binded Correctly\n");
+	else
+		printf("Unable to bind\n");
+	
+	socklen_t addr_size = sizeof my_addr;
+	int con = connect(client, (struct sockaddr*) &amp;my_addr, sizeof my_addr);
+	if (con == 0)
+		printf("Client Connected\n");
+	else
+		printf("Error in Connection\n");
+
+	strcpy(buffer2, "Hello");
+	send(client, buffer2, 256, 0); 
+	recv(client, buffer1, 256, 0);
+	printf("Server : %s\n", buffer1);
+	return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>Client Created
+Binded Correctly
+Client Connected
+Server : Hello
+<!-- Your Output -->
+</pre>
+<p><b>Reference</b> : <a>https://stackoverflow.com/questions/4118241/what-client-side-situations-need-bind</a></p>
+<p><!-- To show list of companies where this problem is asked. Please remove if doesn't fit.    --></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

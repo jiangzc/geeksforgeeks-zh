@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">C Program to display hostname and IP address</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>There are many ways to find <em>Hostname</em> and <em>IP address</em> of a local machine. Here is a simple method to find hostname and IP address using C program.</p>
+<p>We will be using the following functions :-</p>
+<p><strong>gethostname()</strong> : The gethostname function retrieves the standard host name for the local computer.</p>
+<p><strong>gethostbyname()</strong> : The gethostbyname function retrieves host information corresponding to a host name from a host database.</p>
+<p><strong>inet_ntoa()</strong> : The inet_ntoa function converts an (Ipv4) Internet network address into an ASCII string in Internet standard dotted-decimal format.</p>
+<div class="responsive-tabs">
+<h2 class="tabtitle sigil_not_in_toc">C/C++</h2>
+<div class="tabcontent">
+
+<pre class="brush: cpp; title: ; notranslate" title="">// C program to display hostname
+// and IP address
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;netdb.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;arpa/inet.h&gt;
+
+// Returns hostname for the local computer
+void checkHostName(int hostname)
+{
+    if (hostname == -1)
+    {
+        perror("gethostname");
+        exit(1);
+    }
+}
+
+// Returns host information corresponding to host name
+void checkHostEntry(struct hostent * hostentry)
+{
+    if (hostentry == NULL)
+    {
+        perror("gethostbyname");
+        exit(1);
+    }
+}
+
+// Converts space-delimited IPv4 addresses
+// to dotted-decimal format
+void checkIPbuffer(char *IPbuffer)
+{
+    if (NULL == IPbuffer)
+    {
+        perror("inet_ntoa");
+        exit(1);
+    }
+}
+
+// Driver code
+int main()
+{
+    char hostbuffer[256];
+    char *IPbuffer;
+    struct hostent *host_entry;
+    int hostname;
+
+    // To retrieve hostname
+    hostname = gethostname(hostbuffer, sizeof(hostbuffer));
+    checkHostName(hostname);
+
+    // To retrieve host information
+    host_entry = gethostbyname(hostbuffer);
+    checkHostEntry(host_entry);
+
+    // To convert an Internet network
+    // address into ASCII string
+    IPbuffer = inet_ntoa(*((struct in_addr*)
+                           host_entry-&gt;h_addr_list[0]));
+
+    printf("Hostname: %s\n", hostbuffer);
+    printf("Host IP: %s", IPbuffer);
+
+    return 0;
+}
+</pre>
+<p></p>
+</div>
+</div>
+<br/>
+Output:<p></p>
+<pre>Hostname: cContainer
+Host IP: 10.98.162.101
+</pre>
+<p><em>Output varies machine to machine</em></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

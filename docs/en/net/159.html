@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Collision Domain and Broadcast Domain</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisite –</b> <a href="https://www.geeksforgeeks.org/network-devices-hub-repeater-bridge-switch-router-gateways/">Network Devices</a>, <a href="https://www.geeksforgeeks.org/transmission-modes-computer-networks/">Transmission Modes</a></p>
+<p>The most common network devices used are routers and switches. But we still hear people talking about hubs, repeaters and bridges. Do your ever wonder why these former devices are preferred over the latter ones? One reason could be: ‘because they are more efficient and powerful’. But what actually is the reason behind their efficiency? This is when terms like <strong>“Collision Domains”</strong> and <strong>“Broadcast Domains”</strong> come into picture.</p>
+<p>Before going further, let us recall that a hub is a multiple-port repeater. Similarly, a switch is a multiple-port bridge so that you can understand why repeaters and bridges are not typically used in production networks(because of less number of ports). </p>
+<p>Now, narrowing down to Hubs, Switches and Routers, let us discuss about them in reference with the blow domains.</p>
+<ol>
+<li><strong>Collision Domain –</strong><br/>
+A Collision Domain is a scenario in which when a device sends out a message to the network, all other devices which are included in its collision domain have to pay attention to it, no matter if it was destined for them or not. This causes a problem because in a situation where two devices send out their messages simultaneously, a collision will occur leading them to wait and re-transmit their respective messages, one at at time. Remember, it happens only in case of a half-duplex mode.</li>
+<li><strong>Broadcast Domain –</strong><br/>
+A Broadcast Domain is a scenario in which when a device sends out a broadcast message, all the devices present in its broadcast domain have to pay attention to it. This creates a lot of congestion in the network, commonly called as LAN congestion, which affects the bandwidth of the users present in that network.<p></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>From this, we can realize that more the number of collision domains and more the number of broadcast domains, the more efficient is the network providing better bandwidth to all its users.</p></li>
+</ol>
+<p>So, which of our network devices break collision domains and which of them break broadcast domains?</p>
+<ul>
+<li><strong>HUB –</strong><br/>
+We start with a hub because we should get rid of it as soon as possible. The reason being, it neither breaks a collision domain nor a broadcast domain. All the devices connected to a hub is in single collision and single broadcast domain. Remember, hubs do not segment a network, they just connect network segments.</li>
+<li><strong>SWITCH –</strong><br/>
+Coming to switches, we have an advantage over the hub. Every port on a switch is in a different collision domain. So messages that comes from devices connected to different ports never experience collision. This helps us during designing networks but there is still a problem with switches. They never break broadcast domains. All the ports on the switch are in still in a single broadcast domain. If a device sends a broadcast message, it will still cause congestion.</li>
+<li><strong>ROUTER –</strong><br/>
+Last, but not the least, we have our savior. A router not only breaks collision domains but also break broadcast domains. A router creates a connection between two networks. A broadcast message from one network will never reach the other one as the router will never let it pass.
+</li>
+</ul>
+<p><img src="../../../imgs/net/2cf656adc9baf022eeeb97f10fabd728.jpg" alt="" width="428" height="255" class="aligncenter size-full wp-image-235697"/></p>
+<p>Also, as repeaters and bridges differ from hubs and switches only in terms of number of ports, a repeater does not break collision and broadcast domains, while a bridge breaks only collision domains.</p>
+<p><b>References –</b><br/>
+<a href="http://www.innos.in/downloads/CISCO%20-%20640-802-ccna.pdf">CCNA, Todd Lammle </a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

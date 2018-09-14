@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">RSA Algorithm using Multiple Precision Arithmetic Library</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Public Key Cryptography is also known as Asymmetric Cryptography is the type of cryptography which involves the usage of two keys namely Public Key and Private Key. The Public Key of the receiver is used to encrypt the plaintext by the sender while the Private Key of the receiver is used to decrypt the encrypted message and hence can be decrypted only by the intended receiver.</p>
+<p>RSA (Rivest Shamir Adleman) is a public key cryptographic algorithm in which key generation is based on the product of two large prime numbers p and q resulting into N i.e. N = p × q. The crux of the security of this algorithm is that the attacker needs to first find out p and q by factorization of N which takes place in exponential time. Research shows that this can take more than 70 years if N is a 100 digit number. Due to this complexity, the attacker is unable to find the decryption key d because d depends on p, q and encryption key e. So even if N and e are known to the attacker, d cannot be computed.</p>
+<p><strong>Current Scenario of RSA</strong></p>
+<p>As of April 2017, RSA-2048 may not be factorizable for many years to come. Moreover, the recent <a href="https://en.wikipedia.org/wiki/Ransomware" target="_blank">Ransomware</a> virus also uses RSA-2048 to encrypt files on the infected system. These files cannot be decrypted without the availability of the decrption key because such a large key cannot be factorized. Hence, RSA-1024 and RSA-2048 are now being popularly used for secured communication.<br/>
+<img src="../../../imgs/net/0a5200a9463fdbd315dba090d4c7ab2d.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt=" \\ \textbf{\hspace{4cm}  Key generation:} \\ Select \hspace{0.2cm} p, q \hspace{5cm} p,q  \hspace{0.2cm}both \hspace{0.2cm} prime\\ calculate  \hspace{0.2cm} n = p*q \\ calculate  \hspace{0.2cm}\phi(n) = (p-1)*(q-1) \\ select  \hspace{0.2cm}integer  \hspace{0.2cm}e  \hspace{4cm} gcd(\phi(n),e)=1; 1&lt;e&lt;\phi(n)\\ calculate  \hspace{0.2cm} d\\ Public Key  \hspace{5cm} KU = {e,n}\\ PrivateKey    \hspace{4.7cm} KR = {d,n}  " title="Rendered by QuickLaTeX.com" height="253" width="805" style="vertical-align: 28px;"/><br/>
+<img src="../../../imgs/net/c233946d84f18ea02e511e4ef29fd433.jpg" alt="Rsa Example"/><br/>
+The above images show the 3 different phases of the RSA algorithm. Considering that a prime number generator generates 1024-bit primes p and q, the resultant N will be a 2048-bit number. Since all modulo operations performed during encryption and decryption are with respect to N which is a 2048-bit number, the software implementation of this can be time-consuming. Moreover, the unsigned long long int data type of C restricts computations to 64-bit numbers. In order to support the generation of large-sized keys as a requirement of RSA algorithm and fast computation of encryption and decryption involving large size modulus, a library called the GMP (GNU Multiple Precision Arithmetic Library) can be used. The use of this library will allow the entire RSA algorithm to run on a simple 64-bit operating system thereby avoiding the use of super-computers or high configuration hardware devices.</p>
+<p><strong>What is GMP?</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><a href="https://gmplib.org/" target="_blank">GMP</a> is an open source library that allows arithmetic computations to be performed on signed integers, rational numbers and decimal numbers without any practical limitations on its precision apart from the configurations of the machine it is run on. This library is used during those arithmetic calculations that involve very large or high precision numbers, most of which are used in cryptographic algorithms. The benefit of using this library is that it provides support for arbitrary precision numbers, the size of which is not known prior to execution of the program. The basic interface provided for the use of this library is for the C language. But wrappers exist for other languages including Ada, C++, C#, Julia, OCaml, Perl, PHP, Python, R, Ruby and the Wolfram Language.</p>
+<p>As an example, a C program that performs the multiplication of two multiple precision numbers is mentioned below. <b><br/>
+Note</b> that the gmp.h file needs to be included as a header file. The compilation of such a program on a Unix system can be done using the command</p>
+<pre>gcc program_name.c -lgmp
+</pre>
+<pre class="brush: c; title: ; notranslate" title="">#include &lt;stdio.h&gt;
+#include &lt;gmp.h&gt;
+
+int main(void) {
+   mpz_t x, y, result;
+
+   mpz_init_set_str(x, "7612058254738945", 10);
+   mpz_init_set_str(y, "9263591128439081", 10);
+   mpz_init(result);
+
+   mpz_mul(result, x, y);
+   gmp_printf("    %Zd\n"
+              "*\n"
+              "    %Zd\n"
+              "--------------------\n"
+              "%Zd\n", x, y, result);
+
+   /* free used memory */
+   mpz_clear(x);
+   mpz_clear(y);
+   mpz_clear(result);
+  
+   return 0;
+}
+</pre>
+<p><strong>Coding the RSA Algorithm</strong></p>
+<p>A C program depicting the working of RSA algorithm with small prime numbers is available <a href="http://www.geeksforgeeks.org/rsa-algorithm-cryptography/" target="_blank">here</a>. In order to understand the working of the real RSA algorithm with the use of large prime numbers, a C code using GMP library is available <a href="https://github.com/gilgad13/rsa-gmp/blob/master/rsa.c" target="_blank">here</a>. This program implements RSA-1024 by generating random prime numbers p and q of 512 bits each followed by encryption and decryption. Here, the variable MODULUS_SIZE is assigned the value 1024. This value can be changed to 2048 to generate RSA keys of 2048 bits. </p>
+<p><strong>Applications</strong></p>
+<p>RSA algorithm has been widely used in secure network communications and secure transactions for many e-commerce applications. Other applications include voice communication over low bit rate channels, in secure key exchange for even high-speed IPSec, credit card details when communicated to online merchants etc.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Access-lists (ACL)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Access-list (ACL) is a set of rules defined for controlling the network traffic and reducing network attack. ACLs are used to filter traffic based on the set of rules defined  for the incoming or out going of the network. </p>
+<p><b>ACL features –</b></p>
+<ol>
+<li>The set of rules defined are matched serial wise i.e matching starts with the first line, then 2nd, then 3rd and so on.
+</li>
+<li>The packets are matched only until it matches the rule. Once a rule is matched then no further comparison takes place and that rule will be performed.
+</li>
+<li>There is an implicit deny at the end of every ACL, i.e., if no condition or rule matches then the packet will be discarded.
+</li>
+</ol>
+<p>Once the access-list is is built, then it should be applied to inbound or outbound of the interface:</p>
+<ul>
+<li><strong>Inbound access lists –</strong> When an access list is applied on inbound packets of the interface then first the packets will processed according to the access list and then routed to the outbound interface.
+</li>
+<li><strong>Outbound access lists –</strong> When an access list is applied on outbound packets  of the interface then first the packet will be routed and then processed at the outbound interface.
+</li>
+</ul>
+<p><b>Types of ACL –</b><br/>
+There are two main different types of Access-list namely:</p>
+<ol>
+<li><strong>Standard Access-list –</strong> These are the Access-list which are made using the source IP address only. These ACLs permit or deny the entire protocol suite. They don’t distinguish between the IP traffic such as TCP, UDP, Https etc. By using numbers 1-99 or 1300-1999, router will understand it as a standard ACL and the specified address as source IP address.
+</li>
+<li><strong>Extended Access-list –</strong> These are the ACL which uses both source and destination IP address. In these type of ACL, we can also mention which IP traffic should be allowed or denied. These use range 100-199 and 2000-2699.
+</li>
+</ol>
+<p>Also there are two categories of access list:</p>
+<ol>
+<li><strong>Numbered access list –</strong> These are the access list which cannot be deleted specifically once created i.e if we want to remove any rule from an Access-list then this is not permitted in the case of numbered access list. If we try to delete a rule from access list then the whole access list will be deleted. The numbered access list can be used with both standard and extended access list.
+</li>
+<li><strong>Named access list –</strong> In these type of access list, a name is assigned to identify an access list. It is allowed to delete a named access list unlike numbered access list. Like numbered access list, these can be used with both standard and extended access list.
+</li>
+</ol>
+<p><b>Rules for ACL –</b></p>
+<ol>
+<li>The standard Access-list is generally applied close to the destination (but not always).
+</li>
+<li>The extended Access-list is generally applied close to the source (but not always).
+</li>
+<li>We can assign only one ACL per interface per protocol per direction, i.e., only one inbound and outbound ACL is permitted per interface.
+</li>
+<li>We can’t remove a rule from an Access-list if we are using numbered Access-list. If we try to remove a rule then whole ACL will be removed. If we are using named access lists then we can delete  a specific rule.
+</li>
+<li>Every new rule which is added into the access list will be placed at the bottom of the access list therefore before implementing the access lists, analyse the whole scenario carefully.
+</li>
+<li>As there is an implicit deny at the end of every access list, we should have at least a permit statement in our Access-list otherwise all traffic will be denied.
+</li>
+<li>Standard access lists and extended access lists cannot have the same name.
+</li>
+</ol>
+<p><strong>Advantages of ACL –</strong></p>
+<ul>
+<li>Improve network performance.
+</li>
+<li>Provides security as administrator can configure the access list according to the needs and deny the unwanted packets from entering the network.
+</li>
+<li>Provides control over the traffic as it can permit or deny according to the need of network.
+</li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

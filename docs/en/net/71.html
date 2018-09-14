@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Features of Enhanced Interior Gateway Routing Protocol (EIGRP)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Enhanced Interior Gateway Routing Protocol (EIGRP) is a Cisco-proprietary hybrid routing protocol that contains features of distance-vector and link-state routing protocols. It is a network layer protocol which works on the protocol number 88.</p>
+<p>Some of its features are:</p>
+<ol>
+<li><strong>Rapid convergence –</strong> EIGRP uses DUAL algorithm to support rapid convergence. If a route to a network goes down then another route(feasible successor) can be used. If there is no route present to that network in the topology table also then a query message is multicast to find out the alternative route to that network.
+</li>
+<p></p>
+<li><strong>Reduced bandwidth usage –</strong> EIGRP doesn’t send periodic updates like other distance vector routing protocol does.Distance Vector Routing protocol like RIP sends full routing table over a period of time therefore consumes the available bandwidth needlessly but EIGRP uses partial updates if there is any change in the topology occurs i.e updates are triggered only if any event occurs therfore consuming the bandwidth when needed. Also, EIGRP updates are propagated to the routers only who requires it.
+</li>
+<p></p>
+<li><strong>Support all LAN and WAN data link protocols and typologies –</strong> EIGRP supports multi-access network like fddi, token ring etc and all WAN topologies like leased line, point-to-point links. EIGRP doesn’t require any additional configuration across layer 2 protocols like frame relay.
+</li>
+<p></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<li><strong>Supports auto-summary –</strong> In EIGRP, auto-summarization is enabled by default. Auto summarization is a feature which allows Routing Protocols to summarize its routes to their classful networks automatically i.e routers will receive summarised routes automatically. EIGRP. e.g-1.1.1.1 /24 will be automatically summarised to the classful 1.1.1.1/8
+</li>
+<p></p>
+<li><strong>Supports unequal cost load balancing –</strong> Unequal cost load balancing is possible in EIGRP by changing the value of variance. By default, variance is 1 therfore supports equal cost load balancing but if we want to use unequal cost load balancing then we can change the value of variance according to the amount of traffic we want to divide across different paths. Feasible distance is multiplied in such a way that it becomes greater than the value of feasible distance of successor.
+</li>
+<p></p>
+<li><strong>Communication via Reliable Transfer Protocol (RTP) –</strong> EIGRP depends upon proprietary protocol RTP to mange the communication between EIGRP speaking routers. EIGRP uses 224.0.0.10 as it’s multicast address. For each multicast it sends, the router prepares and maintains  a list of routers (speaking EIGRP). If no acknowledgement of multicast is received then same data is transmitted through 16 unicast messages. If no acknowledgement is received even after 16 unicast attempt then it is declared dead. This process is known as reliable multicast.
+</li>
+<p></p>
+<li><strong>Best path selection using DUAL –</strong> EIGRP uses Diffusing Update Algorithm (DUAL) to find out the best path available to a network. EIGRP speaking routers maintains a topology table in which all the routes to the network are maintained. If the best path (successor) goes down, then second best path (feasible successor) is used from the topology table. If there is no path available in topology table then it sends a query message to resolve the query.<br/>
+<br/>
+It maintains 3 different tables mainly:<br/>
+<strong>(a) Neighbor table:</strong> It contains information about the routers with which neighbourship has been formed. It contains the SRTT, RTP. It also contains queue count value for the hello messages that are not being acknowledged.<br/>
+<strong>(b) Topology table:</strong> It contains all the routes available to a network (both feasible successor and successor).<br/>
+<strong>(c) Routing table:</strong> It contains all the routes which are being used to make current routing decisions. The routes in this table are considered as successor (best path) route. <p></p>
+</li>
+<p></p>
+<li><strong>Traffic control –</strong> Suppose if one of the interface of the router is connected to ISP then we don’t want that interface to be part of EIGRP process. For this scenario, EIGRP provides a feature in which we can flag the interface as passive i.e not to take part in EIGRP process.
+</li>
+<p></p>
+<li>Support Variable Length Subnet Mask (VLSM).
+</li>
+<p></p>
+<li>Support for both IPv4 and IPv6.
+</li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">IP Addressing | Classless Addressing</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>We have introduced <a href="http://quiz.geeksforgeeks.org/ip-addressing-introduction-and-classful-addressing/">IP addressing and classful addressing</a> in the previous post.</p>
+<p>&#160;</p>
+<p style="text-align: justify"><strong>Network Address and Mask</strong></p>
+<p style="text-align: justify">Network address – It identifies a network on internet.&#160; Using this, we can find range of addresses in the network and total possible number of hosts in the network.</p>
+<p style="text-align: justify">Mask – It is a 32-bit binary number that gives the network address in the address block when AND operation is bitwise applied on the mask and any IP address of the block.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p style="text-align: justify">The default mask in different classes are :</p>
+<p style="text-align: justify">Class A – 255.0.0.0</p>
+<p style="text-align: justify">Class B – 255.255.0.0</p>
+<p style="text-align: justify">Class C – 255.255.255.0</p>
+<p style="text-align: justify">Example :&#160;Given IP address 132.6.17.85 and default class B mask, find the beginning address (network address).</p>
+<p style="text-align: justify">Solution :&#160;The default mask is 255.255.0.0, which means that the only the first 2 bytes are preserved and the other 2 bytes are set to 0. Therefore, the network address is 132.6.0.0.</p>
+<p>&#160;</p>
+<p style="text-align: justify"><strong>Subnetting:&#160; </strong>Dividing a large block of addresses into several contiguous sub-blocks and assigning these sub-blocks to different smaller networks is called subnetting. It is a practice that is widely used when classless addressing is done.</p>
+<p>&#160;</p>
+<p style="text-align: justify"><strong>Classless Addressing</strong></p>
+<p style="text-align: justify">To reduce the wastage of IP addresses in a block, we use sub-netting. What we do is that we use host id bits as net id bits of a classful IP address. We give the IP address and define the number of bits for mask along with it (usually followed by a ‘/’ symbol), like, 192.168.1.1/28. Here, subnet mask is found by putting the given number of bits out of 32 as 1, like, in the given address, we need to put 28 out of 32 bits as 1 and the rest as 0, and so, the subnet mask would be 255.255.255.240.</p>
+<p>&#160;</p>
+<p style="text-align: justify"><strong>Some values calculated in subnetting :</strong></p>
+<p style="text-align: justify">1. Number of subnets : Given bits for mask – No. of bits in default mask</p>
+<p style="text-align: justify">2. Subnet address : AND result of subnet mask and the given IP address</p>
+<p style="text-align: justify">3. Broadcast address : By putting the host bits as 1 and retaining the network bits as in the IP address</p>
+<p style="text-align: justify">4. Number of hosts per subnet : 2<sup>(32 – Given bits for mask)</sup> – 2</p>
+<p style="text-align: justify">5. First Host ID : Subnet address + 1 (adding one to the binary representation of the subnet address)</p>
+<p style="text-align: justify">6. Last Host ID : Subnet address + Number of Hosts</p>
+<p>&#160;</p>
+<p style="text-align: justify">Example : Given IP Address – 172.16.0.0/25, find the number of subnets and the number of hosts per subnet. Also, for the first subnet block, find the subnet address, first host ID, last host ID and broadcast address.</p>
+<p style="text-align: justify">Solution : This is a class B address. So, no. of subnets = 2<sup>(25-16)</sup> = 2<sup>9</sup> = 512.</p>
+<p style="text-align: justify">No. of hosts per subnet = 2<sup>(32-25)</sup> – 2 = 2<sup>7</sup> – 2 = 128 – 2 = 126</p>
+<p style="text-align: justify">For the first subnet block, we have subnet address = 0.0, first host id = 0.1, last host id = 0.126 and broadcast address = 0.127</p>
+<p style="text-align: justify">Below questions have been asked in previous GATE exam on above topics.<br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2003-question-82/">GATE | GATE CS 2003 | Question&#160;82</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2006-question-45/">GATE | GATE CS 2006 | Question&#160;45</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2007-question-67/">GATE | GATE CS 2007 | Question&#160;67</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2008-question-57/">GATE | GATE CS 2008 | Question&#160;57</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2010-question-47/">GATE | GATE CS 2010 | Question&#160;47</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-23/">GATE | GATE CS 2012 | Question&#160;21</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2015-set-3-question-48/">GATE | GATE CS 2015 Set 3 | Question&#160;48</a></p>
+<p>&#160;</p>
+<p style="text-align: justify">Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

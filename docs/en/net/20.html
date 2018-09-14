@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Circuit Switching</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>
+In circuit switching network resources (bandwidth) is divided into pieces and bit delay is constant during a connection. The dedicated path/circuit established between sender and receiver provides a guaranteed data rate. Data can be transmitted without any delays once the circuit is established.<br/>
+Telephone system network is the one of example of Circuit switching. <b>TDM (Time Division Multiplexing) and FDM (Frequency Division Multiplexing)</b> are two methods of multiplexing multiple signals into a single carrier.</p>
+<ul>
+<li><b>Frequency Division Multiplexing :</b> <em>Divides into multiple bands</em><br/>
+Frequency Division Multiplexing or FDM is used when multiple data signals are combined for simultaneous transmission via a shared communication medium.It is a technique by which the total bandwidth is divided into a series of non-overlapping frequency sub-bands,where each sub-band carry different signal. Practical use in radio spectrum &amp; optical fiber to share multiple independent signals.</li>
+<li><b>Time Division Multiplexing :</b> <em>Divides into frames</em><br/>
+Time-division multiplexing (TDM) is a method of transmitting and receiving independent signals over a common signal path by means of synchronized switches at each end of the transmission line. TDM is used for long-distance communication links and bears heavy data traffic loads from end user.<br/>
+Time division multiplexing (TDM) is also known as a digital circuit switched.</li>
+</ul>
+<p>Formulas in Circuit Switching :</p>
+<pre>Transmission rate = Link Rate or Bit rate / 
+                    no. of slots = R/h bps
+Transmission time = size of file / 
+                    transmission rate 
+                 = x / (R/h) = (x*h)/R second
+Total time to send packet to destination =
+               Transmission time + circuit setup time 
+</pre>
+<p><strong>Question on Circuit switching</strong> –<br/>
+These questions will help you understand circuit switching</p>
+<p>
+<strong> Example 1 : </strong>How long it takes to send a file of ‘x bits’ from host A to host B over a circuit switched network that uses TDM with ‘h slots’ and have a bit rate of ‘R Mbps’, circuit establish time is k seconds.Find total time?</p>
+<p><strong>Explanation :</strong><br/>
+Transmission rate = Link Rate or Bit rate / no. of slots = R/h bps<br/>
+Transmission time = size of file/ transmission rate = x / (R/h) = (x*h)/R</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Total time = transmission time + circuit setup time = (x*h)/R secs + k secs
+</p>
+<p>
+<strong><br/>
+Example 2 : </strong>If a link transmits F frames/sec and each slot has B bits then find the transmission rate?</p>
+<p><strong>Explanation :</strong><br/>
+Since it is not mention how many slots in each frame we take one frame has one slot.<br/>
+Transmission rate is amount of data send in 1 second.<br/>
+Transmission rate = F * B bits/sec
+</p>
+<p>To know difference between Circuit Switching and Packet Switching refer – <a href="https://www.geeksforgeeks.org/computer-network-circuit-switching-vs-packet-switching/">Difference b/w Circuit switch &amp; packet switch</a>
+</p>
+<p>References :<br/>
+<a href="https://en.wikipedia.org/wiki/Circuit_switching">https://en.wikipedia.org/wiki/Circuit_switching</a><br/>
+<a href="https://en.wikipedia.org/wiki/Frequency-division_multiplexing">https://en.wikipedia.org/wiki/Frequency-division_multiplexing</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Sliding Window Protocol | Set 1 (Sender Side)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite : <a href="http://quiz.geeksforgeeks.org/stop-and-wait-arq/">Stop and Wait ARQ</a></p>
+<p>The Stop and Wait ARQ offers error and flow control, but may cause big performance issues as sender always waits for acknowledgement even if it has next packet ready to send. Consider a situation where you have a high bandwidth connection and propagation delay is also high (you are connected to some server in some other country though a high speed connection), you can’t use this full speed due to limitations of stop and wait. </p>
+<p>Sliding Window protocol handles this efficiency issue by sending more than one packet at a time with a larger sequence numbers.  The idea is same as pipelining in architectures. </p>
+<h2 class="sigil_not_in_toc"><strong>Few Terminologies :</strong></h2>
+<p><strong>Transmission Delay (Tt)</strong> – Time to transmit the packet from host to the outgoing link. If B is the Bandwidth of the link and D is the Data Size to transmit</p>
+<pre>	Tt = D/B  </pre>
+<p><strong>Propagation Delay (Tp)</strong> – It is the time taken by the first bit transferred by the host onto the outgoing link to reach the destination. It depends on the distance d and the wave propagation speed  s (depends on the characteristics of the medium).</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre>   Tp = d/s  </pre>
+<p><strong>Efficiency</strong> – It is defined as the ratio of total useful time to the total cycle time of a packet. For stop and wait protocol, </p>
+<pre>Total cycle time = Tt(data) + Tp(data) + 
+                    Tt(acknowledgement) + Tp(acknowledgement)
+ 	         =  Tt(data) + Tp(data) + Tp(acknowledgement)
+		 =   Tt + 2*Tp
+</pre>
+<p>Since  acknowledgements are very less in size, their transmission delay can be neglected.</p>
+<pre>Efficiency = Useful Time / Total Cycle Time 
+           = Tt/(Tt + 2*Tp) (For Stop and Wait)
+           = 1/(1+2a)  [ Using a = Tp/Tt ]
+</pre>
+<p><strong>Effective Bandwidth(EB) or Throughput</strong> – Number of bits sent per second.</p>
+<pre>EB = Data Size(L) / Total Cycle time(Tt + 2*Tp)
+Multiplying and dividing by Bandwidth (B),
+       =  (1/(1+2a)) * B   [ Using a = Tp/Tt ]
+       =  Efficiency * Bandwidth
+</pre>
+<p><strong>Capacity of link</strong> – If a channel is Full Duplex, then bits can be transferred in both the directions and without any collisions. Number of bits a channel/Link can hold at maximum is its capacity.</p>
+<pre> Capacity = Bandwidth(B) * Propagation(Tp)
+	    
+ For Full Duplex channels, 
+ Capacity = 2*Bandwidth(B) * Propagation(Tp)
+</pre>
+<h2 class="sigil_not_in_toc">Concept Of Pipelining</h2>
+<p>In Stop and Wait protocol, only 1 packet is transmitted onto the link and then sender waits for acknowledgement from the receiver. The problem in this setup is that efficiency is very less as we are not filling the channel with more packets after 1st packet has been put onto the link. Within the total cycle time of Tt + 2*Tp units, we will now calculate the maximum number of packets that sender can transmit on the link before getting an acknowledgement.</p>
+<pre> In Tt units ----&gt; 1 packet is Transmitted.
+ In 1 units  ----&gt; 1/Tt packet can be Transmitted.
+ In  Tt + 2*Tp units -----&gt;  (Tt + 2*Tp)/Tt 
+                             packets can be Transmitted
+	            ------&gt;  1 + 2a  [Using a = Tp/Tt]
+</pre>
+<p>Maximum packets That can be Transmitted in total cycle time =  1+2*a</p>
+<p>Let me explain now with the help of an example.</p>
+<p>Consider Tt = 1ms, Tp = 1.5ms.</p>
+<p>In the picture given below, after sender has transmitted packet 0, it will immediately transmit packets 1, 2, 3. Acknowledgement for 0 will arrive after 2*1.5 = 3ms. In Stop and Wait, in time 1 + 2*1.5 = 4ms, we were transferring one packet only. Here we keep a <strong>window of packets which we have transmitted but not yet acknowledged</strong>.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2016/12/pipeline11.png"><img src="../../../imgs/net/0970da7b4adf3e005ad83666a30febf0.jpg" alt="pipeline1" width="515" height="530" class="aligncenter size-full wp-image-28543"/></a></p>
+<p>After we have received the Ack for packet 0, window slides and the next packet can be assigned sequence number 0. We reuse the sequence numbers which we have acknowledged so that header size can be kept minimum as shown in the diagram given below.</p>
+<p><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2016/12/Pipeline2.png"><img src="../../../imgs/net/aaa71b00caebfa672ad23e8efddd3fb7.jpg" alt="pipeline2" width="511" height="351" class="aligncenter size-full wp-image-28544"/></a></p>
+<h2 class="sigil_not_in_toc">Minimum Number Of Bits For Sender window  (Very Important For GATE)</h2>
+<p>As we have seen above,
+</p>
+<pre> Maximum window size = 1 + 2*a	where a = Tp/Tt
+
+ Minimum sequence numbers required = 1 + 2*a. </pre>
+<p></p>
+<p>All the packets in the current window will be given a sequence number. Number of  bits required to represent the sender window = ceil(log2(1+2*a)).</p>
+<p>But sometimes number of bits in the protocol headers is pre-defined. Size of sequence number field in header will also determine the maximum number of packets that we can send in total cycle time. If N is the size of sequence number field in the header in bits, then we can  have 2<sup>N</sup> sequence numbers.</p>
+<p>Window Size ws  = min(1+2*a, 2<sup>N</sup>)</p>
+<p>If you want to calculate minimum bits required to represent sequence numbers/sender window, it will be <strong>ceil(log2(ws))</strong>.</p>
+<p>In this article, we have discussed sending window only. For receiving window, there are 2 protocols namely <strong>Go Back N</strong> and  <strong>Selective Repeat</strong> which are used to implement pipelining practically. We will be discussing receiving window in set 2. </p>
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

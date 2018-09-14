@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Computer Networks | Unicast Routing – Link State Routing</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-routing-protocols-set-1-distance-vector-routing/" rel="noopener" target="_blank">Distance Vector Routing</a>, <a href="https://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-algorithm/" rel="noopener" target="_blank">Dijkstra algorithm</a>, <a href="https://www.geeksforgeeks.org/computer-network-distance-vector-routing-vs-link-state-routing/" rel="noopener" target="_blank">Distance vector routing v/s Link state routing</a>, <a href="https://www.geeksforgeeks.org/open-shortest-path-first-ospf-router-roles-configuration/" rel="noopener" target="_blank">OSPF</a>, <a href="https://www.geeksforgeeks.org/computer-network-routing-information-protocol-rip/" rel="noopener" target="_blank">RIP</a><br/>
+<b>Unicast –</b> Unicast means the transmission from a single sender to a single receiver. It is a point to point communication between sender and receiver. There are various unicast protocols such as TCP, HTTP, etc.</p>
+<ul>
+<li>TCP is the most commonly used unicast protocol. It is a connection oriented protocol that relay on acknowledgement from the receiver side.
+</li>
+<li>HTTP stands for Hyper Text Transfer Protocol. It is an object oriented protocol for communication.
+</li>
+</ul>
+<p>There are three major protocols for unicast routing:</p>
+<ol>
+<li>Distance Vector Routing</li>
+<li>Link State Routing</li>
+<li>Path-Vector Routing</li>
+</ol>
+<p><strong>Link State Routing –</strong><br/>
+Link state routing is the second family of routing protocols. While distance vector routers use a distributed algorithm to compute their routing tables, link-state routing uses link-state routers to exchange messages that allow each router to learn the entire network topology. Based on this learned topology, each router is then able to compute its routing table by using a shortest path computation.</p>
+<p><strong>Features of link state routing protocols –</strong></p>
+<ul>
+<li><b>Link state packet –</b> A small packet that contains routing information.
+</li>
+<li><b>Link state database –</b> A collection information gathered from link state packet.
+</li>
+<li><b>Shortest path first algorithm (Dijkstra algorithm) –</b> A calculation performed on the database results into shortest path
+</li>
+<li><b>Routing table –</b> A list of known paths and interfaces.
+</li>
+</ul>
+<p><strong>Calculation of shortest path –</strong><br/>
+To find shortest path, each node need to run the famous <b>Dijkstra algorithm</b>. This famous  algorithm uses the following steps:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li><b>Step-1:</b> The node is taken and chosen as  a root node of the tree, this creates the tree with a single node, and now  set the total cost of each node to some value  based on the information in Link State Database</li>
+<li><b>Step-2:</b> Now the node selects one node, among all the nodes not in the tree like structure, which is nearest to the root, and adds this to the tree.The shape of the tree gets changed .</li>
+<li><b>Step-3:</b> After this node is added to the tree, the cost of all the nodes not in the tree needs to be updated because the paths may have been changed. </li>
+<li><b>Step-4:</b> The node repeats the Step 2. and Step 3. until all the nodes are added in the tree </li>
+</ul>
+<p>Link State protocols in comparison to Distance Vector protocols have:</p>
+<ol>
+<li>It requires large amount of memory.
+</li>
+<li>Shortest path computations require many CPU circles.
+</li>
+<li>If network use the little bandwidth ; it  quickly reacts to topology changes
+</li>
+<li>All items in the database must be sent to neighbors to form link state packets.
+</li>
+<li>All neighbors must be trusted in the topology.
+</li>
+<li>Authentication mechanisms can be used to avoid undesired adjacency and problems.
+</li>
+<li>No split horizon techniques are possible in the link state routing.
+</li>
+<ol>
+<p>
+<strong>Open shortest path first (OSPF) routing protocol –</strong></p>
+<ul>
+<li>Open Shortest Path First (OSPF) is a unicast routing protocol developed by working group of the Internet Engineering Task Force (IETF).</li>
+<li>It is a intradomain routing protocol.</li>
+<li>It is an open source protocol. </li>
+<li>It is similar to Routing Information Protocol (RIP)</li>
+<li> OSPF is a classless routing protocol, which means that in its updates, it includes the subnet of each route it knows about, thus, enabling variable-length subnet masks. With variable-length subnet masks, an IP network can be broken into many subnets of various sizes. This provides network administrators with extra network-configuration flexibility.These updates are multicasts at specific addresses (224.0.0.5 and 224.0.0.6).</li>
+<li>OSPF is implemented as a program in the network layer using the services provided by the Internet Protocol </li>
+<li>IP datagram that carries the messages from OSPF sets the value of protocol field to 89 </li>
+<li>OSPF is based on the SPF algorithm, which sometimes is referred to as the Dijkstra algorithm </li>
+<li>OSPF has two versions  – version 1 and version 2. Version 2 is used mostly</li>
+</ul>
+<p><strong>OSPF Messages –</strong> OSPF is a very complex protocol. It uses five different types of messages. These are as follows:</p>
+<ol>
+<li><b>Hello message (Type 1) –</b> It is used by the routers to introduce itself to the other routers.
+</li>
+<li><b>Database description message (Type 2) –</b> It is normally send in response to the Hello message.
+</li>
+<li><b>Link-state request message (Type 3) –</b> It is used by the routers that need information about specific Link-State packet.
+</li>
+<li><b>Link-state update message (Type 4) –</b> It is the main OSPF message for building Link-State Database.
+</li>
+<li><b>Link-state acknowledgement message (Type 5) –</b> It is used to create reliability in the OSPF protocol.
+</li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</ol>
+</ol>
+</div>
+</body>
+</html>

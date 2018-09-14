@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Message Authentication Codes</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Message Authentication Codes are the codes which plays their role in two important functions : Authentication Detection and Falsification Detection.</p>
+<p><strong>Where do we need these codes ?</strong><br/>
+Suppose a User A send message to user B with message – ‘abc’. A encrypts the message using <strong>Shared – Key Cryptosystem</strong> for encrypting the message. A sends the key to B using a source key. Key exchange is based on different protocols such as <strong>Public – Key Cryptosytem.</strong> B uses the key to decrypt the Ciphertext and obatins the message.<br/>
+<img src="../../../imgs/net/f3d8361161766b283c267edcc35d0c47.jpg" alt="a" width="300" height="276" class="aligncenter size-medium wp-image-177036" srcset="https://www.geeksforgeeks.org/wp-content/uploads/a-300x276.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/a.jpg 567w" sizes="(max-width: 300px) 100vw, 300px"/></p>
+<p><strong>All this does not happen so easily. There lies a problem</strong>.<br/>
+If a malicious user X has falsified the ciphertext during the transmission. Then in that case, B  has no way to realize that it has been falsified.When B decrypts the message, it will get the wrong message. Unknown to the fact B will think wrong information to be the right. Although you can decrypt or encrypt the data later on but these operations, you are applying on the wrong data.<br/>
+<img src="../../../imgs/net/4f974a31ccb36503a4e71f09cece0b1b.jpg" alt="b" width="300" height="277" class="aligncenter size-medium wp-image-177037" srcset="https://www.geeksforgeeks.org/wp-content/uploads/b-300x277.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/b.jpg 565w" sizes="(max-width: 300px) 100vw, 300px"/></p>
+<p><strong>Here we need to detect the falsification in the message B has got.</strong><br/>
+Here A will create a key (used to create Message Authentication Code) and sends the key to B. A will create a value using Ciphertext and key and the value is obtained. This value Created by <strong>Cipertext + Key = Message Authentication Code</strong>. B has to check whether the ciphertext is falsified or not using Message Authentication Code. Now B can clearly know that whether the ciphertext is falsified or not.<br/>
+<img src="../../../imgs/net/e2329fec45b6cc27429c46b77b46d79b.jpg" alt="c" width="300" height="283" class="aligncenter size-medium wp-image-177038" srcset="https://www.geeksforgeeks.org/wp-content/uploads/c-300x283.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/c.jpg 557w" sizes="(max-width: 300px) 100vw, 300px"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

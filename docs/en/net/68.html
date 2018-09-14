@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Routing Information Protocol (RIP)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Routing Information Protocol</strong> (RIP) is a dynamic routing protocol which uses hop count as a routing metric to find the best path between the source and the destination network. It is a distance vector routing protocol which has AD value 120 and works on the application layer of OSI model. RIP uses port number 520.</p>
+<p><strong>Hop Count : </strong><br/>
+Hop count is the number of routers occurring in between the source and destination network. The path with the lowest hop count is considered as the best route to reach a network and therefore placed in the routing table. RIP prevents routing loops by limiting the number of hopes allowed in a path from source and destination. The maximum hop count allowed for RIP is 15 and hop count of 16 is considered as network unreachable. </p>
+<p><b>Features of RIP :</b></p>
+<p>1. Updates of the network are exchanged periodically.<br/>
+2. Updates (routing information) are always broadcast.<br/>
+3. Full routing tables are sent in updates.<br/>
+4. Routers always trust on routing information received from neighbor routers. This is also known as <em>Routing on rumours</em>.</p>
+<p><b>RIP versions : </b><br/>
+There are three vesions of routing information protocol – <strong>RIP Version1</strong>, <strong>RIP Version2</strong> and <strong>RIPng</strong>.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">RIP v1</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">RIP v2</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">RIPng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">Sends update as broadcast</td>
+<td style="text-align:left;">Sends update as multicast</td>
+<td style="text-align:left;">Sends update as multicast</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:left;">Broadcast at 255.255.255.255</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:left;">Multicast at 224.0.0.9</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:left;">Multicast at FF02::9 (RIPng can only run on IPv6 networks)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">Doesn’t support authentication of update messages</td>
+<td style="text-align:left;">Supports authentication of RIPv2 update messages</td>
+<td style="text-align:center;">–</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:left;">Classful routing protocol</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:left;">Classless protocol, supports classful</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:left;">Classless updates are sent</td>
+</tr>
+</tbody>
+</table>
+<p><strong>RIP v1 </strong>is known as <em>Classful</em> Routing Protocol because it doesn’t send information of mask in its routing update.<br/>
+<strong>RIP v2</strong> is known as <em>Classless </em>Routing Protocol because it doesn’t send information of mask in its routing update.</p>
+<blockquote><p>
+&gt;&gt; Use debug command to get the details :</p>
+<pre> <b>#</b> debug ip rip </pre>
+<p>&gt;&gt; Use this command to show all routes configured in router, say for router R1 :</p>
+<pre><strong>R1#</strong> show ip route</pre>
+<p>&gt;&gt; Use this command to show all protocols configured in router, say for router R1 :</p>
+<pre><strong>R1#</strong> show ip protocols</pre>
+</blockquote>
+<p>&#160;</p>
+<p><b>Configuration : </b><br/>
+<img src="../../../imgs/net/980f204e890453302decdf85d6eec9b7.jpg" alt="" width="616" height="420" class="aligncenter size-full wp-image-419725"/><br/>
+Consider the above given topology which has 3-routers R1, R2, R3. R1 has IP address 172.16.10.6/30 on s0/0/1, 192.168.20.1/24 on fa0/0. R2 has IP address 172.16.10.2/30 on s0/0/0, 192.168.10.1/24 on fa0/0. R3 has IP address 172.16.10.5/30 on s0/1, 172.16.10.1/30 on s0/0, 10.10.10.1/24 on fa0/0.</p>
+<p>Configure RIP for R1 :</p>
+<pre><b>R1(config)#</b> router rip
+<b>R1(config-router)#</b> network 192.168.20.0
+<b>R1(config-router)#</b> network 172.16.10.4
+<b>R1(config-router)#</b> version 2
+<b>R1(config-router)#</b> no auto-summary</pre>
+<p><strong>Note : </strong><code>no auto-summary </code>command disables the auto-summarisation. If we don’t select no auto-summary, then subnet mask will be considered as classful in Version 1.</p>
+<p>Configureg RIP for R2 :</p>
+<pre><b>R2(config)#</b> router rip
+<b>R2(config-router)#</b> network 192.168.10.0
+<b>R2(config-router)#</b> network 172.16.10.0
+<b>R2(config-router)#</b> version 2
+<b>R2(config-router)#</b> no auto-summary</pre>
+<p>Similarly, Configure RIP for R3 :</p>
+<pre><b>R3(config)#</b> router rip
+<b>R3(config-router)#</b> network 10.10.10.0
+<b>R3(config-router)#</b> network 172.16.10.4
+<b>R3(config-router)#</b> network 172.16.10.0
+<b>R3(config-router)#</b> version 2
+<b>R3(config-router)#</b> no auto-summary</pre>
+<p>&#160;</p>
+<p><b>RIP timers : </b></p>
+<ul>
+<li><strong>Update timer : </strong> The default timing for routing information being exchanged by the routers operating RIP is 30 seconds. Using Update timer, the routers exchange their routing table periodically. </li>
+<li><strong>Invalid timer: </strong>If no update comes until 180 seconds, then the destination router consider it as invalid. In this scenario, the destination router mark hop count as 16 for that router.</li>
+<li><strong>Hold down timer : </strong>This is the time for which the router waits for neighbour router to respond. If the router isn’t able to respond within a given time then it is declared dead. It is 180 seconds by default. </li>
+<li><strong>Flush time : </strong> It is the time after which the entry of the route will be flushed if it doesn’t respond within the flush time. It is 60 seconds by default. This timer starts after the route has been declared invalid and after 60 seconds i.e time will be 180 + 60 = 240 seconds. </li>
+</ul>
+<p>Note that all these times are adjustable. Use this command to change the timers :</p>
+<pre><b>R1(config-router)# </b> timers basic
+<b>R1(config-router)# </b> timers basic 20   80    80    90  </pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

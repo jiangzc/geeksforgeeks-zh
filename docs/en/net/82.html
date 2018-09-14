@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Hot Standby Router Protocol (HSRP) and Virtual Router Redundancy Protocol (VRRP)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><a href="https://www.geeksforgeeks.org/computer-networks-hot-standby-router-protocol-hsrp/" rel="noopener" target="_blank">Hot Standby Router Protocol (HSRP)</a> is a CISCO proprietary protocol used to provide redundancy in a network. Only one router is the active router while others will be in standby state i.e the standby router will be responsible for forwarding the traffic when the active router fails. </p>
+<p>Virtual Router Redundancy Protocol (VRRP) is an open standard protocol used to provide redundancy in a network. VRRP is a network layer protocol. It uses the concept of Master and back up router i.e when the master router goes down, one of the backup routers will take up the responsibilities of the master router, that is the backup router will be responsible for forwarding the traffic until the master router comes again. </p>
+<p><b>Similarities –</b></p>
+<ul>
+<li><strong>Virtual IP address: </strong>Both protocol uses the concept of virtual IP address i.e one of the IP address from the subnet or the network is assigned as default gateway to the hosts of that network. </li>
+<li><strong>preempt: </strong>Preempt is a state in which the selected (active in case of HSRP and master in case of VRRP) router takes back the responsibility of forwarding the traffic from the other (standby in case of HSRP and backup in case of VRRP) routers, when it comes up again. Both the protocols have the concept of preempt. </li>
+<li><strong>object tracking: </strong>object tracking is a process that monitors the tracked objects such as the state of line protocol. The process periodically polls the tracked object and if any change is seen then the priority of backup or standby routers are increased therefore now one of these routers become active or master router. </li>
+<li><strong>priority: </strong>The router with the highest priority will become active (in HSRP) or master (in VRRP) router. Only one of the routers will be head (active router in HSRP, Master router in VRRP) while others will work as  backup (standby router in HSRP, backup router in VRRP). Now, take a look at some differences of HSRP and VRRP.
+</li>
+</ul>
+<p></p>
+<center><br/>
+<table style="width:90%">
+<tbody><tr>
+<th>HSRP</th>
+<th>VRRP</th>
+</tr>
+<tr>
+<td>HSRP is a Cisco proprietary protocol.</td>
+<td>VRRP is an open standard protocol.
+</td>
+</tr>
+<tr>
+<td>HSRP is an application layer protocol.</td>
+<td>VRRP is a network layer protocol </td>
+</tr>
+<tr>
+<td>HSRP version 1 uses UDP port number 1985 and multicast address 224.0.0.2 and version 2 uses UDP port 1985 and 224.0.0.102 as multicast address.</td>
+<td>VRRP uses multicast address 224.0.0.18 and protocol number 112</td>
+</tr>
+<tr>
+<td> preempt has to be enabled manually. </td>
+<td>Preempt is by default enabled in VRRP.</td>
+</tr>
+<tr>
+<td>The hello message time and the dead time in HSRP is 3 seconds and 10 seconds respectively.</td>
+<td>In VRRP, instead of hello timer and dead timer, there is a concept of Master advertisement interval (1 second by default)  and master down interval (3.069 by default). </td>
+</tr>
+<tr>
+<td>The MAC address used in HSRP is 0000.00 07.ac0a<br/>
+Where 0a(here group number assumed 10)represents the HSRP group number in hexadecimal. </td>
+<td>The MAC address used in VRRP is 0000.5e00.01xx. Here, xx represents the VRRP group number.</td>
+</tr>
+<tr>
+<td> group number range allowed on version 1 is 0-255 and version 2 is 0-4095</td>
+<td>range allowed is from 0-255</td>
+</tr>
+</tbody>
+</table>
+<p></p></center>
+<p></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Onion Routing</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Onion routing is a technique for anonymous communication over a computer network. In an onion network, messages are encapsulated in layers of encryption, analogous to layers of an onion. </p>
+<p>There is a large set of precautionary measures and best practices to make web browsing safer and more secure for users. Let’s say that you send an HTTPs request to a server and someone intercepts that request but that person can’t know what that message says because its encrypted. But you are still not satisfied with this level of security and want to take this to the next level i.e. you don’t even want anyone sniffing on your network to know which server you are contacting and if you are making any requests or not. This is where onion routing comes in.</p>
+<p>Refer <a href="https://en.wikipedia.org/wiki/Onion_routing#/media/File:Onion_diagram.svg">this</a> image for details.</p>
+<p align="center"><strong>How does onion routing work?</strong></p>
+<p>If you are browsing the internet on a normal web browser like chrome, firefox, etc you request webpages by making simple GET requests to servers without any intermediary. Its just a single connection between a client and a server and someone sniffing on your network can know which server your computer is contacting.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li>Onion routing does this differently. In onion routing, the connection is maintained between different nodes i.e. the connection hops from one server to another and when it reaches the last server on this circuit it is the server that we wanted to contact and it will process our request and serves us the desired webpage which is sent back to us using the same network of nodes. </li>
+<li>Now you must thing why is it called the onion router. It is because the message we send and the responses we receive are encrypted with different keys, with a unique key for encryption for every different hop or server visit. </li>
+<li>The client has access to all the keys but the servers only have access to the keys specific for encryption/decryption to that server. </li>
+<li>Since this process <strong>wraps your message under layers of encryption</strong> which have to be peeled off at each different hop just like an onion that’s why its called an onion router.</li>
+</ul>
+<p align="center"><strong>Understanding Onion routing concept an example</strong></p>
+<p>Now suppose you are browsing internet using Tor(the onion router) which is a special browser that lets you use the onion routers. You want to access YouTube but you live in China and since YouTube is banned in China you don’t want your government to know that you are visiting YouTube so you decide to use Tor. Your computer needs to contact a particular server to get the homepage of YouTube but it doesn’t directly contacts that server. It does that through 3 nodes/servers/routers (these servers are maintained all over the world by volunteers) before that server so that no one can traceback your conversation with that server. To make this example simple I am using 3 nodes but a real Tor network can have hundreds of nodes in between.<br/>
+</p>
+<div id="attachment_203117" style="width: 1411px" class="wp-caption aligncenter"><img src="../../../imgs/net/1f37f17baa39b5d0022aeeb0b1d23a99.jpg" alt="" width="1401" height="687" class="size-full wp-image-203117"/><p class="wp-caption-text">Onion Routing Circuit(made using lucidchart)</p>
+</div>
+<p></p>
+<ol>
+<li>The client with access to all the encryption keys i.e <strong>key 1, key 2 &amp; key 3</strong> encrypts the message(get request) thrice wrapping it under 3 layers like an onion which have to be peeled one at a time.</li>
+<li>This <strong>triple encrypted message</strong> is then sent to the first server i.e. <strong>Node 1(Input Node).</strong></li>
+<li><strong>Node 1</strong> only has the address of <strong>Node 2</strong> and <strong>Key 1</strong>. So it <strong>decrypts</strong> the message using <strong>Key 1</strong> and realises that it doesn’t make any sense since it still has 2 layers of encryption so it passes it on to <strong>Node 2</strong></li>
+<li><strong>Node 2</strong> has <strong>Key 2</strong> and the addresses of the <strong>input &amp; exit nodes.</strong> So it <strong>decrypts</strong> the message using <strong>Key 2</strong> realises that its still <strong>encrypted</strong> and passes it onto the <strong>exit node</strong></li>
+<li><strong>Node 3 (exit node)</strong> peels of the last layer of encryption and finds a <strong>GET request</strong> for youtube.com and passes it onto the <strong>destination server</strong></li>
+<li>The server processes the request and serves up the desired webpage as a <strong>response.</strong></li>
+<li>The response passes through the same nodes in the reverse direction where each node puts on a <strong>layer of encryption</strong> using their specific key</li>
+<li>It finally reaches the client in the form of a <strong>triple encrypted</strong> response which can be decrypted since the client has access to all the keys</li>
+</ol>
+<p align="center"><strong>How does it provide anonymity?</strong></p>
+<p>Imagine if there is  sniffer listening in at the first connection(client – input node) <strong>all it can know is the address of the input node and a thrice encrypted message</strong> that doesn’t make sense. So all the attacker/sniffer knows that you are browsing tor.<br/>
+Similarly if sniffing starts at the exit node all the sniffer sees is a server contacting another server but it can’t track the client or the source of the request generated.<br/>
+But now you may think that if someone is listening in at Node 2 the will know the address of the input and exit and can trace the client and the destination server. But its not that simple, each of these nodes have hundreds of concurrent connections going on and to know that which one leads to the right source and destination is not that easy. In our circuit, the Node 2 is a middle node but it can be a part of another circuit on a different connection where it acts as the input node receiving requests or an exit node serving up webpages from various servers.</p>
+<p align="center"><strong>Vulnerability in Onion Routing</strong></p>
+<p>The only security flaw in onion routing is that if someone is listening in on a server at the same time and the matches the request at the destination to a request made by a client on the other side of a network by analyzing the length and the frequency of the characters found in the intercepted request or response at the destination server and using that to match with a same request made by a client a fraction of a second (time-stamps on requests and responses can also be helpful in deducing that) and then tracking them down and knowing their online activity and shattering the idea of anonymity. This is pretty hard to do but not impossible. But removing this flaw from Tor is virtually impossible. </p>
+<p><strong>References:</strong> <a href="https://www.youtube.com/user/Computerphile" target="_blank">Computerphile</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

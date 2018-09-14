@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Layers of OSI Model</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite : <a href="https://www.geeksforgeeks.org/basics-computer-networking/">Basics of Computer Networking</a></p>
+<p>OSI stands for <strong>Open Systems Interconnection</strong>. It has been developed by ISO – ‘<strong>International Organization of Standardization</strong>‘, in the year 1974. It is a 7 layer architecture with each layer having specific functionality to performed. All these 7 layers work collaboratively to transmit the data from one person to another across the globe. </p>
+<p><img src="../../../imgs/net/c002991e5f6699ab25aab370555d16ce.jpg" alt="" width="700" height="384" class="aligncenter size-full wp-image-207876"/></p>
+<p><strong><br/>
+</strong></p>
+<h3 class="sigil_not_in_toc"><strong>1. Physical Layer (Layer 1) :</strong></h3>
+<strong>
+<p></p></strong> The lowest layer of the OSI reference model is the physical layer. It is responsible for the actual physical connection between the devices. The physical layer contains information in the form of<strong> bits.</strong> It is responsible for the actual physical connection between the devices. When receiving data, this layer will get the signal received and convert it into 0s and 1s and send them to the Data Link layer, which will put the frame back together.<p></p>
+<p><img src="../../../imgs/net/672072f70532b714c9def62665e16ffd.jpg" alt="" width="160" height="40" class="alignnone size-full wp-image-207901"/><br/>
+The functions of the physical layer are :</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li><strong>Bit synchronization:</strong> The physical layer provides the synchronization of the bits by providing a clock. This clock controls both sender and  receiver thus providing synchronization at bit level.</li>
+<li><strong>Bit rate control:</strong> The Physical layer also defines the transmission rate i.e. the number of bits sent per second.</li>
+<li><strong>Physical topologies:</strong> Physical layer specifies the way in which the different, devices/nodes are arranged in a network i.e. bus, star or mesh topolgy.</li>
+<li><strong> Transmission mode:</strong> Physical layer also defines the way in which the data flows between the two connected devices. The various transmission modes possible are: Simplex, half-duplex and full-duplex.</li>
+</ol>
+<p>* Hub, Repeater, Modem, Cables are Physical Layer devices.<br/>
+** Network Layer, Data Link Layer and Physical Layer are also known as <strong>Lower Layers</strong> or <strong>Hardware Layers</strong>.</p>
+<p><strong><br/>
+</strong></p>
+<h3 class="sigil_not_in_toc"><strong>2. Data Link Layer (DLL) (Layer 2) :</strong></h3>
+<strong>
+<p></p></strong>The data link layer  is responsible for the node to node  delivery of the message. The main function of this layer is to make sure data transfer is error free from one node to another, over the physical layer. When a packet arrives in a network, it is the responsibility of DLL to transmit it to the Host using its MAC address.<br/>
+Data Link Layer is divided into two sub layers :<p></p>
+<ol>
+<li>Logical Link Control (LLC)</li>
+<li>Media Access Control (MAC)</li>
+</ol>
+<p>Packet received from Network layer is further divided into frames depending on the frame size of NIC(Network Interface Card). DLL also encapsulates Sender and Receiver’s MAC address in the header.</p>
+<p>The Receiver’s MAC address is obtained by placing an ARP(Address Resolution Protocol) request onto the wire asking “Who has that IP address?” and the destination host will reply with its MAC address.<br/>
+<img src="../../../imgs/net/79e16144003003673acd126ae4b97fa9.jpg" alt="" width="60" height="29" class="alignnone size-full wp-image-207899"/><br/>
+The functions of the data Link layer are :</p>
+<ol>
+<li><strong> Framing: </strong> Framing is a function of the data link layer. It provides a way for a sender to transmit a set of bits that are meaningful to the receiver. This can be accomplished by attaching special bit patterns to the beginning and end of the frame. </li>
+<li><strong> Physical addressing:</strong> After creating frames, Data link layer adds physical addresses (MAC address) of sender and/or receiver in the header of each frame.</li>
+<li><strong> Error control:</strong> Data link layer provides the mechanism of error control in which it detects and retransmits damaged or lost frames. </li>
+<li><strong>  Flow Control:</strong> The data rate must be constant on both sides else the data may get corrupted  thus , flow control coordinates that amount of data that can be sent before receiving acknowledgement.</li>
+<li><strong> Access control: </strong>When a single communication channel is shared by multiple devices, MAC sub-layer of data link layer helps to determine which device has control over the channel at a given time.</li>
+</ol>
+<p><em>* Packet in Data Link layer is referred as <strong>Frame</strong>.<br/>
+** Data Link layer is handled by the NIC (Network Interface Card) and device drivers of host machines.<br/>
+*** Switch &amp; Bridge are Data Link Layer devices.</em></p>
+<p><strong><br/>
+</strong></p>
+<h3 class="sigil_not_in_toc"><strong>3. Network Layer (Layer 3) :</strong></h3>
+<strong>
+<p></p></strong>Network layer works for the transmission of data from one host to the other located in different networks. It also takes care of packet routing i.e. selection of shortest path to transmit the packet, from the number of routes available. The sender &amp; receiver’s IP address are placed in the header by network layer.<br/>
+The functions of the Network layer are :<p></p>
+<ol>
+<li><strong>Routing:</strong> The network layer protocols determine which route is suitable from source to destination. This function of network layer is known as routing.</li>
+<li><strong>Logical Addressing: </strong> In order to identify each device on internetwork uniquely, network layer defines an addressing scheme. The sender &amp; receiver’s IP address are placed in the header by network layer. Such an address distinguishes each device uniquely and universally.</li>
+</ol>
+<p><em>* Segment </em> in Network layer is referred as <strong>Packet</strong>.<br/>
+<img src="../../../imgs/net/178e5e8f63b799275b8589e63beb04b5.jpg" alt="" width="30" height="26" class="alignnone size-full wp-image-207897"/><br/>
+** Network layer is implemented by networking devices such as routers.</p>
+<p><strong><br/>
+</strong></p>
+<h3 class="sigil_not_in_toc"><strong>4. Transport Layer (Layer 4) :</strong></h3>
+<strong>
+<p></p></strong>Transport layer provides services to application layer and takes services from network layer. The data in the transport layer is referred to as <em>Segments</em>. It is responsible for the End to End delivery of the complete message. Transport layer also provides the acknowledgement of the successful data transmission and re-transmits the data if error is found.<br/>
+<strong>• At sender’s side: </strong><br/>
+Transport layer receives the formatted data from the upper layers, performs <strong>Segmentation</strong> and also implements <strong>Flow &amp; Error control</strong> to ensure proper data transmission. It also adds Source and Destination port number in its header and forwards the segmented data to the Network Layer.<br/>
+<u>Note:</u> The sender need to know the port number associated with the receiver’s application.<br/>
+Generally this destination port number is configured, either by default or manually. For example, when a web application makes a request to a web server, it typically uses port number 80, because this is the default port assigned to web applications. Many applications have default port assigned.<br/>
+<strong>• At receiver’s side:</strong><br/>
+ Transport Layer reads the  port number from its header and forwards the Data which it has received to the respective application. It also performs sequencing and reassembling of the segmented data.<p></p>
+<p>The functions of the transport layer are :</p>
+<ol>
+<li><strong>Segmentation and Reassembly:</strong> This layer accepts the message from the (session) layer , breaks the message into smaller units . Each of the segment produced has a header associated with it. The transport layer at the destination station reassembles the message.</li>
+<li><strong>Service Point Addressing:</strong> In order to deliver the message to correct process, transport layer header includes a type of address called service point address or port address. Thus by specifying this address, transport layer makes sure that the message is delivered to the correct process.</li>
+</ol>
+<p>The services provided by transport layer :</p>
+<ol>
+<li><strong>Connection Oriented Service:</strong> It is a three phase process which include<br/>
+– Connection Establishment<br/>
+– Data Transfer<br/>
+– Termination / disconnection<br/>
+In this type of transmission the receiving device sends an acknowledgment, back to the source after a packet or group of packet is received. This type of transmission is reliable and secure.</li>
+<li><strong>Connection less service:</strong> It is a one phase process and includes Data Transfer. In this type of transmission the receiver does not acknowledge receipt of a packet. This approach allows for much faster communication between devices. Connection oriented Service is more reliable than connection less Service.</li>
+</ol>
+<p><em>* Data in the Transport Layer is called as <strong>Segments</strong>.<br/>
+** Transport layer is operated by the Operating System. It is a part of the OS and communicates with the Application Layer by making system calls.<br/>
+Transport Layer is called as <strong>Heart of OSI</strong> model.<br/>
+</em></p>
+<p><strong><br/>
+</strong></p>
+<h3 class="sigil_not_in_toc"><strong>5. Session Layer (Layer 5) :</strong></h3>
+<strong>
+<p></p></strong>This layer is responsible for establishment of connection, maintenance of sessions, authentication and also ensures security.<br/>
+The functions of the session layer are :<p></p>
+<ol>
+<li>  <strong>Session establishment, maintenance and termination:</strong> The layer allows the two processes to establish, use and terminate a connection.</li>
+<li>  <strong>Synchronization  :</strong>  This layer allows a process to add checkpoints which are considered as synchronization points into the data. These synchronization point help to identify the error so that the data is re-synchronized properly, and ends of the messages are not cut prematurely and data loss is avoided.</li>
+<li> <strong>Dialog Controller :</strong> The session layer determines which device will communicate first and the amount of data that will be sent.</li>
+</ol>
+<p><em>**All the above 3 layers are integrated as a single layer in TCP/IP model as “Application Layer”.<br/>
+**Implementation of above 3 layers is done by the network application itself. These are also known as <strong>Upper Layers</strong> or <strong>Software Layers</strong>.</em></p>
+<p><u>SCENARIO:</u><br/>
+Let’s consider a scenario where a user wants to send a message through some Messenger application running in his browser. The “Messenger” here acts as the application layer which provides the user with an interface to create the data. This message or so called Data is compressed, encrypted (if any secure data) and converted into bits (0’s and 1’s) so that it can be transmitted.<br/>
+<img src="../../../imgs/net/2ab094ac57d97a00a6369b7f9f0f959c.jpg" alt="" width="534" height="195" class="aligncenter size-full wp-image-207889"/></p>
+<p><strong><br/>
+</strong></p>
+<h3 class="sigil_not_in_toc"><strong>6. Presentation Layer (Layer 6) :</strong></h3>
+<strong>
+<p></p></strong>Presentation layer is also called the <strong>Translation layer</strong>.The data from the application layer is extracted here and manipulated as per the required format to transmit over the network.<br/>
+The functions of the presentation layer are :<p></p>
+<ol>
+<li><strong>Translation :</strong> For example, ASCII to EBCDIC.</li>
+<li> <strong>Encryption/ Decryption :</strong> Data encryption translates the data into another form or code. The encrypted data is known as the cipher text and the decrypted data is known as plain text. A key value is used for encrypting as well as decrypting data.</li>
+<li> <strong>Compression:</strong> Reduces the number of bits that need to be transmitted on the network.</li>
+</ol>
+<p><strong><br/>
+</strong></p>
+<h3 class="sigil_not_in_toc"><strong>7. Application Layer (Layer 7) :</strong></h3>
+<strong>
+<p></p></strong>At the very top of the OSI Reference Model stack of layers, we find Application layer which is implemented by the network applications. These applications produce the data, which has to be transferred over the network. This layer also serves as window for the application services to access the network and for displaying the received information to the user.<br/>
+Ex: Application – Browsers, Skype Messenger etc.<br/>
+<em>**Application Layer is also called as Desktop Layer.<br/>
+<img src="../../../imgs/net/63fcbdced485fa8d311a2b73d43dac30.jpg" alt="" width="52" height="42" class="alignnone size-full wp-image-207878"/><br/>
+</em> The functions of the Application layer are :<p></p>
+<ol>
+<li> Network Virtual Terminal </li>
+<li> FTAM-File transfer access and management</li>
+<li> Mail Services </li>
+<li> Directory Services </li>
+</ol>
+<p>OSI model acts as a reference model and is not implemented in Internet because of its late invention. Current model being used is the TCP/IP model.</p>
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

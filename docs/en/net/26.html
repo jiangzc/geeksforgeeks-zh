@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Carrier sense multiple access (CSMA)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-multiple-access-protocols/" rel="noopener" target="_blank">Multiple Access Protocols</a><br/>
+This method was developed to decrease the chances of collisions when two or more stations start sending their signals over the datalink layer. Carrier Sense multiple access requires that each station <b>first check the state of the medium</b> before sending.</p>
+<p><b>Vulnerable Time –</b></p>
+<pre> Vulnerable time = Propagation time (Tp)</pre>
+<p><img src="../../../imgs/net/7a608f4a2b2c7c8bcd401f3cd835aab6.jpg" alt="" width="645" height="389" class="aligncenter size-full wp-image-425465"/></p>
+<p>The persistence methods can be applied to help the station take action when the channel is busy/idle.</p>
+<h3 class="sigil_not_in_toc">1. Carrier Sense Multiple Access with Collision Detection (CSMA/CD) –</h3>
+<p>In this method, a station monitors the medium after it sends a frame to see if the transmission was successful.If succcessful, the station is finished, if not, the frame is sent again.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/net/9c32d3d468469ac5ffc959c291a2121f.jpg" alt="" width="732" height="389" class="aligncenter size-full wp-image-425468"/></p>
+<p>In the diagram A starts send the first bit of its frame at t1 and since C sees the channel idle at t2, starts sending its frame at t2. C detects A’s frame at t3 and aborts transmission. A detects C’s frame at t4 and aborts its transmission. Transmission time for C’s frame is therefore <img src="../../../imgs/net/ceb2857fecbd0db00c69367aebb5f37f.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="t3-t2" title="Rendered by QuickLaTeX.com" height="19" width="77" style="vertical-align: -1px;"/> and for A’s frame is <img src="../../../imgs/net/40bb60ee7a763277e5f773806c28824e.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="t4-t1" title="Rendered by QuickLaTeX.com" height="19" width="76" style="vertical-align: -1px;"/>.</p>
+<p>So, the <b>frame transmission time (Tfr) should be atleast twice the maximum propagation time (Tp)</b>. This can be deduced when the two stations involved in collision are maximum distance apart.</p>
+<p><b>Process –</b><br/>
+The entire process of collision detection can be explained as follows:</p>
+<p><img src="../../../imgs/net/7487a11c5e6c9d436841af0a6662dc81.jpg" alt="" width="659" height="812" class="aligncenter size-full wp-image-425473"/></p>
+<p><b>Throughput and Efficiency –</b> The throughput of CSMA/CD is much greater than pure or slotted ALOHA.</p>
+<ul>
+<li>For 1-persistent method throughput is 50% when G=1. </li>
+<li>For non-persistent method throughput can go upto 90%. </li>
+</ul>
+<h3 class="sigil_not_in_toc">2. Carrier Sense Multiple Access with Collision Avoidance (CSMA/CA) –</h3>
+<p>The basic idea behind CSMA/CA is that the station should be able to receive while transmitting to detect a collision from different stations. In wired networks, if collision has occurred then the energy of received signal almost doubles and the station can sense the possibility of collision. In case of wireless networks, most of the energy is used for transmission and the energy of received signal increases by only 5-10% if collision occurs. It can’t be used by station to sense collision. Therefore <b>CSMA/CA has been specially designed for wireless networks</b>.</p>
+<p>These are three type of strategies:</p>
+<ol>
+<li><b>InterFrame Space (IFS) –</b> When a station finds the channel busy, it sends for a period of time called IFS time. IFS can also be used to define the priority of of a station or a frame. Higher the IFS lower is the priority.
+</li>
+<li><b>Contention Window –</b> It is the amount of time divided into slots.A station which is ready to send frames chooses random number of slots as <b>wait time</b>.
+</li>
+<li><b>Acknowledgements –</b> The positive acknowledgements and time-out timer can help guarantee a successful transmission of the frame.
+</li>
+</ol>
+<p><b>Process –</b><br/>
+The entire process for collision avoidance can be explained as follows:</p>
+<p><img src="../../../imgs/net/1d66c31ea9aeeb3628dff078b843902e.jpg" alt="" width="459" height="987" class="aligncenter size-full wp-image-425480"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

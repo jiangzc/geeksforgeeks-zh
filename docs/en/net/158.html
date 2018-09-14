@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Switch functions at layer 2</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/network-devices-hub-repeater-bridge-switch-router-gateways/" rel="noopener" target="_blank">Switch</a><br/>
+Switch is a  layer 2 device which works on the basis of MAC address (physical address) of a device. Switch mainly performs these functions:</p>
+<ol>
+<li><strong>Learning –</strong> The switch learns the MAC address of the device on the switch port on which it receives the frame. </li>
+<li><strong>Forwarding –</strong> The switch does 2 types of message forwarding:<br/>
+  (a) <strong>Unicast:</strong> The switch unicast the frame to the destination only when it has an entry for destination MAC address in its MAC address table.<br/>
+  (b) <strong>Unknown Unicast:</strong> When a switch receives a unicast frame for a destination for which switch has no entry in its MAC table then the switch simply broadcast the frame through all ports. This is known as flooding. </li>
+<li><strong>Filtering –</strong> The frame will be forwarded through that switch port only for which the switch has already learned the MAC address in its MAC table. </li>
+<li><strong>Loop avoidance –</strong> For redundancy, two switches are connected to each other through two links which can also result in layer 2 loops. These loops are avoided by switch by using STP(Spanning tree protocol)  protocol.</li>
+</ol>
+<p><b>Note –</b> An entry in the switch MAC table, also known as CAM (Content Addressable Memory), can remain upto for 300 seconds. When a frame is received for a destination MAC address, the time limit of 300 seconds gets reset. MAC table has 4 entries:</p>
+<ul>
+<li><strong>Port Number –</strong> The switch port attached to the destination MAC. </li>
+<li><strong>MAC Address –</strong> MAC address of that host which is attached to that switch port.</li>
+<li><strong>Type –</strong> It tells us about how the switch has learned the MAC address of the host i.e static or dynamic. If the entry is added manually the it will be static otherwise it will be dynamic. </li>
+<li><strong>VLAN –</strong>It tells about to which Vlan the host, attached to that switch port, belongs to. </li>
+</ul>
+<p><strong>How switch learns the Mac address? </strong><br/>
+The switch will update it’s MAC table only when it receives any frame from the host. If there is no entry for the destination host then switch will first learn the Mac address of the source host and then flood the frame through all its ports except the port on which the frame is received but if there is an entry for the destination host in Mac table of switch then it will be unicast. </p>
+<p>Let’s see this by an example.<br/>
+<b>Example –</b> Here is small topology having host A (192.168.1.1/24), host B (192.168.1.2/24), host C (192.168.1.3/24), host D (192.168.1.4/24) and 2 switches in between. It will understand the switch MAC address learning process by ping from host A to Host C. Initially both switches MAC tables has entry for other switch only.</p>
+<p><img src="../../../imgs/net/0d3f5189c1f34a8b32bb1644a761d452.jpg" width="657" height="575" class="aligncenter size-full"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/net/5db8fe6330afb97f53690f6791195352.jpg" width="656" height="580" class="aligncenter size-full"/></p>
+<p>As soon as user try to ping host C, he see that 2 packets are generated: one of ICMP and other of ARP.</p>
+<p><img src="../../../imgs/net/a2fc6a4a43b1fae1cf15d3749ebe630e.jpg" alt="1" width="707" height="370" class="aligncenter size-full wp-image-193102" srcset="https://www.geeksforgeeks.org/wp-content/uploads/1-20.jpg 707w, https://www.geeksforgeeks.org/wp-content/uploads/1-20-300x157.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/1-20-660x345.jpg 660w" sizes="(max-width: 707px) 100vw, 707px"/></p>
+<p>First,  ARP will be resolved i.e ARP request is broadcast in the network by host A. </p>
+<p><img src="../../../imgs/net/13e4a2a68f6e7bf37d07aa8d04420212.jpg" alt="2" width="698" height="376" class="aligncenter size-full wp-image-193104" srcset="https://www.geeksforgeeks.org/wp-content/uploads/2-14.jpg 698w, https://www.geeksforgeeks.org/wp-content/uploads/2-14-300x162.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/2-14-660x356.jpg 660w" sizes="(max-width: 698px) 100vw, 698px"/></p>
+<p>The switch0 receives the broadcast ARP request  and will update it’s MAC table . </p>
+<p><img src="../../../imgs/net/7a24b86149d09ec83e491919c3935bbb.jpg" width="653" height="580" class="aligncenter size-full"/></p>
+<p><strong>Note –</strong> The switch0  already has an entry for Switch1. The switch0 broadcast the frame in return to the switch1 and the PC. The host B will discard the frame as it is not destined for it.</p>
+<p><img src="../../../imgs/net/1c3415e4b89fe0d74e3ace63233afc5f.jpg" alt="666666" width="691" height="360" class="aligncenter size-full wp-image-193237" srcset="https://www.geeksforgeeks.org/wp-content/uploads/666666.jpg 691w, https://www.geeksforgeeks.org/wp-content/uploads/666666-300x156.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/666666-660x344.jpg 660w" sizes="(max-width: 691px) 100vw, 691px"/></p>
+<p>Now, the  switch1 will receive the frame and will first update it’s MAC table. </p>
+<p><img src="../../../imgs/net/dbe968167c923b4acf8e1c669727df65.jpg" width="653" height="575" class="aligncenter size-full"/></p>
+<p><strong>Note –</strong> Here, the switch1 has learned the different MAC address of switch0 and host A on same port fa0/1 because the  host A is attached to the switch0 on fa0/1 therefore showing same port fa0/1. Now, the switch1  will broadcast the ARP frame to host C and host D as these are present in same broadcast domain.</p>
+<p><img src="../../../imgs/net/c6772064dfde0716ff562f246bb7fbea.jpg" alt="4" width="723" height="375" class="aligncenter size-full wp-image-193107" srcset="https://www.geeksforgeeks.org/wp-content/uploads/4-7.jpg 723w, https://www.geeksforgeeks.org/wp-content/uploads/4-7-300x156.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/4-7-660x342.jpg 660w" sizes="(max-width: 723px) 100vw, 723px"/></p>
+<p>The host C will generate an ARP reply which is unicast to the switch . The switch1 will update it’s MAC table putting an entry for host C.</p>
+<p><img src="../../../imgs/net/46883bab2c98c0593eb3444c12dcc2f6.jpg" width="654" height="576" class="aligncenter size-full"/></p>
+<p>Both the switch(switch0 and switch1)  will unicast this ARP reply to the host A this time because this time switches have already  learned the MAC address of host A. </p>
+<p><img src="../../../imgs/net/574a8d9b6627e10adf88f9cd156c754d.jpg" alt="5" width="691" height="381" class="aligncenter size-full wp-image-193109" srcset="https://www.geeksforgeeks.org/wp-content/uploads/5-3.jpg 691w, https://www.geeksforgeeks.org/wp-content/uploads/5-3-300x165.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/5-3-660x364.jpg 660w" sizes="(max-width: 691px) 100vw, 691px"/></p>
+<p>The frame is successfully delivered to host A resolving the ARP. </p>
+<p><img src="../../../imgs/net/374748ec7edd8852ac15edc85b3c5877.jpg" alt="111111" width="682" height="357" class="aligncenter size-full wp-image-193236" srcset="https://www.geeksforgeeks.org/wp-content/uploads/111111.jpg 682w, https://www.geeksforgeeks.org/wp-content/uploads/111111-300x157.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/111111-660x345.jpg 660w" sizes="(max-width: 682px) 100vw, 682px"/></p>
+<p>Now the ICMP echo request is unicast to the host C. </p>
+<p><img src="../../../imgs/net/572fa16d3a700c794a6f0e00d2f881ee.jpg" alt="7" width="701" height="362" class="aligncenter size-full wp-image-193111" srcset="https://www.geeksforgeeks.org/wp-content/uploads/7-1.jpg 701w, https://www.geeksforgeeks.org/wp-content/uploads/7-1-300x155.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/7-1-660x341.jpg 660w" sizes="(max-width: 701px) 100vw, 701px"/><br/>
+<img src="../../../imgs/net/ad5e8ab8bef54ef07c67aa25cc66dd15.jpg" alt="8" width="699" height="362" class="aligncenter size-full wp-image-193112" srcset="https://www.geeksforgeeks.org/wp-content/uploads/8-1.jpg 699w, https://www.geeksforgeeks.org/wp-content/uploads/8-1-300x155.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/8-1-660x342.jpg 660w" sizes="(max-width: 699px) 100vw, 699px"/><br/>
+<img src="../../../imgs/net/dbb9d329e0a4ee89f917b90d77e93179.jpg" alt="9" width="687" height="359" class="aligncenter size-full wp-image-193115" srcset="https://www.geeksforgeeks.org/wp-content/uploads/9-1.jpg 687w, https://www.geeksforgeeks.org/wp-content/uploads/9-1-300x157.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/9-1-660x345.jpg 660w" sizes="(max-width: 687px) 100vw, 687px"/></p>
+<p>The ICMP echo reply is unicast to the host A. </p>
+<p><img src="../../../imgs/net/3c9310f33791172db270cc2b2782340a.jpg" alt="10" width="680" height="359" class="aligncenter size-full wp-image-193117" srcset="https://www.geeksforgeeks.org/wp-content/uploads/10-2.jpg 680w, https://www.geeksforgeeks.org/wp-content/uploads/10-2-300x158.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/10-2-660x348.jpg 660w" sizes="(max-width: 680px) 100vw, 680px"/><br/>
+<img src="../../../imgs/net/2a9bb1f333db8e8ee318493848c383d8.jpg" alt="11" width="686" height="357" class="aligncenter size-full wp-image-193118" srcset="https://www.geeksforgeeks.org/wp-content/uploads/11-3.jpg 686w, https://www.geeksforgeeks.org/wp-content/uploads/11-3-300x156.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/11-3-660x343.jpg 660w" sizes="(max-width: 686px) 100vw, 686px"/><br/>
+<img src="../../../imgs/net/ac6bcfc62c71ec371dc28be57378a79d.jpg" alt="12" width="685" height="359" class="aligncenter size-full wp-image-193119" srcset="https://www.geeksforgeeks.org/wp-content/uploads/12-4.jpg 685w, https://www.geeksforgeeks.org/wp-content/uploads/12-4-300x157.jpg 300w, https://www.geeksforgeeks.org/wp-content/uploads/12-4-660x346.jpg 660w" sizes="(max-width: 685px) 100vw, 685px"/></p>
+<p><strong>Remember –</strong><br/>
+<strong>When the switch will broadcast?</strong> If the host has broadcast a frame then the switch receiving it will broadcast it further through its ports anyway.<br/>
+<strong>When the switch will do flooding (unknown unicast)?</strong> If the host has unicast a frame and the switch doesn’t has destination Mac address in its Mac table then the switch will flood through all its ports except the port on which the frame is received.<br/>
+<strong>When the switch will unicast?</strong> If the switch has an entry for the destination host in its Mac table then the frame will be unicast.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

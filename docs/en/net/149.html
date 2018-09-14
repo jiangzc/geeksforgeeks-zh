@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">C program for file Transfer using UDP</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Data can be transferred between two computers using <a href="https://www.geeksforgeeks.org/socket-programming-cc/" rel="noopener" target="_blank">Socket programming in C</a>.</p>
+<p>Similarly, files can easily be sent using UDP protocol and a simple client/server.</p>
+<p>Security : Handled by encryption.</p>
+<p>Protocol : UDP<br/>
+Encryption: <a href="https://www.geeksforgeeks.org/xor-cipher/" rel="noopener" target="_blank">XOR encryption </a></p>
+<p><b>Algorithm :</b></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre>1. The server starts and <b>waits for filename</b>.
+2. The client <strong>sends a filename</strong>.
+3. The server receives filename.
+   If file is present,
+   server starts reading file 
+   and continues t<b>o send a buffer filled with
+   file contents encrypted</b> until file-end is reached.
+4. <b>End is marked by EOF</b>.
+5. File is received as buffers <b>until EOF is 
+received</b>. Then it is decrypted.
+6. If Not present, a <b>file not found</b> is sent.
+</pre>
+<p><strong>The Server :</strong></p>
+<pre class="brush: c; title: ; notranslate" title="">// server code for UDP socket programming
+#include &lt;arpa/inet.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;unistd.h&gt;
+
+#define IP_PROTOCOL 0
+#define PORT_NO 15050
+#define NET_BUF_SIZE 32
+#define cipherKey 'S'
+#define sendrecvflag 0
+#define nofile "File Not Found!"
+
+// funtion to clear buffer
+void clearBuf(char* b)
+{
+    int i;
+    for (i = 0; i &lt; NET_BUF_SIZE; i++)
+        b[i] = '\0';
+}
+
+// funtion to encrypt
+char Cipher(char ch)
+{
+    return ch ^ cipherKey;
+}
+
+// funtion sending file
+int sendFile(FILE* fp, char* buf, int s)
+{
+    int i, len;
+    if (fp == NULL) {
+        strcpy(buf, nofile);
+        len = strlen(nofile);
+        buf[len] = EOF;
+        for (i = 0; i &lt;= len; i++)
+            buf[i] = Cipher(buf[i]);
+        return 1;
+    }
+
+    char ch, ch2;
+    for (i = 0; i &lt; s; i++) {
+        ch = fgetc(fp);
+        ch2 = Cipher(ch);
+        buf[i] = ch2;
+        if (ch == EOF)
+            return 1;
+    }
+    return 0;
+}
+
+// driver code
+int main()
+{
+    int sockfd, nBytes;
+    struct sockaddr_in addr_con;
+    int addrlen = sizeof(addr_con);
+    addr_con.sin_family = AF_INET;
+    addr_con.sin_port = htons(PORT_NO);
+    addr_con.sin_addr.s_addr = INADDR_ANY;
+    char net_buf[NET_BUF_SIZE];
+    FILE* fp;
+
+    // socket()
+    sockfd = socket(AF_INET, SOCK_DGRAM, IP_PROTOCOL);
+
+    if (sockfd &lt; 0)
+        printf("\nfile descriptor not received!!\n");
+    else
+        printf("\nfile descriptor %d received\n", sockfd);
+
+    // bind()
+    if (bind(sockfd, (struct sockaddr*)&amp;addr_con, sizeof(addr_con)) == 0)
+        printf("\nSuccessfully binded!\n");
+    else
+        printf("\nBinding Failed!\n");
+
+    while (1) {
+        printf("\nWaiting for file name...\n");
+
+        // receive file name
+        clearBuf(net_buf);
+
+        nBytes = recvfrom(sockfd, net_buf,
+                          NET_BUF_SIZE, sendrecvflag,
+                          (struct sockaddr*)&amp;addr_con, &amp;addrlen);
+
+        fp = fopen(net_buf, "r");
+        printf("\nFile Name Received: %s\n", net_buf);
+        if (fp == NULL)
+            printf("\nFile open failed!\n");
+        else
+            printf("\nFile Successfully opened!\n");
+
+        while (1) {
+
+            // process
+            if (sendFile(fp, net_buf, NET_BUF_SIZE)) {
+                sendto(sockfd, net_buf, NET_BUF_SIZE,
+                       sendrecvflag, 
+                    (struct sockaddr*)&amp;addr_con, addrlen);
+                break;
+            }
+
+            // send
+            sendto(sockfd, net_buf, NET_BUF_SIZE,
+                   sendrecvflag,
+                (struct sockaddr*)&amp;addr_con, addrlen);
+            clearBuf(net_buf);
+        }
+        if (fp != NULL)
+            fclose(fp);
+    }
+    return 0;
+}
+</pre>
+<p><strong>The Client:</strong></p>
+<pre class="brush: c; title: ; notranslate" title="">// client code for UDP socket programming
+#include &lt;arpa/inet.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;unistd.h&gt;
+
+#define IP_PROTOCOL 0
+#define IP_ADDRESS "127.0.0.1" // localhost
+#define PORT_NO 15050
+#define NET_BUF_SIZE 32
+#define cipherKey 'S'
+#define sendrecvflag 0
+
+// funtion to clear buffer
+void clearBuf(char* b)
+{
+    int i;
+    for (i = 0; i &lt; NET_BUF_SIZE; i++)
+        b[i] = '\0';
+}
+
+// function for decryption
+char Cipher(char ch)
+{
+    return ch ^ cipherKey;
+}
+
+// function to receive file
+int recvFile(char* buf, int s)
+{
+    int i;
+    char ch;
+    for (i = 0; i &lt; s; i++) {
+        ch = buf[i];
+        ch = Cipher(ch);
+        if (ch == EOF)
+            return 1;
+        else
+            printf("%c", ch);
+    }
+    return 0;
+}
+
+// driver code
+int main()
+{
+    int sockfd, nBytes;
+    struct sockaddr_in addr_con;
+    int addrlen = sizeof(addr_con);
+    addr_con.sin_family = AF_INET;
+    addr_con.sin_port = htons(PORT_NO);
+    addr_con.sin_addr.s_addr = inet_addr(IP_ADDRESS);
+    char net_buf[NET_BUF_SIZE];
+    FILE* fp;
+
+    // socket()
+    sockfd = socket(AF_INET, SOCK_DGRAM,
+                    IP_PROTOCOL);
+
+    if (sockfd &lt; 0)
+        printf("\nfile descriptor not received!!\n");
+    else
+        printf("\nfile descriptor %d received\n", sockfd);
+
+    while (1) {
+        printf("\nPlease enter file name to receive:\n");
+        scanf("%s", net_buf);
+        sendto(sockfd, net_buf, NET_BUF_SIZE,
+               sendrecvflag, (struct sockaddr*)&amp;addr_con,
+               addrlen);
+
+        printf("\n---------Data Received---------\n");
+
+        while (1) {
+            // receive
+            clearBuf(net_buf);
+            nBytes = recvfrom(sockfd, net_buf, NET_BUF_SIZE,
+                              sendrecvflag, (struct sockaddr*)&amp;addr_con,
+                              &amp;addrlen);
+
+            // process
+            if (recvFile(net_buf, NET_BUF_SIZE)) {
+                break;
+            }
+        }
+        printf("\n-------------------------------\n");
+    }
+    return 0;
+}
+</pre>
+<p><b>Output :</b><br/>
+Server :<br/>
+<img src="../../../imgs/net/47a5b26931ea0d1c30dc5fc3a2c9d45c.jpg" alt="server" class="alignnone size-medium wp-image-188265" srcset="https://www.geeksforgeeks.org/wp-content/uploads/server.png 460w, https://www.geeksforgeeks.org/wp-content/uploads/server-300x188.png 300w" sizes="(max-width: 460px) 100vw, 460px"/><br/>
+Client :<br/>
+<img src="../../../imgs/net/d5371c1705bb51f97ba2a9b0b4d04e8d.jpg" alt="client" class="alignnone size-medium wp-image-188264" srcset="https://www.geeksforgeeks.org/wp-content/uploads/client.png 380w, https://www.geeksforgeeks.org/wp-content/uploads/client-300x242.png 300w" sizes="(max-width: 380px) 100vw, 380px"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

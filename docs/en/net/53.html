@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Internet Protocol version 6 (IPv6) Header</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite: <a href="https://www.geeksforgeeks.org/internet-protocol-v6-ipv6/">Introduction to Internet Protocol version 6</a></p>
+<p>IP version 6 is the new version of Internet Protocol, which is way better than IP version 4 in terms of complexity and efficiency. Let’s look at the header of IP version 6 and understand how it is different from IPv4 header. </p>
+<p><strong>IP version 6 Header Format :</strong><br/>
+<img src="../../../imgs/net/6f03fd796f96dc5ce7bc6faf44e82c25.jpg" alt="" width="654" height="404" class="alignnone size-full wp-image-225551"/></p>
+<p><strong>Version (4-bits) :</strong> Indicates version of Internet Protocol which contains bit sequence 0110.</p>
+<p><strong>Traffic Class (8-bits) :</strong> The Traffic Class field indicates class or priority of IPv6 packet which is similar to <em>Service Field</em> in IPv4 packet. It helps routers to handle the traffic based on priority of the packet. If congestion occurs on router then packets with least priority will be discarded.<br/>
+As of now only 4-bits are being used (and remaining bits are under research), in which 0 to 7 are assigned to Congestion controlled traffic and 8 to 15 are assigned to Uncontrolled traffic.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Priority assignment of Congestion controlled traffic :<br/>
+<img src="../../../imgs/net/538dab5d6c968eb4c69a265148b4010c.jpg" alt="" width="325" height="263" class="alignnone size-full wp-image-225622"/></p>
+<p>Uncontrolled data traffic is mainly used for Audio/Video data. So we give higher priority to Uncontrolled data traffic.<br/>
+Source node is allowed to set the priorities but on the way routers can change it. Therefore, destination should not expect same priority which was set by source node.</p>
+<p><strong>Flow Label (20-bits) : </strong> Flow Label field is used by source to label the packets belonging to the same flow in order to request special handling by intermediate IPv6 routers, such as non-default quality of service or real time service. In order to distinguish the flow, intermediate router can use source address, destination address and flow label of the packets. Between a source and destination multiple flows may exist because many processes might be running at the same time. Routers or Host that do not support the functionality of flow label field and for default router handling, flow label field is set to 0. While setting up the flow label, source is also supposed to specify the lifetime of flow. </p>
+<p><strong>Payload Length (16-bits) :</strong> It is a 16-bit (unsigned integer) field, indicates total size of the payload which tells routers about amount of information a particular packet contains in its payload. Payload Length field includes extension headers(if any) and upper layer packet. In case length of payload is greater than 65,535 bytes (payload up to 65,535 bytes can be indicated with 16-bits), then the payload length field will be set to 0 and jumbo payload option is used in the Hop-by-Hop options extension header.</p>
+<p><strong>Next Header (8-bits) :</strong> Next Header indicates type of extension header(if present) immediately following the IPv6 header. Whereas In some cases it indicates the protocols contained within upper-layer packet, such as TCP, UDP.</p>
+<p><strong>Hop Limit (8-bits) :</strong> Hop Limit field is same as TTL in IPv4 packets. It indicates the maximum number of intermediate nodes IPv6 packet is allowed to travel. Its value gets decremented by one, by each node that forwards the packet and packet is discarded if value decrements to 0. This is used to discard the packets that are stuck in infinite loop because of some routing error. </p>
+<p><strong>Source Address (128-bits) :</strong> Source Address is 128-bit IPv6 address of the original source of the packet.</p>
+<p><strong>Destination Address (128-bits) :</strong> Destination Address field indicates the IPv6 address of the final destination(in most cases). All the intermediate nodes can use this information in order to correctly route the packet.</p>
+<p><strong>Extension Headers :</strong> In order to rectify the limitations of <em>IPv4 Option Field</em>, Extension Headers are introduced in IPversion 6. The extension header mechanism is very important part of the IPv6 architecture. Next Header field of IPv6 fixed header points to the first Extension Header and this first extension header points to the second extension header and so on.</p>
+<p><img src="../../../imgs/net/1d5611551edd69155b2cca7a8c3f6128.jpg" alt="" width="822" height="133" class="alignnone size-full wp-image-226139"/></p>
+<p>IPv6 packet may contain zero, one or more extension headers but these should be present in their recommended order:</p>
+<p><img src="../../../imgs/net/a864a4aaea66659f6f32587abcba6823.jpg" alt="" width="719" height="341" class="alignnone size-full wp-image-226149"/></p>
+<p><strong>Rule :</strong> Hop-by-Hop option header(if present) should always be placed after IPv6 base header.<br/>
+<strong>Conventions :</strong></p>
+<ol>
+<li> Any extension header can appear at most once except Destination Header because Destination Header is present two times in above list itself.</li>
+<li> If Destination Header is present before Routing Header then it will be examined by all intermediate nodes specified in routing header.</li>
+<li> If Destination Header is present just above Upper layer then it will be examined only by Destination node.</li>
+</ol>
+<p>Given order in which all extension header should be chained in IPv6 packet and working of each extension header<strong> :</strong></p>
+<p><img src="../../../imgs/net/946378af5f02b7a5a57705b50f18ec6d.jpg" alt="" width="672" height="141" class="alignnone size-full wp-image-226405"/> </p>
+<p> <br/><br/>
+<br/><br/>
+<strong>References</strong>:<br/>
+https://www.ietf.org/rfc/rfc2460.txt<br/>
+https://www.ietf.org/rfc/rfc3697.txt<br/>
+https://www.cisco.com/en/US/technologies/tk648/tk872/technologies_white_paper0900aecd8054d37d.html</p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

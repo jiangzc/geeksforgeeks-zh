@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Network address translation (NAT)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>To access Internet, one public IP address is needed but as you use private IP address in our private network, translation of private IP address to a public IP address is required. <b>Network Address Translation (NAT)</b> is a process in which  one or more local IP address is translated into one or more Global IP address  and vice versa in order to provide Internet access to the local hosts. NAT generally operates on  router or firewall. </p>
+<p><b>Network Address Translation (NAT) working –</b><br/>
+Generally, the border router is configured for NAT i.e the router which have one interface in local (inside)  network and one interface in global (outside)  network. When a packet traverse outside the local (inside)  network, then NAT converts that local (private)  IP address to a global (public) IP address. When a packet enters the local network, the global (public) IP address is converted to local (private) IP address. </p>
+<p>If NAT run out of addresses, i.e., no address is left in the pool configured then the packets will be dropped and  an Internet Control Message Protocol (ICMP) host unreachable packet to the destination is send.</p>
+<p><b>NAT inside and outside addresses –</b><br/>
+Inside refers to the addresses which must be translated. Outside refers to the addresses which are not in control of an organisation. These are the network Addresses in which the translation of the addresses will be done. </p>
+<p><img src="../../../imgs/net/e6425513e90af62a80ba8bf7d8887788.jpg" width="1022" height="284" class="aligncenter size-full"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li><strong>Inside local address –</strong> An IP address that is assigned to a host on the Inside (local) network. The address is probably not a  IP address assigned by the service provider i.e., these are  private IP address. This is the inside host seen from the inside network.
+</li>
+<li><strong>Inside global address –</strong> IP address that represents one or more inside local IP addresses to the outside world. This is the inside host as seen from the outside network.
+</li>
+<li><strong>Outside local address –</strong> This is the actual IP address of the destination host in the local network after translation.
+</li>
+<li><strong>Outside global address –</strong> This is the outside host as seen form the outside network. It is the IP address of the outside destination host before translation.
+</li>
+</ul>
+<p><b>Network Address Translation (NAT) Types –</b><br/>
+There are 3 ways to configure NAT:</p>
+<ol>
+<li><strong>Static NAT –</strong> In this, a single unregistered  (Private) IP address is mapped with a legally registered (Public)  IP address i.e one-to-one mapping between local and global address. This is generally used for Web hosting. These are not used in organisations as there are many  devices who will need Internet access and to provide Internet access, public IP address is needed.<br/>
+<br/>
+Suppose, if there are 3000 devices who needs access to Internet, the organisation have to buy 3000 public addresses that will be very costly.
+</li>
+<p></p>
+<li><strong>Dynamic NAT –</strong> In this type of NAT, an unregistered IP address is translated into a registered (Public)   IP address from a pool of public IP address. If the IP address of pool are not free, then the packet will be dropped as only fixed number of private IP address can be translated to public addresses.<br/>
+<br/>
+Suppose, if there is pool of 2 public IP addresses then only 2 private IP addresses can be translated at a given time. If 3rd private IP address wants to access Internet then the packet will be dropped therefore many private IP addresses are mapped to a pool of public IP addresses. NAT is used when the number of users who wants to access the Internet are fixed. This is also very costly as  the organisation have to buy many global IP addresses to make a pool.
+</li>
+<p></p>
+<li><strong>Port Address Translation (PAT) –</strong> This is also known as NAT overload. In this, many local (private) IP addresses can be translated to single registered IP address .Port numbers are used to distinguish the traffic i.e., which traffic belongs to which IP address. This is most frequently used as it is cost effective as thousands of users can be connected to the Internet by using only one real global (public) IP address.
+</li>
+</ol>
+<p><b>Advantages of NAT –</b></p>
+<ul>
+<li>NAT conserves legally registered IP addresses .
+</li>
+<li>It provides privacy as the device IP address, sending and receiving the traffic, will be hidden.
+</li>
+<li>Eliminates address renumbering when a network evolves.
+</li>
+</ul>
+<p><b>Disadvantage of NAT –</b></p>
+<ul>
+<li>Translation results in switching path delays.
+</li>
+<li>Certain applications will not function while NAT is enabled.
+</li>
+<li>Complicates tunneling protocols such as IPsec.
+</li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

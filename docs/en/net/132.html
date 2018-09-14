@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">DNA Cryptography</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><a href="https://www.geeksforgeeks.org/tag/cryptography/" rel="noopener" target="_blank">Cryptography</a> is the branch of science which deals with the <b>encoding of information</b> for the purpose of hiding messages. It plays a vital role in the infrastructure of communication security. The Pioneering work had been done by Ashish Gehani et al and Amin et al after Leonard Max Adleman had shown the capability of molecular computation in 1994. This paved the way for DNA Computing. DNA Cryptology combines cryptology and modern biotechnology.</p>
+<p><b>Why DNA Cryptography?</b></p>
+<ul>
+<li>DNA Cryptography is one of the rapidly evolving technologies in the world.
+</li>
+<li>Adelman showed the world how it can be used to solve complex problems like directed Hamilton path problem and <a href="https://www.geeksforgeeks.org/np-completeness-set-1/" rel="noopener" target="_blank">NP-complete problem</a> (for example <a href="https://www.geeksforgeeks.org/traveling-salesman-problem-tsp-implementation/" rel="noopener" target="_blank">Travelling Salesman problem</a>). Hence user can design and implement more complex Crypto algorithms.
+</li>
+<li>It brings forward new hope to break unbreakable algorithms. This is because DNA computing offers more speed, minimal storage and power requirements.
+</li>
+<li>DNA stores memory at a density of about 1 bit/nm3 where conventional storage media requires 1012 nm3/bit.
+</li>
+<li>No power is required for DNA computing while the computation is taking place.
+</li>
+<li>Surprisingly, one gram of DNA contains 1021 DNA bases which is equivalent to 108 TB of data. Hence can store all the data in the world in a few milligrams.
+</li>
+</ul>
+<p><strong>DNA Cryptography can be defined as a hiding data in terms of DNA Sequence.</strong> Just like the <a href="https://www.geeksforgeeks.org/rsa-algorithm-cryptography/" rel="noopener" target="_blank">RSA</a> and DES algorithms, in DNA Cryptology user have DNA algorithms like “Public-key system using DNA as a one-way function for key distribution,” “DNASC cryptography system”, DNA Steganography Systems, Triple stage DNA Cryptography, Encryption algorithm inspired by DNA and Chaotic computing.</p>
+<p>So, how do encode data in a DNA strand which is mainly made, up of 4 nitrogenous bases namely:</p>
+<ol>
+<li>Adenine (A)
+</li>
+<li>Thymine (T)
+</li>
+<li>Cytosine (C)
+</li>
+<li>Guanine (G)
+</li>
+</ol>
+<p>The easiest way to encode is to represent these four units as four figures:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre>A(0) –00
+T(1) –01
+C(2)–10
+G(3)–11 </pre>
+<ul>
+<li>By these encoding rules, there are 4!=24 possible encoding methods. Based on some principles as A and G make pairs while T and C make pairs.
+</li>
+<li>Of those 24 methods, only 8 match the DNA pairing rule but the best encoding scheme is 0123/CTAG.
+</li>
+</ul>
+<p>So now converted our initial number into a sequence of A, T, G and C theoretically. This is then physically implemented using various DNA synthesizing techniques like Chemical Oligonucleotide Synthesis and Oligo Synthesis Platforms (this includes Column-Based Oligo Synthesis, Array-based Oligo Synthesis, Complex Strand and Gene Synthesis and Error Correction).</p>
+<p>Let’s take an example of the classic XOR One Time Pad and see how its implemented using DNA Cryptography:</p>
+<p><b>Example –</b> Let M be the message and K be the key. The Ciphertext is obtained by finding M xor K = C. User can again obtain the Encoded message by doing: C xor K = M xor K xor K= M.  Hence, get our original message. The steps involved in implementing it is:</p>
+<ol>
+<li>The message and the OTP key are converted to ASCII bits
+</li>
+<li>Zero Padding is added to the message and the key in order to make the size of their binary codes even
+</li>
+<li>The message and the key are XORed together
+</li>
+<li>The XOR output is represented in DNA bases format.This is our enciphered text.
+</li>
+</ol>
+<p>The decryption process involves the following processes and hence it is also prone to eavesdropping:</p>
+<ol>
+<li>All the DNA bases are transformed into bits.
+</li>
+<li>These bits are then XORed with the OTP key bits to reproduce the original plain text.
+</li>
+<li>This text so obtained in binary format is then converted into a sequence of ASCII characters.
+</li>
+</ol>
+<p>Similarly, user can implement other crypto algorithms like AES and even DES. Instead of storing data as a sequence of 0s and 1s, storing them as a sequence of nitrogenous bases. Storing  information in the form a DNA enables us to store a lot of data in a small area. </p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

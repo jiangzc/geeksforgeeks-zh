@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Transport Layer responsibilities</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/layers-osi-model/" rel="noopener" target="_blank">Layers of OSI Model</a><br/>
+Transport Layer is the fourth layer of TCP/IP model. It is an <b>end-to-end</b> layer used to deliver messages to a host. It is termed as end-to-end layer because it provides a point-to-point connection <b>rather than</b> hop-to- hop, between the source host and destination host to deliver the services reliably. The unit of data encapsulation in Transport Layer is a segment. </p>
+<p>The standard protocols used by Transport Layer to enhance it’s functionalities are : TCP(Transmission Control Protocol), UDP( User Datagram Protocol), DCCP( Datagram Congestion Control Protocol) etc.<br/>
+Various responsibilities of a Transport Layer –</p>
+<ul>
+<li><b>Process to process delivery –</b><br/>
+While Data Link Layer requires the MAC address (48 bits address contained inside the Network Interface Card of every host machine) of source- destination hosts to correctly deliver a frame and Network layer requires the IP address for appropriate routing of packets , in a similar way Transport Layer requires a Port number to correctly deliver the segments of data to the correct process amongst the multiple processes running on a particular host. A <b>port number</b> is a 16 bit address used to identify any client-server program uniquely.</li>
+<li><b>End-to-end Connection between hosts –</b><br/>
+Transport layer is also responsible for creating the end-to-end Connection between hosts for which it mainly uses TCP and UDP. TCP is a secure, connection- orientated protocol which uses a handshake protocol to establish a robust connection between two end- hosts. TCP ensures reliable delivery of messages and is used in various applications. UDP on the other hand is a stateless and unreliable protocol which ensures best-effort delivery. It is suitable for the applications which have little concern with flow or error control and requires to send bulk of data like video conferencing. It is  a often used in multicasting protocols.</li>
+<li><b>Multiplexing and Demultiplexing –</b><br/>
+Multiplexing allows simultaneous use of different applications over a network which are running on a host. Transport layer provides this mechanism which enables us to send packet streams from various applications simultaneously over a network. Transport layer accepts these packets from different processes differentiated by their port numbers and passes them to network layer after adding proper headers. Similarly Demultiplexing is required at the receiver side to obtain the data coming from various processes. Transport receives the segments of data from network layer and delivers it to the appropriate process running on the receiver’s machine.</li>
+<li><b>Congestion Control –</b><br/>
+Congestion is a situation in which too many sources over a network attempt to send data and the router buffers start overflowing due to which loss of packets occur. As a result retransmission of packets from the sources increase the congestion further. In this situation Transport layer provides Congestion Control in different ways. It uses <b>open loop</b> congestion control to prevent the congestion and <b>closed loop</b> congestion control to remove the congestion in a network once it occurred. TCP provides AIMD- additive increase multiplicative decrease , leaky bucket technique for congestion control.</li>
+<li><b>Data integrity and Error correction –</b><br/>
+Transport layer checks for errors in the messages coming from application layer by using error detection codes, computing checksums, it checks whether the received data is not corrupted and uses the ACK and NACK services to inform the sender if the data is arrived or not and checks for the integrity of data.</li>
+<li><b>Flow control –</b><br/>
+Transport layer provides a flow control mechanism between the adjacent layers of the TCP/IP model. TCP also prevents the data loss due to a fast sender and slow receiver by imposing some flow control techniques. It uses the method of sliding window protocol which is accomplished by receiver by sending a window back to the sender informing the size of data it can receive.</li>
+</ul>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><div>
+
+</div>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

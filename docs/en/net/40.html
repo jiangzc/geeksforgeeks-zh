@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Stop and Wait ARQ</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<h3 style="text-align: center" class="sigil_not_in_toc">Characteristics</h3>
+<ul>
+<li>Used in Connection-oriented communication.</li>
+<li>It offers error and flow control</li>
+<li>It is used in Data Link and Transport Layers</li>
+<li>Stop and Wait ARQ mainly implements Sliding Window Protocol concept with Window Size 1</li>
+</ul>
+<h3 class="sigil_not_in_toc">Useful Terms:</h3>
+<ul>
+<li><strong>Propagation Delay: </strong>Amount of time taken by a packet to make a physical journey from one router to another router.</li>
+</ul>
+<p style="text-align: center">Propagation Delay = (Distance between routers) / (Velocity of propagation)</p>
+<ul>
+<li>RoundTripTime (<strong>RTT</strong>) = 2* Propagation Delay</li>
+<li>TimeOut (<strong>TO</strong>) =&#160; 2* RTT</li>
+<li>Time To Live (<strong>TTL</strong>) = 2* TimeOut. (Maximum TTL is 180 seconds)</li>
+</ul>
+<h3 style="text-align: center" class="sigil_not_in_toc"><u>Simple Stop and Wait </u></h3>
+<h4 class="sigil_not_in_toc">Sender:</h4>
+<p>Rule 1) Send one data packet at a time.<br/>
+Rule 2) Send next packet only after receiving acknowledgement for previous.</p>
+<h4 class="sigil_not_in_toc">Receiver:</h4>
+<p>Rule 1) Send acknowledgement after receiving and consuming of data packet.<br/>
+Rule 2) After consuming packet acknowledgement need to be sent (Flow Control)</p>
+<p>&#160;</p>
+<h2 class="sigil_not_in_toc"><u></u><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Stop-and-Wait-ARQ.png"><img class="aligncenter  wp-image-19707" src="../../../imgs/net/a7f14b3bd745d18c73339c3a90f64c5e.jpg" alt="cn1" width="356" height="345"/></a></h2>
+<h2 class="sigil_not_in_toc"><u>Problems :</u></h2>
+<p><strong>1. Lost Data</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<h2 class="sigil_not_in_toc"><a href="https://contribute.geeksforgeeks.org/wp-content/uploads/Stop-and-Wait-ARQ-2.png"><img class="aligncenter  wp-image-19708" src="../../../imgs/net/9e530a3ea32af7f630bd05a46ae705d0.jpg" alt="cn2" width="352" height="244"/></a></h2>
+<p><strong>2. Lost Acknowledgement:</strong></p>
+<h2 class="sigil_not_in_toc"><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Stop-and-Wait-ARQ-3.png"><img class="aligncenter  wp-image-19709" src="../../../imgs/net/04681128c42b6e3507113b200bf5cba8.jpg" alt="cn3" width="365" height="268"/></a></h2>
+<p><strong>3.&#160;Delayed Acknowledgement/Data:</strong> After timeout on sender side, a long delayed acknowledgement might be wrongly considered as acknowledgement of some other recent packet.</p>
+<h3 style="text-align: center" class="sigil_not_in_toc"><u>Stop and Wait ARQ (Automatic Repeat Request)</u></h3>
+<p>Above 3 problems are resolved by Stop and Wait ARQ (Automatic Repeat Request) that does both error control and flow control.</p>
+<h2 class="sigil_not_in_toc"><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Stop-and-Wait-ARQ-4.png"><img class="aligncenter size-full wp-image-19711" src="../../../imgs/net/c078ca40beff18420b9e3f770a196ad9.jpg" alt="cn5" width="604" height="119"/></a></h2>
+<p><strong>1.&#160;Time Out:</strong><br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Stop-and-Wait-ARQ-5.png"><img class="aligncenter  wp-image-19712" src="../../../imgs/net/434ec6d07195a211f7e586d88a2ca8c6.jpg" alt="cn6" width="378" height="319"/></a></p>
+<p><strong>2.&#160;Sequence Number (Data)</strong><br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Stop-and-Wait-ARQ-6.png"><br/>
+<img class="aligncenter  wp-image-19713" src="../../../imgs/net/2d9ccc0fb530e928c027f968f225d656.jpg" alt="cn7" width="464" height="276"/></a></p>
+<p><strong>3.&#160;Delayed Acknowledgement:</strong><br/>
+This is resolved by introducing sequence number for acknowledgement also.</p>
+<h3 style="text-align: center" class="sigil_not_in_toc"><u>Working of Stop and Wait ARQ:</u></h3>
+<p>1) Sender A sends a data frame or packet with sequence number 0.<br/>
+2) Receiver B, after receiving data frame, sends and acknowledgement with sequence number 1 (sequence number of next expected data frame or packet)<br/>
+There is only one bit sequence number that implies that both sender and receiver have buffer for one frame or packet only.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Stop-and-Wait-ARQ-7.png"><img class="  wp-image-20106 aligncenter" src="../../../imgs/net/c6f5aa34085a46d22e7a153e173986ee.jpg" alt="stopAndWaitARQ" width="431" height="394"/></a></p>
+<h4 class="sigil_not_in_toc">Characteristics of Stop and Wait ARQ:</h4>
+<ul>
+<li>It uses link between sender and receiver as half duplex link</li>
+<li>Throughput = 1 Data&#160;packet/frame per&#160; RTT</li>
+<li>If Bandwidth*Delay product is very high, then stop and wait protocol is not so useful. The sender has to keep waiting for acknowledgements before sending the processed next packet.</li>
+<li>It is an example for “<strong>Closed Loop OR connection oriented </strong>“ protocols</li>
+<li>It is an special category of SWP where its window size is 1</li>
+<li>Irrespective of number of packets sender is having stop and wait protocol&#160; requires only&#160; 2 sequence numbers 0 and 1</li>
+</ul>
+<p>The Stop and Wait ARQ solves main three problems, but may cause big performance issues as sender always waits for acknowledgement even if it has next packet ready to send. Consider a situation where you have a high bandwidth connection and propagation delay is also high (you are connected to some server in some other country though a high speed connection). To solve this problem, we can send more than one packet at a time with a larger sequence numbers. We will be discussing these protocols in next articles.</p>
+<p>So Stop and Wait ARQ may work fine where propagation delay is very less for example LAN connections, but performs badly for distant connections like satellite connection.</p>
+<p>&#160;</p>
+<p>References:<br/>
+<a href="http://users.ecs.soton.ac.uk/sqc/EL336/CNL-5.pdf">http://users.ecs.soton.ac.uk/sqc/EL336/CNL-5.pdf</a></p>
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

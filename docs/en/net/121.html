@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Introduction to Firewall</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Firewall is a network security device, either hardware or software based, which monitors all incoming and outgoing traffic and based on defined set of security rules it accept, reject or drop that specific traffic.</p>
+<p><strong>Accept :</strong> allow the traffic<br/>
+<strong>Reject :</strong> block the traffic but reply with an “unreachable error”<br/>
+<strong>Drop&#160;:&#160;</strong>block the traffic with no reply</p>
+<p>Firewall establishes a barrier between secured internal networks and outside untrusted network, such as Internet.</p>
+<p><img class="alignnone size-medium wp-image-217905" src="../../../imgs/net/80b46ca7d12726a22b435a106d60d00e.jpg" alt="" width="600" height="300"/></p>
+<p style="text-align: center"><strong>History and Need for Firewall</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Before Firewalls, network security was performed by Access Control Lists (ACLs) residing on routers. ACLs are rules that determine whether network access should be granted or denied to specific IP address.<br/>
+But ACLs cannot determine the nature of packet it is blocking. Also, ACL alone does not have the capacity to keep threats out of the network. Hence, Firewall was introduced.</p>
+<p>Connectivity to the Internet is no longer optional for organizations. However, accessing Internet provides benefits to the organization; it also enables the outside world to interact with internal network of the organization. This creates a threat to the organization. In order to secure the internal network from unauthorized traffic we need Firewall.</p>
+<p style="text-align: center"><strong>How Firewall Works</strong></p>
+<p>Firewall match the network traffic against the rule set defined in its table. Once the rule is matched, associate action is applied to the network traffic. For example, Rules are defined like any employee from HR department cannot access the data from code server and at the same time other rule is defined like system administrator can access the data from both HR and technical department. Rules can be defined on firewall based on the necessity and security policies of the organization.<br/>
+From the perspective of a server, network traffic can be either outgoing or incoming. Firewall maintains distinct set of rules for both the cases. Mostly the outgoing traffic, originated from the server itself, allowed to pass. Still, setting rule on outgoing traffic is always better in order to achieve more security and prevent unwanted communication.<br/>
+Incoming traffic is treated differently. Most traffic which reaches on firewall is one of these three major Transport Layer protocols- TCP, UDP or ICMP. All these types have a source address and destination address. Also, TCP and UDP have port numbers. ICMP uses <em>type code</em> instead of port number which identifies purpose of that packet.</p>
+<p><strong>Default policy:</strong> It is very difficult to explicitly cover every possible rule on firewall. For this reason, firewall must always have a default policy. Default policy only consist action (accept, reject or drop).<br/>
+Suppose no rule is defined about SSH connection to the server on firewall. So, it will follow default policy. If default policy on firewall is set to <em>accept</em>, then any computer outside of your office can establish SSH connection to the server. Therefore, setting default policy as <em>drop </em>(or reject) is always a good practice.</p>
+<p style="text-align: center"><strong>Generation of Firewall</strong></p>
+<p>Firewalls can be categorized based on its generation.</p>
+<p><strong>First Generation- Packet Filtering Firewall : &#160;</strong>Packet filtering firewall is used to control network access by monitoring outgoing and incoming packet and allowing them to pass or stop based on source and destination IP address, protocols and ports. It analyses traffic at the transport protocol layer (but mainly uses first 3 layers).<br/>
+Packet firewalls treats each packet in Isolation. They have no ability to tell whether a packet is part of an existing stream of traffic. Only It can allow or deny the packets based on unique packet headers.</p>
+<p>Packet filtering firewall maintains a filtering table which decides whether the packet will be forwarded or discarded. From the given filtering table, the packets will be Filtered according to following rules:<br/>
+<img class="alignnone size-medium wp-image-217925" src="../../../imgs/net/6bd6db9b50e0700c661f8931faa20bae.jpg" alt="" width="600" height="300"/></p>
+<ol>
+<li>Incoming packets from network 192.168.21.0 are blocked.</li>
+<li>Incoming packets destined for internal TELNET server (port 23) are blocked.</li>
+<li>Incoming packets destined for host 192.168.21.3 are blocked.</li>
+<li>All well-known services to the network 192.168.21.0 are allowed.</li>
+</ol>
+<p><strong>Second Generation- Stateful Inspection Firewall :&#160;</strong>Stateful firewalls (performs Stateful Packet Inspection) are able to determine the connection state of packet, unlike Packet filtering firewall, which makes it more efficient. It keeps track of the state of networks connection travelling across it, such as TCP streams. So the filtering decisions would not only be based on defined rules, but also on packet’s history in the state table.</p>
+<p><strong><br/>
+Third Generation- Application Layer Firewall :&#160;</strong>Application layer firewall can inspect and filter the packets on any OSI layer, up to application layer. It has ability to block specific content, also recognize when certain application and protocols (like HTTP, FTP) are being misused.<br/>
+In other words, Application layer firewalls are hosts that run proxy servers. A proxy firewall prevents direct connection between either side of firewall, each packet has to pass through the proxy. It can allow or block the traffic based on predefined rules.</p>
+<p><em>Note: Application layer firewalls can also be used as Network Address Translator(NAT).</em></p>
+<p><strong>Next Generation Firewalls (NGFW) :&#160;</strong>Next Generation Firewalls are being deployed these days to stop modern security breaches like advance malware attacks and application layer attacks. NGFW consists of Deep Packet Inspection, Application Inspection, SSL/SSH inspection and many fuctionalities to protect the network from these modern threats.</p>
+<p style="text-align: center">&#160;<strong>Types of Firewall</strong></p>
+<p>Firewalls are generally of two types: <em>Host-based</em> and <em>Network-based.</em><br/>
+<strong>Host- based Firewalls :&#160;</strong>Host-based firewall are installed on each network node which controls each incoming and outgoing packet. It is a software application or suit of applications, comes as a part of operating system. Host-based firewalls are needed because network firewalls cannot provide protection inside a trusted network. Host firewall protects each host from attacks and unauthorized access.</p>
+<p><strong>Network-based Firewalls :&#160;</strong>Network firewall function on network level. In other words, these firewalls filters all incoming and outgoing traffic across the network. It protects the internal network by filtering the traffic using rules defined on firewall. A Network firewall might have two or more network interface cards (NICs). Network-based firewall is usually a dedicated system with proprietary software installed.</p>
+<p>Both types of firewall have their own advantages.</p>
+<p><strong>References:</strong><br/>
+https://en.wikipedia.org/wiki/Firewall_(computing)<br/>
+https://www.cisco.com/c/en_in/products/security/firewalls/what-is-a-firewall.html<br/>
+http://nptel.ac.in/courses/106105084/31</p>
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

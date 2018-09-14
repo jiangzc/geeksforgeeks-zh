@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Network Layer | Introduction and IPv4 Datagram Header</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Network layer is the third layer (from bottom) in the OSI Model.</p>
+<p><strong>Responsibilities of Network Layer:</strong></p>
+<blockquote><p><strong>Packet forwarding/Routing of packets:</strong> Relaying of data packets from one network segment to another by nodes in a computer network</p>
+<p><strong>Connectionless communication(IP):</strong>     A data transmission method used in packet switched networks in which each data unit is separately  addressed and routed based on information carried by it</p>
+<p><strong>Fragmentation of data packets:</strong>   Splitting of data packets that are too large to be transmitted on the network</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            </blockquote>
+<p><br/><br/>
+There are two types of network transmission techniques, circuit switched network and packet switched network.<br/>
+<strong>Circuit Switch vs Packet Switch</strong><br/>
+In circuit switched network, a single path is designated for transmission of all the data packets. Whereas, in case of a packet switched network, each packet may be sent through a different path to reach the destination.</p>
+<p>In a circuit switched network, the data packets are received in order whereas in a packet switched network, the data packets may be received out of order.</p>
+<p><br/><br/>
+<strong>IPv4:</strong><br/>
+IPv4 is a connectionless protocol used for packet switched networks. It operates on best effort delivery model, in which neither delivery is guaranteed, nor proper sequencing or avoidance of duplicate delivery is assured.<br/>
+IPv4 uses 32-bit (4 byte) addressing, which gives 2<sup>32</sup> addresses. IPv4 addresses are written in the dot decimal notation, which comprises of four octets of the address expressed individually in decimal and separated by periods, for instance, 192.168.1.5.</p>
+<p><br/><br/>
+<strong>IPv4 Datagram Header</strong><br/>
+Size of the header is 20 to 60 bytes.</p>
+<p style="text-align: justify"><a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2015/07/ipv4-datagram-header1.jpg"><img class="  alignnone wp-image-17955 size-full" src="../../../imgs/net/3ec021430ae62d4ea25ac8b991f9b9ac.jpg" alt="" width="958" height="488"/></a></p>
+<blockquote><p><em><strong>VER:</strong></em>   Version of the IP protocol (4 bits), which is 4 for IPv4</p>
+<p><em><strong>HLEN:</strong></em>  IP header length (4 bits), which is the number of 32 bit<br/>
+       words in the header. Minimum value for this field is 5<br/>
+       and the maximum is 15</p>
+<p><em><strong>Type of service:</strong> </em>Low Delay, High Throughput, Reliability (8 bits)</p>
+<p><em><strong>Total Length:</strong> </em>   Length of header + Data (16 bits), which has a<br/>
+                 minimum value 20 bytes and maximum is 65,535 bytes</p>
+<p><em><strong>Identification:</strong></em>  Unique Packet Id for identifying the group of<br/>
+                 fragments of a single IP datagram (16 bits)</p>
+<p><em><strong>Flags:</strong></em>           3 flags of 1 bit each : reserved bit (must be zero),<br/>
+                 do not fragment flag, more fragments flag (same order)</p>
+<p><em><strong>Fragment Offset:</strong></em> Specified in terms of number of 8 bytes, which has<br/>
+                 the maximum value of 65,528 bytes</p>
+<p><em><strong>Time to live:</strong></em>  Datagram’s lifetime (8 bits), It prevents the datagram<br/>
+               to loop in the network</p>
+<p><em><strong>Protocol:</strong> </em>    Name of the protocol to which the data is to be passed<br/>
+              (8 bits)</p>
+<p><em><strong>Header Checksum:</strong></em>  16 bits header checksum for checking errors in the<br/>
+                  datagram header</p>
+<p><em><strong>Source IP address:</strong></em> 32 bits IP address of the sender</p>
+<p><em><strong>Destination IP address:</strong></em> 32 bits IP address of the receiver</p>
+<p><em><strong>Option:</strong></em> Optional information such as source route.</p>
+</blockquote>
+<p>Due to the presence of options, the size of the datagram header can be of variable length (20 bytes to 60 bytes).</p>
+<p><br/><br/>
+Below questions have been asked in previous GATE exam on above topics.<br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2006-question-5/">GATE | GATE CS 2006 | Question&#160;5</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2010-question-15/">GATE | GATE-CS-2010 | Question&#160;15</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2014-set-3-question-35/">GATE | GATE-CS-2014 Set 3 | Question&#160;35</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2015-set-1-question-32/">GATE | GATE CS 2015 Set 1| Question&#160;65</a> </p>
+<p><br/><br/>
+Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

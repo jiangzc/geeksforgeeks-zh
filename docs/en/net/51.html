@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Network Layer | IPv4 Datagram Fragmentation and Delays</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Why IPv4 Datagram Fragmentation required?</strong><br/>
+Different Networks may have different maximum transmission unit (MTU), for example due to differences in LAN technology.  <span id="more-142721"></span>When one network wants to transmit datagrams to a network with a smaller MTU, the routesrs on path may fragment and reassemble datagrams.</p>
+<p><strong>How is Fragmentation done?</strong><br/>
+When a packet is received at the router, destination address is examined and MTU is determined. If size of the packet is bigger than the MTU, and the ‘Do not Fragment (DF)’ bit is set to 0 in header, then the packet is fragmented into parts and sent one by one. The maximum size of each fragment is the MTU minus the IP header size (Minimum 20 bytes and Maximum 60 bytes).</p>
+<p>Each fragment is converted to a packet and the following changes happen in the datagram header:</p>
+<ol>
+<li>The total length field is changed to the size of the fragment.
+</li>
+<li>The More Fragment bit (MF bit) is set for all the fragment packets except the last one.
+</li>
+<li>The fragment offset field is set, based on the number of fragment that is being set and the MTU.
+</li>
+<li>Header Checksum is re-calculated.
+</li>
+</ol>
+<p><strong>Example:</strong> For a data packet of 4000 bytes and MTU of 1500 bytes, we have actual data of 3980 bytes that is to be transmitted and 1480 bytes is the maximum data size that is permissible to be sent. So, there would be 3 fragments:<br/>
+For the first fragment, data size = 1480 bytes, offset = 0 and MF flag = 1<br/>
+For the second fragment, data size = 1480 bytes, offset = 1480 and MF flag = 1<br/>
+For the third fragment, data size = 1020 bytes, offset = 2960 and MF flag = 0</p>
+<p>An important point to be noted here is that all fragments would be having same identification number, thus indicating that all the fragments belong to the same parent data packet.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><br/><br/>
+<strong>Delays –</strong><br/>
+Processing delay:   Time&#160;taken by the routers to process the data packet header.</p>
+<p>Queuing delay:      Time&#160;taken by the data packet in routing queues.</p>
+<p>Transmission delay: Time&#160;taken to load a data packet onto the transmission channel<br/>
+     D<sub>t</sub> = N/R,<br/>
+       N: Number of bits to be transmitted<br/>
+       R: Rate or transmission speed of the channel</p>
+<p>Propagation delay – Time&#160;taken by the data packet to reach from source to destination</p>
+<p>     D<sub>p</sub> = D/S,<br/>
+       D: Distance between the source and the destination<br/>
+       S: is the speed of propagation</p>
+<p><br/><br/>
+Below questions have been asked in previous GATE exam on above topics.</p>
+<ol>
+<li><a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2012-question-44/">GATE CS 2012 | Question&#160;42</a></li>
+<li><a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2013-question-37/">GATE-CS-2013 | Question&#160;65</a></li>
+<li><a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2014-set-3-question-38/">GATE-CS-2014 Set 3 | Question&#160;65</a></li>
+</ol>
+<p><br/></p>
+<p style="text-align: justify">Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

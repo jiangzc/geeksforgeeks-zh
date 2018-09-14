@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">EIGRP cost calculation</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-features-enhanced-interior-gateway-routing-protocol-eigrp/" rel="noopener" target="_blank">EIGRP</a><br/>
+As Enhanced Interior Gateway Routing Protocol (EIGRP) is a hybrid vector routing protocol as it contains features  of both distance vector routing protocol and link state routing protocol. It is a network layer protocol which uses the protocol number 88. </p>
+<p><b>Cost Calculation –</b><br/>
+Composite matrix is used to calculate the cost and also used for neighbourship discovery purpose. It has values:<br/>
+K1(bandwidth)- 1<br/>
+K2(load)- 0<br/>
+K3(delay) -1<br/>
+K4(reliability)- 0<br/>
+K5(MTU)-0<br/>
+As only bandwidth and delay is used to calculate the cost. The formula used for cost calculation is:<br/>
+EIGRP Metric = <strong>256*((K1*Bandwidth) + (K2*Bandwidth)/(256-Load) + K3*Delay)*(K5/(Reliability + K4)))</strong></p>
+<p>As values of K1 and K3 are set to 1, and K2, K4 and K5 are set to 0. Therefore the formula becomes:<br/>
+<strong>Metric =  256*( Bandwidth +Sum of all Delay)</strong><br/>
+Where the bandwidth = (10^7/least bandwidth) and<br/>
+Delay = (sum of all delays /10)</p>
+<p>The bandwidth is lowest bandwidth between the source and destination and the delay is the cumulative interface delay along a path between source and destination.</p>
+<p>Some important terms are:</p>
+<ul>
+<li><strong>Advertised or reported distance:</strong> It is the distance given by the neighbouring router to reach the destination network.
+</li>
+<li><strong>feasible distance:</strong> Best metric among all path to a network. It is calculated by adding the advertised/reported distance advertised by the neighbor and the cost calculated by that current router to reach the neighbor.
+</li>
+<li><strong>successor:</strong> It is the (lowest) best path to reach to any specific destination network. These are stored in routing table.
+</li>
+<li><strong>feasible successor:</strong> It is defined as the path whose advertised distance is less than the feasible distance of the current successor. These are stored in topology table.
+</li>
+<li><strong>routing table:</strong> It contains current successor routes to the remote networks. It is stored in RAM. The best routes are copied from the topology table to the routing table .
+</li>
+<li><strong>neighbour table:</strong> It contains the information of EIGRP neighbor like IP address, interface, queue count, retransmit interval etc.
+</li>
+<li><strong>topology table:</strong> This table contains all the destination network advertised by neighbouring routers. It contains both successor and feasible successor routes but only successor routes are copied to the routing table. If in case successor route goes down then feasible successor is selected from the topology table to reach that network.
+</li>
+</ul>
+<p><b>Reliable Transport Protocol –</b><br/>
+EIGRP uses RTP for the exchange of EIGRP messages between the neighbouring EIGRP routers. EIGRP sends multicast messages at 224.0.0.10. The list is built and maintained of which neighbours have acknowledged the messages. In case, if the neighbour doesn’t acknowledged the message then messages are unicast to the neighbouring router 16 times. If there is no reply even after the unicast messages then the neighbour is declared dead. This is known as reliable multicast.  </p>
+<p><b>Diffusing Update Algorithm (DUAL) –</b><br/>
+DUAL maintains several metrics about the paths, including the successor, feasible distance, feasible successor, reported distance and feasible condition .DUAL is used to prevent routing loops by continously computation the routes. It finds the shorter loop free path from the router to a destination network. There are 2 scenarios in DUAL:</p>
+<ol>
+
+<li>When the successor path goes down, the router will search for a feasible successor. If feasible successor is present then it is used
+</li>
+<li>When there are no feasible successors but there are neighbors advertising the destination, a recomputation must occur(query message is multicast) . This is the process where a new successor is determined. The amount of time it takes to recompute the route affects the convergence time.
+</li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Packet flow in different network</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-arp-works/" rel="noopener" target="_blank">How ARP works</a>, <a href="https://www.geeksforgeeks.org/computer-network-packet-flow-network/" rel="noopener" target="_blank">Packet flow in the same network</a></p>
+<p>To deliver the packet to destination host, the source IP, destination IP, source MAC address and destination MAC address should be known. Some basic rules for the packet flow:</p>
+<ol>
+<li>If the destination host is present in the same network,then the packet is delivered directly to destination host.</li>
+<li>If the destination host is present in different network then the packet is delivered to the default gateway first which in turn delivers the packet to the destination host.</li>
+<li>If ARP is not resolved then ARP will be resolved first.</li>
+<li>MAC address never crosses its broadcast domain.</li>
+</ol>
+<p><b>Explanation –</b></p>
+<p><img src="../../../imgs/net/5893e902ba6185a27e55ec689e335818.jpg" width="794" height="408" class="aligncenter size-full"/></p>
+<p>Here is a topology, in which there is host A (IP address – 10.0.0.10 and MAC address – 000D.BD22.7C22), host C (IP address – 10.0.0.9), host B (IP address – 20.0.0.10), host C (IP address-20.0.0.9 and MAC address – 00E0.A3E2.03DC) and the router (IP address – 10.0.0.20 and MAC address – 000B.BE8E.5201 on fa0/0,IP address – 20.0.0.20 and MAC address – 000B.BE8E.5202 on fa0/1 ).</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Now we will try to ping from host A (IP address – 10.0.0.10) to host B (IP address – 20.0.0.10). First, <b>AND operation</b> is performed by source host between source IP address, source subnet mask and destination IP address, source subnet mask to know if the destination is present in same or different network.</p>
+<p>If the result is same then the destination is in same network otherwise in different network. Here, the destination is present in different network therefore the result will be different and the packet will be delivered to default gateway.</p>
+<p><img src="../../../imgs/net/9d21d69d3055256851c5d924c03afb09.jpg" width="910" height="421" class="aligncenter size-full"/></p>
+<p>We see that 2 messages are generated ICMP(purple) and ARP(green). ARP has been generated because ARP has not been resolved.</p>
+<p><img src="../../../imgs/net/2930ccb875663dfdede66480d29b3f9c.jpg" width="923" height="448" class="aligncenter size-full"/></p>
+<p>Now as the ARP should be resolved first, therefore the ARP request will be broadcast which is received by switch:</p>
+<p><img src="../../../imgs/net/0401d41e9e829f96af04951fb59aba3f.jpg" width="930" height="450" class="aligncenter size-full"/></p>
+<p>The switch in turn broadcast the ARP request to the host and the router. The PC discards the request and the router accepts it.</p>
+<p><img src="../../../imgs/net/b96cba002b0169f523169b287d475a54.jpg" width="905" height="442" class="aligncenter size-full"/></p>
+<p><img src="../../../imgs/net/3451e0a0321f7c7e05bf435131c648ca.jpg" width="923" height="448" class="aligncenter size-full"/></p>
+<p>Now the ARP reply is unicast to the host A by the router as shown in the above figure.</p>
+<p><img src="../../../imgs/net/6ca0261dbf4d3936e939c041ae03d9c7.jpg" width="916" height="437" class="aligncenter size-full"/></p>
+<p><img src="../../../imgs/net/3faeb52d04a80fbd99fa26f3376ad2b5.jpg" width="898" height="440" class="aligncenter size-full"/></p>
+<p>Now the ICMP packet will be unicast to the default gateway (IP address – 10.0.0.20 and MAC address – 000B.BE8E.5201) as shown in the above figures.</p>
+<p><strong>Note –</strong> The ICMP packet will be unicast to the default gateway as the ARP has been resolved now. </p>
+<p><img src="../../../imgs/net/f691aac3504f6225ca9427f4e84c01e1.jpg" width="871" height="440" class="aligncenter size-full"/></p>
+<p><img src="../../../imgs/net/30991d903533359bf52f6d8aa340ace2.jpg" width="894" height="433" class="aligncenter size-full"/></p>
+<p>Now the ARP has to be resolved again because the router has to deliver the packet to host B and the ARP table has no entry for host B. Therefore,the ARP request is broadcast in the network 20.0.0.0/24. The packet is received by the Switch which in turn broadcast the request to host B and D. Host D will reject the request and the host B will accept it and generates an ARP reply for the MAC address 000B.BE8E.5202 (router fa0/1 MAC address) because the ARP reply has to be given to that MAC address from which ARP request has been recieved.</p>
+<p><img src="../../../imgs/net/2b79feccb2d95d315ca97b90d3752d1c.jpg" width="534" height="570" class="aligncenter size-full"/></p>
+<p>As you can see in the figure, the ARP reply packet is unicast to the router’s interface fa0/1 MAC address(000B.BE8E.5202) and the source MAC is 00E0.A3E2.03DC.</p>
+<p><b>Note –</b> Here, the target MAC address is the MAC address of host B (000B.BE8E.5202). Target MAC address is the MAC address of a device which the host wants to know through its ARP request to resolve ARP.</p>
+<p><img src="../../../imgs/net/94ee0ded39c26ab1cb7e9b455c4343a6.jpg" width="897" height="415" class="aligncenter size-full"/></p>
+<p><img src="../../../imgs/net/a15447ef292f38e312df48dad5c03072.jpg" width="824" height="378" class="aligncenter size-full"/></p>
+<p><img src="../../../imgs/net/b75fb7e9dee120e6d3f631f8e56f77c1.jpg" width="792" height="413" class="aligncenter size-full"/></p>
+<p>Now the ICMP echo request packet will be unicast to the host B as shown in the above 3 figures.</p>
+<p><img src="../../../imgs/net/a15447ef292f38e312df48dad5c03072.jpg" width="824" height="378" class="aligncenter size-full"/></p>
+<p><img src="../../../imgs/net/94ee0ded39c26ab1cb7e9b455c4343a6.jpg" width="897" height="415" class="aligncenter size-full"/></p>
+<p><img src="../../../imgs/net/a0ad0b040a120e3e747b7cebdeaff339.jpg" width="810" height="364" class="aligncenter size-full"/></p>
+<p><img src="../../../imgs/net/979b435b20454d5f5d2b79dba1b268b7.jpg" width="760" height="375" class="aligncenter size-full"/></p>
+<p>Host B will generate an ICMP echo reply in response to the ICMP echo request for the host A which will be delivered to the 20.0.0.20 (router’s interface IP address) first and then unicast to host A.</p>
+<p><strong>How the MAC address never crosses its broadcast domain?</strong></p>
+<p><img src="../../../imgs/net/769705a0162080057f19f3ed868a6d35.jpg" width="534" height="566" class="aligncenter size-full"/></p>
+<p>This is the IP and Ethernet header when host A forwards the ICMP echo request to its default gateway .Therefore source IP is 10.0.0.10 and destination IP is 10.0.0.20, source MAC address is  000D.BD22.7C22 (host A MAC address) and destination MAC address is 000B.BE8E.5201 (router’s fa0/0 interface MAC address).</p>
+<p><img src="../../../imgs/net/2d5042ce1dc9c8396aedaf73f71e99de.jpg" width="541" height="562" class="aligncenter size-full"/></p>
+<p>But now when the ICMP echo request message is to forwarded from router’s fa0/1 interface to host B then the source MAC address is changed to 000B.BE8E.5202 (router’s fa0/1 interface MAC address) and destination MAC address is 00E0.A3E2.03DC (host B MAC address).</p>
+<p>Here router’s fa0/0 interface MAC address is not used as the souce MAC address,instead fa0/1 MAC address is used as a MAC address. Therefore, fa0/0 is not used in other broadcast domain (20.0.0.0/24 network) therefore MAC address never crosses its broadcast domain. IN this way, PING is performed in 2 different networks.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

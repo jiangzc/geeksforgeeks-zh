@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Data Compression With Arithmetic Coding</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>It is recommended to read a similar article before proceeding with this one : <a href="https://www.geeksforgeeks.org/lzw-lempel-ziv-welch-compression-technique/" rel="noopener" target="_blank">LZW (Lempel–Ziv–Welch) Compression technique</a></p>
+<p><b>Data Compression is the process of reduction in size of data in order to save space or transmission time.</b></p>
+<p>Without compression:
+</p>
+<ul>
+<li>A 32 bit image with resolution 800*600 will take ((800 X 600)X 32)/(8 X 1024 X 1024) = 1.83 MB.</li>
+<li>A 2000 character text file will take 1.95 KB.</li>
+<li>A 1 minute audio stereo file will take 10 MB.</li>
+<li>A 1 minute video clip will take 2GB space.</li>
+</ul>
+<p></p>
+<p>Resulting in the requirement of huge disk space &amp; large transmission time. Compression reduces the file size using some mathematical algorithms. A slight disadvantage comes due to the processing time wasted in compression and decompression and involves trade-offs between various factors, including the degree of compression, the amount of distortion introduced ( lossy compression ).</p>
+<p><strong>How Compression is possible –</strong><br/>
+Information usually contains redundancies i.e information is often repeated. Examples include reoccurring letters, numbers or pixels. Compression programs remove this redundancy.</p>
+<p><strong>What is Arithmetic Coding –</strong><br/>
+Arithmetic coding is a common algorithm used in both lossless and lossy data compression algorithms. It is an entropy encoding technique, in which the frequently seen symbols are encoded with fewer bits than rarely seen symbols. It has some advantages over well-known techniques like Huffman coding.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>How does Arithmetic coding work –</strong></p>
+<ul>
+<li> It converts the entire input data into a single floating point number n where (0.0 &lt;= n &lt; 1.0).</li>
+<li>
+ The interval is divided into sub-intervals in the ratio of the probability of occurrence frequencies.</li>
+<li> For a startpoint and endpoint of an entire range the lower-limit of a character range is the upper-limit of the previous character given by <i>startpoint + cumulativefrequency X (endpoint -startpoint )</i> </li>
+<li>Therefore, each interval corresponds to one symbol.</li>
+<li>The first symbol restricts the tag position to be in one of the intervals.</li>
+<li>The reduced interval is partitioned recursively as more symbols are processed.</li>
+<li>Observation: once the tag falls into an interval, it never gets out of it.</li>
+</ul>
+<p><strong>A Small Example on Arithmetic Coding –</strong></p>
+<pre>Consider the string "ARBER".
+               <strong>Symbol</strong>              A     B     E     R
+               <strong>Frequency</strong>           1     1     1     2
+               <strong>Probability</strong>        20%   20%   20%   40%
+</pre>
+<p>So the Initial ranges would respectively be =<strong> A[0 – 0.2), B[0.2 – 0.4), E[0.4 – 0.6), R[0.6 – 1)</strong><br/>
+In the following image we can see the step-wise construction of the arithmetic code :-</p>
+<p><img src="../../../imgs/net/6c84945c6e62087ee8aff25186bcaf71.jpg" width="819" height="460" alt="" class="aligncenter size-full"/></p>
+<p>At each step the yellowed out portion represents the symbol we want to encode next. The final interval for the input string ARBER is [0.14432, 0.1456). One can choose any number within this range say 0.14432 and convert it into binary which will give us a 51 bit binary code.</p>
+<div class="noIdeBtnDiv">
+<strong>Pseudocode for the Encoding and Decoding Procedures –</strong><p></p>
+<pre class="brush: c; title: ; notranslate" title="">/* ARITHMETIC ENCODING ALGORITHM. */
+/* Call encode-symbol repeatedly for each symbol in the message. */
+/* Ensure that a distinguished "terminator" symbol is encoded last, then */
+/* transmit any value in the range [low, high). */
+
+encode-symbol(symbo1, cum-freq)
+    range = high - low
+    high = low + range * cum-freq[symbol-1]
+    low = low + range*cum-freq[symbol]
+
+/* ARITHMETIC DECODING ALGORITHM. */
+
+/* "Value" is the number that has been received. */
+/* Continue calling decode-symbol until the terminator symbol is returned. */
+
+decode-symbol(cum-freq)
+    find symbol such that
+    cum-freq[symbol] &lt;= (value-low)/(high-low) &lt; cum-freq[symbol-1]
+/* This ensures that value lies within the new  */
+/* (low, high) range that will be calculated by */
+/* the following lines of code. */
+
+range = high - low
+high = low + range*cum-freq[symbol-1]
+low = low + range*cum-freq[symbol]
+return symbol 
+
+
+
+</pre>
+</div>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

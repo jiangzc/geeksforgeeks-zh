@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Controlled Access Protocols</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In controlled access, the stations seek information from one another to find which station has the right to send. It allows only one node  to send at a time, to avoid collision of messages on shared medium.<br/>
+The three  controlled-access methods are:</p>
+<ol>
+<li>Reservation</li>
+<li>Polling </li>
+<li>Token Passing</li>
+</ol>
+<h2 class="sigil_not_in_toc">Reservation</h2>
+<ul>
+<li> In the reservation method, a station needs to make a reservation before sending data.</li>
+<li> The time line has two kinds of periods:
+<ol>
+<li>Reservation interval of fixed time length</li>
+<li>Data transmission period of variable frames.</li>
+</ol>
+</li>
+<li> If there are M stations, the reservation interval is divided into M slots, and each station has one slot.</li>
+<li> Suppose if station 1 has a frame to send, it transmits 1 bit during the slot 1. No other station is allowed to transmit during this slot.</li>
+<li> In general, i <sup>th</sup> station may announce that it has a frame to send by inserting a 1 bit into i <sup>th</sup> slot. After all N slots have been checked, each station knows which stations wish to transmit.</li>
+<li> The stations which have reserved their slots transfer their frames in that order.</li>
+<li> After data transmission period, next reservation interval begins.</li>
+<li> Since everyone agrees on who goes next, there will never be any collisions.</li>
+</ul>
+<p>The following figure shows a situation with five stations and a five slot reservation frame. In the first interval, only stations 1, 3, and 4 have made reservations. In the second interval, only station 1 has made a reservation.</p>
+<p><img src="../../../imgs/net/f495d4cd3ea74bc28ca42e9fa402b81a.jpg" alt="" width="720" height="231" class="aligncenter size-full wp-image-359487"/></p>
+<h2 class="sigil_not_in_toc">Polling</h2>
+<ul>
+<li>Polling process is similar to the roll-call performed in class. Just like the teacher, a controller sends a message to each node in turn.</li>
+<li> In this, one acts as a primary station(controller) and the others are  secondary stations. All data exchanges must be made through the controller.</li>
+<li> The message sent by the controller contains the address of the node being selected for granting access.</li>
+<li> Although all nodes receive the message but the addressed one responds to it and sends data, if any. If there is no data, usually a “poll reject”(NAK) message is sent back.</li>
+<li>  Problems include high overhead of the polling messages and high dependence on the reliability of the controller. </li>
+</ul>
+<p><img src="../../../imgs/net/d88dc9682d2fc5ffd989be65d9b24099.jpg" alt="" width="275" height="300" class="aligncenter size-medium wp-image-359503"/></p>
+<p><img src="../../../imgs/net/ce0fb2bd9a49176fd4e7946059462068.jpg" alt="" width="300" height="260" class="aligncenter size-full wp-image-359500"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><br/><br/><br/><strong>Efficiency</strong><br/>
+Let T<sub>poll</sub> be the time for polling and T<sub>t</sub> be the time required for transmission of data. Then, </p>
+<pre> Efficiency = T<sub>t</sub>/(T<sub>t</sub> + T<sub>poll</sub>)</pre>
+<h2 class="sigil_not_in_toc">Token Passing</h2>
+<ul>
+<li> In token passing scheme, the stations are connected logically to each other in form of ring and access of stations is governed by tokens.</li>
+<li> A token is a special bit pattern or a small message, which circulate from one station to the next in the some predefined order.</li>
+<li> In Token ring, token is passed from one station to another adjacent station in the ring whereas incase of Token bus, each station<br/>
+uses the bus to send the token to the next station in some predefined order.</li>
+<li> In both cases, token represents permission to send. If a station has a frame queued for transmission when it receives the token, it can send that frame before it passes the token to the next station. If it has no queued frame, it passes the token simply.</li>
+<li> After sending a frame, each station must wait for all N stations (including itself) to send the token to their neighbors and the other N – 1 stations to send a frame, if they have one. </li>
+<li> There exists problems like duplication of token or token is lost or insertion of new station, removal of a station, which need be tackled for correct and reliable operation of this scheme. </li>
+</ul>
+<p><img src="../../../imgs/net/0d708ec1cb7805a6e37d7131830beb19.jpg" alt="" width="581" height="511" class="aligncenter size-full wp-image-359527"/></p>
+<p><strong>Performance</strong><br/>
+Performance of token ring can be concluded by 2 parameters:-</p>
+<ol>
+<li><strong> Delay</strong>, which is a measure of time between when a packet is ready and when it is delivered.So, the average time (delay) required to send a token to the next station = a/N.</li>
+<li><strong>Throughput</strong>, which is a measure of the successful traffic.</li>
+</ol>
+<pre> Throughput, S = 1/(1 + a/N) for a&lt;1 </pre>
+<p align="center"> and </p>
+<pre>           S = 1/{a(1 + 1/N)} for a&gt;1.  
+       where N = number of stations
+             a = T<sub>p</sub>/T<sub>t</sub> 
+(T<sub>p</sub> = propagation delay and T<sub>t</sub> = transmission delay)
+</pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

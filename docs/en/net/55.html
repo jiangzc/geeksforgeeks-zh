@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Computer Networks | Longest Prefix Matching in Routers</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>What is Forwarding?</strong><br/>
+Forwarding is moving incoming packets to appropriate interface. Routers use forwarding table to decide which incoming packet should be forwarded to which next hop. <span id="more-142728"></span></p>
+<p><strong>What is IP prefix?</strong><br/>
+IP prefix is a prefix of IP address.  All computers on one network have same IP prefix.  For example, in 192.24.0.0/18, 18 is length of prefix and prefix is first 18 bits of the address.</p>
+<p><strong>How does forwarding work?</strong><br/>
+Routers basically look at destination address’s IP prefix, searches the forwarding table for a match and forwards the packet to corresponding next hop in forwarding table.</p>
+<p><strong>What happens if the prefixes overlap?</strong><br/>
+Since prefixes might overlap (this is possible as classless addressing is used everywhere), an incoming IP’s prefix may match multiple IP entries in table.<br/>
+For example, consider the below forwarding table</p>
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Prefix</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Next Hop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">192.24.0.0/18</td>
+<td style="text-align:center;">D</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">192.24.12.0/22</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">B</td>
+</tr>
+</tbody>
+</table>
+<p>In above table, addresses from 192.24.12.0 to 192.24.15.255 overlap, i.e., match with both entries of the table.<br/>
+To handle above situation, routers use <strong>Longest Prefix Matching</strong> rule.  The rule is to find the entry in table which has the longest prefix matching with incoming packet’s destination IP, and forward the packet to corresponding next hope.<br/>
+In the above example, all packets in overlapping range (192.24.12.0 to 192.24.15.255) are forwarded to next hop B as B has longer prefix (22 bits).<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Computer-Networks-Longest-Prefix-Matching-in-Routers.png"><img src="../../../imgs/net/122397b31436de130a199e8c3737d22b.jpg" alt="longestprefix" width="440" height="202" class="alignnone size-full wp-image-18732"/></a></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><br/><br/>
+<strong>Example 1:</strong> Routers forward a packet using forwarding table entries. The network address of incoming packet may match multiple entries. How routers resolve this?<br/>
+(A) Forward it the the router whose entry matches with the longest prefix of incoming packet<br/>
+(B) Forward the packet to all routers whose network addresses match.<br/>
+(C) Discard the packet.<br/>
+(D) Forward it the the router whose entry matches with the longest suffix of incoming packet<br/>
+Answer: (A) The network addresses of different entries may overlap in forwarding table. Routers forward the incoming packet to the router which hash the longest prefix matching with the incoming packet.</p>
+<p>&#160;<br/>
+<strong>Example 2:</strong> Classless Inter-domain Routing (CIDR) receives a packet with address 131.23.151.76. The router’s routing table has the following entries: (GATE CS 2015)</p>
+<pre>Prefix           Output Interface Identifier
+131.16.0.0/12              3
+131.28.0.0/14              5
+131.19.0.0/16              2
+131.22.0.0/15              1 </pre>
+<p>The identifier of the output interface on which this packet will be forwarded is ______.</p>
+<p>Answer: “1”.  We need to first find out matching table entries for incoming packet with address “131.23.151.76”.  The address matches with two entries “131.16.0.0/12” and “131.22.0.0/15” (We found this by matching first 12 and 15  bits respectively).<br/>
+So should the packet go to interface 3 or 1? We use Longest Prefix Matching to decide among two. The most specific of the matching table entries is used as the interface.  Since “131.22.0.0/15” is most specific, the packet goes to interface 1.</p>
+<p>&#160;<br/>
+<strong>Exercise</strong><br/>
+Consider the following routing table of a router.</p>
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Prefix</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center;">Next Hop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">192.24.0.0/18</td>
+<td style="text-align:center;">D</td>
+</tr>
+<tr>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">192.24.12.0/22</td>
+<td style="background-color:rgba(183,223,182,0.4);text-align:center;">B</td>
+</tr>
+</tbody>
+</table>
+<p>Consider the following three IP addresses.</p>
+<ol>
+<li> 192.24.6.0</li>
+<li> 192.24.14.32</li>
+<li> 192.24.54.0</li>
+<p>How are the packets with above three destination IP addresses are forwarded?</p>
+<p><b>(A)</b> 1-&gt;D,  2-&gt;B, 3-&gt;B<br/>
+<b>(B)</b> 1-&gt;D,  2-&gt;B, 3-&gt;D<br/>
+<b>(C)</b> 1-&gt;B,  2-&gt;D, 3-&gt;D<br/>
+<b>(D)</b> 1-&gt;D,  2-&gt;D, 3-&gt;D</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ol>
+</div>
+</body>
+</html>

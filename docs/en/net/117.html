@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">How DHCP server dynamically assigns IP address to a host?</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>DHCP is an abbreviation for Dynamic Host Configuration Protocol. It is an application layer protocol used by hosts for obtaining network setup information. The DHCP is controlled by DHCP server that <strong>dynamically distributes</strong> network configuration parameters such as IP&#160;addresses, subnet mask and gateway address.</p>
+<p><strong>What is Dynamic host configuration protocol?</strong></p>
+<ul>
+<li>Dynamic – Automatically</li>
+<li>Host – Any computer that is connected to the network</li>
+<li>Configuration – To configure a host means to provide network information(ip address,subnet mask,Gateway address) to a host</li>
+<li>Protocol – Set of rules</li>
+</ul>
+<p>Summing up, a DHCP server dynamically configures a host in a network.</p>
+<p><strong>Disadvantage of manually Configuring the host: </strong>Configuring a host when it is connected to the network can be done either manually i.e., by the network administrator or by the DHCP server. In case of home networks, manual configuration is quite easy. Whereas in the large networks, the network administrator might face many problems.<br/>
+Also, the manual configuration is prone to mistakes. Say a&#160;Network administrator might assign an IP address which was already assigned. Thus, causing difficulty for both administrator as well as neighbors on network.</p>
+<p>So, here comes the use of DHCP server. Before discussing about how DHCP server works, lets go through the DHCP entities.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p align="center"><strong>Configuring a host using DHCP</strong></p>
+<p>To configure a host, we require the following things:</p>
+<ul>
+<li><strong>Leased IP address</strong> – IP address to a host which lasts for a particular duration which goes for a few hours,few days or few weeks.</li>
+<li><strong>Subnet Mask</strong> – The host can know on which network it is on.</li>
+<li><strong>Gateway address</strong> – The Gateway is the Internet Service Provider that connects user to the internet.The Gateway address lets the host know where the gateway is to connect to the internet.</li>
+</ul>
+<p style="text-align: center;"><strong>DHCP Entities</strong></p>
+<ul>
+<li><strong>DHCP server:&#160;</strong>It automatically provides network information(IPaddress, subnet mask, gateway address) on lease. Once the duration is expired, that network information can be assigned to other machine. &#160;It also maintains the data storage which stores the available IP&#160;addresses.</li>
+<li><strong>DHCP client:<em>&#160;</em></strong>Any node which request an&#160;IP address allocation to a network is considered as DHCP client.</li>
+<li><strong>DHCP Relay Agent:&#160;</strong>In case, we have only one DHCP server for multiple LAN’s then this Agent which presents in every network forwards the DHCP request to DHCP server. So, using DHCP Relay Agent we can configure multiple LAN’s with single server.</li>
+</ul>
+<p align="center"><strong>How DHCP server assigns IP&#160;address to a host?</strong></p>
+<ol>
+<li><strong>DHCPDISCOVER:</strong> When a new node is connected to the network, it broadcasts the DHCPDISCOVER message which contains the source address as 0.0.0.0 to every node on the network including server. DHCP server on receiving the message, returns the DHCPOFFER message to the requested host which contains the server address and new IP&#160;address to the node.</li>
+<li>
+<strong>DHCPOFFER:</strong>&#160;If there are multiple servers on the network, host receives multiple DHCPOFFER messages. It is up to the host to select a particular message.
+</li>
+<li>
+<strong>DHCPREQUEST:</strong> &#160;The requested host on receiving the offer message, it again broadcasts the DHCPREQUEST message on the network with the address of the server whose offer message is accepted by the host. The server which pertains to that server address sent by the host checks whether the address to be assigned to the node is available in the data storage.
+</li>
+<li>
+<strong>DHCPACK :</strong> If the address is assigned , it marks the IP&#160;address in the storage as unavailable to ensure consistency. Now, the server sends DHCPACK packet to the requested host which contains network information(IP address, subnet mask, gateway address). In case, if the address is assigned to other machine meanwhile, then the server sends the packet DHCPNAK to the requested host indicating that the IP address is assigned to some other machine.
+</li>
+<li>
+<strong>DHCPRELEASE :</strong> And finally, If the host wants to move to other network or if it has&#160;finished&#160; its work, it sends the DHCPRELEASE packet to the server indicating that it wants to disconnect. Then the server marks the&#160;IP address as available in the storage so that it can be assigned to other machine.<p></p>
+</li>
+</ol>
+<p><strong>References:</strong><br/>
+For reference to DHCP protocol,&#160;<a href="https://www.youtube.com/watch?v=k4t-NJrKLgM" target="_blank">click here</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

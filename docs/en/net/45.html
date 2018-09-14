@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Efficiency Of Token Ring</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Token Ring</strong> protocol is a communication protocol used in Local Area Network (LAN). In a token ring protocol, the topology of the network is used to define the order in which stations send. The stations are connected to one another in a single ring. It uses a special three-byte frame called a <strong>“token”</strong> that travels around a ring. It makes use of <a href="https://www.geeksforgeeks.org/computer-network-controlled-access-protocols/">Token Passing</a> controlled access mechanism. Frames are also transmitted in the direction of the token. This way they will circulate around the ring and reach the station which is the destination.</p>
+<p><img src="../../../imgs/net/86d7e8617dd12d8c1491702116f1592c.jpg" width="581" height="511" class="aligncenter size-full"/></p>
+<p><b>Ring Latency –</b><br/>
+The time taken by a single bit to travel around the ring is known as ring latency.</p>
+<p><img src="../../../imgs/net/2dddfe6bfc400b3ba5871783817628cf.jpg" alt="" width="300" height="169" class="alignnone size-medium wp-image-378506"/></p>
+<p>Where,<br/>
+d = length of the ring<br/>
+v = velocity of data in ring<br/>
+N = no. of stations in ring<br/>
+b = time taken by each station to hold the bit before transmitting it (bit delay)</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Converting N*b into sec –</strong></p>
+<pre>RL = d/v + (N*b)/B  (B – bandwidth)</pre>
+<p><strong>Converting d/v into bits –</strong></p>
+<pre>RL = (d/v)*B + N*b  (B – bandwidth)</pre>
+<p><b>Cycle Time –</b><br/>
+The time taken by the token to complete one revolution of the ring is known as cycle time.</p>
+<pre>Cycle time = T<sub>p</sub> + (THT*N)
+Where, THT - Token Holding Time
+T<sub>p</sub> - Propagation delay(d/v) </pre>
+<p><b>Token Holding Time (THT) –</b><br/>
+The maximum time a token frame can be held by a station is known as THT, by default it is set to 10msec. No station can hold the token beyond THT.</p>
+<p><b>Calculating THT:</b></p>
+<p><img src="../../../imgs/net/ffa11720ef8bd7a79c17ed24fdd7898f.jpg" alt="" width="561" height="181" class="aligncenter size-full wp-image-378523"/></p>
+<p><strong>1. Delayed token reinsertion (DTR) –</strong></p>
+<ul>
+<li>In this, the sender transmit the data packet and waits till the time the whole packet takes the round trip of the ring and return to it. When the whole packet is received by the sender, then it releases the token</li>
+<li>There is only one packet in the ring at an instance</li>
+<li> More reliable than ETR</li>
+</ul>
+<p><img src="../../../imgs/net/1fd811dd2e8f94aa9fe54c3c94a4b96f.jpg" width="581" height="561" class="aligncenter size-full"/></p>
+<p>In this case,</p>
+<pre>THT = T<sub>t</sub> + RL
+    = T<sub>t</sub> + T<sub>p</sub> + N*b   (In most cases, bit delay is 0) 
+So, THT = T<sub>t</sub> + T<sub>p</sub>
+ where T<sub>t</sub> = transmission delay
+       T<sub>p</sub> = propagation delay
+</pre>
+
+<p><strong>2. Early token reinsertion (ETR) –</strong> </p>
+<ul>
+<li>Sender does not wait for the data packet to complete revolution before releasing the token. Token is released as soon as the data is transmitted</li>
+<li> Multiple packets present in the ring</li>
+<li>Less reliable than DTR</li>
+</ul>
+<p><img src="../../../imgs/net/a376207c0e29823e8b644716984c478c.jpg" width="592" height="537" class="aligncenter size-full"/></p>
+<p><strong>Station 1: </strong>Receives the token and transmits data D1 and then, releases the token.<br/>
+<strong>Station 2: </strong>Receives D1 (puts it onto the other end) and the token and then, transmits data D2 and releases the token.<br/>
+<strong>Station 3: </strong>Receives D1 –&gt; transmits D1<br/>
+                               Receives D2 –&gt; transmits D2<br/>
+                               Receives token –&gt; transmits D3<br/>
+                               Releases token.  
+</p>
+<p><strong>Station 4: </strong>Receives D1 –&gt; transmits D1<br/>
+                               Receives D2 –&gt; transmits D2<br/>
+                               Receives D3 –&gt; transmits D3<br/>
+                               Receives token –&gt; transmits D4<br/>
+                               Releases token. </p>
+<p><strong>Station 1: </strong>Receives D1 –&gt; discards D1 as D1 has completed its journey<br/>
+                               Receives D2 –&gt; transmits D2<br/>
+                               Receives D3 –&gt; transmits D3<br/>
+                               Receives D4 –&gt; transmits D4<br/>
+                               Receives token –&gt; transmits D1(new)<br/>
+                               Releases token.<br/>
+(and the cycle continues so on…..) </p>
+<p>In this case, </p>
+<pre> THT = T<sub>t</sub>
+ where T<sub>t</sub> = transmission delay
+       T<sub>p</sub> = propagation delay
+</pre>
+<p><b>Efficiency –</b><br/>
+Efficieny, e = useful time/ total time</p>
+<p>useful time = N*T<sub>t</sub><br/>
+total time = cycle time =  T<sub>p</sub> + (THT*N)</p>
+<p>So, e = (N*T<sub>t</sub>)/(T<sub>p</sub> + (THT*N))</p>
+<p><strong>1. Delayed token reinsertion –</strong><br/>
+In this case, THT = T<sub>t</sub> + T<sub>p</sub><br/>
+          So, cycle time = T<sub>p</sub> + N*(T<sub>t</sub> + T<sub>p</sub>)</p>
+<pre><strong>Efficiency, e = (N*T<sub>t</sub>)/(T<sub>p</sub> + N*(T<sub>t</sub> + T<sub>p</sub>))
+               = 1/(1 + a*((N+1)/N))
+where a = T<sub>p</sub>/T<sub>t</sub>
+</strong></pre>
+<p><strong>2. Early token reinsertion –</strong><br/>
+In this case, THT = T<sub>t</sub><br/>
+          So, cycle time = T<sub>p</sub> + N*(T<sub>t</sub>)</p>
+<pre><strong>Efficiency, e = (N*T<sub>t</sub>)/(T<sub>p</sub> + N*(T<sub>t</sub>))
+               = 1/(1 + a*(1/N))
+where a = T<sub>p</sub>/T<sub>t</sub>
+</strong></pre>
+<p><b>GATE Practice Questions –</b></p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-1-question-36/" rel="noopener" target="_blank">GATE-CS-2014-(Set-1) | Question 65</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-2-question-35/" rel="noopener" target="_blank">GATE-CS-2014-(Set-2) | Question 35</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2007-question-72/" rel="noopener" target="_blank">GATE IT 2007 | Question 72</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2007-question-73/">GATE IT 2007 | Question 73</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2004-question-82/" rel="noopener" target="_blank">GATE-IT-2004 | Question 82</a></li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

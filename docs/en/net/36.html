@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Dynamic Trunking Protocol (DTP)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Trunk ports are ports that are used to carry the traffic of more than one VLAN.The port which connects two different switches and the switches have more than one VLAN configured then that port should be made trunk. If all the VLANs are allowed then trunk ports will carry traffic of all the VLANs including native VLAN for which the traffic goes untagged otherwise only the allowed VLANs traffic will be carried by the trunk link. The trunk link traffic would be encapsulated or tagged either by ISL or 802.1Q.</p>
+<p>By default, all switch ports are access ports therefore to make a port trunk, user should manually make it trunk by using DTP . </p>
+<p><b>Dynamic Trunking Protocol –</b><br/>
+Dynamic Trunking Protocol is CISCO proprietary protocol used for negotiating a trunk link between two switches as well as the encapsulation type of either 802.1q or ISL (Generally, 802.1q is used because ISL has more overhead than 802.1q). Of course, It is a layer 2 (data link) protocol and is enabled by default.</p>
+<p>Here are the different options available while configuring a switch interface:-</p>
+<p><strong>switchport mode access (DTP mode OFF) –</strong><br/>
+This mode puts the switch interface into permanent non trunking mode regardless of whether the neighbouring interface is trunk port or trying to become a trunk port that is why it is known as DTP mode OFF. The port is a dedicated layer 2 access port. </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>switchport mode trunk (DTP mode ON) –</strong><br/>
+It puts the interface into trunking mode. The interface will become a trunk interface even if the neighbouring ports are trunk or not that is why it is called DTP mode ON. </p>
+<p><strong>switchport mode dynamic auto –</strong><br/>
+This is a default mode on the older CISCO switches. This mode makes the interface able to convert to a trunk link. The interface will become a trunk link if the neighbouring interface is set to trunk or desirable mode. If both switches interface mode is auto, then the trunk will not be formed. </p>
+<p><strong>switchport mode dynamic desirable –</strong><br/>
+This is a default mode on the newer Cisco switches. By this mode, the interface will actively attempt to convert the link into a trunk link. The interface will become a trunk port if the neighbouring interface is set to trunk, desirable or auto. </p>
+<p><strong>switchport nonegotiate –</strong><br/>
+This mode prevents the interface from generating DTP frames. This command is used only when the switchport mode is access or trunk. You must manually configure the neighboring interface as a trunk interface to establish a trunk link.</p>
+<p>Now, let’s see the scenarios in which the switch interface will either become  a trunk or access interface. </p>
+<table style="width:100%">
+<tbody><tr>
+<th></th>
+<th><strong>Dynamic Auto</strong></th>
+<th><strong>Dynamic desirable</strong></th>
+<th><strong>trunk</strong></th>
+<th><strong>access</strong></th>
+</tr>
+<tr>
+<td><strong>Dynamic Auto </strong></td>
+<td>access</td>
+<td>trunk</td>
+<td>trunk</td>
+<td>access</td>
+</tr>
+<tr>
+<td><strong>Dynamic desirable</strong></td>
+<td>trunk</td>
+<td>trunk</td>
+<td>trunk</td>
+<td>access</td>
+</tr>
+<tr>
+<td><strong>trunk</strong></td>
+<td>trunk</td>
+<td>trunk</td>
+<td>trunk</td>
+<td>limited connectivity</td>
+</tr>
+<tr>
+<td><strong>access</strong><p></p>
+</td>
+<td>access</td>
+<td>access</td>
+<td>limited connectivity </td>
+<td>access</td>
+</tr>
+</tbody>
+</table>
+<p>By observing this, it is clear that whenever you receive a DTP packet that requests to form a trunk, your interface will be in trunk mode.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

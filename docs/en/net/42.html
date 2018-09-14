@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Hamming Code</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Hamming code is a set of error-correction codes that can be used to <strong>detect and correct the errors</strong> that can occur when the data is moved or stored from the sender to the receiver. It is <strong>technique developed by R.W. Hamming for error correction</strong>. </p>
+<p><strong>Redundant bits –</strong></p>
+<p>Redundant bits are extra binary bits that are generated and added to the information-carrying bits of data transfer to ensure that no bits were lost during the data transfer.<br/>
+The number of redundant bits can be calculated using the following formula:</p>
+<pre> 2^r &gt; m + r + 1 
+ where, r = redundant bit, m = data bit
+</pre>
+<p>Suppose the number of data bits is 7, then the number of redundant bits can be calculated using:<br/>
+= 2^4 &gt; 7 + 4 + 1<br/>
+Thus, the number of redundant bits= 4</p>
+<p><strong>Parity bits –</strong><br/>
+A parity bit is a bit appended to a data of binary bits to ensure that the total number of 1’s in the data are even or odd. Parity bits are used for error detection. There are two types of parity bits:</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li><strong>Even parity bit:</strong><br/>
+In the case of even parity, for a given set of bits, the number of 1’s are counted. If that count is odd, the parity bit value is set to 1, making the total count of occurrences of 1’s an even number. If the total number of 1’s in a given set of bits is already even, the parity bit’s value is 0.</li>
+<li><strong>Odd Parity bit –</strong><br/>
+In the case of even parity, for a given set of bits, the number of 1’s are counted. If that count is even, the parity bit value is set to 1, making the total count of occurrences of 1’s an odd number. If the total number of 1’s in a given set of bits is already odd, the parity bit’s value is 0.</li>
+</ol>
+<p><strong>General Algorithm of Hamming code –</strong><br/>
+The Hamming Code is simply the use of extra parity bits to allow the identification of an error. </p>
+<ol>
+<li>Write the bit positions starting from 1 in binary form (1, 10, 11, 100, etc).</li>
+<li>All the bit positions that are a power of 2 are marked as parity bits (1, 2, 4, 8, etc).</li>
+<li>All the other bit positions are marked as data bits.</li>
+<li>Each data bit is included in a unique set of parity bits, as determined its bit position in binary form.<br/>
+  <b>a.</b> Parity bit 1 covers all the bits positions whose binary representation includes a 1 in the least significant<br/>
+    position (1, 3, 5, 7, 9, 11, etc).<br/>
+  <b>b.</b> Parity bit 2 covers all the bits positions whose binary representation includes a 1 in the second position from<br/>
+    the least significant bit (2, 3, 6, 7, 10, 11, etc).<br/>
+  <b>c.</b> Parity bit 4 covers all the bits positions whose binary representation includes a 1 in the third position from<br/>
+    the least significant bit (4–7, 12–15, 20–23, etc).<br/>
+  <b>d.</b> Parity bit 8 covers all the bits positions whose binary representation includes a 1 in the fourth position from<br/>
+    the least significant bit bits (8–15, 24–31, 40–47, etc).<br/>
+ <b>e.</b> In general each parity bit covers all bits where the bitwise AND of the parity position and the bit position is<br/>
+    non-zero.<p></p>
+</li>
+<li>Since we check for even parity set a parity bit to 1 if the total number of ones in the positions it checks is<br/>
+    odd. </li>
+<li>Set a parity bit to 0 if the total number of ones in the positions it checks is even. </li>
+</ol>
+<p><strong>Determining the position of redundant bits –</strong><br/>
+These redundancy bits are placed at the positions which correspond to the power of 2.<br/>
+As in the above example:</p>
+<ol>
+<li>The number of data bits = 7</li>
+<li>The number of redundant bits = 4</li>
+<li>The total number of bits = 11</li>
+<li>The redundant bits are placed at positions corresponding to power of 2- 1, 2, 4, and 8</li>
+</ol>
+<p><img src="../../../imgs/net/7d902d00d7c675f8c5b277a63f4bfac4.jpg" alt=""/></p>
+<p>Suppose the data to be transmitted is 1011001, the bits will be placed as follows:</p>
+<p><img src="../../../imgs/net/49717389e810fb9567accc3943df3e68.jpg" alt=""/></p>
+<p><strong>Determining the Parity bits –</strong></p>
+<ol>
+<li> R1 bit is calculated using parity check at all the bits positions whose binary representation includes a 1 in the least significant position.
+<p>        R1: bits 1, 3, 5, 7, 9, 11</p>
+<p><img src="../../../imgs/net/13e9921a4d5b65a04f50d618c7389877.jpg" alt=""/></p>
+<p>To find the redundant bit R1, we check for even parity. Since the total number of 1’s in all the bit positions corresponding to R1 is an even number the value of R1 (parity bit’s value) = 0
+</p></li>
+<li> R2 bit is calculated using parity check at all the bits positions whose binary representation includes a 1 in the second position from the least significant bit.
+<p>        R2: bits 2,3,6,7,10,11</p>
+<p><img src="../../../imgs/net/77afa41e04330f6e99fc8a64d707a71e.jpg" alt=""/></p>
+<p>To find the redundant bit R2, we check for even parity. Since the total number of 1’s in all the bit positions corresponding to R2 is an odd number the value of R2(parity bit’s value)=1</p>
+</li>
+<li> R4 bit is calculated using parity check at all the bits positions whose binary representation includes a 1 in the third position from the least significant bit.
+<p>        R4: bits 4, 5, 6, 7</p>
+<p><img src="../../../imgs/net/391b871c26144f5d893584d42102cdeb.jpg" alt=""/></p>
+<p>To find the redundant bit R4, we check for even parity. Since the total number of 1’s in all the bit positions corresponding to R4 is an odd number the value of R4(parity bit’s value) = 1</p>
+</li>
+<li>R8 bit is calculated using parity check at all the bits positions whose binary representation includes a 1 in the fourth position from the least significant bit.
+<p>       R8: bit 8,9,10,11</p>
+<p><img src="../../../imgs/net/62d0f3735d96808a1cf25ea84af7413d.jpg" alt=""/></p>
+<p>To find the redundant bit R8, we check for even parity. Since the total number of 1’s in all the bit positions corresponding to R8 is an even number the value of R8(parity bit’s value)=0.</p>
+<p>Thus, the data transferred is:</p>
+<p><img src="../../../imgs/net/e9369124f2c39599799e3a1484d2755a.jpg" alt=""/>
+</p></li>
+</ol>
+<p><strong>Error detection and correction –</strong><br/>
+Suppose in the above example the 6th bit is changed from 0 to 1 during data transmission, then it gives new parity values in the binary number:</p>
+<p><img src="../../../imgs/net/0ce0484e65c1aa6ddf50c2bb6207138e.jpg" alt=""/>‘</p>
+<p>The bits give the binary number as 0110 whose decimal representation is 6. Thus, the bit 6 contains an error. To correct the error the 6th bit is changed from 1 to 0.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

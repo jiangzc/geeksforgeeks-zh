@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">UDP Server-Client implementation in C</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>There are two major transport layer protocols to communicate between hosts : <strong><a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol">TCP</a></strong> and <strong><a href="https://en.wikipedia.org/wiki/User_Datagram_Protocol">UDP</a></strong>. Creating TCP Server/Client was discussed <a href="https://www.geeksforgeeks.org/socket-programming-cc/">in a previous post</a>. </p>
+<p>Prerequisite : <a href="https://www.geeksforgeeks.org/socket-programming-cc/" rel="noopener" target="_blank">Creating TCP Server/Client</a></p>
+<p><strong> Theory </strong><br/>
+In UDP, the client does not form a connection with the server like in TCP and instead just sends a datagram. Similarly, the server need not accept a connection and just waits for datagrams to arrive. Datagrams upon arrival contain the address of sender which the server uses to send data to the correct client.<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/udpfuncdiag.png"><img src="../../../imgs/net/5011e949e58ad299ef4621050c5290f0.jpg" alt="UDP Client/Server function calls" class="size-medium wp-image-351895"/></a></p>
+<p>The entire process can be broken down into following steps :<br/>
+<strong> UDP Server :</strong></p>
+<ol>
+<li> Create UDP socket. </li>
+<li> Bind the socket to server address. </li>
+<li> Wait until datagram packet arrives from client. </li>
+<li> Process the datagram packet and send a reply to client. </li>
+<li> Go back to Step 3. </li>
+</ol>
+<p><strong> UDP Client :</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ol>
+<li> Create UDP socket. </li>
+<li> Send message to server. </li>
+<li> Wait until response from server is recieved. </li>
+<li> Process reply and go back to step 2, if necessary. </li>
+<li> Close socket descriptor and exit. </li>
+</ol>
+<p><strong>Necessary Functions :</strong></p>
+<pre>int socket(int domain, int type, int protocol)
+Creates an unbound socket in the specified domain.
+Returns socket file descriptor.
+</pre>
+<p><strong> Arguments : </strong><br/>
+<strong> domain   –</strong> Specifies the communication<br/>
+         domain ( AF_INET for IPv4/ AF_INET6 for IPv6 )<br/>
+<strong> type     –</strong> Type of socket to be created<br/>
+                 ( SOCK_STREAM for TCP / SOCK_DGRAM for UDP )<br/>
+<strong> protocol –</strong> Protocol to be used by socket.<br/>
+          0 means use default protocol for the address family.</p>
+<pre>int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
+Assigns address to the unbound socket.
+</pre>
+<p><strong> Arguments : </strong><br/>
+<strong> sockfd –</strong> File descriptor of socket to be binded<br/>
+<strong> addr   –</strong> Structure in which address to be binded to is specified<br/>
+<strong> addrlen –</strong> Size of <em>addr</em> structure</p>
+<pre>ssize_t sendto(int sockfd, const void *buf, size_t len, int flags,
+               const struct sockaddr *dest_addr, socklen_t addrlen)
+Send a message on the socket
+</pre>
+<p><strong> Arguments : </strong><br/>
+<strong> sockfd –</strong> File descriptor of socket<br/>
+<strong> buf –</strong> Application buffer containing the data to be sent<br/>
+<strong> len –</strong> Size of <em> buf </em> application buffer<br/>
+<strong> flags –</strong> Bitwise OR of flags to modify socket behaviour<br/>
+<strong> dest_addr –</strong> Structure containing address of destination<br/>
+<strong> addrlen –</strong> Size of <em>dest_addr</em> structure</p>
+<pre>ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags,
+                 struct sockaddr *src_addr, socklen_t *addrlen)
+Receive a message from the socket.
+</pre>
+<p><strong>Arguments : </strong><br/>
+<strong> sockfd –</strong> File descriptor of socket<br/>
+<strong> buf –</strong> Application buffer in which to receive data<br/>
+<strong> len –</strong> Size of <em> buf </em> application buffer<br/>
+<strong> flags –</strong> Bitwise OR of flags to modify socket behaviour<br/>
+<strong> src_addr –</strong> Structure containing source address is returned<br/>
+<strong> addrlen –</strong> Variable in which size of <em>src_addr</em> structure is returned</p>
+<pre>int close(int fd)
+Close a file descriptor
+</pre>
+<p><strong>Arguments : </strong><br/>
+<strong>fd –</strong> File descriptor</p>
+<p>In the below code, exchange of one hello message between server and client is shown to demonstrate the model.</p>
+<div class="responsive-tabs">
+<h2 class="tabtitle sigil_not_in_toc">UDPServer.c</h2>
+<div class="tabcontent">
+
+<pre class="brush: c; title: ; notranslate" title="">// Server side implementation of UDP client-server model
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;arpa/inet.h&gt;
+#include &lt;netinet/in.h&gt;
+
+#define PORT     8080
+#define MAXLINE 1024
+
+// Driver code
+int main() {
+    int sockfd;
+    char buffer[MAXLINE];
+    char *hello = "Hello from server";
+    struct sockaddr_in servaddr, cliaddr;
+    
+    // Creating socket file descriptor
+    if ( (sockfd = socket(AF_INET, SOCK_DGRAM, 0)) &lt; 0 ) {
+        perror("socket creation failed");
+        exit(EXIT_FAILURE);
+    }
+    
+    memset(&amp;servaddr, 0, sizeof(servaddr));
+    memset(&amp;cliaddr, 0, sizeof(cliaddr));
+    
+    // Filling server information
+    servaddr.sin_family    = AF_INET; // IPv4
+    servaddr.sin_addr.s_addr = INADDR_ANY;
+    servaddr.sin_port = htons(PORT);
+    
+    // Bind the socket with the server address
+    if ( bind(sockfd, (const struct sockaddr *)&amp;servaddr, 
+            sizeof(servaddr)) &lt; 0 )
+    {
+        perror("bind failed");
+        exit(EXIT_FAILURE);
+    }
+    
+    int len, n;
+    n = recvfrom(sockfd, (char *)buffer, MAXLINE, 
+                MSG_WAITALL, ( struct sockaddr *) &amp;cliaddr,
+                &amp;len);
+    buffer[n] = '\0';
+    printf("Client : %s\n", buffer);
+    sendto(sockfd, (const char *)hello, strlen(hello), 
+        MSG_CONFIRM, (const struct sockaddr *) &amp;cliaddr,
+            len);
+    printf("Hello message sent.\n"); 
+    
+    return 0;
+}
+</pre>
+
+</div>
+<h2 class="tabtitle sigil_not_in_toc">UDPClient.c</h2>
+<div class="tabcontent">
+
+<pre class="brush: c; title: ; notranslate" title="">// Client side implementation of UDP client-server model
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;arpa/inet.h&gt;
+#include &lt;netinet/in.h&gt;
+
+#define PORT     8080
+#define MAXLINE 1024
+
+// Driver code
+int main() {
+    int sockfd;
+    char buffer[MAXLINE];
+    char *hello = "Hello from client";
+    struct sockaddr_in     servaddr;
+
+    // Creating socket file descriptor
+    if ( (sockfd = socket(AF_INET, SOCK_DGRAM, 0)) &lt; 0 ) {
+        perror("socket creation failed");
+        exit(EXIT_FAILURE);
+    }
+
+    memset(&amp;servaddr, 0, sizeof(servaddr));
+    
+    // Filling server information
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_port = htons(PORT);
+    servaddr.sin_addr.s_addr = INADDR_ANY;
+    
+    int n, len;
+    
+    sendto(sockfd, (const char *)hello, strlen(hello),
+        MSG_CONFIRM, (const struct sockaddr *) &amp;servaddr, 
+            sizeof(servaddr));
+    printf("Hello message sent.\n");
+        
+    n = recvfrom(sockfd, (char *)buffer, MAXLINE, 
+                MSG_WAITALL, (struct sockaddr *) &amp;servaddr,
+                &amp;len);
+    buffer[n] = '\0';
+    printf("Server : %s\n", buffer);
+
+    close(sockfd);
+    return 0;
+}
+</pre>
+</div>
+</div>
+<p><strong> Output : </strong></p>
+<pre>$ ./server
+Client : Hello from client
+Hello message sent.
+</pre>
+<pre>$ ./client
+Hello message sent.
+Server : Hello from server
+</pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

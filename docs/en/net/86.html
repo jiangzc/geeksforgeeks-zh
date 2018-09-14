@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">ARP, Reverse ARP(RARP), Inverse ARP(InARP), Proxy ARP and Gratuitous ARP</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisite </b> <a href="https://www.geeksforgeeks.org/ip-addressing-classless-addressing/">IP Addressing</a>, <a href="https://www.geeksforgeeks.org/computer-network-introduction-mac-addresses/">Introduction of MAC Addresses</a>, <a href="https://www.geeksforgeeks.org/computer-network-arp-works/" target="_blank">Basics of Address Resolution Protocol (ARP)</a></p>
+<p>In this article, we will discuss about whole ARP-family, which are ARP, RARP, InARP, Proxy ARP and Gratuitous ARP. Let’s try to understand each one by one.</p>
+<h3 class="sigil_not_in_toc">1. Address Resolution Protocol (ARP) – </h3>
+<p>Address Resolution Protocol is a communication protocol used for discovering physical address associated with given network address. Typically, ARP is a network layer to data link layer mapping process, which is used to discover MAC address for given Internet Protocol Address.<br/>
+In order to send the data to destination, having IP address is necessary but not sufficient; we also need the physical address of the destination machine. ARP is used to get the physical address (MAC address) of destination machine. </p>
+<img src="../../../imgs/net/d9bb7e1c61a472ecccf1fe71763d6452.jpg" alt="" width="491" height="193" class="size-full wp-image-240609"/>
+<p>Before sending the IP packet, the MAC address of destination must be known. If not so, then sender broadcasts the ARP-discovery packet requesting the MAC address of intended destination. Since ARP-discovery is broadcast, every host inside that network will get this message but the packet will be discarded by everyone except that intended receiver host whose IP is associated. Now, this receiver will send a unicast packet with its MAC address (ARP-reply) to the sender of ARP-discovery packet. After the original sender receives the ARP-reply, it updates ARP-cache and start sending unicast message to the destination.</p>
+<img src="../../../imgs/net/e445f0f8ce83d508fa7ade0c0af826f6.jpg" alt="" width="513" height="234" class="size-full wp-image-240607"/>
+<p><b>Example –</b> <a href="https://www.geeksforgeeks.org/gate-gate-cs-2005-question-24/" target="_blank">GATE CS 2005, Question 24 (ARP Based).</a></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<h3 class="sigil_not_in_toc">2. Reverse Address Resolution Protocol (RARP) – </h3>
+<p>Reverse ARP is a networking protocol used by a client machine in a local area network to request its Internet Protocol address (IPv4) from the gateway-router’s ARP table. The network administrator creates a table in gateway-router, which is used to map the MAC address to corresponding IP address.<br/>
+When a new machine is setup or any machine which don’t have memory to store IP address, needs an IP address for its own use. So the machine sends a RARP broadcast packet which contains its own MAC address in both sender and receiver hardware address field.</p>
+<img src="../../../imgs/net/82888a0161c361a6d3eeb0f2b23b51f9.jpg" alt="" width="400" height="120" class="size-full wp-image-240746"/>
+<p>A special host configured inside the local area network, called as RARP-server is responsible to reply for these kind of broadcast packets. Now the RARP server attempt to find out the entry in IP to MAC address mapping table. If any entry matches in table, RARP server send the response packet to the requesting device along with IP address.</p>
+<ul>
+<li>LAN technologies like Ethernet, Ethernet II, Token Ring and Fiber Distributed Data Interface (FDDI) support the Address Resolution Protocol.</li>
+<li>RARP is not being used in today’s networks. Because we have much great featured protocols like BOOTP (Bootstrap Protocol) and DHCP( Dynamic Host Configuration Protocol).</li>
+</ul>
+<h3 class="sigil_not_in_toc">3. Inverse Address Resolution Protocol (InARP) –</h3>
+<p>Instead of using Layer-3 address (IP address) to find MAC address, Inverse ARP uses MAC address to find IP address. As the name suggests, InARP is just inverse of ARP. Reverse ARP has been replaced by BOOTP and later DHCP but Inverse ARP is solely used for device configuration. Inverse ARP is enabled by default in ATM(Asynchronous Transfer Mode) networks. InARP is used to find Layer-3 address from Layer-2 address (DLCI in frame relay). Inverse ARP dynamically maps local DLCIs to remote IP addresses when you configure Frame Relay. When using inverse ARP, we know the DLCI of remote router but don’t know its IP address. InARP sends a request to obtain that IP address and map it to the Layer-2 frame-relay DLCI. </p>
+<img src="../../../imgs/net/5c7f22a45dff0958ee9b22ac2da8e617.jpg" alt="" width="933" height="243" class="size-full wp-image-240789"/>
+<h3 class="sigil_not_in_toc">4. Proxy ARP –</h3>
+<p>Proxy ARP was implemented to enable devices which are separated into network segments connected by a router in the same IP network or sub-network to resolve IP address to MAC addresses. When devices are not in same data link layer network but are in the same IP network, they try to transmit data to each other as if they were on the local network. However, the router that separates the devices will not send a broadcast message because routers do not pass hardware-layer broadcasts. Therefore, the addresses cannot be resolved. Proxy ARP is enabled by default so the “proxy router” that resides between the local networks responds with its MAC address as if it were the router to which the broadcast is addressed. When the sending device receives the MAC address of the proxy router, it sends the datagram to the proxy router, which in turns sends the datagram to the designated device.</p>
+<img src="../../../imgs/net/18eadc97f977bc74ccf7015f5b9d9807.jpg" alt="" width="505" height="264" class="size-full wp-image-240817"/>
+<h3 class="sigil_not_in_toc">5. Gratuitous ARP – </h3>
+<p>Gratuitous Address Resolution Protocol is used in advance network scenarios. It is something performed by computer while booting up. When the computer booted up (Network Interface Card is powered) for the first time, it automatically broadcast its MAC address to the entire network. After Gratuitous ARP MAC address of the computer is known to every switch and allow DHCP servers to know where to send the IP address if requested.<br/>
+Gratuitous ARP could mean both Gratuitous ARP request and Gratuitous ARP reply, but not needed is all cases. Gratuitous ARP request is a packet where source and destination IP are both set to IP of the machine issuing the packet and the destination MAC is the broadcast address ff:ff:ff:ff:ff:ff ; no reply packet will occur.<br/>
+Gratuitous ARP is ARP-Reply that was not prompted by an ARP-Request. Gratuitous Address Resolution Protocol is useful to detect IP conflict. Gratuitous ARP is also used to update ARP mapping table and Switch port MAC address table.</p>
+<img src="../../../imgs/net/81699430b44f609e368ddbad526a6cc8.jpg" alt="" width="408" height="183" class="size-full wp-image-241021"/>
+<h3 class="sigil_not_in_toc">What is ARP poisoning (ARP spoofing) – </h3>
+<p>ARP spoofing is a type of network attack in which the attacker sends the falsified ARP request over the LAN (say to the default gateway), which results connecting attacker’s MAC address to the legitimate server on that victim network. Now, the attacker will start receiving the data which was intended for that IP address. With the help of ARP Poisoning (or ARP Spoofing) attacker is able to intercept data frames, modify traffic or even stop data in-transit.</p>
+<img src="../../../imgs/net/5df007145839d26e3c4793fd202d743d.jpg" alt="" width="239" height="172" class="size-full wp-image-241051"/>
+<p> ARP poisoning can act as the opening for other major attacks, such as Man in the middle, denial of service, or session hijacking attacks. We will discuss about ARP Spoofing later in depth.<br/>
+<br/><br/>
+<strong>References –</strong><br/>
+<a href="https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipaddr_arp/configuration/15-mt/arp-15-mt-book/arp-config-arp.html">Address Resolution Protocol – Cisco</a><br/>
+<a href="https://tools.ietf.org/html/rfc826">tools.ietf.org/html/rfc826</a><br/>
+<a href="https://tools.ietf.org/html/rfc903">tools.ietf.org/html/rfc903</a><br/>
+<a href="https://en.wikipedia.org/wiki/Address_Resolution_Protocol" target="_blank">ARP – Wikipedia</a><br/>
+<br/></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

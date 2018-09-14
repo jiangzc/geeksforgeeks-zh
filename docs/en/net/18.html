@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">EtherChannel</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>EtherChannel is a port link aggregation technology in which multiple physical port links are grouped into one logical link. It is used to provide high speed links and redundancy. Maximum of 8 links can be aggregated to form a single logical link. </p>
+<p><strong>Need of EtherChannel –</strong></p>
+<p><img src="../../../imgs/net/f35277ab3cf81b29328ffea812695652.jpg" width="803" height="101" class="aligncenter size-full"/></p>
+<p>Here is a topology in which two switches are connected with one PC each. The link between the switches and PC is 1000mb/s and the link between the switches is of 100mb/s.</p>
+<p>Now,  suppose if you want to send a traffic of more than 100mb/s then we have a congestion as the link between the switches is of 100mb/s only and packets will be start dropping. Now, to solve this problem, we should have a high speed link between the switches. To achieve this, We can simply replace the current link with a high speed link or we can bundle up more than one link of same speed of 100mb/s. By forming an EtherChannel, you can bundle up more than one link into a single logical link. </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>But, as you connect the switches with more than one link, STP (Spanning Tree Protocol) will block the least redundant link. As we have made an EtherChannel, all the links (that are grouped as one logical link k) will be treated as single logical link therefore no link will be blocked and also, it will provide us high speed link and redundancy in our network. </p>
+<p><b>Criteria –</b> To form an EtherChannel, all ports should have:</p>
+<ol>
+<li>Same duplex
+</li>
+<li>Same speed
+</li>
+<li>Same VLAN configuration (i.e., native VLAN and allowed VLAN should be same)
+</li>
+<li>Switch port modes should be same (access or trunk mode)
+</li>
+</ol>
+<p><b>EtherChannel protocols –</b> To form an EtherChannel, there are 2 protocols, port aggregation protocol (PAgP) and link aggregation control protocol (LACP).</p>
+<p><b>1. Port Aggregation Protocol (PAgP) –</b><br/>
+Port Aggregation Protocol is a Cisco proprietary protocol used to form an EtherChannel. There are different modes in which you can configure your interface. These are namely:</p>
+<ol>
+<li><strong>ON:</strong> In this mode, the interface will be a part of EtherChannel but no negotiation takes place.
+</li>
+<li><strong>Desirable:</strong> In this mode, the interface will continuously attempt to convert other side interface into an EtherChannel.
+</li>
+<li><strong>Auto:</strong> In this mode, the interface will become a part of EtherChannel if and only of it is requested by the opposite interface.
+</li>
+<li><strong>Off:</strong> No EtherChannel configured on the interface.
+</li>
+</ol>
+<p><strong>Configuration –</strong></p>
+<p><img src="../../../imgs/net/4786ac2542165d7de39b47789bdb8309.jpg" width="592" height="101" class="aligncenter size-full"/></p>
+<p>There is a small topology in which  2 switches S1 and S2 are connected with each other and we have to bundle these two links into a single logical link. </p>
+<pre><b>S1(config)# </b>interface fa0/1
+<b>S1(config-if)#</b> channel-group 1 mode desirable 
+<b>S1(config)#</b> interface fa0/2
+<b>S1(config-if)#</b> channel-group 1 mode desirable 
+
+<b>S1(config)#</b> interface port-channel 1
+<b>S1(config-if)#</b> switchport trunk encapsulation dot1q
+<b>S1(config-if)#</b> switchport mode trunk</pre>
+<p>Here, user has used the mode desirable and switchport mode trunk. The modes should be same on both switches therefore user will configure this on other switch also.<br/>
+Now, configuring on switch S2:</p>
+<pre><b>S2(config)#</b> interface fa0/1
+<b>S2(config-if)#</b> channel-group 1 mode desirable 
+<b>S2(config)#</b> interface fa0/1
+<b>S2(config-if)#</b> channel-group 1 mode desirable 
+<b>S2(config)#</b> interface port-channel 1
+<b>S2(config-if)#</b> switchport trunk encapsulation dot1q
+<b>S2(config-if)#</b> switchport mode trunk</pre>
+<p><b>2. Link Aggregation Control Protocol (LACP) –</b><br/>
+Link Aggregation Control Protocol is an IEEE protocol, originally defined in 802.3ad, used to form an EtherChannel. This protocol is almost similar to Cisco PAgP. There are different modes in which you can configure your interface. These are namely:</p>
+<ol>
+<li><strong>ON:</strong> In this mode, the interface will be a part of EtherChannel but no negotiation takes place
+</li>
+<li><strong>Active:</strong> In this mode, the interface will continuously attempt to convert other side interface into an EtherChannel.
+</li>
+<li><strong>Passive:</strong> In this mode, the interface will become a part of EtherChannel if and only of it is requested by the opposite interface.
+</li>
+<li><strong>Off:</strong> No EtherChannel configured on the interface.
+</li>
+</ol>
+<p><strong>Configuration –</strong></p>
+<p><img src="../../../imgs/net/4786ac2542165d7de39b47789bdb8309.jpg" width="592" height="101" class="aligncenter size-full"/></p>
+<p>Taking the same topology, you will now configure LACP on both switches. First, configuring for S1:</p>
+<pre><b>S1(config)#</b> interface fa0/1
+<b>S1(config-if)#</b> channel-group mode active 
+<b>S1(config)#</b> interface fa0/2
+<b>S1(config-if)#</b> channel-group mode active
+
+<b>S1(config)#</b> interface port-channel 1
+<b>S1(config-if)#</b> switchport trunk encapsulation dot1q
+<b>S1(config-if)#</b> switchport mode trunk</pre>
+<p>Now, configuring for S2:</p>
+<pre><b>S2(config)#</b> interface fa0/1
+<b>S2(config-if)#</b> channel-group mode active
+<b>S2(config)#</b> interface fa0/2
+<b>S2(config-if)#</b> channel-group mode active 
+
+<b>S2(config)#</b> interface port-channel 1
+<b>S2(config-if)#</b> switchport trunk encapsulation dot1q
+<b>S2(config-if)#</b> switchport mode trunk</pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

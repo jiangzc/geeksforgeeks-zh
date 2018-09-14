@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Multiplexing and Demultiplexing in Transport Layer</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisite –</b> <a href="https://www.geeksforgeeks.org/layers-osi-model/" target="_blank">Layers of OSI Model</a><br/>
+Multiplexing and Demultiplexing services are provided in almost every protocol architecture ever designed. UDP and TCP perform the demultiplexing and multiplexing jobs by including two special fields in the segment headers: the source port number field and the destination port number field. </p>
+<p><strong>Multiplexing –</strong><br/>
+Gathering data from multiple application processes of sender ,enveloping that data with header and sending them as a whole to the intended receiver is called as multiplexing.</p>
+<p><strong>Demultiplexing –</strong><br/>
+Delivering received segments at receiver side to the correct app layer processes is called as demultiplexing.</p>
+<p><img src="../../../imgs/net/3819b02f7dd1182180404d30f04c247d.jpg" alt="" width="665" height="340" class="size-large wp-image-241619"/><br/>
+<b>Figure –</b> Abstract view of multiplexing and demultiplexing</p>
+<p>Multiplexing and demultiplexing are the services facilitated by the transport layer of OSI model. </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/net/003c3ed573a46700256a899f591acfce.jpg" alt="" width="665" height="542" class="size-large wp-image-241658"/><br/>
+<b>Figure –</b> Transport layer-  junction for multiplexing and demultiplexing</p>
+<p>There are two types of multiplexing and multiplexing :</p>
+<ol>
+<li>Connectionless Multiplexing and Demultiplexing</li>
+<li>Connection-Oriented Multiplexing and Demultiplexing</li>
+</ol>
+<p><b>How Multiplexing and Demultiplexing is done –</b><br/>
+For sending data from an application at sender side to an application at the destination side, sender must know the IP address of destination and port number of the application (at the destination side) to which he want to transfer the data. Block diagram is shown below :</p>
+<p><img src="../../../imgs/net/fe263b958bb31a63d79b663fb82584f1.jpg" alt="" width="665" height="290" class="size-large wp-image-240149"/><br/>
+<b>Figure –</b> Transfer of packet between applications of sender and receiver</p>
+<p>Let us consider two messaging apps that are widely used now a days viz. Hike and whatsapp. Suppose A is the sender and B is the receiver. Both sender and receiver have these applications installed in their system (say smartphone). Suppose A want to send messages to B in whatsapp and hike both. In order to do so, A must mention the IP address of B and destination port number of the whatsapp while sending the message through whatsapp application. Similarly, for the later case, A must mention the IP address of B and destination port number of the hike while sending the message.</p>
+<p>Now the messages from both the apps will be wrapped up along with appropriate headers(viz. source IP address, destination IP address, source port no,destination port number) and sent as a single message to the receiver. This process is called multiplexing. At the destination, received message is unwrapped and constituent messages (viz messages from hike and whatsapp application) are sent to appropriate application by looking to the destination the port number. This process is called demultiplexing. Similarly, B can also transfer the messages to A.</p>
+<p><img src="../../../imgs/net/5b3f8d9383719a0e81b4a46f83882205.jpg" alt="" width="665" height="414" class="size-large wp-image-240154"/><br/>
+<b>Figure –</b> Message transfer using whatsapp and hike messaging application</p>
+<p><b>References –</b><br/>
+<a href="http://www.cs.ccsu.edu/~stan/classes/cs490/slides/networks4-ch3-1.pdf" target="_blank">Multiplexing/Demultiplexing</a><br/>
+<a href="http://www.dcs.bbk.ac.uk/~ptw/teaching/IWT/transport-layer/notes.html" target="_blank">dcs.bbk.ac.uk</a> </p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

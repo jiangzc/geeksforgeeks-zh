@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Efficiency of CSMA/CD</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Prerequisite –</b> <a href="https://www.geeksforgeeks.org/local-area-network-lan-technologies/" target="_blank">Introduction to Ethernet</a>, <a href="https://www.geeksforgeeks.org/computer-networks-gate-notes-set-1-data-link-layer/" target="_blank">Basics of CSMA/ CD</a></p>
+<p><strong>Carrier sense multiple access with collision detection (CSMA/CD) –</strong><br/>
+The CSMA method does not tells us what to do in case there is a collision. Carrier sense multiple access with collision detection (CSMA/CD) adds on to the CSMA algorithm to deal with collision. In CSMA/CD, the size of a frame must be large enough so that collision can be detected by sender while sending the frame. So, the frame transmission delay must be at least <em>two times</em> the maximum propagation delay.</p>
+<p>Assume some station transmitted data packet and successfully get to destination but it just the <em>Best Case</em>, so we have to take <em>Worst Case</em> scenario in which there will be contention slots. Contention slots are those slot which are not able to transmit their journey due to collision. Suppose A station transmitted data but collide and worst case time wasted is <strong>2Tp</strong> and then some station B found out way to transmit the data so it took (As shown in Figure)</p>
+<pre>Tp ( propagation delay) + Tt(transmission time)
+</pre>
+<p>Now we don’t know how many contention slot, so we consider worst case to be of <strong>n</strong> contention slots.</p>
+<pre>Efficiency = Tt / ( C*2*Tp + Tt + Tp)  
+Tt → transmission time
+Tp → propagation time
+C  → number of collision
+
+</pre>
+<p><img src="../../../imgs/net/1dfa6bf19cc684023f2f2ed5ca991b12.jpg" alt="" width="507" height="177" class="aligncenter size-full wp-image-233892"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>In CSMA/CD, for success, only 1 station should transmit while others shouldn’t. Let p be the probability to transmit data successfully.</p>
+<pre>P(success) = nC1 * p * (1-p)<sup>n-1</sup> (by using Binomial distribution)
+</pre>
+<p>For max P(success), differentiate with respect top p and equate to zero (to get maxima and minima).</p>
+<pre>We get P(max) = 1/e 
+</pre>
+<p>Number of times we need to try before getting 1st success</p>
+<pre>1/P(MAX) = 1/(1/e) = e
+</pre>
+<p>Here number of times we need to try (C) = e.</p>
+<p>Put a = Tt/Tp and divide by T in Efficiency = Tt / (C* 2 * Tp + Tt + Tp) </p>
+<p>We get, </p>
+<pre>Efficiency = 1/(e*2a + 1 + a)
+a = Tp/Tt
+e = 2.72
+
+Now 
+<strong>Efficiency</strong> = 1/( 1 + 6.44a)
+
+</pre>
+<p><strong>Further Analysis of Efficiency : </strong></p>
+<pre>Efficiency = 1/ (1 + 6.44a)
+
+           = 1/ {1 + 6.44(Tp/Tt)}
+
+           = 1/ {1 + 6.44((distance/speed)(Bandwidth/packet length))}
+</pre>
+<p><br/><br/>
+From this derivation, we can conclude many relations :</p>
+<ul>
+<li>If distance increases, efficiency of CSMA decreases.</li>
+<li>CSMA is not suitable for long distance networks like WAN; but works optimally for LAN.</li>
+<li> If length of packet is bigger, the efficiency of CSMA also increases; but maximum limit for length is 1500 Bytes. </li>
+<li>Transmission Time &gt;= 2*Propagation Time</li>
+</ul>
+<p><b>GATE CS Corner Questions</b></p>
+<p>Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2003-question-83/" target="_blank">GATE CS 2003, Question 90</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2015-set-3-question-16/" target="_blank">GATE CS 2015 (Set 3), Question 65</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2005-question-27/" target="_blank">GATE IT 2005, Question 27</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2005-question-71/" target="_blank">GATE IT 2005, Question 71</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2016-set-2-question-63/" target="_blank">GATE CS 2016 (Set 2), Question 63</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2008-question-63/" target="_blank">GATE IT 2008, Question 63</a></li>
+</ol>
+<p><strong>Reference –</strong><br/>
+<a href="https://www.youtube.com/watch?v=74zlRH-bj2c" target="_blank">https://www.youtube.com/watch?v=74zlRH-bj2c</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

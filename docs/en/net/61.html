@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Routing Protocols Set 1 (Distance Vector Routing)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>A <b>distance-vector routing (DVR)</b> protocol requires that a router inform its neighbors of topology changes periodically. Historically known as the old ARPANET routing algorithm (or known as Bellman-Ford algorithm).</p>
+<p><strong>Bellman Ford Basics –</strong> Each router maintains a Distance Vector table containing the distance between itself and ALL possible destination nodes. Distances,based on a chosen metric, are computed using information from the neighbors’ distance vectors.</p>
+<pre>Information kept by DV router -
+<ul><li>Each router has an ID</li>
+<li>Associated with each link connected to a router, 
+there is a link cost (static or dynamic).</li>
+<li>Intermediate hops</li>
+</ul>
+Distance Vector Table Initialization -<ul><li>Distance to itself = 0</li>
+<li>Distance to ALL other routers = infinity number.</li>
+</ul>
+</pre>
+<p><strong>Distance Vector Algorithm –</strong></p>
+<ol>
+<li>A router transmits its distance vector to each of its neighbors in a routing packet.</li>
+<li>Each router receives and saves the most recently received distance vector from each of its neighbors.</li>
+<li> A router recalculates its distance vector when:
+<ul>
+<li>It receives a distance vector from a neighbor containing different information than before.</li>
+<li>It discovers that a link to a neighbor has gone down.</li>
+</ul>
+</li>
+</ol>
+<p>The DV calculation is based on minimizing the cost to each destination</p>
+<pre>Dx(y) = Estimate of least cost from x to y 
+C(x,v) =  Node x knows cost to each neighbor v
+Dx   =  [Dx(y): y ∈ N ] = Node x maintains distance vector
+Node x also maintains its neighbors' distance vectors
+– For each neighbor v, x maintains Dv = [Dv(y): y ∈ N ]
+</pre>
+<p><strong>Note –</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li>From time-to-time, each node sends its own distance vector estimate to neighbors.</li>
+<li>When a node x receives new DV estimate from any neighbor v, it saves v’s distance vector and it updates its own DV using B-F equation:
+<pre>Dx(y) = min { C(x,v) + Dv(y)} for each node y ∈ N
+</pre>
+</li>
+</ul>
+<p><b>Example –</b> Consider 3-routers X, Y and Z as shown in figure. Each router have their routing table. Every routing table will contain distance to the destination nodes.<br/>
+<img src="../../../imgs/net/e01d1f01e66e06c5096bf23b5bb3329b.jpg" alt="r1" width="500" height="500" class="aligncenter size-medium wp-image-163091"/><br/>
+Consider router X , X will share it routing table to neighbors and neighbors will share it routing table to it to X and distance from node X to destination will be calculated using bellmen- ford equation.</p>
+<pre> Dx(y) = min { C(x,v) + Dv(y)} for each node y ∈ N
+</pre>
+<p>As we can see that distance will be less going from X to Z when Y is intermediate node(hop) so it will be update in routing table X.<br/>
+<img src="../../../imgs/net/65a91d521f85fd5fb9f22d5e62b52e4f.jpg" alt="dvr2" width="500" height="500" class="aligncenter size-medium wp-image-163092"/><br/>
+Similarly  for Z also –<br/>
+<img src="../../../imgs/net/cd1e682ae9620f7452dea2ef2f70a5ee.jpg" alt="dvr3" width="500" height="500" class="aligncenter size-medium wp-image-163093"/></p>
+<p>Finally the routing table for all –<br/>
+<img src="../../../imgs/net/410abbb87397a06b7c8125eabded83ec.jpg" alt="dvr4" width="500" height="500" class="aligncenter size-medium wp-image-163094"/><br/>
+<br/><br/>
+<strong>Advantages of Distance Vector routing –</strong></p>
+<ul>
+<li>It is simpler to configure and maintain than link state routing.</li>
+<p><strong>Disadvantages of Distance Vector routing –</strong></p>
+<ul>
+<li>It is slower to converge than link state.</li>
+<li>It is at risk from the count-to-infinity problem.</li>
+<li>It creates more traffic than link state since a hop count change must be propagated to all routers and processed on each router. Hop count updates take place on a periodic basis, even if there are no changes in the network topology, so bandwidth-wasting broadcasts still occur.
+</li>
+<li>For larger networks, distance vector routing results in larger routing tables than link state since each router must know about all other routers. This can also lead to congestion on WAN links. </li>
+</ul>
+<p><strong>Note – </strong> Distance Vector routing uses UDP(User datagram protocol) for transportation.</p>
+<p><b>GATE CS Corner Questions</b></p>
+<p>Practicing the following questions will help you test your knowledge. All questions have been asked in GATE in previous years or in GATE Mock Tests. It is highly recommended that you practice them.</p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2011-question-52/" target="_blank">GATE CS 2011, Question 52</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2011-question-53/" target="_blank">GATE CS 2011, Question 53</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2010-question-54/" target="_blank">GATE CS 2010, Question 54</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2010-question-55/" target="_blank">GATE CS 2010, Question 55</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2005-question-28/" target="_blank">GATE IT 2005, Question 28</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-1-question-33/" target="_blank">GATE CS 2014 (Set 1), Question 33</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2008-question-65/" target="_blank">GATE IT 2008, Question 65</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2014-set-2-question-33/" target="_blank">GATE CS 2014 (Set 2), Question 65</a></li>
+</ol>
+<p><b>References –</b></p>
+<p><a href="https://en.wikipedia.org/wiki/Distance-vector_routing_protocol" target="_blank">Distance vector routing – wikipedia</a><br/>
+<a href="http://www.eecs.yorku.ca/course_archive/2010-11/F/6590/Notes/distance_vector.pdf" target="_blank">www.eecs.yorku.ca</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</ul>
+</div>
+</body>
+</html>

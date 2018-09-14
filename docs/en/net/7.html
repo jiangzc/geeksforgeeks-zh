@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Network Topologies | Computer Networks</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>The arrangement of a network which comprises of nodes and connecting lines via sender and receiver is referred as network topology. The various network topologies are :</p>
+<h2 class="sigil_not_in_toc">a) Mesh Topology :</h2>
+<p> In mesh topology, every device is connected to another device via particular channel.</p>
+<p><img src="../../../imgs/net/7186ed9f2e937e93912bc89d8a0bc064.jpg" width="294" height="245" alt="" class="aligncenter size-full"/></p>
+<p><strong>Figure 1</strong> : Every device is connected with another via dedicated channels. These channels are known as links.</p>
+<ul>
+<li>If suppose, N number of devices are connected with each other in mesh topology, then total number of ports that is required by each device is ​ N-1. In the Figure 1, there are 5 devices connected to each other, hence total number of ports required is 4.</li>
+<li>If suppose, N number of devices are connected with each other in mesh topology, then total number of dedicated links required to connect them is <sup>N</sup>C<sub>2</sub> i.e. N(N-1)/2. In the Figure 1, there are 5 devices connected to each other, hence total number of links required is 5*4/2 = 10.</li>
+</ul>
+<p><strong>Advantages of this topology :</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li>It is robust.</li>
+<li>Fault is diagnosed easily. Data is reliable because data is transferred among the devices through dedicated channels or links.</li>
+<li>Provides security and privacy.</li>
+</ul>
+<p><strong>Problems with this topology :</strong></p>
+<ul>
+<li>Installation and configuration is difficult.</li>
+<li>Cost of cables are high as bulk wiring is required, hence suitable for less number of devices.</li>
+<li>Cost of maintenance is high.</li>
+</ul>
+<h2 class="sigil_not_in_toc">b) Star Topology :</h2>
+<p>​ In star topology, all the devices are connected to a single hub through a cable. This hub is the central node and all others nodes are connected to the central node. The hub can be passive ​in nature i.e. not intelligent hub such as broadcasting devices, at the same time the hub can be intelligent known as active ​hubs. Active hubs have repeaters in them.</p>
+<p><img src="../../../imgs/net/9564d21c17ddde810976ce60d222ffeb.jpg" width="353" height="244" alt="" class="aligncenter size-full"/></p>
+<p><strong>Figure 2</strong> : A star topology having four systems connected to single point of connection i.e. hub.<br/>
+<br/>
+<strong>Advantages of this topology :</strong></p>
+<ul>
+<li>If N devices are connected to each other in star topology, then the number of cables required to connect them is N. So, it is easy to set up.</li>
+<li>Each device require only 1 port i.e. to connect to the hub.</li>
+</ul>
+<p><strong>Problems with this topology :</strong></p>
+<ul>
+<li>If the concentrator (hub) on which the whole topology relies fails, the whole system will crash down.</li>
+<li>Cost of installation is high.</li>
+<li>Performance is based on the single concentrator i.e. hub.</li>
+</ul>
+<p></p>
+<h2 class="sigil_not_in_toc">c) Bus Topology :</h2>
+<p>​ Bus topology is a network type in which every computer and network device is connected to single cable. It transmits the data from one end to another in single direction. No bi-directional feature is in bus topology.</p>
+<p><img src="../../../imgs/net/c03699a73929197751e3d0796a5ca972.jpg" width="533" height="184" alt="" class="aligncenter size-full"/></p>
+<p><strong>Figure 3</strong> : A bus topology with shared backbone cable. The nodes are connected to the channel via drop lines.<br/>
+<br/>
+<strong>Advantages of this topology :</strong></p>
+<ul>
+<li>If N devices are connected to each other in bus topology, then the number of cables required to connect them is 1 ​which is known as backbone cable and N drop lines are required.</li>
+<li>Cost of the cable is less as compared to other topology, but it is used to built small networks.</li>
+</ul>
+<p>
+<strong>Problems with this topology :</strong></p>
+<ul>
+<li>If the common cable fails, then the whole system will crash down.</li>
+<li>If the network traffic is heavy, it increases collisions in the network. To avoid this, various protocols are used in MAC layer known as Pure Aloha, Slotted Aloha, CSMA/CD etc.</li>
+</ul>
+<h2 class="sigil_not_in_toc">d) Ring Topology : </h2>
+<p>​ In this topology, it forms a ring connecting a devices with its exactly two neighbouring devices.</p>
+<p><img src="../../../imgs/net/6e1efc0a3c0e20a12b08f515855ca1b4.jpg" width="463" height="334" alt="" class="aligncenter size-full"/></p>
+<p><strong>Figure 4 </strong>: A ring topology comprises of 4 stations connected with each forming a ring..<br/>
+<br/>
+The following operations takes place in ring topology are :</p>
+<ol>
+<li>One station is known as <strong>monitor</strong> station which takes all the responsibility to perform the operations.</li>
+<li>To transmit the data, station has to hold the token. After the transmission is done, the token is to be released for other stations to use.</li>
+<li>When no station is transmitting the data, then the token will circulate in the ring.</li>
+<li>There are two types of token release techniques : <strong>Early token release</strong>  releases the token just after the transmitting the data and <strong>Delay token release</strong> releases the token after the acknowledgement is received from the receiver.</li>
+</ol>
+<p><strong>Advantages of this topology :</strong></p>
+<ul>
+<li>The possibility of collision is minimum in this type of topology.</li>
+<li>Cheap to install and expand.</li>
+</ul>
+<p>
+<strong>Problems with this topology :</strong></p>
+<ul>
+<li>Troubleshooting is difficult in this topology.</li>
+<li>Addition of stations in between or removal of stations can disturb the whole topology.</li>
+</ul>
+<p></p>
+<h2 class="sigil_not_in_toc">e) Hybrid Topology :</h2>
+<p> ​This topology is a collection of two or more topologies which are described above. This is a scalable topology which can be expanded easily. It is reliable one but at the same it is a costly topology.</p>
+<p><img src="../../../imgs/net/33836815c2397becb2afc7229538ca56.jpg" width="673" height="494" alt="" class="aligncenter size-full"/></p>
+<p><strong>Figure 5</strong> : A hybrid topology which is a combination of ring and star topology.</p>
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

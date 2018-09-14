@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Differences between Virtual Circuits &amp; Datagram Networks</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Computer networks that provide connection-oriented service are called Virtual Circuits while those providing connection-less services are called as Datagram networks. For prior knowledge, the Internet which we use is actually based on Datagram network (coonection-less) at network level as all packets from a source to a destination do not follow same path.<br/>
+Let us see what are the highlighting differences between these two hot debated topics here:</p>
+<p><strong>Virtual Circuits-</strong></p>
+<ol>
+<li> It is connection-oriented simply meaning that there is a reservation of resources like buffers, CPU, bandwidth,etc. for the time in which the newly setup VC is going to be used by a data transfer session. </li>
+<li> First packet goes and reserves resources for the subsequent packets which as a result follow the same path for the whole connection time. </li>
+<li> Since all the packets are going to follow the same path, a global header is required only for the first packet of the connection and other packets generally don’t require global headers. </li>
+<li> Since data follows a particular dedicated path, packets reach inorder to the destination. </li>
+<li> From above points, it can be concluded that Virtual Circuits are highly reliable means of transfer. </li>
+<li> Since each time a new connection has to be setup with reservation of resources and extra information handling at routers, its simply costly to implement Virtual Circuits.</li>
+</ol>
+<p><strong><br/>
+Datagram Networks : </strong></p>
+<ol>
+<li>It is connectionless service. There is no need of reservation of resources as there is no dedicated path for a connection session. </li>
+<li> All packets are free to go to any path on any intermediate router which is decided on the go by dynamically changing routing tables on routers. </li>
+<li> Since every packet is free to choose any path, all packets must be associated with a header with proper information about source and the upper layer data. </li>
+<li> The connectionless property makes data packets reach destination in any order, means they need not reach in the order in which they were sent.</li>
+<li> Datagram networks are not reliable as Virtual Circuits.</li>
+<li> But it is always easy and cost efficient to implement datagram networks as there is no extra headache of reserving resources and making a dedicated each time an application has to communicate. </li>
+</ol>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

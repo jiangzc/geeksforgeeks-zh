@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Port security</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Attackers task is comparatively very easy when they can enter the network they want to attack. Ethernet LANs are very much vulnerable to attack as the switch ports are open to use by default. Various attacks such as Dos attack at layer 2, address spoofing can take place. If the administrator has control over the network then obviously the network is safe. To take total control over the switch ports, user can use feature called port-security. If somehow prevent an unauthorised user to use these ports, then the security will increase upto a great extent at layer 2.</p>
+<p>User can secure a port in two steps:</p>
+<ol>
+<li>Llimiting the number of MAC addresses to a single switch port, i.e if more than the limit, Mac addresses are learned from a single port then appropriate action will be taken.</li>
+<li>If an unauthorised access is observed, the traffic should be discarded by using any of the options or more appropriate, user should generate a log message so that unauthorised access can be easily observed.</li>
+</ol>
+<p><b>Port security –</b><br/>
+Switches learn MAC addresses when the frame is forwarded through a switch port. By using port security, user can limit the number of MAC addresses that can be learned to a port, set static MAC addresses and set penalties for that port if it is used by an unauthorised user. User can either use restrict, shut down or protect port-security commands. </p>
+<p>Let’s discuss these violation modes:</p>
+<ul>
+<li><strong>protect –</strong> This mode drops the packets with unknown source mac address until you remove enough secure mac addresses to drop below the maximum value. </li>
+<li><strong>restrict –</strong>This mode performs the same function as protect, i.e drops packets until enough secure mac addresses are removed to drop below the maximum value.In addition to this, it will generate a log message, increment the counter value and  will also send SNMP trap. </li>
+<li><strong>shut down –</strong> This mode is mostly preferred as compared to other modes as it shut down the port immediately if unauthorised access is done. It will also generate a log, increment counter value and send a SNMP trap. This port will remain in shut down state until the administrator will perform “no shutdown” command. </li>
+<li><strong>Sticky –</strong> This is not a violation mode. By using sticky command, user provides static Mac address security without typing the absolute Mac address. For example, if user provides maximum limit of 2 then the first 2 Mac addresses learned on that port will be placed in running-configuration. After the 2nd learned Mac address, if 3rd user want to access then the appropriate action will be taken according to the violation mode applied. </li>
+</ul>
+<p><strong>Note –</strong> The port security will work on access port only i.e to enable port-security, user first has to make it an access port. </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><b>Configuration –</b><br/>
+Applying port-security on fa0/1 interface of switch .first, convert the port to an access port and will enable port-security. </p>
+<pre>S1(config)#int fa0/1
+S1(config-if)#switchport mode access
+S1(config-if)#switchport port-security</pre>
+<p>Use sticky command so that it will learn the Mac address dynamically and will provide the limit and the appropriate action that should be taken.  </p>
+<pre>S1(config-if)#switchport port-security mac-address sticky
+S1(config-if)#switchport port-security
+maximum 2
+S1(config-if)#switchport port-security violation shutdown</pre>
+<p>If user wants to provide a static entry, then configure that by stating it’s Mac address. </p>
+<pre>S1(config-if)#switchport port-security 
+S1(config-if)#switchport port-security violation shutdown
+S1(config-if)#switchport port-security mac-address aa.bb.cc.dd.ee.ff</pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

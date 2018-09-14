@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Types of Network address translation (NAT)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-network-address-translation-nat/" rel="noopener" target="_blank">Network address translation (NAT)</a><br/>
+Network Address Translation (NAT) is a process in which one or more local IP address is translated into one or more Global IP address and vice versa in order to provide Internet access to the local hosts. NAT generally operates on router or firewall.</p>
+<p><b>Network address translation (NAT) working – </b><br/>
+Generally, the border router is configured for NAT i.e the router which have one interface in local (inside) network and one interface in global (outside) network. When a packet traverse outside the local (inside) network, then NAT converts that local (private) IP address to a global (public) IP address. When a packet enters the local network, the global (public) IP address is converted to local (private) IP address.</p>
+<p>If NAT run out of addresses, i.e., no address is left in the pool configured then the packets will be dropped and an Internet Control Message Protocol (ICMP) host unreachable packet to the destination is send.</p>
+<p><b>NAT types –</b><br/>
+There are 3 types of NAT:</p>
+<p><b>1. Static NAT –</b><br/>
+In this, a single private IP address is mapped with single Public IP address, i.e., a private IP address is translated to a public IP address. It is used in Web hosting. </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Configuration –</strong></p>
+<p><img src="../../../imgs/net/e37b567c53cdb03bd3c72646071eef84.jpg" width="771" height="270" class="aligncenter size-full"/></p>
+<p>Here is a small topology in which there is PC having IP address 192.168.1.1/24, Router R1 having IP address 192.168.1.2/24 on interface fa0/0, 12.1.1.1/24 on fa0/1 and server having IP address 73.1.1.2/24.</p>
+<p>Now, inside local and inside global are shown in the figure. Configuring the static NAT through command ip nat inside source static INSIDE_LOCAL_IP_ADDRESS INSIDE_GLOBAL_IP_ADDRESS. </p>
+<pre><b>R1(config)#</b> ip nat inside source static 192.168.1.1 12.1.1.1 </pre>
+<p>Now, we have configure router’s inside interface as IP NAT inside  and outside interface as IP NAT outside. </p>
+<pre><b>R1(config)#</b> int fa0/0
+<b>R1(config-if)#</b> ip nat inside 
+<b>R1(config)#</b> int fa0/1
+<b>R1(config-if)#</b> ip nat outside </pre>
+<p><b>2. Dynamic NAT –</b><br/>
+In this type of NAT, multiple private IP address are mapped to a pool of public IP address . It is used when we know the number of fixed users wants to access the Internet at a given point of time. </p>
+<p><strong>Configuration –</strong>  </p>
+<p><img src="../../../imgs/net/e37b567c53cdb03bd3c72646071eef84.jpg" width="771" height="270" class="aligncenter size-full"/></p>
+<p>There is PC having IP address 192.168.1.1/24, Router R1 having IP address 192.168.1.2/24 on interface fa0/0, 12.1.1.1/24 on fa0/1 and server having IP address 73.1.1.2/24.<br/>
+Now, first configuring the access-list:</p>
+<pre><b>R1(config)#</b> access-list 1 permit 192.168.1.0 0.0.0.255 </pre>
+<p>Configuring the nat pool from which a public IP will be selected. </p>
+<pre><b>R1(config)#</b> ip nat pool pool1 12.1.1.1 12.1.1.3 netmask 255.255.255.0 </pre>
+<p>Now, enabling Dynamic NAT:</p>
+<pre><b>R1(config)#</b> ip nat inside source list 1 pool pool1</pre>
+<p>At last, we have to configure router interfaces as inside or outside. </p>
+<pre><b>R1(config)#</b> int fa0/0
+<b>R1(config-if)#</b> ip nat inside
+<b>R1(config)#</b> int fa0/1
+<b>R1(config-if)#</b> ip nat outside</pre>
+<p><b>3. Port Address Translation (PAT) –</b><br/>
+This is also known as NAT overload. In this, many local (private) IP addresses can be translated to single public IP address. Port numbers are used to distinguish the traffic, i.e., which traffic belongs to which IP address. This is most frequently used as it is cost effective as thousands of users can be connected to the Internet by using only one real global (public) IP address.</p>
+<p><strong>Configuration –</strong></p>
+<p><img src="../../../imgs/net/e37b567c53cdb03bd3c72646071eef84.jpg" width="771" height="270" class="aligncenter size-full"/></p>
+<p>Taking the same topology, There is PC1 having IP address 192.168.1.1/24, Router R1 having IP address 192.168.1.2/24 on interface fa0/0, 12.1.1.1/24 on fa0/1 and server having IP address 73.1.1.2/24.<br/>
+Now, first configuring the access-list:</p>
+<pre><b>R1(config)#</b> access-list 1 permit 192.168.1.0 0.0.0.255 </pre>
+<p>Configuring the nat pool from which a public IP will be selected. </p>
+<pre><b>R1(config)#</b> ip nat pool pool1 12.1.1.1 12.1.1.1 netmask 255.255.255.0</pre>
+<p>Here, note that the nat pool is shrunk to one ip address only and the IP address used is the outside  interface ip address of the router. If you have additional IP then you can use that also.<br/>
+Now, enabling Dynamic NAT overload (PAT):</p>
+<pre><b>R1(config)#</b> ip nat inside source list 1 pool pool1 overload</pre>
+<p>Or we can also use </p>
+<pre><b>R1(config)#</b> ip nat inside source list 1 interface fastEthernet 0/1 overload</pre>
+<p>At last, we have to configure router interfaces as inside or outside. </p>
+<pre><b>R1(config)#</b> int fa0/0
+<b>R1(config-if)#</b> ip nat inside
+<b>R1(config)#</b> int fa0/1
+<b>R1(config-if)#</b> ip nat outside</pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

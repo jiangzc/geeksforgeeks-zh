@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Simple Mail Transfer Protocol (SMTP)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Email is emerging as the one of the most valuable service in internet today. Most of the internet systems use SMTP as a method to transfer mail from one user to another. SMTP is a push protocol and is used to send the mail whereas POP (post office protocol) or IMAP (internet message access protocol) are used to retrieve those mails at the receiver’s side.</p>
+<p><strong>SMTP Fundamentals</strong><br/>
+SMTP is an application layer protocol. The client who wants to send the mail opens a TCP connection to the SMTP server and then sends the mail across the connection. The SMTP server is always on listening mode. As soon as it listens for a TCP connection from any client, the SMTP process initiates a connection on that port (25). After successfully establishing the TCP connection the client process sends the mail instantly.</p>
+<p><strong>SMTP Protocol</strong></p>
+<p>The SMTP model is of two type :</p>
+<ol>
+<li>End-to- end method</li>
+<li>Store-and- forward method</li>
+</ol>
+<p>The end to end model is used to communicate between different organizations whereas the store and forward method is used within an organization. A SMTP client who wants to send the mail will contact the destination’s host SMTP directly in order to send the mail to the destination. The SMTP server will keep the mail to itself until it is successfully copied to the receiver’s SMTP.<br/>
+The client SMTP is the one which initiates the session let us call it as client- SMTP and the server SMTP is the one which responds to the session request and let us call it as receiver-SMTP. The client- SMTP will start the session and the receiver-SMTP will respond to the request.<br/>
+<br/>
+<strong>Model of SMTP system</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>In the SMTP model user deals with the user agent (UA) for example Microsoft outlook, netscape, Mozilla etc. In order to exchange the mail using TCP, MTA is used. The users sending the mail do not have to deal with the MTA it is the responsibility of the system admin to set up the local MTA. The MTA maintains a small queue of mails so that it can schedule repeat delivery of mail in case the receiver is not available. The MTA delivers the mail to the mailboxes and the information can later be downloaded by the user agents.<br/>
+<a href="https://www.geeksforgeeks.org/wp-content/uploads/gq/2017/02/SMTP_1.png"><img src="../../../imgs/net/5fb0081db6b583c8333d84afca3c7505.jpg" alt="SMTP_1" width="728" height="352" class="alignnone size-full wp-image-30658"/></a></p>
+<p>
+<strong>Both the SMTP-client and MSTP-server should have 2 components:</strong></p>
+<ol>
+<li>User agent (UA)</li>
+<li>Local MTA</li>
+</ol>
+<p><strong>Communication between sender and the receiver :</strong><br/>
+The senders, user agent prepare the message and send it to the MTA . The MTA functioning is to transfer the mail across the network to the receivers MTA.<br/>
+<br/>
+<strong>SENDING EMAIL:</strong><br/>
+Mail is send by a series of request and response messages between the client and a server. The message which is send across consists of a header and the body. A null line is used to terminate the mail header. Everything which is after the null line is considered as body of the message which is a sequence of ASCII characters.The message body contains the actual information read by the receipt.</p>
+<p><strong>RECEIVING EMAIL:</strong><br/>
+The user agent at the server side checks the mailboxes at a particular time of intervals. If any information is received it informs the user about the mail. When user tries to read the mail it displays a list of mails with a short description of each mail in the mailbox. By selecting any of the mail user can view its contents on the terminal.</p>
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

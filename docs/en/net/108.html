@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Why does DNS use UDP and not TCP?</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>DNS is an application layer protocol. All application layer protocols use one of the two transport layer protocols, UDP and TCP. TCP is reliable and UDP is not reliable. DNS is supposed to be reliable, but it uses UDP, why?<span id="more-142726"></span></p>
+<p>&#160;</p>
+<p>There are following interesting facts about TCP and UDP on transport layer that justify the above.<br/>
+<strong>1)</strong> UDP is much faster. TCP is slow as it requires 3 way handshake. The load on DNS servers is also an important factor. DNS servers (since they use UDP) don’t have keep connections.<br/>
+<strong>2) </strong>DNS requests are generally very small and fit well within UDP segments.<br/>
+<strong>2)</strong> UDP is not reliable, but reliability can added on application layer. An application can use UDP and can be reliable by using timeout and resend at application layer.</p>
+<p>&#160;</p>
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

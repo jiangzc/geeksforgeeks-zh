@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Classes of routing protocols</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-routing-protocols-set-1-distance-vector-routing/" rel="noopener" target="_blank">Distance vector routing protocol</a>, <a href="https://practice.geeksforgeeks.org/problems/link-state-routing" rel="noopener" target="_blank">Link state routing protocol</a><br/>
+Routing is a process in which the layer 3 devices (either router or layer 3 switch) finds the optimal path to deliver a packet from one network to another. Dynamic routing protocols uses metric, cost and hop count to identify the best path from the path available for destination network. There are mainly 3 different classes of routing protocols:</p>
+<p><b>1. Distance Vector Routing Protocol –</b> These protocols selects best path in the basis of hop counts to reach a destination network in the particular direction. Dynamic protocol like RIP is an example of distance vector routing protocol. Hop count is each router which occurs in between the source and the destination network. The path with the least hop count will be chosen as the best path.</p>
+<p><strong>Features –</strong></p>
+<ul>
+<li>Updates of network are exchanged periodically.
+</li>
+<li>Updates (routing information) is always broadcast.
+</li>
+<li>Full routing tables are sent in updates.
+</li>
+<li>Routers always trust on routing information received from neighbor routers. This is also known as routing on rumors.
+</li>
+</ul>
+<p><strong>Disadvantages –</strong></p>
+<ul>
+<li>As the routing information are exchanged periodically, unnecessary traffic is generated which consumes available bandwidth.
+</li>
+<li>As full routing tables are exchanged, therefore it has security issues. If an authorized person enters the network, then the whole topology will be very easy to understand.
+</li>
+<li>Also broadcasting of network periodically creates unnecessary traffic.
+</li>
+</ul>
+<p><b>2. Link State Routing Protocol –</b> These protocols know more about the Internetwork than any other distance vector routing protocol. These re also known as SPF (Shortest Path First) protocol. OSPF is an example of link state routing protocol. </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Features –</strong></p>
+<ul>
+<li>Hello messages, also known as keep-alive messages are used for neighbor discovery and recovery.
+</li>
+<li>Concept of triggered updates are used i.e updates are triggered only when there is a topology change .
+</li>
+<li>Only that much updates are exchanged which is requested by the neighbor router.
+</li>
+</ul>
+<p>Link state routing protocol maintains three tables namely:</p>
+<ol>
+<li><strong>Neighbor table-</strong> the table which contains information about the neighbors of the router only, i.e, to which adjacency has been formed.
+</li>
+<li><strong>Topology table-</strong> This table contains information about the whole topology i.e contains both best and backup routes to particular advertised network.
+</li>
+<li><strong>Routing table-</strong> This table contains all the best routes to the advertised network.
+</li>
+</ol>
+<p><strong>Advantages –</strong></p>
+<ul>
+<li>As it maintains separate tables for both best route and the backup routes ( whole topology) therefore it has more knowledge of the inter network than any other distance vector routing protocol.
+</li>
+<li>Concept of triggered updates are used therefore no more unnecessary bandwidth consumption is seen like in distance vector routing protocol.
+</li>
+<li>Partial updates are triggered when there is a topology change, not a full update like distance vector routing protocol where whole routing table is exchanged.
+</li>
+</ul>
+<p><b>3. Advanced Distance vector routing protocol –</b> It is also known as hybrid routing protocol which uses the concept of both distance vector and link state routing protocol. <a href="https://www.geeksforgeeks.org/computer-network-eigrp-fundamentals/" rel="noopener" target="_blank">Enhanced Interior Gateway Routing Protocol (EIGRP)</a> is an example of this class if routing protocol. EIGRP acts as a link state routing protocol as it uses the concept of Hello protocol for neighbor discovery and forming adjacency. Also, partial updates are triggered when a change occurs. EIGRP acts as distance vector routing protocol as it learned routes from directly connected neighbors.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

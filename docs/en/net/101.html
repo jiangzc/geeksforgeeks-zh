@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Computer Networks | Congestion control techniques</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Congestion control refers to the techniques used to control or prevent congestion. Congestion control techniques can be broadly classified into two categories:<br/>
+<img src="../../../imgs/net/5bc809b6f0f6aae920912104d421fd72.jpg" class="aligncenter size-medium wp-image-268722"/></p>
+<h3 class="sigil_not_in_toc"><b>Open Loop Congestion Control</b></h3>
+<p>Open loop congestion control policies are applied to prevent congestion before it happens. The congestion control is handled either by the source or the destination.</p>
+<p><b>Policies adopted by open loop congestion control –</b></p>
+<ol>
+<li><b>Retransmission Policy :</b><br/>
+  It is the policy in which retransmission of the packets are taken care. If the sender feels that a sent packet is lost or corrupted, the packet needs to be retransmitted. This transmission may increase the congestion in the network.<br/>
+ To prevent congestion, retransmission timers must be designed to prevent congestion and also able to optimize efficiency.
+</li>
+<li><b>Window Policy :</b><br/>
+ The type of window at the sender side may also affect the congestion. Several packets in the Go-back-n window are resent, although some packets may be received successfully at the receiver side. This duplication may increase the congestion in the network and making it worse.<br/>
+Therefore, Selective repeat window should be adopted as it sends the specific packet that may have been lost.
+</li>
+<li><b>Discarding Policy :</b><br/>
+A good discarding policy adopted by the routers is that the routers may prevent congestion and at the same time partially discards the corrupted or less sensitive package and also able to maintain the quality of a message.<br/>
+In case of audio file transmission, routers can discard less sensitive packets to prevent congestion and also maintain the quality of the audio file.
+</li>
+<li><b>Acknowledgment Policy :</b><br/>
+Since acknowledgement are also the part of the load in network, the acknowledgment policy imposed by the receiver may also affect congestion. Several approaches can be used to prevent congestion related to acknowledgment.<br/>
+The receiver should send acknowledgement for N packets rather than sending acknowledgement for a single packet. The receiver should send a acknowledgment only if it has to sent a packet or a timer expires.
+</li>
+<li><b>Admission Policy :</b><br/>
+In admission policy a mechanism should be used to prevent congestion. Switches in a flow should first check the resource requirement of a network flow before transmitting it further. If there is a chance of a congestion or there is a congestion in the network, router should deny establishing a virtual network connection to prevent further congestion.</li>
+</ol>
+<p>All the above policies are adopted to prevent congestion before it happens in the network.
+</p>
+<h3 class="sigil_not_in_toc"><b>Closed Loop Congestion Control</b></h3>
+<p>Closed loop congestion control technique is used to treat or alleviate congestion after it happens. Several techniques are used by different protocols; some of them are:</p>
+<ol>
+<li><b>Backpressure :</b><br/>
+ Backpressure is a technique in which a congested node stop receiving packet from upstream node. This may cause the upstream node or nodes to become congested and rejects receiving data from above nodes. Backpressure is a node-to-node congestion control technique that propagate in the opposite direction of data flow. The backpressure technique can be applied only to virtual circuit where each node has information of its above upstream node.<p></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><img src="../../../imgs/net/8cea583766cee7725858ca134dd15e2a.jpg" alt="Backpressure"/></p>
+<p>In above diagram the 3rd node is congested and stops receiving packets as a result 2nd node may be get congested due to slowing down of the output data flow. Similarly 1st node may get congested and informs the source to slow down.
+</p></li>
+<li><b>Choke Packet Technique :</b><br/>
+Choke packet technique is applicable to both virtual networks as well as datagram subnets. A choke packet is a packet sent by a node to the source to inform it of congestion. Each router monitor its resources and the utilization at each of its output lines. whenever the resource utilization exceeds the threshold value which is set by the administrator, the router directly sends a  choke packet to the source giving it a feedback to reduce the traffic. The intermediate nodes through which the packets has traveled are not warned about congestion.<br/>
+<img src="../../../imgs/net/b39f67e91b40a77b981a48677322b0c5.jpg" alt="choke packet"/>
+</li>
+<li><b>Implicit Signaling :</b><br/>
+In implicit signaling, there is no communication between the congested nodes and the source. The source guesses that there is congestion in a network. For example when sender sends several packets and there is no acknowledgment for a while, one assumption is that there is a congestion.
+</li>
+<li><b>Explicit Signaling :</b><br/>
+In explicit signaling, if a node experiences congestion it can explicitly sends a packet to the source or destination to inform about congestion. The difference between choke packet and explicit signaling is that the signal is included in the packets that carry data rather than creating different packet as in case of choke packet technique.<br/>
+Explicit signaling can occur in either forward or backward direction.<p></p>
+<ul>
+<li><b>Forward Signaling :</b> In forward signaling signal is sent in the direction of the congestion. The destination is warned about congestion. The reciever in this case adopt policies to prevent further congestion.</li>
+<li><b>Backward Signaling :</b> In forward signaling signal is sent in the opposite direction of the congestion. The source is warned about congestion and it needs to slow down.</li>
+</ul>
+</li>
+</ol>
+<p><br/><br/>
+<b>References :</b><br/>
+<a href="http://nptel.ac.in/courses/106105080/pdf/M7L5.pdf" rel="noopener" target="_blank">nptel.ac.in</a><br/>
+<a href="http://www.idc-online.com/technical_references/pdfs/data_communications/Congestion_Control.pdf" rel="noopener" target="_blank">www.idc-online.com</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

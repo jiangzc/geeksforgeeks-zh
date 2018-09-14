@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Extended access-list</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-access-lists-acl/" rel="noopener" target="_blank">Access-lists (ACL)</a>, <a href="https://www.geeksforgeeks.org/computer-network-standard-access-list/" rel="noopener" target="_blank">Standard Access-list</a><br/>
+Access-list (ACL) is a set of rules defined for controlling the network traffic and reducing network attack. ACLs are used to filter traffic based on the set of rules defined  for the incoming or out going of the network. </p>
+<p><b>Extended Access-list –</b><br/>
+It is one of the types of Access-list which is mostly used as it can distinguish IP traffic therefore the whole traffic will not be permitted or denied like in standard access-list . These are the ACL which uses both source and destination IP address and also the port numbers to distinguish IP traffic. In these type of ACL, we can also mention which IP traffic should be allowed or denied . These use range 100-199 and 2000-2699.</p>
+<p><strong>Features –</strong></p>
+<ol>
+<li>Extended access-list is generally applied close to the source but not always.
+</li>
+<li>In Extended access-list, packet filtering takes place on the basis of source IP address, destination IP address, Port numbers.
+</li>
+<li>In extended access-list, particular services will be permitted or denied .
+</li>
+<li>Extended ACL is created from 100 – 199 &amp; extended range 2000 – 2699.
+</li>
+<li>If numbered with extended Access-list is used then remember rules can’t be deleted. If one of the rule is deleted then the whole access-list will be deleted.
+</li>
+<li>If named with extended Access-list is used then we have the flexibility to delete a rule from access-list.
+</li>
+</ol>
+<p><b>Configuration –</b></p>
+<p><img src="../../../imgs/net/923695fe9cf7cb4139449d2c13f5322e.jpg" width="652" height="386" class="aligncenter size-full"/></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>Here is a small topology in which there are 3 departments namely sales, finance  and marketing. Sales department having network 172.16.10.40/24, Finance department having network 172.16.50.0/24 and marketing department having network 172.16.60.0/24. Now, we want to deny FTP connection from sales department to finance department and deny telnet to Finance department from both sales and marketing department. </p>
+<p>Now, first configuring numbered extended access – list for denying FTP connection from sales to finance department. </p>
+<pre><strong>R1#</strong> config terminal
+<b>R1(config)#</b> access-list 110 
+            deny tcp 172.16.40.0 0.0.0.255 172.16.50.0 0.0.0.255 eq 21 </pre>
+<p>Here, we first create an numbered Access-list in which we use 110 (used from extended access-list range) and denying the sales network (172.16.40.0) to make FTP connection to finance network (172.16.50.0).</p>
+<p><strong>Note –</strong> Here, as FTP uses TCP and port number 21. Therefore,  we have to specify the permit or deny condition according to the need. Also, after eq we have use the port number for specified application layer protocol. </p>
+<p>Now, we have to deny telnet connection to finance department from both sales and Marketing department which means no one should telnet to finance department. Configuring for the same. </p>
+<pre><b>R1(config)#</b> access-list 110 
+            deny tcp any 172.16.50.0 0.0.0.255 eq 23</pre>
+<p>Here, we have used the keyword any which means 0.0.0.0 0.0.0.0 i.e any ip address from any subnet mask. As telnet uses port number 23 therefore, we have to specify the port number 23 after eq . </p>
+<pre><b>R1(config)#</b> access-list 110 permit ip any any</pre>
+<p>Now, this is the most important part. As we already know there is an implicit deny at the end of every access-list which means that if the traffic doesn’t match any of the rule of Access-list then the traffic will be dropped. </p>
+<p>By specifying <strong>any any </strong> means that source having any ip address traffic will reach finance department except the traffic which it matches the above rules that we have made. Now, we have to apply the access-list on the interface of the router:</p>
+<pre><b>R1(config)#</b> int fa0/1
+<b>R1(config-if)#</b> ip access-group 110 out</pre>
+<p>As we remember, we have to apply the extended access-list as close as possible to source but here we have applied it to close to the destination because we have to block the traffic from both sales and marketing department, therefore, we have to apply it  close to the destination here otherwise we have to make separate access-list for fa0/0 and fa1/0 inbound.  </p>
+<p><b>Named access-list example –</b></p>
+<p><img src="../../../imgs/net/923695fe9cf7cb4139449d2c13f5322e.jpg" width="652" height="386" class="aligncenter size-full"/></p>
+<p>Now, considering the same topology, we will make a named extended access-list. </p>
+<pre><b>R1(config)#</b> ip access-list extended blockacl</pre>
+<p>By using this command we have made an access-list named blockacl. </p>
+<pre><b>R1(config-ext-nacl)#</b> deny tcp 172.16.40.0 0.0.0.255 172.16.50.0 0.0.0.255 eq 21 
+<b>R1(config-ext-nacl)#</b> deny tcp any 172.16.50.0 0.0.0.255 eq 23
+<b>R1(config-ext-nacl)#</b> permit ip any any</pre>
+<p>And then the same configuration we have done in numbered access-list. </p>
+<pre><b>R1(config)#</b> int fa0/1
+<b>R1(config-if)#</b> ip access-group blockacl out</pre>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

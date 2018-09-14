@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Unicode</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Unicode</b> is a universal encoding system to provide a comprehensive character set and was created by the Unicode consortium (a group of multilingual software manufacturers). Unicode simplifies software localization and improves multilingual text processing. It overcomes the difficulty inherent in ASCII and extended ASCII.</p>
+<p>Unicode has standardizes script behavior which allows any combination of characters, drawn from any combination of scripts and languages, to co-exist in a single document. Unicode defines multiple encodings of its single character set: UTF-7, UTF-8, UTF-16, and UTF-32. <b>Conversion</b> of data among these encodings is <b>lossless</b>.</p>
+<p>Unicode was originally a 2-byte character set. Unicode version 3, however is a <b>4-byte</b> code and is fully compatible with ASCII and extended ASCII. </p>
+<p>These all support encoding the same set of characters.</p>
+<ul>
+<li><b>UTF-8</b> uses anywhere from 1 to 4 bytes per character depending on character, but ASCII take only 1 byte and 4 bytes for unusual ones.</li>
+<li><b>UTF-16</b> uses 2 bytes for most characters, while very unusual characters take 4.</li>
+<li><b>UTF-32</b> uses 4 bytes per character. We can calculate the number of characters in a UTF-32 string by only counting bytes.</li>
+</ul>
+<p>The notation uses hexadecimal digits in format as follows.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><b>U-XXXXXXXX –</b><br/>
+The numbering goes from <b>U-00000000 to U-FFFFFFFF</b>. Unicode divides the available space codes into planes. A plane is a continuous group of 65,536 code points. The most significant 16 bits define the plane (i.e. number of planes = 65,535) and each plane can define up to 65,536 character or symbols.</p>
+<p><b>Types of Plane –</b></p>
+<ol>
+<li><b>Basic multilingual plane (BMP) – </b> Plane 0000, the basic multilingual plane is designed to be compatible with the previous 16-bit Unicode. The most significant 16-bits in this plane are all zeroes. It mostly defines character sets in different languages with the exception of some control and special characters. It is represented as U+XXXX where XXXX are least significant 16-bits, eig., : U+0900 to U+09FF reserved for Devanagari, Bengali   U+2200 to U+22FF reserved for mathematical operation etc. </li>
+<li><b>Supplementary multilingual plane (SMP) –</b> Plane 0001, the supplementary multilingual plane, is designed to provide more codes for those multilingual characters that are excluded in the BMP.                                                                 Example: 10140-1018F are reserved for Ancient Greek Numbers.</li>
+<li><b>Supplementary ideography plane (SIP) –</b> Plane 0002, the supplementary ideography plane, is designed to provide codes for ideographic symbols, symbols that provide an idea in contrast to a sound, e.g., 20000-2A6DF are reserved for CJK Unified Extension B</li>
+<li><b>Supplementary special plane (SSP) –</b> 000E, the supplementary special plane, is used for special characters, e.g., E0000-E007F are reserved for tags.</li>
+<li><b>Private use planes (PUPs) –</b> Planes 000F and 0010, private use planes are for private use. They are used by fonts internally to refer to auxiliary glyphs.</li>
+</ol>
+<p><b>Reference –</b><br/>
+<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd374081(v=vs.85).aspx" target="_blank">Unicode – msdn.microsoft</a><br/>
+<a href="https://www.amazon.in/DATA-COMMUNICATIONS-NETWORKING-Behrouz-Forouzan/dp/0070634149?tag=googinhydr18418-21&amp;tag=googinkenshoo-21&amp;ascsubtag=de868647-8ef7-4c04-95d3-420ac73e7aac" target="_blank">Data Communication and Networking – Forounzan</a></p>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

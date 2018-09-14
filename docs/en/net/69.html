@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">EIGRP fundamentals</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Dynamic routing Protocol performs the same function as static routing Protocol does. In dynamic routing Protocol, if the destination is unreachable then an another entry,  in the routing table,  to  the same destination can be used. One of the routing Protocol is EIGRP.<br/>
+<b>EIGRP:</b><br/>
+<a href="https://www.geeksforgeeks.org/computer-network-features-enhanced-interior-gateway-routing-protocol-eigrp/">Enhanced Interior Gateway Routing Protocol (EIGRP)</a> is a dynamic routing Protocol which is used to find the best path between any two layer 3 device to deliver the packet. EIGRP works on  network  layer Protocol of osi model and uses the protocol number 88.It uses metric to find out best path between two layer 3 device (router or layer 3 switch) operating EIGRP.  Administrative Distance for EIGRP are:-</p>
+<table>
+<tbody><tr>
+<th><strong>EIGRP routes</strong></th>
+<th><strong>AD values</strong></th>
+</tr>
+<tr>
+<td>Summary Routes</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Internal Routes </td>
+<td>90</td>
+</tr>
+<tr>
+<td>external routes</td>
+<td>170</td>
+</tr>
+</tbody>
+</table>
+<p> It uses some messages to communicate with the neighbour devices that operates EIGRP. These are :-</p>
+<ol>
+<li><strong>Hello message-</strong>These messages are keep alive messages which are exchanged between two devices operating EIGRP. These messages are used for neighbour discovery/recovery,  if there is any device operating EIGRP or if any device(operating EIGRP) coming up again.<br/>
+These messages are used for neighbor discovery if multicast at 224.0.0.10. It contains values like AS number, k values etc.<br/>
+These messages are used as acknowledgment when unicast. A hello with no data is used as the acknowledgment.</li>
+<li><strong>NULL update-</strong>It is used to calculate SRTT(Smooth Round Trip Timer) and RTO(Retransmission Time Out).<br/>
+<em>SRTT:</em>The time is taken by a packet to reach neighboring router and the acknowledgment of the packet to reach to the local router.<p></p>
+<p><em>RTO: </em> If a multicast fails then unicast are being sent to that router. RTO is the time for which the local router waits for an acknowledgment of the packet.</p></li>
+<li><strong>Full Update – </strong>After exchanging hello messages or after the neighbourship is formed, these messages are exchanged. This message contains all the best routes.</li>
+<li><strong>Partial update-</strong>These messages are exchanged when there is a topology change and new links are added. It contains only the new routes, not all the routes. These messages are multicast.</li>
+<li><strong>Query message-</strong>These messages are multicast when the device is declared dead and it has no routes to it in its topology table.</li>
+<li><strong>Reply message – </strong>These messages are the acknowledgment of the query message sent to the originator of the query message stating the route to the network which has been asked in the query message.</li>
+<li><strong>Acknowledgement message</strong><br/>
+It is used to acknowledge EIGRP update, queries, and replies. Acks are hello packets that contain no data.<p></p>
+<p><strong>Note:-</strong>Hello, and acknowledgment packets do not require any acknowledgment.<br/>
+Reply, query, update messages are reliable messages i.e requires acknowledgement.</p></li>
+</ol>
+<p><b>Composite matrix-</b>The EIGRP composite metric calculation can use up to 5 variables, but only  2 are used by default (K1 and K3). The composite metric values are :</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong><em>K1 (bandwidth)<br/>
+K2 (load)<br/>
+K3 (delay)<br/>
+K4 (reliability)<br/>
+K5 (MTU) </em></strong></p>
+<p>The lowest bandwidth, load, delay, reliability, MTU along the path between the source and the destination is considered in the composite matrix in order to calculate the cost.<br/>
+<strong>Note:-</strong> Generally, only k1 and k3 values are used for metric calculation by EIGRP. The values are 10100 for k1, k2, k3, k4, k5 respectively.<br/>
+<strong>criteria </strong> To form EIGRP neighbourship, these criteria should be fulfilled:-</p>
+<ol>
+<li>k values should match.</li>
+<li>Autonomous system number should match. (AS is a group of networks running under a single administrative control) .</li>
+<li>authentication should match (if applied). EIGRP supports MD5 authentication only. </li>
+<li>subnet mask should be same.</li>
+</ol>
+<p><b>Timers:-</b><br/>
+<strong>Hello timer-</strong> The interval in which EIGRP sends a hello message on an interface. It is 5 seconds by default.<br/>
+<strong>Dead timer-</strong> The interval in which the neighbor will be declared dead if it is not able to send the hello packet. It is 15 seconds by default.</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Internet Protocol v6 | IPv6</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>IP v6 was developed by Internet Engineering Task Force (IETF) to deal with the problem of IP v4 exhaustion. IP v6 is 128-bits address having an address space of 2^128, which is way bigger than IPv4. In IPv6 we use Colon-Hexa representation. There are 8 groups and each group represents 2 Bytes.</p>
+<p><img src="../../../imgs/net/0ed88f0a17bb0d0a2a7a6f3ee53fd13c.jpg" alt="" width="665" height="184" class="alignnone size-large wp-image-215769"/></p>
+<p>In IPv6 representation, we have three addressing methods :</p>
+<li>Unicast</li>
+<li>Multicast</li>
+<li>Anycast</li>
+<p><strong>Unicast Address:</strong> Unicast Address identifies a single network interface. A packet sent to unicast address is delivered to the interface identified by that address.<br/>
+<strong>Multicast Address:</strong> Multicast Address is used by multiple hosts, called as Group, acquires a multicast destination address. These hosts need not be geographically together. If any packet is sent to this multicast address, it will be distributed to all interfaces corresponding to that multicast address.<br/>
+<strong>Anycast Address:</strong> Anycast Address is assigned to a group of interfaces. Any packet sent to anycast address will be delivered to only one member interface (mostly nearest host possible).</p>
+<p><strong>Note :</strong> Broadcast is not defined in IPv6.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>Types of IPv6 address:</strong><br/>
+We have 128 bits in IPv6 address but by looking at first few bits we can identify what type of address it is.</p>
+<table width="100%" style="table-layout:fixed;">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;">Prefix</th>
+<th style="padding:8px;background-color:#4CB96B;">Allocation</th>
+<th style="padding:8px;background-color:#4CB96B;">Fraction of Address Space</th>
+</tr>
+</thead>
+<tbody>
+<tr style="text-align:center;">
+<td>0000 0000</td>
+<td>Reserved</td>
+<td>1/256</td>
+</tr>
+<tr style="text-align:center;">
+<td style="background-color:rgba(183,223,182,0.4);">0000 0001</td>
+<td style="background-color:rgba(183,223,182,0.4);">Unassigned (UA)</td>
+<td style="background-color:rgba(183,223,182,0.4);">1/256</td>
+</tr>
+<tr style="text-align:center;">
+<td>0000 001</td>
+<td>Reserved for NSAP</td>
+<td>1/128</td>
+</tr>
+<tr style="text-align:center;">
+<td style="background-color:rgba(183,223,182,0.4);">0000 01</td>
+<td style="background-color:rgba(183,223,182,0.4);">UA</td>
+<td style="background-color:rgba(183,223,182,0.4);">1/64</td>
+</tr>
+<tr style="text-align:center;">
+<td>0000 1</td>
+<td>UA</td>
+<td>1/32</td>
+</tr>
+<tr style="text-align:center;">
+<td style="background-color:rgba(183,223,182,0.4);">0001</td>
+<td style="background-color:rgba(183,223,182,0.4);">UA</td>
+<td style="background-color:rgba(183,223,182,0.4);">1/16</td>
+</tr>
+<tr style="text-align:center;">
+<td>001</td>
+<td>Global Unicast</td>
+<td>1/8</td>
+</tr>
+<tr style="text-align:center;">
+<td style="background-color:rgba(183,223,182,0.4);">010</td>
+<td style="background-color:rgba(183,223,182,0.4);">UA</td>
+<td style="background-color:rgba(183,223,182,0.4);">1/8</td>
+</tr>
+<tr style="text-align:center;">
+<td>011</td>
+<td>UA</td>
+<td>1/8</td>
+</tr>
+<tr style="text-align:center;">
+<td style="background-color:rgba(183,223,182,0.4);">100</td>
+<td style="background-color:rgba(183,223,182,0.4);">UA</td>
+<td style="background-color:rgba(183,223,182,0.4);">1/8</td>
+</tr>
+<tr style="text-align:center;">
+<td>101</td>
+<td>UA</td>
+<td>1/8</td>
+</tr>
+<tr style="text-align:center;">
+<td style="background-color:rgba(183,223,182,0.4);">110</td>
+<td style="background-color:rgba(183,223,182,0.4);">UA</td>
+<td style="background-color:rgba(183,223,182,0.4);">1/8</td>
+</tr>
+<tr style="text-align:center;">
+<td>1110</td>
+<td>UA</td>
+<td>1/16</td>
+</tr>
+<tr style="text-align:center;">
+<td style="background-color:rgba(183,223,182,0.4);">1111 0</td>
+<td style="background-color:rgba(183,223,182,0.4);">UA</td>
+<td style="background-color:rgba(183,223,182,0.4);">1/32</td>
+</tr>
+<tr style="text-align:center;">
+<td>1111 10</td>
+<td>UA</td>
+<td>1/64</td>
+</tr>
+<tr style="text-align:center;">
+<td style="background-color:rgba(183,223,182,0.4);">1111 110</td>
+<td style="background-color:rgba(183,223,182,0.4);">UA</td>
+<td style="background-color:rgba(183,223,182,0.4);">1/128</td>
+</tr>
+<tr style="text-align:center;">
+<td>1111 1110 0</td>
+<td>UA</td>
+<td>1/512</td>
+</tr>
+<tr style="text-align:center;">
+<td style="background-color:rgba(183,223,182,0.4);">1111 1110 10</td>
+<td style="background-color:rgba(183,223,182,0.4);">Link-Local Unicast Addresses</td>
+<td style="background-color:rgba(183,223,182,0.4);">1/1024</td>
+</tr>
+<tr style="text-align:center;">
+<td>1111 1110 11</td>
+<td>Site-Local Unicast Addresses</td>
+<td>1/1024</td>
+</tr>
+<tr style="text-align:center;">
+<td style="background-color:rgba(183,223,182,0.4);">1111 1111</td>
+<td style="background-color:rgba(183,223,182,0.4);">Multicast Address</td>
+<td style="background-color:rgba(183,223,182,0.4);">1/256</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note : </strong>In IPv6, all 0’s and all 1’s can be assigned to any host, there is not any restriction like IPv4.</p>
+<p><strong>Provider based Unicast address :</strong><br/>
+These are used for global communication.<br/>
+<img src="../../../imgs/net/3bb8b8f5b3bffe316c248c296520ce66.jpg" alt="" width="536" height="114" class="alignnone size-full wp-image-215778"/></p>
+<p>First 3 bits identifies it as of this type.<br/>
+<strong>Registry Id (5-bits) :</strong> Registry Id identifies the region to which it belongs. Out of 32 (i.e. 2^5), only 4 registry id’s are being used.<br/>
+<img src="../../../imgs/net/83f43827721e1d5575dc37f4dbc6b208.jpg" alt="" width="671" height="152" class="alignnone size-full wp-image-215783"/><br/>
+<strong>Provider Id :</strong> Depending on the number of service providers that operates under a region, certain bits will be allocated to Provider Id field. This field need not be fixed. Let’s say if Provider Id = 10 bits then Subscriber Id will be 56 – 10 = 46 bits.<br/>
+<strong>Subscriber Id :</strong> After Provider Id is fixed, remaining part can be used by ISP as normal IP address.<br/>
+<strong>Intra Subscriber :</strong> This part can be modified as per need of organization that is using the service.</p>
+<p><strong>Geography based Unicast address :</strong><br/>
+<img src="../../../imgs/net/bfee2c70f7f730777e94755612c122c6.jpg" alt="" width="636" height="149" class="alignnone size-full wp-image-215787"/></p>
+<p><strong>Global routing prefix :</strong>  Global routing prefix contains all the details of Latitude and Longitude. As of now, it is not being used. In Geography based Unicast address routing will be based on location.<br/>
+<strong>Interface Id :</strong> In IPv6, instead of using Host Id, we use the term Interface Id.</p>
+<p><strong>Some special addresses:</strong><br/>
+<strong>Unspecified – </strong><br/>
+  <img src="../../../imgs/net/8085dda110ea01506a363cc14aba9c58.jpg" alt="" width="470" height="71" class="alignnone size-full wp-image-215790"/></p>
+<p><strong>Loopback –</strong><br/>
+<img src="../../../imgs/net/807dad53796107469e4cd37a534ad4d4.jpg" alt="" width="470" height="76" class="alignnone size-full wp-image-215792"/></p>
+<p><strong>IPv4 Compatible –</strong><br/>
+<img src="../../../imgs/net/6bc1790d79b0b2eee98e88bf680ab91d.jpg" alt="" width="473" height="76" class="alignnone size-full wp-image-215793"/></p>
+<p><strong>IPv4 mapped –</strong><br/>
+<img src="../../../imgs/net/f73581b16573e8f3be55c3f1ed873014.jpg" alt="" width="511" height="78" class="alignnone size-full wp-image-215794"/></p>
+<p><strong>Local Unicast Addresses :</strong><br/>
+There are two types of Local Unicast addresses defined- <em>Link local</em> and <em>Site Local</em>.</p>
+<p><strong>Link local address:</strong><br/>
+<img src="../../../imgs/net/b85b9858f6e4f879f20533dbdb3bf206.jpg" alt="" width="511" height="98" class="alignnone size-full wp-image-215795"/></p>
+<p>Link local address is used for addressing on a single link. It can also be used to communicate with nodes on the same link. Link local address always begins with 1111111010 (i.e. FE80). Router will not forward any packet with Link local address.</p>
+<p><strong>Site local address:</strong><br/>
+<img src="../../../imgs/net/92be56ce8ed5578426294fc4d9dbfb5c.jpg" alt="" width="518" height="105" class="alignnone size-full wp-image-215796"/></p>
+<p>Site local addresses are equivalent to private IP address in IPv4. Likely, some address space is reserved, which can only be routed within an organization. First 10-bits are set to 1111111011, which is why Site local addresses always begin with FEC0.  Following 32 bits are Subnet ID, which can be used to create subnet within organization. Node address is used to uniquely identify the link; therefore, we use 48-bits MAC address here.</p>
+<p><strong>References :</strong></p>
+<li><a href="https://tools.ietf.org/html/rfc3513" target="https://tools.ietf.org/html/rfc3513">https://tools.ietf.org/html/rfc3513</a></li>
+<li><a href="https://en.wikipedia.org/wiki/IPv6_address" target="https://en.wikipedia.org/wiki/IPv6_address">https://en.wikipedia.org/wiki/IPv6_address</a></li>
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

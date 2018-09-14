@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Back-off Algorithm for CSMA/CD</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-networks-gate-notes-set-1-data-link-layer/" rel="noopener" target="_blank">Basics of CSMA/ CD</a>, <a href="https://www.geeksforgeeks.org/collision-detection-csmacd/" rel="noopener" target="_blank">Collision Detection in CSMA/CD</a><br/>
+Back-off algorithm is a <b>collision resolution</b> mechanism which is used in random access MAC protocols (CSMA/CD). This algorithm is generally used in Ethernet to schedule re-transmissions after collisions.</p>
+<p>If a collision takes place between 2 stations, they may restart transmission as soon as they can after the collision. This will always lead to another collision and form an infinite loop of collisions leading to a deadlock. To prevent such scenario back-off algorithm is used.</p>
+<p>Let us consider an scenario of 2 stations A and B transmitting some data:</p>
+<p><img src="../../../imgs/net/23cc0d32395d5a43a5f86935d0315dcd.jpg" width="651" height="431" alt="" class="aligncenter size-full"/></p>
+<p>After a collision, time is divided into discrete slots (<strong>T<sub>slot</sub></strong>) whose length is equal to 2t,  where t is the maximum propagation delay in the network.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>The stations involved in the collision randomly pick an integer from the set K i.e {0, 1}. This set is called the contention window. If the sources collide again because they picked the same integer, the contention window size is doubled and it becomes {0, 1, 2, 3}. Now the sources involved in the second collision randomly pick an integer from the set {0, 1, 2, 3} and wait that number of time slots before trying again. Before they try to transmit, they listen to the channel and transmit only if the channel is idle. This causes the source which picked the smallest integer in the contention window to succeed in transmitting its frame.</p>
+<p>So, Back-off algorithm defines a <i>waiting time for the stations involved in collision</i>, i.e. for how much time the station should wait to re-transmit.</p>
+<pre>Waiting time = back–off time
+Let n = collision number or re-transmission serial number. 
+Then, 
+Waiting time = K * T<sub>slot</sub>
+where K = [0, 2<sup>n</sup> – 1 ]  
+</pre>
+<p><b>Example –</b></p>
+<p><strong>Case-1 :</strong><br/>
+Suppose 2 stations A and B start transmitting data (Packet 1) at the same time then, collision occurs. So, the collision number n for both their data (Packet 1) = 1. Now, both the station randomly pick an integer from the set K i.e. {0, 1}.</p>
+<p><img src="../../../imgs/net/54a6f1eda79b1842dd21e49d53c5950d.jpg" width="551" height="246" alt="" class="aligncenter size-full"/></p>
+<ul>
+<li><strong>When both A and B choose K = 0</strong><br/>
+–&gt; Waiting time for A = 0 * T<sub>slot</sub> = 0<br/>
+          Waiting time for B = 0 * T<sub>slot</sub> = 0<p></p>
+<p>Therefore, both stations will transmit at the same time and hence collision occurs.
+</p></li>
+<li><strong>When A chooses K = 0 and B chooses K = 1</strong><br/>
+–&gt; Waiting time for A = 0 * T<sub>slot</sub> = 0<br/>
+Waiting time for B = 1 * T<sub>slot</sub> = T<sub>slot</sub><p></p>
+<p>Therefore, A transmits the packet and B waits for time T<sub>slot</sub> for transmitting and hence A wins.
+</p></li>
+<li><strong> When A chooses K = 1 and B chooses K = 0</strong><br/>
+–&gt; Waiting time for A = 1 * T<sub>slot</sub> = T<sub>slot</sub><br/>
+Waiting time for B = 0 * T<sub>slot</sub> = 0<p></p>
+<p>Therefore, B transmits the packet and A waits for time T<sub>slot</sub> for transmitting and hence B wins.
+ </p></li>
+<li><strong> When both A and B choose K = 1</strong><br/>
+–&gt; Waiting time for A = 1 * T<sub>slot</sub> = T<sub>slot</sub><br/>
+Waiting time for B = 1 * T<sub>slot</sub> = T<sub>slot</sub><p></p>
+<p>Therefore, both will wait for the same time T<sub>slot</sub> and then transmit. Hence, collision occurs.
+ </p></li>
+</ul>
+<pre>Probability that A wins = 1/4
+Probability that B wins = 1/4
+Probability of collision  = 2/4
+</pre>
+<p><strong>Case-2 :</strong><br/>
+Assume that A wins in Case 1 and  transmitted  its data(Packet 1). Now, as soon as B transmits its packet 1, A transmits its packet 2. Hence, collision occurs. Now collision  no. n becomes 1 for packet 2 of A and becomes 2 for packet 1 of B.<br/>
+For packet 2 of A, K = {0, 1}<br/>
+For packet 1 of B, K = {0, 1, 2, 3}</p>
+<p><img src="../../../imgs/net/aa836bb02ec0a8288af2dd522c821c18.jpg" width="551" height="406" alt="" class="aligncenter size-full"/></p>
+<pre>Probability that A wins = 5/8
+Probability that B wins = 1/8
+Probability of collision  = 2/8
+</pre>
+<p>So, probability of collision  decreases as compared to Case 1.</p>
+<p><b>Advantage –</b></p>
+<ul>
+<li>Collision probability decreases exponentially.</li>
+</ul>
+<p><b>Disadvantages –</b></p>
+<ul>
+<li>
+<strong>Capture effect:</strong> Station who wins ones keeps on winning.
+</li>
+<li> Works only for 2 stations or hosts.</li>
+</ul>
+<p><b>GATE Practice Question –</b></p>
+<ol>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2004-question-54/" rel="noopener" target="_blank">GATE-CS-2004 | Question 90</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-cs-2016-set-2-question-34/" rel="noopener" target="_blank">GATE-CS-2016 (Set 2) | Question 34</a></li>
+<li><a href="https://www.geeksforgeeks.org/gate-gate-it-2004-question-85/" rel="noopener" target="_blank">GATE-IT-2004 | Question 85</a></li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

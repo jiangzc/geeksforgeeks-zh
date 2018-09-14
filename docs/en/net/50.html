@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Supernetting</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><b>Supernetting</b> is the opposite of <a href="https://www.geeksforgeeks.org/ip-addressing-classless-addressing/" rel="noopener" target="_blank">Subnetting</a>. In subnetting, a single big network is divided into multiple smaller subnetworks. In Supernetting, multiple networks are combined into a bigger network termed as a Supernetwork or Supernet.</p>
+<p>Supernetting is mainly used in Route Summarization, where routes to multiple networks with similar network prefixes are combined into a single routing entry, with the routing entry pointing to a Super network, encompassing all the networks. This in turn significantly reduces the size of routing tables and also the size of routing updates exchanged by routing protocols.</p>
+<p>More specifically,</p>
+<ul>
+<li>When multiple networks are combined to form a bigger network, it is termed as super-netting
+</li>
+<li>Super netting is used in route aggregation to reduce the size of routing tables and routing table updates
+</li>
+</ul>
+<p>There are some points which should be kept in mind while supernetting:</p>
+<ol>
+<li>All the IP address should be contiguous.
+</li>
+<li>Size of all the small networks should be equal and must be in form of 2<sup>n</sup>.
+</li>
+<li>First IP address should be exactly divisible by whole size of supernet.
+</li>
+</ol>
+<p><b>Example –</b> Suppose 4 small networks of class C: </p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre>200.1.0.0, 
+200.1.1.0,
+200.1.2.0,
+200.1.3.0</pre>
+<p>Build a bigger network which have a single Network Id. </p>
+<p><b>Explanation –</b> Before Supernetting routing table will be look like as:</p>
+<p></p>
+<center></center>
+<p></p>
+<table style="width:80%">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Network Id</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Subnet Mask</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">200.1.0.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">A</td>
+</tr>
+<tr>
+<td style="text-align:center">200.1.1.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">B</td>
+</tr>
+<tr>
+<td style="text-align:center">200.1.2.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">C</td>
+</tr>
+<tr>
+<td style="text-align:center">200.1.3.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">D</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>First, lets check whether three condition are satisfied or not:</p>
+<ol>
+<li><b>Contiguous:</b> You can easily see that all network are contiguous all having size 256 hosts.<br/>
+Range of first Network from 200.1.0.0 to 200.1.0.255. If you add 1 in last IP address of first network that is 200.1.0.255 + 0.0.0.1, you will get the next network id that is 200.1.1.0. Similarly, check that all network are contiguous.<p></p>
+</li>
+<li><b>Equal size of all network:</b> As all networks are of class C, so all of the have a size of 256 which in turn equal to 2<sup>8</sup>.
+</li>
+<li><b>First IP address exactly divisible by total size:</b> When a binary number is divided by 2<sup>n</sup> then last n bits are the remainder. Hence in order to prove that first IP address is exactly divisible by while size of Supernet Network. You can check that if last n v=bits are 0 or not.
+<p>In given example first IP is 200.1.0.0 and whole size of supernet is 4*2<sup>8</sup> = 2<sup>10</sup>. If last 10 bits of first IP address are zero then IP will be divisible.</p>
+<p><img src="../../../imgs/net/0b33fa5a0ebfb3ee3884e81b8defdadc.jpg" width="400" height="131" class="aligncenter size-full"/></p>
+<p>Last 10 bits of first IP address are zero (highlighted by green color). So 3rd condition is also satisfied.</p>
+</li>
+<ol>
+<p>Therefore, you can join all these 4 networks and can make a Supernet. New Supernet Id will be 200.1.0.0.</p>
+<p><b>Advantages of Supernetting –</b><br/>
+</p>
+<li>Control and reduce network traffic
+</li>
+<li>Helpful to solve the problem of lacking IP addresses
+</li>
+<li>Minimizes the routing table
+</li>
+
+<p></p>
+<p><b>Disadvantages of Supernetting –</b></p>
+<ul>
+<li>It cannot cover different area of network when combined
+</li>
+<li>All the networks should be in same class and all IP should be contiguous
+</li>
+</ul>
+<p></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</ol>
+</ol>
+</div>
+</body>
+</html>

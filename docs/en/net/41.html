@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Computer Networks |  Error Detection</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p><strong>Error</strong><br/>
+A condition when the receiver’s information does not matches with the sender’s information. During transmission, digital signals suffer from noise that can introduce errors in the binary bits travelling from sender to receiver. That means a 0 bit may change to 1 or a 1 bit may change to 0.<br/>
+<br/>&#160;<br/>
+<strong>Error Detecting Codes (Implemented either at Data link layer or Transport Layer of OSI Model)</strong><br/>
+Whenever a message is transmitted, it may get scrambled by noise or data may get corrupted. To avoid this, we use error-detecting codes which are additional data added to a given digital message to help us detect if any error has occurred during transmission of the message.<br/>
+<br/>&#160;<br/>
+Basic approach used for error detection is the use of redundancy bits, where additional bits are added to facilitate detection of errors. </p>
+<p>Some popular techniques for error detection are:<br/>
+1. Simple Parity check<br/>
+2. Two-dimensional Parity check<br/>
+3. Checksum<br/>
+4. Cyclic redundancy check<br/>
+<br/>
+&#160;</p>
+<p><strong>1. Simple Parity check </strong><br/>
+Blocks of data from the source are subjected to a check bit or parity bit generator form, where a parity of : </p>
+<ul>
+<li>1 is added to the block if it contains odd number of 1’s, and </li>
+<li>0 is added if it contains even number of 1’s</li>
+</ul>
+<p>This scheme makes the total number of 1’s even, that is why it is called even parity checking.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/detect12.jpg"><img src="../../../imgs/net/35dba7014903ec9897d790715b3e6551.jpg" alt="1" width="631" height="313" class="aligncenter size-full wp-image-22652"/></a></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p><strong>2. Two-dimensional Parity check</strong><br/>
+Parity check bits are calculated for each row, which is equivalent to a simple parity check bit. Parity check bits are also calculated for all columns, then both are sent along with the data. At the receiving end these are compared with the parity bits calculated on the received data.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/detect11.jpg"><img src="../../../imgs/net/c5fcc4093907e4386a22dfd04643de57.jpg" alt="2" width="580" height="422" class="aligncenter size-full wp-image-22654"/></a></p>
+<p><strong>3. Checksum</strong></p>
+<ul>
+<li>In checksum error detection scheme, the data is divided into k segments each of m bits. </li>
+<li>In the sender’s end the segments are added using 1’s complement arithmetic to get the sum. The sum is complemented to get the checksum.</li>
+<li>The checksum segment is sent along with the data segments. </li>
+<li>At the receiver’s end, all received segments are added using 1’s complement arithmetic to get the sum. The sum is complemented. </li>
+<li>If the result is zero, the received data is accepted; otherwise discarded.</li>
+</ul>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/detect13.jpg"><img src="../../../imgs/net/f1c562ef5937be670d41c6d167123cc4.jpg" alt="2 (1)" width="537" height="499" class="aligncenter size-full wp-image-22653"/></a></p>
+<p><strong>4. Cyclic redundancy check (CRC)</strong></p>
+<ul>
+<li>Unlike checksum scheme, which is based on addition, CRC is based on binary division. </li>
+<li>In CRC, a sequence of redundant bits, called cyclic redundancy check bits, are appended to the end of data unit so that the resulting data unit becomes exactly divisible by a second, predetermined binary number. </li>
+<li>At the destination, the incoming data unit is divided by the same number. If at this step there is no remainder, the data unit is assumed to be correct and is therefore accepted. </li>
+<li>A remainder indicates that the data unit has been damaged in transit and therefore must be rejected.</li>
+</ul>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/detect14.jpg"><img src="../../../imgs/net/7a163fc54595a0d95cc415e207df53d3.jpg" alt="3" width="518" height="351" class="aligncenter size-full wp-image-22656"/></a><br/>
+<br/>
+&#160;<br/>
+<strong>Example : </strong><br/>
+<a href="https://contribute.geeksforgeeks.org/wp-content/uploads/detect15.jpg"><img src="../../../imgs/net/e60f314d215b1890de40a8a2d46ab820.jpg" alt="4" width="764" height="605" class="aligncenter size-full wp-image-22655"/></a><br/>
+<br/>
+&#160;<br/>
+Previous year GATE questions based on error detection:<br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2009-question-48/" target="_blank">GATE CS 2009 Question 48</a><br/>
+<a href="http://quiz.geeksforgeeks.org/gate-gate-cs-2007-question-68/" target="_blank">GATE CS 2007 Question 68</a></p>
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

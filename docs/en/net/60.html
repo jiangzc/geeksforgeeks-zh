@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Classification of Routing Algorithms</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-fixed-flooding-routing-algorithms/" rel="noopener" target="_blank">Fixed and Flooding Routing algorithms</a><br/>
+<strong>Routing </strong>is process of establishing the routes that data packets must follow to reach the destination. In this process, a routing table table is created which contains information regarding routes which data packets follow. Various routing algorithm are used for the purpose of deciding which route an incoming data packet needs to be transmitted on to reach destination efficiently.</p>
+<p><b>Classification of Routing Algorithms:</b> The routing algorithms can be classified as follows:</p>
+<p><b>1. Adaptive Algorithms –</b><br/>
+These are the algorithms which change their routing decisions whenever network topology or traffic load changes. The changes in routing decisions are reflected in the topology as well as traffic of the network. Also known as dynamic routing, these make use of dynamic information such as current topology, load, delay, etc. to select routes. Optimization parameters are distance, number of hops and estimated transit time.</p>
+<p>Further these are classified as follows:</p>
+<ul>
+<li><strong>(a) Isolated –</strong> In this method each, node makes its routing decisions using the the information it has without seeking information from other nodes. The sending nodes doesn’t have information about status of particular link. Disadvantage is that packet may be sent through a congested network which may result in delay. Examples: Hot potato routing, backward learning.
+</li>
+<p></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<li><strong>(b) Centralized –</strong> In this method, a centralized node has entire information about the network and makes all the routing decisions. Advantage of this is only one node is required to keep the information of entire network and disadvantage is that if central node goes down the entire network is done.
+</li>
+<p></p>
+<li><strong>(c) Distributed –</strong> In this method, the node receives information fro its neighbors and then takes the decision about routing the packets. Disadvantage is that the packet may be delayed if there is change in between interval in which it receives information and sends packet.
+</li>
+</ul>
+<p><b>2. Non-Adaptive Algorithms –</b><br/>
+These are the algorithms which do not change their routing decisions once they have been selected. This is also known as static routing as route to be taken is computed in advance and downloaded to routers when router is booted.</p>
+<p>Further these are classified as follows:</p>
+<ul>
+<li><strong>(a) Flooding –</strong> This adapts the technique in which every incoming packet is sent on every outgoing line except from which it arrived. One problem with this is that packets may go in loop and as a result of which a node may receive duplicate packets. These problems can be overcome with the help of sequence numbers, hop count and spanning tree.
+</li>
+<p></p>
+<li><strong>(b) Random walk –</strong> In this method, packets are sent host by host or node by node to one of its neighbors randomly. This is highly robust method which is usually implemented by sending packets onto the link which is least queued.
+</li>
+</ul>
+<p><b>Routing v/s Flooding:</b></p>
+<p><img src="../../../imgs/net/2ea80d169fcec5149ae032325254d97e.jpg" alt="" width="641" height="257" class="aligncenter size-full wp-image-401700"/></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

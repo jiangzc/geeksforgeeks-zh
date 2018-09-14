@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Fixed and Flooding Routing algorithms</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In most of the situations, packets require multiple hops to make journey towards the destination. Routing is one of the most complex and crucial aspect of packet switched network design.</p>
+<p><strong>Desirable Properties of Routing Algorithms</strong>:-</p>
+<ul>
+<li>Correctness and Simplicity</li>
+<li> Robustness : Ability of the network to deliver packets via some route even in the face of failures.</li>
+<li>Stability : The algorithm should converge to equilibrium fast in the face of changing conditions in the network.</li>
+<li>Fairness and Optimality</li>
+<li>Efficiency : Minimum overhead. </li>
+</ul>
+<p><strong>Design Parameters of Routing Algorithms :</strong> </p>
+<ul>
+<li> Performance Criteria : Number of hops, Cost(Send packet with high bandwidth path as cost is less) , Delay(Size of Queue) , Throughput time(Number of packets delivered/time).</li>
+<li> Decision Time : When to decide to route a packet? Per-Packet(Datagram) or Per-session(Virtual-Circuit).</li>
+<li>Decision Place : Who will decide about routing? Each Node(distributed), Central Node (centralized),Originated Node (source) .</li>
+<li> Network Information Source: None , Local, Adjacent node, Nodes along route , All nodes.</li>
+<li>Network Information Update Time : Continuous, Periodic, Major Load Change , Topology Change.</li>
+</ul>
+<p><strong>Routing Strategies :</strong></p>
+<ol>
+<li> Fixed Routing</li>
+<li> Flooding </li>
+<li>Dynamic Routing</li>
+<li>Random Routing</li>
+<li>Flow-based Routing</li>
+</ol>
+<p><strong>Fixed Routing –</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li>A route is selected for each source and destination pair of node in the network.</li>
+<li>The route are fixed ; changes only if  topology of the network changes.</li>
+</ul>
+<p>Fixed Routing : Example (1)</p>
+<p><img src="../../../imgs/net/f414fbc8d61cc55c8f69661b6d5b7a80.jpg" alt="" width="400" height="250" class="aligncenter size-full wp-image-279256"/><br/>
+</p>
+<center><b>Figure –</b> A simple packet switching network with six nodes (routers)</center>
+<p></p>
+<p><img src="../../../imgs/net/5b67d922717f8437ec4ffb5334f4a7a5.jpg" alt="" width="700" height="350" class="aligncenter size-full wp-image-279257"/><br/>
+</p>
+<center><b>Figure –</b> Central routing table based on least cost path algorithm</center>
+<p></p>
+<ul>
+<li>A Central routing matrix is created based on the least-cost path which is stored in the network control center</li>
+<li>The matrix, shows for each source-destination of the route , the identity of the next node on the route. </li>
+<li>Drawback: If the network control center fails, then everything will collapse. Hence it is not reliable.</li>
+</ul>
+<p>Fixed Routing : Example (2)</p>
+<p><img src="../../../imgs/net/68a8d1f3e59c5e09932710a879937801.jpg" alt="" width="801" height="350" class="aligncenter size-full wp-image-279261"/>‘<br/>
+</p>
+<center><b>Figure –</b> Routing table stored in different nodes of the network</center>
+<p></p>
+<ul>
+<li>Routing Table is created for each node. This is called as distributed routing algorithm</li>
+<li>Routing table can be created using least-min path or min-hop reach method. Two famous path algorithms
+<ol>
+<li>Dijkstra Algorithm </li>
+<li>Bellman Ford Algorithm</li>
+</ol>
+</li>
+</ul>
+<p>Advantages –</p>
+<ul>
+<li>Simple</li>
+<li>Works well in reliable network with stable load in reliable network</li>
+<li>Same for virtual circuit and datagram</li>
+</ul>
+<p>Disadvantages –</p>
+<ul>
+<li>Lack of flexibility</li>
+<li>Doesn’t react to failure or network congestion</li>
+</ul>
+<hr/>
+<strong>Flooding –</strong><p></p>
+<ul>
+<li>Requires no network information like topology, load condition ,cost of diff. paths </li>
+<li> Every incoming packet to a node is sent out on every outgoing like except the one it arrived on.</li>
+<li>For Example in above figure
+<ul>
+<li>A incoming packet to (1) is sent out to (2),(3)</li>
+<li>from (2) is sent to (6),(4) and from (3) it is sent to (4),(5)</li>
+<li>from (4) it is sent to (6),(5),(3) , from (6) it is sent to (2),(4),(5),from (5) it is sent to (4),(3)</li>
+</ul>
+</li>
+</ul>
+<p>Characteristics –</p>
+<ul>
+<li>All possible routes between Source and Destination is tried. A packet will always get through if path exists</li>
+<li>As all routes are tried, the will be atleast one route which is the shortes</li>
+<li> All nodes directly or indirectly connected are visited</li>
+</ul>
+<p>Limitations –</p>
+<ul>
+<li> Flooding generates vast number of duplicate pakects</li>
+<li> Suitable damping mechanism must be used</li>
+</ul>
+<p>Hop-Count –</p>
+<ul>
+<li>A hop counter may be contained in the packet header which is decremented at each hop.<br/>
+ with the packet being discarded when the counter becomes zero</li>
+<li>The sender intializes the hop counter . If no estimate is known, it is set to the full diameter of the subnet.</li>
+<li> Keep track of the packets which are responsible for flooding using a sequence number . Avoid sending them out a second time.</li>
+</ul>
+<p>Selective Flooding  : Routers do not send every incoming packet out on every line , only on those lines that go in approximately in the direction of destination.</p>
+<p>Advantages of Flooding :</p>
+<ul>
+<li> Highly Robust, emergency or immediate messages can be sent (eg military applications)</li>
+<li>Set up route in virtual circuit</li>
+<li>Flooding always chooses the shortest path</li>
+<li>Broadcast messages to all the nodes</li>
+</ul>
+<p><b>Reference –</b><br/>
+<a href="https://www.amazon.in/Computer-Communications-William-Stallings-Books/dp/0133506487" rel="noopener" target="_blank">Data and Computer Communications</a></p>
+<p>Read next article – <a href="https://www.geeksforgeeks.org/computer-network-routing-protocols-set-1-distance-vector-routing/" rel="noopener" target="_blank">Routing Protocols Set 1 (Distance Vector Routing)</a></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">LZW (Lempel–Ziv–Welch) Compression technique</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p align="center"><strong>Why do we need Compression Algorithm ?</strong></p>
+<p>There are two categories of compression techniques, lossy and lossless. Whilst each uses different techniques to compress files, both have the same aim: To look for duplicate data in the graphic (GIF for LZW) and use a much more compact data representation. Lossless compression reduces bits by identifying and eliminating statistical redundancy. No information is lost in lossless compression.On the other hand, Lossy compression reduces bits by removing unnecessary or less important information. So we need Data Compression mainly because:</p>
+<ul>
+<li>Uncompressed data can take up a lot of space, which is not good for limited hard drive space and internet download speeds.</li>
+<li>While hardware gets better and cheaper, algorithms to reduce data size also helps technology evolve.</li>
+<li>Example: One minute of uncompressed HD video can be over 1 GB.How can we fit a two-hour film on a 25 GB Blu-ray disc?</li>
+</ul>
+<p>Lossy compression methods include DCT (Discreet Cosine Transform), Vector Quantisation and Huffman coding while Lossless compression methods include RLE (Run Length Encoding), string-table compression, LZW (Lempel Ziff Welch) and zlib.There Exist several compression Algorithms, but we are concentrating on LZW.</p>
+<p align="center"><strong>What is Lempel–Ziv–Welch (LZW) Algorithm ?</strong></p>
+<p>The LZW algorithm is a very common compression technique. This algorithm is typically used in  GIF and optionally in PDF and TIFF. Unix’s ‘compress’ command, among other uses. It is lossless, meaning no data is lost when compressing. The algorithm is simple to implement and has the potential for very high throughput in hardware implementations. It is the algorithm of the widely used Unix file compression utility compress, and is used in the GIF image format.</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>The Idea relies on reoccurring patterns to save data space. LZW is the foremost technique for general purpose data compression due to its simplicity and versatility. It is the basis of many PC utilities that claim to “double the capacity of your hard drive”.</p>
+<p align="center"><strong>How does it work?</strong></p>
+<p>LZW compression works by reading a sequence of symbols, grouping the symbols into strings, and converting the strings into codes. Because the codes take up less space than the strings they replace, we get compression.Characteristic features of LZW includes,</p>
+<ul>
+<li>LZW compression uses a code table, with 4096 as a common choice for the number of table entries. Codes 0-255 in the code table are always assigned to represent single bytes from the input file.</li>
+<li>When encoding begins the code table contains only the first 256 entries, with the remainder of the table being blanks. Compression is achieved by using codes 256 through 4095 to represent sequences of bytes.</li>
+<li>As the encoding continues, LZW identifies repeated sequences in the data, and adds them to the code table.</li>
+<li>Decoding is achieved by taking each code from the compressed file and translating it through the code table to find what character or characters it represents.</li>
+</ul>
+<p>Example: ASCII code.Typically, every character is stored with 8 binary bits, allowing up to 256 unique symbols for the data. This algorithm tries to extend the library to 9 to 12 bits per character.The new unique symbols are made up of combinations of symbols that occurred previously in the string. It does not always compress well, especially with short, diverse strings. But is good for compressing redundant data, and does not have to save the new dictionary with the data: this method can both compress and uncompress data.<br/>
+There are excellent article’s written up already, you can look more indepth <a href="https://www.cs.cmu.edu/~cil/lzw.and.gif.txt" target="_blank">here</a> and also Mark Nelson’s <a href="http://marknelson.us/2011/11/08/lzw-revisited/" target="_blank">article</a> is commendable.</p>
+<p style="text-align: center;" align="center"><strong>Implementation</strong></p>
+<p align="center">The idea of the compression algorithm is the following: as the input data is being processed, a dictionary keeps a correspondence between the longest encountered words and a list of code values. The words are replaced by their corresponding codes and so the input file is compressed. Therefore, the efficiency of the algorithm increases as the number of long, repetitive words in the input data increases.</p>
+<p style="text-align: center;" align="center"><strong>LZW ENCODING</strong></p>
+<pre>  *     PSEUDOCODE
+  1     Initialize table with single character strings
+  2     P = first input character
+  3     WHILE not end of input stream
+  4          C = next input character
+  5          IF P + C is in the string table
+  6            P = P + C
+  7          ELSE
+  8   &#160;        output the code for P
+  9          add P + C to the string table
+  10           P = C
+  11         END WHILE
+  12    output code for P 
+</pre>
+<p>Testing the code below :<br/>
+<a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/eee-e1493174848773.jpg"><img class="alignnone size-large wp-image-175635" src="../../../imgs/net/7b2dadf3413405dfcfdf54647f1684d0.jpg" alt="eee" width="665" height="155"/></a><br/>
+Output :<br/>
+<a href="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/fef.jpg"><img class="alignnone size-large wp-image-175636" src="../../../imgs/net/ef14626a9ddf62cb7bfb804628fd17af.jpg" alt="fef" width="665" height="136"/></a><br/>
+Also check the <a href="http://people.cs.pitt.edu/~kirk/cs1501/assignments/lzw/lzw.cxx" target="_blank">code</a> converted by Mark Nelson into C++ style.There is another variation of 6 different versions <a href="http://www.cplusplus.com/articles/iL18T05o/" target="_blank">here</a>. Also, <a href="http://rosettacode.org/wiki/LZW_compression#D" target="_blank">Rosettacode</a> lists several implementations of LZW in different languages.</p>
+<p align="center"><strong>Compression using LZW</strong></p>
+<p>Example 1: Use the LZW algorithm to compress the string: <strong>BABAABAAA</strong><br/>
+The steps involved are systematically shown in the diagram below.<br/>
+<a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/lempel–ziv–welch-compression-technique.png"><img class="alignnone wp-image-174356" src="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/lempel–ziv–welch-compression-technique.png" alt="LZW Algorithm"/></a></p>
+<p align="center"><strong>LZW Decompression</strong></p>
+<p>The LZW decompressor creates the same string table during decompression. It starts with the first 256 table entries initialized to single characters.The string table is updated for each character in the input stream, except the first one.Decoding achieved by reading codes and translating them through the code table being built.</p>
+<p align="center"><strong>LZW Decompression Algorithm</strong></p>
+<pre>*    PSEUDOCODE
+1    Initialize table with single character strings
+2    OLD = first input code
+3    output translation of OLD
+4    WHILE not end of input stream
+5        NEW = next input code
+6&#160;       IF NEW is not in the string table
+7               S = translation of OLD
+8    &#160;          S = S + C
+9       ELSE
+10&#160;             S = translation of NEW
+11       output S
+12  &#160;    C = first character of S
+13  &#160;    OLD + C to the string table
+14       OLD = NEW
+15   END WHILE
+</pre>
+<p>Example 2: LZW Decompression: Use LZW to decompress the output sequence of : <strong>&lt;66&gt;&lt;65&gt;&lt;256&gt;&lt;257&gt;&lt;65&gt;&lt;260&gt;</strong><br/>
+The steps involved are systematically shown in the diagram below.</p>
+<p><a href="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/lempel–ziv–welch-compression-technique-2.png"><img class="alignnone size-large wp-image-174363" src="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/lempel–ziv–welch-compression-technique-2.png" alt="d" width="665" height="335"/></a></p>
+<p>In this example, 72 bits are represented with 72 bits of data. After a reasonable string table is built, compression improves dramatically.<br/>
+<strong>LZW Summary: </strong>This algorithm compresses repetitive sequences of data very well. Since the codewords are 12 bits, any single encoded character will expand the data size rather than reduce it.</p>
+<p><strong>Advantages of LZW over <a href="https://www.geeksforgeeks.org/greedy-algorithms-set-3-huffman-coding/">Huffman</a>:</strong></p>
+<ul>
+<li>LZW requires no prior information about the input data stream.</li>
+<li>LZW can compress the input stream in one single pass.</li>
+<li>Another advantage of LZW its simplicity, allowing fast execution.</li>
+</ul>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><a href="http://web.mit.edu/6.02/www/s2012/handouts/3.pdf" target="_blank">mit.edu</a></li>
+<li><a href="https://users.cs.cf.ac.uk/Dave.Marshall/Multimedia/node214.html" target="_blank">Dave.Marshall</a></li>
+<li><a href="https://www.cs.duke.edu/csed/curious/compression/lzw.html" target="_blank">duke.edu</a></li>
+<li><a href="http://michael.dipperstein.com/lzw/" target="_blank">michael.dipperstein</a></li>
+<li><a href="https://www.youtube.com/watch?v=j2HSd3HCpDs" target="_blank">LZW(Youtube)</a></li>
+<li><a href="http://faculty.kfupm.edu.sa/ics/garout/Teaching/ICS202/" target="_blank">faculty.kfupm.edu.sa</a></li>
+<li><a href="https://github.com/kmeelu/LZW" target="_blank">github repository(kmeelu)</a></li>
+</ul>
+
+
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

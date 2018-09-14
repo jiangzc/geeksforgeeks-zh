@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">What’s difference between Ping and Traceroute?</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p style="text-align: justify">In computer networks, data is sent in small blocks known as packets. Each packet is transmitted individually and may also follow different route to reach the destination. Once all these packets of the original message reach the destination, they are re-assembled to form the original message. But, sometimes, it may happen that the web server is down, network congestion or some other technical glitch is there, that may prevent the message from reaching the destination. To diagnose such congestions and network failures, we use two common programs namely Ping and Traceroute.</p>
+<p style="text-align: justify"><strong>Ping</strong> – It is a utility that helps one to check if a particular IP address is accessible or not. Ping works by sending a packet to the specified address and waits for the reply. It also measures round trip time and reports errors.</p>
+<p style="text-align: justify">Ping is also used in checking if the computers on a local network are active. For this, the user has to go in command prompt and type : ping 127.0.0.1, and if the address is active, the ping would return a message like this :</p>
+<pre><p style="text-align: justify">Pinging 127.0.0.1 with 32 bytes of data</p>
+<p style="text-align: justify">Reply from 127.0.0.1: bytes=32 time&lt;10ms TTL=32
+Reply from 127.0.0.1: bytes=32 time&lt;10ms TTL=32
+Reply from 127.0.0.1: bytes=32 time&lt;10ms TTL=32
+Reply from 127.0.0.1: bytes=32 time&lt;10ms TTL=32</p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            </pre>
+<p style="text-align: justify">The IP address 127.0.0.1 is the address of the local host and would receive a ping reply even if the sender is not connected to internet.</p>
+<p style="text-align: justify"><strong>Traceroute</strong> – It is utility&#160; that traces a packet from your computer to the host, and will also show the number of steps (hops) required to reach there, along with the time by each step. Traceroute works by sending the packets of data with low survival time (Time to Live – TTL) which specifies how many steps (hops) can the packet survive before it is returned. When a packet can’t reach the final destination and expires at an intermediate step, that node returns the packet and identifies itself. So, by increasing the TTL gradually, Traceroute is able to identify the intermediate hosts. If any of the hops come back with&#160; “Request timed out”, it denotes network congestion and a reason for slow loading Web pages and dropped connections.</p>
+<p style="text-align: justify">The main difference between Ping and Traceroute is that Ping is a quick and easy utility to tell if the specified server is reachable and how long will it take to send and receive data from the server whereas Traceroute finds the exact route taken to reach the server and time taken by each step (hop).</p>
+<p style="text-align: justify">
+</p>
+<p style="text-align: justify">See <a href="http://quiz.geeksforgeeks.org/computer-networks-traceroute/">Traceroute</a> for more details.</p>
+<p style="text-align: justify">
+</p>
+<p style="text-align: justify">Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above</p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

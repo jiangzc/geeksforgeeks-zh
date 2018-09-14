@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Extracting MAC address using Python</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>MAC address also known as physical address is the unique identifier that is assigned to the NIC (Network Interface Card) of the computer. NIC helps in connection of a computer with other computers in the network. MAC address is unique for all the NIC’s.</p>
+<p><strong>Uses of MAC address : </strong></p>
+<ul>
+<li> Useful in places where IP address change frequently. Helps network admin. to get information regarding network traffic.</li>
+<li> Helps us to configure which computers can be connected to our computers. By this way we can filter potential spam/virus attacks.</li>
+<li> Helps in uniquely identifying computers from other computers around the world.</li>
+</ul>
+<p><img src="../../../imgs/net/026242a36ae19bf9ade1ba62be5178e9.jpg" alt="MAC-Address" width="299" height="172" class="alignnone size-full wp-image-176575"/></p>
+<p>This article aims at extracting MAC address of computer using Python.</p>
+<p><strong>Method 1 : Using uuid.getnode()</strong></p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<p>getnode() can be used to extract the MAC address of the computer. This function is defined in <strong>uuid </strong>module.<br/>
+The illustrated code given below shows how to generate a UUID for a given host, identified by its MAC address, using the uuid1() function.</p>
+<pre class="brush: python3; title: ; notranslate" title=""># Python Program to compute
+# MAC address of host
+# using UUID module
+
+import uuid
+
+# printing the value of unique MAC
+# address using uuid and getnode() function 
+print (hex(uuid.getnode()))
+</pre>
+<p>Output :</p>
+<pre>0x163e990bdb
+</pre>
+<p>
+<strong>Drawback :</strong></p>
+<ul>
+<li> The visible drawback is that the output is not in the formatted form. </li>
+</ul>
+<p><strong>Method 2 : Using getnode() + format()</strong> [ for better formatting ]</p>
+<pre class="brush: python3; highlight: [8,9,10]; title: ; notranslate" title=""># Python 3 code to print MAC
+# in formatted way.
+
+import uuid
+
+# joins elements of getnode() after each 2 digits.
+
+print ("The MAC address in formatted way is : ", end="")
+print (':'.join(['{:02x}'.format((uuid.getnode() &gt;&gt; ele) &amp; 0xff)
+for ele in range(0,8*6,8)][::-1]))
+</pre>
+<p>Output :</p>
+<pre>The MAC address in formatted way is : 00:16:3e:99:0b:db
+</pre>
+<p>
+<strong>Drawback :</strong></p>
+<ul>
+<li> This code appears to be complex. </li>
+</ul>
+<p><strong>Method 3 : Using getnode() + findall() + re()</strong> [ for reducing complexity ]</p>
+<pre class="brush: python3; highlight: [7,8,9,10]; title: ; notranslate" title=""># Python 3 code to print MAC
+# in formatted way and easier
+# to understand
+
+import re, uuid
+
+# joins elements of getnode() after each 2 digits.
+# using regex expression
+print ("The MAC address in formatted and less complex way is : ", end="")
+print (':'.join(re.findall('..', '%012x' % uuid.getnode())))
+</pre>
+<p>Output :</p>
+<pre>The MAC address in formatted and less complex way is : 00:16:3e:99:0b:db
+</pre>
+<p></p>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

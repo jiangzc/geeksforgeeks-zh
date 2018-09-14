@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Types of Spanning Tree Protocol (STP)</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>Prerequisite – <a href="https://www.geeksforgeeks.org/computer-network-root-bridge-election-spanning-tree-protocol/" rel="noopener" target="_blank">Spanning Tree Protocol</a><br/>
+Spanning Tree Protocol (STP)  is used to make a loop free network by monitoring the network to track all the links and shut down the least redundant ones.<br/>
+Root bridge is a switch in a single VLAN or whole topology (according to the type of STP standard used) which is responsible for distributing BPDUs and block the least redundant port. </p>
+<p><b>Election procedure (root bridge) –</b><br/>
+All the switches in the network declare themselves as root bridge and start exchanging their own BPDUs.  The BPDU with the lowest bridge I’d will be considered as superior. Now the switch receiving the superior BPDU make changes in its own BPDU and carry forward to its neighbour switches. It changes the value of root Bridge I’d with its superior BPDU bridge I’d. This process goes on until all the switches are satisfied with which bridge have the lowest bridge I’d and hence that switch will be declared as root bridge. </p>
+<p><b>Types of Spanning Tree Protocol (STP) –</b></p>
+<ol>
+<li><strong>802.1D –</strong> This is also known as CST (Common Spanning Tree). It is a spanning tree standard developed by  IEEE which elects only one root bridge per whole topology. All the traffic flows over the same path (the best path to the root bridge) but this doesn’t hold good always as there can be scenarios in which the optimised path to reach a VLAN  is different than the path obtained on electing the root bridge. It is very slow as it takes 32 seconds to converge.
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Less CPU and memory required.
+</li>
+</ul>
+<p><strong>Disadvantage:</strong></p><br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<ul>
+<li>Lesser optimisation as the path calculated as the best cost to root bridge might not be the best path to reach a network.
+</li>
+<li>No load balancing.
+</li>
+</ul>
+</li>
+<p></p>
+<li><strong>Per VLAN Spanning Tree + (PVST+) –</strong> It is a spanning tree standard developed by Cisco for its devices which finds the root bridge per VLAN. It is a Cisco default version of STP. It finds separate 802.1d spanning tree instance for each VLAN. It also provides backward comparability with 802.1d or CST. This is more optimized to the IEEE because it provides optimal path selection as separate instance of STP per VLAN is find. This is as slow as CST.
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>PVST+ provides more optimization on the performance of a network than CST as it selects root bridges per VLAN.
+</li>
+<li>Bandwidth consumption is lesser than CST.
+</li>
+<li>Optimum load balancing is achieved.
+</li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul>
+<li>This is slow as CST i.e convergence time is slow. By default, Cisco switches take 50 seconds for converging.
+</li>
+<li>More resources (CPU and memory) is required.
+</li>
+</ul>
+</li>
+<p></p>
+<li><strong>802.1w – Rapid Spanning Tree Protocol (RSTP) –</strong> It is a spanning standard developed by IEEE which provides faster convergence than CST but holds the same idea of finding a single root bridge in the topology. The bridge resources needed in RSTP is higher than CST but less than PVST+ .
+</li>
+<p></p>
+<li><strong>Rapid Per VLAN Spanning Tree + (RPVST+) –</strong>This Spanning Tree standard is developed by Cisco which provides faster convergence than PVST+ and finds separate instance of 802.1w  per VLAN. It requires much more CPU and memory than other STP standards.
+</li>
+<p></p>
+<li><strong>802.1s (Multiple Spanning Tree) :-</strong>This standard is developed by IEEE in which grouping of VLANs is done and for each single group, RSTP is run.  This is basically  a Spanning Tree Protocol running over another Spanning Tree Protocol.
+<p><strong>Advantages: </strong></p>
+<ul>
+<li>High redundancy
+</li>
+<li>load balancing can be achieved.
+</li>
+<li>lower CPU and memory usage is required
+</li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul>
+<li>More configuration is required and not easy to implement.
+</li>
+</ul>
+</li>
+</ol>
+<br/>
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/><hr/>
+
+<hr/>
+
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>

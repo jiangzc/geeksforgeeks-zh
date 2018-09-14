@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+<link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<header class="entry-header">
+						<h1 class="entry-title">Introduction of MAC Address</h1>
+				
+						</header>
+<!-- .entry-header -->
+				<div class="entry-content">
+			<p>In order to communicate or transfer the data from one computer to another computer we need some address. In Computer Network various types of address are introduced; each works at different layer. Media Access Control Address is a physical address which works at Data Link Layer. In this article, we will discuss about addressing in DLL, which is MAC Address.</p>
+<h3 class="sigil_not_in_toc">Media Access Control (MAC) Address –</h3>
+<p>MAC Addresses are unique <b>48-bits</b> hardware number of a computer, which is embedded into network card (known as <strong>Network Interface Card</strong>) during the time of manufacturing. MAC Address is also known as <strong>Physical Address</strong> of a network device. In IEEE 802 standard, Data Link Layer is divided into two  sublayers – </p>
+<ol>
+<li>Logical Link Control(LLC) Sublayer</li>
+<li>Media Access Control(MAC) Sublayer</li>
+</ol>
+<p>MAC address is used by Media Access Control (MAC) sublayer of Data-Link Layer. MAC Address is word wide unique, since millions of network devices exists and we need to uniquely identify each.</p>
+<img src="../../../imgs/net/898b00e8197f7ab823598d5b3d06048a.jpg" width="375" height="300" class="size-full wp-image-236985"/>
+<h3 class="sigil_not_in_toc">Format of MAC Address –</h3>
+<p>MAC Address is a 12-digit hexadecimal number (6-Byte binary number), which is mostly represented by Colon-Hexadecimal notation. First 6-digits (say 00:40:96) of MAC Address identifies the manufacturer, called as OUI (<strong>Organizational Unique Identifier</strong>). IEEE <a href="http://standards.ieee.org/develop/regauth/index.html" target="_blank">Registration Authority Committee</a> assign these MAC prefixes to its registered vendors.</p>
+<p>Here are <a href="http://standards-oui.ieee.org/oui/oui.txt" target="_blank">some OUI</a>  of well known manufacturers :</p>
+<br/>
+        
+          <!-- post_top_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins>
+          
+        <br/>
+            
+<pre>CC:46:D6 - Cisco 
+3C:5A:B4 - Google, Inc.
+3C:D9:2B - Hewlett Packard
+00:9A:CD - HUAWEI TECHNOLOGIES CO.,LTD
+</pre>
+<p>The rightmost six digits represents <strong>Network Interface Controller</strong>, which is assigned by manufacturer.</p>
+<p>As discussed above, MAC address is represented by Colon-Hexadecimal notation. But this is just a conversion, not mandatory. MAC address can be represented using any of the following formats –<br/>
+<img src="../../../imgs/net/a423320aaf745200c9bce7187f30c08e.jpg" alt="" width="447" height="194" class="aligncenter size-full wp-image-237010"/><br/>
+<strong>Note:</strong> Colon-Hexadecimal notation is used by <em>Linux OS</em> and Period-separated Hexadecimal notation is used by <em>Cisco Systems</em>.</p>
+<h3 class="sigil_not_in_toc">How to find MAC address –</h3>
+<pre>Command for UNIX/Linux -  <em>ifconfig -a</em>
+                          <em>ip link list </em>
+                         <em> ip address show</em>
+
+Command forWindows OS -  <em> ipconfig /all </em>
+
+MacOS -                  <em> TCP/IP Control Panel</em>
+
+</pre>
+<p><strong>Note –</strong> LAN technologies like Token Ring, Ethernet use MAC Address as their Physical address but there are some networks (AppleTalk) which does not use MAC address.</p>
+<h3 class="sigil_not_in_toc">Types of MAC Address –</h3>
+<ol>
+<li><b>Unicast – </b> A Unicast addressed frame is only sent out to the interface leading to specific NIC. If the LSB (least significant bit) of first octet of an address is set to zero, the frame is meant to reach only one receiving NIC. MAC Address of source machine is always Unicast.
+<p><img src="../../../imgs/net/ea3601e8c1ebc2d2e0acd9bb01a1581d.jpg" width="532" height="264" class="size-full wp-image-240346"/></p></li>
+<li><b>Multicast – </b> Multicast address allow the source to send a frame to group of devices. In Layer-2 (Ethernet) Multicast address, LSB (least significant bit) of first octet of an address is set to one. IEEE has allocated the address block 01-80-C2-xx-xx-xx (01-80-C2-00-00-00 to 01-80-C2-FF-FF-FF) for group addresses for use by standard protocols.
+<p><img src="../../../imgs/net/8c8df880f72b6d31f9d8f625c54b93ec.jpg" alt="" width="528" height="574" class="size-full wp-image-240365"/> </p></li>
+<li><b>Broadcast – </b>Similar to Network Layer, Broadcast is also possible on underlying layer( Data Link Layer). Ethernet frames with ones in all bits of the destination address (FF-FF-FF-FF-FF-FF) are referred as broadcast address. Frames which are destined with MAC address FF-FF-FF-FF-FF-FF will reach to every computer belong to that LAN segment.
+<p><img src="../../../imgs/net/148de61dec1b9ae508488ba26b795708.jpg" alt="" width="539" height="276" class="size-full wp-image-240367"/> </p></li>
+</ol>
+<h3 class="sigil_not_in_toc">What is MAC Cloning –</h3>
+<p>Some ISPs use MAC address inorder to assign IP address to gateway device. When device connects to the ISP, DHCP server records the MAC address and then assign IP address. Now the system will be identified through MAC address. When the device get disconnected, it looses the IP address. If user wants to reconnect, DHCP server checks if the device is connected before. If so, then server tries to assign same IP address (in case lease period not expired). In case user changed the router, user has to inform the ISP about new MAC address because new MAC address is unknown to ISP, so connection cannot be established.<br/>
+Or the other option is <strong>Cloning</strong>, user can simply clone the registered MAC address with ISP. Now router keeps reporting old MAC address to ISP and there will be no connection issue.</p>
+<p><br/><br/>
+<strong>References –</strong></p>
+<p><a href="https://en.wikipedia.org/wiki/MAC_address" target="_blank">MAC address – Wikipedia</a><br/>
+<a href="https://tools.ietf.org/html/rfc7042" target="_blank">RFC 7042 tools</a>.</p>
+
+          <!-- post_bottom_responsive -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins>
+          
+            <br/><br/>
+					
+		
+<!-- .entry-meta -->	</div>
+</body>
+</html>
