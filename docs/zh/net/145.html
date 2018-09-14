@@ -1,0 +1,228 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/net/145.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> Python&#x4E2D;&#x7684;&#x5FAA;&#x73AF;&#x5197;&#x4F59;&#x68C0;&#x67E5;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x5148;&#x51B3;&#x6761;&#x4EF6;&#xFF1A;</b> <a href="https://www.geeksforgeeks.org/modulo-2-binary-division/">&#x4E86;&#x89E3;&#x5FAA;&#x73AF;&#x5197;&#x4F59;</a> &#xFF0C; <a href="https://www.geeksforgeeks.org/socket-programming-python/">&#x5957;&#x63A5;&#x5B57;&#x7F16;&#x7A0B;</a></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x4EC0;&#x4E48;&#x662F;CRC&#xFF1F;</b></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> CRC&#x6216;&#x5FAA;&#x73AF;&#x5197;&#x4F59;&#x6821;&#x9A8C;&#x662F;&#x4E00;&#x79CD;&#x68C0;&#x6D4B;&#x901A;&#x4FE1;&#x4FE1;&#x9053;&#x4E2D;&#x7684;&#x610F;&#x5916;&#x66F4;&#x6539;/&#x9519;&#x8BEF;&#x7684;&#x65B9;&#x6CD5;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> CRC&#x4F7F;&#x7528;Generator Polynomial&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x5728;&#x53D1;&#x9001;&#x65B9;&#x548C;&#x63A5;&#x6536;&#x65B9;&#x90FD;&#x4F7F;&#x7528;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x793A;&#x4F8B;&#x751F;&#x6210;&#x591A;&#x9879;&#x5F0F;&#x5177;&#x6709;&#x7C7B;&#x4F3C;x ^ 3 + 1&#x7684;&#x5F62;&#x5F0F;&#x3002;&#x8BE5;&#x751F;&#x6210;&#x591A;&#x9879;&#x5F0F;&#x8868;&#x793A;&#x5BC6;&#x94A5;1001.&#x53E6;&#x4E00;&#x793A;&#x4F8B;&#x662F;x ^ 2 + x&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4EE3;&#x8868;&#x952E;110&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x4F8B;&#xFF1A;</b></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BA9;&#x6570;&#x636E;&#x53D1;&#x9001;&#x662F;&#x201C;EVN&#x201D;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x4E3A;&#x4E8C;&#x8FDB;&#x5236;&#x5B57;&#x7B26;&#x4E32;&#x6570;&#x636E;&#x3002;</span> </p>
+<pre class="brush: python; title: ; notranslate" title="">input_string = &quot;EVN&quot;
+
+# CONVERT string data to binary string data
+data = (&apos;&apos;.join(format(ord(x), &apos;b&apos;) for x in input_string))
+print (data)
+
+</pre><pre> <span class="pre-span" style="direction: ltr; text-align: left">OUTPUT:</span>
+<span class="pre-span" style="direction: ltr; text-align: left">100010110101101001110</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> CRC KEY&#xFF1A;1001</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4EE3;&#x7801;&#xFF1A;CRC&#x5BC6;&#x94A5;&#x957F;&#x5EA6;-1  - &gt; 000&#x9644;&#x52A0;&#x5728;&#x6570;&#x636E;&#x672B;&#x5C3E;&#x3002;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">New data: 100010110101101001110000</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Key:1001</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x5728;&#x53D1;&#x9001;&#x65B9;&#x548C;&#x63A5;&#x6536;&#x65B9;&#x90FD;&#x5E94;&#x7528;CRC&#x63D2;&#x69FD;&#x7F16;&#x7A0B;python&#x3002;</span> </p><p align="Center"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x53D1;&#x4EF6;&#x4EBA;&#x65B9;</b></span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 1.&#x4EFB;&#x52A1;&#x662F;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x6570;&#x636E;&#x53D1;&#x9001;&#x5230;&#x670D;&#x52A1;&#x5668;/&#x63A5;&#x6536;&#x65B9;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 2.&#x53D1;&#x4EF6;&#x4EBA;&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x8BA9;&#x6211;&#x4EEC;&#x8BF4;&#x201C;EVN&#x201D;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 3.&#x9996;&#x5148;&#xFF0C;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x88AB;&#x8F6C;&#x6362;&#x4E3A;&#x4E8C;&#x8FDB;&#x5236;&#x5B57;&#x7B26;&#x4E32;&#x201C;100010110101101001110&#x201D;&#x5BC6;&#x94A5;&#x662F;&#x5DF2;&#x77E5;&#x7684;&#xFF0C;&#x4FA7;&#x53D1;&#x9001;&#x65B9;&#x548C;&#x63A5;&#x6536;&#x65B9;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x7684;&#x5BC6;&#x94A5;&#x662F;1001&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 4.&#x4F7F;&#x7528;&#x5BA2;&#x6237;&#x7AEF;/&#x53D1;&#x9001;&#x65B9;&#x4FA7;&#x7684;&#x5BC6;&#x94A5;&#x4F7F;&#x7528;CRC&#x4EE3;&#x7801;&#x5BF9;&#x8BE5;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x7F16;&#x7801;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 5.&#x8BE5;&#x7F16;&#x7801;&#x6570;&#x636E;&#x88AB;&#x53D1;&#x9001;&#x5230;&#x63A5;&#x6536;&#x5668;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 6.&#x63A5;&#x6536;&#x5668;&#x7A0D;&#x540E;&#x89E3;&#x7801;&#x7F16;&#x7801;&#x6570;&#x636E;&#x4E32;&#x4EE5;&#x9A8C;&#x8BC1;&#x662F;&#x5426;&#x6709;&#x4EFB;&#x4F55;&#x9519;&#x8BEF;&#x3002;</span> </p><div class="noIdeBtnDiv"><pre class="brush: python; title: ; notranslate" title=""># Import socket module
+import socket               
+ 
+def xor(a, b):
+ 
+    # initialize result
+    result = []
+ 
+    # Traverse all bits, if bits are
+    # same, then XOR is 0, else 1
+    for i in range(1, len(b)):
+        if a[i] == b[i]:
+            result.append(&apos;0&apos;)
+        else:
+            result.append(&apos;1&apos;)
+ 
+    return &apos;&apos;.join(result)
+ 
+ 
+# Performs Modulo-2 division
+def mod2div(divident, divisor):
+ 
+    # Number of bits to be XORed at a time.
+    pick = len(divisor)
+ 
+    # Slicing the divident to appropriate
+    # length for particular step
+    tmp = divident[0 : pick]
+ 
+    while pick &lt; len(divident):
+ 
+        if tmp[0] == &apos;1&apos;:
+ 
+            # replace the divident by the result
+            # of XOR and pull 1 bit down
+            tmp = xor(divisor, tmp) + divident[pick]
+ 
+        else:   # If leftmost bit is &apos;0&apos;
+
+            # If the leftmost bit of the dividend (or the
+            # part used in each step) is 0, the step cannot
+            # use the regular divisor; we need to use an
+            # all-0s divisor.
+            tmp = xor(&apos;0&apos;*pick, tmp) + divident[pick]
+ 
+        # increment pick to move further
+        pick += 1
+ 
+    # For the last n bits, we have to carry it out
+    # normally as increased value of pick will cause
+    # Index Out of Bounds.
+    if tmp[0] == &apos;1&apos;:
+        tmp = xor(divisor, tmp)
+    else:
+        tmp = xor(&apos;0&apos;*pick, tmp)
+ 
+    checkword = tmp
+    return checkword
+ 
+# Function used at the sender side to encode
+# data by appending remainder of modular divison
+# at the end of data.
+def encodeData(data, key):
+ 
+    l_key = len(key)
+ 
+    # Appends n-1 zeroes at end of data
+    appended_data = data + &apos;0&apos;*(l_key-1)
+    remainder = mod2div(appended_data, key)
+ 
+    # Append remainder in the original data
+    codeword = data + remainder
+    return codeword    
+  
+# Create a socket object
+s = socket.socket()         
+ 
+# Define the port on which you want to connect
+port = 12345               
+ 
+# connect to the server on local computer
+s.connect((&apos;127.0.0.1&apos;, port))
+
+# Send data to server &apos;Hello world&apos;
+
+## s.sendall(&apos;Hello World&apos;)
+
+input_string = raw_input(&quot;Enter data you want to send-&gt;&quot;)
+#s.sendall(input_string)
+data =(&apos;&apos;.join(format(ord(x), &apos;b&apos;) for x in input_string))
+print data
+key = &quot;1001&quot;
+
+ans = encodeData(data,key)
+print(ans)
+s.sendall(ans)
+
+
+# receive data from the server
+print s.recv(1024)
+
+# close the connection
+s.close()
+</pre></div><p><img src="../../../imgs/net/d0aff8b69b8702a6a2329dd64d0138a9.jpg"></p><p align="center"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x63A5;&#x6536;&#x65B9;</b></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 1.&#x63A5;&#x6536;&#x65B9;&#x4ECE;&#x53D1;&#x9001;&#x65B9;&#x63A5;&#x6536;&#x7F16;&#x7801;&#x6570;&#x636E;&#x5B57;&#x7B26;&#x4E32;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 2.&#x63A5;&#x6536;&#x5668;&#x5728;&#x5BC6;&#x94A5;&#x7684;&#x5E2E;&#x52A9;&#x4E0B;&#x89E3;&#x7801;&#x6570;&#x636E;&#x5E76;&#x627E;&#x51FA;&#x5269;&#x4F59;&#x90E8;&#x5206;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 3.&#x5982;&#x679C;&#x4F59;&#x6570;&#x4E3A;&#x96F6;&#xFF0C;&#x5219;&#x8868;&#x793A;&#x53D1;&#x9001;&#x65B9;&#x5411;&#x63A5;&#x6536;&#x65B9;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;&#x6CA1;&#x6709;&#x9519;&#x8BEF;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 4.&#x5982;&#x679C;&#x4F59;&#x6570;&#x4E3A;&#x975E;&#x96F6;&#xFF0C;&#x5219;&#x8868;&#x793A;&#x5B58;&#x5728;&#x9519;&#x8BEF;&#xFF0C;&#x5411;&#x53D1;&#x9001;&#x65B9;&#x53D1;&#x9001;&#x5426;&#x5B9A;&#x786E;&#x8BA4;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7136;&#x540E;&#x53D1;&#x9001;&#x65B9;&#x91CD;&#x65B0;&#x53D1;&#x9001;&#x6570;&#x636E;&#xFF0C;&#x76F4;&#x5230;&#x63A5;&#x6536;&#x65B9;&#x6536;&#x5230;&#x6B63;&#x786E;&#x7684;&#x6570;&#x636E;&#x3002;</span> </p><div class="noIdeBtnDiv"><pre class="brush: python; title: ; notranslate" title=""># First of all import the socket library
+import socket
+
+
+def xor(a, b):
+ 
+    # initialize result
+    result = []
+ 
+    # Traverse all bits, if bits are
+    # same, then XOR is 0, else 1
+    for i in range(1, len(b)):
+        if a[i] == b[i]:
+            result.append(&apos;0&apos;)
+        else:
+            result.append(&apos;1&apos;)
+ 
+    return &apos;&apos;.join(result)
+ 
+ 
+# Performs Modulo-2 division
+def mod2div(divident, divisor):
+ 
+    # Number of bits to be XORed at a time.
+    pick = len(divisor)
+ 
+    # Slicing the divident to appropriate
+    # length for particular step
+    tmp = divident[0 : pick]
+ 
+    while pick &lt; len(divident):
+ 
+        if tmp[0] == &apos;1&apos;:
+ 
+            # replace the divident by the result
+            # of XOR and pull 1 bit down
+            tmp = xor(divisor, tmp) + divident[pick]
+ 
+        else:   # If leftmost bit is &apos;0&apos;
+            # If the leftmost bit of the dividend (or the
+            # part used in each step) is 0, the step cannot
+            # use the regular divisor; we need to use an
+            # all-0s divisor.
+            tmp = xor(&apos;0&apos;*pick, tmp) + divident[pick]
+ 
+        # increment pick to move further
+        pick += 1
+ 
+    # For the last n bits, we have to carry it out
+    # normally as increased value of pick will cause
+    # Index Out of Bounds.
+    if tmp[0] == &apos;1&apos;:
+        tmp = xor(divisor, tmp)
+    else:
+        tmp = xor(&apos;0&apos;*pick, tmp)
+ 
+    checkword = tmp
+    return checkword
+ 
+# Function used at the receiver side to decode 
+# data received by sender
+def decodeData(data, key):
+ 
+    l_key = len(key)
+ 
+    # Appends n-1 zeroes at end of data
+    appended_data = data + &apos;0&apos;*(l_key-1)
+    remainder = mod2div(appended_data, key)
+ 
+    return remainder
+
+# Creating Socket
+s = socket.socket()
+print (&quot;Socket successfully created&quot;)
+
+# reserve a port on your computer in our
+# case it is 12345 but it can be anything
+port = 12345
+
+s.bind((&apos;&apos;, port))
+print (&quot;socket binded to %s&quot; % (port))
+# put the socket into listening mode
+s.listen(5)
+print (&quot;socket is listening&quot;)
+
+
+while True:
+    # Establish connection with client.
+    c, addr = s.accept()
+    print(&apos;Got connection from&apos;, addr)
+    
+    # Get data from client
+    data = c.recv(1024)
+
+    print(data)
+
+    if not data:
+        break
+
+    key = &quot;1001&quot;
+
+    ans = decodeData(data, key)
+    print(&quot;Remainder after decoding is-&gt;&quot;+ans)
+    
+    # If remainder is all zeros then no error occured
+    temp = &quot;0&quot; * (len(key) - 1)
+    if ans == temp:
+        c.sendall(&quot;THANK you Data -&gt;&quot;+data + &quot; Received No error FOUND&quot;)
+    else:
+        c.sendall(&quot;Error in data&quot;)
+
+    c.close()
+
+</pre></div><p><img src="../../../imgs/net/9a04289f9600c2ae3c7f0d063c0b92bd.jpg"></p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6CE8;&#x610F;&#xFF1A;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x4F55;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#xFF1A;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F60;&#x5E94;&#x8BE5;&#x6709;&#x5957;&#x63A5;&#x5B57;&#x7F16;&#x7A0B;&#x5E93;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 2.&#x9996;&#x5148;&#xFF0C;&#x8FD0;&#x884C;&#x670D;&#x52A1;&#x5668;&#x7A0B;&#x5E8F;&#x7136;&#x540E;&#x8FD0;&#x884C;&#x5BA2;&#x6237;&#x7AEF;&#x7A0B;&#x5E8F;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 3.&#x590D;&#x5236;&#x7C98;&#x8D34;&#x4EE3;&#x7801;&#x65F6;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x7F29;&#x8FDB;&#x9519;&#x8BEF;&#xFF0C;&#x56E0;&#x6B64;&#x5728;&#x590D;&#x5236;&#x65F6;&#x8981;&#x5C0F;&#x5FC3;&#x3002;</span> </p><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><hr><hr><!-- .entry-meta --></div></body></html>

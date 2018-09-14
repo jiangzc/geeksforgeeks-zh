@@ -1,0 +1,141 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/net/140.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> Java&#x4E2D;&#x7684;&#x5957;&#x63A5;&#x5B57;&#x7F16;&#x7A0B;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x672C;&#x6587;&#x4ECB;&#x7ECD;&#x4E86;&#x4E00;&#x79CD;&#x975E;&#x5E38;&#x57FA;&#x672C;&#x7684;&#x5355;&#x5411;&#x5BA2;&#x6237;&#x7AEF;&#x548C;&#x670D;&#x52A1;&#x5668;&#x8BBE;&#x7F6E;&#xFF0C;&#x5176;&#x4E2D;&#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#xFF0C;&#x5411;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x6D88;&#x606F;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x4F7F;&#x7528;&#x5957;&#x63A5;&#x5B57;&#x8FDE;&#x63A5;&#x663E;&#x793A;&#x5B83;&#x4EEC;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6709;&#x5F88;&#x591A;&#x4F4E;&#x7EA7;&#x7684;&#x4E1C;&#x897F;&#x9700;&#x8981;&#x53D1;&#x751F;&#x624D;&#x80FD;&#x4F7F;&#x8FD9;&#x4E9B;&#x4E1C;&#x897F;&#x5DE5;&#x4F5C;&#xFF0C;&#x4F46;Java API&#x7F51;&#x7EDC;&#x5305;&#xFF08;java.net&#xFF09;&#x8D1F;&#x8D23;&#x6240;&#x6709;&#x8FD9;&#x4E9B;&#xFF0C;&#x4F7F;&#x7A0B;&#x5E8F;&#x5458;&#x7684;&#x7F51;&#x7EDC;&#x7F16;&#x7A0B;&#x53D8;&#x5F97;&#x975E;&#x5E38;&#x5BB9;&#x6613;&#x3002;</span> </p><p style="text-align: center"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x5BA2;&#x6237;&#x7AEF;&#x7F16;&#x7A0B;</b></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x5EFA;&#x7ACB;&#x5957;&#x63A5;&#x5B57;&#x8FDE;&#x63A5;</strong></span> </p><p style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8981;&#x8FDE;&#x63A5;&#x5230;&#x5176;&#x4ED6;&#x673A;&#x5668;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x5957;&#x63A5;&#x5B57;&#x8FDE;&#x63A5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5957;&#x63A5;&#x5B57;&#x8FDE;&#x63A5;&#x610F;&#x5473;&#x7740;&#x4E24;&#x53F0;&#x673A;&#x5668;&#x6709;&#x5173;&#x4E8E;&#x5F7C;&#x6B64;&#x7684;&#x7F51;&#x7EDC;&#x4F4D;&#x7F6E;&#xFF08;IP&#x5730;&#x5740;&#xFF09;&#x548C;TCP&#x7AEF;&#x53E3;&#x7684;&#x4FE1;&#x606F;.java.net.Socket&#x7C7B;&#x8868;&#x793A;&#x4E00;&#x4E2A;Socket&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6253;&#x5F00;&#x5957;&#x63A5;&#x5B57;&#xFF1A;</span> </p><pre style="text-align: center"> <span class="pre-span" style="direction: ltr; text-align: left">Socket socket = new Socket(&#x201C;127.0.0.1&#x201D;, 5000)</span> </pre><ul><li style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570; - <strong>&#x670D;&#x52A1;&#x5668;&#x7684;IP&#x5730;&#x5740;</strong> &#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#xFF08;127.0.0.1&#x662F;localhost&#x7684;IP&#x5730;&#x5740;&#xFF0C;&#x5176;&#x4E2D;&#x4EE3;&#x7801;&#x5C06;&#x5728;&#x5355;&#x4E2A;&#x72EC;&#x7ACB;&#x8BA1;&#x7B97;&#x673A;&#x4E0A;&#x8FD0;&#x884C;&#xFF09;&#x3002;</span> </li><li style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570; - <strong>TCP&#x7AEF;&#x53E3;</strong> &#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#xFF08;&#x53EA;&#x662F;&#x8868;&#x793A;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x8FD0;&#x884C;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x6570;&#x5B57;&#x3002;&#x4F8B;&#x5982;&#xFF0C;HTTP&#x5728;&#x7AEF;&#x53E3;80&#x4E0A;&#x8FD0;&#x884C;&#x3002;&#x7AEF;&#x53E3;&#x53F7;&#x53EF;&#x4EE5;&#x662F;0&#x5230;65535&#xFF09;</span> </li></ul><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x901A;&#x8BAF;</strong></span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><p style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8981;&#x901A;&#x8FC7;&#x5957;&#x63A5;&#x5B57;&#x8FDE;&#x63A5;&#x8FDB;&#x884C;&#x901A;&#x4FE1;&#xFF0C;&#x6D41;&#x7528;&#x4E8E;&#x8F93;&#x5165;&#x548C;&#x8F93;&#x51FA;&#x6570;&#x636E;&#x3002;</span> </p><p style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x5173;&#x95ED;&#x8FDE;&#x63A5;</strong></span> </p><p style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E00;&#x65E6;&#x53D1;&#x9001;&#x5230;&#x670D;&#x52A1;&#x5668;&#x7684;&#x6D88;&#x606F;&#xFF0C;&#x5C31;&#x4F1A;&#x663E;&#x5F0F;&#x5173;&#x95ED;&#x5957;&#x63A5;&#x5B57;&#x8FDE;&#x63A5;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <em>&#x5728;&#x7A0B;&#x5E8F;&#x4E2D;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x4E0D;&#x65AD;&#x8BFB;&#x53D6;&#x7528;&#x6237;&#x7684;&#x8F93;&#x5165;&#x5E76;&#x53D1;&#x9001;&#x5230;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x76F4;&#x5230;&#x952E;&#x5165;&#x201C;Over&#x201D;&#x3002;</em></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>Java&#x5B9E;&#x73B0;</strong></span> </p>
+<pre class="brush: java; title: ; notranslate" title="">// A Java program for a Client
+import java.net.*;
+import java.io.*;
+
+public class Client
+{
+    // initialize socket and input output streams
+    private Socket socket            = null;
+    private DataInputStream  input   = null;
+    private DataOutputStream out     = null;
+
+    // constructor to put ip address and port
+    public Client(String address, int port)
+    {
+        // establish a connection
+        try
+        {
+            socket = new Socket(address, port);
+            System.out.println(&quot;Connected&quot;);
+
+            // takes input from terminal
+            input  = new DataInputStream(System.in);
+
+            // sends output to the socket
+            out    = new DataOutputStream(socket.getOutputStream());
+        }
+        catch(UnknownHostException u)
+        {
+            System.out.println(u);
+        }
+        catch(IOException i)
+        {
+            System.out.println(i);
+        }
+
+        // string to read message from input
+        String line = &quot;&quot;;
+
+        // keep reading until &quot;Over&quot; is input
+        while (!line.equals(&quot;Over&quot;))
+        {
+            try
+            {
+                line = input.readLine();
+                out.writeUTF(line);
+            }
+            catch(IOException i)
+            {
+                System.out.println(i);
+            }
+        }
+
+        // close the connection
+        try
+        {
+            input.close();
+            out.close();
+            socket.close();
+        }
+        catch(IOException i)
+        {
+            System.out.println(i);
+        }
+    }
+
+    public static void main(String args[])
+    {
+        Client client = new Client(&quot;127.0.0.1&quot;, 5000);
+    }
+}
+</pre><p style="text-align: center"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x670D;&#x52A1;&#x5668;&#x7F16;&#x7A0B;</strong></span> </p><p style="text-align: left"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x5EFA;&#x7ACB;&#x5957;&#x63A5;&#x5B57;&#x8FDE;&#x63A5;</strong></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8981;&#x7F16;&#x5199;&#x670D;&#x52A1;&#x5668;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x9700;&#x8981;&#x4E24;&#x4E2A;&#x5957;&#x63A5;&#x5B57;&#x3002;</span> </p><ul><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7B49;&#x5F85;&#x5BA2;&#x6237;&#x7AEF;&#x8BF7;&#x6C42;&#x7684;ServerSocket&#xFF08;&#x5F53;&#x5BA2;&#x6237;&#x7AEF;&#x521B;&#x5EFA;&#x65B0;&#x7684;Socket&#xFF08;&#xFF09;&#x65F6;&#xFF09;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7528;&#x4E8E;&#x4E0E;&#x5BA2;&#x6237;&#x7AEF;&#x901A;&#x4FE1;&#x7684;&#x666E;&#x901A;&#x65E7;Socket&#x5957;&#x63A5;&#x5B57;&#x3002;</span> </li></ul><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x901A;&#x8BAF;</strong></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> getOutputStream&#xFF08;&#xFF09;&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x901A;&#x8FC7;&#x5957;&#x63A5;&#x5B57;&#x53D1;&#x9001;&#x8F93;&#x51FA;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x5173;&#x95ED;&#x8FDE;&#x63A5;</strong></span> </p><p style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x901A;&#x8FC7;&#x5173;&#x95ED;&#x5957;&#x63A5;&#x5B57;&#x4EE5;&#x53CA;&#x8F93;&#x5165;/&#x8F93;&#x51FA;&#x6D41;&#x6765;&#x5173;&#x95ED;&#x8FDE;&#x63A5;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x3002;</span> </p><pre class="brush: java; title: ; notranslate" title="">// A Java program for a Server
+import java.net.*;
+import java.io.*;
+
+public class Server
+{
+    //initialize socket and input stream
+    private Socket          socket   = null;
+    private ServerSocket    server   = null;
+    private DataInputStream in       =  null;
+
+    // constructor with port
+    public Server(int port)
+    {
+        // starts server and waits for a connection
+        try
+        {
+            server = new ServerSocket(port);
+            System.out.println(&quot;Server started&quot;);
+
+            System.out.println(&quot;Waiting for a client ...&quot;);
+
+            socket = server.accept();
+            System.out.println(&quot;Client accepted&quot;);
+
+            // takes input from the client socket
+            in = new DataInputStream(
+                new BufferedInputStream(socket.getInputStream()));
+
+            String line = &quot;&quot;;
+
+            // reads message from client until &quot;Over&quot; is sent
+            while (!line.equals(&quot;Over&quot;))
+            {
+                try
+                {
+                    line = in.readUTF();
+                    System.out.println(line);
+
+                }
+                catch(IOException i)
+                {
+                    System.out.println(i);
+                }
+            }
+            System.out.println(&quot;Closing connection&quot;);
+
+            // close connection
+            socket.close();
+            in.close();
+        }
+        catch(IOException i)
+        {
+            System.out.println(i);
+        }
+    }
+
+    public static void main(String args[])
+    {
+        Server server = new Server(5000);
+    }
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x91CD;&#x70B9;</strong></span> </p><ul><li style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x670D;&#x52A1;&#x5668;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5728;&#x7279;&#x5B9A;&#x7AEF;&#x53E3;5000&#x4E0A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;ServerSocket&#x3002;&#x8FD9;&#x542F;&#x52A8;&#x6211;&#x4EEC;&#x7684;&#x670D;&#x52A1;&#x5668;&#x4FA6;&#x542C;&#x8FDB;&#x5165;&#x7AEF;&#x53E3;5000&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x8BF7;&#x6C42;&#x3002;</span> </li><li style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7136;&#x540E;&#xFF0C;Server&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;Socket&#x4EE5;&#x4E0E;&#x5BA2;&#x6237;&#x7AEF;&#x901A;&#x4FE1;&#x3002;</span> </li></ul><pre style="text-align: center"> <span class="pre-span" style="direction: ltr; text-align: left">socket = server.accept()</span> </pre><ul><li style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> accept&#xFF08;&#xFF09;&#x65B9;&#x6CD5;&#x963B;&#x585E;&#xFF08;&#x53EA;&#x662F;&#x5750;&#x5728;&#x90A3;&#x91CC;&#xFF09;&#xFF0C;&#x76F4;&#x5230;&#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#x5230;&#x670D;&#x52A1;&#x5668;&#x3002;</span> </li><li style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7136;&#x540E;&#x6211;&#x4EEC;&#x4F7F;&#x7528;getInputStream&#xFF08;&#xFF09;&#x65B9;&#x6CD5;&#x4ECE;&#x5957;&#x63A5;&#x5B57;&#x83B7;&#x53D6;&#x8F93;&#x5165;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x7684;&#x670D;&#x52A1;&#x5668;&#x4E0D;&#x65AD;&#x63A5;&#x6536;&#x6D88;&#x606F;&#xFF0C;&#x76F4;&#x5230;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;&#x201C;Over&#x201D;&#x3002;</span> </li><li style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x6211;&#x4EEC;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x5173;&#x95ED;&#x5957;&#x63A5;&#x5B57;&#x548C;&#x8F93;&#x5165;&#x6D41;&#x6765;&#x5173;&#x95ED;&#x8FDE;&#x63A5;&#x3002;</span> </li><li style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8981;&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x4E0A;&#x8FD0;&#x884C;&#x5BA2;&#x6237;&#x7AEF;&#x548C;&#x670D;&#x52A1;&#x5668;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x8BF7;&#x7F16;&#x8BD1;&#x5B83;&#x4EEC;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7136;&#x540E;&#x9996;&#x5148;&#x8FD0;&#x884C;&#x670D;&#x52A1;&#x5668;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x7136;&#x540E;&#x8FD0;&#x884C;&#x5BA2;&#x6237;&#x7AEF;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;</span> </li></ul><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x5728;&#x7EC8;&#x7AEF;&#x6216;&#x547D;&#x4EE4;&#x63D0;&#x793A;&#x7B26;&#x4E0A;&#x8FD0;&#x884C;</strong></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E3A;Server&#x6253;&#x5F00;&#x4E24;&#x4E2A;&#x7A97;&#x53E3;&#xFF0C;&#x4E3A;Client&#x6253;&#x5F00;&#x53E6;&#x4E00;&#x4E2A;&#x7A97;&#x53E3;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 1.&#x9996;&#x5148;&#x8FD0;&#x884C;Server&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">$ java Server</span> </pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x670D;&#x52A1;&#x5668;&#x542F;&#x52A8;&#x4E86;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7B49;&#x5F85;&#x5BA2;&#x6237;......</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 2.&#x7136;&#x540E;&#x5728;&#x53E6;&#x4E00;&#x4E2A;&#x7EC8;&#x7AEF;&#x4E0A;&#x8FD0;&#x884C;&#x5BA2;&#x6237;&#x7AEF;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">$ java Client</span> </pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B83;&#x5C06;&#x663E;&#x793A; - &#x5DF2;&#x8FDE;&#x63A5;&#x4E14;&#x670D;&#x52A1;&#x5668;&#x63A5;&#x53D7;&#x5BA2;&#x6237;&#x7AEF;&#x5E76;&#x663E;&#x793A;&#xFF0C;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5BA2;&#x6237;&#x63A5;&#x53D7;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 3.&#x7136;&#x540E;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x5728;&#x201C;&#x5BA2;&#x6237;&#x7AEF;&#x201D;&#x7A97;&#x53E3;&#x4E2D;&#x5F00;&#x59CB;&#x952E;&#x5165;&#x6D88;&#x606F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4EE5;&#x4E0B;&#x662F;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x793A;&#x4F8B;&#x8F93;&#x5165;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">Hello</span>
+<span class="pre-span" style="direction: ltr; text-align: left">I made my first socket connection</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Over</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x670D;&#x52A1;&#x5668;&#x540C;&#x65F6;&#x63A5;&#x6536;&#x548C;&#x663E;&#x793A;&#x7684;&#x5185;&#x5BB9;&#xFF0C;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">Hello</span>
+<span class="pre-span" style="direction: ltr; text-align: left">I made my first socket connection</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Over</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Closing connection</span>
+</pre><p style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x53D1;&#x9001;&#x201C;Over&#x201D;&#x4F1A;&#x5173;&#x95ED;&#x5BA2;&#x6237;&#x7AEF;&#x548C;&#x670D;&#x52A1;&#x5668;&#x4E4B;&#x95F4;&#x7684;&#x8FDE;&#x63A5;&#xFF0C;&#x5C31;&#x50CF;&#x4E4B;&#x524D;&#x6240;&#x8BF4;&#x7684;&#x90A3;&#x6837;&#x3002;</span> </p><p style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x5982;&#x679C;&#x4F60;&#x6B63;&#x5728;&#x4F7F;&#x7528;Eclipse&#x6216;&#x559C;&#x6B22;&#x8FD9;&#x6837;&#x7684; - </strong></span> </p><ol><li style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x7EC8;&#x7AEF;&#x6216;&#x9009;&#x9879;&#x5361;&#x4E0A;&#x7F16;&#x8BD1;&#x5B83;&#x4EEC;</span> </li><li style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x9996;&#x5148;&#x8FD0;&#x884C;Server&#x7A0B;&#x5E8F;</span> </li><li style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7136;&#x540E;&#x8FD0;&#x884C;&#x5BA2;&#x6237;&#x7AEF;&#x7A0B;&#x5E8F;</span> </li><li style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x5BA2;&#x6237;&#x7AEF;&#x7A97;&#x53E3;&#x4E2D;&#x952E;&#x5165;&#x6D88;&#x606F;&#xFF0C;&#x5C06;&#x540C;&#x65F6;&#x7531;&#x670D;&#x52A1;&#x5668;&#x7A97;&#x53E3;&#x63A5;&#x6536;&#x548C;&#x663E;&#x793A;&#x3002;</span> </li><li style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F93;&#x5165;&#x7ED3;&#x675F;&#x3002;</span> </li></ol><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><!-- .entry-meta --></div></body></html>

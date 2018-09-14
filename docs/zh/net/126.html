@@ -1,0 +1,106 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/net/126.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x51EF;&#x6492;&#x5BC6;&#x7801;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p style="text-align: justify"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> Caesar Cipher&#x6280;&#x672F;&#x662F;&#x6700;&#x65E9;&#x548C;&#x6700;&#x7B80;&#x5355;&#x7684;&#x52A0;&#x5BC6;&#x6280;&#x672F;&#x4E4B;&#x4E00;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B83;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x66FF;&#x6362;&#x5BC6;&#x7801;&#xFF0C;&#x5373;&#x7ED9;&#x5B9A;&#x6587;&#x672C;&#x7684;&#x6BCF;&#x4E2A;&#x5B57;&#x6BCD;&#x90FD;&#x88AB;&#x5B57;&#x6BCD;&#x8868;&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x56FA;&#x5B9A;&#x6570;&#x91CF;&#x7684;&#x4F4D;&#x7F6E;&#x7684;&#x5B57;&#x6BCD;&#x66FF;&#x6362;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x79FB;&#x4F4D;&#x4E3A;1&#xFF0C;&#x5219;A&#x5C06;&#x66FF;&#x6362;&#x4E3A;B&#xFF0C;B&#x5C06;&#x66FF;&#x6362;&#x4E3A;C&#xFF0C;&#x4F9D;&#x6B64;&#x7C7B;&#x63A8;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x663E;&#x7136;&#x662F;&#x4EE5;&#x6731;&#x5229;&#x53F6;&#x65AF;&#xB7;&#x51EF;&#x6492;&#xFF08;Julius Caesar&#xFF09;&#x7684;&#x540D;&#x5B57;&#x547D;&#x540D;&#x7684;&#xFF0C;&#x540E;&#x8005;&#x663E;&#x7136;&#x7528;&#x5B83;&#x4E0E;&#x4ED6;&#x7684;&#x5B98;&#x5458;&#x6C9F;&#x901A;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x56E0;&#x6B64;&#xFF0C;&#x4E3A;&#x4E86;&#x52A0;&#x5BC6;&#x7ED9;&#x5B9A;&#x7684;&#x6587;&#x672C;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x6574;&#x6570;&#x503C;&#xFF0C;&#x79F0;&#x4E3A;shift&#xFF0C;&#x8868;&#x793A;&#x6587;&#x672C;&#x7684;&#x6BCF;&#x4E2A;&#x5B57;&#x6BCD;&#x5411;&#x4E0B;&#x79FB;&#x52A8;&#x7684;&#x4F4D;&#x7F6E;&#x6570;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x52A0;&#x5BC6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6A21;&#x8FD0;&#x7B97;&#x6765;&#x8868;&#x793A;&#xFF0C;&#x9996;&#x5148;&#x5C06;&#x5B57;&#x6BCD;&#x8F6C;&#x6362;&#x4E3A;&#x6570;&#x5B57;&#xFF0C;&#x6839;&#x636E;&#x65B9;&#x6848;&#xFF0C;A = 0&#xFF0C;B = 1&#xFF0C;...&#xFF0C;Z = 25.&#x901A;&#x8FC7;&#x79FB;&#x4F4D;n&#x5BF9;&#x5B57;&#x6BCD;&#x7684;&#x52A0;&#x5BC6;&#x53EF;&#x4EE5;&#x5728;&#x6570;&#x5B66;&#x4E0A;&#x63CF;&#x8FF0;&#x4E3A;&#x3002;</span> </p><p style="text-align: center"><img src="../../../imgs/net/77303a55caeae55e977a604689a83320.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="E_n(x)=(x+n)mod\ 26" title="&#x7531;QuickLaTeX.com&#x5448;&#x73B0;" height="27" width="270" style="vertical-align: -7px;"><br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#xFF08;&#x5E26;&#x6709;&#x79FB;&#x4F4D;n&#x7684;&#x52A0;&#x5BC6;&#x9636;&#x6BB5;&#xFF09;</span> </p><p style="text-align: center"><img src="../../../imgs/net/257bf4786964266dc8726160612bd194.jpg" class="ql-img-inline-formula quicklatex-auto-format" alt="D_n(x)=(x-n)mod\ 26" title="&#x7531;QuickLaTeX.com&#x5448;&#x73B0;" height="27" width="272" style="vertical-align: -7px;"><br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#xFF08;&#x79FB;&#x4F4D;n&#x7684;&#x89E3;&#x5BC6;&#x9636;&#x6BB5;&#xFF09;</span> </p><p><img class="aligncenter size-full wp-image-138078" src="../../../imgs/net/0415d2b8944d65608073df4040c1726c.jpg" alt="&#x51EF;&#x6492;&#x5BC6;&#x7801;3" width="339" height="149"></p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x4F8B;&#x5B50; &#xFF1A;</strong></span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><pre> <span class="pre-span" style="direction: ltr; text-align: left"><strong>Text</strong> : ABCDEFGHIJKLMNOPQRSTUVWXYZ</span>
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Shift</strong> : 23</span>
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Cipher</strong> : XYZABCDEFGHIJKLMNOPQRSTUVW</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Text</strong> : ATTACKATONCE</span>
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Shift</strong> : 4</span>
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Cipher</strong> : EXXEGOEXSRGI</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x51EF;&#x6492;&#x5BC6;&#x7801;&#x7B97;&#x6CD5;&#xFF1A;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x8F93;&#x5165;&#xFF1A;</strong></span> </p><ol><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E00;&#x4E2A;&#x5C0F;&#x5199;&#x5B57;&#x6BCD;&#x4E32;&#xFF0C;&#x79F0;&#x4E3A;&#x6587;&#x672C;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> 0-25&#x4E4B;&#x95F4;&#x7684;&#x6574;&#x6570;&#x8868;&#x793A;&#x6240;&#x9700;&#x7684;&#x73ED;&#x6B21;&#x3002;</span> </li></ol><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x7A0B;&#x5E8F;&#xFF1A;</strong></span> </p><ul><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4E00;&#x6B21;&#x904D;&#x5386;&#x7ED9;&#x5B9A;&#x6587;&#x672C;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x5B57;&#x7B26;&#xFF0C;&#x6839;&#x636E;&#x89C4;&#x5219;&#x8F6C;&#x6362;&#x7ED9;&#x5B9A;&#x5B57;&#x7B26;&#xFF0C;&#x5177;&#x4F53;&#x53D6;&#x51B3;&#x4E8E;&#x6211;&#x4EEC;&#x662F;&#x52A0;&#x5BC6;&#x8FD8;&#x662F;&#x89E3;&#x5BC6;&#x6587;&#x672C;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD4;&#x56DE;&#x751F;&#x6210;&#x7684;&#x65B0;&#x5B57;&#x7B26;&#x4E32;&#x3002;</span> </li></ul><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x63A5;&#x6536;&#x6587;&#x672C;&#xFF08;&#x5B57;&#x7B26;&#x4E32;&#xFF09;&#x548C;Shift&#x503C;&#xFF08;&#x6574;&#x6570;&#xFF09;&#x5E76;&#x8FD4;&#x56DE;&#x52A0;&#x5BC6;&#x6587;&#x672C;&#x7684;&#x7A0B;&#x5E8F;&#x3002;</span> <br></p><div class="responsive-tabs"><h2 class="tabtitle sigil_not_in_toc"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> C ++</span> </h2><div class="tabcontent"></div></div><p></p>
+<pre class="brush: cpp; title: ; notranslate" title="">// A C++ program to illustrate Caesar Cipher Technique
+#include &lt;iostream&gt;
+using namespace std;
+
+// This function receives text and shift and
+// returns the encrypted text
+string encrypt(string text, int s)
+{
+    string result = &quot;&quot;;
+
+    // traverse text
+    for (int i=0;i&lt;text.length();i++)
+    {
+        // apply transformation to each character
+        // Encrypt Uppercase letters
+        if (isupper(text[i]))
+            result += char(int(text[i]+s-65)%26 +65);
+
+    // Encrypt Lowercase letters
+    else
+        result += char(int(text[i]+s-97)%26 +97);
+    }
+
+    // Return the resulting string
+    return result;
+}
+
+// Driver program to test the above function
+int main()
+{
+    string text=&quot;ATTACKATONCE&quot;;
+    int s = 4;
+    cout &lt;&lt; &quot;Text : &quot; &lt;&lt; text;
+    cout &lt;&lt; &quot;\nShift: &quot; &lt;&lt; s;
+    cout &lt;&lt; &quot;\nCipher: &quot; &lt;&lt; encrypt(text, s);
+    return 0;
+}
+</pre></div><h2 class="tabtitle sigil_not_in_toc"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> Java&#x7684;</span> </h2><div class="tabcontent"><pre class="brush: java; title: ; notranslate" title="">//A Java Program to illustrate Caesar Cipher Technique
+class CaesarCipher
+{
+    // Encrypts text using a shift od s
+    public static StringBuffer encrypt(String text, int s)
+    {
+        StringBuffer result= new StringBuffer();
+
+        for (int i=0; i&lt;text.length(); i++)
+        {
+            if (Character.isUpperCase(text.charAt(i)))
+            {
+                char ch = (char)(((int)text.charAt(i) +
+                                  s - 65) % 26 + 65);
+                result.append(ch);
+            }
+            else
+            {
+                char ch = (char)(((int)text.charAt(i) +
+                                  s - 97) % 26 + 97);
+                result.append(ch);
+            }
+        }
+        return result;
+    }
+
+    // Driver code
+    public static void main(String[] args)
+    {
+        String text = &quot;ATTACKATONCE&quot;;
+        int s = 4;
+        System.out.println(&quot;Text  : &quot; + text);
+        System.out.println(&quot;Shift : &quot; + s);
+        System.out.println(&quot;Cipher: &quot; + encrypt(text, s));
+    }
+}
+</pre></div><h2 class="tabtitle sigil_not_in_toc"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x87D2;&#x86C7;</span> </h2><div class="tabcontent"><pre class="brush: python; title: ; notranslate" title="">#A python program to illustrate Caesar Cipher Technique
+def encrypt(text,s):
+    result = &quot;&quot;
+
+    # traverse text
+    for i in range(len(text)):
+        char = text[i]
+
+        # Encrypt uppercase characters
+        if (char.isupper()):
+            result += chr((ord(char) + s-65) % 26 + 65)
+
+        # Encrypt lowercase characters
+        else:
+            result += chr((ord(char) + s - 97) % 26 + 97)
+
+    return result
+
+#check the above function
+text = &quot;ATTACKATONCE&quot;
+s = 4
+print &quot;Text  : &quot; + text
+print &quot;Shift : &quot; + str(s)
+print &quot;Cipher: &quot; + encrypt(text,s)
+</pre><p></p></div></body></html>

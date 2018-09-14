@@ -1,0 +1,95 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/net/128.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5BC6;&#x7801;&#x5B66;&#x4E2D;&#x7684;RSA&#x7B97;&#x6CD5;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> RSA&#x7B97;&#x6CD5;&#x662F;&#x975E;&#x5BF9;&#x79F0;&#x5BC6;&#x7801;&#x7B97;&#x6CD5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x975E;&#x5BF9;&#x79F0;&#x5B9E;&#x9645;&#x4E0A;&#x610F;&#x5473;&#x7740;&#x5B83;&#x53EF;&#x4EE5;&#x5728;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x5BC6;&#x94A5;&#x4E0A;&#x5DE5;&#x4F5C;&#xFF0C;&#x5373;<strong>&#x516C;&#x94A5;</strong>&#x548C;<strong>&#x79C1;&#x94A5;&#x3002;</strong></span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6B63;&#x5982;&#x540D;&#x79F0;&#x6240;&#x63CF;&#x8FF0;&#x7684;&#x90A3;&#x6837;&#xFF0C;&#x516C;&#x94A5;&#x88AB;&#x8D4B;&#x4E88;&#x6BCF;&#x4E2A;&#x4EBA;&#xFF0C;&#x79C1;&#x94A5;&#x88AB;&#x4FDD;&#x5BC6;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x975E;&#x5BF9;&#x79F0;&#x52A0;&#x5BC6;&#x7684;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</strong></span> </p><ol><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5BA2;&#x6237;&#x7AEF;&#xFF08;&#x4F8B;&#x5982;&#x6D4F;&#x89C8;&#x5668;&#xFF09;&#x5C06;&#x5176;&#x516C;&#x94A5;&#x53D1;&#x9001;&#x5230;&#x670D;&#x52A1;&#x5668;&#x5E76;&#x8BF7;&#x6C42;&#x67D0;&#x4E9B;&#x6570;&#x636E;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x670D;&#x52A1;&#x5668;&#x4F7F;&#x7528;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x516C;&#x94A5;&#x52A0;&#x5BC6;&#x6570;&#x636E;&#x5E76;&#x53D1;&#x9001;&#x52A0;&#x5BC6;&#x6570;&#x636E;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5BA2;&#x6237;&#x7AEF;&#x63A5;&#x6536;&#x6B64;&#x6570;&#x636E;&#x5E76;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x89E3;&#x5BC6;&#x3002;</span> </li></ol><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7531;&#x4E8E;&#x8FD9;&#x662F;&#x4E0D;&#x5BF9;&#x79F0;&#x7684;&#xFF0C;&#x5373;&#x4F7F;&#x7B2C;&#x4E09;&#x65B9;&#x62E5;&#x6709;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x516C;&#x94A5;&#xFF0C;&#x9664;&#x6D4F;&#x89C8;&#x5668;&#x4E4B;&#x5916;&#x7684;&#x5176;&#x4ED6;&#x4EFB;&#x4F55;&#x4EBA;&#x90FD;&#x65E0;&#x6CD5;&#x89E3;&#x5BC6;&#x6570;&#x636E;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x8FD9;&#x4E2A;&#x60F3;&#x6CD5;&#xFF01;</strong></span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> RSA&#x7684;&#x601D;&#x60F3;&#x57FA;&#x4E8E;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x4E8B;&#x5B9E;&#xFF0C;&#x5373;&#x5F88;&#x96BE;&#x5C06;&#x5927;&#x6574;&#x6570;&#x5206;&#x89E3;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x516C;&#x94A5;&#x7531;&#x4E24;&#x4E2A;&#x6570;&#x5B57;&#x7EC4;&#x6210;&#xFF0C;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x662F;&#x4E24;&#x4E2A;&#x5927;&#x7D20;&#x6570;&#x7684;&#x4E58;&#x6CD5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x79C1;&#x94A5;&#x4E5F;&#x6765;&#x81EA;&#x76F8;&#x540C;&#x7684;&#x4E24;&#x4E2A;&#x7D20;&#x6570;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x56E0;&#x6B64;&#xFF0C;&#x5982;&#x679C;&#x67D0;&#x4EBA;&#x53EF;&#x4EE5;&#x5C06;&#x5927;&#x6570;&#x91CF;&#x5206;&#x89E3;&#xFF0C;&#x5219;&#x79C1;&#x94A5;&#x4F1A;&#x53D7;&#x5230;&#x635F;&#x5BB3;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x56E0;&#x6B64;&#xFF0C;&#x52A0;&#x5BC6;&#x5F3A;&#x5EA6;&#x5B8C;&#x5168;&#x53D6;&#x51B3;&#x4E8E;&#x5BC6;&#x94A5;&#x5927;&#x5C0F;&#xFF0C;&#x5982;&#x679C;&#x5BC6;&#x94A5;&#x5927;&#x5C0F;&#x589E;&#x52A0;&#x4E00;&#x500D;&#x6216;&#x4E09;&#x500D;&#xFF0C;&#x5219;&#x52A0;&#x5BC6;&#x5F3A;&#x5EA6;&#x5448;&#x6307;&#x6570;&#x7EA7;&#x589E;&#x957F;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> RSA&#x5BC6;&#x94A5;&#x901A;&#x5E38;&#x53EF;&#x4EE5;&#x662F;1024&#x6216;2048&#x4F4D;&#x957F;&#xFF0C;&#x4F46;&#x4E13;&#x5BB6;&#x8BA4;&#x4E3A;&#x5728;&#x4E0D;&#x4E45;&#x7684;&#x5C06;&#x6765;&#x53EF;&#x80FD;&#x4F1A;&#x7834;&#x574F;1024&#x4F4D;&#x5BC6;&#x94A5;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4F46;&#x5230;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#xFF0C;&#x8FD9;&#x4F3C;&#x4E4E;&#x662F;&#x4E00;&#x9879;&#x4E0D;&#x53EF;&#x884C;&#x7684;&#x4EFB;&#x52A1;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x8BA9;&#x6211;&#x4EEC;&#x5B66;&#x4E60;RSA&#x7B97;&#x6CD5;&#x80CC;&#x540E;&#x7684;&#x673A;&#x5236;&#xFF1A;</strong></span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><ul> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&gt;&gt;&#x751F;&#x6210;&#x516C;&#x94A5;&#xFF1A;</strong></span> <p></p><pre><li> <span class="pre-span" style="direction: ltr; text-align: left">Select two prime no&apos;s.</span> <span class="pre-span" style="direction: ltr; text-align: left">Suppose <strong>P = 53 and Q = 59</strong> .</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Now First part of the Public key : <strong>n = P*Q = 3127</strong> .</span> </li>
+<li> <span class="pre-span" style="direction: ltr; text-align: left">We also need a small exponent say <strong>e</strong> :</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">But e Must be</span> <ul>
+<li> <span class="pre-span" style="direction: ltr; text-align: left">An integer.</span> </li>
+<li> <span class="pre-span" style="direction: ltr; text-align: left">Not be a factor of n.</span> </li>
+<li> <span class="pre-span" style="direction: ltr; text-align: left"><strong>1 &lt; e &lt; <a href="https://www.geeksforgeeks.org/eulers-totient-function/">&#x3A6;(n)</a></strong> [&#x3A6;(n) is discussed below],</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Let us now consider it to be equal to 3.</span> </li>
+</ul></li>
+    <li> <span class="pre-span" style="direction: ltr; text-align: left">Our Public Key is made of n and e</span> </li></pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&gt;&gt;&#x751F;&#x6210;&#x79C1;&#x94A5;&#xFF1A;</strong></span> </p><pre><li> <span class="pre-span" style="direction: ltr; text-align: left">We need to calculate &#x3A6;(n) :</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Such that <strong>&#x3A6;(n) = (P-1)(Q-1)</strong></span>     
+      <span class="pre-span" style="direction: ltr; text-align: left">so, &#x3A6;(n) = 3016</span> </li>
+    <li> <span class="pre-span" style="direction: ltr; text-align: left">Now calculate Private Key, <strong>d</strong> :</span> 
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>d = (k*&#x3A6;(n) + 1) / e</strong> for some integer k</span>
+<span class="pre-span" style="direction: ltr; text-align: left">For k = 2, value of d is 2011.</span> </li></pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x51C6;&#x5907;&#x597D;&#x4E86; - &#x516C;&#x94A5;&#xFF08;n = 3127&#x548C;e = 3&#xFF09;&#x548C;&#x79C1;&#x94A5;&#xFF08;d = 2011&#xFF09;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x5C06;&#x52A0;&#x5BC6;<strong>&#x201C;HI&#x201D;</strong> &#xFF1A;</span> </p><pre><li> <span class="pre-span" style="direction: ltr; text-align: left">Convert letters to numbers : H = 8 and I = 9</span> </li>
+    <li> <span class="pre-span" style="direction: ltr; text-align: left">Thus <strong>Encrypted Data c = 89 <sup>e</sup> mod n</strong> .</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Thus our Encrypted Data comes out to be 1394</span> </li>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Now we will decrypt <strong>1394</strong> :</span> 
+    <li> <span class="pre-span" style="direction: ltr; text-align: left"><strong>Decrypted Data = c <sup>d</sup> mod n</strong> .</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Thus our Encrypted Data comes out to be 89</span> </li>
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>8 = H and I = 9 ie &quot;HI&quot;.</strong></span> </pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x4E0B;&#x9762;&#x662F;&#x9488;&#x5BF9;&#x5C0F;&#x503C;&#x7684;RSA&#x7B97;&#x6CD5;&#x7684;C&#x5B9E;&#x73B0;&#xFF1A;</strong></span> </p>
+<pre class="brush: c; title: ; notranslate" title="">// C program for RSA asymmetric cryptographic
+// algorithm. For demonstration values are
+// relatively small compared to practical
+// application
+#include&lt;stdio.h&gt;
+#include&lt;math.h&gt;
+
+// Returns gcd of a and b
+int gcd(int a, int h)
+{
+    int temp;
+    while (1)
+    {
+        temp = a%h;
+        if (temp == 0)
+          return h;
+        a = h;
+        h = temp;
+    }
+}
+
+// Code to demonstrate RSA algorithm
+int main()
+{
+    // Two random prime numbers
+    double p = 3;
+    double q = 7;
+
+    // First part of public key:
+    double n = p*q;
+
+    // Finding other part of public key.
+    // e stands for encrypt
+    double e = 2;
+    double phi = (p-1)*(q-1);
+    while (e &lt; phi)
+    {
+        // e must be co-prime to phi and
+        // smaller than phi.
+        if (gcd(e, phi)==1)
+            break;
+        else
+            e++;
+    }
+
+    // Private key (d stands for decrypt)
+    // choosing d such that it satisfies
+    // d*e = 1 + k * totient
+    int k = 2;  // A constant value
+    double d = (1 + (k*phi))/e;
+
+    // Message to be encrypted
+    double msg = 20;
+
+    printf(&quot;Message data = %lf&quot;, msg);
+
+    // Encryption c = (msg ^ e) % n
+    double c = pow(msg, e);
+    c = fmod(c, n);
+    printf(&quot;\nEncrypted data = %lf&quot;, c);
+
+    // Decryption m = (c ^ d) % n
+    double m = pow(c, d);
+    m = fmod(m, n);
+    printf(&quot;\nOriginal Message Sent = %lf&quot;, m);
+
+    return 0;
+}
+// This code is contributed by Akash Sharan.
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F93;&#x51FA;&#xFF1A;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">Message data = 12.000000</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Encrypted data = 3.000000</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Original Message Sent = 12.000000</span>
+</pre><p></p><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><!-- .entry-meta --></ul></div></body></html>

@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/net/130.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5F31;&#x4F59;RSA&#x89E3;&#x5BC6;&#x4E0E;&#x6C49;&#x4F59;&#x6570;&#x5B9A;&#x7406;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5148;&#x51B3;&#x6761;&#x4EF6;&#xFF1A; <a href="https://www.geeksforgeeks.org/rsa-algorithm-cryptography/">RSA&#x7B97;&#x6CD5;</a></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x4E3A;&#x4EC0;&#x4E48;RSA&#x89E3;&#x5BC6;&#x5F88;&#x6162;&#xFF1F;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> RSA&#x89E3;&#x5BC6;&#x6BD4;&#x52A0;&#x5BC6;&#x6162;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x8FDB;&#x884C;&#x89E3;&#x5BC6;&#x65F6;&#xFF0C;&#x79C1;&#x94A5;&#x53C2;&#x6570;&#x201C;d&#x201D;&#x5FC5;&#x7136;&#x5F88;&#x5927;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6B64;&#x5916;&#xFF0C;&#x53C2;&#x6570; - &#x201C;p&#x548C;q&#x201D;&#x662F;&#x4E24;&#x4E2A;&#x975E;&#x5E38;&#x5927;&#x7684;&#x7D20;&#x6570;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7ED9;&#x5B9A;&#x6574;&#x6570;c&#xFF0C;e&#xFF0C;p&#x548C;q&#xFF0C;&#x6C42;m&#x4F7F;&#x5F97;<strong>c = pow&#xFF08;m&#xFF0C;e&#xFF09;mod&#xFF08;p * q&#xFF09;</strong> &#xFF08;&#x5F31;&#x6574;&#x6570;&#x7684;RSA&#x89E3;&#x5BC6;&#xFF09;&#x3002;</span> </p><blockquote><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x57FA;&#x672C; &#xFF1A;</b></span> </p><ul><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> RSA&#x662F;&#x7528;&#x4E8E;&#x5B89;&#x5168;&#x4F20;&#x8F93;&#x6D88;&#x606F;&#x7684;&#x516C;&#x94A5;&#x52A0;&#x5BC6;&#x7CFB;&#x7EDF;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> RSA&#x901A;&#x5E38;&#x5305;&#x62EC;&#x56DB;&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#xFF08;1&#xFF09;&#x5BC6;&#x94A5;&#x751F;&#x6210;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#xFF08;2&#xFF09;&#x5BC6;&#x94A5;&#x5206;&#x914D;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#xFF08;3&#xFF09;&#x52A0;&#x5BC6;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#xFF08;4&#xFF09;&#x89E3;&#x5BC6;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6D88;&#x606F;<strong>&#x52A0;&#x5BC6;</strong>&#x4F7F;&#x7528;&#x201C;&#x516C;&#x94A5;&#x201D;&#x5B8C;&#x6210;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6D88;&#x606F;<strong>&#x89E3;&#x5BC6;</strong>&#x662F;&#x901A;&#x8FC7;&#x201C;&#x79C1;&#x94A5;&#x201D;&#x5B8C;&#x6210;&#x7684; - &#x4E0E;&#x516C;&#x94A5;&#x4E00;&#x8D77;&#x751F;&#x6210;&#x7684;&#x53C2;&#x6570;&#xFF08;p&#xFF0C;q&#xFF0C;d&#xFF09;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x79C1;&#x94A5;&#x4EC5;&#x4E3A;&#x7528;&#x6237;&#x6240;&#x77E5;&#xFF0C;&#x5E76;&#x4E14;&#x4EFB;&#x4F55;&#x5E0C;&#x671B;&#x5411;&#x5177;&#x6709;&#x76F8;&#x5E94;&#x79C1;&#x94A5;&#x7684;&#x4EBA;&#x53D1;&#x9001;&#x52A0;&#x5BC6;&#x6D88;&#x606F;&#x7684;&#x4EBA;&#x90FD;&#x53EF;&#x4EE5;&#x77E5;&#x9053;&#x516C;&#x94A5;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x516C;&#x94A5;&#x7531;&#x4E24;&#x4E2A;&#x53C2;&#x6570;n&#xFF08;&#x6A21;&#x6570;&#xFF09;&#x548C;e&#xFF08;&#x6307;&#x6570;&#xFF09;&#x63CF;&#x8FF0;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6A21;&#x91CF;&#x662F;&#x4E24;&#x4E2A;&#x975E;&#x5E38;&#x5927;&#x7684;&#x7D20;&#x6570;&#xFF08;p&#x548C;q&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF09;&#x7684;&#x4E58;&#x79EF;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BE5;&#x6D88;&#x606F;&#x7684;&#x89E3;&#x5BC6;&#x5C06;&#x8981;&#x6C42;&#x7528;&#x6237;&#x5C06;n&#x5206;&#x89E3;&#x4E3A;&#x4E24;&#x4E2A;&#x7D20;&#x56E0;&#x5B50;&#xFF08;&#x4E3B;&#x8981;&#x539F;&#x56E0;&#xFF0C;RSA&#x662F;&#x5B89;&#x5168;&#x7684;&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x627E;&#x5230;e&#x7684;&#x6A21;&#x6570;&#x9006;&#xFF0C;&#x5176;&#x4E2D;&#x56F0;&#x96BE;&#x7684;&#x4EFB;&#x52A1;&#x5728;&#x4E8E;&#x3002;</span> </li><li> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x9996;&#x5148;&#x5C06;&#x6587;&#x672C;&#x6D88;&#x606F;&#x8F6C;&#x6362;&#x4E3A;&#x76F8;&#x5E94;&#x7684;&#x5341;&#x8FDB;&#x5236;&#x503C;&#xFF0C;&#x8FD9;&#x662F;&#x6211;&#x4EEC;&#x5728;&#x4E0B;&#x9762;&#x627E;&#x5230;&#x7684;&#x53C2;&#x6570;&#x201C;m&#x201D;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x901A;&#x8FC7;&#x6267;&#x884C;<strong>c = pow&#xFF08;m&#xFF0C;e&#xFF09;mod&#xFF08;p * q&#xFF09;&#x6765;</strong>&#x52A0;&#x5BC6;&#x6B64;&#x6D88;&#x606F;&#xFF0C;&#x5176;&#x4E2D;c&#x662F;&#x52A0;&#x5BC6;&#x6587;&#x672C;&#x3002;</span> </li></ul><p></p></blockquote><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x6B64;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5229;&#x7528;&#x5F31;&#x6A21;&#x6570;&#x548C;&#x6307;&#x6570;&#x503C;&#x6765;&#x5C1D;&#x8BD5;&#x901A;&#x8FC7;&#x67E5;&#x627E;p&#xFF0C;q&#x548C;d&#x7684;&#x503C;&#x6765;&#x751F;&#x6210;&#x79C1;&#x94A5;&#x6765;&#x7834;&#x89E3;&#x52A0;&#x5BC6;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x8FD9;&#x4E9B;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x5C1D;&#x8BD5;&#x627E;&#x5230;&#x7ED9;&#x5B9A;&#x7684;p&#x548C;q&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x6CE8;&#x610F; &#xFF1A;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x662F;<strong>p</strong>&#x548C;<strong>q&#x7684;</strong>&#x5C0F;&#x503C;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x4E0A;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x975E;&#x5E38;&#x5927;&#x7684;<strong>p</strong>&#x548C;<strong>q</strong>&#x503C;&#x6765;&#x4F7F;&#x6211;&#x4EEC;&#x7684;RSA&#x7CFB;&#x7EDF;&#x5B89;&#x5168;&#x3002;</span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x4F8B;&#x5B50; &#xFF1A;</strong></span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left"><strong>Input :</strong></span> 
+<span class="pre-span" style="direction: ltr; text-align: left">c = 1614</span>
+<span class="pre-span" style="direction: ltr; text-align: left">e = 65537</span>
+<span class="pre-span" style="direction: ltr; text-align: left">p = 53</span>
+<span class="pre-span" style="direction: ltr; text-align: left">q = 31</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Output :</strong></span>
+<span class="pre-span" style="direction: ltr; text-align: left">1372</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Explanation :</strong></span>
+<span class="pre-span" style="direction: ltr; text-align: left">We calculate <strong>c = pow(m, e)mod(p * q)</strong> .</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">Insert m = 1372.</span> 
+<span class="pre-span" style="direction: ltr; text-align: left">On calculating, we get c = 1614.</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Input :</strong></span>
+<span class="pre-span" style="direction: ltr; text-align: left">c = 3893595</span>
+<span class="pre-span" style="direction: ltr; text-align: left">e = 101</span>
+<span class="pre-span" style="direction: ltr; text-align: left">p = 3191</span>
+<span class="pre-span" style="direction: ltr; text-align: left">q = 3203</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Output :</strong></span>
+<span class="pre-span" style="direction: ltr; text-align: left">6574839</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left"><strong>Explanation :</strong></span>
+<span class="pre-span" style="direction: ltr; text-align: left">As shown above, if we calculate pow(m, e)mod(p * q)</span>
+<span class="pre-span" style="direction: ltr; text-align: left">with m = 6574839, we get c = 3893595</span>
+</pre><blockquote><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x901A;&#x5E38;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x6B65;&#x9AA4;&#x627E;&#x5230;m&#x7684;&#x503C;&#xFF1A;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#xFF08;1&#xFF09;&#x8BA1;&#x7B97;e&#x7684;&#x6A21;&#x9006;&#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x7B49;&#x5F0F;&#xFF0C; <strong>d = e ^&#xFF08; -  1&#xFF09;&#xFF08;mod lambda&#xFF08;n&#xFF09;&#xFF09;</strong> &#xFF0C;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5176;&#x4E2D;lambda&#x662F;<strong>Carmichael Totient&#x51FD;&#x6570;</strong> &#x3002;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x9605;&#x8BFB;</strong> &#xFF1A; <a href="https://en.wikipedia.org/wiki/Carmichael_function">Carmichael&#x529F;&#x80FD;</a></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#xFF08;2&#xFF09;&#x8BA1;&#x7B97;<strong>m = pow&#xFF08;c&#xFF0C;d&#xFF09;mod&#xFF08;p * q&#xFF09;</strong></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> &#xFF08;3&#xFF09;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E2D;&#x56FD;&#x5269;&#x4F59;&#x5B9A;&#x7406;&#x66F4;&#x5FEB;&#x5730;&#x6267;&#x884C;&#x8FD9;&#x4E2A;&#x8BA1;&#x7B97;&#xFF0C;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5982;&#x4E0B;&#x9762;&#x7684;&#x51FD;&#x6570;&#x4E2D;&#x6240;&#x5B9A;&#x4E49;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5173;&#x4E8E;&#x4E2D;&#x56FD;&#x5269;&#x4F59;&#x5B9A;&#x7406;&#x7684;&#x8FDB;&#x4E00;&#x6B65;&#x9605;&#x8BFB;&#x53EF;&#x4EE5;&#x5728;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)">RSA&#xFF08;&#x5BC6;&#x7801;&#x7CFB;&#x7EDF;&#xFF09;</a></span> </p></blockquote><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x4EE5;&#x4E0B;&#x662F;&#x6B64;&#x65B9;&#x6CD5;&#x7684;Python&#x5B9E;&#x73B0;&#xFF1A;</span> </p>
+<pre class="brush: python; title: ; notranslate" title=""># Function to find the gcd of two 
+# integers using Euclidean algorithm
+def gcd(p, q):
+    
+    if q == 0:
+        return p
+        
+    return gcd(q, p % q)
+
+# Function to find the
+# lcm of two integers 
+def lcm(p, q):
+    return p * q / gcd(p, q)
+
+# Function implementing extended
+# euclidean algorithm
+def egcd(e, phi):
+    
+    if e == 0:
+        return (phi, 0, 1)
+    else:
+        g, y, x = egcd(phi % e, e)
+        return (g, x - (phi // e) * y, y)
+
+# Function to compute the modular inverse
+def modinv(e, phi):
+    
+    g, x, y = egcd(e, phi)
+    return x % phi
+
+
+# Implementation of the Chinese Remainder Theorem
+def chineseremaindertheorem(dq, dp, p, q, c):
+    
+    # Message part 1
+    m1 = pow(c, dp, p)
+    
+    # Message part 2
+    m2 = pow(c, dq, q)
+    
+    qinv = modinv(q, p)
+    h = (qinv * (m1 - m2)) % p
+    m = m2 + h * q
+    return m
+
+# Driver Code
+p = 9817
+q = 9907
+e = 65537
+c = 36076319
+d = modinv(e, lcm(p - 1, q - 1))
+
+&quot;&quot;&quot;
+pow(a, b, c) calculates a raised to power b 
+modulus c, at a much faster rate than pow(a, b) % c
+Furthermore, we use Chinese Remainder Theorem as it
+splits the equation such that we have to calculate two
+values whose equations have smaller moduli and exponent  
+value, thereby reducing computing time.
+&quot;&quot;&quot;
+
+dq = pow(d, 1, q - 1)
+dp = pow(d, 1, p - 1)
+print chineseremaindertheorem(dq, dp, p, q, c)
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x8F93;&#x51FA;&#xFF1A;</strong></span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">41892906</span>
+</pre><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><div></div><!-- .entry-meta --></div></body></html>

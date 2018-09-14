@@ -1,0 +1,124 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/net/144.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> Python&#x4E2D;&#x4F7F;&#x7528;&#x591A;&#x7EBF;&#x7A0B;&#x7F16;&#x7A0B;&#x7684;&#x5957;&#x63A5;&#x5B57;&#x7F16;&#x7A0B;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <em>&#x5148;&#x51B3;&#x6761;&#x4EF6;&#xFF1A; <a href="https://www.geeksforgeeks.org/socket-programming-python/">Python&#x4E2D;&#x7684;&#x5957;&#x63A5;&#x5B57;&#x7F16;&#x7A0B;&#xFF0C;Python</a></em>&#x4E2D;&#x7684;<a href="https://www.geeksforgeeks.org/multithreading-python-set-1/">&#x591A;&#x7EBF;&#x7A0B;</a></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x5957;&#x63A5;&#x5B57;&#x7F16;&#x7A0B;</strong> - &gt;&#x5B83;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x5C06;&#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#x5230;&#x670D;&#x52A1;&#x5668;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5BA2;&#x6237;&#x7AEF;&#x662F;&#x6D88;&#x606F;&#x53D1;&#x9001;&#x8005;&#x548C;&#x63A5;&#x6536;&#x8005;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x76D1;&#x542C;&#x5668;&#xFF0C;&#x5B83;&#x5904;&#x7406;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x4EC0;&#x4E48;&#x662F;&#x7EBF;&#x7A0B;&#xFF1F;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7EBF;&#x7A0B;&#x662F;&#x4E00;&#x4E2A;&#x8F7B;&#x91CF;&#x7EA7;&#x8FDB;&#x7A0B;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x592A;&#x591A;&#x5185;&#x5B58;&#x5F00;&#x9500;&#xFF0C;&#x5B83;&#x4EEC;&#x6BD4;&#x8FDB;&#x7A0B;&#x4FBF;&#x5B9C;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x4EC0;&#x4E48;&#x662F;&#x591A;&#x7EBF;&#x7A0B;&#x5957;&#x63A5;&#x5B57;&#x7F16;&#x7A0B;&#xFF1F;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x591A;&#x7EBF;&#x7A0B;&#x662F;&#x5728;&#x5355;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E2D;&#x540C;&#x65F6;&#x6267;&#x884C;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x8FC7;&#x7A0B;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x591A;&#x7EBF;&#x7A0B;&#x6A21;&#x5757;&#xFF1A;</strong></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <em>_thread&#x6A21;&#x5757;&#x548C;&#x7EBF;&#x7A0B;&#x6A21;&#x5757;</em>&#x7528;&#x4E8E;python&#x4E2D;&#x7684;&#x591A;&#x7EBF;&#x7A0B;&#xFF0C;&#x8FD9;&#x4E9B;&#x6A21;&#x5757;&#x6709;&#x52A9;&#x4E8E;&#x540C;&#x6B65;&#x5E76;&#x4E3A;&#x6B63;&#x5728;&#x4F7F;&#x7528;&#x7684;&#x7EBF;&#x7A0B;&#x63D0;&#x4F9B;&#x9501;&#x5B9A;&#x3002;</span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><pre> <span class="pre-span" style="direction: ltr; text-align: left">from _thread import *</span>
+<span class="pre-span" style="direction: ltr; text-align: left">import threading</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x9501;&#x5B9A;&#x5BF9;&#x8C61;&#x7531; - &gt;&#x521B;&#x5EFA;</span> </p><pre> <span class="pre-span" style="direction: ltr; text-align: left">print_lock = threading.Lock()</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x9501;&#x5177;&#x6709;&#x4E24;&#x79CD;&#x72B6;&#x6001;&#xFF0C;&#x201C;&#x9501;&#x5B9A;&#x201D;&#x6216;&#x201C;&#x89E3;&#x9501;&#x201D;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B83;&#x6709;&#x4E24;&#x4E2A;&#x57FA;&#x672C;&#x65B9;&#x6CD5;acquire&#xFF08;&#xFF09;&#x548C;release&#xFF08;&#xFF09;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5F53;&#x72B6;&#x6001;&#x89E3;&#x9501;&#x65F6;&#xFF0C; <b>print_lock.acquire&#xFF08;&#xFF09;</b>&#x7528;&#x4E8E;&#x5C06;&#x72B6;&#x6001;&#x66F4;&#x6539;&#x4E3A;&#x5DF2;&#x9501;&#x5B9A;&#xFF0C;&#x800C;<b>print_lock.release&#xFF08;&#xFF09;</b>&#x7528;&#x4E8E;&#x5C06;&#x72B6;&#x6001;&#x66F4;&#x6539;&#x4E3A;&#x89E3;&#x9501;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x51FD;&#x6570;<b>thread.start_new_thread&#xFF08;&#xFF09;</b>&#x7528;&#x4E8E;&#x542F;&#x52A8;&#x65B0;&#x7EBF;&#x7A0B;&#x5E76;&#x8FD4;&#x56DE;&#x5176;&#x6807;&#x8BC6;&#x7B26;&#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x8981;&#x8C03;&#x7528;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x5305;&#x542B;&#x53C2;&#x6570;&#x4F4D;&#x7F6E;&#x5217;&#x8868;&#x7684;&#x5143;&#x7EC4;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8BA9;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x4EE3;&#x7801;&#x7814;&#x7A76;&#x5BA2;&#x6237;&#x7AEF; - &#x670D;&#x52A1;&#x5668;&#x591A;&#x7EBF;&#x7A0B;&#x5957;&#x63A5;&#x5B57;&#x7F16;&#x7A0B; - </span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <em>&#x6CE8;&#x610F;&#xFF1A; - &#x4EE3;&#x7801;&#x9002;&#x7528;&#x4E8E;python3&#x3002;</em></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x591A;&#x7EBF;&#x7A0B;&#x670D;&#x52A1;&#x5668;&#x4EE3;&#x7801;</b></span> </p><div class="noIdeBtnDiv">
+<pre class="brush: python3; title: ; notranslate" title=""># import socket programming library
+import socket
+
+# import thread module
+from _thread import *
+import threading
+
+print_lock = threading.Lock()
+
+# thread fuction
+def threaded(c):
+    while True:
+
+        # data received from client
+        data = c.recv(1024)
+        if not data:
+            print(&apos;Bye&apos;)
+            
+            # lock released on exit
+            print_lock.release()
+            break
+
+        # reverse the given string from client
+        data = data[::-1]
+
+        # send back reversed string to client
+        c.send(data)
+
+    # connection closed
+    c.close()
+
+
+def Main():
+    host = &quot;&quot;
+
+    # reverse a port on your computer
+    # in our case it is 12345 but it
+    # can be anything
+    port = 12345
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind((host, port))
+    print(&quot;socket binded to post&quot;, port)
+
+    # put the socket into listening mode
+    s.listen(5)
+    print(&quot;socket is listening&quot;)
+
+    # a forever loop until client wants to exit
+    while True:
+
+        # establish connection with client
+        c, addr = s.accept()
+
+        # lock acquired by client
+        print_lock.acquire()
+        print(&apos;Connected to :&apos;, addr[0], &apos;:&apos;, addr[1])
+
+        # Start a new thread and return its identifier
+        start_new_thread(threaded, (c,))
+    s.close()
+
+
+if __name__ == &apos;__main__&apos;:
+    Main()
+</pre></div><pre> <span class="pre-span" style="direction: ltr; text-align: left">Console Window:</span>
+<span class="pre-span" style="direction: ltr; text-align: left">socket binded to post 12345</span>
+<span class="pre-span" style="direction: ltr; text-align: left">socket is listening</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Connected to : 127.0.0.1 : 11600</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Bye</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x5BA2;&#x6237;&#x4EE3;&#x7801;</b></span> </p><div class="noIdeBtnDiv"><pre class="brush: python; title: ; notranslate" title=""># Import socket module
+import socket
+
+
+def Main():
+    # local host IP &apos;127.0.0.1&apos;
+    host = &apos;127.0.0.1&apos;
+
+    # Define the port on which you want to connect
+    port = 12345
+
+    s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+
+    # connect to server on local computer
+    s.connect((host,port))
+
+    # message you send to server
+    message = &quot;shaurya says geeksforgeeks&quot;
+    while True:
+
+        # message sent to server
+        s.send(message.encode(&apos;ascii&apos;))
+
+        # messaga received from server
+        data = s.recv(1024)
+
+        # print the received message
+        # here it would be a reverse of sent message
+        print(&apos;Received from the server :&apos;,str(data.decode(&apos;ascii&apos;)))
+
+        # ask the client whether he wants to continue
+        ans = input(&apos;\nDo you want to continue(y/n) :&apos;)
+        if ans == &apos;y&apos;:
+            continue
+        else:
+            break
+    # close the connection
+    s.close()
+
+if __name__ == &apos;__main__&apos;:
+    Main()
+</pre></div><pre> <span class="pre-span" style="direction: ltr; text-align: left">Console Window:</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Received from the server : skeegrofskeeg syas ayruahs</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Do you want to continue(y/n) :y</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Received from the server : skeegrofskeeg syas ayruahs</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Do you want to continue(y/n) :n</span>
+
+<span class="pre-span" style="direction: ltr; text-align: left">Process finished with exit code 0</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x53C2;&#x8003; - &gt;</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <a href="https://docs.python.org/2/library/thread.html">https://docs.python.org/2/library/thread.html</a></span> </p><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><!-- .entry-meta --></div></body></html>

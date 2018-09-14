@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/net/153.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> C&#x7A0B;&#x5E8F;&#x663E;&#x793A;&#x4E3B;&#x673A;&#x540D;&#x548C;IP&#x5730;&#x5740;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6709;&#x8BB8;&#x591A;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x672C;&#x5730;&#x8BA1;&#x7B97;&#x673A;&#x7684;<em>&#x4E3B;&#x673A;&#x540D;</em>&#x548C;<em>IP&#x5730;&#x5740;</em> &#x3002;</span> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8FD9;&#x662F;&#x4F7F;&#x7528;C&#x7A0B;&#x5E8F;&#x67E5;&#x627E;&#x4E3B;&#x673A;&#x540D;&#x548C;IP&#x5730;&#x5740;&#x7684;&#x7B80;&#x5355;&#x65B9;&#x6CD5;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x529F;&#x80FD;&#xFF1A; - </span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>gethostname&#xFF08;&#xFF09;</strong> &#xFF1A;gethostname&#x51FD;&#x6570;&#x68C0;&#x7D22;&#x672C;&#x5730;&#x8BA1;&#x7B97;&#x673A;&#x7684;&#x6807;&#x51C6;&#x4E3B;&#x673A;&#x540D;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>gethostbyname&#xFF08;&#xFF09;</strong> &#xFF1A;gethostbyname&#x51FD;&#x6570;&#x4ECE;&#x4E3B;&#x673A;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x68C0;&#x7D22;&#x4E0E;&#x4E3B;&#x673A;&#x540D;&#x5BF9;&#x5E94;&#x7684;&#x4E3B;&#x673A;&#x4FE1;&#x606F;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>inet_ntoa&#xFF08;&#xFF09;</strong> &#xFF1A;inet_ntoa&#x51FD;&#x6570;&#x5C06;&#xFF08;Ipv4&#xFF09;Internet&#x7F51;&#x7EDC;&#x5730;&#x5740;&#x8F6C;&#x6362;&#x4E3A;Internet&#x6807;&#x51C6;&#x70B9;&#x5206;&#x5341;&#x8FDB;&#x5236;&#x683C;&#x5F0F;&#x7684;ASCII&#x5B57;&#x7B26;&#x4E32;&#x3002;</span> </p><div class="responsive-tabs"><h2 class="tabtitle sigil_not_in_toc"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> C / C ++</span> </h2><div class="tabcontent">
+
+<pre class="brush: cpp; title: ; notranslate" title="">// C program to display hostname
+// and IP address
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;netdb.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;arpa/inet.h&gt;
+
+// Returns hostname for the local computer
+void checkHostName(int hostname)
+{
+    if (hostname == -1)
+    {
+        perror(&quot;gethostname&quot;);
+        exit(1);
+    }
+}
+
+// Returns host information corresponding to host name
+void checkHostEntry(struct hostent * hostentry)
+{
+    if (hostentry == NULL)
+    {
+        perror(&quot;gethostbyname&quot;);
+        exit(1);
+    }
+}
+
+// Converts space-delimited IPv4 addresses
+// to dotted-decimal format
+void checkIPbuffer(char *IPbuffer)
+{
+    if (NULL == IPbuffer)
+    {
+        perror(&quot;inet_ntoa&quot;);
+        exit(1);
+    }
+}
+
+// Driver code
+int main()
+{
+    char hostbuffer[256];
+    char *IPbuffer;
+    struct hostent *host_entry;
+    int hostname;
+
+    // To retrieve hostname
+    hostname = gethostname(hostbuffer, sizeof(hostbuffer));
+    checkHostName(hostname);
+
+    // To retrieve host information
+    host_entry = gethostbyname(hostbuffer);
+    checkHostEntry(host_entry);
+
+    // To convert an Internet network
+    // address into ASCII string
+    IPbuffer = inet_ntoa(*((struct in_addr*)
+                           host_entry-&gt;h_addr_list[0]));
+
+    printf(&quot;Hostname: %s\n&quot;, hostbuffer);
+    printf(&quot;Host IP: %s&quot;, IPbuffer);
+
+    return 0;
+}
+</pre><p></p></div></div><br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x8F93;&#x51FA;&#xFF1A;</span> <p></p><pre> <span class="pre-span" style="direction: ltr; text-align: left">Hostname: cContainer</span>
+<span class="pre-span" style="direction: ltr; text-align: left">Host IP: 10.98.162.101</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <em>&#x8F93;&#x51FA;&#x56E0;&#x673A;&#x5668;&#x800C;&#x5F02;</em></span> </p><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><hr><hr><!-- .entry-meta --></div></body></html>

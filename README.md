@@ -29,6 +29,7 @@
 +   [数字逻辑](docs/zh/digital-logic)
 +   [组成原理](docs/zh/arch)
 +   [操作系统](docs/zh/os)
++   [计算机网络](docs/zh/net)
 
 ## 贡献指南
 

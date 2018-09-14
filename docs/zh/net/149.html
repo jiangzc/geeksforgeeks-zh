@@ -1,0 +1,225 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-x-mtfrom-en"><head><meta http-equiv="X-Translated-By" content="Google"><link href="https://apachecn.github.io/geeksforgeeks-zh/docs/en/net/149.html" hreflang="en" rel="alternate machine-translated-from"><title></title><link href="../../../styles/ebook.css" type="text/css" rel="stylesheet"></head><body><header class="entry-header"><h1 class="entry-title"> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x6587;&#x4EF6;&#x7684;C&#x7A0B;&#x5E8F;&#x4F7F;&#x7528;UDP&#x4F20;&#x8F93;</span> </h1></header><!-- .entry-header --><div class="entry-content"><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<a href="https://www.geeksforgeeks.org/socket-programming-cc/" rel="noopener" target="_blank">C&#x4E2D;&#x7684;Socket&#x7F16;&#x7A0B;&#x5728;</a>&#x4E24;&#x53F0;&#x8BA1;&#x7B97;&#x673A;&#x4E4B;&#x95F4;&#x4F20;&#x8F93;&#x6570;&#x636E;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x540C;&#x6837;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;UDP&#x534F;&#x8BAE;&#x548C;&#x7B80;&#x5355;&#x7684;&#x5BA2;&#x6237;&#x7AEF;/&#x670D;&#x52A1;&#x5668;&#x8F7B;&#x677E;&#x53D1;&#x9001;&#x6587;&#x4EF6;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5B89;&#x5168;&#x6027;&#xFF1A;&#x901A;&#x8FC7;&#x52A0;&#x5BC6;&#x5904;&#x7406;&#x3002;</span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x534F;&#x8BAE;&#xFF1A;UDP</span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x52A0;&#x5BC6;&#xFF1A; <a href="https://www.geeksforgeeks.org/xor-cipher/" rel="noopener" target="_blank">XOR&#x52A0;&#x5BC6;</a></span> </p><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x7B97;&#x6CD5;&#xFF1A;</b></span> </p><br><!-- post_top_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="4501693235" data-ad-format="auto"></ins><br><pre> <span class="pre-span" style="direction: ltr; text-align: left">1. The server starts and <b>waits for filename</b> .</span>
+<span class="pre-span" style="direction: ltr; text-align: left">2. The client <strong>sends a filename</strong> .</span>
+<span class="pre-span" style="direction: ltr; text-align: left">3. The server receives filename.</span>
+   <span class="pre-span" style="direction: ltr; text-align: left">If file is present,</span>
+   <span class="pre-span" style="direction: ltr; text-align: left">server starts reading file</span> 
+   <span class="pre-span" style="direction: ltr; text-align: left">and continues t <b>o send a buffer filled with</b></span> <b>
+   </b> <span class="pre-span" style="direction: ltr; text-align: left"><b>file contents encrypted</b> until file-end is reached.</span>
+<span class="pre-span" style="direction: ltr; text-align: left">4. <b>End is marked by EOF</b> .</span>
+<span class="pre-span" style="direction: ltr; text-align: left">5. File is received as buffers <b>until EOF is</b></span> <b> 
+</b> <span class="pre-span" style="direction: ltr; text-align: left"><b>received</b> .</span> <span class="pre-span" style="direction: ltr; text-align: left">Then it is decrypted.</span>
+<span class="pre-span" style="direction: ltr; text-align: left">6. If Not present, a <b>file not found</b> is sent.</span>
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x670D;&#x52A1;&#x5668; &#xFF1A;</strong></span> </p>
+<pre class="brush: c; title: ; notranslate" title="">// server code for UDP socket programming
+#include &lt;arpa/inet.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;unistd.h&gt;
+
+#define IP_PROTOCOL 0
+#define PORT_NO 15050
+#define NET_BUF_SIZE 32
+#define cipherKey &apos;S&apos;
+#define sendrecvflag 0
+#define nofile &quot;File Not Found!&quot;
+
+// funtion to clear buffer
+void clearBuf(char* b)
+{
+    int i;
+    for (i = 0; i &lt; NET_BUF_SIZE; i++)
+        b[i] = &apos;\0&apos;;
+}
+
+// funtion to encrypt
+char Cipher(char ch)
+{
+    return ch ^ cipherKey;
+}
+
+// funtion sending file
+int sendFile(FILE* fp, char* buf, int s)
+{
+    int i, len;
+    if (fp == NULL) {
+        strcpy(buf, nofile);
+        len = strlen(nofile);
+        buf[len] = EOF;
+        for (i = 0; i &lt;= len; i++)
+            buf[i] = Cipher(buf[i]);
+        return 1;
+    }
+
+    char ch, ch2;
+    for (i = 0; i &lt; s; i++) {
+        ch = fgetc(fp);
+        ch2 = Cipher(ch);
+        buf[i] = ch2;
+        if (ch == EOF)
+            return 1;
+    }
+    return 0;
+}
+
+// driver code
+int main()
+{
+    int sockfd, nBytes;
+    struct sockaddr_in addr_con;
+    int addrlen = sizeof(addr_con);
+    addr_con.sin_family = AF_INET;
+    addr_con.sin_port = htons(PORT_NO);
+    addr_con.sin_addr.s_addr = INADDR_ANY;
+    char net_buf[NET_BUF_SIZE];
+    FILE* fp;
+
+    // socket()
+    sockfd = socket(AF_INET, SOCK_DGRAM, IP_PROTOCOL);
+
+    if (sockfd &lt; 0)
+        printf(&quot;\nfile descriptor not received!!\n&quot;);
+    else
+        printf(&quot;\nfile descriptor %d received\n&quot;, sockfd);
+
+    // bind()
+    if (bind(sockfd, (struct sockaddr*)&amp;addr_con, sizeof(addr_con)) == 0)
+        printf(&quot;\nSuccessfully binded!\n&quot;);
+    else
+        printf(&quot;\nBinding Failed!\n&quot;);
+
+    while (1) {
+        printf(&quot;\nWaiting for file name...\n&quot;);
+
+        // receive file name
+        clearBuf(net_buf);
+
+        nBytes = recvfrom(sockfd, net_buf,
+                          NET_BUF_SIZE, sendrecvflag,
+                          (struct sockaddr*)&amp;addr_con, &amp;addrlen);
+
+        fp = fopen(net_buf, &quot;r&quot;);
+        printf(&quot;\nFile Name Received: %s\n&quot;, net_buf);
+        if (fp == NULL)
+            printf(&quot;\nFile open failed!\n&quot;);
+        else
+            printf(&quot;\nFile Successfully opened!\n&quot;);
+
+        while (1) {
+
+            // process
+            if (sendFile(fp, net_buf, NET_BUF_SIZE)) {
+                sendto(sockfd, net_buf, NET_BUF_SIZE,
+                       sendrecvflag, 
+                    (struct sockaddr*)&amp;addr_con, addrlen);
+                break;
+            }
+
+            // send
+            sendto(sockfd, net_buf, NET_BUF_SIZE,
+                   sendrecvflag,
+                (struct sockaddr*)&amp;addr_con, addrlen);
+            clearBuf(net_buf);
+        }
+        if (fp != NULL)
+            fclose(fp);
+    }
+    return 0;
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <strong>&#x5BA2;&#x6237;&#x7AEF;&#xFF1A;</strong></span> </p><pre class="brush: c; title: ; notranslate" title="">// client code for UDP socket programming
+#include &lt;arpa/inet.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;unistd.h&gt;
+
+#define IP_PROTOCOL 0
+#define IP_ADDRESS &quot;127.0.0.1&quot; // localhost
+#define PORT_NO 15050
+#define NET_BUF_SIZE 32
+#define cipherKey &apos;S&apos;
+#define sendrecvflag 0
+
+// funtion to clear buffer
+void clearBuf(char* b)
+{
+    int i;
+    for (i = 0; i &lt; NET_BUF_SIZE; i++)
+        b[i] = &apos;\0&apos;;
+}
+
+// function for decryption
+char Cipher(char ch)
+{
+    return ch ^ cipherKey;
+}
+
+// function to receive file
+int recvFile(char* buf, int s)
+{
+    int i;
+    char ch;
+    for (i = 0; i &lt; s; i++) {
+        ch = buf[i];
+        ch = Cipher(ch);
+        if (ch == EOF)
+            return 1;
+        else
+            printf(&quot;%c&quot;, ch);
+    }
+    return 0;
+}
+
+// driver code
+int main()
+{
+    int sockfd, nBytes;
+    struct sockaddr_in addr_con;
+    int addrlen = sizeof(addr_con);
+    addr_con.sin_family = AF_INET;
+    addr_con.sin_port = htons(PORT_NO);
+    addr_con.sin_addr.s_addr = inet_addr(IP_ADDRESS);
+    char net_buf[NET_BUF_SIZE];
+    FILE* fp;
+
+    // socket()
+    sockfd = socket(AF_INET, SOCK_DGRAM,
+                    IP_PROTOCOL);
+
+    if (sockfd &lt; 0)
+        printf(&quot;\nfile descriptor not received!!\n&quot;);
+    else
+        printf(&quot;\nfile descriptor %d received\n&quot;, sockfd);
+
+    while (1) {
+        printf(&quot;\nPlease enter file name to receive:\n&quot;);
+        scanf(&quot;%s&quot;, net_buf);
+        sendto(sockfd, net_buf, NET_BUF_SIZE,
+               sendrecvflag, (struct sockaddr*)&amp;addr_con,
+               addrlen);
+
+        printf(&quot;\n---------Data Received---------\n&quot;);
+
+        while (1) {
+            // receive
+            clearBuf(net_buf);
+            nBytes = recvfrom(sockfd, net_buf, NET_BUF_SIZE,
+                              sendrecvflag, (struct sockaddr*)&amp;addr_con,
+                              &amp;addrlen);
+
+            // process
+            if (recvFile(net_buf, NET_BUF_SIZE)) {
+                break;
+            }
+        }
+        printf(&quot;\n-------------------------------\n&quot;);
+    }
+    return 0;
+}
+</pre><p> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()"> <b>&#x8F93;&#x51FA;&#xFF1A;</b></span> <br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x670D;&#x52A1;&#x5668;&#xFF1A;</span> <br><img src="../../../imgs/net/47a5b26931ea0d1c30dc5fc3a2c9d45c.jpg" alt="&#x670D;&#x52A1;&#x5668;" class="alignnone size-medium wp-image-188265" srcset="https://www.geeksforgeeks.org/wp-content/uploads/server.png 460w, https://www.geeksforgeeks.org/wp-content/uploads/server-300x188.png 300w" sizes="(max-width: 460px) 100vw, 460px"><br> <span class="notranslate" onmouseover="_tipon(this)" onmouseout="_tipoff()">&#x5BA2;&#x6237;&#xFF1A;</span> <br><img src="../../../imgs/net/d5371c1705bb51f97ba2a9b0b4d04e8d.jpg" alt="&#x5BA2;&#x6237;" class="alignnone size-medium wp-image-188264" srcset="https://www.geeksforgeeks.org/wp-content/uploads/client.png 380w, https://www.geeksforgeeks.org/wp-content/uploads/client-300x242.png 300w" sizes="(max-width: 380px) 100vw, 380px"></p><br><!-- post_bottom_responsive --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9465609616171866" data-ad-slot="8385097921" data-ad-format="auto"></ins><br><br><hr><hr><!-- .entry-meta --></div></body></html>
