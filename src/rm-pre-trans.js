@@ -1,7 +1,7 @@
 var cheerio = require('cheerio')
 var fs = require('fs')
 
-var dir = 'trans'
+var dir = process.argv[2]
 
 var files = fs.readdirSync(dir).filter(x => x.endsWith('.html'))
 
